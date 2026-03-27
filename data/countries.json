@@ -1,0 +1,2997 @@
+{
+  "metadata": {
+    "title": "Comprehensive Terror Intelligence Analysis Database",
+    "version": "1.0",
+    "date_compiled": "2026-03-27",
+    "sources": [
+      "Global Terrorism Index (GTI) 2025",
+      "Global Terrorism Database (GTD)",
+      "Armed Conflict Location & Event Data Project (ACLED)",
+      "UN Security Council Sanctions Lists",
+      "US State Department Foreign Terrorist Organizations List",
+      "EU Terrorist Organisation Listing"
+    ],
+    "threat_level_scale": {
+      "Critical": "Active, large-scale terrorism with frequent mass-casualty attacks",
+      "High": "Significant terror activity with recurring attacks",
+      "Elevated": "Periodic attacks or credible ongoing threats",
+      "Moderate": "Occasional incidents or latent threat presence",
+      "Low": "Minimal terrorism activity or threat"
+    }
+  },
+
+  "regions": {
+    "MENA": {
+      "full_name": "Middle East / North Africa",
+      "sub_regions": ["Levant", "Gulf States", "North Africa", "Arabian Peninsula"],
+      "countries": [
+        {
+          "name": "Afghanistan",
+          "iso_alpha2": "AF",
+          "iso_alpha3": "AFG",
+          "region": "MENA",
+          "sub_region": "Central/South Asia overlap - often grouped with MENA in terror analysis",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Islamic State Khorasan Province (ISKP/ISIS-K)",
+            "Taliban (governing, but factions conduct attacks)",
+            "Al-Qaeda in the Indian Subcontinent (AQIS)",
+            "Tehrik-i-Taliban Pakistan (TTP) - cross-border",
+            "National Resistance Front (NRF)"
+          ],
+          "conflict_zones": ["Nangarhar Province", "Kabul", "Kandahar Province", "Balkh Province", "Panjshir Valley"]
+        },
+        {
+          "name": "Iraq",
+          "iso_alpha2": "IQ",
+          "iso_alpha3": "IRQ",
+          "region": "MENA",
+          "sub_region": "Levant",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Islamic State of Iraq (ISI/ISIS remnants)",
+            "Popular Mobilization Forces (PMF) - various militias",
+            "Kata'ib Hezbollah",
+            "Asa'ib Ahl al-Haq",
+            "Kurdistan Workers' Party (PKK)"
+          ],
+          "conflict_zones": ["Kirkuk Governorate", "Diyala Governorate", "Anbar Province", "Nineveh/Mosul corridor", "Sinjar"]
+        },
+        {
+          "name": "Syria",
+          "iso_alpha2": "SY",
+          "iso_alpha3": "SYR",
+          "region": "MENA",
+          "sub_region": "Levant",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Hayat Tahrir al-Sham (HTS)",
+            "Islamic State (ISIS) remnants",
+            "Syrian Democratic Forces (SDF)/YPG",
+            "Various Iran-backed militias",
+            "Hurras al-Din (Al-Qaeda affiliate)"
+          ],
+          "conflict_zones": ["Idlib Province", "Deir ez-Zor", "Northeast Syria/Rojava", "Daraa Governorate", "Aleppo outskirts"]
+        },
+        {
+          "name": "Yemen",
+          "iso_alpha2": "YE",
+          "iso_alpha3": "YEM",
+          "region": "MENA",
+          "sub_region": "Arabian Peninsula",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Ansar Allah (Houthis)",
+            "Al-Qaeda in the Arabian Peninsula (AQAP)",
+            "Islamic State - Yemen Province (ISYP)",
+            "Southern Transitional Council (STC) militias"
+          ],
+          "conflict_zones": ["Marib Governorate", "Aden", "Taiz", "Shabwah", "Al Bayda", "Hodeidah"]
+        },
+        {
+          "name": "Libya",
+          "iso_alpha2": "LY",
+          "iso_alpha3": "LBY",
+          "region": "MENA",
+          "sub_region": "North Africa",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Islamic State - Libya Province",
+            "Various armed militias (Misrata, Zintan, etc.)",
+            "Libyan National Army (LNA) factions",
+            "Al-Qaeda in the Islamic Maghreb (AQIM) elements"
+          ],
+          "conflict_zones": ["Tripoli", "Sirte", "Fezzan/Southern Libya", "Benghazi outskirts", "Derna"]
+        },
+        {
+          "name": "Egypt",
+          "iso_alpha2": "EG",
+          "iso_alpha3": "EGY",
+          "region": "MENA",
+          "sub_region": "North Africa",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "Wilayat Sinai (Islamic State - Sinai Province)",
+            "Hasm Movement",
+            "Ansar Bayt al-Maqdis remnants",
+            "Muslim Brotherhood-linked cells"
+          ],
+          "conflict_zones": ["North Sinai Peninsula", "Western Desert border region"]
+        },
+        {
+          "name": "Lebanon",
+          "iso_alpha2": "LB",
+          "iso_alpha3": "LBN",
+          "region": "MENA",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Hezbollah",
+            "Palestinian militant factions (Hamas, PFLP, etc.)",
+            "ISIS-linked cells",
+            "Fatah al-Islam remnants"
+          ],
+          "conflict_zones": ["Southern Lebanon/Blue Line border", "Bekaa Valley", "Palestinian refugee camps (Ain al-Hilweh)", "Tripoli"]
+        },
+        {
+          "name": "Israel",
+          "iso_alpha2": "IL",
+          "iso_alpha3": "ISR",
+          "region": "MENA",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": ["Gaza Strip border", "West Bank/Judea and Samaria", "Northern border (Lebanon)", "Jerusalem"]
+        },
+        {
+          "name": "Palestinian Territories",
+          "iso_alpha2": "PS",
+          "iso_alpha3": "PSE",
+          "region": "MENA",
+          "sub_region": "Levant",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Hamas (governing Gaza)",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Al-Aqsa Martyrs' Brigades",
+            "Lion's Den (Areen al-Usood)",
+            "Jenin Brigades"
+          ],
+          "conflict_zones": ["Gaza Strip", "Jenin", "Nablus", "Tulkarm", "Hebron"]
+        },
+        {
+          "name": "Jordan",
+          "iso_alpha2": "JO",
+          "iso_alpha3": "JOR",
+          "region": "MENA",
+          "sub_region": "Levant",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-inspired cells",
+            "Smuggling networks (Syria/Iraq border)"
+          ],
+          "conflict_zones": ["Eastern border region with Syria/Iraq"]
+        },
+        {
+          "name": "Saudi Arabia",
+          "iso_alpha2": "SA",
+          "iso_alpha3": "SAU",
+          "region": "MENA",
+          "sub_region": "Arabian Peninsula",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "AQAP cells",
+            "ISIS-inspired lone actors",
+            "Houthi cross-border attacks (missile/drone)"
+          ],
+          "conflict_zones": ["Southern border with Yemen (Jizan, Najran)"]
+        },
+        {
+          "name": "United Arab Emirates",
+          "iso_alpha2": "AE",
+          "iso_alpha3": "ARE",
+          "region": "MENA",
+          "sub_region": "Gulf States",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "Houthi long-range missile/drone threats"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Kuwait",
+          "iso_alpha2": "KW",
+          "iso_alpha3": "KWT",
+          "region": "MENA",
+          "sub_region": "Gulf States",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "ISIS-inspired cells (historically)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Qatar",
+          "iso_alpha2": "QA",
+          "iso_alpha3": "QAT",
+          "region": "MENA",
+          "sub_region": "Gulf States",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Bahrain",
+          "iso_alpha2": "BH",
+          "iso_alpha3": "BHR",
+          "region": "MENA",
+          "sub_region": "Gulf States",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "Saraya al-Ashtar (Iran-linked)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Oman",
+          "iso_alpha2": "OM",
+          "iso_alpha3": "OMN",
+          "region": "MENA",
+          "sub_region": "Arabian Peninsula",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Iran",
+          "iso_alpha2": "IR",
+          "iso_alpha3": "IRN",
+          "region": "MENA",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": ["Sistan-Baluchestan Province", "Kurdistan border region"]
+        },
+        {
+          "name": "Turkey",
+          "iso_alpha2": "TR",
+          "iso_alpha3": "TUR",
+          "region": "MENA",
+          "sub_region": "Levant/Europe crossover",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "Kurdistan Workers' Party (PKK)",
+            "Islamic State cells",
+            "Revolutionary People's Liberation Party-Front (DHKP-C)",
+            "TAK (Kurdistan Freedom Hawks)"
+          ],
+          "conflict_zones": ["Southeast Turkey (Hakkari, Sirnak, Diyarbakir)", "Syria border region"]
+        },
+        {
+          "name": "Tunisia",
+          "iso_alpha2": "TN",
+          "iso_alpha3": "TUN",
+          "region": "MENA",
+          "sub_region": "North Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Jund al-Khilafah (ISIS affiliate)",
+            "AQIM-linked cells",
+            "Okba Ibn Nafaa Brigade"
+          ],
+          "conflict_zones": ["Mount Chaambi (Kasserine)", "Libyan border region"]
+        },
+        {
+          "name": "Algeria",
+          "iso_alpha2": "DZ",
+          "iso_alpha3": "DZA",
+          "region": "MENA",
+          "sub_region": "North Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Al-Qaeda in the Islamic Maghreb (AQIM)",
+            "Jund al-Khilafah",
+            "Rachad Movement"
+          ],
+          "conflict_zones": ["Kabylie region", "Southern desert/Sahel border"]
+        },
+        {
+          "name": "Morocco",
+          "iso_alpha2": "MA",
+          "iso_alpha3": "MAR",
+          "region": "MENA",
+          "sub_region": "North Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-inspired cells",
+            "AQIM-linked networks"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Mauritania",
+          "iso_alpha2": "MR",
+          "iso_alpha3": "MRT",
+          "region": "MENA",
+          "sub_region": "North Africa / Sahel overlap",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "AQIM elements",
+            "JNIM spillover"
+          ],
+          "conflict_zones": ["Northern border with Mali/Algeria"]
+        }
+      ]
+    },
+    "Sub-Saharan Africa": {
+      "full_name": "Sub-Saharan Africa",
+      "sub_regions": ["West Africa", "East Africa", "Sahel", "Central Africa", "Southern Africa"],
+      "countries": [
+        {
+          "name": "Burkina Faso",
+          "iso_alpha2": "BF",
+          "iso_alpha3": "BFA",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Sahel",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Jama'at Nusrat al-Islam wal-Muslimin (JNIM)",
+            "Islamic State Sahel Province (ISSP)",
+            "Ansaroul Islam"
+          ],
+          "conflict_zones": ["Sahel Region (Nord, Centre-Nord, Est)", "Boucle du Mouhoun", "Cascades", "Hauts-Bassins"]
+        },
+        {
+          "name": "Mali",
+          "iso_alpha2": "ML",
+          "iso_alpha3": "MLI",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Sahel",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Jama'at Nusrat al-Islam wal-Muslimin (JNIM)",
+            "Islamic State Sahel Province (ISSP)",
+            "Coordination of Azawad Movements (CMA)",
+            "Katiba Macina"
+          ],
+          "conflict_zones": ["Northern Mali (Kidal, Gao, Timbuktu)", "Central Mali (Mopti)", "Southern expansion zones"]
+        },
+        {
+          "name": "Niger",
+          "iso_alpha2": "NE",
+          "iso_alpha3": "NER",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Sahel",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Islamic State West Africa Province (ISWAP)",
+            "JNIM",
+            "Boko Haram (JAS)",
+            "Islamic State Sahel Province (ISSP)"
+          ],
+          "conflict_zones": ["Tillabéri Region", "Diffa Region (Lake Chad Basin)", "Tahoua Region", "Maradi border"]
+        },
+        {
+          "name": "Nigeria",
+          "iso_alpha2": "NG",
+          "iso_alpha3": "NGA",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Boko Haram (Jama'atu Ahlis Sunna Lidda'awati wal-Jihad - JAS)",
+            "Islamic State West Africa Province (ISWAP)",
+            "Ansaru",
+            "Indigenous People of Biafra (IPOB)/Eastern Security Network",
+            "Bandit groups (Northwest)"
+          ],
+          "conflict_zones": ["Northeast (Borno, Yobe, Adamawa)", "Northwest (Zamfara, Katsina, Kaduna)", "North Central/Middle Belt", "Niger Delta", "Southeast (Biafra tensions)"]
+        },
+        {
+          "name": "Somalia",
+          "iso_alpha2": "SO",
+          "iso_alpha3": "SOM",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Al-Shabaab",
+            "Islamic State - Somalia Province (ISS)",
+            "Ahlu Sunna Wal Jama'a (ASWJ)"
+          ],
+          "conflict_zones": ["South-Central Somalia", "Lower Shabelle", "Middle Shabelle", "Bay and Bakool", "Mudug", "Puntland"]
+        },
+        {
+          "name": "Democratic Republic of the Congo",
+          "iso_alpha2": "CD",
+          "iso_alpha3": "COD",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Central Africa",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Allied Democratic Forces (ADF/ISIS-DRC)",
+            "March 23 Movement (M23)",
+            "Cooperative for the Development of the Congo (CODECO)",
+            "Mai-Mai militias (various)",
+            "Forces Démocratiques de Libération du Rwanda (FDLR)"
+          ],
+          "conflict_zones": ["North Kivu", "South Kivu", "Ituri Province", "Tanganyika"]
+        },
+        {
+          "name": "Mozambique",
+          "iso_alpha2": "MZ",
+          "iso_alpha3": "MOZ",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Ansar al-Sunna (ISIS-Mozambique / Ahlu Sunnah Wa-Jama / Al-Shabaab Mozambique)",
+            "Islamic State - Central Africa Province (ISCAP)"
+          ],
+          "conflict_zones": ["Cabo Delgado Province", "Nampula Province (spillover)"]
+        },
+        {
+          "name": "Cameroon",
+          "iso_alpha2": "CM",
+          "iso_alpha3": "CMR",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Central Africa",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Boko Haram/ISWAP",
+            "Ambazonia Defence Forces (ADF)",
+            "Southern Cameroons Defence Forces (SOCADEF)"
+          ],
+          "conflict_zones": ["Far North Region (Lake Chad Basin)", "Northwest Region (Anglophone crisis)", "Southwest Region (Anglophone crisis)"]
+        },
+        {
+          "name": "Chad",
+          "iso_alpha2": "TD",
+          "iso_alpha3": "TCD",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Sahel",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Boko Haram/ISWAP",
+            "JNIM elements",
+            "Front for Change and Concord in Chad (FACT)"
+          ],
+          "conflict_zones": ["Lake Chad Basin (Lac Province)", "Northern border with Libya", "Tibesti Region"]
+        },
+        {
+          "name": "Kenya",
+          "iso_alpha2": "KE",
+          "iso_alpha3": "KEN",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "Al-Shabaab (cross-border operations)",
+            "ISIS-linked cells"
+          ],
+          "conflict_zones": ["Northeastern Kenya (Garissa, Mandera, Wajir)", "Coastal region (Lamu County)", "Nairobi (periodic attacks)"]
+        },
+        {
+          "name": "Ethiopia",
+          "iso_alpha2": "ET",
+          "iso_alpha3": "ETH",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Oromo Liberation Army (OLA/OLF-Shane)",
+            "Al-Shabaab (cross-border)",
+            "Fano militia (Amhara)",
+            "Tigray People's Liberation Front (TPLF) remnants"
+          ],
+          "conflict_zones": ["Amhara Region", "Oromia Region", "Somali Region border", "Tigray (post-conflict)", "Benishangul-Gumuz"]
+        },
+        {
+          "name": "Uganda",
+          "iso_alpha2": "UG",
+          "iso_alpha3": "UGA",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "Allied Democratic Forces (ADF/ISIS-linked)",
+            "Al-Shabaab (external threat)",
+            "Lord's Resistance Army (LRA) remnants"
+          ],
+          "conflict_zones": ["Western border (DRC spillover)", "Karamoja sub-region"]
+        },
+        {
+          "name": "Tanzania",
+          "iso_alpha2": "TZ",
+          "iso_alpha3": "TZA",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-Mozambique spillover",
+            "Al-Shabaab cells"
+          ],
+          "conflict_zones": ["Mtwara Region (Mozambique border)"]
+        },
+        {
+          "name": "Sudan",
+          "iso_alpha2": "SD",
+          "iso_alpha3": "SDN",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Rapid Support Forces (RSF)",
+            "Sudanese Armed Forces (SAF) aligned militias",
+            "Sudan Liberation Movement factions (Darfur)",
+            "ISIS cells",
+            "Al-Qaeda elements"
+          ],
+          "conflict_zones": ["Khartoum", "Darfur (all five states)", "Kordofan", "Al Jazirah", "Blue Nile"]
+        },
+        {
+          "name": "South Sudan",
+          "iso_alpha2": "SS",
+          "iso_alpha3": "SSD",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Sudan People's Liberation Movement-in-Opposition (SPLM-IO) factions",
+            "National Salvation Front (NAS)",
+            "Various ethnic militias"
+          ],
+          "conflict_zones": ["Upper Nile", "Jonglei", "Unity State", "Central Equatoria", "Western Equatoria"]
+        },
+        {
+          "name": "Central African Republic",
+          "iso_alpha2": "CF",
+          "iso_alpha3": "CAF",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Central Africa",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Coalition of Patriots for Change (CPC)",
+            "Anti-balaka militias",
+            "Ex-Séléka factions (FPRC, UPC, MPC)",
+            "Lord's Resistance Army (LRA) remnants"
+          ],
+          "conflict_zones": ["Bambari", "Bria", "Northwest regions", "Southeast (Haut-Mbomou)"]
+        },
+        {
+          "name": "Ghana",
+          "iso_alpha2": "GH",
+          "iso_alpha3": "GHA",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "JNIM spillover threat",
+            "ISIS-linked recruitment"
+          ],
+          "conflict_zones": ["Northern border regions"]
+        },
+        {
+          "name": "Togo",
+          "iso_alpha2": "TG",
+          "iso_alpha3": "TGO",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "JNIM spillover",
+            "ISSP elements"
+          ],
+          "conflict_zones": ["Savanes Region (northern border with Burkina Faso)"]
+        },
+        {
+          "name": "Benin",
+          "iso_alpha2": "BJ",
+          "iso_alpha3": "BEN",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "JNIM cross-border operations",
+            "ISSP elements"
+          ],
+          "conflict_zones": ["Atacora and Alibori Departments (northern border)", "W-Arly-Pendjari (WAP) complex"]
+        },
+        {
+          "name": "Côte d'Ivoire",
+          "iso_alpha2": "CI",
+          "iso_alpha3": "CIV",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "JNIM cross-border threat",
+            "Ansar ul Islam elements"
+          ],
+          "conflict_zones": ["Northern border region (Bounkani, Tchologo)"]
+        },
+        {
+          "name": "Senegal",
+          "iso_alpha2": "SN",
+          "iso_alpha3": "SEN",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Movement of Democratic Forces of Casamance (MFDC)",
+            "JNIM spillover concern"
+          ],
+          "conflict_zones": ["Casamance Region"]
+        },
+        {
+          "name": "Guinea",
+          "iso_alpha2": "GN",
+          "iso_alpha3": "GIN",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "JNIM concern",
+            "Political instability-related violence"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Sierra Leone",
+          "iso_alpha2": "SL",
+          "iso_alpha3": "SLE",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Liberia",
+          "iso_alpha2": "LR",
+          "iso_alpha3": "LBR",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Gambia",
+          "iso_alpha2": "GM",
+          "iso_alpha3": "GMB",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Guinea-Bissau",
+          "iso_alpha2": "GW",
+          "iso_alpha3": "GNB",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Cape Verde",
+          "iso_alpha2": "CV",
+          "iso_alpha3": "CPV",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Republic of the Congo",
+          "iso_alpha2": "CG",
+          "iso_alpha3": "COG",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Central Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "Ninja militia remnants (Pool region)"
+          ],
+          "conflict_zones": ["Pool Region"]
+        },
+        {
+          "name": "Gabon",
+          "iso_alpha2": "GA",
+          "iso_alpha3": "GAB",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Central Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Equatorial Guinea",
+          "iso_alpha2": "GQ",
+          "iso_alpha3": "GNQ",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Central Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "São Tomé and Príncipe",
+          "iso_alpha2": "ST",
+          "iso_alpha3": "STP",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Central Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Rwanda",
+          "iso_alpha2": "RW",
+          "iso_alpha3": "RWA",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "FDLR (operating from DRC)",
+            "Rwanda National Congress (RNC)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Burundi",
+          "iso_alpha2": "BI",
+          "iso_alpha3": "BDI",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "RED-Tabara",
+            "Résistance pour un État de Droit (RED)"
+          ],
+          "conflict_zones": ["Western border with DRC"]
+        },
+        {
+          "name": "Eritrea",
+          "iso_alpha2": "ER",
+          "iso_alpha3": "ERI",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Eritrean Islamic Jihad Movement",
+            "Red Sea Afar Democratic Organization"
+          ],
+          "conflict_zones": ["Ethiopia-Eritrea border"]
+        },
+        {
+          "name": "Djibouti",
+          "iso_alpha2": "DJ",
+          "iso_alpha3": "DJI",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Al-Shabaab (external threat)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "South Africa",
+          "iso_alpha2": "ZA",
+          "iso_alpha3": "ZAF",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-linked cells (Durban/KwaZulu-Natal)",
+            "Pagad remnants (Western Cape)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Zimbabwe",
+          "iso_alpha2": "ZW",
+          "iso_alpha3": "ZWE",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Zambia",
+          "iso_alpha2": "ZM",
+          "iso_alpha3": "ZMB",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Malawi",
+          "iso_alpha2": "MW",
+          "iso_alpha3": "MWI",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Angola",
+          "iso_alpha2": "AO",
+          "iso_alpha3": "AGO",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "Front for the Liberation of the Enclave of Cabinda (FLEC)"
+          ],
+          "conflict_zones": ["Cabinda enclave"]
+        },
+        {
+          "name": "Namibia",
+          "iso_alpha2": "NA",
+          "iso_alpha3": "NAM",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Botswana",
+          "iso_alpha2": "BW",
+          "iso_alpha3": "BWA",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Eswatini",
+          "iso_alpha2": "SZ",
+          "iso_alpha3": "SWZ",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Lesotho",
+          "iso_alpha2": "LS",
+          "iso_alpha3": "LSO",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Madagascar",
+          "iso_alpha2": "MG",
+          "iso_alpha3": "MDG",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Comoros",
+          "iso_alpha2": "KM",
+          "iso_alpha3": "COM",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Mauritius",
+          "iso_alpha2": "MU",
+          "iso_alpha3": "MUS",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Seychelles",
+          "iso_alpha2": "SC",
+          "iso_alpha3": "SYC",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        }
+      ]
+    },
+    "South Asia": {
+      "full_name": "South Asia",
+      "sub_regions": ["Indian Subcontinent", "Island Nations"],
+      "countries": [
+        {
+          "name": "Pakistan",
+          "iso_alpha2": "PK",
+          "iso_alpha3": "PAK",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "Islamic State Khorasan Province (ISKP)",
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Lashkar-e-Jhangvi (LeJ)",
+            "Jaish-e-Mohammed (JeM)",
+            "Lashkar-e-Taiba (LeT)",
+            "Sindhudesh Revolutionary Army (SRA)",
+            "Al-Qaeda in the Indian Subcontinent (AQIS)"
+          ],
+          "conflict_zones": ["Khyber Pakhtunkhwa (ex-FATA)", "Balochistan", "Karachi", "South Punjab", "Sindh"]
+        },
+        {
+          "name": "India",
+          "iso_alpha2": "IN",
+          "iso_alpha3": "IND",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "Jaish-e-Mohammed (JeM)",
+            "Lashkar-e-Taiba (LeT)/Hizbul Mujahideen",
+            "Communist Party of India (Maoist)/Naxalites",
+            "Indian Mujahideen remnants",
+            "United Liberation Front of Assam (ULFA)",
+            "National Socialist Council of Nagaland (NSCN)"
+          ],
+          "conflict_zones": ["Jammu & Kashmir", "Red Corridor (Chhattisgarh, Jharkhand, Bihar, Odisha)", "Northeast India (Manipur, Nagaland, Assam)"]
+        },
+        {
+          "name": "Bangladesh",
+          "iso_alpha2": "BD",
+          "iso_alpha3": "BGD",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "Ansarullah Bangla Team (ABT)",
+            "Jamaat-ul-Mujahideen Bangladesh (JMB)",
+            "Neo-JMB (ISIS-aligned)",
+            "Ansar al-Islam",
+            "Arakan Rohingya Salvation Army (ARSA) - border"
+          ],
+          "conflict_zones": ["Chittagong Hill Tracts", "Cox's Bazar/Rohingya camps"]
+        },
+        {
+          "name": "Sri Lanka",
+          "iso_alpha2": "LK",
+          "iso_alpha3": "LKA",
+          "region": "South Asia",
+          "sub_region": "Island Nations",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "National Thowheed Jamath (NTJ) remnants",
+            "ISIS-inspired cells"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Nepal",
+          "iso_alpha2": "NP",
+          "iso_alpha3": "NPL",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "Chand-led Maoist splinter groups"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Bhutan",
+          "iso_alpha2": "BT",
+          "iso_alpha3": "BTN",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Maldives",
+          "iso_alpha2": "MV",
+          "iso_alpha3": "MDV",
+          "region": "South Asia",
+          "sub_region": "Island Nations",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-inspired radicalized individuals",
+            "Foreign fighter returnees"
+          ],
+          "conflict_zones": []
+        }
+      ]
+    },
+    "Southeast Asia": {
+      "full_name": "Southeast Asia",
+      "sub_regions": ["Mainland Southeast Asia", "Maritime Southeast Asia"],
+      "countries": [
+        {
+          "name": "Philippines",
+          "iso_alpha2": "PH",
+          "iso_alpha3": "PHL",
+          "region": "Southeast Asia",
+          "sub_region": "Maritime Southeast Asia",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Abu Sayyaf Group (ASG)",
+            "Bangsamoro Islamic Freedom Fighters (BIFF)",
+            "Maute Group/ISIS-Philippines",
+            "Communist Party of the Philippines/New People's Army (CPP/NPA)",
+            "Dawlah Islamiyah"
+          ],
+          "conflict_zones": ["Mindanao (Sulu Archipelago, Maguindanao, Lanao)", "Samar/Visayas (NPA)"]
+        },
+        {
+          "name": "Indonesia",
+          "iso_alpha2": "ID",
+          "iso_alpha3": "IDN",
+          "region": "Southeast Asia",
+          "sub_region": "Maritime Southeast Asia",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "Jemaah Islamiyah (JI) - weakened",
+            "Jamaah Ansharut Daulah (JAD)",
+            "Mujahidin Indonesia Timur (MIT)",
+            "Free Papua Organization (OPM/TPNPB)"
+          ],
+          "conflict_zones": ["Central Sulawesi (Poso)", "Papua/West Papua", "Java (lone wolf risk)"]
+        },
+        {
+          "name": "Myanmar",
+          "iso_alpha2": "MM",
+          "iso_alpha3": "MMR",
+          "region": "Southeast Asia",
+          "sub_region": "Mainland Southeast Asia",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "People's Defence Force (PDF) / National Unity Government (NUG)",
+            "Kachin Independence Army (KIA)",
+            "Karen National Liberation Army (KNLA)",
+            "Arakan Army (AA)",
+            "Chin National Front (CNF)",
+            "Shan State Army (SSA)",
+            "Ta'ang National Liberation Army (TNLA)",
+            "Myanmar National Democratic Alliance Army (MNDAA)",
+            "Arakan Rohingya Salvation Army (ARSA)"
+          ],
+          "conflict_zones": ["Sagaing Region", "Magway Region", "Chin State", "Kayah (Karenni) State", "Kachin State", "Shan State", "Rakhine State", "Karen State"]
+        },
+        {
+          "name": "Thailand",
+          "iso_alpha2": "TH",
+          "iso_alpha3": "THA",
+          "region": "Southeast Asia",
+          "sub_region": "Mainland Southeast Asia",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "Barisan Revolusi Nasional (BRN)",
+            "Pattani United Liberation Organisation (PULO)",
+            "Runda Kumpulan Kecil (RKK)"
+          ],
+          "conflict_zones": ["Deep South (Pattani, Yala, Narathiwat, Songkhla)"]
+        },
+        {
+          "name": "Malaysia",
+          "iso_alpha2": "MY",
+          "iso_alpha3": "MYS",
+          "region": "Southeast Asia",
+          "sub_region": "Maritime Southeast Asia",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-linked cells",
+            "Abu Sayyaf cross-border (Sabah)"
+          ],
+          "conflict_zones": ["Eastern Sabah (maritime piracy/kidnapping)"]
+        },
+        {
+          "name": "Vietnam",
+          "iso_alpha2": "VN",
+          "iso_alpha3": "VNM",
+          "region": "Southeast Asia",
+          "sub_region": "Mainland Southeast Asia",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Cambodia",
+          "iso_alpha2": "KH",
+          "iso_alpha3": "KHM",
+          "region": "Southeast Asia",
+          "sub_region": "Mainland Southeast Asia",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Laos",
+          "iso_alpha2": "LA",
+          "iso_alpha3": "LAO",
+          "region": "Southeast Asia",
+          "sub_region": "Mainland Southeast Asia",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Singapore",
+          "iso_alpha2": "SG",
+          "iso_alpha3": "SGP",
+          "region": "Southeast Asia",
+          "sub_region": "Maritime Southeast Asia",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "Self-radicalized individuals (monitored)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Brunei",
+          "iso_alpha2": "BN",
+          "iso_alpha3": "BRN",
+          "region": "Southeast Asia",
+          "sub_region": "Maritime Southeast Asia",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Timor-Leste",
+          "iso_alpha2": "TL",
+          "iso_alpha3": "TLS",
+          "region": "Southeast Asia",
+          "sub_region": "Maritime Southeast Asia",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        }
+      ]
+    },
+    "Central Asia": {
+      "full_name": "Central Asia",
+      "sub_regions": ["Post-Soviet Central Asia", "Caucasus"],
+      "countries": [
+        {
+          "name": "Uzbekistan",
+          "iso_alpha2": "UZ",
+          "iso_alpha3": "UZB",
+          "region": "Central Asia",
+          "sub_region": "Post-Soviet Central Asia",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Islamic Movement of Uzbekistan (IMU) - largely displaced",
+            "ISIS recruitment networks"
+          ],
+          "conflict_zones": ["Fergana Valley"]
+        },
+        {
+          "name": "Tajikistan",
+          "iso_alpha2": "TJ",
+          "iso_alpha3": "TJK",
+          "region": "Central Asia",
+          "sub_region": "Post-Soviet Central Asia",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS recruitment",
+            "Jamaat Ansarullah",
+            "ISKP cross-border threat"
+          ],
+          "conflict_zones": ["Gorno-Badakhshan Autonomous Region (GBAO)", "Afghan border"]
+        },
+        {
+          "name": "Kyrgyzstan",
+          "iso_alpha2": "KG",
+          "iso_alpha3": "KGZ",
+          "region": "Central Asia",
+          "sub_region": "Post-Soviet Central Asia",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-linked cells",
+            "Hizb ut-Tahrir"
+          ],
+          "conflict_zones": ["Fergana Valley border areas", "Batken Province (Tajik border)"]
+        },
+        {
+          "name": "Turkmenistan",
+          "iso_alpha2": "TM",
+          "iso_alpha3": "TKM",
+          "region": "Central Asia",
+          "sub_region": "Post-Soviet Central Asia",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "ISKP cross-border concern (Afghan border)"
+          ],
+          "conflict_zones": ["Afghan border region"]
+        },
+        {
+          "name": "Kazakhstan",
+          "iso_alpha2": "KZ",
+          "iso_alpha3": "KAZ",
+          "region": "Central Asia",
+          "sub_region": "Post-Soviet Central Asia",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-inspired lone actors",
+            "Returnee foreign fighters"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Georgia",
+          "iso_alpha2": "GE",
+          "iso_alpha3": "GEO",
+          "region": "Central Asia",
+          "sub_region": "Caucasus",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "ISIS recruitment (Pankisi Gorge historically)"
+          ],
+          "conflict_zones": ["South Ossetia (frozen conflict)", "Abkhazia (frozen conflict)"]
+        },
+        {
+          "name": "Armenia",
+          "iso_alpha2": "AM",
+          "iso_alpha3": "ARM",
+          "region": "Central Asia",
+          "sub_region": "Caucasus",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": ["Nagorno-Karabakh/Artsakh border (post-2023)"]
+        },
+        {
+          "name": "Azerbaijan",
+          "iso_alpha2": "AZ",
+          "iso_alpha3": "AZE",
+          "region": "Central Asia",
+          "sub_region": "Caucasus",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "ISIS-linked cells (sporadic)"
+          ],
+          "conflict_zones": ["Nagorno-Karabakh region (post-conflict)"]
+        }
+      ]
+    },
+    "Europe": {
+      "full_name": "Europe",
+      "sub_regions": ["Western Europe", "Eastern Europe", "Northern Europe", "Southern Europe", "Balkans"],
+      "countries": [
+        {
+          "name": "France",
+          "iso_alpha2": "FR",
+          "iso_alpha3": "FRA",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist cells",
+            "Far-left/anarchist groups"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "United Kingdom",
+          "iso_alpha2": "GB",
+          "iso_alpha3": "GBR",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "ISIS-inspired lone actors",
+            "Dissident Republican groups (Northern Ireland)",
+            "Far-right extremist networks (Atomwaffen/Sonnenkrieg linked)"
+          ],
+          "conflict_zones": ["Northern Ireland (low-level dissident activity)"]
+        },
+        {
+          "name": "Germany",
+          "iso_alpha2": "DE",
+          "iso_alpha3": "DEU",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "ISIS-inspired cells",
+            "Far-right extremists (Reichsbürger, etc.)",
+            "Far-left extremist networks"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Belgium",
+          "iso_alpha2": "BE",
+          "iso_alpha3": "BEL",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "ISIS-linked networks (Molenbeek historically)",
+            "Sharia4Belgium remnants"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Netherlands",
+          "iso_alpha2": "NL",
+          "iso_alpha3": "NLD",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-inspired individuals",
+            "Far-right extremists"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Spain",
+          "iso_alpha2": "ES",
+          "iso_alpha3": "ESP",
+          "region": "Europe",
+          "sub_region": "Southern Europe",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-linked cells",
+            "Basque separatist legacy (ETA dissolved 2018)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Italy",
+          "iso_alpha2": "IT",
+          "iso_alpha3": "ITA",
+          "region": "Europe",
+          "sub_region": "Southern Europe",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-inspired cells",
+            "Far-left groups (Red Brigades legacy)",
+            "Anarchist networks"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Sweden",
+          "iso_alpha2": "SE",
+          "iso_alpha3": "SWE",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "ISIS-linked networks",
+            "Far-right extremists (Nordic Resistance Movement)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Austria",
+          "iso_alpha2": "AT",
+          "iso_alpha3": "AUT",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-inspired individuals"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Denmark",
+          "iso_alpha2": "DK",
+          "iso_alpha3": "DNK",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-inspired individuals"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Norway",
+          "iso_alpha2": "NO",
+          "iso_alpha3": "NOR",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Far-right lone actors",
+            "Islamist-inspired individuals"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Finland",
+          "iso_alpha2": "FI",
+          "iso_alpha3": "FIN",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "Nordic Resistance Movement (banned)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Greece",
+          "iso_alpha2": "GR",
+          "iso_alpha3": "GRC",
+          "region": "Europe",
+          "sub_region": "Southern Europe",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Revolutionary Struggle",
+            "Conspiracy of Fire Nuclei",
+            "Anarchist/far-left groups"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Portugal",
+          "iso_alpha2": "PT",
+          "iso_alpha3": "PRT",
+          "region": "Europe",
+          "sub_region": "Southern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Switzerland",
+          "iso_alpha2": "CH",
+          "iso_alpha3": "CHE",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "ISIS-inspired individuals (monitored)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Ireland",
+          "iso_alpha2": "IE",
+          "iso_alpha3": "IRL",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "Dissident Republicans (New IRA, Continuity IRA)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Poland",
+          "iso_alpha2": "PL",
+          "iso_alpha3": "POL",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Ukraine",
+          "iso_alpha2": "UA",
+          "iso_alpha3": "UKR",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Critical",
+          "active_threat_groups": [
+            "Russian-backed separatist forces",
+            "Russian military and proxy forces",
+            "Far-right militias (various)",
+            "Wagner Group/Africa Corps remnants"
+          ],
+          "conflict_zones": ["Donetsk Oblast", "Luhansk Oblast", "Zaporizhzhia Oblast", "Kherson Oblast", "Crimea", "Kharkiv Oblast border"]
+        },
+        {
+          "name": "Russia",
+          "iso_alpha2": "RU",
+          "iso_alpha3": "RUS",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "Islamic State Caucasus Province (Vilayat Kavkaz)",
+            "ISKP-linked Central Asian cells",
+            "Ukrainian sabotage operations (Russian territory)",
+            "Caucasus Emirate remnants",
+            "Freedom of Russia Legion/Russian Volunteer Corps (anti-Kremlin)"
+          ],
+          "conflict_zones": ["North Caucasus (Dagestan, Chechnya, Ingushetia)", "Belgorod/Bryansk/Kursk border regions"]
+        },
+        {
+          "name": "Serbia",
+          "iso_alpha2": "RS",
+          "iso_alpha3": "SRB",
+          "region": "Europe",
+          "sub_region": "Balkans",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": ["Northern Kosovo border (tensions)"]
+        },
+        {
+          "name": "Kosovo",
+          "iso_alpha2": "XK",
+          "iso_alpha3": "XKX",
+          "region": "Europe",
+          "sub_region": "Balkans",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS returnees/cells",
+            "Serbian paramilitary elements (North Kosovo)"
+          ],
+          "conflict_zones": ["North Kosovo (ethnic tensions)"]
+        },
+        {
+          "name": "Bosnia and Herzegovina",
+          "iso_alpha2": "BA",
+          "iso_alpha3": "BIH",
+          "region": "Europe",
+          "sub_region": "Balkans",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Salafi-jihadi networks",
+            "ISIS returnees"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "North Macedonia",
+          "iso_alpha2": "MK",
+          "iso_alpha3": "MKD",
+          "region": "Europe",
+          "sub_region": "Balkans",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "ISIS-linked recruitment cells"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Albania",
+          "iso_alpha2": "AL",
+          "iso_alpha3": "ALB",
+          "region": "Europe",
+          "sub_region": "Balkans",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Montenegro",
+          "iso_alpha2": "ME",
+          "iso_alpha3": "MNE",
+          "region": "Europe",
+          "sub_region": "Balkans",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Croatia",
+          "iso_alpha2": "HR",
+          "iso_alpha3": "HRV",
+          "region": "Europe",
+          "sub_region": "Balkans",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Slovenia",
+          "iso_alpha2": "SI",
+          "iso_alpha3": "SVN",
+          "region": "Europe",
+          "sub_region": "Balkans",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Romania",
+          "iso_alpha2": "RO",
+          "iso_alpha3": "ROU",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Bulgaria",
+          "iso_alpha2": "BG",
+          "iso_alpha3": "BGR",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Hungary",
+          "iso_alpha2": "HU",
+          "iso_alpha3": "HUN",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Czech Republic",
+          "iso_alpha2": "CZ",
+          "iso_alpha3": "CZE",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Slovakia",
+          "iso_alpha2": "SK",
+          "iso_alpha3": "SVK",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Moldova",
+          "iso_alpha2": "MD",
+          "iso_alpha3": "MDA",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": ["Transnistria (frozen conflict)"]
+        },
+        {
+          "name": "Belarus",
+          "iso_alpha2": "BY",
+          "iso_alpha3": "BLR",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Lithuania",
+          "iso_alpha2": "LT",
+          "iso_alpha3": "LTU",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Latvia",
+          "iso_alpha2": "LV",
+          "iso_alpha3": "LVA",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Estonia",
+          "iso_alpha2": "EE",
+          "iso_alpha3": "EST",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Iceland",
+          "iso_alpha2": "IS",
+          "iso_alpha3": "ISL",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Luxembourg",
+          "iso_alpha2": "LU",
+          "iso_alpha3": "LUX",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Malta",
+          "iso_alpha2": "MT",
+          "iso_alpha3": "MLT",
+          "region": "Europe",
+          "sub_region": "Southern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Cyprus",
+          "iso_alpha2": "CY",
+          "iso_alpha3": "CYP",
+          "region": "Europe",
+          "sub_region": "Southern Europe",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": ["Northern Cyprus/Buffer Zone (frozen conflict)"]
+        }
+      ]
+    },
+    "North America": {
+      "full_name": "North America",
+      "sub_regions": ["Northern America"],
+      "countries": [
+        {
+          "name": "United States",
+          "iso_alpha2": "US",
+          "iso_alpha3": "USA",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Canada",
+          "iso_alpha2": "CA",
+          "iso_alpha3": "CAN",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-inspired individuals",
+            "Incel-motivated violent extremists",
+            "Far-right extremists (Proud Boys, etc.)",
+            "Ideologically Motivated Violent Extremism (IMVE)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Mexico",
+          "iso_alpha2": "MX",
+          "iso_alpha3": "MEX",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Sinaloa Cartel",
+            "Cartel Jalisco Nueva Generación (CJNG)",
+            "Los Zetas remnants",
+            "Gulf Cartel",
+            "Zapatista Army of National Liberation (EZLN) - low level",
+            "Various smaller cartels and armed groups"
+          ],
+          "conflict_zones": ["Sinaloa", "Guerrero", "Michoacán", "Tamaulipas", "Chihuahua", "Guanajuato", "Zacatecas", "Chiapas"]
+        }
+      ]
+    },
+    "Latin America and Caribbean": {
+      "full_name": "Latin America and Caribbean",
+      "sub_regions": ["Central America", "South America", "Caribbean"],
+      "countries": [
+        {
+          "name": "Colombia",
+          "iso_alpha2": "CO",
+          "iso_alpha3": "COL",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Ejército de Liberación Nacional (ELN)",
+            "FARC dissident factions (Estado Mayor Central, Segunda Marquetalia)",
+            "Clan del Golfo (Autodefensas Gaitanistas de Colombia - AGC)",
+            "Various narco-trafficking armed groups"
+          ],
+          "conflict_zones": ["Norte de Santander", "Arauca", "Cauca", "Nariño", "Chocó", "Catatumbo"]
+        },
+        {
+          "name": "Venezuela",
+          "iso_alpha2": "VE",
+          "iso_alpha3": "VEN",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Elevated",
+          "active_threat_groups": [
+            "ELN (cross-border)",
+            "FARC dissident elements",
+            "Colectivos (armed pro-government groups)",
+            "Criminal armed groups (pranes)"
+          ],
+          "conflict_zones": ["Apure State", "Zulia State", "Bolívar State (Arco Minero)"]
+        },
+        {
+          "name": "Brazil",
+          "iso_alpha2": "BR",
+          "iso_alpha3": "BRA",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Primeiro Comando da Capital (PCC)",
+            "Comando Vermelho (CV)",
+            "Far-right anti-democratic extremists",
+            "ISIS-inspired cells (sporadic)"
+          ],
+          "conflict_zones": ["Triple Frontier (Foz do Iguaçu)", "Major urban centers (organized crime)"]
+        },
+        {
+          "name": "Peru",
+          "iso_alpha2": "PE",
+          "iso_alpha3": "PER",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Sendero Luminoso (Shining Path) remnants / Militarized Communist Party of Peru (MPCP)",
+            "Drug trafficking organizations"
+          ],
+          "conflict_zones": ["VRAEM (Valley of the Apurímac, Ene, and Mantaro Rivers)"]
+        },
+        {
+          "name": "Ecuador",
+          "iso_alpha2": "EC",
+          "iso_alpha3": "ECU",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "Los Lobos",
+            "Los Choneros",
+            "Los Tiguerones",
+            "FARC/ELN cross-border elements",
+            "Various narco-armed groups"
+          ],
+          "conflict_zones": ["Guayaquil", "Esmeraldas Province", "Manabí Province", "Los Ríos"]
+        },
+        {
+          "name": "Bolivia",
+          "iso_alpha2": "BO",
+          "iso_alpha3": "BOL",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Paraguay",
+          "iso_alpha2": "PY",
+          "iso_alpha3": "PRY",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Paraguayan People's Army (EPP)",
+            "Armed Peasant Association (ACA)"
+          ],
+          "conflict_zones": ["Northern Departments (Concepción, San Pedro, Amambay)"]
+        },
+        {
+          "name": "Chile",
+          "iso_alpha2": "CL",
+          "iso_alpha3": "CHL",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Mapuche resistance groups (CAM - Coordinadora Arauco-Malleco)",
+            "Anarchist cells"
+          ],
+          "conflict_zones": ["Araucanía/Biobío (Wallmapu/Mapuche conflict)"]
+        },
+        {
+          "name": "Argentina",
+          "iso_alpha2": "AR",
+          "iso_alpha3": "ARG",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "Hezbollah networks (Triple Frontier - monitored)"
+          ],
+          "conflict_zones": ["Triple Frontier region (monitoring)"]
+        },
+        {
+          "name": "Uruguay",
+          "iso_alpha2": "UY",
+          "iso_alpha3": "URY",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Guyana",
+          "iso_alpha2": "GY",
+          "iso_alpha3": "GUY",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Suriname",
+          "iso_alpha2": "SR",
+          "iso_alpha3": "SUR",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Guatemala",
+          "iso_alpha2": "GT",
+          "iso_alpha3": "GTM",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Central America",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "MS-13 (Mara Salvatrucha)",
+            "Barrio 18",
+            "Drug trafficking organizations"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Honduras",
+          "iso_alpha2": "HN",
+          "iso_alpha3": "HND",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Central America",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "MS-13",
+            "Barrio 18",
+            "Drug trafficking organizations"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "El Salvador",
+          "iso_alpha2": "SV",
+          "iso_alpha3": "SLV",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Central America",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "MS-13 (severely weakened by 2022-2024 crackdown)",
+            "Barrio 18 (severely weakened)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Nicaragua",
+          "iso_alpha2": "NI",
+          "iso_alpha3": "NIC",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Central America",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Costa Rica",
+          "iso_alpha2": "CR",
+          "iso_alpha3": "CRI",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Central America",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Panama",
+          "iso_alpha2": "PA",
+          "iso_alpha3": "PAN",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Central America",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "FARC/ELN cross-border elements (Darién Gap)"
+          ],
+          "conflict_zones": ["Darién Province"]
+        },
+        {
+          "name": "Belize",
+          "iso_alpha2": "BZ",
+          "iso_alpha3": "BLZ",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Central America",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Cuba",
+          "iso_alpha2": "CU",
+          "iso_alpha3": "CUB",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Caribbean",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Haiti",
+          "iso_alpha2": "HT",
+          "iso_alpha3": "HTI",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Caribbean",
+          "threat_level": "High",
+          "active_threat_groups": [
+            "G9 Family and Allies (Viv Ansanm coalition)",
+            "400 Mawozo",
+            "Gran Grif",
+            "Various armed gangs controlling territory"
+          ],
+          "conflict_zones": ["Port-au-Prince", "Artibonite Department"]
+        },
+        {
+          "name": "Dominican Republic",
+          "iso_alpha2": "DO",
+          "iso_alpha3": "DOM",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Caribbean",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Jamaica",
+          "iso_alpha2": "JM",
+          "iso_alpha3": "JAM",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Caribbean",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Gang-related armed violence"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Trinidad and Tobago",
+          "iso_alpha2": "TT",
+          "iso_alpha3": "TTO",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Caribbean",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS recruitment networks",
+            "Gang-related violence"
+          ],
+          "conflict_zones": []
+        }
+      ]
+    },
+    "Oceania": {
+      "full_name": "Oceania",
+      "sub_regions": ["Australasia", "Melanesia", "Polynesia", "Micronesia"],
+      "countries": [
+        {
+          "name": "Australia",
+          "iso_alpha2": "AU",
+          "iso_alpha3": "AUS",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "New Zealand",
+          "iso_alpha2": "NZ",
+          "iso_alpha3": "NZL",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Low",
+          "active_threat_groups": [
+            "Lone actor threat (various ideologies)"
+          ],
+          "conflict_zones": []
+        },
+        {
+          "name": "Papua New Guinea",
+          "iso_alpha2": "PG",
+          "iso_alpha3": "PNG",
+          "region": "Oceania",
+          "sub_region": "Melanesia",
+          "threat_level": "Moderate",
+          "active_threat_groups": [
+            "Tribal conflict groups",
+            "Bougainville armed elements"
+          ],
+          "conflict_zones": ["Highlands Region (tribal violence)", "Bougainville (post-conflict)"]
+        },
+        {
+          "name": "Fiji",
+          "iso_alpha2": "FJ",
+          "iso_alpha3": "FJI",
+          "region": "Oceania",
+          "sub_region": "Melanesia",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Solomon Islands",
+          "iso_alpha2": "SB",
+          "iso_alpha3": "SLB",
+          "region": "Oceania",
+          "sub_region": "Melanesia",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Vanuatu",
+          "iso_alpha2": "VU",
+          "iso_alpha3": "VUT",
+          "region": "Oceania",
+          "sub_region": "Melanesia",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Samoa",
+          "iso_alpha2": "WS",
+          "iso_alpha3": "WSM",
+          "region": "Oceania",
+          "sub_region": "Polynesia",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        },
+        {
+          "name": "Tonga",
+          "iso_alpha2": "TO",
+          "iso_alpha3": "TON",
+          "region": "Oceania",
+          "sub_region": "Polynesia",
+          "threat_level": "Low",
+          "active_threat_groups": [],
+          "conflict_zones": []
+        }
+      ]
+    }
+  },
+
+  "attack_type_taxonomy": {
+    "description": "Comprehensive attack type classification aligned with ACLED and GTD standards",
+    "categories": [
+      {
+        "code": "ATK-01",
+        "main_category": "Armed Assault",
+        "sub_categories": [
+          {
+            "code": "ATK-01-01",
+            "name": "Firearms Attack",
+            "description": "Armed attack using firearms (rifles, pistols, machine guns) against people",
+            "typical_weapons": ["Assault rifles", "Handguns", "Machine guns", "Sniper rifles"],
+            "example": "Al-Shabaab armed assault on Mogadishu hotel complex"
+          },
+          {
+            "code": "ATK-01-02",
+            "name": "Armed Ambush",
+            "description": "Surprise armed attack on moving targets, typically convoys or patrols",
+            "typical_weapons": ["Small arms", "RPGs", "IEDs combined with firearms"],
+            "example": "JNIM ambush on military convoy in Mali"
+          },
+          {
+            "code": "ATK-01-03",
+            "name": "Armed Raid / Overrun",
+            "description": "Coordinated armed assault to seize or destroy a fixed position, base, or settlement",
+            "typical_weapons": ["Small arms", "RPGs", "Technicals (vehicle-mounted weapons)"],
+            "example": "ISWAP overrun of military base in northeast Nigeria"
+          },
+          {
+            "code": "ATK-01-04",
+            "name": "Drive-by Shooting",
+            "description": "Shooting conducted from a moving vehicle targeting individuals or locations",
+            "typical_weapons": ["Handguns", "Submachine guns"],
+            "example": "Targeted assassination of official via drive-by in Kabul"
+          }
+        ]
+      },
+      {
+        "code": "ATK-02",
+        "main_category": "Bombing / Explosion",
+        "sub_categories": [
+          {
+            "code": "ATK-02-01",
+            "name": "Improvised Explosive Device (IED)",
+            "description": "Detonation of a concealed or emplaced explosive device",
+            "typical_weapons": ["Roadside IED", "Pressure-plate IED", "Remote-detonated IED", "Command-wire IED"],
+            "example": "IED detonation targeting police patrol in Mogadishu"
+          },
+          {
+            "code": "ATK-02-02",
+            "name": "Vehicle-Borne IED (VBIED)",
+            "description": "Explosive-laden vehicle driven to target and detonated",
+            "typical_weapons": ["Car bomb", "Truck bomb", "Motorcycle bomb"],
+            "example": "VBIED attack on government checkpoint in Baghdad"
+          },
+          {
+            "code": "ATK-02-03",
+            "name": "Suicide Bombing (Person-Borne)",
+            "description": "Individual wearing explosive vest/belt detonates among targets",
+            "typical_weapons": ["Suicide vest (SVEST)", "Suicide belt"],
+            "example": "ISIS suicide bomber at Kabul airport"
+          },
+          {
+            "code": "ATK-02-04",
+            "name": "Suicide Vehicle Bombing (SVBIED)",
+            "description": "Suicide operative drives explosive-laden vehicle into target",
+            "typical_weapons": ["SVBIED (car, truck, armored vehicle)"],
+            "example": "Al-Shabaab SVBIED at Mogadishu intersection"
+          },
+          {
+            "code": "ATK-02-05",
+            "name": "Landmine",
+            "description": "Detonation of anti-personnel or anti-vehicle mine",
+            "typical_weapons": ["Anti-personnel mine", "Anti-vehicle mine", "Improvised landmine"],
+            "example": "Landmine detonation killing civilians in rural Syria"
+          },
+          {
+            "code": "ATK-02-06",
+            "name": "Grenade Attack",
+            "description": "Throwing or launching of grenades at targets",
+            "typical_weapons": ["Hand grenade", "Rocket-propelled grenade (RPG)"],
+            "example": "Grenade thrown at police station in Nairobi"
+          },
+          {
+            "code": "ATK-02-07",
+            "name": "Mortar / Rocket / Artillery",
+            "description": "Indirect fire attack using mortars, rockets, or artillery",
+            "typical_weapons": ["Mortar rounds", "Katyusha rockets", "Grad rockets", "Improvised rockets"],
+            "example": "Rocket attack on Green Zone, Baghdad"
+          },
+          {
+            "code": "ATK-02-08",
+            "name": "Drone/UAV Attack",
+            "description": "Attack using unmanned aerial vehicles carrying explosives or used as guided munitions",
+            "typical_weapons": ["Explosive-laden commercial drone", "Military-grade UAV", "Loitering munition"],
+            "example": "Houthi drone attack on Saudi Arabian oil facility"
+          },
+          {
+            "code": "ATK-02-09",
+            "name": "Letter/Package Bomb",
+            "description": "Explosive device concealed in mail or package",
+            "typical_weapons": ["Letter bomb", "Parcel bomb"],
+            "example": "Package bombs sent to Greek government officials"
+          }
+        ]
+      },
+      {
+        "code": "ATK-03",
+        "main_category": "Assassination / Targeted Killing",
+        "sub_categories": [
+          {
+            "code": "ATK-03-01",
+            "name": "Targeted Shooting",
+            "description": "Deliberate killing of specific individual(s) using firearms",
+            "typical_weapons": ["Handguns (often silenced)", "Sniper rifles"],
+            "example": "Assassination of tribal elder by ISIS gunmen in Iraq"
+          },
+          {
+            "code": "ATK-03-02",
+            "name": "Targeted Bombing",
+            "description": "Use of explosive device to kill specific individual(s)",
+            "typical_weapons": ["Magnetic IED (sticky bomb)", "Under-vehicle IED", "Remote IED"],
+            "example": "Magnetic IED attached to vehicle of Afghan government official"
+          },
+          {
+            "code": "ATK-03-03",
+            "name": "Stabbing / Bladed Attack",
+            "description": "Use of knife or bladed weapon to kill targeted individual",
+            "typical_weapons": ["Knife", "Machete", "Sword"],
+            "example": "Knife assassination of police officer in France"
+          },
+          {
+            "code": "ATK-03-04",
+            "name": "Poisoning",
+            "description": "Use of poison or toxic substance to kill specific individual",
+            "typical_weapons": ["Chemical agent", "Biological toxin", "Radiological material"],
+            "example": "Poisoning of opposition figure using nerve agent"
+          }
+        ]
+      },
+      {
+        "code": "ATK-04",
+        "main_category": "Hostage Taking / Kidnapping",
+        "sub_categories": [
+          {
+            "code": "ATK-04-01",
+            "name": "Kidnapping for Ransom",
+            "description": "Abduction of individual(s) with demand for ransom payment",
+            "typical_weapons": ["Small arms", "Vehicles"],
+            "example": "Boko Haram kidnapping of schoolchildren in northeast Nigeria"
+          },
+          {
+            "code": "ATK-04-02",
+            "name": "Hostage Barricade",
+            "description": "Seizure of location with hostages to create standoff",
+            "typical_weapons": ["Firearms", "Explosives (for barricade)"],
+            "example": "Al-Shabaab siege of Dusit D2 hotel complex in Nairobi"
+          },
+          {
+            "code": "ATK-04-03",
+            "name": "Hijacking",
+            "description": "Seizure of vehicle, aircraft, or vessel with passengers/crew",
+            "typical_weapons": ["Firearms", "Bladed weapons", "Claimed explosives"],
+            "example": "Somali pirates hijacking commercial vessel in Gulf of Aden"
+          },
+          {
+            "code": "ATK-04-04",
+            "name": "Mass Abduction",
+            "description": "Large-scale kidnapping operation targeting groups (students, villagers, etc.)",
+            "typical_weapons": ["Small arms", "Vehicles", "Motorcycles"],
+            "example": "Mass kidnapping of students from school in northwest Nigeria"
+          }
+        ]
+      },
+      {
+        "code": "ATK-05",
+        "main_category": "Infrastructure / Facility Attack",
+        "sub_categories": [
+          {
+            "code": "ATK-05-01",
+            "name": "Arson",
+            "description": "Deliberate setting of fire to destroy property or infrastructure",
+            "typical_weapons": ["Incendiary devices", "Molotov cocktails", "Accelerants"],
+            "example": "Arson attack on government building in Burkina Faso"
+          },
+          {
+            "code": "ATK-05-02",
+            "name": "Sabotage",
+            "description": "Deliberate destruction or damage to critical infrastructure",
+            "typical_weapons": ["Explosives", "Tools", "Cyber means"],
+            "example": "Pipeline sabotage by militants in Niger Delta"
+          },
+          {
+            "code": "ATK-05-03",
+            "name": "Cyberattack",
+            "description": "Attack on digital infrastructure, networks, or systems for terror purposes",
+            "typical_weapons": ["Malware", "DDoS", "Ransomware", "Data destruction tools"],
+            "example": "Cyber disruption of critical infrastructure by state-sponsored actors"
+          }
+        ]
+      },
+      {
+        "code": "ATK-06",
+        "main_category": "Vehicle Ramming",
+        "sub_categories": [
+          {
+            "code": "ATK-06-01",
+            "name": "Vehicle Ramming Attack",
+            "description": "Deliberate driving of vehicle into crowds or targets",
+            "typical_weapons": ["Car", "Truck", "Van"],
+            "example": "Vehicle ramming attack on Christmas market in Berlin"
+          }
+        ]
+      },
+      {
+        "code": "ATK-07",
+        "main_category": "Unarmed Assault / Melee",
+        "sub_categories": [
+          {
+            "code": "ATK-07-01",
+            "name": "Stabbing Spree",
+            "description": "Mass attack using bladed weapons in public",
+            "typical_weapons": ["Knife", "Machete", "Axe", "Sword"],
+            "example": "Mass stabbing attack at train station in Kunming, China"
+          },
+          {
+            "code": "ATK-07-02",
+            "name": "Blunt Force Attack",
+            "description": "Attack using blunt instruments",
+            "typical_weapons": ["Hammers", "Clubs", "Bats"],
+            "example": "Hammer attack on police officer"
+          }
+        ]
+      },
+      {
+        "code": "ATK-08",
+        "main_category": "Chemical / Biological / Radiological / Nuclear (CBRN)",
+        "sub_categories": [
+          {
+            "code": "ATK-08-01",
+            "name": "Chemical Attack",
+            "description": "Use of chemical weapons or toxic industrial chemicals",
+            "typical_weapons": ["Sarin", "VX", "Chlorine", "Mustard gas", "Toxic industrial chemicals"],
+            "example": "Sarin gas attack in Ghouta, Syria"
+          },
+          {
+            "code": "ATK-08-02",
+            "name": "Biological Attack",
+            "description": "Deliberate release of biological agents to cause harm",
+            "typical_weapons": ["Anthrax", "Ricin", "Botulinum toxin"],
+            "example": "Anthrax letter attacks in the United States (2001)"
+          },
+          {
+            "code": "ATK-08-03",
+            "name": "Radiological Attack (Dirty Bomb)",
+            "description": "Dispersal of radioactive material using conventional explosives",
+            "typical_weapons": ["Radiological dispersal device (RDD)", "Contamination of water/food supply"],
+            "example": "No major successful attack; multiple disrupted plots"
+          },
+          {
+            "code": "ATK-08-04",
+            "name": "Nuclear Attack",
+            "description": "Detonation of nuclear device or improvised nuclear device",
+            "typical_weapons": ["Nuclear device", "Improvised nuclear device (IND)"],
+            "example": "No terrorist nuclear attack has occurred; theoretical threat"
+          }
+        ]
+      },
+      {
+        "code": "ATK-09",
+        "main_category": "Complex / Combined Attack",
+        "sub_categories": [
+          {
+            "code": "ATK-09-01",
+            "name": "Complex Coordinated Attack",
+            "description": "Multi-method or multi-site simultaneous/sequential attack",
+            "typical_weapons": ["Combination of firearms, explosives, SVBIEDs"],
+            "example": "Mumbai 2008 attacks (armed assault + bombing + hostage)"
+          },
+          {
+            "code": "ATK-09-02",
+            "name": "Swarm Attack",
+            "description": "Multiple simultaneous drone or small-unit attacks from different vectors",
+            "typical_weapons": ["Multiple UAVs", "Multiple assault teams"],
+            "example": "Multi-drone attack on military installations"
+          }
+        ]
+      }
+    ]
+  },
+
+  "target_type_taxonomy": {
+    "description": "Comprehensive target type classification aligned with GTD and ACLED standards",
+    "categories": [
+      {
+        "code": "TGT-01",
+        "main_category": "Government",
+        "sub_categories": [
+          {"code": "TGT-01-01", "name": "Government Officials / Politicians", "description": "Elected officials, political leaders, government administrators"},
+          {"code": "TGT-01-02", "name": "Government Buildings / Institutions", "description": "Parliament, ministries, courthouses, government offices"},
+          {"code": "TGT-01-03", "name": "Judiciary / Legal System", "description": "Judges, prosecutors, lawyers, courtrooms"},
+          {"code": "TGT-01-04", "name": "Election Infrastructure", "description": "Polling stations, electoral commissions, ballot transport"}
+        ]
+      },
+      {
+        "code": "TGT-02",
+        "main_category": "Military",
+        "sub_categories": [
+          {"code": "TGT-02-01", "name": "Military Personnel", "description": "Active duty military members, reserves, veterans (targeted as military)"},
+          {"code": "TGT-02-02", "name": "Military Installations / Bases", "description": "Military camps, barracks, bases, checkpoints"},
+          {"code": "TGT-02-03", "name": "Military Convoys / Patrols", "description": "Moving military formations, patrol routes"},
+          {"code": "TGT-02-04", "name": "Military Equipment / Assets", "description": "Vehicles, aircraft, weapons depots, communication systems"},
+          {"code": "TGT-02-05", "name": "Paramilitary / Militia Forces", "description": "State-aligned paramilitary forces, national guard"}
+        ]
+      },
+      {
+        "code": "TGT-03",
+        "main_category": "Police / Law Enforcement",
+        "sub_categories": [
+          {"code": "TGT-03-01", "name": "Police Personnel", "description": "Police officers, investigators, counter-terrorism units"},
+          {"code": "TGT-03-02", "name": "Police Stations / Facilities", "description": "Police headquarters, stations, detention facilities"},
+          {"code": "TGT-03-03", "name": "Police Vehicles / Patrols", "description": "Patrol cars, armored vehicles, police checkpoints"},
+          {"code": "TGT-03-04", "name": "Intelligence / Security Services", "description": "Intelligence operatives, security service buildings"}
+        ]
+      },
+      {
+        "code": "TGT-04",
+        "main_category": "Civilian / General Population",
+        "sub_categories": [
+          {"code": "TGT-04-01", "name": "Civilians (General)", "description": "Indiscriminate attacks on civilian population"},
+          {"code": "TGT-04-02", "name": "Marketplaces / Commercial Areas", "description": "Markets, shopping centers, bazaars, commercial districts"},
+          {"code": "TGT-04-03", "name": "Residential Areas", "description": "Homes, apartments, villages, refugee camps"},
+          {"code": "TGT-04-04", "name": "Public Gatherings / Events", "description": "Festivals, concerts, sporting events, protests"},
+          {"code": "TGT-04-05", "name": "Funeral / Wedding Gatherings", "description": "Funeral processions, wedding celebrations, social gatherings"}
+        ]
+      },
+      {
+        "code": "TGT-05",
+        "main_category": "Critical Infrastructure",
+        "sub_categories": [
+          {"code": "TGT-05-01", "name": "Energy Infrastructure", "description": "Power plants, pipelines, oil/gas facilities, electrical grid"},
+          {"code": "TGT-05-02", "name": "Water Infrastructure", "description": "Water treatment, dams, irrigation systems, reservoirs"},
+          {"code": "TGT-05-03", "name": "Telecommunications", "description": "Cell towers, internet infrastructure, broadcast facilities"},
+          {"code": "TGT-05-04", "name": "Financial Infrastructure", "description": "Banks, ATMs, stock exchanges, financial data centers"}
+        ]
+      },
+      {
+        "code": "TGT-06",
+        "main_category": "Transportation",
+        "sub_categories": [
+          {"code": "TGT-06-01", "name": "Aviation", "description": "Airports, aircraft, air traffic control"},
+          {"code": "TGT-06-02", "name": "Maritime / Port", "description": "Ships, ports, harbors, naval vessels"},
+          {"code": "TGT-06-03", "name": "Rail / Metro", "description": "Trains, rail stations, metro systems, rail infrastructure"},
+          {"code": "TGT-06-04", "name": "Road / Bus", "description": "Buses, bus stations, highways, bridges, tunnels"},
+          {"code": "TGT-06-05", "name": "Supply Chain / Logistics", "description": "Cargo facilities, supply depots, logistics hubs"}
+        ]
+      },
+      {
+        "code": "TGT-07",
+        "main_category": "Religious",
+        "sub_categories": [
+          {"code": "TGT-07-01", "name": "Mosques / Islamic Sites", "description": "Mosques, madrassas, Islamic shrines"},
+          {"code": "TGT-07-02", "name": "Churches / Christian Sites", "description": "Churches, cathedrals, Christian institutions"},
+          {"code": "TGT-07-03", "name": "Synagogues / Jewish Sites", "description": "Synagogues, Jewish community centers, Jewish cemeteries"},
+          {"code": "TGT-07-04", "name": "Hindu / Sikh / Buddhist Temples", "description": "Temples, gurdwaras, monasteries"},
+          {"code": "TGT-07-05", "name": "Religious Figures / Clergy", "description": "Imams, priests, rabbis, religious leaders"},
+          {"code": "TGT-07-06", "name": "Religious Processions / Gatherings", "description": "Pilgrimages, religious festivals, prayer gatherings"}
+        ]
+      },
+      {
+        "code": "TGT-08",
+        "main_category": "Educational",
+        "sub_categories": [
+          {"code": "TGT-08-01", "name": "Schools (Primary/Secondary)", "description": "Schools, schoolchildren, teachers"},
+          {"code": "TGT-08-02", "name": "Universities / Higher Education", "description": "University campuses, students, professors"},
+          {"code": "TGT-08-03", "name": "Educational Administrators / Officials", "description": "School administrators, education ministry staff"}
+        ]
+      },
+      {
+        "code": "TGT-09",
+        "main_category": "Media / Journalists",
+        "sub_categories": [
+          {"code": "TGT-09-01", "name": "Journalists / Reporters", "description": "Print, broadcast, and online journalists"},
+          {"code": "TGT-09-02", "name": "Media Offices / Facilities", "description": "Newspaper offices, TV stations, radio stations"},
+          {"code": "TGT-09-03", "name": "Social Media / Online Platforms", "description": "Cyberattacks on online media, targeted harassment campaigns"}
+        ]
+      },
+      {
+        "code": "TGT-10",
+        "main_category": "International Organizations / Diplomatic",
+        "sub_categories": [
+          {"code": "TGT-10-01", "name": "United Nations Facilities / Personnel", "description": "UN offices, peacekeepers, UN staff"},
+          {"code": "TGT-10-02", "name": "Embassies / Consulates", "description": "Diplomatic missions, consular offices"},
+          {"code": "TGT-10-03", "name": "Diplomatic Personnel", "description": "Ambassadors, diplomats, diplomatic staff"},
+          {"code": "TGT-10-04", "name": "International Organizations", "description": "World Bank, IMF, ICRC, WHO, and similar organizations"}
+        ]
+      },
+      {
+        "code": "TGT-11",
+        "main_category": "NGOs / Humanitarian",
+        "sub_categories": [
+          {"code": "TGT-11-01", "name": "Humanitarian Aid Workers", "description": "NGO personnel, aid workers, volunteers"},
+          {"code": "TGT-11-02", "name": "Humanitarian Facilities", "description": "Aid warehouses, refugee camps, humanitarian compounds"},
+          {"code": "TGT-11-03", "name": "Medical / Healthcare", "description": "Hospitals, clinics, medical personnel, ambulances"}
+        ]
+      },
+      {
+        "code": "TGT-12",
+        "main_category": "Business / Private Sector",
+        "sub_categories": [
+          {"code": "TGT-12-01", "name": "Multinational Corporations", "description": "International company offices, staff, assets"},
+          {"code": "TGT-12-02", "name": "Local Businesses", "description": "Small businesses, shops, restaurants, hotels"},
+          {"code": "TGT-12-03", "name": "Tourism / Hospitality", "description": "Hotels, tourist sites, restaurants, entertainment venues"},
+          {"code": "TGT-12-04", "name": "Extractive Industry", "description": "Mining operations, oil/gas workers, resource extraction sites"}
+        ]
+      },
+      {
+        "code": "TGT-13",
+        "main_category": "Ethnic / Communal",
+        "sub_categories": [
+          {"code": "TGT-13-01", "name": "Ethnic / Tribal Groups", "description": "Targeted ethnic, tribal, or clan communities"},
+          {"code": "TGT-13-02", "name": "Sectarian Targets", "description": "Shia, Sunni, or other sect-specific targeting"},
+          {"code": "TGT-13-03", "name": "Minority Communities", "description": "Ethnic, religious, or sexual minorities specifically targeted"}
+        ]
+      }
+    ]
+  },
+
+  "weapon_type_taxonomy": {
+    "description": "Comprehensive weapon type classification for terror intelligence analysis",
+    "categories": [
+      {
+        "code": "WPN-01",
+        "main_category": "Explosives",
+        "sub_categories": [
+          {
+            "code": "WPN-01-01",
+            "name": "Improvised Explosive Device (IED)",
+            "description": "Homemade explosive device, often using military or commercial explosives with improvised detonation mechanism",
+            "variants": ["Roadside IED", "Pressure-plate IED", "Command-wire IED", "Remote-controlled IED (RCIED)", "Victim-operated IED", "Radio-controlled IED"],
+            "common_materials": ["Ammonium nitrate", "TATP (triacetone triperoxide)", "HMTD", "TNT", "C4", "Potassium chlorate", "Urea nitrate"]
+          },
+          {
+            "code": "WPN-01-02",
+            "name": "Vehicle-Borne IED (VBIED)",
+            "description": "IED placed in or on a vehicle for delivery to target",
+            "variants": ["Car bomb", "Truck bomb", "Motorcycle bomb", "Bicycle bomb", "Donkey/animal-borne IED"],
+            "common_materials": ["Large quantities of explosives", "Ammonium nitrate fuel oil (ANFO)", "Artillery shells"]
+          },
+          {
+            "code": "WPN-01-03",
+            "name": "Suicide Vest / Belt (SVEST / PBIED)",
+            "description": "Body-worn explosive device detonated by the wearer",
+            "variants": ["Suicide vest", "Suicide belt", "Suicide backpack"],
+            "common_materials": ["TATP", "C4", "Ball bearings/shrapnel", "Detonation cord"]
+          },
+          {
+            "code": "WPN-01-04",
+            "name": "Suicide Vehicle-Borne IED (SVBIED)",
+            "description": "Vehicle-borne IED driven by suicide operative into target",
+            "variants": ["SVBIED car", "SVBIED truck", "Armored SVBIED", "SVBIED motorcycle"],
+            "common_materials": ["Large explosive payload", "Sometimes armored plating"]
+          },
+          {
+            "code": "WPN-01-05",
+            "name": "Landmine",
+            "description": "Explosive device placed under or on ground, detonated by pressure, proximity, or command",
+            "variants": ["Anti-personnel mine", "Anti-vehicle mine", "Improvised landmine", "Claymore-type directional mine"],
+            "common_materials": ["TNT", "RDX", "Commercial explosives", "Repurposed ordnance"]
+          },
+          {
+            "code": "WPN-01-06",
+            "name": "Hand Grenade",
+            "description": "Handheld explosive device thrown at targets",
+            "variants": ["Fragmentation grenade", "Stun/flash grenade", "Smoke grenade", "Improvised grenade"],
+            "common_materials": ["Cast iron body", "TNT/RDX filler", "Fragmentation sleeve"]
+          },
+          {
+            "code": "WPN-01-07",
+            "name": "Rocket-Propelled Grenade (RPG)",
+            "description": "Shoulder-launched anti-armor or anti-personnel weapon",
+            "variants": ["RPG-7", "RPG-29", "AT-4", "Various improvised rockets"],
+            "common_materials": ["Shaped charge warhead", "Rocket propellant"]
+          },
+          {
+            "code": "WPN-01-08",
+            "name": "Mortar",
+            "description": "Indirect fire weapon launching explosive shells in high arc",
+            "variants": ["60mm mortar", "81/82mm mortar", "120mm mortar", "Improvised mortar (hell cannon)"],
+            "common_materials": ["Mortar shells", "Propellant charges"]
+          },
+          {
+            "code": "WPN-01-09",
+            "name": "Rocket / Missile",
+            "description": "Self-propelled munition fired at targets",
+            "variants": ["Katyusha rocket", "Grad rocket", "Qassam rocket", "107mm rocket", "MANPADS (shoulder-fired anti-aircraft)", "Anti-tank guided missile (ATGM)", "Ballistic missile"],
+            "common_materials": ["Warhead explosive", "Solid/liquid rocket fuel"]
+          },
+          {
+            "code": "WPN-01-10",
+            "name": "Letter / Package Bomb",
+            "description": "Small explosive device concealed in mail or package",
+            "variants": ["Letter bomb", "Parcel bomb", "Booby-trapped package"],
+            "common_materials": ["Small explosive charge", "Initiator triggered by opening"]
+          },
+          {
+            "code": "WPN-01-11",
+            "name": "Drone / UAV-Borne Explosive",
+            "description": "Unmanned aerial vehicle carrying or constituting an explosive payload",
+            "variants": ["Modified commercial drone with dropped munition", "Fixed-wing loitering munition", "Drone swarm", "FPV kamikaze drone"],
+            "common_materials": ["Commercial quadcopter", "Explosive payload", "Modified munitions"]
+          }
+        ]
+      },
+      {
+        "code": "WPN-02",
+        "main_category": "Firearms",
+        "sub_categories": [
+          {
+            "code": "WPN-02-01",
+            "name": "Assault Rifle",
+            "description": "Selective-fire rifle firing intermediate cartridge",
+            "variants": ["AK-47/AKM", "AK-74", "M16/M4", "G3/HK33", "FAL", "Galil"],
+            "common_calibers": ["7.62x39mm", "5.56x45mm", "5.45x39mm", "7.62x51mm"]
+          },
+          {
+            "code": "WPN-02-02",
+            "name": "Machine Gun",
+            "description": "Fully automatic weapon for sustained fire",
+            "variants": ["PKM", "M240", "M60", "DShK (heavy)", "KPV", "NSV"],
+            "common_calibers": ["7.62x54mmR", "7.62x51mm", "12.7x108mm", "14.5x114mm"]
+          },
+          {
+            "code": "WPN-02-03",
+            "name": "Submachine Gun",
+            "description": "Compact automatic weapon firing pistol cartridge",
+            "variants": ["Uzi", "MP5", "Skorpion", "Ingram MAC-10"],
+            "common_calibers": ["9x19mm", ".45 ACP", "7.65x17mm"]
+          },
+          {
+            "code": "WPN-02-04",
+            "name": "Handgun / Pistol",
+            "description": "Short-barreled firearm designed for one-hand use",
+            "variants": ["Glock series", "Makarov PM", "Beretta M9", "TT-33", "Various revolvers"],
+            "common_calibers": ["9x19mm", "9x18mm Makarov", ".45 ACP", "7.62x25mm"]
+          },
+          {
+            "code": "WPN-02-05",
+            "name": "Sniper / Precision Rifle",
+            "description": "Scoped rifle for long-range precision shooting",
+            "variants": ["Dragunov SVD", "M24/M40", "Barrett M82 (anti-materiel)", "Improvised precision rifles"],
+            "common_calibers": ["7.62x54mmR", "7.62x51mm", ".338 Lapua", ".50 BMG"]
+          },
+          {
+            "code": "WPN-02-06",
+            "name": "Shotgun",
+            "description": "Smoothbore firearm firing multiple projectiles",
+            "variants": ["Pump-action", "Semi-automatic", "Improvised/craft-produced"],
+            "common_calibers": ["12 gauge", "20 gauge"]
+          },
+          {
+            "code": "WPN-02-07",
+            "name": "Craft-Produced / Improvised Firearm",
+            "description": "Locally manufactured or modified firearm",
+            "variants": ["Pipe gun", "3D-printed firearm", "Converted blank/replica", "Workshop-produced"],
+            "common_calibers": ["Various"]
+          }
+        ]
+      },
+      {
+        "code": "WPN-03",
+        "main_category": "Incendiary",
+        "sub_categories": [
+          {
+            "code": "WPN-03-01",
+            "name": "Molotov Cocktail",
+            "description": "Improvised incendiary device using flammable liquid in glass bottle",
+            "variants": ["Basic Molotov", "Enhanced (with thickener/gel)", "Multiple bottle cluster"],
+            "common_materials": ["Gasoline", "Alcohol", "Cloth wick", "Thickening agents"]
+          },
+          {
+            "code": "WPN-03-02",
+            "name": "Incendiary Device",
+            "description": "Purpose-built device designed to start fires",
+            "variants": ["Thermite device", "Napalm variant", "White phosphorus (military)", "Improvised incendiary"],
+            "common_materials": ["Thermite", "Magnesium", "Napalm compounds", "Accelerants"]
+          },
+          {
+            "code": "WPN-03-03",
+            "name": "Arson Materials",
+            "description": "Accelerants and materials used for deliberate fire-setting",
+            "variants": ["Gasoline/petrol", "Kerosene", "Chemical accelerants"],
+            "common_materials": ["Petroleum products", "Chemical oxidizers"]
+          }
+        ]
+      },
+      {
+        "code": "WPN-04",
+        "main_category": "Chemical / Biological / Radiological / Nuclear (CBRN)",
+        "sub_categories": [
+          {
+            "code": "WPN-04-01",
+            "name": "Chemical Weapon Agent",
+            "description": "Toxic chemical substance designed to cause death or harm",
+            "variants": [
+              {"type": "Nerve Agent", "examples": ["Sarin (GB)", "VX", "Novichok", "Tabun (GA)", "Soman (GD)"]},
+              {"type": "Blister Agent", "examples": ["Mustard gas (HD)", "Lewisite"]},
+              {"type": "Choking Agent", "examples": ["Chlorine", "Phosgene"]},
+              {"type": "Blood Agent", "examples": ["Hydrogen cyanide", "Cyanogen chloride"]},
+              {"type": "Toxic Industrial Chemical", "examples": ["Ammonia", "Chlorine (industrial)", "Hydrogen fluoride"]}
+            ]
+          },
+          {
+            "code": "WPN-04-02",
+            "name": "Biological Agent",
+            "description": "Pathogen or toxin used as weapon",
+            "variants": [
+              {"type": "Bacterial", "examples": ["Anthrax (Bacillus anthracis)", "Plague (Yersinia pestis)", "Tularemia"]},
+              {"type": "Viral", "examples": ["Smallpox (Variola)", "Ebola", "Venezuelan equine encephalitis"]},
+              {"type": "Toxin", "examples": ["Ricin", "Botulinum toxin", "Abrin", "Saxitoxin"]}
+            ]
+          },
+          {
+            "code": "WPN-04-03",
+            "name": "Radiological Material",
+            "description": "Radioactive material used to contaminate area or population",
+            "variants": ["Radiological dispersal device (dirty bomb)", "Radiological exposure device", "Contamination of food/water"],
+            "common_materials": ["Cesium-137", "Cobalt-60", "Strontium-90", "Iridium-192"]
+          },
+          {
+            "code": "WPN-04-04",
+            "name": "Nuclear Device",
+            "description": "Nuclear explosive device or improvised nuclear device",
+            "variants": ["Nuclear weapon", "Improvised nuclear device (IND)"],
+            "common_materials": ["Highly enriched uranium (HEU)", "Plutonium"]
+          }
+        ]
+      },
+      {
+        "code": "WPN-05",
+        "main_category": "Vehicle (as weapon)",
+        "sub_categories": [
+          {
+            "code": "WPN-05-01",
+            "name": "Ramming Vehicle",
+            "description": "Motor vehicle used deliberately as impact weapon against people or structures",
+            "variants": ["Car", "Truck/lorry", "Van", "SUV"],
+            "notes": "Distinct from VBIED - no explosive payload; vehicle itself is the weapon"
+          }
+        ]
+      },
+      {
+        "code": "WPN-06",
+        "main_category": "Melee / Bladed Weapons",
+        "sub_categories": [
+          {
+            "code": "WPN-06-01",
+            "name": "Knife / Dagger",
+            "description": "Short-bladed weapon used in close-quarters attack",
+            "variants": ["Kitchen knife", "Hunting knife", "Combat knife", "Box cutter"]
+          },
+          {
+            "code": "WPN-06-02",
+            "name": "Machete / Cleaver",
+            "description": "Large bladed implement used as weapon",
+            "variants": ["Machete", "Meat cleaver", "Panga"]
+          },
+          {
+            "code": "WPN-06-03",
+            "name": "Axe / Hatchet",
+            "description": "Chopping tool used as weapon",
+            "variants": ["Axe", "Hatchet", "Tomahawk"]
+          },
+          {
+            "code": "WPN-06-04",
+            "name": "Sword / Large Blade",
+            "description": "Large edged weapon",
+            "variants": ["Sword", "Katana", "Scimitar"]
+          },
+          {
+            "code": "WPN-06-05",
+            "name": "Blunt Instrument",
+            "description": "Non-edged impact weapon",
+            "variants": ["Hammer", "Club/bat", "Iron bar", "Rocks/stones"]
+          }
+        ]
+      },
+      {
+        "code": "WPN-07",
+        "main_category": "Cyber Weapons",
+        "sub_categories": [
+          {
+            "code": "WPN-07-01",
+            "name": "Malware / Ransomware",
+            "description": "Malicious software designed to disrupt, damage, or gain unauthorized access",
+            "variants": ["Ransomware", "Wiper malware", "Trojan", "Worm", "Rootkit"]
+          },
+          {
+            "code": "WPN-07-02",
+            "name": "Distributed Denial of Service (DDoS)",
+            "description": "Overwhelming target systems with traffic to deny service",
+            "variants": ["Volumetric DDoS", "Application-layer DDoS", "Botnet-driven"]
+          },
+          {
+            "code": "WPN-07-03",
+            "name": "Infrastructure Exploitation",
+            "description": "Exploitation of SCADA/ICS systems controlling critical infrastructure",
+            "variants": ["SCADA exploitation", "ICS manipulation", "PLС reprogramming"]
+          }
+        ]
+      }
+    ]
+  },
+
+  "cross_reference_indices": {
+    "threat_level_summary": {
+      "Critical": [
+        "Afghanistan", "Iraq", "Syria", "Yemen", "Burkina Faso", "Mali", "Niger",
+        "Nigeria", "Somalia", "Democratic Republic of the Congo", "Sudan",
+        "Palestinian Territories", "Pakistan", "Myanmar", "Ukraine"
+      ],
+      "High": [
+        "Libya", "Lebanon", "Israel", "Mozambique", "Cameroon", "Chad",
+        "Ethiopia", "South Sudan", "Central African Republic", "Philippines",
+        "Mexico", "Colombia", "Ecuador", "Haiti"
+      ],
+      "Elevated": [
+        "Egypt", "Iran", "Turkey", "Kenya", "Uganda", "Togo", "Benin",
+        "Côte d'Ivoire", "India", "Bangladesh", "Indonesia", "Thailand",
+        "France", "United Kingdom", "Germany", "Belgium", "Sweden",
+        "Russia", "United States", "Venezuela"
+      ],
+      "Moderate": [
+        "Jordan", "Saudi Arabia", "Tunisia", "Algeria", "Morocco", "Mauritania",
+        "Ghana", "Tanzania", "Rwanda", "Burundi", "Eritrea", "Djibouti",
+        "South Africa", "Sri Lanka", "Maldives", "Malaysia",
+        "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Kazakhstan",
+        "Netherlands", "Spain", "Italy", "Austria", "Denmark", "Norway",
+        "Greece", "Kosovo", "Bosnia and Herzegovina",
+        "Canada", "Brazil", "Peru", "Paraguay", "Chile",
+        "Guatemala", "Honduras", "El Salvador", "Jamaica", "Trinidad and Tobago",
+        "Australia", "Papua New Guinea"
+      ],
+      "Low": [
+        "United Arab Emirates", "Kuwait", "Qatar", "Bahrain", "Oman",
+        "Sierra Leone", "Liberia", "Gambia", "Guinea-Bissau", "Cape Verde",
+        "Republic of the Congo", "Gabon", "Equatorial Guinea", "São Tomé and Príncipe",
+        "Zimbabwe", "Zambia", "Malawi", "Namibia", "Botswana", "Eswatini",
+        "Lesotho", "Madagascar", "Comoros", "Mauritius", "Seychelles",
+        "Nepal", "Bhutan", "Vietnam", "Cambodia", "Laos", "Singapore", "Brunei", "Timor-Leste",
+        "Turkmenistan", "Georgia", "Armenia", "Azerbaijan",
+        "Portugal", "Switzerland", "Ireland", "Poland", "Finland",
+        "Serbia", "North Macedonia", "Albania", "Montenegro", "Croatia", "Slovenia",
+        "Romania", "Bulgaria", "Hungary", "Czech Republic", "Slovakia",
+        "Moldova", "Belarus", "Lithuania", "Latvia", "Estonia", "Iceland",
+        "Luxembourg", "Malta", "Cyprus",
+        "Bolivia", "Argentina", "Uruguay", "Guyana", "Suriname",
+        "Nicaragua", "Costa Rica", "Panama", "Belize",
+        "Cuba", "Dominican Republic",
+        "New Zealand", "Fiji", "Solomon Islands", "Vanuatu", "Samoa", "Tonga",
+        "Angola", "Senegal", "Guinea"
+      ]
+    },
+    "total_countries_by_region": {
+      "MENA": 22,
+      "Sub-Saharan Africa": 47,
+      "South Asia": 7,
+      "Southeast Asia": 11,
+      "Central Asia": 8,
+      "Europe": 42,
+      "North America": 3,
+      "Latin America and Caribbean": 24,
+      "Oceania": 8
+    }
+  }
+}

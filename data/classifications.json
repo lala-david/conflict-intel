@@ -1,0 +1,190 @@
+{
+  "attack_types": {
+    "bombing": {
+      "name": "Bombing / Explosion",
+      "sub_types": {
+        "ied": "Improvised Explosive Device",
+        "vbied": "Vehicle-Borne IED (Car Bomb)",
+        "suicide_vest": "Suicide Vest / Body-Borne IED",
+        "landmine": "Landmine / Roadside Bomb",
+        "remote_explosive": "Remote-Detonated Explosive",
+        "grenade": "Grenade Attack",
+        "mortar": "Mortar / Rocket Attack",
+        "drone_bomb": "Drone-Dropped Munition"
+      }
+    },
+    "armed_assault": {
+      "name": "Armed Assault",
+      "sub_types": {
+        "shooting": "Firearms Attack",
+        "ambush": "Armed Ambush",
+        "raid": "Raid / Armed Incursion",
+        "drive_by": "Drive-by Shooting"
+      }
+    },
+    "assassination": {
+      "name": "Assassination / Targeted Killing",
+      "sub_types": {
+        "shooting_targeted": "Targeted Shooting",
+        "stabbing_targeted": "Targeted Stabbing",
+        "poisoning": "Poisoning",
+        "drone_strike_targeted": "Targeted Drone Strike"
+      }
+    },
+    "hostage_kidnapping": {
+      "name": "Hostage Taking / Kidnapping",
+      "sub_types": {
+        "kidnapping": "Kidnapping for Ransom",
+        "hostage_barricade": "Hostage / Barricade Situation",
+        "hijacking": "Hijacking (Vehicle/Aircraft)"
+      }
+    },
+    "arson_incendiary": {
+      "name": "Arson / Incendiary Attack",
+      "sub_types": {
+        "arson": "Deliberate Arson",
+        "molotov": "Molotov Cocktail / Firebomb",
+        "incendiary_device": "Incendiary Device"
+      }
+    },
+    "melee": {
+      "name": "Melee / Bladed Weapon Attack",
+      "sub_types": {
+        "stabbing": "Stabbing",
+        "vehicle_ramming": "Vehicle Ramming",
+        "machete": "Machete / Bladed Weapon"
+      }
+    },
+    "cbrn": {
+      "name": "CBRN (Chemical/Biological/Radiological/Nuclear)",
+      "sub_types": {
+        "chemical": "Chemical Agent",
+        "biological": "Biological Agent",
+        "radiological": "Radiological / Dirty Bomb",
+        "nuclear": "Nuclear Device"
+      }
+    },
+    "cyber": {
+      "name": "Cyber Attack",
+      "sub_types": {
+        "infrastructure_hack": "Critical Infrastructure Disruption",
+        "data_breach": "Data Theft / Espionage",
+        "ransomware": "Ransomware",
+        "defacement": "Website Defacement / Propaganda"
+      }
+    },
+    "shelling": {
+      "name": "Shelling / Artillery / Missile",
+      "sub_types": {
+        "artillery": "Artillery Shelling",
+        "missile": "Missile Strike",
+        "rocket": "Rocket Attack"
+      }
+    },
+    "airstrike": {
+      "name": "Air / Drone Strike",
+      "sub_types": {
+        "manned_airstrike": "Manned Aircraft Strike",
+        "drone_strike": "UAV / Drone Strike"
+      }
+    }
+  },
+  "target_types": {
+    "government": {
+      "name": "Government",
+      "sub_types": ["Government Building", "Government Official", "Politician", "Court / Judiciary"]
+    },
+    "military": {
+      "name": "Military",
+      "sub_types": ["Military Base", "Military Personnel", "Military Convoy", "Military Checkpoint"]
+    },
+    "police": {
+      "name": "Police / Law Enforcement",
+      "sub_types": ["Police Station", "Police Patrol", "Police Officer", "Security Forces"]
+    },
+    "civilian": {
+      "name": "Civilian / Private",
+      "sub_types": ["Marketplace", "Residential Area", "Public Gathering", "Public Transport", "School / University"]
+    },
+    "infrastructure": {
+      "name": "Critical Infrastructure",
+      "sub_types": ["Energy / Power Grid", "Water Supply", "Telecommunications", "Transportation Hub", "Oil / Gas Facility"]
+    },
+    "religious": {
+      "name": "Religious Institution",
+      "sub_types": ["Mosque", "Church", "Temple", "Synagogue", "Religious Gathering"]
+    },
+    "media": {
+      "name": "Media / Journalists",
+      "sub_types": ["Media Office", "Journalist", "Broadcasting Station"]
+    },
+    "diplomatic": {
+      "name": "Diplomatic / International",
+      "sub_types": ["Embassy / Consulate", "UN Facility", "International Organization", "NGO / Humanitarian"]
+    },
+    "economic": {
+      "name": "Economic / Business",
+      "sub_types": ["Business / Commercial", "Mining Operation", "Agricultural", "Financial Institution"]
+    }
+  },
+  "weapon_types": {
+    "explosives": {
+      "name": "Explosives",
+      "items": ["IED", "VBIED", "Suicide Vest", "Landmine", "Grenade", "RPG", "Mortar", "C4/TNT", "Pipe Bomb"]
+    },
+    "firearms": {
+      "name": "Firearms",
+      "items": ["Assault Rifle (AK-47, M16)", "Machine Gun", "Pistol/Handgun", "Sniper Rifle", "Shotgun"]
+    },
+    "missiles_rockets": {
+      "name": "Missiles / Rockets",
+      "items": ["Ballistic Missile", "Cruise Missile", "MANPAD", "Anti-Tank Missile", "Katyusha Rocket", "Grad Rocket"]
+    },
+    "incendiary": {
+      "name": "Incendiary",
+      "items": ["Molotov Cocktail", "Accelerant / Fuel", "Incendiary Device", "White Phosphorus"]
+    },
+    "melee_weapons": {
+      "name": "Melee / Bladed",
+      "items": ["Knife", "Machete", "Axe", "Sword"]
+    },
+    "vehicles": {
+      "name": "Vehicles as Weapons",
+      "items": ["Car / Truck Ramming", "Boat / Maritime", "Aircraft"]
+    },
+    "cbrn": {
+      "name": "CBRN",
+      "items": ["Chlorine Gas", "Sarin", "VX", "Mustard Gas", "Ricin", "Anthrax", "Dirty Bomb"]
+    },
+    "drones": {
+      "name": "Drones / UAV",
+      "items": ["Commercial Drone (Modified)", "Military UAV", "Drone Swarm", "Loitering Munition"]
+    }
+  },
+  "ideology_classification": {
+    "jihadist": {
+      "name": "Jihadist / Salafi-Jihadist",
+      "description": "Religiously motivated violent extremism rooted in Salafi-jihadist ideology"
+    },
+    "right_wing": {
+      "name": "Right-wing Extremism",
+      "description": "Racially/ethnically motivated, white supremacist, neo-Nazi, accelerationist"
+    },
+    "left_wing": {
+      "name": "Left-wing / Anarchist",
+      "description": "Marxist, Maoist, anarchist, anti-capitalist motivated violence"
+    },
+    "ethno_nationalist": {
+      "name": "Ethno-nationalist / Separatist",
+      "description": "Ethnically or nationally motivated separatism and self-determination"
+    },
+    "single_issue": {
+      "name": "Single-issue / Other",
+      "description": "Environmental, anti-abortion, anti-government (non-ideological), incel"
+    },
+    "state_sponsored": {
+      "name": "State-sponsored",
+      "description": "Proxy groups or operations directed/supported by state actors"
+    }
+  }
+}
