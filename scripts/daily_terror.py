@@ -39,28 +39,148 @@ def get_report_dir(date: datetime) -> Path:
     return d
 
 
+def compute_statistics(data: dict) -> str:
+    """수집 데이터에서 통계 대시보드 생성"""
+    lines = ["## STATISTICS DASHBOARD\n"]
+
+    # ACLED 통계
+    acled = data.get("acled", [])
+    if acled:
+        total_fatalities = sum(e.get("fatalities", 0) for e in acled)
+        # 국가별 사건 수
+        country_counts = {}
+        for e in acled:
+            c = e.get("country", "Unknown")
+            country_counts[c] = country_counts.get(c, 0) + 1
+        top_countries = sorted(country_counts.items(), key=lambda x: x[1], reverse=True)[:10]
+
+        # 공격 유형별
+        type_counts = {}
+        for e in acled:
+            t = e.get("sub_event_type", "Unknown")
+            type_counts[t] = type_counts.get(t, 0) + 1
+        top_types = sorted(type_counts.items(), key=lambda x: x[1], reverse=True)[:8]
+
+        # 조직별
+        actor_counts = {}
+        for e in acled:
+            a = e.get("actor1", "").strip()
+            if a and a != "Unknown":
+                actor_counts[a] = actor_counts.get(a, 0) + 1
+        top_actors = sorted(actor_counts.items(), key=lambda x: x[1], reverse=True)[:10]
+
+        # 좌표 데이터 (사상자 있는 사건 우선)
+        geo_events = [e for e in acled if e.get("latitude") and e.get("longitude")]
+        geo_events.sort(key=lambda x: x.get("fatalities", 0), reverse=True)
+
+        lines.append(f"### ACLED Summary (last 14 days)")
+        lines.append(f"- Total incidents: {len(acled)}")
+        lines.append(f"- Total fatalities: {total_fatalities}")
+        lines.append(f"\n**By Country:**")
+        for c, n in top_countries:
+            lines.append(f"  - {c}: {n} incidents")
+        lines.append(f"\n**By Attack Type:**")
+        for t, n in top_types:
+            lines.append(f"  - {t}: {n} incidents")
+        lines.append(f"\n**By Actor (top 10):**")
+        for a, n in top_actors:
+            lines.append(f"  - {a}: {n} incidents")
+
+        if geo_events:
+            lines.append(f"\n**Georeferenced Incidents (top by fatalities):**")
+            for e in geo_events[:15]:
+                lines.append(
+                    f"  - [{e['latitude']}, {e['longitude']}] {e['country']}, {e['location']} | "
+                    f"{e['sub_event_type']} | {e['actor1']} | "
+                    f"Fatalities: {e['fatalities']} | {e['date']}"
+                )
+
+    # GDELT 통계
+    gdelt = data.get("gdelt", [])
+    if gdelt:
+        gdelt_countries = {}
+        for e in gdelt:
+            c = e.get("country_code", "??")
+            gdelt_countries[c] = gdelt_countries.get(c, 0) + 1
+        top_gdelt = sorted(gdelt_countries.items(), key=lambda x: x[1], reverse=True)[:10]
+
+        total_mentions = sum(e.get("num_mentions", 0) for e in gdelt)
+        avg_tone_all = sum(e.get("avg_tone", 0) for e in gdelt) / len(gdelt) if gdelt else 0
+
+        lines.append(f"\n### GDELT Summary")
+        lines.append(f"- Total events: {len(gdelt)}")
+        lines.append(f"- Total mentions across media: {total_mentions:,}")
+        lines.append(f"- Average media tone: {avg_tone_all:.2f} (negative = hostile)")
+        lines.append(f"\n**By Country Code:**")
+        for c, n in top_gdelt:
+            lines.append(f"  - {c}: {n} events")
+
+        # GDELT 좌표 데이터
+        geo_gdelt = [e for e in gdelt if e.get("latitude") and e.get("longitude")]
+        if geo_gdelt:
+            lines.append(f"\n**Georeferenced Events (top by mentions):**")
+            for e in geo_gdelt[:10]:
+                lines.append(
+                    f"  - [{e['latitude']}, {e['longitude']}] {e['location']} ({e['country_code']}) | "
+                    f"Code: {e['event_code']} | Mentions: {e['num_mentions']} | "
+                    f"Tone: {e['avg_tone']:.1f}"
+                )
+
+    # News 통계
+    news = data.get("google_news", [])
+    expert = data.get("expert_rss", [])
+    if news or expert:
+        lines.append(f"\n### Media Coverage")
+        lines.append(f"- Google News articles: {len(news)}")
+        lines.append(f"- Expert analyses: {len(expert)}")
+        if expert:
+            feed_counts = {}
+            for a in expert:
+                f = a.get("feed_name", "Unknown")
+                feed_counts[f] = feed_counts.get(f, 0) + 1
+            lines.append("**By Source:**")
+            for f, n in sorted(feed_counts.items(), key=lambda x: x[1], reverse=True):
+                lines.append(f"  - {f}: {n} articles")
+
+    # Sanctions 통계
+    sanctions = data.get("sanctions", [])
+    ofac = data.get("ofac", [])
+    if sanctions or ofac:
+        lines.append(f"\n### Sanctions")
+        lines.append(f"- OpenSanctions entities: {len(sanctions)}")
+        lines.append(f"- OFAC recent actions: {len(ofac)}")
+
+    return "\n".join(lines)
+
+
 def build_raw_context(data: dict) -> str:
     """수집 데이터를 LLM 컨텍스트로 변환"""
     sections = []
 
+    # 통계 대시보드를 맨 앞에 배치
+    stats = compute_statistics(data)
+    if stats:
+        sections.append(stats)
+
     if data.get("gdelt"):
-        sections.append("## GDELT Events (Global Conflict/Terror)")
+        sections.append("\n## GDELT Events (Global Conflict/Terror)")
         for e in data["gdelt"][:20]:
             sections.append(
                 f"- EventCode: {e['event_code']} | Actor1: {e['actor1']} | Actor2: {e['actor2']}\n"
-                f"  Location: {e['location']} ({e['country_code']})\n"
+                f"  Location: {e['location']} ({e['country_code']}) | Coords: [{e['latitude']}, {e['longitude']}]\n"
                 f"  Mentions: {e['num_mentions']} | Sources: {e['num_sources']} | Tone: {e['avg_tone']:.1f}\n"
                 f"  URL: {e['source_url']}"
             )
 
     if data.get("acled"):
         sections.append("\n## ACLED Incidents (Coded Political Violence)")
-        for e in data["acled"][:20]:
+        for e in data["acled"][:25]:
             sections.append(
                 f"- {e['date']} | {e['sub_event_type']} | {e['country']} ({e['admin1']}, {e['location']})\n"
+                f"  Coords: [{e['latitude']}, {e['longitude']}]\n"
                 f"  Actor1: {e['actor1']} | Actor2: {e['actor2']}\n"
                 f"  Fatalities: {e['fatalities']}\n"
-                f"  Notes: {e['notes'][:200]}"
+                f"  Notes: {e['notes'][:250]}"
             )
 
     if data.get("google_news"):
@@ -160,13 +280,30 @@ def generate_report(data: dict, date: datetime, lang: str) -> str:
 |------|------|------|
 (수집 데이터 기반으로 주요 지역별 위협 수준을 평가한다)
 
-## 2. 최근 사건 요약
+## 2. 통계 대시보드
 
-| 날짜 | 위치 | 유형 | 조직/행위자 | 사상자 | 출처 |
-|------|------|------|-------------|--------|------|
-(ACLED + GDELT 데이터에서 주요 사건을 테이블로 정리한다)
+(수집 데이터의 STATISTICS DASHBOARD를 기반으로 아래 테이블을 작성한다)
 
-## 3. 지역별 분석
+### 사건 개요
+| 지표 | 수치 |
+|------|------|
+| 총 사건 수 | (ACLED + GDELT) |
+| 총 사망자 | (ACLED fatalities 합계) |
+| 가장 활발한 국가 | (상위 5개국) |
+| 가장 활발한 조직 | (상위 5개) |
+
+### 공격 유형 분포
+| 유형 | 건수 |
+|------|------|
+(데이터의 By Attack Type에서 추출)
+
+## 3. 주요 사건 상세
+
+| 날짜 | 위치 | 좌표 | 유형 | 조직/행위자 | 사상자 | 출처 |
+|------|------|------|------|-------------|--------|------|
+(ACLED + GDELT 데이터에서 좌표 포함하여 주요 사건을 테이블로 정리한다. 좌표는 [lat, lon] 형식)
+
+## 4. 지역별 분석
 
 ### 중동 / 북아프리카
 ### 사하라 이남 아프리카
@@ -174,25 +311,25 @@ def generate_report(data: dict, date: datetime, lang: str) -> str:
 ### 유럽 / 북미
 ### 기타 지역
 
-(각 지역별로 주요 동향을 분석한다. 데이터가 없는 지역은 "보고된 주요 활동 없음")
+(각 지역별로 주요 동향을 분석한다. 좌표 데이터가 있으면 [lat, lon]을 포함한다. 데이터가 없는 지역은 "보고된 주요 활동 없음")
 
-## 4. 조직 동향
+## 5. 조직 동향
 
-(활동이 확인된 무장 조직/위협 그룹의 동향을 분석한다)
+(통계 대시보드의 By Actor 데이터를 기반으로 활동이 확인된 조직의 사건 수, 지역, 공격 유형을 분석한다)
 
-## 5. 제재 / 정책 변동
+## 6. 제재 / 정책 변동
 
 (OFAC, UN, EU 제재 목록 변동 및 대테러 정책 변화를 분석한다)
 
-## 6. 전문가 분석 요약
+## 7. 전문가 분석 요약
 
 (Long War Journal, Soufan Center 등 전문 기관의 분석을 요약한다)
 
-## 7. 트렌드 & 패턴
+## 8. 트렌드 & 패턴
 
-(수집 데이터에서 관찰되는 패턴, 추세 변화를 분석한다)
+(통계 대시보드 데이터를 기반으로 관찰되는 패턴을 분석한다. 미디어 톤, 언급량 변화도 포함)
 
-## 8. 실무 시사점
+## 9. 실무 시사점
 
 > (구체적 액션 아이템. 번호로 나열한다)
 
@@ -238,12 +375,24 @@ def generate_report(data: dict, date: datetime, lang: str) -> str:
 | Region | Level | Basis |
 |--------|-------|-------|
 
-## 2. Incident Summary
+## 2. Statistics Dashboard
 
-| Date | Location | Type | Actor | Casualties | Source |
-|------|----------|------|-------|------------|--------|
+### Incident Overview
+| Metric | Value |
+|--------|-------|
+(Use STATISTICS DASHBOARD data)
 
-## 3. Regional Analysis
+### Attack Type Distribution
+| Type | Count |
+|------|-------|
+
+## 3. Key Incidents Detail
+
+| Date | Location | Coords | Type | Actor | Casualties | Source |
+|------|----------|--------|------|-------|------------|--------|
+(Include [lat, lon] coordinates from data)
+
+## 4. Regional Analysis
 
 ### Middle East / North Africa
 ### Sub-Saharan Africa
@@ -251,15 +400,21 @@ def generate_report(data: dict, date: datetime, lang: str) -> str:
 ### Europe / North America
 ### Other Regions
 
-## 4. Threat Group Activity
+(Include coordinates where available)
 
-## 5. Sanctions & Policy Updates
+## 5. Threat Group Activity
 
-## 6. Expert Analysis Summary
+(Use By Actor statistics for incident counts per group)
 
-## 7. Trends & Patterns
+## 6. Sanctions & Policy Updates
 
-## 8. Actionable Takeaways
+## 7. Expert Analysis Summary
+
+## 8. Trends & Patterns
+
+(Include media tone analysis and mention volume from GDELT)
+
+## 9. Actionable Takeaways
 
 > (Numbered action items)
 

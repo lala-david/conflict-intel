@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-ACLED_API_KEY = os.getenv("ACLED_API_KEY")
 ACLED_EMAIL = os.getenv("ACLED_EMAIL")
+ACLED_PASSWORD = os.getenv("ACLED_PASSWORD")
 
 # LLM
 ANALYSIS_MODEL = "gpt-5.4-mini"

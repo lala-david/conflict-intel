@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 from typing import Optional
 
 from config import (
-    ACLED_API_KEY, ACLED_EMAIL,
+    ACLED_EMAIL, ACLED_PASSWORD,
     ACLED_TERROR_SUBTYPES, GDELT_TERROR_CODES,
     RSS_FEEDS, GOOGLE_NEWS_QUERIES,
 )
@@ -128,10 +128,34 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
 # ─────────────────────────────────────────────
 # 2. ACLED — 코딩된 정치폭력 사건
 # ─────────────────────────────────────────────
-def fetch_acled(target_date: datetime, limit: int = 50) -> list[dict]:
-    """ACLED에서 테러 관련 사건 수집 (최근 14일)"""
-    if not ACLED_API_KEY or not ACLED_EMAIL:
-        print("    [acled] API 키 없음 — 스킵 (ACLED_API_KEY, ACLED_EMAIL 필요)")
+def _get_acled_token() -> str:
+    """ACLED OAuth 토큰 발급"""
+    resp = requests.post(
+        "https://acleddata.com/oauth/token",
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
+        data={
+            "username": ACLED_EMAIL,
+            "password": ACLED_PASSWORD,
+            "grant_type": "password",
+            "client_id": "acled",
+        },
+        timeout=15,
+    )
+    if resp.status_code == 200:
+        return resp.json().get("access_token", "")
+    else:
+        print(f"    [acled] OAuth 실패: {resp.status_code} {resp.text[:200]}")
+        return ""
+
+
+def fetch_acled(target_date: datetime, limit: int = 100) -> list[dict]:
+    """ACLED에서 테러 관련 사건 수집 (최근 14일, OAuth 인증)"""
+    if not ACLED_EMAIL or not ACLED_PASSWORD:
+        print("    [acled] 인증 정보 없음 — 스킵 (ACLED_EMAIL, ACLED_PASSWORD 필요)")
+        return []
+
+    token = _get_acled_token()
+    if not token:
         return []
 
     since = (target_date - timedelta(days=14)).strftime("%Y-%m-%d")
@@ -141,21 +165,24 @@ def fetch_acled(target_date: datetime, limit: int = 50) -> list[dict]:
 
     try:
         resp = requests.get(
-            "https://api.acleddata.com/acled/read",
+            "https://acleddata.com/api/acled/read",
             params={
-                "key": ACLED_API_KEY,
-                "email": ACLED_EMAIL,
+                "_format": "json",
                 "sub_event_type": sub_types,
                 "event_date": f"{since}|{until}",
                 "event_date_where": "BETWEEN",
                 "limit": limit,
                 "fields": "event_id_cnty|event_date|event_type|sub_event_type|actor1|actor2|country|admin1|location|latitude|longitude|fatalities|notes|source",
             },
+            headers={
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json",
+            },
             timeout=30,
         )
 
         if resp.status_code != 200:
-            print(f"    [acled] HTTP {resp.status_code}")
+            print(f"    [acled] HTTP {resp.status_code}: {resp.text[:200]}")
             return []
 
         data = resp.json()
