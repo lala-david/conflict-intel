@@ -1,0 +1,386 @@
+"""
+Terror Intelligence Daily Report — 데일리 인텔리전스 자동 생성
+
+사용법:
+    python scripts/daily_terror.py              # 오늘 날짜
+    python scripts/daily_terror.py 2026-03-27   # 특정 날짜
+"""
+import os
+import sys
+import io
+import json
+from datetime import datetime
+from pathlib import Path
+from openai import OpenAI
+from dotenv import load_dotenv
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "scripts"))
+load_dotenv(ROOT / ".env")
+
+from sources import collect_all
+from config import ANALYSIS_MODEL, TEMPERATURE, MAX_TOKENS, REPORTS_DIR
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+
+def get_week_number(date: datetime) -> int:
+    return date.isocalendar()[1]
+
+
+def get_report_dir(date: datetime) -> Path:
+    year = date.strftime("%Y")
+    month = date.strftime("%m")
+    week = f"week-{get_week_number(date):02d}"
+    d = ROOT / REPORTS_DIR / year / month / week
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def build_raw_context(data: dict) -> str:
+    """수집 데이터를 LLM 컨텍스트로 변환"""
+    sections = []
+
+    if data.get("gdelt"):
+        sections.append("## GDELT Events (Global Conflict/Terror)")
+        for e in data["gdelt"][:20]:
+            sections.append(
+                f"- EventCode: {e['event_code']} | Actor1: {e['actor1']} | Actor2: {e['actor2']}\n"
+                f"  Location: {e['location']} ({e['country_code']})\n"
+                f"  Mentions: {e['num_mentions']} | Sources: {e['num_sources']} | Tone: {e['avg_tone']:.1f}\n"
+                f"  URL: {e['source_url']}"
+            )
+
+    if data.get("acled"):
+        sections.append("\n## ACLED Incidents (Coded Political Violence)")
+        for e in data["acled"][:20]:
+            sections.append(
+                f"- {e['date']} | {e['sub_event_type']} | {e['country']} ({e['admin1']}, {e['location']})\n"
+                f"  Actor1: {e['actor1']} | Actor2: {e['actor2']}\n"
+                f"  Fatalities: {e['fatalities']}\n"
+                f"  Notes: {e['notes'][:200]}"
+            )
+
+    if data.get("google_news"):
+        sections.append("\n## Google News (Terror-Related)")
+        for a in data["google_news"][:20]:
+            sections.append(f"- {a['title']}\n  URL: {a['url']}\n  {a['summary'][:150]}")
+
+    if data.get("expert_rss"):
+        sections.append("\n## Expert Analysis (RSS)")
+        for a in data["expert_rss"][:20]:
+            sections.append(f"- [{a['feed_name']}] {a['title']}\n  URL: {a['url']}\n  {a['summary'][:200]}")
+
+    if data.get("sanctions"):
+        sections.append("\n## Sanctions Updates")
+        for s in data["sanctions"][:15]:
+            sections.append(f"- [{s['datasets']}] {s['name']} | Schema: {s['schema']} | Topics: {s['topics']}")
+
+    if data.get("ofac"):
+        sections.append("\n## OFAC Recent Actions")
+        for o in data["ofac"][:10]:
+            sections.append(f"- {o['title']}\n  URL: {o['url']}")
+
+    return "\n".join(sections)
+
+
+SYSTEM_PROMPT = """You are a senior counterterrorism intelligence analyst producing a daily intelligence brief.
+
+ABSOLUTE RULES:
+1. Use ONLY facts from the provided data. NEVER fabricate events, casualties, groups, or locations.
+2. Every claim MUST reference its source. Use markdown links: [text](URL)
+3. If a section has no data, write "No significant activity reported" (EN) or "보고된 주요 활동 없음" (KO).
+4. Use estimative language with confidence levels:
+   - "We assess with HIGH CONFIDENCE" = multiple corroborating sources
+   - "We assess with MODERATE CONFIDENCE" = credible but not fully verified
+   - "We assess with LOW CONFIDENCE" = limited or fragmentary reporting
+5. BLUF (Bottom Line Up Front): Lead with the most critical assessment.
+6. For Korean: 문장은 "~이다", "~하다", "~한다", "~으로 판단된다", "~으로 평가된다"로 종결한다.
+7. NEVER speculate beyond what the data supports."""
+
+
+def generate_report(data: dict, date: datetime, lang: str) -> str:
+    """LLM으로 인텔리전스 리포트 생성"""
+    raw = build_raw_context(data)
+    date_str = date.strftime("%Y-%m-%d")
+
+    # 통계 요약
+    acled_count = len(data.get("acled", []))
+    acled_fatalities = sum(e.get("fatalities", 0) for e in data.get("acled", []))
+    gdelt_count = len(data.get("gdelt", []))
+    news_count = len(data.get("google_news", []))
+
+    stats_block = f"""
+## Collection Stats:
+- ACLED incidents: {acled_count} (total fatalities: {acled_fatalities})
+- GDELT events: {gdelt_count}
+- News articles: {news_count}
+- Expert analyses: {len(data.get('expert_rss', []))}
+- Sanctions updates: {len(data.get('sanctions', []))}
+"""
+
+    if lang == "ko":
+        weekday = ["월", "화", "수", "목", "금", "토", "일"][date.weekday()]
+        date_display = f"{date.strftime('%Y년 %m월 %d일')} ({weekday})"
+        prompt = f"""아래 수집 데이터를 분석하여 한국어 테러 인텔리전스 데일리 브리프를 작성하라.
+
+## 날짜: {date_display}
+{stats_block}
+## 수집 데이터:
+{raw}
+
+## 작성 규칙:
+1. BLUF 원칙: 가장 중요한 판단을 최상단에 배치한다
+2. 각 항목을 3~4줄의 분석문으로 작성한다
+3. 문장은 "~이다/~하다/~한다/~으로 판단된다"로 종결한다
+4. 신뢰도 등급을 명시한다 (높은 확신 / 중간 확신 / 낮은 확신)
+5. 출처는 마크다운 링크로 표기한다
+6. 수집 데이터에 없는 사건은 절대 작성하지 않는다
+7. 해당 섹션에 데이터가 없으면 "보고된 주요 활동 없음"으로 표기한다
+
+## 출력 형식:
+
+# Terror Intelligence Brief — {date_display}
+
+> CLASSIFICATION: UNCLASSIFIED // FOR OFFICIAL USE ONLY
+
+---
+
+## BLUF (Bottom Line Up Front)
+
+> (오늘 가장 중요한 위협 판단 2~3문장. URL 없이 핵심만 서술한다)
+
+---
+
+## 1. 위협 수준 평가
+
+| 지역 | 수준 | 근거 |
+|------|------|------|
+(수집 데이터 기반으로 주요 지역별 위협 수준을 평가한다)
+
+## 2. 최근 사건 요약
+
+| 날짜 | 위치 | 유형 | 조직/행위자 | 사상자 | 출처 |
+|------|------|------|-------------|--------|------|
+(ACLED + GDELT 데이터에서 주요 사건을 테이블로 정리한다)
+
+## 3. 지역별 분석
+
+### 중동 / 북아프리카
+### 사하라 이남 아프리카
+### 남아시아 / 동남아시아
+### 유럽 / 북미
+### 기타 지역
+
+(각 지역별로 주요 동향을 분석한다. 데이터가 없는 지역은 "보고된 주요 활동 없음")
+
+## 4. 조직 동향
+
+(활동이 확인된 무장 조직/위협 그룹의 동향을 분석한다)
+
+## 5. 제재 / 정책 변동
+
+(OFAC, UN, EU 제재 목록 변동 및 대테러 정책 변화를 분석한다)
+
+## 6. 전문가 분석 요약
+
+(Long War Journal, Soufan Center 등 전문 기관의 분석을 요약한다)
+
+## 7. 트렌드 & 패턴
+
+(수집 데이터에서 관찰되는 패턴, 추세 변화를 분석한다)
+
+## 8. 실무 시사점
+
+> (구체적 액션 아이템. 번호로 나열한다)
+
+---
+
+*Sources: ACLED, GDELT, Google News, Long War Journal, Soufan Center, CTC Sentinel, Jamestown, OpenSanctions, OFAC*
+*Generated: {date_display} | Model: {ANALYSIS_MODEL} | UNCLASSIFIED*
+"""
+    else:
+        weekday = date.strftime("%A")
+        date_display = f"{date_str} ({weekday})"
+        prompt = f"""Analyze the collected data and produce an English daily terror intelligence brief.
+
+## Date: {date_display}
+{stats_block}
+## Collected Data:
+{raw}
+
+## Rules:
+1. BLUF principle: Lead with the most critical assessment
+2. Each item: 3-4 line analytical paragraph
+3. Use estimative language with confidence levels (HIGH/MODERATE/LOW CONFIDENCE)
+4. Source as markdown link: [text](URL)
+5. NEVER fabricate. Only use provided data.
+6. Empty sections: "No significant activity reported"
+
+## Output format:
+
+# Terror Intelligence Brief — {date_display}
+
+> CLASSIFICATION: UNCLASSIFIED // FOR OFFICIAL USE ONLY
+
+---
+
+## BLUF (Bottom Line Up Front)
+
+> (2-3 sentences. Most critical threat assessment. No URLs.)
+
+---
+
+## 1. Threat Level Assessment
+
+| Region | Level | Basis |
+|--------|-------|-------|
+
+## 2. Incident Summary
+
+| Date | Location | Type | Actor | Casualties | Source |
+|------|----------|------|-------|------------|--------|
+
+## 3. Regional Analysis
+
+### Middle East / North Africa
+### Sub-Saharan Africa
+### South / Southeast Asia
+### Europe / North America
+### Other Regions
+
+## 4. Threat Group Activity
+
+## 5. Sanctions & Policy Updates
+
+## 6. Expert Analysis Summary
+
+## 7. Trends & Patterns
+
+## 8. Actionable Takeaways
+
+> (Numbered action items)
+
+---
+
+*Sources: ACLED, GDELT, Google News, Long War Journal, Soufan Center, CTC Sentinel, Jamestown, OpenSanctions, OFAC*
+*Generated: {date_display} | Model: {ANALYSIS_MODEL} | UNCLASSIFIED*
+"""
+
+    response = client.chat.completions.create(
+        model=ANALYSIS_MODEL,
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=TEMPERATURE,
+        max_completion_tokens=MAX_TOKENS,
+    )
+
+    content = response.choices[0].message.content or ""
+    usage = response.usage
+    if usage:
+        print(f"   tokens: in={usage.prompt_tokens:,} out={usage.completion_tokens:,} total={usage.total_tokens:,}")
+    return content
+
+
+def update_week_readme(report_dir: Path, date: datetime):
+    readme = report_dir / "README.md"
+    week_num = get_week_number(date)
+    year = date.strftime("%Y")
+    month = date.strftime("%m월")
+
+    ko_reports = sorted(report_dir.glob("*_ko.md"))
+    rows = []
+    for r in ko_reports:
+        date_part = r.stem.replace("_ko", "")
+        en_file = r.parent / f"{date_part}_en.md"
+        en_link = f" / [EN]({en_file.name})" if en_file.exists() else ""
+        rows.append(f"| {date_part} | [KO]({r.name}){en_link} |")
+
+    table = "\n".join(rows) if rows else "| - | - |"
+    content = f"""# Week {week_num} — {year}년 {month}
+
+| Date | Report |
+|------|--------|
+{table}
+"""
+    readme.write_text(content, encoding="utf-8")
+
+
+def update_month_readme(report_dir: Path, date: datetime):
+    month_dir = report_dir.parent
+    readme = month_dir / "README.md"
+    year = date.strftime("%Y")
+    month = date.strftime("%m월")
+
+    weeks = sorted(d for d in month_dir.iterdir() if d.is_dir() and d.name.startswith("week-"))
+    rows = []
+    for w in weeks:
+        count = len(list(w.glob("*_ko.md")))
+        rows.append(f"| [{w.name}]({w.name}/README.md) | {count} |")
+    table = "\n".join(rows) if rows else "| - | 0 |"
+
+    content = f"""# {year}년 {month} Terror Intelligence
+
+| Week | Reports |
+|------|---------|
+{table}
+"""
+    readme.write_text(content, encoding="utf-8")
+
+
+def main():
+    if len(sys.argv) > 1:
+        target_date = datetime.strptime(sys.argv[1], "%Y-%m-%d")
+    else:
+        target_date = datetime.now()
+
+    date_str = target_date.strftime("%Y-%m-%d")
+    print(f"\n{'='*55}")
+    print(f"  Terror Intelligence Brief — {date_str}")
+    print(f"{'='*55}\n")
+
+    # 1. 수집
+    data = collect_all(target_date)
+    total = sum(len(v) for v in data.values() if isinstance(v, list))
+    if total == 0:
+        print("No data collected.")
+        return
+
+    # 2. 리포트 디렉토리
+    report_dir = get_report_dir(target_date)
+
+    # 3. 한글 리포트
+    print("\n  [KO] Generating...")
+    ko = generate_report(data, target_date, "ko")
+    ko_path = report_dir / f"{date_str}_ko.md"
+    ko_path.write_text(ko, encoding="utf-8")
+    print(f"   -> {ko_path.relative_to(ROOT)}")
+
+    # 4. 영문 리포트
+    print("\n  [EN] Generating...")
+    en = generate_report(data, target_date, "en")
+    en_path = report_dir / f"{date_str}_en.md"
+    en_path.write_text(en, encoding="utf-8")
+    print(f"   -> {en_path.relative_to(ROOT)}")
+
+    # 5. README
+    update_week_readme(report_dir, target_date)
+    update_month_readme(report_dir, target_date)
+
+    # 6. Raw JSON
+    raw_path = report_dir / f"{date_str}_raw.json"
+    raw_out = {k: v for k, v in data.items() if k != "collected_at"}
+    raw_out["meta"] = {"collected_at": data.get("collected_at", ""), "total": total}
+    raw_path.write_text(json.dumps(raw_out, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+
+    print(f"\n{'='*55}")
+    print(f"  DONE | KO: {ko_path.name} / EN: {en_path.name}")
+    print(f"{'='*55}\n")
+
+
+if __name__ == "__main__":
+    main()
