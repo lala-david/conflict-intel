@@ -11,7 +11,7 @@ ACLED_PASSWORD = os.getenv("ACLED_PASSWORD")
 # LLM
 ANALYSIS_MODEL = "gpt-5.4-mini"
 TEMPERATURE = 0.12  # 인텔리전스 분석은 더 보수적으로
-MAX_TOKENS = 6000
+MAX_TOKENS = 8000
 
 # 리포트 경로
 REPORTS_DIR = "reports"

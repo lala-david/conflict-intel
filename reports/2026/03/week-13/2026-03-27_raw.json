@@ -1,6 +1,1850 @@
 {
   "acled": [],
-  "gdelt": [],
+  "gdelt": [
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "NAVY",
+      "country_code": "IR",
+      "location": "56.2808",
+      "latitude": "27.1865",
+      "longitude": "IR11",
+      "goldstein_scale": -10.0,
+      "num_mentions": 4726,
+      "num_sources": 4,
+      "num_articles": 4726,
+      "avg_tone": -2.30462456903861,
+      "source_url": "https://kissfm1031.iheart.com/content/2026-03-26-average-gas-price-finally-lower-than-previous-day/",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "DOCTOR",
+      "actor2": "",
+      "country_code": "US",
+      "location": "-114.51",
+      "latitude": "44.2394",
+      "longitude": "USID",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1700,
+      "num_sources": 85,
+      "num_articles": 850,
+      "avg_tone": -5.4162996432784,
+      "source_url": "http://www.nashvilleherald.com/news/278940446/parents-denying-routine-preventive-care-for-newborns-worry-doctors",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAELI",
+      "actor2": "ISFAHAN",
+      "country_code": "IS",
+      "location": "34.7667",
+      "latitude": "32.0667",
+      "longitude": "IS05",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1534,
+      "num_sources": 86,
+      "num_articles": 1122,
+      "avg_tone": -4.04465202146801,
+      "source_url": "https://grenadachronicle.com/two-teenagers-killed-in-shiraz-two-dead-in-abu-dhabi-as-iran-war-expands/",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAELI",
+      "actor2": "ISFAHAN",
+      "country_code": "IS",
+      "location": "34.7667",
+      "latitude": "32.0667",
+      "longitude": "IS05",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1388,
+      "num_sources": 109,
+      "num_articles": 1388,
+      "avg_tone": -3.97284651729065,
+      "source_url": "https://grenadachronicle.com/two-teenagers-killed-in-shiraz-two-dead-in-abu-dhabi-as-iran-war-expands/",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "IRANIAN",
+      "actor2": "ISRAEL",
+      "country_code": "IR",
+      "location": "51.6714",
+      "latitude": "32.6597",
+      "longitude": "IR28",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1184,
+      "num_sources": 118,
+      "num_articles": 1184,
+      "avg_tone": -4.34190482599228,
+      "source_url": "https://www.harwichandmanningtreestandard.co.uk/news/national/25972882.iran-us-impasse-ceasefire-talks-fears-grow-conflict-escalation/",
+      "date": "20260327",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "IRANIAN INVESTMENT PETROCHEMICAL GROUP COMPANY",
+          "designation": "OFAC",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "NAVY",
+      "country_code": "IS",
+      "location": "34.75",
+      "latitude": "31.5",
+      "longitude": "IS",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1286,
+      "num_sources": 11,
+      "num_articles": 1276,
+      "avg_tone": -2.15196770115689,
+      "source_url": "https://www.citizen.co.za/news/news-world/trump-says-iran-better-get-serious-in-middle-east-war-talks/",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "MALE",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1210,
+      "num_sources": 1,
+      "num_articles": 1210,
+      "avg_tone": -14.5715587057554,
+      "source_url": "https://kprcradio.iheart.com/content/2026-03-26-4-killed-in-strike-on-alleged-drug-boat-in-caribbean-us-military/",
+      "date": "20260327",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "MALEK ASHTAR UNIVERSITY",
+          "designation": "UN",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "NAVY",
+      "country_code": "US",
+      "location": "-74.9384",
+      "latitude": "42.1497",
+      "longitude": "USNY",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1200,
+      "num_sources": 1,
+      "num_articles": 1200,
+      "avg_tone": -4.29190747127702,
+      "source_url": "https://wrak.iheart.com/content/2026-03-26-irans-naval-chief-responsible-for-closing-strait-of-hormuz-killed/",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "IRANIAN",
+      "actor2": "ISRAEL",
+      "country_code": "IR",
+      "location": "51.6714",
+      "latitude": "32.6597",
+      "longitude": "IR28",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1102,
+      "num_sources": 94,
+      "num_articles": 1102,
+      "avg_tone": -3.94458958709762,
+      "source_url": "https://www.moneycontrol.com/world/irgc-navy-chief-alireza-tangsiri-killed-in-israeli-strike-near-strait-of-hormuz-report-article-13871277.html",
+      "date": "20260327",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "IRANIAN INVESTMENT PETROCHEMICAL GROUP COMPANY",
+          "designation": "OFAC",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "194"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "NAVY",
+      "country_code": "IR",
+      "location": "56.2808",
+      "latitude": "27.1865",
+      "longitude": "IR11",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1178,
+      "num_sources": 1,
+      "num_articles": 1178,
+      "avg_tone": -2.30298628054594,
+      "source_url": "https://kissfm1031.iheart.com/content/2026-03-26-average-gas-price-finally-lower-than-previous-day/",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "195",
+      "actor1": "MILITARY",
+      "actor2": "IRAN",
+      "country_code": "IR",
+      "location": "50.3158",
+      "latitude": "29.2458",
+      "longitude": "IR22",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1060,
+      "num_sources": 100,
+      "num_articles": 1060,
+      "avg_tone": -3.94105772465723,
+      "source_url": "https://www.wvasfm.org/2026-03-26/israel-and-iran-ramp-up-attacks-as-trump-insists-tehran-wants-a-deal",
+      "date": "20260327",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "CENTRAL MILITARY COMMISSION OF THE WORKERS’ PARTY OF KOREA (CMC)",
+          "designation": "UN",
+          "countries": [
+            "kp"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "actor2_org": {
+          "matched_name": "IRANO HIND SHIPPING COMPANY",
+          "designation": "UN",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "195"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "IRAN",
+      "country_code": "IS",
+      "location": "34.75",
+      "latitude": "31.5",
+      "longitude": "IS",
+      "goldstein_scale": -10.0,
+      "num_mentions": 980,
+      "num_sources": 168,
+      "num_articles": 972,
+      "avg_tone": -5.63702223018733,
+      "source_url": "https://santamariatimes.com/ap/international/iran-rejects-us-ceasefire-plan-issues-its-own-demands-as-strikes-land-across-the-mideast/article_0a17dd5f-ec1f-46af-a27a-7c8ed6fee4d7.html",
+      "date": "20260327",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "IRANO HIND SHIPPING COMPANY",
+          "designation": "UN",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "ABU DHABI",
+      "actor2": "IRAN",
+      "country_code": "AE",
+      "location": "54.3667",
+      "latitude": "24.4667",
+      "longitude": "AE01",
+      "goldstein_scale": -9.0,
+      "num_mentions": 1000,
+      "num_sources": 90,
+      "num_articles": 1000,
+      "avg_tone": -3.93033342984596,
+      "source_url": "https://www.kenw.org/npr-news/2026-03-26/israel-and-iran-ramp-up-attacks-as-trump-insists-tehran-wants-a-deal",
+      "date": "20260327",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "IRANO HIND SHIPPING COMPANY",
+          "designation": "UN",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "United Arab Emirates",
+          "iso": "AE",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Low",
+          "active_groups": [
+            "Houthi long-range missile/drone threats"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "180"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAELI",
+      "actor2": "CIVILIAN",
+      "country_code": "IS",
+      "location": "35.2333",
+      "latitude": "31.7667",
+      "longitude": "IS00",
+      "goldstein_scale": -10.0,
+      "num_mentions": 974,
+      "num_sources": 83,
+      "num_articles": 974,
+      "avg_tone": -4.02019765841828,
+      "source_url": "https://www.wwno.org/npr-news/2026-03-26/israel-and-iran-ramp-up-attacks-as-trump-insists-tehran-wants-a-deal",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "UNITED ARAB EMIRATES",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 925,
+      "num_sources": 124,
+      "num_articles": 925,
+      "avg_tone": -4.34010083376454,
+      "source_url": "https://www.dailymail.co.uk/news/article-15680779/Iranian-open-fire-apartment-buildings-stop-anti-Khamenei-chants-pro-regime-march.html",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "TEL AVIV",
+      "actor2": "",
+      "country_code": "IS",
+      "location": "34.7667",
+      "latitude": "32.0667",
+      "longitude": "IS05",
+      "goldstein_scale": -10.0,
+      "num_mentions": 870,
+      "num_sources": 83,
+      "num_articles": 606,
+      "avg_tone": -4.35597322467569,
+      "source_url": "https://www.mynspr.org/2026-03-25/state-of-the-art-air-defense-systems-have-not-been-able-to-stop-some-iranian-missiles",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "194"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "POLICE",
+      "actor2": "",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -9.0,
+      "num_mentions": 815,
+      "num_sources": 68,
+      "num_articles": 635,
+      "avg_tone": -7.93969053460827,
+      "source_url": "https://www.paysonroundup.com/news/payson-man-arrested-after-alleged-domestic-assault-swat-standoff/article_496f7eb1-eda4-4c31-b35f-2553f74f0ffe.html",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "180"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "POLICE",
+      "actor2": "",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 805,
+      "num_sources": 66,
+      "num_articles": 655,
+      "avg_tone": -7.19810706116546,
+      "source_url": "https://mynews4.com/news/local/police-identify-dayton-shooting-victim",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "181",
+      "actor1": "AMERICAN",
+      "actor2": "RUSSIAN",
+      "country_code": "US",
+      "location": "-98.5795",
+      "latitude": "39.828175",
+      "longitude": "US",
+      "goldstein_scale": -9.0,
+      "num_mentions": 706,
+      "num_sources": 140,
+      "num_articles": 706,
+      "avg_tone": -4.89324683382715,
+      "source_url": "https://metro.co.uk/2026/03/25/british-forces-will-start-seizing-russian-shadow-fleet-ships-fuelling-war-ukraine-27669978/",
+      "date": "20260327",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "RUSSIAN UNIVERSAL BANK",
+          "designation": "OFAC",
+          "countries": [
+            "ru"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "181"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "UNITED STATES",
+      "actor2": "",
+      "country_code": "US",
+      "location": "-76.7902",
+      "latitude": "39.0724",
+      "longitude": "USMD",
+      "goldstein_scale": -9.0,
+      "num_mentions": 820,
+      "num_sources": 1,
+      "num_articles": 656,
+      "avg_tone": -8.53823289330137,
+      "source_url": "https://kube933.iheart.com/content/2026-03-26-pro-cornhole-player-without-arms-legs-waives-right-in-murder-case/",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "180"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "186",
+      "actor1": "ISRAEL",
+      "actor2": "PALESTINE",
+      "country_code": "IS",
+      "location": "34.75",
+      "latitude": "31.5",
+      "longitude": "IS",
+      "goldstein_scale": -10.0,
+      "num_mentions": 696,
+      "num_sources": 87,
+      "num_articles": 696,
+      "avg_tone": -5.73927943979971,
+      "source_url": "https://www.pressenza.com/2026/03/how-the-us-became-an-international-serial-killer/",
+      "date": "20260327",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "ISLAMIC NATIONAL BANK OF GAZA",
+          "designation": "OFAC",
+          "countries": [
+            "ps"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "186"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "186",
+      "actor1": "IRAN",
+      "actor2": "ISRAEL",
+      "country_code": "US",
+      "location": "-77.0364",
+      "latitude": "38.8951",
+      "longitude": "USDC",
+      "goldstein_scale": -10.0,
+      "num_mentions": 683,
+      "num_sources": 87,
+      "num_articles": 683,
+      "avg_tone": -5.73927943979971,
+      "source_url": "https://www.pressenza.com/2026/03/how-the-us-became-an-international-serial-killer/",
+      "date": "20260327",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "IRANO HIND SHIPPING COMPANY",
+          "designation": "UN",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "186"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "186",
+      "actor1": "ISRAEL",
+      "actor2": "LEBANON",
+      "country_code": "IS",
+      "location": "34.75",
+      "latitude": "31.5",
+      "longitude": "IS",
+      "goldstein_scale": -10.0,
+      "num_mentions": 680,
+      "num_sources": 85,
+      "num_articles": 680,
+      "avg_tone": -5.73986189837523,
+      "source_url": "https://original.antiwar.com/mbenjamin/2026/03/25/how-the-us-became-an-international-serial-killer/",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "186"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "POLICE FORCE",
+      "actor2": "VICTORIA",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 670,
+      "num_sources": 67,
+      "num_articles": 670,
+      "avg_tone": -5.279067213124,
+      "source_url": "https://www.kentonline.co.uk/news/national/watchdog-asks-police-force-to-investigate-handling-of-victoria-hall-murder-case-164610/",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "ISRAEL",
+      "actor2": "LEBANON",
+      "country_code": "IS",
+      "location": "35.2333",
+      "latitude": "31.7667",
+      "longitude": "IS00",
+      "goldstein_scale": -10.0,
+      "num_mentions": 632,
+      "num_sources": 61,
+      "num_articles": 632,
+      "avg_tone": -3.92254517123698,
+      "source_url": "https://www.wknofm.org/news-from-npr/2026-03-26/the-u-s-and-iran-are-in-indirect-talks-says-intermediary-pakistan-as-war-rages-on",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "194"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "LEBANON",
+      "country_code": "IS",
+      "location": "34.7667",
+      "latitude": "32.0667",
+      "longitude": "IS05",
+      "goldstein_scale": -10.0,
+      "num_mentions": 631,
+      "num_sources": 61,
+      "num_articles": 631,
+      "avg_tone": -3.92254517123698,
+      "source_url": "https://www.wknofm.org/news-from-npr/2026-03-26/the-u-s-and-iran-are-in-indirect-talks-says-intermediary-pakistan-as-war-rages-on",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "UNITED STATES",
+      "actor2": "",
+      "country_code": "US",
+      "location": "-76.7902",
+      "latitude": "39.0724",
+      "longitude": "USMD",
+      "goldstein_scale": -10.0,
+      "num_mentions": 664,
+      "num_sources": 25,
+      "num_articles": 568,
+      "avg_tone": -8.7414206256293,
+      "source_url": "https://kube933.iheart.com/content/2026-03-26-pro-cornhole-player-without-arms-legs-waives-right-in-murder-case/",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "IRANIAN",
+      "country_code": "IS",
+      "location": "34.7667",
+      "latitude": "32.0667",
+      "longitude": "IS05",
+      "goldstein_scale": -10.0,
+      "num_mentions": 561,
+      "num_sources": 96,
+      "num_articles": 469,
+      "avg_tone": -4.04001353622592,
+      "source_url": "https://www.clickorlando.com/news/world/2026/03/26/iran-and-us-harden-positions-as-tehran-keeps-grip-on-strait-of-hormuz/",
+      "date": "20260327",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "IRANIAN INVESTMENT PETROCHEMICAL GROUP COMPANY",
+          "designation": "OFAC",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "FIREFIGHTER",
+      "actor2": "",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 610,
+      "num_sources": 30,
+      "num_articles": 450,
+      "avg_tone": -2.46825810783334,
+      "source_url": "https://www.local3news.com/local-news/car-catches-fire-on-hwy-27-southbound-near-morrison-springs-rd/article_80d19272-27dc-4cae-81d0-b14b501daa27.html",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "181",
+      "actor1": "UNITED STATES",
+      "actor2": "",
+      "country_code": "US",
+      "location": "-111.388",
+      "latitude": "33.7712",
+      "longitude": "USAZ",
+      "goldstein_scale": -9.0,
+      "num_mentions": 540,
+      "num_sources": 93,
+      "num_articles": 536,
+      "avg_tone": -2.41488874005339,
+      "source_url": "https://www.dailymail.co.uk/news/article-15681139/savannah-guthrie-nancy-interview-nbc-today-abduction.html",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "181"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "POLICE",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 580,
+      "num_sources": 48,
+      "num_articles": 540,
+      "avg_tone": -8.43318525360838,
+      "source_url": "https://www.cbc.ca/news/canada/british-columbia/tsay-keh-dene-murder-conviction-9.7142343",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "BELARUS",
+      "actor2": "",
+      "country_code": "BO",
+      "location": "27.5667",
+      "latitude": "53.9",
+      "longitude": "BO00",
+      "goldstein_scale": -10.0,
+      "num_mentions": 554,
+      "num_sources": 51,
+      "num_articles": 432,
+      "avg_tone": -2.5868232457687,
+      "source_url": "https://www.winnipegfreepress.com/world/2026/03/25/trump-envoy-credits-colorful-rhetoric-and-vodka-shots-in-helping-him-build-bond-with-belarus-leader",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Bolivia",
+          "iso": "BO",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "LEBANON",
+      "country_code": "IS",
+      "location": "34.7667",
+      "latitude": "32.0667",
+      "longitude": "IS05",
+      "goldstein_scale": -10.0,
+      "num_mentions": 537,
+      "num_sources": 58,
+      "num_articles": 537,
+      "avg_tone": -4.01885824315534,
+      "source_url": "https://www.reflector.com/news/national/the-latest-us-and-iran-make-no-diplomatic-headway-as-more-missiles-fired-at-israel/article_af43ede3-0493-5891-9c25-357c9bbaa069.html",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISLAMABAD",
+      "actor2": "",
+      "country_code": "PK",
+      "location": "73.1667",
+      "latitude": "33.7",
+      "longitude": "PK08",
+      "goldstein_scale": -10.0,
+      "num_mentions": 506,
+      "num_sources": 64,
+      "num_articles": 506,
+      "avg_tone": -3.93057690178349,
+      "source_url": "https://www.wknofm.org/news-from-npr/2026-03-26/the-u-s-and-iran-are-in-indirect-talks-says-intermediary-pakistan-as-war-rages-on",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Pakistan",
+          "iso": "PK",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "Islamic State Khorasan Province (ISKP)",
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Lashkar-e-Jhangvi (LeJ)",
+            "Jaish-e-Mohammed (JeM)",
+            "Lashkar-e-Taiba (LeT)",
+            "Sindhudesh Revolutionary Army (SRA)",
+            "Al-Qaeda in the Indian Subcontinent (AQIS)"
+          ],
+          "conflict_zones": [
+            "Khyber Pakhtunkhwa (ex-FATA)",
+            "Balochistan",
+            "Karachi",
+            "South Punjab",
+            "Sindh"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "GOVERNMENT",
+      "actor2": "",
+      "country_code": "AS",
+      "location": "150.876",
+      "latitude": "-34.4068",
+      "longitude": "AS02",
+      "goldstein_scale": -10.0,
+      "num_mentions": 500,
+      "num_sources": 28,
+      "num_articles": 500,
+      "avg_tone": 1.58550396375991,
+      "source_url": "https://www.darlingtonandstocktontimes.co.uk/news/national/25973037.under-fives-not-screens-hour-day-parents-told/",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "UNITED STATES",
+      "actor2": "UNITED KINGDOM",
+      "country_code": "US",
+      "location": "-77.0364",
+      "latitude": "38.8951",
+      "longitude": "USDC",
+      "goldstein_scale": -10.0,
+      "num_mentions": 434,
+      "num_sources": 91,
+      "num_articles": 434,
+      "avg_tone": -3.76853746755406,
+      "source_url": "https://www.lbc.co.uk/article/trump-brands-uk-aircradt-carriers-toys-iran-war-5HjdWtp_2/",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "194"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "UNITED ARAB EMIRATES",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 454,
+      "num_sources": 65,
+      "num_articles": 454,
+      "avg_tone": -4.06177306592754,
+      "source_url": "https://www.dailypress.com/2026/03/26/iran-us-war-israel/",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "",
+      "country_code": "IS",
+      "location": "34.7667",
+      "latitude": "32.0667",
+      "longitude": "IS05",
+      "goldstein_scale": -10.0,
+      "num_mentions": 423,
+      "num_sources": 91,
+      "num_articles": 423,
+      "avg_tone": -3.95312664224616,
+      "source_url": "https://www.kenw.org/npr-news/2026-03-26/israel-and-iran-ramp-up-attacks-as-trump-insists-tehran-wants-a-deal",
+      "date": "20260327",
+      "_enrichment": {
+        "country": {
+          "name": "Iceland",
+          "iso": "IS",
+          "region": "Europe",
+          "sub_region": "Northern Europe",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "IRANIAN",
+      "actor2": "UKRAINE",
+      "country_code": "IR",
+      "location": "53",
+      "latitude": "32",
+      "longitude": "IR",
+      "goldstein_scale": -10.0,
+      "num_mentions": 456,
+      "num_sources": 56,
+      "num_articles": 456,
+      "avg_tone": -6.2361755243574,
+      "source_url": "https://www.nvdaily.com/associated_press_national/iran-war-deflects-attention-from-ukraine-as-an-emboldened-russia-starts-spring-offensive/article_9fe22592-c8b7-55c8-a317-c811e76cb9ba.html",
+      "date": "20260327",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "IRANIAN INVESTMENT PETROCHEMICAL GROUP COMPANY",
+          "designation": "OFAC",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "actor2_org": {
+          "matched_name": "БелКазТранс Украина",
+          "designation": "OFAC",
+          "countries": [
+            "ua"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "UKRAINE",
+      "actor2": "IRANIAN",
+      "country_code": "UP",
+      "location": "30.5167",
+      "latitude": "50.4333",
+      "longitude": "UP12",
+      "goldstein_scale": -10.0,
+      "num_mentions": 456,
+      "num_sources": 56,
+      "num_articles": 456,
+      "avg_tone": -6.2361755243574,
+      "source_url": "https://www.nvdaily.com/associated_press_national/iran-war-deflects-attention-from-ukraine-as-an-emboldened-russia-starts-spring-offensive/article_9fe22592-c8b7-55c8-a317-c811e76cb9ba.html",
+      "date": "20260327",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "БелКазТранс Украина",
+          "designation": "OFAC",
+          "countries": [
+            "ua"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "actor2_org": {
+          "matched_name": "IRANIAN INVESTMENT PETROCHEMICAL GROUP COMPANY",
+          "designation": "OFAC",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "UNITED STATES",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 476,
+      "num_sources": 7,
+      "num_articles": 468,
+      "avg_tone": -2.9336986059999,
+      "source_url": "https://www.firstcoastnews.com/article/news/local/georgia-abortion-murder-charge-one-dollar-bond/77-a689b454-8fe5-45cf-ba67-e67db8806494",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "FIREFIGHTER",
+      "actor2": "",
+      "country_code": "AS",
+      "location": "144.967",
+      "latitude": "-37.8167",
+      "longitude": "AS07",
+      "goldstein_scale": -10.0,
+      "num_mentions": 395,
+      "num_sources": 67,
+      "num_articles": 395,
+      "avg_tone": -5.26891047804579,
+      "source_url": "https://www.northerndailyleader.com.au/story/9207730/infamous-nightclub-gutted-in-suspicious-blaze/",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "NEW YORK",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 396,
+      "num_sources": 44,
+      "num_articles": 396,
+      "avg_tone": -5.61555075593952,
+      "source_url": "https://www.localmemphis.com/article/news/nation-world/laguardia-plane-crash-towed-runway-injured-passengers-leave-hospital/507-89f02a7d-f3ef-48fe-a0c0-1a76ce64cd08",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "IRAN",
+      "actor2": "IRAN",
+      "country_code": "IR",
+      "location": "50.3158",
+      "latitude": "29.2458",
+      "longitude": "IR22",
+      "goldstein_scale": -10.0,
+      "num_mentions": 384,
+      "num_sources": 53,
+      "num_articles": 384,
+      "avg_tone": -3.9117853431393,
+      "source_url": "https://www.wglt.org/2026-03-26/the-u-s-and-iran-are-in-indirect-talks-says-intermediary-pakistan-as-war-rages-on",
+      "date": "20260327",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "IRANO HIND SHIPPING COMPANY",
+          "designation": "UN",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "actor2_org": {
+          "matched_name": "IRANO HIND SHIPPING COMPANY",
+          "designation": "UN",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "181",
+      "actor1": "AMERICAN",
+      "actor2": "RUSSIA",
+      "country_code": "US",
+      "location": "-98.5795",
+      "latitude": "39.828175",
+      "longitude": "US",
+      "goldstein_scale": -9.0,
+      "num_mentions": 292,
+      "num_sources": 140,
+      "num_articles": 292,
+      "avg_tone": -4.89324683382715,
+      "source_url": "https://metro.co.uk/2026/03/25/british-forces-will-start-seizing-russian-shadow-fleet-ships-fuelling-war-ukraine-27669978/",
+      "date": "20260327",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "Anti-Globalization Movement of Russia",
+          "designation": "OFAC",
+          "countries": [
+            "ru"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "181"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "UNITED ARAB EMIRATES",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 298,
+      "num_sources": 119,
+      "num_articles": 298,
+      "avg_tone": -4.34285466473878,
+      "source_url": "https://www.harwichandmanningtreestandard.co.uk/news/national/25972882.iran-us-impasse-ceasefire-talks-fears-grow-conflict-escalation/",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "1821",
+      "actor1": "PRISON",
+      "actor2": "",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -9.0,
+      "num_mentions": 380,
+      "num_sources": 31,
+      "num_articles": 290,
+      "avg_tone": -9.69507963137079,
+      "source_url": "http://www.chronline.com/stories/morton-man-sentenced-to-13-years-to-life-for-raping-child,398963",
+      "date": "20260327",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Addameer Prisoner Support and Human Rights Association",
+          "designation": "OFAC",
+          "countries": [
+            "il"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "1821"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "FIREFIGHTER",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 345,
+      "num_sources": 58,
+      "num_articles": 345,
+      "avg_tone": -5.32986448904803,
+      "source_url": "https://www.northerndailyleader.com.au/story/9207730/infamous-nightclub-gutted-in-suspicious-blaze/",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "UNITED KINGDOM",
+      "actor2": "",
+      "country_code": "UK",
+      "location": "-0.25",
+      "latitude": "51.8333",
+      "longitude": "UKF8",
+      "goldstein_scale": -9.0,
+      "num_mentions": 358,
+      "num_sources": 45,
+      "num_articles": 358,
+      "avg_tone": -10.3275178134019,
+      "source_url": "https://www.heraldseries.co.uk/news/national/25972558.police-force-reopens-investigation-sex-abuse-claims-andrew-tate/",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "180"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "LONDON",
+      "actor2": "JEWISH",
+      "country_code": "UK",
+      "location": "-0.116667",
+      "latitude": "51.5",
+      "longitude": "UKH9",
+      "goldstein_scale": -9.0,
+      "num_mentions": 383,
+      "num_sources": 18,
+      "num_articles": 365,
+      "avg_tone": -6.92760799050028,
+      "source_url": "https://koacolorado.iheart.com/content/2026-03-25-two-arrested-in-connection-with-arson-attack-on-jewish-charitys-ambulances/",
+      "date": "20260327",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "180"
+        }
+      }
+    }
+  ],
   "google_news": [
     {
       "source": "google_news",
@@ -21,18 +1865,18 @@
     {
       "source": "google_news",
       "query": "terrorism attack",
-      "title": "Remembering the Brussels terror attacks 10 years later - European Commission",
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQS0M0aUxjQTNpOHg1dy02UkZvbmkyMG5QNFdlS3ZNY1dYazZ6VkZJS0o0MGpKNWZfalBFMERJQl80dU1rTFlRcjNRNHdYVzd5cTQzU01NQWZhNWxUMUJFWGtiZFMzbnZTdTdEZzFvSHBueHhHLVd2T0xiTUp3bk9EejVfWVZxT2FtX0xDbTQ0MVNrQVhjajM1aTZ4aHF3QUpMNjlNc0p5c0hqZklxY2dCMDJqaw?oc=5",
-      "summary": "Remembering the Brussels terror attacks 10 years later&nbsp;&nbsp;European Commission",
-      "date": "Fri, 20 Mar 2026 17:49:14 GMT"
+      "title": "Two ISIS Supporters Charged With Attempting To Detonate Explosive Devices During Protests Outside Gracie Mansion - Department of Justice (.gov)",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPS1RZcGNhN25MaWJMN2JsbTA0NXp5SW92VmlJNHNOVTU1THI3bU1FemtRd3V1LV9nSnJ5UjJ1QzlBdW5pTXZoR0Z1bTFocF9ZcHd4R01pendhNDdOd1l3eTlwcjFUUTNLbHZlVW9LUGJBZnlsQmoxX1g2MnJrc0FzQ2I1YjZVelVRamJTZGlrTWlnb1V2RTZTRVZGN1Ytck03X2hVN2VPSEtXZDB1LXBHM1BZWHg5M0U3c0E?oc=5",
+      "summary": "Two ISIS Supporters Charged With Attempting To Detonate Explosive Devices During Protests Outside Gracie Mansion&nbsp;&nbsp;Department of Justice (.gov)",
+      "date": "Mon, 09 Mar 2026 07:00:00 GMT"
     },
     {
       "source": "google_news",
       "query": "terrorism attack",
-      "title": "Terror Attacks Haunted This Brussels Community. Now It’s Trying to Move On. - The New York Times",
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPOGNDVmlTQ2hhNkNnMEV0RTNlS29HWnRUZG1wU0tFa1gxU3QtcnlUTjVYSjFTRmhTbEc2aVQ0Q2ZLX0pUbVBYalVtVnVlZjdSRWZ1bWVQb2RtdFAwV091U1lMQU1rbVprRXJfb1dMb0U1SGhFdWc3d2FNcmtpUXBEa1EwOXQ?oc=5",
-      "summary": "Terror Attacks Haunted This Brussels Community. Now It’s Trying to Move On.&nbsp;&nbsp;The New York Times",
-      "date": "Sun, 22 Mar 2026 04:01:28 GMT"
+      "title": "Remembering the Brussels terror attacks 10 years later - European Commission",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQS0M0aUxjQTNpOHg1dy02UkZvbmkyMG5QNFdlS3ZNY1dYazZ6VkZJS0o0MGpKNWZfalBFMERJQl80dU1rTFlRcjNRNHdYVzd5cTQzU01NQWZhNWxUMUJFWGtiZFMzbnZTdTdEZzFvSHBueHhHLVd2T0xiTUp3bk9EejVfWVZxT2FtX0xDbTQ0MVNrQVhjajM1aTZ4aHF3QUpMNjlNc0p5c0hqZklxY2dCMDJqaw?oc=5",
+      "summary": "Remembering the Brussels terror attacks 10 years later&nbsp;&nbsp;European Commission",
+      "date": "Fri, 20 Mar 2026 17:49:14 GMT"
     },
     {
       "source": "google_news",
@@ -149,6 +1993,14 @@
     {
       "source": "google_news",
       "query": "ISIS ISIL Islamic State",
+      "title": "A Portrait of the Islamic State’s British Propagandist Ifthekar Jaman - The Jamestown Foundation",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOdTRmWTI5aFQ1T01FdFg2c1d4THB2MFlNc1Y1ZU4xR0Q0b1Y0YndQek1zWlU2YTV4ZDBlVzRUdF9fc0ZlUENoSzBROTNZdDE5REw0MVM0cnAxVzlQenJQaFBJVVNIbUpIN0ZrOXpWMmlmTWZINmNpcDZla05ZbWtiWjlnTnlMaF91YWF4c00zUWxvS0VKR3c?oc=5",
+      "summary": "A Portrait of the Islamic State’s British Propagandist Ifthekar Jaman&nbsp;&nbsp;The Jamestown Foundation",
+      "date": "Fri, 14 Nov 2025 23:06:36 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
       "title": "Islamic State Kills 15 Christians in North-Eastern Nigeria, Demands Conversion to Islam - Barnabas Aid",
       "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPYy1oUTJhZlo3aE96TUs0QzBZYUdzVXNKVlRFdXduWjR2bkRxd3NaUGJKU2FRY3ZURXBVZkZOOTNrbG5PUDIzZU1HT0liWk1JbFhGRzl1UWZldUNYTnFqNUhDRnZaRV9SRWlHSmdWMTFzWkRweVVLZnROLThwQlJHRWFoSzh3T3lkcVBxem55YkFnMWRNWEE3eFA4TFlNSTBMbG4zQ2NzUFVDV0FSb3c?oc=5",
       "summary": "Islamic State Kills 15 Christians in North-Eastern Nigeria, Demands Conversion to Islam&nbsp;&nbsp;Barnabas Aid",
@@ -169,14 +2021,6 @@
       "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNYm53dHEwclRYRUR1QkZpNkVyNktwZWI5ZmpDekxiT1FqT2hjRG9VOVdTdjBHT2JyREotRUM5NE8teUI4eTAzR0RqSkFraVFHckdZRWhEcHBEVzNjQzNkR3BZOF83d0gxdi1TUGo4blp0ZElpbTNlb0sydm9tSnJpMm12NERKYmJPRVI1d1pabXNpcHRaY01ueHlRRFBSYXJTbWNWbzdWWkpzdmxNY3dZaVIwUVfSAboBQVVfeXFMT3d0X0RTWEpEbVo5N2I0dFJkelJGYlUzcHJBOE9ETXhnNGtmd1dfMGYtNkQ0MXQ5bEloTE14Yy1LcklDRGViMnYwSVhJb0J2d0ExODFCbVgzOFJDamtHN2lNaTY3QUtHVHU2Y0tIREtucXhaQmxOcjZ4QmpPNy1DcnJ6d0RocDAtSkllaXRzMGh1SU10M2lnbE9YdXpGd0ZVenh2V0N1dWVnRUF1QWhaTXkwZ3kzVjRBc25n?oc=5",
       "summary": "US launches new attacks against ISIL in Syria over deadly ambush&nbsp;&nbsp;Al Jazeera",
       "date": "Sat, 10 Jan 2026 08:00:00 GMT"
-    },
-    {
-      "source": "google_news",
-      "query": "ISIS ISIL Islamic State",
-      "title": "Syria says key ISIL leader Taha al-Zoubi captured near Damascus - Al Jazeera",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNb1hHQkN0Z3JOdmRDNlRFQzFVS0lCRURQV0dlVGlXVUduX2kzMTRjTV9lV1ZtYldoQ0hxUTJLMVBfOUM4VE12QWdyQjM0dThEcnRDVjkwY1Y1NEF0Tm5xYW9CcWxJTUZYNnMzY1ljNVAtemtFb3JQMlBRLXRENVUxSXN3cWZxdERIN2ZtZ25zQ3d2Z9IBlwFBVV95cUxNMDNGZzdlaGVKTHR2NllPZnBxZVhfejZQc0VsTjBLY19QMWtzc05NMWRQSGMtVDBPU0pBS2hOeWpIeXhWcXV6NEM1OW9UeEdpYmhybU5ZcTYxemVSb0QxZ05qNl9ZSlVtWkwyWE5xdEE2NWw1eDJuWElIYlV1WE96MWtybUlaSzFxeVVaTHhfdi1JZmRLMXNV?oc=5",
-      "summary": "Syria says key ISIL leader Taha al-Zoubi captured near Damascus&nbsp;&nbsp;Al Jazeera",
-      "date": "Wed, 24 Dec 2025 08:00:00 GMT"
     },
     {
       "source": "google_news",
@@ -230,7 +2074,7 @@
       "source": "google_news",
       "query": "al-Qaeda",
       "title": "Unlikely alliance with al-Qaeda a wildcard in Tehran’s grand game - The Times",
-      "url": "https://news.google.com/rss/articles/CBMioANBVV95cUxQeHpZcnZ2SzlFUTdLNDVaX2J4Q3ltY0hCZXB1OXZadEpEcjVPeHdYemxkTWxpSlQxc09uZ05ZWEl4eTNGX1NRQ3M0WHptdEk2X2s1N1U4SF9SZURDT2czWDRJdlVQSlZ3WUU3LUVRcTJ6V2dhRXFxMk9JR053Y0pXNlpmOU9nUk54UWdUVVBrYzlUdkRRM0h6TTdZS3FoSG9LUHZPQ2VLOVdoWi0wQ2NBLVY3NFYzRXNpS2t2QnlLdVhKSjNtbDVGX2xONUVmVXhNT25KYWtaZWJ0V1ZnazdJYXEzX043dlAxT2dfeDg4S0RwaVNab3Roc3JaeVJsQlA0czZlWE52TjNGQkYzTk13N2ZHb3JDc2daZGhIQmNaZUtjZGZkU1BEdHVkRmlVRW5JU3Utcmp4YXREbWtyR0MxRk5SckhseHkzVndDWF9wNGY3ZWozOGVLQ19YSjYweEF0VFlRTE1tWU5uZ0lQQ0NZcHRkMUpBY2dVdW8wRnZrZEdScTIySlNVU1ZaWWIyODkwOEdNT1c3Ynh3bWVwSld0eA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMioANBVV95cUxQbEt6RDd3eW42V3gwZktzVkVhMmFYOFduQjhPLXZQN3dTcTBydGJRWUNKdUJDSWFyUjdFU3NCczN2ano5T2M5YnFhTmRxU252LUVrV1NwVVhJeXZxV1llVlpLb2h1eUtBTk40QVZIUjYzN1pWNlRsVzZjMWl5amdEZmZwYmZHTFQ3VjZTOTJocmdkZl9IMmJCVTZKdGo3QnVtZi1DOHRkamN1VV9CZl9DSWJqdk5zMzlCNWt5RVNMRVpINUdyRi1KMVdxSFFzdm1ZeURLalE1UGpHZFlZcXVlWjRiblZCSHpsem5zLVB5aGNIcVA5am1weGhuczRYUDQyTHhHakp1T3VJQW0xWXNqQ2Q5ZmJSdGZxdU9tM0VHY2pEZHhpVWs5N0ZlaGZOaDVtdjlEeERUYXBkNzltQVpmb2I5RlNxQTNOWnJfSkdtYUFfeHdsdmlGdmRSTHJ4eWVrdUFETlJFdzRzNGVic2ROY181Wi03RV9HTDNtazI3eEpnTlRjbnAxcUhoUnhVOU5Ec1J4T2swUVFoSHlGWmsyQw?oc=5",
       "summary": "Unlikely alliance with al-Qaeda a wildcard in Tehran’s grand game&nbsp;&nbsp;The Times",
       "date": "Mon, 09 Mar 2026 07:00:00 GMT"
     },
@@ -765,13 +2609,13 @@
     }
   ],
   "_enrichment_stats": {
-    "total_enriched": 0,
-    "org_matches": 0,
-    "country_matches": 0,
+    "total_enriched": 50,
+    "org_matches": 15,
+    "country_matches": 32,
     "zone_matches": 0
   },
   "meta": {
-    "collected_at": "2026-03-27T16:18:08.645846",
-    "total": 95
+    "collected_at": "2026-03-27T17:24:13.361628",
+    "total": 145
   }
 }
