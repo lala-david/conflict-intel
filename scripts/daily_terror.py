@@ -21,9 +21,11 @@ sys.path.insert(0, str(ROOT / "scripts"))
 load_dotenv(ROOT / ".env")
 
 from sources import collect_all
+from mapper import TerrorMapper
 from config import ANALYSIS_MODEL, TEMPERATURE, MAX_TOKENS, REPORTS_DIR
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+mapper = TerrorMapper()
 
 
 def get_week_number(date: datetime) -> int:
@@ -165,22 +167,59 @@ def build_raw_context(data: dict) -> str:
     if data.get("gdelt"):
         sections.append("\n## GDELT Events (Global Conflict/Terror)")
         for e in data["gdelt"][:20]:
+            enr = e.get("_enrichment", {})
+            zone_info = ""
+            if enr.get("conflict_zone"):
+                z = enr["conflict_zone"]
+                zone_info = f"\n  CONFLICT ZONE: {z['zone_name']} | Intensity: {z['intensity']} | Trend: {z['trend']}"
+            country_info = ""
+            if enr.get("country"):
+                c = enr["country"]
+                country_info = f"\n  COUNTRY THREAT: {c['name']} | Level: {c['threat_level']} | Region: {c['region']}"
+            org_info = ""
+            if enr.get("actor1_org"):
+                o = enr["actor1_org"]
+                org_info = f"\n  DESIGNATED ORG: {o['matched_name']} ({o['designation']}) [{o['match_type']}]"
+
             sections.append(
                 f"- EventCode: {e['event_code']} | Actor1: {e['actor1']} | Actor2: {e['actor2']}\n"
                 f"  Location: {e['location']} ({e['country_code']}) | Coords: [{e['latitude']}, {e['longitude']}]\n"
                 f"  Mentions: {e['num_mentions']} | Sources: {e['num_sources']} | Tone: {e['avg_tone']:.1f}\n"
                 f"  URL: {e['source_url']}"
+                f"{zone_info}{country_info}{org_info}"
             )
 
     if data.get("acled"):
         sections.append("\n## ACLED Incidents (Coded Political Violence)")
         for e in data["acled"][:25]:
+            enr = e.get("_enrichment", {})
+            zone_info = ""
+            if enr.get("conflict_zone"):
+                z = enr["conflict_zone"]
+                zone_info = f"\n  CONFLICT ZONE: {z['zone_name']} | Intensity: {z['intensity']} | Trend: {z['trend']} | Pop at risk: {z.get('population_at_risk', 'N/A'):,}"
+            country_info = ""
+            if enr.get("country"):
+                c = enr["country"]
+                country_info = f"\n  COUNTRY THREAT: {c['name']} | Level: {c['threat_level']} | Active groups: {', '.join(c['active_groups'][:3])}"
+            org_info = ""
+            if enr.get("actor1_org"):
+                o = enr["actor1_org"]
+                org_info = f"\n  DESIGNATED ORG (Actor1): {o['matched_name']} ({o['designation']})"
+            if enr.get("actor2_org"):
+                o = enr["actor2_org"]
+                org_info += f"\n  DESIGNATED ORG (Actor2): {o['matched_name']} ({o['designation']})"
+            attack_info = ""
+            if enr.get("attack_classification"):
+                a = enr["attack_classification"]
+                attack_info = f"\n  ATTACK TYPE: {a['category_name']}"
+
             sections.append(
                 f"- {e['date']} | {e['sub_event_type']} | {e['country']} ({e['admin1']}, {e['location']})\n"
                 f"  Coords: [{e['latitude']}, {e['longitude']}]\n"
                 f"  Actor1: {e['actor1']} | Actor2: {e['actor2']}\n"
                 f"  Fatalities: {e['fatalities']}\n"
                 f"  Notes: {e['notes'][:250]}"
+                f"{zone_info}{country_info}{org_info}{attack_info}"
             )
 
     if data.get("google_news"):
@@ -505,28 +544,37 @@ def main():
         print("No data collected.")
         return
 
-    # 2. 리포트 디렉토리
+    # 2. 기반 데이터 매핑
+    print("\n  Enriching with foundation data...")
+    data = mapper.enrich_all(data)
+    stats = data.get("_enrichment_stats", {})
+    print(f"   enriched: {stats.get('total_enriched', 0)} events")
+    print(f"   org matches: {stats.get('org_matches', 0)}")
+    print(f"   country matches: {stats.get('country_matches', 0)}")
+    print(f"   zone matches: {stats.get('zone_matches', 0)}")
+
+    # 3. 리포트 디렉토리
     report_dir = get_report_dir(target_date)
 
-    # 3. 한글 리포트
+    # 4. 한글 리포트
     print("\n  [KO] Generating...")
     ko = generate_report(data, target_date, "ko")
     ko_path = report_dir / f"{date_str}_ko.md"
     ko_path.write_text(ko, encoding="utf-8")
     print(f"   -> {ko_path.relative_to(ROOT)}")
 
-    # 4. 영문 리포트
+    # 5. 영문 리포트
     print("\n  [EN] Generating...")
     en = generate_report(data, target_date, "en")
     en_path = report_dir / f"{date_str}_en.md"
     en_path.write_text(en, encoding="utf-8")
     print(f"   -> {en_path.relative_to(ROOT)}")
 
-    # 5. README
+    # 6. README
     update_week_readme(report_dir, target_date)
     update_month_readme(report_dir, target_date)
 
-    # 6. Raw JSON
+    # 7. Raw JSON
     raw_path = report_dir / f"{date_str}_raw.json"
     raw_out = {k: v for k, v in data.items() if k != "collected_at"}
     raw_out["meta"] = {"collected_at": data.get("collected_at", ""), "total": total}
