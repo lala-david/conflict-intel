@@ -20,6 +20,7 @@ from config import (
     ACLED_TERROR_SUBTYPES, GDELT_TERROR_CODES,
     RSS_FEEDS, GOOGLE_NEWS_QUERIES,
 )
+from fips_to_iso import fips_to_iso
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -124,12 +125,15 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
 
             source_url = row[57] if len(row) > 57 else ""
 
+            # #1: FIPS → ISO 변환
+            iso_country = fips_to_iso(action_country) if action_country else ""
+
             events.append({
                 "source": "gdelt",
                 "event_code": event_code,
                 "actor1": actor1,
                 "actor2": actor2,
-                "country_code": action_country,
+                "country_code": iso_country,
                 "location": action_location,
                 "latitude": action_lat,
                 "longitude": action_lon,
