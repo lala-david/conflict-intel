@@ -96,9 +96,14 @@ class TerrorMapper:
                 "match_type": "exact",
             }
 
-        # 2. 부분 매칭 (조직명이 행위자명에 포함되거나 그 반대)
+        # 2. 부분 매칭 (#6: 최소 6자 + 일반적 단어 제외)
+        skip_words = {"government", "military", "police", "forces", "army", "group", "state", "united", "national"}
         for org_name, org_data in self._org_index.items():
-            if len(org_name) >= 4 and (org_name in actor_lower or actor_lower in org_name):
+            if len(org_name) < 6:
+                continue
+            if org_name in skip_words:
+                continue
+            if org_name in actor_lower or actor_lower in org_name:
                 return {
                     "matched_name": org_data.get("name", ""),
                     "designation": org_data.get("designation", ""),
@@ -201,6 +206,50 @@ class TerrorMapper:
 
         return None
 
+    def match_conflict_zone_by_text(self, country: str, location: str = "") -> Optional[dict]:
+        """#7: 텍스트 기반 분쟁 지역 매칭 (좌표 없을 때 폴백)"""
+        if not country:
+            return None
+        country_lower = country.lower().strip()
+        location_lower = location.lower().strip() if location else ""
+
+        best_match = None
+        best_score = 0
+        for zone in self._zone_list:
+            zone_country = zone.get("country", "").lower()
+            zone_name = zone.get("zone_name", "").lower()
+            zone_locations = [loc.lower() for loc in zone.get("key_locations", [])]
+
+            score = 0
+            if country_lower in zone_country or zone_country in country_lower:
+                score += 1
+                if location_lower:
+                    if location_lower in zone_name:
+                        score += 3
+                    for loc in zone_locations:
+                        if loc in location_lower or location_lower in loc:
+                            score += 2
+                            break
+
+            if score > best_score:
+                best_score = score
+                best_match = zone
+
+        if best_match and best_score >= 1:
+            return {
+                "zone_id": best_match.get("id", ""),
+                "zone_name": best_match.get("zone_name", ""),
+                "country": best_match.get("country", ""),
+                "region": best_match.get("region", ""),
+                "intensity": best_match.get("intensity", ""),
+                "trend": best_match.get("recent_trend", ""),
+                "active_groups": best_match.get("active_groups", []),
+                "conflict_type": best_match.get("conflict_type", ""),
+                "match_type": "text",
+                "match_score": best_score,
+            }
+        return None
+
     # ─────────────────────────────────────
     # 공격 유형 분류
     # ─────────────────────────────────────
@@ -258,10 +307,13 @@ class TerrorMapper:
         if country_data:
             enriched["_enrichment"]["country"] = country_data
 
-        # 3. 분쟁 지역 매칭
+        # 3. 분쟁 지역 매칭 (좌표 우선 → 텍스트 폴백)
         lat = event.get("latitude", "")
         lon = event.get("longitude", "")
         zone = self.match_conflict_zone(lat, lon)
+        if not zone:
+            # #7: 좌표 없으면 텍스트 기반 매칭
+            zone = self.match_conflict_zone_by_text(country, event.get("location", ""))
         if zone:
             enriched["_enrichment"]["conflict_zone"] = zone
 

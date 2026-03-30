@@ -22,10 +22,21 @@ load_dotenv(ROOT / ".env")
 
 from sources import collect_all
 from mapper import TerrorMapper
+from database import save_events, save_daily_stats
 from config import ANALYSIS_MODEL, TEMPERATURE, MAX_TOKENS, REPORTS_DIR
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 mapper = TerrorMapper()
+
+
+def generate_with_retry(data, date, lang, max_retries=2):
+    """#11: LLM 응답이 빈 경우 재시도"""
+    for attempt in range(max_retries + 1):
+        result = generate_report(data, date, lang)
+        if result and len(result.strip()) > 100:
+            return result
+        print(f"   WARNING: empty response (attempt {attempt + 1}/{max_retries + 1}), retrying...")
+    return result or "Report generation failed."
 
 
 def get_week_number(date: datetime) -> int:
@@ -556,28 +567,34 @@ def main():
     # 3. 리포트 디렉토리
     report_dir = get_report_dir(target_date)
 
-    # 4. 한글 리포트
+    # 4. DB 저장 (#13, #15)
+    print("\n  Saving to database...")
+    save_events(data, date_str)
+    save_daily_stats(date_str, data, stats)
+    print("   -> terror.db updated")
+
+    # 5. 한글 리포트 (#11 재시도)
     print("\n  [KO] Generating...")
-    ko = generate_report(data, target_date, "ko")
+    ko = generate_with_retry(data, target_date, "ko")
     ko_path = report_dir / f"{date_str}_ko.md"
     ko_path.write_text(ko, encoding="utf-8")
-    print(f"   -> {ko_path.relative_to(ROOT)}")
+    print(f"   -> {ko_path.relative_to(ROOT)} ({len(ko):,} chars)")
 
-    # 5. 영문 리포트
+    # 6. 영문 리포트
     print("\n  [EN] Generating...")
-    en = generate_report(data, target_date, "en")
+    en = generate_with_retry(data, target_date, "en")
     en_path = report_dir / f"{date_str}_en.md"
     en_path.write_text(en, encoding="utf-8")
-    print(f"   -> {en_path.relative_to(ROOT)}")
+    print(f"   -> {en_path.relative_to(ROOT)} ({len(en):,} chars)")
 
-    # 6. README
+    # 7. README
     update_week_readme(report_dir, target_date)
     update_month_readme(report_dir, target_date)
 
-    # 7. Raw JSON
+    # 8. Raw JSON
     raw_path = report_dir / f"{date_str}_raw.json"
-    raw_out = {k: v for k, v in data.items() if k != "collected_at"}
-    raw_out["meta"] = {"collected_at": data.get("collected_at", ""), "total": total}
+    raw_out = {k: v for k, v in data.items() if k != "collected_at" and k != "_enrichment_stats"}
+    raw_out["meta"] = {"collected_at": data.get("collected_at", ""), "total": total, "enrichment": stats}
     raw_path.write_text(json.dumps(raw_out, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
 
     print(f"\n{'='*55}")

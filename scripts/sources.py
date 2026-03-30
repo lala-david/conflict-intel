@@ -9,9 +9,11 @@ import re
 import csv
 import io
 import time
+import json
 import zipfile
 from datetime import datetime, timedelta
-from typing import Optional
+from difflib import SequenceMatcher
+from pathlib import Path
 
 from config import (
     ACLED_EMAIL, ACLED_PASSWORD,
@@ -19,6 +21,7 @@ from config import (
     RSS_FEEDS, GOOGLE_NEWS_QUERIES,
 )
 
+ROOT = Path(__file__).resolve().parent.parent
 
 # 테러 관련 키워드 (2차 필터링용)
 TERROR_KEYWORDS = [
@@ -41,37 +44,42 @@ TERROR_KEYWORDS = [
 
 
 def _is_terror_relevant(text: str) -> bool:
-    """테러/안보 관련성 검증"""
     text_lower = text.lower()
     return sum(1 for k in TERROR_KEYWORDS if k in text_lower) >= 1
 
 
+def _similar(a: str, b: str) -> float:
+    """두 문자열 유사도 (0~1)"""
+    return SequenceMatcher(None, a.lower(), b.lower()).ratio()
+
+
 # ─────────────────────────────────────────────
-# 1. GDELT — 실시간 글로벌 이벤트 (15분 업데이트)
+# 1. GDELT — 글로벌 이벤트 (#1 좌표 수정, #2 3일 폴백)
 # ─────────────────────────────────────────────
 def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
-    """GDELT에서 테러 관련 이벤트 수집 (최근 24시간)"""
-    date_str = target_date.strftime("%Y%m%d")
+    """GDELT에서 테러 관련 이벤트 수집 (3일 폴백)"""
 
-    # GDELT Events 2.0 — 일별 CSV
-    url = f"http://data.gdeltproject.org/events/{date_str}.export.CSV.zip"
+    # #2: 3일 전까지 역순 시도
+    for days_back in range(0, 4):
+        check_date = target_date - timedelta(days=days_back)
+        date_str = check_date.strftime("%Y%m%d")
+        url = f"http://data.gdeltproject.org/events/{date_str}.export.CSV.zip"
+
+        try:
+            resp = requests.get(url, timeout=60)
+            if resp.status_code == 200 and len(resp.content) > 1000:
+                print(f"    GDELT: using {date_str} ({days_back}d ago)")
+                break
+        except Exception:
+            continue
+    else:
+        print("    GDELT: no data found (0~3 days)")
+        return []
 
     try:
-        resp = requests.get(url, timeout=60)
-        if resp.status_code != 200:
-            # 당일 데이터가 아직 없으면 전날 시도
-            yesterday = (target_date - timedelta(days=1)).strftime("%Y%m%d")
-            url = f"http://data.gdeltproject.org/events/{yesterday}.export.CSV.zip"
-            resp = requests.get(url, timeout=60)
-            if resp.status_code != 200:
-                print(f"    GDELT: HTTP {resp.status_code}")
-                return []
-
-        # ZIP 해제 → CSV 파싱
         z = zipfile.ZipFile(io.BytesIO(resp.content))
         csv_name = z.namelist()[0]
         csv_data = z.read(csv_name).decode("utf-8", errors="replace")
-
         reader = csv.reader(io.StringIO(csv_data), delimiter="\t")
 
         events = []
@@ -80,7 +88,6 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
                 continue
 
             event_code = row[26]  # CAMEO EventCode
-            # 테러 관련 CAMEO 코드 필터
             if not any(event_code.startswith(c) for c in GDELT_TERROR_CODES):
                 continue
 
@@ -90,12 +97,31 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
             num_articles = int(row[33]) if row[33] else 0
             avg_tone = float(row[34]) if row[34] else 0
 
-            actor1 = row[6] if len(row) > 6 else ""   # Actor1Name
-            actor2 = row[16] if len(row) > 16 else ""  # Actor2Name
-            country = row[37] if len(row) > 37 else ""  # ActionGeo_CountryCode
-            location = row[40] if len(row) > 40 else ""  # ActionGeo_FullName
-            lat = row[39] if len(row) > 39 else ""
-            lon = row[38] if len(row) > 38 else ""  # Note: GDELT has Lat at 39
+            actor1 = row[6] if row[6] else ""
+            actor2 = row[16] if row[16] else ""
+
+            # #1: 좌표 매핑 수정 — ActionGeo 우선, 없으면 Actor1Geo
+            action_lat = row[39] if row[39] else ""
+            action_lon = row[40] if row[40] else ""
+            action_country = row[37] if row[37] else ""
+            action_location = ""
+
+            # ActionGeo_FullName은 GDELT V1에서 별도 컬럼이 아닐 수 있음
+            # ADM1Code에서 추출
+            action_adm1 = row[38] if row[38] else ""
+
+            # ActionGeo가 비어있으면 Actor1Geo 사용 (row[42~46])
+            if not action_lat and len(row) > 46:
+                action_lat = row[46] if row[46] else ""  # Actor1Geo_Lat
+                action_lon = row[47] if len(row) > 47 and row[47] else ""  # Actor1Geo_Long
+                action_country = row[44] if len(row) > 44 and row[44] else ""  # Actor1Geo_CountryCode
+
+            # 위치명 구성
+            if action_adm1:
+                action_location = action_adm1
+            if action_country:
+                action_location = f"{action_location}, {action_country}".strip(", ")
+
             source_url = row[57] if len(row) > 57 else ""
 
             events.append({
@@ -103,10 +129,10 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
                 "event_code": event_code,
                 "actor1": actor1,
                 "actor2": actor2,
-                "country_code": country,
-                "location": location,
-                "latitude": lat,
-                "longitude": lon,
+                "country_code": action_country,
+                "location": action_location,
+                "latitude": action_lat,
+                "longitude": action_lon,
                 "goldstein_scale": goldstein,
                 "num_mentions": num_mentions,
                 "num_sources": num_sources,
@@ -116,12 +142,11 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
                 "date": date_str,
             })
 
-        # 중요도순 정렬 (mentions + sources)
         events.sort(key=lambda x: x["num_mentions"] + x["num_sources"], reverse=True)
         return events[:limit]
 
     except Exception as e:
-        print(f"    [gdelt] 수집 실패: {e}")
+        print(f"    [gdelt] 파싱 실패: {e}")
         return []
 
 
@@ -129,7 +154,6 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
 # 2. ACLED — 코딩된 정치폭력 사건
 # ─────────────────────────────────────────────
 def _get_acled_token() -> str:
-    """ACLED OAuth 토큰 발급"""
     resp = requests.post(
         "https://acleddata.com/oauth/token",
         headers={"Content-Type": "application/x-www-form-urlencoded"},
@@ -144,14 +168,13 @@ def _get_acled_token() -> str:
     if resp.status_code == 200:
         return resp.json().get("access_token", "")
     else:
-        print(f"    [acled] OAuth 실패: {resp.status_code} {resp.text[:200]}")
+        print(f"    [acled] OAuth 실패: {resp.status_code}")
         return ""
 
 
 def fetch_acled(target_date: datetime, limit: int = 100) -> list[dict]:
-    """ACLED에서 테러 관련 사건 수집 (최근 14일, OAuth 인증)"""
     if not ACLED_EMAIL or not ACLED_PASSWORD:
-        print("    [acled] 인증 정보 없음 — 스킵 (ACLED_EMAIL, ACLED_PASSWORD 필요)")
+        print("    [acled] 인증 정보 없음 — 스킵")
         return []
 
     token = _get_acled_token()
@@ -160,7 +183,6 @@ def fetch_acled(target_date: datetime, limit: int = 100) -> list[dict]:
 
     since = (target_date - timedelta(days=14)).strftime("%Y-%m-%d")
     until = target_date.strftime("%Y-%m-%d")
-
     sub_types = "|".join(ACLED_TERROR_SUBTYPES)
 
     try:
@@ -174,15 +196,12 @@ def fetch_acled(target_date: datetime, limit: int = 100) -> list[dict]:
                 "limit": limit,
                 "fields": "event_id_cnty|event_date|event_type|sub_event_type|actor1|actor2|country|admin1|location|latitude|longitude|fatalities|notes|source",
             },
-            headers={
-                "Authorization": f"Bearer {token}",
-                "Content-Type": "application/json",
-            },
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
             timeout=30,
         )
 
         if resp.status_code != 200:
-            print(f"    [acled] HTTP {resp.status_code}: {resp.text[:200]}")
+            print(f"    [acled] HTTP {resp.status_code}")
             return []
 
         data = resp.json()
@@ -215,19 +234,34 @@ def fetch_acled(target_date: datetime, limit: int = 100) -> list[dict]:
 
 
 # ─────────────────────────────────────────────
-# 3. OpenSanctions — 제재 목록 변동
+# 3. OpenSanctions — 제재 목록 (#12 변동 감지)
 # ─────────────────────────────────────────────
-def fetch_sanctions_updates(limit: int = 20) -> list[dict]:
-    """OpenSanctions에서 최근 제재 목록 변동 수집"""
-    try:
-        # 테러 관련 데이터셋 목록
-        datasets = [
-            "un_sc_sanctions",   # UN 안보리
-            "us_ofac_sdn",       # 미국 OFAC
-            "eu_sanctions",      # EU 제재
-        ]
+def _load_previous_sanctions() -> set:
+    """이전 수집된 제재 엔티티 ID 로드"""
+    cache = ROOT / "data" / ".sanctions_cache.json"
+    if cache.exists():
+        try:
+            return set(json.loads(cache.read_text(encoding="utf-8")))
+        except Exception:
+            pass
+    return set()
 
+
+def _save_sanctions_cache(entity_ids: list):
+    """현재 제재 엔티티 ID 저장"""
+    cache = ROOT / "data" / ".sanctions_cache.json"
+    cache.write_text(json.dumps(entity_ids, ensure_ascii=False), encoding="utf-8")
+
+
+def fetch_sanctions_updates(limit: int = 30) -> list[dict]:
+    """OpenSanctions에서 제재 목록 변동 수집 (diff 방식)"""
+    previous_ids = _load_previous_sanctions()
+
+    try:
+        datasets = ["un_sc_sanctions", "us_ofac_sdn", "eu_sanctions"]
         results = []
+        current_ids = []
+
         for ds in datasets:
             resp = requests.get(
                 f"https://data.opensanctions.org/datasets/latest/{ds}/entities.ftm.json",
@@ -237,33 +271,44 @@ def fetch_sanctions_updates(limit: int = 20) -> list[dict]:
             if resp.status_code != 200:
                 continue
 
-            # 스트리밍으로 처음 몇 줄만 읽기
             count = 0
             for line in resp.iter_lines():
-                if count >= 10:
+                if count >= 50:
                     break
                 if not line:
                     continue
                 try:
-                    import json
                     entity = json.loads(line)
                     props = entity.get("properties", {})
                     name = props.get("name", ["Unknown"])[0] if props.get("name") else "Unknown"
+                    entity_id = entity.get("id", "")
+                    schema = entity.get("schema", "")
                     topics = props.get("topics", [])
 
-                    # 테러 관련만
-                    if any(t in str(topics).lower() for t in ["terror", "sanction"]):
+                    if schema in ("Organization", "LegalEntity", "Person"):
+                        current_ids.append(entity_id)
+                        is_new = entity_id not in previous_ids
                         results.append({
                             "source": f"opensanctions/{ds}",
-                            "entity_id": entity.get("id", ""),
+                            "entity_id": entity_id,
                             "name": name,
-                            "schema": entity.get("schema", ""),
+                            "schema": schema,
                             "datasets": ds,
                             "topics": topics,
+                            "is_new": is_new,  # #12: 변동 감지
                         })
                         count += 1
                 except Exception:
                     continue
+
+        # 캐시 업데이트
+        _save_sanctions_cache(current_ids)
+
+        # 신규 엔티티 우선 정렬
+        results.sort(key=lambda x: (not x["is_new"], x["name"]))
+        new_count = sum(1 for r in results if r["is_new"])
+        if new_count > 0:
+            print(f"    NEW sanctions entities: {new_count}")
 
         return results[:limit]
 
@@ -273,10 +318,10 @@ def fetch_sanctions_updates(limit: int = 20) -> list[dict]:
 
 
 # ─────────────────────────────────────────────
-# 4. Google News — 테러 관련 뉴스
+# 4. Google News — 테러 관련 뉴스 (#4 클러스터링)
 # ─────────────────────────────────────────────
 def fetch_google_news(limit: int = 30) -> list[dict]:
-    """Google News RSS에서 테러 관련 뉴스 수집"""
+    """Google News RSS — 중복 클러스터링 적용"""
     articles = []
     seen_titles = set()
 
@@ -287,12 +332,20 @@ def fetch_google_news(limit: int = 30) -> list[dict]:
 
             for entry in feed.entries[:8]:
                 title = entry.title
-                # 중복 제거
                 if title in seen_titles:
                     continue
+
+                # #4: 제목 유사도 기반 클러스터링 (70% 이상 유사하면 중복)
+                is_duplicate = False
+                for seen in seen_titles:
+                    if _similar(title, seen) > 0.7:
+                        is_duplicate = True
+                        break
+                if is_duplicate:
+                    continue
+
                 seen_titles.add(title)
 
-                # 관련성 검증
                 text = title + " " + entry.get("summary", "")
                 if not _is_terror_relevant(text):
                     continue
@@ -306,31 +359,54 @@ def fetch_google_news(limit: int = 30) -> list[dict]:
                     "date": entry.get("published", ""),
                 })
 
-            time.sleep(0.5)  # rate limit
+            time.sleep(0.5)
         except Exception as e:
-            print(f"    [google_news:{query}] 수집 실패: {e}")
+            print(f"    [google_news:{query}] 실패: {e}")
             continue
 
     return articles[:limit]
 
 
 # ─────────────────────────────────────────────
-# 5. RSS — 전문 분석 기관
+# 5. RSS — 전문 분석 기관 (#5 48시간 필터)
 # ─────────────────────────────────────────────
+def _parse_rss_date(date_str: str) -> datetime:
+    """RSS 날짜 파싱 시도"""
+    formats = [
+        "%a, %d %b %Y %H:%M:%S %z",
+        "%a, %d %b %Y %H:%M:%S %Z",
+        "%Y-%m-%dT%H:%M:%S%z",
+        "%Y-%m-%d %H:%M:%S",
+    ]
+    for fmt in formats:
+        try:
+            return datetime.strptime(date_str, fmt).replace(tzinfo=None)
+        except (ValueError, TypeError):
+            continue
+    return datetime.min
+
+
 def fetch_expert_rss(limit: int = 30) -> list[dict]:
-    """테러/안보 전문 기관 RSS 수집"""
+    """테러/안보 전문 기관 RSS — 48시간 필터 적용"""
     articles = []
+    cutoff = datetime.now() - timedelta(hours=48)
+    tier1 = ["Long War Journal", "Soufan Center", "CTC Sentinel", "Jamestown Foundation"]
 
     for name, url in RSS_FEEDS.items():
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries[:10]:
+                # #5: 48시간 필터
+                pub_date = entry.get("published", "")
+                if pub_date:
+                    parsed = _parse_rss_date(pub_date)
+                    if parsed != datetime.min and parsed < cutoff:
+                        continue
+
                 title = entry.title
                 summary = re.sub(r"<[^>]+>", "", entry.get("summary", ""))[:400]
                 text = title + " " + summary
 
-                # Tier 1 소스는 필터 없이 전부 포함
-                tier1 = ["Long War Journal", "Soufan Center", "CTC Sentinel", "Jamestown Foundation"]
                 if name not in tier1 and not _is_terror_relevant(text):
                     continue
 
@@ -339,23 +415,21 @@ def fetch_expert_rss(limit: int = 30) -> list[dict]:
                     "title": title,
                     "url": entry.link,
                     "summary": summary,
-                    "date": entry.get("published", ""),
+                    "date": pub_date,
                     "feed_name": name,
                 })
         except Exception as e:
-            print(f"    [{name}] 수집 실패: {e}")
+            print(f"    [{name}] 실패: {e}")
             continue
 
     return articles[:limit]
 
 
 # ─────────────────────────────────────────────
-# 6. OFAC SDN — 미국 제재 대상 최신 변동
+# 6. OFAC SDN — 미국 제재 대상
 # ─────────────────────────────────────────────
 def fetch_ofac_recent(limit: int = 15) -> list[dict]:
-    """OFAC SDN 리스트에서 최근 변동 확인"""
     try:
-        # OFAC recent actions RSS
         resp = requests.get(
             "https://ofac.treasury.gov/recent-actions",
             timeout=15,
@@ -364,12 +438,7 @@ def fetch_ofac_recent(limit: int = 15) -> list[dict]:
         if resp.status_code != 200:
             return []
 
-        # 간단한 HTML 파싱으로 최근 액션 추출
-        text = resp.text
-        # OFAC 페이지에서 링크 + 텍스트 추출
-        import re
-        links = re.findall(r'<a[^>]+href="(/recent-actions/[^"]+)"[^>]*>([^<]+)</a>', text)
-
+        links = re.findall(r'<a[^>]+href="(/recent-actions/[^"]+)"[^>]*>([^<]+)</a>', resp.text)
         results = []
         for href, title in links[:limit]:
             results.append({
@@ -377,7 +446,6 @@ def fetch_ofac_recent(limit: int = 15) -> list[dict]:
                 "title": title.strip(),
                 "url": f"https://ofac.treasury.gov{href}",
             })
-
         return results
     except Exception as e:
         print(f"    [ofac] 수집 실패: {e}")
@@ -388,7 +456,6 @@ def fetch_ofac_recent(limit: int = 15) -> list[dict]:
 # 통합 수집
 # ─────────────────────────────────────────────
 def collect_all(target_date: datetime) -> dict:
-    """모든 소스에서 데이터 수집"""
     print("=" * 55)
     print("  Terror Intelligence — Data Collection")
     print("=" * 55)
