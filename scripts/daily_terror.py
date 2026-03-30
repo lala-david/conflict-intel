@@ -23,6 +23,7 @@ load_dotenv(ROOT / ".env")
 from sources import collect_all
 from mapper import TerrorMapper
 from event_linker import link_events
+from threat_scorer import run_analysis
 from database import save_events, save_daily_stats
 from config import ANALYSIS_MODEL, TEMPERATURE, MAX_TOKENS, REPORTS_DIR
 
@@ -318,6 +319,56 @@ def build_raw_context(data: dict) -> str:
         sections.append("\n## OFAC Recent Actions")
         for o in data["ofac"][:10]:
             sections.append(f"- {o['title']}\n  URL: {o['url']}")
+
+    # ─── 심층 분석 결과 (#1 위협수준, #2 전일비교, #4 조직, #5 핫스팟) ───
+    analysis = data.get("_analysis", {})
+
+    # #1: 위협 수준 (자동 계산)
+    threat = analysis.get("threat_levels", {})
+    if threat:
+        sections.append("\n## COMPUTED THREAT LEVELS (Data-Driven)")
+        sections.append("| Country | Score | Level | Events | Fatalities | News |")
+        sections.append("|---------|-------|-------|--------|------------|------|")
+        for country, t in list(threat.items())[:15]:
+            sections.append(
+                f"| {country} | {t['score']}/10 | {t['label']} | {t['events']} | {t['fatalities']} | {t['news_mentions']} |"
+            )
+
+    # #2: 전일 대비
+    diff = analysis.get("daily_diff", {})
+    if diff.get("diff"):
+        sections.append("\n## DAILY COMPARISON (vs Previous)")
+        prev = diff["previous"]
+        sections.append(f"Previous date: {prev['date']}")
+        sections.append(f"GDELT: {diff['trend_text']['gdelt']}")
+        sections.append(f"Fatalities: {diff['trend_text']['fatalities']}")
+
+    # #4: 조직별 활동
+    orgs = analysis.get("org_tracker", [])
+    if orgs:
+        sections.append("\n## ORGANIZATION ACTIVITY TRACKER")
+        sections.append("| Organization | Designation | Events Today | Fatalities | Countries | Attack Types |")
+        sections.append("|-------------|-------------|-------------|------------|-----------|-------------|")
+        for o in orgs[:10]:
+            name = o["name"][:30].replace("|", "/").replace('"', "'")
+            countries = ", ".join(str(c) for c in o["countries"][:3])
+            attacks = ", ".join(str(a) for a in o["attack_types"][:3])
+            sections.append(
+                f"| {name} | {o['designation']} | {o['events_today']} | {o['fatalities_today']} | {countries} | {attacks} |"
+            )
+
+    # #5: 핫스팟
+    hotspots = analysis.get("hotspots", [])
+    if hotspots:
+        sections.append("\n## GEOGRAPHIC HOTSPOTS (Density Analysis)")
+        for i, h in enumerate(hotspots[:5]):
+            countries = ", ".join(str(c) for c in h["countries"])
+            actors = ", ".join(str(a).replace('"', "'")[:25] for a in h["actors"][:3])
+            sections.append(
+                f"- HOTSPOT #{i+1}: [{h['center'][0]}, {h['center'][1]}] | "
+                f"Events: {h['events']} | Fatalities: {h['fatalities']} | "
+                f"Countries: {countries} | Actors: {actors}"
+            )
 
     return "\n".join(sections)
 
@@ -637,20 +688,41 @@ def main():
     print(f"   clusters: {cl_stats.get('total_clusters', 0)} (from {cl_stats.get('total_articles', 0)} articles)")
     print(f"   GDELT linked: {cl_stats.get('gdelt_linked', 0)}")
     print(f"   RSS linked: {cl_stats.get('rss_linked', 0)}")
-    print(f"   multi-source: {cl_stats.get('multi_source', 0)}")
     if cl_stats.get("top_event"):
         print(f"   TOP: {cl_stats['top_event'][:70]} (score: {cl_stats['top_event_score']})")
 
-    # 4. 리포트 디렉토리
+    # 4. 심층 분석 (위협 수준, 전일 비교, 조직 트래커, 핫스팟)
+    print("\n  Running deep analysis...")
+    analysis = run_analysis(data, date_str)
+    data["_analysis"] = analysis
+
+    threat_top = list(analysis["threat_levels"].items())[:5]
+    threat_str = ", ".join(f"{c}={t['label']}({t['score']})" for c, t in threat_top)
+    print(f"   Threat levels: {threat_str}")
+
+    diff = analysis["daily_diff"]
+    if diff.get("diff"):
+        print(f"   vs previous: GDELT {diff['trend_text']['gdelt']}, fatalities {diff['trend_text']['fatalities']}")
+
+    orgs = analysis["org_tracker"]
+    if orgs:
+        print(f"   Active orgs: {len(orgs)} ({', '.join(o['name'][:20] for o in orgs[:3])})")
+
+    spots = analysis["hotspots"]
+    if spots:
+        spots_str = ", ".join(str(h["countries"]) for h in spots[:3])
+        print(f"   Hotspots: {len(spots)} ({spots_str})")
+
+    # 5. 리포트 디렉토리
     report_dir = get_report_dir(target_date)
 
-    # 4. DB 저장 (#13, #15)
+    # 6. DB 저장
     print("\n  Saving to database...")
     save_events(data, date_str)
     save_daily_stats(date_str, data, stats)
     print("   -> terror.db updated")
 
-    # 5. 한글 리포트 (#11 재시도)
+    # 7. 한글 리포트 (#11 재시도)
     print("\n  [KO] Generating...")
     ko = generate_with_retry(data, target_date, "ko")
     ko_path = report_dir / f"{date_str}_ko.md"
