@@ -35,25 +35,30 @@ class TerrorMapper:
     # 인덱스 구축
     # ─────────────────────────────────────
     def _build_org_index(self) -> dict:
-        """조직명 → 조직 데이터 매핑 (별칭 포함)"""
+        """조직명 + 인물명 → 데이터 매핑 (별칭 포함)"""
         index = {}
-        for org in self.orgs.get("un_designated", []):
-            name = org.get("name", "").lower().strip()
-            if name:
-                index[name] = {**org, "designation": "UN"}
-            for alias in org.get("aliases", []):
-                alias_lower = alias.lower().strip()
-                if alias_lower:
-                    index[alias_lower] = {**org, "designation": "UN"}
 
-        for org in self.orgs.get("ofac_designated", []):
+        # 조직
+        for org in self.orgs.get("organizations", []):
             name = org.get("name", "").lower().strip()
+            source = org.get("source", "")
             if name:
-                index[name] = {**org, "designation": "OFAC"}
+                index[name] = {**org, "designation": source, "entity_type": "organization"}
             for alias in org.get("aliases", []):
                 alias_lower = alias.lower().strip()
                 if alias_lower:
-                    index[alias_lower] = {**org, "designation": "OFAC"}
+                    index[alias_lower] = {**org, "designation": source, "entity_type": "organization"}
+
+        # 인물
+        for person in self.orgs.get("persons", []):
+            name = person.get("name", "").lower().strip()
+            source = person.get("source", "")
+            if name:
+                index[name] = {**person, "designation": source, "entity_type": "person"}
+            for alias in person.get("aliases", []):
+                alias_lower = alias.lower().strip()
+                if alias_lower:
+                    index[alias_lower] = {**person, "designation": source, "entity_type": "person"}
 
         return index
 
