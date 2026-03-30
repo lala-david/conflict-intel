@@ -166,6 +166,40 @@ def compute_statistics(data: dict) -> str:
     return "\n".join(lines)
 
 
+def cluster_news(articles: list[dict]) -> list[dict]:
+    """#2: 같은 사건 뉴스를 클러스터링하여 대표 기사 + 소스 수로 압축"""
+    from difflib import SequenceMatcher
+
+    clusters = []
+    used = set()
+
+    for i, article in enumerate(articles):
+        if i in used:
+            continue
+
+        cluster = [article]
+        used.add(i)
+        title_i = article.get("title", "").lower()
+
+        for j in range(i + 1, len(articles)):
+            if j in used:
+                continue
+            title_j = articles[j].get("title", "").lower()
+            if SequenceMatcher(None, title_i, title_j).ratio() > 0.5:
+                cluster.append(articles[j])
+                used.add(j)
+
+        # 대표 기사 = 가장 긴 요약을 가진 것
+        representative = max(cluster, key=lambda x: len(x.get("summary", "")))
+        clusters.append({
+            **representative,
+            "cluster_size": len(cluster),
+            "sources": list(set(a.get("source", "") for a in cluster)),
+        })
+
+    return clusters
+
+
 def build_raw_context(data: dict) -> str:
     """수집 데이터를 LLM 컨텍스트로 변환"""
     sections = []
@@ -234,13 +268,15 @@ def build_raw_context(data: dict) -> str:
             )
 
     if data.get("google_news"):
-        sections.append("\n## Google News (Terror-Related)")
-        for a in data["google_news"][:20]:
-            sections.append(f"- {a['title']}\n  URL: {a['url']}\n  {a['summary'][:150]}")
+        clustered = cluster_news(data["google_news"])
+        sections.append(f"\n## Google News (Terror-Related) — {len(clustered)} clusters from {len(data['google_news'])} articles")
+        for a in clustered[:15]:
+            src_count = a.get("cluster_size", 1)
+            sections.append(f"- [{src_count} sources] {a['title']}\n  URL: {a['url']}\n  {a['summary'][:150]}")
 
     if data.get("expert_rss"):
         sections.append("\n## Expert Analysis (RSS)")
-        for a in data["expert_rss"][:20]:
+        for a in data["expert_rss"][:15]:
             sections.append(f"- [{a['feed_name']}] {a['title']}\n  URL: {a['url']}\n  {a['summary'][:200]}")
 
     if data.get("sanctions"):
