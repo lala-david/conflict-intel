@@ -22,6 +22,7 @@ load_dotenv(ROOT / ".env")
 
 from sources import collect_all
 from mapper import TerrorMapper
+from event_linker import link_events
 from database import save_events, save_daily_stats
 from config import ANALYSIS_MODEL, TEMPERATURE, MAX_TOKENS, REPORTS_DIR
 
@@ -267,17 +268,46 @@ def build_raw_context(data: dict) -> str:
                 f"{zone_info}{country_info}{org_info}{attack_info}"
             )
 
-    if data.get("google_news"):
-        clustered = cluster_news(data["google_news"])
-        sections.append(f"\n## Google News (Terror-Related) — {len(clustered)} clusters from {len(data['google_news'])} articles")
-        for a in clustered[:15]:
-            src_count = a.get("cluster_size", 1)
-            sections.append(f"- [{src_count} sources] {a['title']}\n  URL: {a['url']}\n  {a['summary'][:150]}")
+    # 이벤트 클러스터 (교차 매칭 결과)
+    if data.get("event_clusters"):
+        clusters = data["event_clusters"]
+        sections.append(f"\n## EVENT CLUSTERS (Cross-Source Linked) — {len(clusters)} events")
+        for c in clusters[:15]:
+            score = c.get("importance_score", 0)
+            size = c.get("cluster_size", 1)
+            gdelt_n = c.get("gdelt_count", 0)
+            rss_n = c.get("rss_count", 0)
+            countries = ", ".join(c.get("countries", []))
+            tone = c.get("tone_label", "")
+            avg_tone = c.get("avg_media_tone")
+            tone_str = f" | Media Tone: {avg_tone} ({tone})" if avg_tone is not None else ""
 
+            sections.append(
+                f"- [Score:{score} | News:{size} | GDELT:{gdelt_n} | RSS:{rss_n}] {c['title']}\n"
+                f"  URL: {c['url']}\n"
+                f"  Countries: {countries}{tone_str}\n"
+                f"  {c['summary'][:150]}"
+            )
+
+            # 연결된 GDELT 이벤트 요약
+            for g in c.get("linked_gdelt", [])[:3]:
+                sections.append(
+                    f"    -> GDELT: {g['country']} {g['location']} | Code:{g['event_code']} | "
+                    f"Mentions:{g['mentions']} | Tone:{g['tone']:.1f} ({g['tone_label']})"
+                )
+
+    # 클러스터에 안 묶인 RSS
     if data.get("expert_rss"):
-        sections.append("\n## Expert Analysis (RSS)")
-        for a in data["expert_rss"][:15]:
-            sections.append(f"- [{a['feed_name']}] {a['title']}\n  URL: {a['url']}\n  {a['summary'][:200]}")
+        # 클러스터에 이미 매칭된 RSS 제외
+        matched_rss_titles = set()
+        for c in data.get("event_clusters", []):
+            matched_rss_titles.update(c.get("matched_rss", []))
+
+        unmatched = [a for a in data["expert_rss"] if a.get("title", "") not in matched_rss_titles]
+        if unmatched:
+            sections.append(f"\n## Expert Analysis (Standalone)")
+            for a in unmatched[:10]:
+                sections.append(f"- [{a['feed_name']}] {a['title']}\n  URL: {a['url']}\n  {a['summary'][:200]}")
 
     if data.get("sanctions"):
         sections.append("\n## Sanctions Updates")
@@ -600,7 +630,18 @@ def main():
     print(f"   country matches: {stats.get('country_matches', 0)}")
     print(f"   zone matches: {stats.get('zone_matches', 0)}")
 
-    # 3. 리포트 디렉토리
+    # 3. 이벤트 링킹 (멀티소스 교차 매칭)
+    print("\n  Linking events across sources...")
+    data = link_events(data)
+    cl_stats = data.get("_cluster_stats", {})
+    print(f"   clusters: {cl_stats.get('total_clusters', 0)} (from {cl_stats.get('total_articles', 0)} articles)")
+    print(f"   GDELT linked: {cl_stats.get('gdelt_linked', 0)}")
+    print(f"   RSS linked: {cl_stats.get('rss_linked', 0)}")
+    print(f"   multi-source: {cl_stats.get('multi_source', 0)}")
+    if cl_stats.get("top_event"):
+        print(f"   TOP: {cl_stats['top_event'][:70]} (score: {cl_stats['top_event_score']})")
+
+    # 4. 리포트 디렉토리
     report_dir = get_report_dir(target_date)
 
     # 4. DB 저장 (#13, #15)
