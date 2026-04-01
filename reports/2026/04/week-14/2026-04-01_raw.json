@@ -1,0 +1,5149 @@
+{
+  "acled": [],
+  "gdelt": [
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "AUSTRALIA",
+      "actor2": "",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-36.6961",
+      "longitude": "146.91",
+      "goldstein_scale": -10.0,
+      "num_mentions": 3926,
+      "num_sources": 97,
+      "num_articles": 3450,
+      "avg_tone": -6.68973284000754,
+      "source_url": "https://www.northerndailyleader.com.au/story/9209872/dezi-freeman-fugitive-wanted-for-officers-deaths-reportedly-shot/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "CONSTABLE",
+      "country_code": "NZ",
+      "location": "NZ",
+      "latitude": "-42",
+      "longitude": "174",
+      "goldstein_scale": -10.0,
+      "num_mentions": 3498,
+      "num_sources": 1,
+      "num_articles": 3498,
+      "avg_tone": -7.52266472805076,
+      "source_url": "https://sl100.iheart.com/content/2026-03-30-sovereign-citizen-killed-in-police-shootout-following-monthslong-manhunt/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "New Zealand",
+          "iso": "NZ",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Low",
+          "active_groups": [
+            "Lone actor threat (various ideologies)"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "POLICE OFFICER",
+      "country_code": "AU",
+      "location": "AS",
+      "latitude": "-36.6961",
+      "longitude": "146.91",
+      "goldstein_scale": -10.0,
+      "num_mentions": 3218,
+      "num_sources": 103,
+      "num_articles": 2996,
+      "avg_tone": -6.8447029444067,
+      "source_url": "https://www.bluemountainsgazette.com.au/story/9209870/dezi-freeman-shot-dead-after-seven-month-manhunt/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 3
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "186",
+      "actor1": "UNITED STATES",
+      "actor2": "CHRISTIAN",
+      "country_code": "US",
+      "location": "USCA, US",
+      "latitude": "37.328",
+      "longitude": "-119.649",
+      "goldstein_scale": -10.0,
+      "num_mentions": 2200,
+      "num_sources": 1,
+      "num_articles": 2200,
+      "avg_tone": -4.4183386989913,
+      "source_url": "https://600kcol.iheart.com/content/2026-03-30-man-accused-of-secretly-recording-guests-at-yosemite-vacation-rental-home/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe / Central Asia",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "186"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "POLICE",
+      "actor2": "",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1975,
+      "num_sources": 153,
+      "num_articles": 1385,
+      "avg_tone": -6.38739995675305,
+      "source_url": "https://english.republika.mk/macedonia/game-warden-shot-dead-near-vinica-four-hunters-arrested/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "POLICE",
+      "actor2": "AUSTRALIA",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-36.6961",
+      "longitude": "146.91",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1387,
+      "num_sources": 212,
+      "num_articles": 1036,
+      "avg_tone": -4.73375166865373,
+      "source_url": "https://www.bordermail.com.au/story/9209870/dezi-freeman-killed-after-six-month-search-reports/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "POLICE",
+      "actor2": "",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-36.6961",
+      "longitude": "146.91",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1505,
+      "num_sources": 86,
+      "num_articles": 1099,
+      "avg_tone": -5.02656020506493,
+      "source_url": "https://www.theguardian.com/australia-news/2026/mar/30/dezi-freeman-shot-dead-police-shooting-victoria-porepunkah-ntwnfb",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "VILLAGE",
+      "actor2": "INDONESIAN",
+      "country_code": "IL",
+      "location": "IS01, IS",
+      "latitude": "31.2516",
+      "longitude": "34.7863",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1220,
+      "num_sources": 122,
+      "num_articles": 1220,
+      "avg_tone": -3.02623285936284,
+      "source_url": "https://www.asianimage.co.uk/news/national/25978367.trump-considers-seizing-iranian-island-even-diplomatic-talks-move-ahead/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "MUJAHIDIN INDONESIAN TIMUR (MIT)",
+          "designation": "un_sc_sanctions",
+          "countries": [
+            "id"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 43.7,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "SCHOOL",
+      "actor2": "TEXAS",
+      "country_code": "US",
+      "location": "USTX, US",
+      "latitude": "31.106",
+      "longitude": "-97.6475",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1120,
+      "num_sources": 118,
+      "num_articles": 873,
+      "avg_tone": -3.96228921386017,
+      "source_url": "https://www.fox4news.com/news/kaufman-county-11-year-old-shot-school-playground",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "MXC-NARCO",
+          "zone_name": "Mexico - Cartel conflict zones",
+          "country": "Mexico",
+          "region": "North America",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Sinaloa Cartel (fractured)",
+            "CJNG (Jalisco New Generation Cartel)",
+            "Northeast Cartel",
+            "Los Zetas remnants",
+            "Various regional groups"
+          ],
+          "conflict_type": "Narco-conflict",
+          "center": {
+            "lat": 23.0,
+            "lon": -104.0
+          },
+          "population_at_risk": 20000000
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "IRAN",
+      "actor2": "ISRAEL",
+      "country_code": "IR",
+      "location": "IR26, IR",
+      "latitude": "35.75",
+      "longitude": "51.5148",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1092,
+      "num_sources": 106,
+      "num_articles": 1092,
+      "avg_tone": -5.02477661531305,
+      "source_url": "https://news.prairiepublic.org/news-from-npr/2026-03-30/trump-weighing-all-options-on-irans-kharg-island",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "IRN-BORDER",
+          "zone_name": "Iran - Sistan-Baluchestan / Kurdistan border",
+          "country": "Iran",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "Jaish al-Adl (Sunni Baloch militants)",
+            "PJAK (Kurdish militants, PKK affiliate)",
+            "ISIS-linked cells",
+            "Ansar al-Furqan (Sunni)",
+            "IRGC (Islamic Revolutionary Guard Corps)"
+          ],
+          "conflict_type": "Insurgency / Terrorism-only",
+          "center": {
+            "lat": 29.0,
+            "lon": 60.0
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "194"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "IRAN",
+      "actor2": "",
+      "country_code": "IR",
+      "location": "IR26, IR",
+      "latitude": "35.75",
+      "longitude": "51.5148",
+      "goldstein_scale": -10.0,
+      "num_mentions": 988,
+      "num_sources": 146,
+      "num_articles": 987,
+      "avg_tone": -5.36728510446732,
+      "source_url": "https://www.cp24.com/news/world/2026/03/29/iran-warns-us-ground-troops-would-be-set-on-fire-as-regional-diplomats-meet-on-the-war/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "IRN-BORDER",
+          "zone_name": "Iran - Sistan-Baluchestan / Kurdistan border",
+          "country": "Iran",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "Jaish al-Adl (Sunni Baloch militants)",
+            "PJAK (Kurdish militants, PKK affiliate)",
+            "ISIS-linked cells",
+            "Ansar al-Furqan (Sunni)",
+            "IRGC (Islamic Revolutionary Guard Corps)"
+          ],
+          "conflict_type": "Insurgency / Terrorism-only",
+          "center": {
+            "lat": 29.0,
+            "lon": 60.0
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "183",
+      "actor1": "INDONESIAN",
+      "actor2": "VILLAGE",
+      "country_code": "ID",
+      "location": "ID, ID",
+      "latitude": "-5",
+      "longitude": "120",
+      "goldstein_scale": -10.0,
+      "num_mentions": 984,
+      "num_sources": 140,
+      "num_articles": 984,
+      "avg_tone": -0.35566939380568,
+      "source_url": "https://www.richmondandtwickenhamtimes.co.uk/news/national/25978882.irish-premier-condemns-killing-indonesian-peacekeeper-lebanon/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "MUJAHIDIN INDONESIAN TIMUR (MIT)",
+          "designation": "un_sc_sanctions",
+          "countries": [
+            "id"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Indonesia",
+          "iso": "ID",
+          "region": "Southeast Asia",
+          "sub_region": "Maritime Southeast Asia",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jemaah Islamiyah (JI) - weakened",
+            "Jamaah Ansharut Daulah (JAD)",
+            "Mujahidin Indonesia Timur (MIT)",
+            "Free Papua Organization (OPM/TPNPB)"
+          ],
+          "conflict_zones": [
+            "Central Sulawesi (Poso)",
+            "Papua/West Papua",
+            "Java (lone wolf risk)"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "183"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "POLICE",
+      "actor2": "VICTORIA",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-35.9667",
+      "longitude": "147.733",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1002,
+      "num_sources": 73,
+      "num_articles": 727,
+      "avg_tone": -3.78680237486261,
+      "source_url": "https://www.brisbanetimes.com.au/national/victoria/what-we-know-so-far-about-the-death-of-fugitive-dezi-freeman-20260330-p5zjtl.html",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "POLICE",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 950,
+      "num_sources": 74,
+      "num_articles": 780,
+      "avg_tone": -7.38038592648463,
+      "source_url": "https://www.5newsonline.com/article/news/local/report-two-killed-car-collides-motorcycle-benton-county/527-8d00ed1b-e962-4393-83ad-bb6cde5ae8af",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "IRAN",
+      "country_code": "IL",
+      "location": "IS01, IS",
+      "latitude": "31.2516",
+      "longitude": "34.7863",
+      "goldstein_scale": -10.0,
+      "num_mentions": 858,
+      "num_sources": 122,
+      "num_articles": 858,
+      "avg_tone": -3.02623285936284,
+      "source_url": "https://www.asianimage.co.uk/news/national/25978367.trump-considers-seizing-iranian-island-even-diplomatic-talks-move-ahead/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 43.7,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "VILLAGE",
+      "actor2": "INDONESIAN",
+      "country_code": "IL",
+      "location": "IS, IS",
+      "latitude": "31.5",
+      "longitude": "34.75",
+      "goldstein_scale": -10.0,
+      "num_mentions": 866,
+      "num_sources": 104,
+      "num_articles": 866,
+      "avg_tone": -4.22562491836786,
+      "source_url": "https://www.yahoo.com/news/articles/trump-mulls-seizing-iranian-island-055003275.html",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "MUJAHIDIN INDONESIAN TIMUR (MIT)",
+          "designation": "un_sc_sanctions",
+          "countries": [
+            "id"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 38.6,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "INDONESIAN",
+      "actor2": "VILLAGE",
+      "country_code": "IL",
+      "location": "IS, IS",
+      "latitude": "31.5",
+      "longitude": "34.75",
+      "goldstein_scale": -10.0,
+      "num_mentions": 828,
+      "num_sources": 138,
+      "num_articles": 828,
+      "avg_tone": -0.174271913325292,
+      "source_url": "https://www.northwalespioneer.co.uk/news/national/25981909.irish-peacekeepers-lebanon-safe-accounted-for---mcentee/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "MUJAHIDIN INDONESIAN TIMUR (MIT)",
+          "designation": "un_sc_sanctions",
+          "countries": [
+            "id"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 38.6,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "195",
+      "actor1": "SPAIN",
+      "actor2": "IRAN",
+      "country_code": "ES",
+      "location": "SP, SP",
+      "latitude": "40",
+      "longitude": "-4",
+      "goldstein_scale": -10.0,
+      "num_mentions": 856,
+      "num_sources": 88,
+      "num_articles": 856,
+      "avg_tone": -4.74001773751053,
+      "source_url": "https://www.wuwf.org/2026-03-30/trump-is-weighing-all-options-on-irans-kharg-island",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Spain",
+          "iso": "ES",
+          "region": "Europe",
+          "sub_region": "Southern Europe",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-linked cells",
+            "Basque separatist legacy (ETA dissolved 2018)"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "PHL-MINDANAO",
+          "zone_name": "Philippines - Mindanao",
+          "country": "Philippines",
+          "region": "Southeast Asia",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "ISIS-Philippines (Abu Sayyaf Group - ASG, remnants)",
+            "Bangsamoro Islamic Freedom Fighters (BIFF)",
+            "Dawlah Islamiyah",
+            "Maute Group remnants",
+            "Communist New People's Army (NPA) remnants"
+          ],
+          "conflict_type": "Insurgency / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "195"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "CHILE",
+      "actor2": "",
+      "country_code": "CL",
+      "location": "CI, CI",
+      "latitude": "-30",
+      "longitude": "-71",
+      "goldstein_scale": -10.0,
+      "num_mentions": 794,
+      "num_sources": 61,
+      "num_articles": 468,
+      "avg_tone": -11.5274177498833,
+      "source_url": "https://www.oberonreview.com.au/story/9210530/ex-nannys-fight-over-crimes-against-humanity-claims/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Chile",
+          "iso": "CL",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "Mapuche resistance groups (CAM - Coordinadora Arauco-Malleco)",
+            "Anarchist cells"
+          ],
+          "conflict_zones": [
+            "Araucanía/Biobío (Wallmapu/Mapuche conflict)"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "183",
+      "actor1": "LEBANON",
+      "actor2": "VILLAGE",
+      "country_code": "LB",
+      "location": "LE, LE",
+      "latitude": "33.833333",
+      "longitude": "35.833333",
+      "goldstein_scale": -10.0,
+      "num_mentions": 732,
+      "num_sources": 122,
+      "num_articles": 732,
+      "avg_tone": -3.02623285936284,
+      "source_url": "https://www.asianimage.co.uk/news/national/25978367.trump-considers-seizing-iranian-island-even-diplomatic-talks-move-ahead/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Lebanon",
+          "iso": "LB",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian militant factions (Hamas, PFLP, etc.)",
+            "ISIS-linked cells",
+            "Fatah al-Islam remnants"
+          ],
+          "conflict_zones": [
+            "Southern Lebanon/Blue Line border",
+            "Bekaa Valley",
+            "Palestinian refugee camps (Ain al-Hilweh)",
+            "Tripoli"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "LBN-MULTIPLE",
+          "zone_name": "Lebanon - South Lebanon / Bekaa",
+          "country": "Lebanon",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian factions (in refugee camps)",
+            "IDF (cross-border operations)",
+            "Various Sunni extremist cells (Ain al-Hilweh camp)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "center": {
+            "lat": 33.5,
+            "lon": 35.5
+          },
+          "population_at_risk": 2000000
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "183"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "VICTORIA",
+      "actor2": "VICTORIA",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-36.6961",
+      "longitude": "146.91",
+      "goldstein_scale": -10.0,
+      "num_mentions": 788,
+      "num_sources": 55,
+      "num_articles": 588,
+      "avg_tone": -5.08252398492985,
+      "source_url": "https://www.bordermail.com.au/story/9209870/dezi-freeman-killed-after-six-month-search-reports/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "",
+      "actor2": "AUSTRALIA",
+      "country_code": "AU",
+      "location": "AS",
+      "latitude": "-35.9667",
+      "longitude": "147.733",
+      "goldstein_scale": -10.0,
+      "num_mentions": 766,
+      "num_sources": 75,
+      "num_articles": 558,
+      "avg_tone": -3.64786819684668,
+      "source_url": "https://www.brisbanetimes.com.au/national/victoria/what-we-know-so-far-about-the-death-of-fugitive-dezi-freeman-20260330-p5zjtl.html",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 3
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "VICTORIA",
+      "actor2": "",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-37.8167",
+      "longitude": "144.967",
+      "goldstein_scale": -10.0,
+      "num_mentions": 688,
+      "num_sources": 112,
+      "num_articles": 682,
+      "avg_tone": -4.58021325750413,
+      "source_url": "https://www.aol.co.uk/articles/australian-fugitive-shot-dead-police-235602834.html",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ACTOR",
+      "actor2": "",
+      "country_code": "US",
+      "location": "USDC, US",
+      "latitude": "38.8951",
+      "longitude": "-77.0364",
+      "goldstein_scale": -10.0,
+      "num_mentions": 726,
+      "num_sources": 41,
+      "num_articles": 486,
+      "avg_tone": -5.50707652626576,
+      "source_url": "https://www.whas11.com/article/news/nation-world/alex-duong-blue-bloods-cbs/507-ceaf55f8-a7a4-4670-83a0-5f0cb151b450",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "VTB FACTORING LTD",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ru"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe / Central Asia",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "ISRAELI",
+      "actor2": "ISRAEL",
+      "country_code": "IL",
+      "location": "IS01, IS",
+      "latitude": "31.2516",
+      "longitude": "34.7863",
+      "goldstein_scale": -10.0,
+      "num_mentions": 610,
+      "num_sources": 122,
+      "num_articles": 610,
+      "avg_tone": -3.02623285936284,
+      "source_url": "https://www.asianimage.co.uk/news/national/25978367.trump-considers-seizing-iranian-island-even-diplomatic-talks-move-ahead/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 43.7,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "194"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "FIREFIGHTER",
+      "actor2": "",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 675,
+      "num_sources": 43,
+      "num_articles": 605,
+      "avg_tone": -4.30105532987587,
+      "source_url": "https://www.local3news.com/local-news/6-displaced-after-house-fire-in-athens-tn/article_ef6c5710-ca70-40f6-93d5-6d75c797df63.html",
+      "date": "20260330",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "POLICE",
+      "country_code": "AU",
+      "location": "AS",
+      "latitude": "-37.8167",
+      "longitude": "144.967",
+      "goldstein_scale": -10.0,
+      "num_mentions": 602,
+      "num_sources": 100,
+      "num_articles": 602,
+      "avg_tone": -4.37829161243372,
+      "source_url": "https://www.brisbanetimes.com.au/national/victoria/dezi-freeman-shot-dead-after-six-months-on-the-run-reports-20260330-p5zjsg.html",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 3
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "AUSTRALIA",
+      "actor2": "CONSTABLE",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-36.6961",
+      "longitude": "146.91",
+      "goldstein_scale": -10.0,
+      "num_mentions": 542,
+      "num_sources": 150,
+      "num_articles": 542,
+      "avg_tone": -4.55008248354033,
+      "source_url": "https://www.dailymail.co.uk/news/article-15689967/Dezi-Freeman-jail-shot-dead-martyr.html",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "JUDAISM",
+      "actor2": "MICHIGAN",
+      "country_code": "US",
+      "location": "USMI, US",
+      "latitude": "43.3504",
+      "longitude": "-84.5603",
+      "goldstein_scale": -10.0,
+      "num_mentions": 624,
+      "num_sources": 67,
+      "num_articles": 536,
+      "avg_tone": -4.80625179204443,
+      "source_url": "https://www.brandonsun.com/world/2026/03/30/fbi-says-a-man-who-crashed-his-pickup-into-michigan-synagogue-was-inspired-by-hezbollah",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe / Central Asia",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "183",
+      "actor1": "INDONESIA",
+      "actor2": "VILLAGE",
+      "country_code": "ID",
+      "location": "ID, ID",
+      "latitude": "-5",
+      "longitude": "120",
+      "goldstein_scale": -10.0,
+      "num_mentions": 537,
+      "num_sources": 139,
+      "num_articles": 537,
+      "avg_tone": -0.175185099699046,
+      "source_url": "https://www.northwalespioneer.co.uk/news/national/25981909.irish-peacekeepers-lebanon-safe-accounted-for---mcentee/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "MUJAHIDIN INDONESIAN TIMUR (MIT)",
+          "designation": "un_sc_sanctions",
+          "countries": [
+            "id"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Indonesia",
+          "iso": "ID",
+          "region": "Southeast Asia",
+          "sub_region": "Maritime Southeast Asia",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jemaah Islamiyah (JI) - weakened",
+            "Jamaah Ansharut Daulah (JAD)",
+            "Mujahidin Indonesia Timur (MIT)",
+            "Free Papua Organization (OPM/TPNPB)"
+          ],
+          "conflict_zones": [
+            "Central Sulawesi (Poso)",
+            "Papua/West Papua",
+            "Java (lone wolf risk)"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "183"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "POLICE OFFICER",
+      "actor2": "COMMUNITY",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-36.6961",
+      "longitude": "146.91",
+      "goldstein_scale": -10.0,
+      "num_mentions": 612,
+      "num_sources": 46,
+      "num_articles": 306,
+      "avg_tone": -5.48507821691743,
+      "source_url": "https://www.armidaleexpress.com.au/story/9209870/dezi-freeman-shot-dead-after-seven-month-manhunt/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "Russian community \"Sobol\"",
+          "designation": "eu_fsf",
+          "countries": [
+            "ua"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "183",
+      "actor1": "LEBANON",
+      "actor2": "VILLAGE",
+      "country_code": "LB",
+      "location": "LE, LE",
+      "latitude": "33.833333",
+      "longitude": "35.833333",
+      "goldstein_scale": -10.0,
+      "num_mentions": 488,
+      "num_sources": 122,
+      "num_articles": 488,
+      "avg_tone": -3.02623285936284,
+      "source_url": "https://www.asianimage.co.uk/news/national/25978367.trump-considers-seizing-iranian-island-even-diplomatic-talks-move-ahead/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Lebanon",
+          "iso": "LB",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian militant factions (Hamas, PFLP, etc.)",
+            "ISIS-linked cells",
+            "Fatah al-Islam remnants"
+          ],
+          "conflict_zones": [
+            "Southern Lebanon/Blue Line border",
+            "Bekaa Valley",
+            "Palestinian refugee camps (Ain al-Hilweh)",
+            "Tripoli"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "LBN-MULTIPLE",
+          "zone_name": "Lebanon - South Lebanon / Bekaa",
+          "country": "Lebanon",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian factions (in refugee camps)",
+            "IDF (cross-border operations)",
+            "Various Sunni extremist cells (Ain al-Hilweh camp)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "center": {
+            "lat": 33.5,
+            "lon": 35.5
+          },
+          "population_at_risk": 2000000
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "183"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "ISRAEL",
+      "actor2": "",
+      "country_code": "IL",
+      "location": "IS, IS",
+      "latitude": "31.5",
+      "longitude": "34.75",
+      "goldstein_scale": -10.0,
+      "num_mentions": 517,
+      "num_sources": 84,
+      "num_articles": 507,
+      "avg_tone": -4.42992666198969,
+      "source_url": "https://www.omakchronicle.com/news/national/strikes-knock-out-power-in-tehran-iran-says-us-plotting-ground-invasion/article_d5e0eaa4-1a2b-5dd2-8f29-441859fc0a9b.html",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 38.6,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "194"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "POLICE",
+      "actor2": "AUSTRALIA",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-36.6961",
+      "longitude": "146.91",
+      "goldstein_scale": -10.0,
+      "num_mentions": 519,
+      "num_sources": 79,
+      "num_articles": 413,
+      "avg_tone": -5.05337371884192,
+      "source_url": "https://www.armidaleexpress.com.au/story/9209870/dezi-freeman-shot-dead-after-seven-month-manhunt/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "AUSTRALIA",
+      "actor2": "POLICE OFFICER",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-36.6961",
+      "longitude": "146.91",
+      "goldstein_scale": -10.0,
+      "num_mentions": 507,
+      "num_sources": 90,
+      "num_articles": 497,
+      "avg_tone": -5.26083428444622,
+      "source_url": "https://www.yahoo.com/news/articles/fugitive-accused-killing-two-australian-232648633.html",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "",
+      "actor2": "AUSTRALIA",
+      "country_code": "AU",
+      "location": "AS",
+      "latitude": "-37.8167",
+      "longitude": "144.967",
+      "goldstein_scale": -10.0,
+      "num_mentions": 521,
+      "num_sources": 69,
+      "num_articles": 285,
+      "avg_tone": -3.64980677731031,
+      "source_url": "https://www.aol.co.uk/articles/australian-fugitive-shot-dead-police-235602834.html",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 3
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "GANG",
+      "actor2": "",
+      "country_code": "HT",
+      "location": "HA06, HA",
+      "latitude": "19.3333",
+      "longitude": "-72.5",
+      "goldstein_scale": -9.0,
+      "num_mentions": 504,
+      "num_sources": 84,
+      "num_articles": 504,
+      "avg_tone": -8.89276906371266,
+      "source_url": "http://www.sitkasentinel.com/stories/central-haitian-town-descends-into-fire-and-bloodshed-from-gang-warfare,129446",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Haiti",
+          "iso": "HT",
+          "region": "Latin America and Caribbean",
+          "sub_region": "Caribbean",
+          "threat_level": "High",
+          "active_groups": [
+            "G9 Family and Allies (Viv Ansanm coalition)",
+            "400 Mawozo",
+            "Gran Grif",
+            "Various armed gangs controlling territory"
+          ],
+          "conflict_zones": [
+            "Port-au-Prince",
+            "Artibonite Department"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "HTI-GANGS",
+          "zone_name": "Haiti - Port-au-Prince gang-controlled areas",
+          "country": "Haiti",
+          "region": "Caribbean",
+          "intensity": "High",
+          "trend": "Stable",
+          "active_groups": [
+            "Viv Ansanm coalition (G9 and allies)",
+            "G-Pèp alliance",
+            "400 Mawozo",
+            "Gran Grif",
+            "Haitian National Police (HNP)",
+            "Multinational Security Support (MSS) mission (Kenya-led)"
+          ],
+          "conflict_type": "Gang warfare / State collapse",
+          "distance_km": 89.8,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "180"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "UNITED STATES",
+      "actor2": "IRANIAN",
+      "country_code": "US",
+      "location": "USDC, US",
+      "latitude": "38.8951",
+      "longitude": "-77.0364",
+      "goldstein_scale": -9.0,
+      "num_mentions": 325,
+      "num_sources": 234,
+      "num_articles": 325,
+      "avg_tone": -4.44305123403773,
+      "source_url": "https://www.cp24.com/news/world/2026/03/29/iran-warns-us-ground-troops-would-be-set-on-fire-as-regional-diplomats-meet-on-the-war/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe / Central Asia",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "180"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "",
+      "actor2": "AUSTRALIA",
+      "country_code": "AU",
+      "location": "AS",
+      "latitude": "-35.9667",
+      "longitude": "147.733",
+      "goldstein_scale": -10.0,
+      "num_mentions": 485,
+      "num_sources": 71,
+      "num_articles": 485,
+      "avg_tone": -3.80813337021959,
+      "source_url": "https://www.brisbanetimes.com.au/national/victoria/what-we-know-so-far-about-the-death-of-fugitive-dezi-freeman-20260330-p5zjtl.html",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 3
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "MILITARY",
+      "actor2": "ISRAELI",
+      "country_code": "IL",
+      "location": "IS00, IS",
+      "latitude": "31.7667",
+      "longitude": "35.2333",
+      "goldstein_scale": -10.0,
+      "num_mentions": 504,
+      "num_sources": 51,
+      "num_articles": 504,
+      "avg_tone": -10.0564857768538,
+      "source_url": "https://www.news4jax.com/news/world/2026/03/30/israeli-parliament-to-vote-on-death-penalty-for-palestinians-convicted-of-murdering-israelis/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Hizbollah Military Wing",
+          "designation": "eu_fsf",
+          "countries": [],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-WESTBANK",
+          "zone_name": "Israel/Palestine - West Bank",
+          "country": "Israel / Palestine",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Jenin Brigade (PIJ-linked)",
+            "Tulkarm Brigade",
+            "Lions' Den (Nablus)",
+            "Hamas cells",
+            "Palestinian Islamic Jihad (PIJ)",
+            "IDF",
+            "Israeli settler violence (armed settlers)"
+          ],
+          "conflict_type": "Insurgency / Occupation",
+          "center": {
+            "lat": 31.9,
+            "lon": 35.2
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "186",
+      "actor1": "YOSEMITE",
+      "actor2": "CHRISTIAN",
+      "country_code": "US",
+      "location": "USCA, US",
+      "latitude": "37.8499",
+      "longitude": "-119.568",
+      "goldstein_scale": -10.0,
+      "num_mentions": 550,
+      "num_sources": 1,
+      "num_articles": 550,
+      "avg_tone": -4.4183386989913,
+      "source_url": "https://600kcol.iheart.com/content/2026-03-30-man-accused-of-secretly-recording-guests-at-yosemite-vacation-rental-home/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe / Central Asia",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "186"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "VICTORIA",
+      "actor2": "POLICE",
+      "country_code": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 500,
+      "num_sources": 49,
+      "num_articles": 500,
+      "avg_tone": -4.88612404714467,
+      "source_url": "https://www.bordermail.com.au/story/9209858/dezi-freeman-police-killer-shot-dead-by-officers-near-porepunkah/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "CHILEAN",
+      "actor2": "",
+      "country_code": "CL",
+      "location": "CI, CI",
+      "latitude": "-30",
+      "longitude": "-71",
+      "goldstein_scale": -9.0,
+      "num_mentions": 488,
+      "num_sources": 61,
+      "num_articles": 488,
+      "avg_tone": -11.5398169896685,
+      "source_url": "https://www.oberonreview.com.au/story/9210530/ex-nannys-fight-over-crimes-against-humanity-claims/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Chile",
+          "iso": "CL",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "Mapuche resistance groups (CAM - Coordinadora Arauco-Malleco)",
+            "Anarchist cells"
+          ],
+          "conflict_zones": [
+            "Araucanía/Biobío (Wallmapu/Mapuche conflict)"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "180"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "1822",
+      "actor1": "CHILE",
+      "actor2": "INTELLIGENCE",
+      "country_code": "CL",
+      "location": "CI, CI",
+      "latitude": "-30",
+      "longitude": "-71",
+      "goldstein_scale": -9.0,
+      "num_mentions": 488,
+      "num_sources": 61,
+      "num_articles": 244,
+      "avg_tone": -11.5398169896685,
+      "source_url": "https://www.oberonreview.com.au/story/9210530/ex-nannys-fight-over-crimes-against-humanity-claims/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Chile",
+          "iso": "CL",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "Mapuche resistance groups (CAM - Coordinadora Arauco-Malleco)",
+            "Anarchist cells"
+          ],
+          "conflict_zones": [
+            "Araucanía/Biobío (Wallmapu/Mapuche conflict)"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "1822"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAELI",
+      "actor2": "PALESTINIAN",
+      "country_code": "IL",
+      "location": "IS00, IS",
+      "latitude": "31.7667",
+      "longitude": "35.2333",
+      "goldstein_scale": -10.0,
+      "num_mentions": 487,
+      "num_sources": 58,
+      "num_articles": 447,
+      "avg_tone": -11.197026334516,
+      "source_url": "https://www.aa.com.tr/en/world/morning-briefing-march-30-2026/3884492",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "PALESTINE ISLAMIC JIHAD - SHAQAQI FACTION",
+          "designation": "us_ofac_sdn",
+          "countries": [],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-WESTBANK",
+          "zone_name": "Israel/Palestine - West Bank",
+          "country": "Israel / Palestine",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Jenin Brigade (PIJ-linked)",
+            "Tulkarm Brigade",
+            "Lions' Den (Nablus)",
+            "Hamas cells",
+            "Palestinian Islamic Jihad (PIJ)",
+            "IDF",
+            "Israeli settler violence (armed settlers)"
+          ],
+          "conflict_type": "Insurgency / Occupation",
+          "center": {
+            "lat": 31.9,
+            "lon": 35.2
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "AUSTRALIA",
+      "actor2": "POLICE OFFICER",
+      "country_code": "AU",
+      "location": "AS07, AS",
+      "latitude": "-37.8167",
+      "longitude": "144.967",
+      "goldstein_scale": -10.0,
+      "num_mentions": 456,
+      "num_sources": 76,
+      "num_articles": 456,
+      "avg_tone": -4.14364640883978,
+      "source_url": "https://www.eastlothiancourier.com/news/national/25978483.australian-police-killings-suspect-shot-dead-three-hour-stand-off/",
+      "date": "20260330",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "POLICE",
+      "country_code": "AU",
+      "location": "AS",
+      "latitude": "-27.3833",
+      "longitude": "152.067",
+      "goldstein_scale": -10.0,
+      "num_mentions": 472,
+      "num_sources": 59,
+      "num_articles": 472,
+      "avg_tone": -3.19601232142734,
+      "source_url": "https://www.moreechampion.com.au/story/9210402/owner-of-property-where-alleged-police-killer-was-shot-had-been-away-for-months/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 3
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "POLICE",
+      "actor2": "AUSTRALIA",
+      "country_code": "AU",
+      "location": "AS02, AS",
+      "latitude": "-33.2987",
+      "longitude": "146.374",
+      "goldstein_scale": -10.0,
+      "num_mentions": 472,
+      "num_sources": 59,
+      "num_articles": 472,
+      "avg_tone": -4.73800244801734,
+      "source_url": "https://www.nvi.com.au/story/9210568/how-fugitive-dezi-freeman-used-bush-to-evade-capture/",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "Middle East",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "193"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "POLICE",
+      "actor2": "RELIGION",
+      "country_code": "IL",
+      "location": "IS00, IS",
+      "latitude": "31.7667",
+      "longitude": "35.2333",
+      "goldstein_scale": -10.0,
+      "num_mentions": 464,
+      "num_sources": 58,
+      "num_articles": 464,
+      "avg_tone": -5.64877569221311,
+      "source_url": "https://news.prairiepublic.org/news-from-npr/2026-03-30/trump-weighing-all-options-on-irans-kharg-island",
+      "date": "20260330",
+      "_enrichment": {
+        "actor1_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-WESTBANK",
+          "zone_name": "Israel/Palestine - West Bank",
+          "country": "Israel / Palestine",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Jenin Brigade (PIJ-linked)",
+            "Tulkarm Brigade",
+            "Lions' Den (Nablus)",
+            "Hamas cells",
+            "Palestinian Islamic Jihad (PIJ)",
+            "IDF",
+            "Israeli settler violence (armed settlers)"
+          ],
+          "conflict_type": "Insurgency / Occupation",
+          "center": {
+            "lat": 31.9,
+            "lon": 35.2
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "RELIGION",
+      "actor2": "POLICE",
+      "country_code": "IL",
+      "location": "IS00, IS",
+      "latitude": "31.7667",
+      "longitude": "35.2333",
+      "goldstein_scale": -10.0,
+      "num_mentions": 464,
+      "num_sources": 58,
+      "num_articles": 464,
+      "avg_tone": -5.64877569221311,
+      "source_url": "https://news.prairiepublic.org/news-from-npr/2026-03-30/trump-weighing-all-options-on-irans-kharg-island",
+      "date": "20260330",
+      "_enrichment": {
+        "actor2_org": {
+          "matched_name": "Iran's Counter-Terror Special Forces",
+          "designation": "us_ofac_sdn",
+          "countries": [
+            "ir"
+          ],
+          "topics": [
+            "sanction"
+          ],
+          "match_type": "partial"
+        },
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-WESTBANK",
+          "zone_name": "Israel/Palestine - West Bank",
+          "country": "Israel / Palestine",
+          "region": "Middle East",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Jenin Brigade (PIJ-linked)",
+            "Tulkarm Brigade",
+            "Lions' Den (Nablus)",
+            "Hamas cells",
+            "Palestinian Islamic Jihad (PIJ)",
+            "IDF",
+            "Israeli settler violence (armed settlers)"
+          ],
+          "conflict_type": "Insurgency / Occupation",
+          "center": {
+            "lat": 31.9,
+            "lon": 35.2
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": "190"
+        }
+      }
+    }
+  ],
+  "google_news": [
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "FBI: Temple Israel attack was an Hezbollah inspired act of terrorism - Michigan Public",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPcWdseWhpalhJaG9fM09pV1JHckVqUC0zR0kydkdVRzZ5X0Nxalp2RmY5RFdjb0hUOTlNbE84T29rU1VhTHVyVEtGOXlaUGNaMUtwdFJHeWRjRlM0TXktMjZjeHVKNEpkclRCU2xHd2xuY3NpQTMzRjg5VGxyeEtSNzJGNE40b2otYlFndy1jT3lCd0FUbzJVZEc2NXhHV0ZYZU1oYTI0Vl8yQUpCRVUxR0VZbzNjUnJKSWZBXw?oc=5",
+      "summary": "FBI: Temple Israel attack was an Hezbollah inspired act of terrorism&nbsp;&nbsp;Michigan Public",
+      "date": "Tue, 31 Mar 2026 11:30:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "Michigan Synagogue Attack Was Act of Terrorism Inspired by Hezbollah, Federal Officials Say - Homeland Security Today",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQQnRrRnVleUpOUnUxb2YtekY1eGp0NmhvV0tCdGlqRFBLTHdJbFA0REV2b01DYTNGU1hUR0lnZG1iWkZnd2UyRE4yckxvMWlWWUJQMGRzal8zNnZ2c0RWaUVObTlRaWpjZWx5T2syQzFmNkw4ZFJscnBGTXNzXzdYVll4dHJWT2p4VHZKalMxam9CbDRLbkZzRlZUdEpsLUk1eHNGTmdoQ3hIZHZEbEx6MkxjMVgtanFfUi02SDZKWExzOWdQZ1RlV3QwQkhMX1lTYWo1SGxCbjlfN3hNTk9QRHlxMTFXWk0?oc=5",
+      "summary": "Michigan Synagogue Attack Was Act of Terrorism Inspired by Hezbollah, Federal Officials Say&nbsp;&nbsp;Homeland Security Today",
+      "date": "Tue, 31 Mar 2026 07:32:18 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "Michigan synagogue attack was Hezbollah-inspired act of terrorism, FBI says - CNN",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPYmhmOEZkUmhWQlNKVERvbTNoOEp4QlJ2aGxkVVBSYkZzLVo4dWpfQ1c3Q29XSS0zTmhiYzlJcEJHVGUyb2hENkdic2pDaFJ1Z0d5YXhEOFRUWW5rTWl1VjFob2lrZUJ3Smt2dFI2SnEwRFloZWJ2SmJpbDltQzk2Q1o3cDAzRk9ib0lETE1GWQ?oc=5",
+      "summary": "Michigan synagogue attack was Hezbollah-inspired act of terrorism, FBI says&nbsp;&nbsp;CNN",
+      "date": "Mon, 30 Mar 2026 19:24:17 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "terrorist plot foiled",
+      "title": "Kuwait, Jordan condemn foiled terror plot targeting Bahrain - سانا",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBwUWpSYndJWmR4cDE2V1JvUFJ4cWdqUWNkUjdDUTRxN25GS2hTd0RHa2tWcVdyZ1ZLQUFNM1JqQ1BMTl9GWi1VRlc2NV9BbExRS1VJ?oc=5",
+      "summary": "Kuwait, Jordan condemn foiled terror plot targeting Bahrain&nbsp;&nbsp;سانا",
+      "date": "Tue, 31 Mar 2026 14:30:58 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "terrorist plot foiled",
+      "title": "France foils Paris bomb plot outside US bank, opens anti-terror probe - France 24",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNMzZMeTZPMHhSa2Z4bi1jdXZYUENabTd2QS1IOHp2SGgtZFFKSTJYbnpCOW9XUy1XVzdiRUJaVDN2cWFiOVJGVEhkZEh2bHUzRk9COEljc0xrdmpiYnNiRDlubVVhWVFEcEtzRmpiZ3VGQi0zSzVYWXVMdTdpdUE2UjcyRGNSeWhXSllobUVnVFNZUko0OFIwYUFBenR6ZGxuU0ktTTRQcTU5bndXUFhhRUxDWmV3bC00UFNKcDNMT2ZEVWs?oc=5",
+      "summary": "France foils Paris bomb plot outside US bank, opens anti-terror probe&nbsp;&nbsp;France 24",
+      "date": "Sat, 28 Mar 2026 14:18:24 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "terrorist plot foiled",
+      "title": "Kuwait says it foiled ‘Hezbollah-linked’ plot targeting state leaders - Anadolu Ajansı",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPTUdkaURGcVp0ODN6bjFaRWxzR0Z6TnBaanNUU0Z4LUpUMk1BZFdfNUtrNkM5QmdRY004VUVLenUzdFNEOVhHZi1sajEtQzV6TnRUbk52dWxpYVh4OVNSU3lNeGFxZWVfZHpyUjNrQldVSGNVeWIwNFNQTWJraFdxUjJSMlJTdFpTQW9HWkFaek5VdjFVcnNkRXlKcXN0VUpHamZPREp5SEJkMS1KVjl6YnpR?oc=5",
+      "summary": "Kuwait says it foiled ‘Hezbollah-linked’ plot targeting state leaders&nbsp;&nbsp;Anadolu Ajansı",
+      "date": "Fri, 27 Mar 2026 07:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "terrorist plot foiled",
+      "title": "Pro-Palestinian activist filed lawsuit alleging threats weeks before foiled firebomb plot - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQOHFTQmdadDMyNjdkZTUxX1VUNlh3ZFE5amlicEtFQTN4SVgxZ3FPQlZyZUJ3OTd2N1BuMnlaUzV5YXhYZ0tIekRnSldWbXAzekpzdWU5dlRBcHQ2YTFSb2Rfdkd1S1pMSFNfWGY0ZUI0d0ptYlllRDBZa3lVWVcwYjFscEM2b0VYZGhFRjdLVVRsems?oc=5",
+      "summary": "Pro-Palestinian activist filed lawsuit alleging threats weeks before foiled firebomb plot&nbsp;&nbsp;NBC News",
+      "date": "Sun, 29 Mar 2026 15:16:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "terrorist plot foiled",
+      "title": "France probes possible Iran link to foiled bomb attack outside Bank of America in Paris - Le Monde.fr",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNMVRFSFZTMW9LVHZVRkJkVFRXbndOcGp5SE5BdXpOWXZWcjBReXMxRVhMU1lZdzg0ZXExYjc0ajQwNTRrdzNjaS1YM1VUcEQzUWpWVmNMam5jMU9TMjROQld1eUV6U3FvUnVRdE1EX3JFcGtoTU11VzlXZTV2aG9URzNZSmRpQjhJY045R3J5VERmZTg0OTVhRVY5cS1lM2RQeVQwMHFyTFdrUDZtS2Uta1lvQlRYR1g2aExOclpFeTV3ZWJyUURoNDN0eFV3bDJBelZBX1d3T1dHU0ljM3c?oc=5",
+      "summary": "France probes possible Iran link to foiled bomb attack outside Bank of America in Paris&nbsp;&nbsp;Le Monde.fr",
+      "date": "Mon, 30 Mar 2026 10:25:57 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "ISIS ISIL Islamic State beheadings etc - AOL.com",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBFcFBUV1IzblBickllNHlFeTljZEp1SC1tMGphVGM2ZktWYWpmaTdTM19xeDU5OENZN1BEMFgzTWhMeHZjOTEwV3VuMS1ESHVOdllDSVMzSk1WTS10d2c?oc=5",
+      "summary": "ISIS ISIL Islamic State beheadings etc&nbsp;&nbsp;AOL.com",
+      "date": "Sat, 28 Mar 2026 19:31:29 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "ISIS terror attacks launch new phase against Syrian leaders - The Jerusalem Post",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1xRDdWT3dxamlKeTVJRVJBSWdlRTZaRnZPeGJ5NEpELWZTcnhhc2MtQUNfeGE0V2R4bkpVWGNxT0p4b2tMZGVmUmppcGNkdVJwcGtsRHFjVUw0SnhNR2dKbllRWld2ZXdWN2ItdA?oc=5",
+      "summary": "ISIS terror attacks launch new phase against Syrian leaders&nbsp;&nbsp;The Jerusalem Post",
+      "date": "Sun, 22 Feb 2026 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "Islamic State in Iraq and Syria - Expansion, Terror, Insurgency - Britannica",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxObXpLa2pzNUpHeThNYnppdmZGUzZDMkFJd2V3Xy1saE4yTGgwT2tGVEpzVUkwRlE1OGFXYnRiYnh2dHVYVWNScGs0c09WR0dsaVozUHBiWFhZLVNnbHZfVEI3WXczaGtQaTlIUzliYVpmZ2RpNlZtcU5pc1RTbVFTSTZuYXc3XzMwbzUxZUExOTdiSTVlcDBtWHNiVWdOWkJoSGc?oc=5",
+      "summary": "Islamic State in Iraq and Syria - Expansion, Terror, Insurgency&nbsp;&nbsp;Britannica",
+      "date": "Fri, 06 Feb 2026 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "US launches new attacks against ISIL in Syria over deadly ambush - Al Jazeera",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNYm53dHEwclRYRUR1QkZpNkVyNktwZWI5ZmpDekxiT1FqT2hjRG9VOVdTdjBHT2JyREotRUM5NE8teUI4eTAzR0RqSkFraVFHckdZRWhEcHBEVzNjQzNkR3BZOF83d0gxdi1TUGo4blp0ZElpbTNlb0sydm9tSnJpMm12NERKYmJPRVI1d1pabXNpcHRaY01ueHlRRFBSYXJTbWNWbzdWWkpzdmxNY3dZaVIwUVfSAboBQVVfeXFMT3d0X0RTWEpEbVo5N2I0dFJkelJGYlUzcHJBOE9ETXhnNGtmd1dfMGYtNkQ0MXQ5bEloTE14Yy1LcklDRGViMnYwSVhJb0J2d0ExODFCbVgzOFJDamtHN2lNaTY3QUtHVHU2Y0tIREtucXhaQmxOcjZ4QmpPNy1DcnJ6d0RocDAtSkllaXRzMGh1SU10M2lnbE9YdXpGd0ZVenh2V0N1dWVnRUF1QWhaTXkwZ3kzVjRBc25n?oc=5",
+      "summary": "US launches new attacks against ISIL in Syria over deadly ambush&nbsp;&nbsp;Al Jazeera",
+      "date": "Sat, 10 Jan 2026 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "What is the status of Islamic State, the group linked to the Bondi attacks? - The Guardian",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOdjN2VEgxMzFmUXBkVnZ6ZlFBT3ZBYWh2UWFCVjByVFkzOUl4QndUM3FTREF4QS1vVGRvNF9oSHpweFg3REtrT21mVk1sb081dW9zdUFNcjc3NDB4cGt4MnBxYm5OdzJOZTFmLUloUjRTQ0RmRmd2bmh4NkZ0VjJSOU5fc3ZiaTVLSkROWHdORTgxdkhMYmtPSkprWmhwUXNRUjA3RThmYw?oc=5",
+      "summary": "What is the status of Islamic State, the group linked to the Bondi attacks?&nbsp;&nbsp;The Guardian",
+      "date": "Mon, 22 Dec 2025 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "A Portrait of the Islamic State’s British Propagandist Ifthekar Jaman - The Jamestown Foundation",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOdTRmWTI5aFQ1T01FdFg2c1d4THB2MFlNc1Y1ZU4xR0Q0b1Y0YndQek1zWlU2YTV4ZDBlVzRUdF9fc0ZlUENoSzBROTNZdDE5REw0MVM0cnAxVzlQenJQaFBJVVNIbUpIN0ZrOXpWMmlmTWZINmNpcDZla05ZbWtiWjlnTnlMaF91YWF4c00zUWxvS0VKR3c?oc=5",
+      "summary": "A Portrait of the Islamic State’s British Propagandist Ifthekar Jaman&nbsp;&nbsp;The Jamestown Foundation",
+      "date": "Fri, 14 Nov 2025 23:06:36 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "Islamic State Kills 15 Christians in North-Eastern Nigeria, Demands Conversion to Islam - Barnabas Aid",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPYy1oUTJhZlo3aE96TUs0QzBZYUdzVXNKVlRFdXduWjR2bkRxd3NaUGJKU2FRY3ZURXBVZkZOOTNrbG5PUDIzZU1HT0liWk1JbFhGRzl1UWZldUNYTnFqNUhDRnZaRV9SRWlHSmdWMTFzWkRweVVLZnROLThwQlJHRWFoSzh3T3lkcVBxem55YkFnMWRNWEE3eFA4TFlNSTBMbG4zQ2NzUFVDV0FSb3c?oc=5",
+      "summary": "Islamic State Kills 15 Christians in North-Eastern Nigeria, Demands Conversion to Islam&nbsp;&nbsp;Barnabas Aid",
+      "date": "Mon, 05 Jan 2026 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "Syria says key ISIL leader Taha al-Zoubi captured near Damascus - Al Jazeera",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNb1hHQkN0Z3JOdmRDNlRFQzFVS0lCRURQV0dlVGlXVUduX2kzMTRjTV9lV1ZtYldoQ0hxUTJLMVBfOUM4VE12QWdyQjM0dThEcnRDVjkwY1Y1NEF0Tm5xYW9CcWxJTUZYNnMzY1ljNVAtemtFb3JQMlBRLXRENVUxSXN3cWZxdERIN2ZtZ25zQ3d2Z9IBlwFBVV95cUxNMDNGZzdlaGVKTHR2NllPZnBxZVhfejZQc0VsTjBLY19QMWtzc05NMWRQSGMtVDBPU0pBS2hOeWpIeXhWcXV6NEM1OW9UeEdpYmhybU5ZcTYxemVSb0QxZ05qNl9ZSlVtWkwyWE5xdEE2NWw1eDJuWElIYlV1WE96MWtybUlaSzFxeVVaTHhfdi1JZmRLMXNV?oc=5",
+      "summary": "Syria says key ISIL leader Taha al-Zoubi captured near Damascus&nbsp;&nbsp;Al Jazeera",
+      "date": "Wed, 24 Dec 2025 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Al-Qaeda | History, Meaning, Terrorist Attacks, & Facts - Britannica",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1tRUZTek1TVFhIZ3BDSFMybURjTlhfZVRrSTZ6MzJTOEo2YlBncElMaG4yZkVreXhKY2dMc051Y19TUnAwVnVCVTBhQ3plVWpFLXpn?oc=5",
+      "summary": "Al-Qaeda | History, Meaning, Terrorist Attacks, & Facts&nbsp;&nbsp;Britannica",
+      "date": "Mon, 02 Mar 2026 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Will Al-Qaeda Actually Fight for Iran? - Small Wars Journal",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNVXVSdlZmaFNaZE96cmJuZjY2N3NZM3k2VmozQnVQaEx4X0pUTVZjUTF1WTUwLWFBMWx4bEpGVGFhZ1RNakRtU3hRQTROZHhuR1d3eFNrME5pWmdEa1laeV9mMjhPTzZqdU93NTUzRVV4YlJSdUJGdTY1TFJlVHJpd1psSUE?oc=5",
+      "summary": "Will Al-Qaeda Actually Fight for Iran?&nbsp;&nbsp;Small Wars Journal",
+      "date": "Fri, 06 Mar 2026 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Al-Qaeda’s Cyber Jihad Movement: Plugging into Iran’s Wartime Hacktivist Ecosystem - Global Network on Extremism and Technology",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNMEVaNGwxbW9jSEM0NUFzMUtrYVJMNWVLSVpOYVJkQ1RDa1hJckhHTVJMTmF4alZuM0liLVZTY0xNQldINHRyV0RCUWloeHBiQUlWVTFHMUZRdlk3bUFid1RWck1nenctV3ZHWDBRT2JFazRhMjY4UnNfSEx6emNwNVVrb09YREQ0bTVsQ3l3V2ttclpkU3Q3SlNvUVF3ME42UGtxTUVJRzJNXzJzR0ZPZ09XMVJOTGg1?oc=5",
+      "summary": "Al-Qaeda’s Cyber Jihad Movement: Plugging into Iran’s Wartime Hacktivist Ecosystem&nbsp;&nbsp;Global Network on Extremism and Technology",
+      "date": "Mon, 23 Mar 2026 07:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Al-Qaeda’s Third Phase - mwi.westpoint.edu",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1LVVdScTU3Mm52NlhiTEx0b2FKZlNCTGljbF95V3lUcmc1b21oVlVvYnVpQkgyXzdueHlhN19wRlZVYlNZelB3bXBqamNVNmcxRzNxaGVRMEl1bGhG?oc=5",
+      "summary": "Al-Qaeda’s Third Phase&nbsp;&nbsp;mwi.westpoint.edu",
+      "date": "Tue, 03 Mar 2026 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "China Now Finds Itself in al-Qaeda’s Crosshairs - War on the Rocks",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZXFNVHFoVzc4TV9NYmRvbHdSZjA2LVotd2JYY0VtOUpFeHpYVGdYM3M0N0NyTlB6S2dzZ0x1UFZBOWIyaWRPOHZYT1ZqM2V3NU5lTF9fZXpwdmZIVWFvZG13aXR3TkNkNlB6dENmQnQyZmFlTXViUk1ERXU0cmNXSmMzNHBab2xI?oc=5",
+      "summary": "China Now Finds Itself in al-Qaeda’s Crosshairs&nbsp;&nbsp;War on the Rocks",
+      "date": "Wed, 18 Feb 2026 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "President Biden on Counterterrorism Operation in Syria - C-SPAN",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNYkZyWk9nempRMU94TWxSSFJRV1V0UnRJZDRRdnBRMWxBLW9sQl9rTk5HbkhCZzdtQzBCejBYYnRYcjJtZlVzREQ2R0RGbHBNamhzYm5DdHhXeTl2Nk1sVExqdUxRbno3Q1NHRnFONmxmcVZiRmN5WHlyZlBfTmZwSlZIaUh2NjY3OXY5MU9xdU8?oc=5",
+      "summary": "President Biden on Counterterrorism Operation in Syria&nbsp;&nbsp;C-SPAN",
+      "date": "Fri, 27 Mar 2026 06:47:03 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "counterterrorism operation - cbn.com",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5taC1WbzByMFczT056aHZBU2JrZDNYd095Y1ZQLWdxMUp5cy1JbHkwZE1UcVoxN0pId0xIS2NuN25ST0t5TDJ4anhLdXo?oc=5",
+      "summary": "counterterrorism operation&nbsp;&nbsp;cbn.com",
+      "date": "Sun, 29 Mar 2026 10:40:23 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "Plot to Firebomb Palestinian Activist's Home Disrupted by NYPD Undercover Operation, Authorities Say - U.S. News & World Report",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPNDM0Qy1zTUtPTFA5c2lDV18wOGRqR0g1OVEzRmZQdG1va0NFc19QOGlrOUdqZU8yMmdTa2F4QzFZN0JZRGQ1QXg0ejRGQzZDeFZOc0tONGQtYWxRSmszbVVqM3VGOGxVbTRqcXpyTF91azV6c3dTVTQ3dEExRktfS1hhZ3RUeThBZFNBdUxCTVNPaUR5UUcySVd1bFJpUzBOUnZTcXZSMTlBNWJaamtCWE9od2VvSUhSWnY4Rw?oc=5",
+      "summary": "Plot to Firebomb Palestinian Activist's Home Disrupted by NYPD Undercover Operation, Authorities Say&nbsp;&nbsp;U.S. News & World Report",
+      "date": "Fri, 27 Mar 2026 16:52:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "Top US counterterrorism official resigns over Iran military operation - nhk.or.jp",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1TN3pURW1FakwzNTJ5ai0xdkVMcUNNMXdmWTVOSm1pX1c4QTNDWk45WTZyRERDM2lFSU02blZXanZMNzc5UHFzc282cm1sV3VSTGJPa3g5R0RkUnFCUkQ2WmNB?oc=5",
+      "summary": "Top US counterterrorism official resigns over Iran military operation&nbsp;&nbsp;nhk.or.jp",
+      "date": "Tue, 17 Mar 2026 07:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "Israel Launches New Counterterrorism Operation in Northern West Bank - Foundation for Defense of Democracies",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOYnJlLUJmWl9GV1BJNXZ3TmpfR3FJMTRpbzdnWXB0My1Ic28wcXNtSlY4QTBNNDlRVVdLVFlkNEl2d0FLcmducTdiYldDeUl5SlRXRFVMeU53Smw1ZHNsYTZWb0I1bGEtdFlYeDdlTWNqZkFudDhLSjdzSXdBN3ZQVTJCUlNyanRZZ0h6NFNCdUlyNXF4TXhCajdoV2YzVjZpU0IzNGJIN21CUTZVOUE?oc=5",
+      "summary": "Israel Launches New Counterterrorism Operation in Northern West Bank&nbsp;&nbsp;Foundation for Defense of Democracies",
+      "date": "Wed, 26 Nov 2025 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "IDF launches large-scale counterterrorism operation in Hebron area - The Jerusalem Post",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5KUHZQZ1FaZnBsNFp1VGlORFFWZmFSc1M5Sjc1WkJXN1d3WTNBeEhVSURIMkN5MTgwdjFxVmRybDJRbzgtRG1qX1I4dWVRNmVLUG5qbzc4bjNnUzBR?oc=5",
+      "summary": "IDF launches large-scale counterterrorism operation in Hebron area&nbsp;&nbsp;The Jerusalem Post",
+      "date": "Mon, 19 Jan 2026 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "extremist threat",
+      "title": "Women harvest hope as extremist threat grows in Benin - swissinfo.ch",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNc1FvU1NZa1JlVV8xTGlmcnBkZGJjaEt1WGpyc3FEQXBheTZlYzFPYjN4Vng1eWtNS3VZMkNwb3MwalBjS25wenZtUmVUSkxMcC1FZTh5M3hGM1R1Zk1jQ2N1bXZFWFBpVF84RlpXUWp2MUt4N1lnN0ZiYkxoSGM0X091MVAwdEpPOEpjeXllQkdwVldYQzM1X1ZIWFB1cHdIajA0?oc=5",
+      "summary": "Women harvest hope as extremist threat grows in Benin&nbsp;&nbsp;swissinfo.ch",
+      "date": "Fri, 27 Mar 2026 08:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "extremist threat",
+      "title": "The ungoverned sky: Drones and the domestic extremist threat - Lowy Institute",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPVktsc2ZsYUhWZ3YyWDJKUHAzaHQ4QnRIcEFUOUlnbXpvenBsdzUxc1Q1eEgwNG1iWmo3ZTN1ZTZnTFNobUJES1BqTFlwTTk5NTZEVWFVT1VOMndyMkQzTHFibXhvZU5rajZKY05Ua29ub3M1Z2U0d3B1RjZPY2VNQ29CVHhqRnZTVi1JQUgwXzh4MVVn?oc=5",
+      "summary": "The ungoverned sky: Drones and the domestic extremist threat&nbsp;&nbsp;Lowy Institute",
+      "date": "Sun, 22 Mar 2026 07:00:00 GMT"
+    },
+    {
+      "source": "google_news",
+      "query": "extremist threat",
+      "title": "How the Iran Conflict Could Drive a New Wave of Terrorism in the West - Vision of Humanity",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOOG1aa181cGxYSHU4QjllaUk3R1dnZlpHREpCd084d2Fid3BnaFNieGhoclVGdWVWTk42R0F4Q2pnaU11Y0hjbDYwRmlQRVA1M0VSSi0tazN0UG54S1pnY3Z1bm12bmd2VGpqblpiN2xFTXJLUG8wdTVEeWhTYnlQUHFLM3M4Z1lwWEdSWmFzV1VBeWNFYUM5a1NCMC1MS0xJR1puTUN3?oc=5",
+      "summary": "How the Iran Conflict Could Drive a New Wave of Terrorism in the West&nbsp;&nbsp;Vision of Humanity",
+      "date": "Wed, 25 Mar 2026 00:46:12 GMT"
+    }
+  ],
+  "expert_rss": [
+    {
+      "source": "rss/Long War Journal",
+      "title": "Israel kills Al Manar employee Ali Shuaib, says he was a Hezbollah military operative",
+      "url": "https://www.longwarjournal.org/archives/2026/03/israel-kills-al-manar-employee-ali-shuaib-says-he-was-a-hezbollah-military-operative.php",
+      "summary": "Israel targeted and killed Ali Shuaib, an employee of the Hezbollah TV station Al Manar, and two others who worked for the pro-Hezbollah Al Mayadeen channel. The Israel Defense Forces claimed Shuaib was a Hezbollah Radwan Force operative using his journalistic credentials to monitor Israeli troop movements.\nThe post Israel kills Al Manar employee Ali Shuaib, says he was a Hezbollah military operat",
+      "date": "Tue, 31 Mar 2026 14:05:30 +0000",
+      "feed_name": "Long War Journal"
+    },
+    {
+      "source": "rss/Long War Journal",
+      "title": "Home of Kurdistan Region president targeted, American universities threatened as attacks escalate in Iraq",
+      "url": "https://www.longwarjournal.org/archives/2026/03/home-of-kurdistan-region-president-targeted-american-universities-threatened-as-attacks-escalate-in-iraq.php",
+      "summary": "A drone attack targeted the residence of Kurdistan Region of Iraq President Nechirvan Barzani amid escalating strikes in Iraq on March 28, followed by a drone interception near the home of Masoud Barzani, leader of the Kurdistan Democratic Party (KDP), the following day. Iranian-backed militias and Iran have been blamed for attacks across Iraq, including more than 500 drone and missile strikes aga",
+      "date": "Mon, 30 Mar 2026 19:51:29 +0000",
+      "feed_name": "Long War Journal"
+    },
+    {
+      "source": "rss/Soufan Center",
+      "title": "One Month In: Economic Imbroglio and Supply Chain Disintegration",
+      "url": "https://thesoufancenter.org/intelbrief-2026-march-31/",
+      "summary": "A month into the Iran War, hostilities show no signs of letting up and the realities of disrupted global supply chains and destroyed energy assets are setting in. The Houthis, the Iran-backed group in Yemen, have now become party to the conflict, signifying that the economic shockwaves caused by the closure of the Strait of [&#8230;]\nThe post One Month In: Economic Imbroglio and Supply Chain Disin",
+      "date": "Tue, 31 Mar 2026 04:01:15 +0000",
+      "feed_name": "Soufan Center"
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Tsalikov’s Detention Marks Major Blow to Shoigu’s Inner Circle",
+      "url": "https://jamestown.org/tsalikovs-detention-marks-major-blow-to-shoigus-inner-circle/",
+      "summary": "Executive Summary: On March 5, the Investigative Committee of Russia detained Ruslan Tsalikov, the former first deputy minister of defense of Russia. Tsalikov has arguably been Russian Secretary of the Security Council Sergei Shoigu’s closest associate throughout his career. The committee is charging him with organizing a criminal organization whose members embezzled state funds between [&#8230;]\n",
+      "date": "Tue, 31 Mar 2026 23:12:41 +0000",
+      "feed_name": "Jamestown Foundation"
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Iran Conflict Derails Eurasian Transport Development",
+      "url": "https://jamestown.org/iran-conflict-derails-eurasian-transport-development/",
+      "summary": "Executive Summary: The effect of the conflict in Iran has widened beyond the combatants to Central Asia and the South Caucasus. For years, these countries have been pursuing overland transport links with Iran. Iran has been intensifying its transport diplomacy with Central Asia for more than a decade to mitigate international sanctions and strengthen cooperation, [&#8230;]\nThe post Iran Conflict D",
+      "date": "Tue, 31 Mar 2026 23:09:54 +0000",
+      "feed_name": "Jamestown Foundation"
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Russia at Risk of Losing Control of Railways in Armenia",
+      "url": "https://jamestown.org/russia-at-risk-of-losing-control-of-railways-in-armenia/",
+      "summary": "Executive Summary: Russia’s once powerful railways once dominated both the entire Soviet space and the Soviet empire abroad. They are now at the point of collapse, however, both domestically and internationally. Within the Russian Federation, Russian Rail is suffering from sanctions, aging equipment, and a lack of investment that is reducing its effectiveness in tying [&#8230;]\nThe post Russia at ",
+      "date": "Tue, 31 Mar 2026 23:00:02 +0000",
+      "feed_name": "Jamestown Foundation"
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "The Myth of the PRC’s Overseas Energy Vulnerability",
+      "url": "https://jamestown.org/the-myth-of-the-prcs-overseas-energy-vulnerability/",
+      "summary": "Executive Summary: The notion that the People’s Republic of China (PRC) remains excessively dependent on foreign energy imports has gained continued traction in Western policy discourse. Some analysts argue that U.S. military action against Iran would significantly undermine the PRC’s energy security, while others suggest that a U.S. naval blockade of the Strait of Malacca [&#8230;]\nThe post The M",
+      "date": "Tue, 31 Mar 2026 19:11:20 +0000",
+      "feed_name": "Jamestown Foundation"
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Kremlin Inadequately Responds to Increased Ukrainian Strikes",
+      "url": "https://jamestown.org/kremlin-inadequately-responds-to-increased-ukrainian-strikes/",
+      "summary": "Executive Summary: Ukraine has significantly increased the number of strikes in Russian territory. In mid-March, Ukraine’s armed forces launched a hundred rocket and drone attacks on Russia over the course of one week. Oil depots, microelectronics facilities, and energy infrastructure sites were attacked. According to independent military experts, this intensification is linked to the increase [&#",
+      "date": "Mon, 30 Mar 2026 20:53:46 +0000",
+      "feed_name": "Jamestown Foundation"
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Putin’s War Calculus Keeps Oscillating as Spring Offensive Stumbles",
+      "url": "https://jamestown.org/putins-war-calculus-keeps-oscillating-as-spring-offensive-stumbles/",
+      "summary": "Executive Summary: The effect of the ongoing conflict in the Persian Gulf on Russia’s war against Ukraine grows more complex as the parties of both conflicts experience attrition of various kinds. Russian commentators tend to exaggerate Iran’s capacity to withstand air assaults, but also suggest that the U.S. leadership cannot accept anything less than a [&#8230;]\nThe post Putin’s War Calculus Kee",
+      "date": "Mon, 30 Mar 2026 20:49:20 +0000",
+      "feed_name": "Jamestown Foundation"
+    },
+    {
+      "source": "rss/ICG CrisisWatch",
+      "title": "Israel 31 March 2026 #1",
+      "url": "https://www.crisisgroup.org/content/israel-31-march-2026-1",
+      "summary": "Israel 31 March 2026 #1\n\nlalasor\n\nWed, 04/01/2026 - 00:34\n\n  Israel\n    \n            Wed, 04/01/2026 - 12:00\n\n  31 March 2026 \n  Prime Minister Netanyahu&nbsp;asserted: \"We have dealt ten plagues upon the Axis of Evil: The blow to Hamas in Gaza, the blow to Hizbollah in Lebanon, the blow to Assad in Syria, the blow to terrorist organizations in Judea and Samaria, the blow to the Houthis in Yemen, ",
+      "date": "Tue, 31 Mar 2026 22:34:38 +0000",
+      "feed_name": "ICG CrisisWatch"
+    },
+    {
+      "source": "rss/BBC World",
+      "title": "Israel says it will keep control over part of southern Lebanon after war with Hezbollah ends",
+      "url": "https://www.bbc.com/news/articles/c5yx8knpr5no?at_medium=RSS&at_campaign=rss",
+      "summary": "Defence Minister Israel Katz also says houses in Lebanese villages near the Israeli border will be demolished.",
+      "date": "Tue, 31 Mar 2026 18:57:25 GMT",
+      "feed_name": "BBC World"
+    },
+    {
+      "source": "rss/BBC World",
+      "title": "US journalist Shelly Kittleson kidnapped in Baghdad",
+      "url": "https://www.bbc.com/news/articles/c5yled478zwo?at_medium=RSS&at_campaign=rss",
+      "summary": "The US state department says a suspect in her abduction has ties to an Iran-backed militia group, Kataib Hezbollah.",
+      "date": "Tue, 31 Mar 2026 21:08:35 GMT",
+      "feed_name": "BBC World"
+    }
+  ],
+  "sanctions": [
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-8SREEF6aodrJGQyAywTkGE",
+      "name": "ABD ALLAH MOHAMED RAGAB ABDEL RAHMAN",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-EF5vrJVsqtBrtC2JWYdTvW",
+      "name": "ABDELKADER LAAGOUB",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-2XAfkJ9t2UuWnoRG5EBoYu",
+      "name": "ABDULHAI SALEK",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-7uG8mQjRPD3n3qRvtqpaJj",
+      "name": "ABDULLAH ANSHORI",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-DzKL8PVWm9BtkXXAXCXyvf",
+      "name": "ABU RUSDAN",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-BYiLZjBY7qQ4kgnjVxTUcz",
+      "name": "AKHTAR MOHAMMAD MANSOUR SHAH MOHAMMED",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-8H924sMpeBQ6WhcWPwWxQQ",
+      "name": "AL-BASHAIR TRADING COMPANY, LTD",
+      "schema": "LegalEntity",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-24UMVkuxF3svsAtg55i3Zi",
+      "name": "ALBAHR ALAAHMAR ENERGY FZE",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-9rbvRsjDY4WANyXSjXR37X",
+      "name": "ALFA COMPANY LIMITED FOR INTERNATIONAL TRADING AND MARKETING",
+      "schema": "LegalEntity",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-4sjXgiXRPLpxp2nTMPHQ2s",
+      "name": "AREFULLAH AREF GHAZI MOHAMMAD",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-67MsqQpz2FJVtc5iZKJYHJ",
+      "name": "ATTIQULLAH AKHUND",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-269FgFWmRnEQYD79aLnKvZ",
+      "name": "AURORATOOLS LIMITED LIABILITY COMPANY",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-27kCkL6ZkA9sQHTR33Hdy7",
+      "name": "AUTO PARTS EAST FZCO",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2HbEwu7mTtP5JEG2gJSwns",
+      "name": "Abderrahim MELHAOUI",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2Z6Uqy952YNaBLGuLcQkVm",
+      "name": "Afdelingen for informationsteknologier i Moskva",
+      "schema": "Organization",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2tnXEUX8MatnsHoxKuX7AU",
+      "name": "Aghajari Oil & Gas Production Company (AOGPC)",
+      "schema": "Organization",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2tYJLM4cSWGXfrUcg4cCxw",
+      "name": "Ahmad BIGDELI",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2mMpw4fhEYmdswP7EQHfMP",
+      "name": "Ahmed Mohamed Zakaria KHALIL",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2c4wZWM8NvGdwZXqoZuXYV",
+      "name": "Al-Quds Brigades",
+      "schema": "Organization",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-2DQ4pALqrj96E9LmepJzcM",
+      "name": "Alexander Franz Josef Lins",
+      "schema": "Person",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-28y6Tj4fTckkqGiUTHMS4k",
+      "name": "Anatolij Bulavko",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-24k9PZGKdYTmzHPDJfTUSR",
+      "name": "Angel Daniel BALESTRINI JARAMILLO",
+      "schema": "Person",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-276gB7L8sFEhctkuEpZsus",
+      "name": "BANK SADERAT PLC",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-23rgYEXa9AHtupZKgS8Tbc",
+      "name": "Bahram Ali SHAYESTEH",
+      "schema": "Person",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-27vgWCH4uAFBmxLHgFFT5T",
+      "name": "Benoil Shipping Inc",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2eSovXusPLMpHzymK3Xvt7",
+      "name": "Berdia PERADZE",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-2DQiSvDR3XviP4pmwB5W4e",
+      "name": "Black Shield Company for General Trading LLC",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-29QcaMHzMvFWn3ATpveD8Q",
+      "name": "CORPORATIVO FEARFI, S.A. DE C.V.",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-26AoxGCbHCgUqfhejBQepF",
+      "name": "Centrul de detenție al Ministerului Securității Statului (MSS) din districtul Onsong",
+      "schema": "Organization",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2EwBQAzM9Akx3YxZDCYBKM",
+      "name": "Consejo Supremo Electoral",
+      "schema": "Organization",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    }
+  ],
+  "ofac": [
+    {
+      "source": "ofac",
+      "title": "Counter Narcotics Designations Removals; Russia-related Designations Removals",
+      "url": "https://ofac.treasury.gov/recent-actions/20260331"
+    },
+    {
+      "source": "ofac",
+      "title": "Sanctions List Updates",
+      "url": "https://ofac.treasury.gov/recent-actions/sanctions-list-updates"
+    },
+    {
+      "source": "ofac",
+      "title": "Publication of Sanctions Advisory: Guidance on Sham Transactions and Sanctions Evasion",
+      "url": "https://ofac.treasury.gov/recent-actions/20260331_33"
+    },
+    {
+      "source": "ofac",
+      "title": "Regulations and Guidance",
+      "url": "https://ofac.treasury.gov/recent-actions/regulations-and-guidance"
+    },
+    {
+      "source": "ofac",
+      "title": "Publication of Venezuela-related Frequently Asked Question",
+      "url": "https://ofac.treasury.gov/recent-actions/20260331_66"
+    },
+    {
+      "source": "ofac",
+      "title": "Miscellaneous",
+      "url": "https://ofac.treasury.gov/recent-actions/miscellaneous"
+    },
+    {
+      "source": "ofac",
+      "title": "Issuance of Amended Russia-related General License; Publication of Amended Russia-related Frequently Asked Questions",
+      "url": "https://ofac.treasury.gov/recent-actions/20260330"
+    },
+    {
+      "source": "ofac",
+      "title": "General Licenses",
+      "url": "https://ofac.treasury.gov/recent-actions/general-licenses"
+    },
+    {
+      "source": "ofac",
+      "title": "Global Magnitsky Designations Removals; Russia-related Designations Removals",
+      "url": "https://ofac.treasury.gov/recent-actions/20260327"
+    },
+    {
+      "source": "ofac",
+      "title": "Sanctions List Updates",
+      "url": "https://ofac.treasury.gov/recent-actions/sanctions-list-updates"
+    },
+    {
+      "source": "ofac",
+      "title": "Issuance of New and Amended Venezuela-related General Licenses",
+      "url": "https://ofac.treasury.gov/recent-actions/20260327_33"
+    },
+    {
+      "source": "ofac",
+      "title": "General Licenses",
+      "url": "https://ofac.treasury.gov/recent-actions/general-licenses"
+    },
+    {
+      "source": "ofac",
+      "title": "Belarus Designations Removals; Issuance of Belarus General License; Rescission of Belarus Directive 1",
+      "url": "https://ofac.treasury.gov/recent-actions/20260326"
+    },
+    {
+      "source": "ofac",
+      "title": "Sanctions List Updates",
+      "url": "https://ofac.treasury.gov/recent-actions/sanctions-list-updates"
+    },
+    {
+      "source": "ofac",
+      "title": "Issuance of Venezuela-related General License",
+      "url": "https://ofac.treasury.gov/recent-actions/20260324"
+    }
+  ],
+  "event_clusters": [
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "FBI: Temple Israel attack was an Hezbollah inspired act of terrorism - Michigan Public",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPcWdseWhpalhJaG9fM09pV1JHckVqUC0zR0kydkdVRzZ5X0Nxalp2RmY5RFdjb0hUOTlNbE84T29rU1VhTHVyVEtGOXlaUGNaMUtwdFJHeWRjRlM0TXktMjZjeHVKNEpkclRCU2xHd2xuY3NpQTMzRjg5VGxyeEtSNzJGNE40b2otYlFndy1jT3lCd0FUbzJVZEc2NXhHV0ZYZU1oYTI0Vl8yQUpCRVUxR0VZbzNjUnJKSWZBXw?oc=5",
+      "summary": "FBI: Temple Israel attack was an Hezbollah inspired act of terrorism&nbsp;&nbsp;Michigan Public",
+      "date": "Tue, 31 Mar 2026 11:30:00 GMT",
+      "cluster_size": 3,
+      "articles": [
+        "FBI: Temple Israel attack was an Hezbollah inspired act of terrorism - Michigan Public",
+        "Michigan synagogue attack was Hezbollah-inspired act of terrorism, FBI says - CNN",
+        "Islamic State in Iraq and Syria - Expansion, Terror, Insurgency - Britannica"
+      ],
+      "matched_rss": [
+        "Israel kills Al Manar employee Ali Shuaib, says he was a Hezbollah military operative"
+      ],
+      "rss_count": 1,
+      "countries": [
+        "SY",
+        "IL",
+        "IQ"
+      ],
+      "total_sources": 4,
+      "linked_gdelt": [
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS01, IS",
+          "coords": [
+            "31.2516",
+            "34.7863"
+          ],
+          "mentions": 1220,
+          "tone": -3.02623285936284,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS01, IS",
+          "coords": [
+            "31.2516",
+            "34.7863"
+          ],
+          "mentions": 858,
+          "tone": -3.02623285936284,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 866,
+          "tone": -4.22562491836786,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 828,
+          "tone": -0.174271913325292,
+          "tone_label": "중립 (Neutral)"
+        },
+        {
+          "event_code": "194",
+          "country": "IL",
+          "location": "IS01, IS",
+          "coords": [
+            "31.2516",
+            "34.7863"
+          ],
+          "mentions": 610,
+          "tone": -3.02623285936284,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "194",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 517,
+          "tone": -4.42992666198969,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 504,
+          "tone": -10.0564857768538,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 487,
+          "tone": -11.197026334516,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 464,
+          "tone": -5.64877569221311,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 464,
+          "tone": -5.64877569221311,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        }
+      ],
+      "gdelt_count": 10,
+      "avg_media_tone": -5.05,
+      "tone_label": "매우 적대적 (Strongly Hostile)",
+      "importance_score": 37
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "Israel Launches New Counterterrorism Operation in Northern West Bank - Foundation for Defense of Democracies",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOYnJlLUJmWl9GV1BJNXZ3TmpfR3FJMTRpbzdnWXB0My1Ic28wcXNtSlY4QTBNNDlRVVdLVFlkNEl2d0FLcmducTdiYldDeUl5SlRXRFVMeU53Smw1ZHNsYTZWb0I1bGEtdFlYeDdlTWNqZkFudDhLSjdzSXdBN3ZQVTJCUlNyanRZZ0h6NFNCdUlyNXF4TXhCajdoV2YzVjZpU0IzNGJIN21CUTZVOUE?oc=5",
+      "summary": "Israel Launches New Counterterrorism Operation in Northern West Bank&nbsp;&nbsp;Foundation for Defense of Democracies",
+      "date": "Wed, 26 Nov 2025 08:00:00 GMT",
+      "cluster_size": 3,
+      "articles": [
+        "counterterrorism operation - cbn.com",
+        "Top US counterterrorism official resigns over Iran military operation - nhk.or.jp",
+        "Israel Launches New Counterterrorism Operation in Northern West Bank - Foundation for Defense of Democracies"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "IR",
+        "IL",
+        "PS"
+      ],
+      "total_sources": 3,
+      "linked_gdelt": [
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS01, IS",
+          "coords": [
+            "31.2516",
+            "34.7863"
+          ],
+          "mentions": 1220,
+          "tone": -3.02623285936284,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "194",
+          "country": "IR",
+          "location": "IR26, IR",
+          "coords": [
+            "35.75",
+            "51.5148"
+          ],
+          "mentions": 1092,
+          "tone": -5.02477661531305,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IR",
+          "location": "IR26, IR",
+          "coords": [
+            "35.75",
+            "51.5148"
+          ],
+          "mentions": 988,
+          "tone": -5.36728510446732,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS01, IS",
+          "coords": [
+            "31.2516",
+            "34.7863"
+          ],
+          "mentions": 858,
+          "tone": -3.02623285936284,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 866,
+          "tone": -4.22562491836786,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 828,
+          "tone": -0.174271913325292,
+          "tone_label": "중립 (Neutral)"
+        },
+        {
+          "event_code": "194",
+          "country": "IL",
+          "location": "IS01, IS",
+          "coords": [
+            "31.2516",
+            "34.7863"
+          ],
+          "mentions": 610,
+          "tone": -3.02623285936284,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "194",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 517,
+          "tone": -4.42992666198969,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 504,
+          "tone": -10.0564857768538,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 487,
+          "tone": -11.197026334516,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 464,
+          "tone": -5.64877569221311,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 464,
+          "tone": -5.64877569221311,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        }
+      ],
+      "gdelt_count": 12,
+      "avg_media_tone": -5.07,
+      "tone_label": "매우 적대적 (Strongly Hostile)",
+      "importance_score": 36
+    },
+    {
+      "source": "google_news",
+      "query": "terrorist plot foiled",
+      "title": "France probes possible Iran link to foiled bomb attack outside Bank of America in Paris - Le Monde.fr",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNMVRFSFZTMW9LVHZVRkJkVFRXbndOcGp5SE5BdXpOWXZWcjBReXMxRVhMU1lZdzg0ZXExYjc0ajQwNTRrdzNjaS1YM1VUcEQzUWpWVmNMam5jMU9TMjROQld1eUV6U3FvUnVRdE1EX3JFcGtoTU11VzlXZTV2aG9URzNZSmRpQjhJY045R3J5VERmZTg0OTVhRVY5cS1lM2RQeVQwMHFyTFdrUDZtS2Uta1lvQlRYR1g2aExOclpFeTV3ZWJyUURoNDN0eFV3bDJBelZBX1d3T1dHU0ljM3c?oc=5",
+      "summary": "France probes possible Iran link to foiled bomb attack outside Bank of America in Paris&nbsp;&nbsp;Le Monde.fr",
+      "date": "Mon, 30 Mar 2026 10:25:57 GMT",
+      "cluster_size": 2,
+      "articles": [
+        "France foils Paris bomb plot outside US bank, opens anti-terror probe - France 24",
+        "France probes possible Iran link to foiled bomb attack outside Bank of America in Paris - Le Monde.fr"
+      ],
+      "matched_rss": [
+        "Israel kills Al Manar employee Ali Shuaib, says he was a Hezbollah military operative",
+        "Israel says it will keep control over part of southern Lebanon after war with Hezbollah ends"
+      ],
+      "rss_count": 2,
+      "countries": [
+        "IR",
+        "FR",
+        "US"
+      ],
+      "total_sources": 4,
+      "linked_gdelt": [
+        {
+          "event_code": "186",
+          "country": "US",
+          "location": "USCA, US",
+          "coords": [
+            "37.328",
+            "-119.649"
+          ],
+          "mentions": 2200,
+          "tone": -4.4183386989913,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "194",
+          "country": "IR",
+          "location": "IR26, IR",
+          "coords": [
+            "35.75",
+            "51.5148"
+          ],
+          "mentions": 1092,
+          "tone": -5.02477661531305,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IR",
+          "location": "IR26, IR",
+          "coords": [
+            "35.75",
+            "51.5148"
+          ],
+          "mentions": 988,
+          "tone": -5.36728510446732,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USDC, US",
+          "coords": [
+            "38.8951",
+            "-77.0364"
+          ],
+          "mentions": 726,
+          "tone": -5.50707652626576,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "180",
+          "country": "US",
+          "location": "USDC, US",
+          "coords": [
+            "38.8951",
+            "-77.0364"
+          ],
+          "mentions": 325,
+          "tone": -4.44305123403773,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "186",
+          "country": "US",
+          "location": "USCA, US",
+          "coords": [
+            "37.8499",
+            "-119.568"
+          ],
+          "mentions": 550,
+          "tone": -4.4183386989913,
+          "tone_label": "부정적 (Negative)"
+        }
+      ],
+      "gdelt_count": 6,
+      "avg_media_tone": -4.86,
+      "tone_label": "부정적 (Negative)",
+      "importance_score": 31
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "IDF launches large-scale counterterrorism operation in Hebron area - The Jerusalem Post",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5KUHZQZ1FaZnBsNFp1VGlORFFWZmFSc1M5Sjc1WkJXN1d3WTNBeEhVSURIMkN5MTgwdjFxVmRybDJRbzgtRG1qX1I4dWVRNmVLUG5qbzc4bjNnUzBR?oc=5",
+      "summary": "IDF launches large-scale counterterrorism operation in Hebron area&nbsp;&nbsp;The Jerusalem Post",
+      "date": "Mon, 19 Jan 2026 08:00:00 GMT",
+      "cluster_size": 3,
+      "articles": [
+        "ISIS terror attacks launch new phase against Syrian leaders - The Jerusalem Post",
+        "US launches new attacks against ISIL in Syria over deadly ambush - Al Jazeera",
+        "IDF launches large-scale counterterrorism operation in Hebron area - The Jerusalem Post"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "SY",
+        "IL"
+      ],
+      "total_sources": 3,
+      "linked_gdelt": [
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS01, IS",
+          "coords": [
+            "31.2516",
+            "34.7863"
+          ],
+          "mentions": 1220,
+          "tone": -3.02623285936284,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS01, IS",
+          "coords": [
+            "31.2516",
+            "34.7863"
+          ],
+          "mentions": 858,
+          "tone": -3.02623285936284,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 866,
+          "tone": -4.22562491836786,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 828,
+          "tone": -0.174271913325292,
+          "tone_label": "중립 (Neutral)"
+        },
+        {
+          "event_code": "194",
+          "country": "IL",
+          "location": "IS01, IS",
+          "coords": [
+            "31.2516",
+            "34.7863"
+          ],
+          "mentions": 610,
+          "tone": -3.02623285936284,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "194",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 517,
+          "tone": -4.42992666198969,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 504,
+          "tone": -10.0564857768538,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 487,
+          "tone": -11.197026334516,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 464,
+          "tone": -5.64877569221311,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 464,
+          "tone": -5.64877569221311,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        }
+      ],
+      "gdelt_count": 10,
+      "avg_media_tone": -5.05,
+      "tone_label": "매우 적대적 (Strongly Hostile)",
+      "importance_score": 31
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "Michigan Synagogue Attack Was Act of Terrorism Inspired by Hezbollah, Federal Officials Say - Homeland Security Today",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQQnRrRnVleUpOUnUxb2YtekY1eGp0NmhvV0tCdGlqRFBLTHdJbFA0REV2b01DYTNGU1hUR0lnZG1iWkZnd2UyRE4yckxvMWlWWUJQMGRzal8zNnZ2c0RWaUVObTlRaWpjZWx5T2syQzFmNkw4ZFJscnBGTXNzXzdYVll4dHJWT2p4VHZKalMxam9CbDRLbkZzRlZUdEpsLUk1eHNGTmdoQ3hIZHZEbEx6MkxjMVgtanFfUi02SDZKWExzOWdQZ1RlV3QwQkhMX1lTYWo1SGxCbjlfN3hNTk9QRHlxMTFXWk0?oc=5",
+      "summary": "Michigan Synagogue Attack Was Act of Terrorism Inspired by Hezbollah, Federal Officials Say&nbsp;&nbsp;Homeland Security Today",
+      "date": "Tue, 31 Mar 2026 07:32:18 GMT",
+      "cluster_size": 2,
+      "articles": [
+        "Michigan Synagogue Attack Was Act of Terrorism Inspired by Hezbollah, Federal Officials Say - Homeland Security Today",
+        "How the Iran Conflict Could Drive a New Wave of Terrorism in the West - Vision of Humanity"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "IR"
+      ],
+      "total_sources": 2,
+      "linked_gdelt": [
+        {
+          "event_code": "194",
+          "country": "IR",
+          "location": "IR26, IR",
+          "coords": [
+            "35.75",
+            "51.5148"
+          ],
+          "mentions": 1092,
+          "tone": -5.02477661531305,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IR",
+          "location": "IR26, IR",
+          "coords": [
+            "35.75",
+            "51.5148"
+          ],
+          "mentions": 988,
+          "tone": -5.36728510446732,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        }
+      ],
+      "gdelt_count": 2,
+      "avg_media_tone": -5.2,
+      "tone_label": "매우 적대적 (Strongly Hostile)",
+      "importance_score": 11
+    },
+    {
+      "source": "google_news",
+      "query": "terrorist plot foiled",
+      "title": "Kuwait says it foiled ‘Hezbollah-linked’ plot targeting state leaders - Anadolu Ajansı",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPTUdkaURGcVp0ODN6bjFaRWxzR0Z6TnBaanNUU0Z4LUpUMk1BZFdfNUtrNkM5QmdRY004VUVLenUzdFNEOVhHZi1sajEtQzV6TnRUbk52dWxpYVh4OVNSU3lNeGFxZWVfZHpyUjNrQldVSGNVeWIwNFNQTWJraFdxUjJSMlJTdFpTQW9HWkFaek5VdjFVcnNkRXlKcXN0VUpHamZPREp5SEJkMS1KVjl6YnpR?oc=5",
+      "summary": "Kuwait says it foiled ‘Hezbollah-linked’ plot targeting state leaders&nbsp;&nbsp;Anadolu Ajansı",
+      "date": "Fri, 27 Mar 2026 07:00:00 GMT",
+      "cluster_size": 3,
+      "articles": [
+        "Kuwait, Jordan condemn foiled terror plot targeting Bahrain - سانا",
+        "Kuwait says it foiled ‘Hezbollah-linked’ plot targeting state leaders - Anadolu Ajansı",
+        "President Biden on Counterterrorism Operation in Syria - C-SPAN"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "SY",
+        "KW"
+      ],
+      "total_sources": 3,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 11
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "Syria says key ISIL leader Taha al-Zoubi captured near Damascus - Al Jazeera",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNb1hHQkN0Z3JOdmRDNlRFQzFVS0lCRURQV0dlVGlXVUduX2kzMTRjTV9lV1ZtYldoQ0hxUTJLMVBfOUM4VE12QWdyQjM0dThEcnRDVjkwY1Y1NEF0Tm5xYW9CcWxJTUZYNnMzY1ljNVAtemtFb3JQMlBRLXRENVUxSXN3cWZxdERIN2ZtZ25zQ3d2Z9IBlwFBVV95cUxNMDNGZzdlaGVKTHR2NllPZnBxZVhfejZQc0VsTjBLY19QMWtzc05NMWRQSGMtVDBPU0pBS2hOeWpIeXhWcXV6NEM1OW9UeEdpYmhybU5ZcTYxemVSb0QxZ05qNl9ZSlVtWkwyWE5xdEE2NWw1eDJuWElIYlV1WE96MWtybUlaSzFxeVVaTHhfdi1JZmRLMXNV?oc=5",
+      "summary": "Syria says key ISIL leader Taha al-Zoubi captured near Damascus&nbsp;&nbsp;Al Jazeera",
+      "date": "Wed, 24 Dec 2025 08:00:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "Syria says key ISIL leader Taha al-Zoubi captured near Damascus - Al Jazeera"
+      ],
+      "matched_rss": [
+        "Home of Kurdistan Region president targeted, American universities threatened as attacks escalate in Iraq"
+      ],
+      "rss_count": 1,
+      "countries": [
+        "SY"
+      ],
+      "total_sources": 2,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 9
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "China Now Finds Itself in al-Qaeda’s Crosshairs - War on the Rocks",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZXFNVHFoVzc4TV9NYmRvbHdSZjA2LVotd2JYY0VtOUpFeHpYVGdYM3M0N0NyTlB6S2dzZ0x1UFZBOWIyaWRPOHZYT1ZqM2V3NU5lTF9fZXpwdmZIVWFvZG13aXR3TkNkNlB6dENmQnQyZmFlTXViUk1ERXU0cmNXSmMzNHBab2xI?oc=5",
+      "summary": "China Now Finds Itself in al-Qaeda’s Crosshairs&nbsp;&nbsp;War on the Rocks",
+      "date": "Wed, 18 Feb 2026 08:00:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "China Now Finds Itself in al-Qaeda’s Crosshairs - War on the Rocks"
+      ],
+      "matched_rss": [
+        "Kremlin Inadequately Responds to Increased Ukrainian Strikes"
+      ],
+      "rss_count": 1,
+      "countries": [
+        "CN"
+      ],
+      "total_sources": 2,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 9
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Al-Qaeda | History, Meaning, Terrorist Attacks, & Facts - Britannica",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1tRUZTek1TVFhIZ3BDSFMybURjTlhfZVRrSTZ6MzJTOEo2YlBncElMaG4yZkVreXhKY2dMc051Y19TUnAwVnVCVTBhQ3plVWpFLXpn?oc=5",
+      "summary": "Al-Qaeda | History, Meaning, Terrorist Attacks, & Facts&nbsp;&nbsp;Britannica",
+      "date": "Mon, 02 Mar 2026 08:00:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "Al-Qaeda | History, Meaning, Terrorist Attacks, & Facts - Britannica"
+      ],
+      "matched_rss": [
+        "Russia at Risk of Losing Control of Railways in Armenia"
+      ],
+      "rss_count": 1,
+      "countries": [],
+      "total_sources": 2,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 8
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Will Al-Qaeda Actually Fight for Iran? - Small Wars Journal",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNVXVSdlZmaFNaZE96cmJuZjY2N3NZM3k2VmozQnVQaEx4X0pUTVZjUTF1WTUwLWFBMWx4bEpGVGFhZ1RNakRtU3hRQTROZHhuR1d3eFNrME5pWmdEa1laeV9mMjhPTzZqdU93NTUzRVV4YlJSdUJGdTY1TFJlVHJpd1psSUE?oc=5",
+      "summary": "Will Al-Qaeda Actually Fight for Iran?&nbsp;&nbsp;Small Wars Journal",
+      "date": "Fri, 06 Mar 2026 08:00:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "Will Al-Qaeda Actually Fight for Iran? - Small Wars Journal"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "IR"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [
+        {
+          "event_code": "194",
+          "country": "IR",
+          "location": "IR26, IR",
+          "coords": [
+            "35.75",
+            "51.5148"
+          ],
+          "mentions": 1092,
+          "tone": -5.02477661531305,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IR",
+          "location": "IR26, IR",
+          "coords": [
+            "35.75",
+            "51.5148"
+          ],
+          "mentions": 988,
+          "tone": -5.36728510446732,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        }
+      ],
+      "gdelt_count": 2,
+      "avg_media_tone": -5.2,
+      "tone_label": "매우 적대적 (Strongly Hostile)",
+      "importance_score": 8
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "A Portrait of the Islamic State’s British Propagandist Ifthekar Jaman - The Jamestown Foundation",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOdTRmWTI5aFQ1T01FdFg2c1d4THB2MFlNc1Y1ZU4xR0Q0b1Y0YndQek1zWlU2YTV4ZDBlVzRUdF9fc0ZlUENoSzBROTNZdDE5REw0MVM0cnAxVzlQenJQaFBJVVNIbUpIN0ZrOXpWMmlmTWZINmNpcDZla05ZbWtiWjlnTnlMaF91YWF4c00zUWxvS0VKR3c?oc=5",
+      "summary": "A Portrait of the Islamic State’s British Propagandist Ifthekar Jaman&nbsp;&nbsp;The Jamestown Foundation",
+      "date": "Fri, 14 Nov 2025 23:06:36 GMT",
+      "cluster_size": 2,
+      "articles": [
+        "What is the status of Islamic State, the group linked to the Bondi attacks? - The Guardian",
+        "A Portrait of the Islamic State’s British Propagandist Ifthekar Jaman - The Jamestown Foundation"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 2,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 6
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "Islamic State Kills 15 Christians in North-Eastern Nigeria, Demands Conversion to Islam - Barnabas Aid",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPYy1oUTJhZlo3aE96TUs0QzBZYUdzVXNKVlRFdXduWjR2bkRxd3NaUGJKU2FRY3ZURXBVZkZOOTNrbG5PUDIzZU1HT0liWk1JbFhGRzl1UWZldUNYTnFqNUhDRnZaRV9SRWlHSmdWMTFzWkRweVVLZnROLThwQlJHRWFoSzh3T3lkcVBxem55YkFnMWRNWEE3eFA4TFlNSTBMbG4zQ2NzUFVDV0FSb3c?oc=5",
+      "summary": "Islamic State Kills 15 Christians in North-Eastern Nigeria, Demands Conversion to Islam&nbsp;&nbsp;Barnabas Aid",
+      "date": "Mon, 05 Jan 2026 08:00:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "Islamic State Kills 15 Christians in North-Eastern Nigeria, Demands Conversion to Islam - Barnabas Aid"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "NG",
+        "NE"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 5
+    },
+    {
+      "source": "google_news",
+      "query": "terrorist plot foiled",
+      "title": "Pro-Palestinian activist filed lawsuit alleging threats weeks before foiled firebomb plot - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQOHFTQmdadDMyNjdkZTUxX1VUNlh3ZFE5amlicEtFQTN4SVgxZ3FPQlZyZUJ3OTd2N1BuMnlaUzV5YXhYZ0tIekRnSldWbXAzekpzdWU5dlRBcHQ2YTFSb2Rfdkd1S1pMSFNfWGY0ZUI0d0ptYlllRDBZa3lVWVcwYjFscEM2b0VYZGhFRjdLVVRsems?oc=5",
+      "summary": "Pro-Palestinian activist filed lawsuit alleging threats weeks before foiled firebomb plot&nbsp;&nbsp;NBC News",
+      "date": "Sun, 29 Mar 2026 15:16:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "Pro-Palestinian activist filed lawsuit alleging threats weeks before foiled firebomb plot - NBC News"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "PS"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 4
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Al-Qaeda’s Cyber Jihad Movement: Plugging into Iran’s Wartime Hacktivist Ecosystem - Global Network on Extremism and Technology",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNMEVaNGwxbW9jSEM0NUFzMUtrYVJMNWVLSVpOYVJkQ1RDa1hJckhHTVJMTmF4alZuM0liLVZTY0xNQldINHRyV0RCUWloeHBiQUlWVTFHMUZRdlk3bUFid1RWck1nenctV3ZHWDBRT2JFazRhMjY4UnNfSEx6emNwNVVrb09YREQ0bTVsQ3l3V2ttclpkU3Q3SlNvUVF3ME42UGtxTUVJRzJNXzJzR0ZPZ09XMVJOTGg1?oc=5",
+      "summary": "Al-Qaeda’s Cyber Jihad Movement: Plugging into Iran’s Wartime Hacktivist Ecosystem&nbsp;&nbsp;Global Network on Extremism and Technology",
+      "date": "Mon, 23 Mar 2026 07:00:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "Al-Qaeda’s Cyber Jihad Movement: Plugging into Iran’s Wartime Hacktivist Ecosystem - Global Network on Extremism and Technology"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "IR"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 4
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "Plot to Firebomb Palestinian Activist's Home Disrupted by NYPD Undercover Operation, Authorities Say - U.S. News & World Report",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPNDM0Qy1zTUtPTFA5c2lDV18wOGRqR0g1OVEzRmZQdG1va0NFc19QOGlrOUdqZU8yMmdTa2F4QzFZN0JZRGQ1QXg0ejRGQzZDeFZOc0tONGQtYWxRSmszbVVqM3VGOGxVbTRqcXpyTF91azV6c3dTVTQ3dEExRktfS1hhZ3RUeThBZFNBdUxCTVNPaUR5UUcySVd1bFJpUzBOUnZTcXZSMTlBNWJaamtCWE9od2VvSUhSWnY4Rw?oc=5",
+      "summary": "Plot to Firebomb Palestinian Activist's Home Disrupted by NYPD Undercover Operation, Authorities Say&nbsp;&nbsp;U.S. News & World Report",
+      "date": "Fri, 27 Mar 2026 16:52:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "Plot to Firebomb Palestinian Activist's Home Disrupted by NYPD Undercover Operation, Authorities Say - U.S. News & World Report"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "PS"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 4
+    },
+    {
+      "source": "google_news",
+      "query": "ISIS ISIL Islamic State",
+      "title": "ISIS ISIL Islamic State beheadings etc - AOL.com",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBFcFBUV1IzblBickllNHlFeTljZEp1SC1tMGphVGM2ZktWYWpmaTdTM19xeDU5OENZN1BEMFgzTWhMeHZjOTEwV3VuMS1ESHVOdllDSVMzSk1WTS10d2c?oc=5",
+      "summary": "ISIS ISIL Islamic State beheadings etc&nbsp;&nbsp;AOL.com",
+      "date": "Sat, 28 Mar 2026 19:31:29 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "ISIS ISIL Islamic State beheadings etc - AOL.com"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 3
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Al-Qaeda’s Third Phase - mwi.westpoint.edu",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1LVVdScTU3Mm52NlhiTEx0b2FKZlNCTGljbF95V3lUcmc1b21oVlVvYnVpQkgyXzdueHlhN19wRlZVYlNZelB3bXBqamNVNmcxRzNxaGVRMEl1bGhG?oc=5",
+      "summary": "Al-Qaeda’s Third Phase&nbsp;&nbsp;mwi.westpoint.edu",
+      "date": "Tue, 03 Mar 2026 08:00:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "Al-Qaeda’s Third Phase - mwi.westpoint.edu"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 3
+    },
+    {
+      "source": "google_news",
+      "query": "extremist threat",
+      "title": "Women harvest hope as extremist threat grows in Benin - swissinfo.ch",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNc1FvU1NZa1JlVV8xTGlmcnBkZGJjaEt1WGpyc3FEQXBheTZlYzFPYjN4Vng1eWtNS3VZMkNwb3MwalBjS25wenZtUmVUSkxMcC1FZTh5M3hGM1R1Zk1jQ2N1bXZFWFBpVF84RlpXUWp2MUt4N1lnN0ZiYkxoSGM0X091MVAwdEpPOEpjeXllQkdwVldYQzM1X1ZIWFB1cHdIajA0?oc=5",
+      "summary": "Women harvest hope as extremist threat grows in Benin&nbsp;&nbsp;swissinfo.ch",
+      "date": "Fri, 27 Mar 2026 08:00:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "Women harvest hope as extremist threat grows in Benin - swissinfo.ch"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 3
+    },
+    {
+      "source": "google_news",
+      "query": "extremist threat",
+      "title": "The ungoverned sky: Drones and the domestic extremist threat - Lowy Institute",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPVktsc2ZsYUhWZ3YyWDJKUHAzaHQ4QnRIcEFUOUlnbXpvenBsdzUxc1Q1eEgwNG1iWmo3ZTN1ZTZnTFNobUJES1BqTFlwTTk5NTZEVWFVT1VOMndyMkQzTHFibXhvZU5rajZKY05Ua29ub3M1Z2U0d3B1RjZPY2VNQ29CVHhqRnZTVi1JQUgwXzh4MVVn?oc=5",
+      "summary": "The ungoverned sky: Drones and the domestic extremist threat&nbsp;&nbsp;Lowy Institute",
+      "date": "Sun, 22 Mar 2026 07:00:00 GMT",
+      "cluster_size": 1,
+      "articles": [
+        "The ungoverned sky: Drones and the domestic extremist threat - Lowy Institute"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 3
+    }
+  ],
+  "_cluster_stats": {
+    "total_clusters": 19,
+    "total_articles": 30,
+    "duplicates_removed": 11,
+    "gdelt_linked": 6,
+    "rss_linked": 5,
+    "multi_source": 10,
+    "top_event": "FBI: Temple Israel attack was an Hezbollah inspired act of terrorism - Michigan Public",
+    "top_event_score": 37
+  },
+  "_analysis": {
+    "threat_levels": {
+      "AU": {
+        "level": 5,
+        "label": "SEVERE",
+        "color": "⚫",
+        "score": 8.6,
+        "raw_score": 29.35,
+        "events": 18,
+        "fatalities": 0,
+        "news_mentions": 0
+      },
+      "IL": {
+        "level": 4,
+        "label": "HIGH",
+        "color": "🔴",
+        "score": 7.4,
+        "raw_score": 20.22,
+        "events": 10,
+        "fatalities": 0,
+        "news_mentions": 9
+      },
+      "US": {
+        "level": 3,
+        "label": "ELEVATED",
+        "color": "🟠",
+        "score": 5.5,
+        "raw_score": 11.9,
+        "events": 6,
+        "fatalities": 0,
+        "news_mentions": 2
+      },
+      "CL": {
+        "level": 3,
+        "label": "ELEVATED",
+        "color": "🟠",
+        "score": 5.0,
+        "raw_score": 10.27,
+        "events": 3,
+        "fatalities": 0,
+        "news_mentions": 0
+      },
+      "IR": {
+        "level": 3,
+        "label": "ELEVATED",
+        "color": "🟠",
+        "score": 4.6,
+        "raw_score": 9.3,
+        "events": 2,
+        "fatalities": 0,
+        "news_mentions": 9
+      },
+      "HT": {
+        "level": 3,
+        "label": "ELEVATED",
+        "color": "🟠",
+        "score": 4.5,
+        "raw_score": 8.95,
+        "events": 1,
+        "fatalities": 0,
+        "news_mentions": 0
+      },
+      "LB": {
+        "level": 2,
+        "label": "LOW",
+        "color": "🟡",
+        "score": 3.9,
+        "raw_score": 7.51,
+        "events": 2,
+        "fatalities": 0,
+        "news_mentions": 0
+      },
+      "NZ": {
+        "level": 2,
+        "label": "LOW",
+        "color": "🟡",
+        "score": 3.0,
+        "raw_score": 5.26,
+        "events": 1,
+        "fatalities": 0,
+        "news_mentions": 0
+      },
+      "SY": {
+        "level": 2,
+        "label": "LOW",
+        "color": "🟡",
+        "score": 2.8,
+        "raw_score": 5.0,
+        "events": 0,
+        "fatalities": 0,
+        "news_mentions": 10
+      },
+      "ID": {
+        "level": 2,
+        "label": "LOW",
+        "color": "🟡",
+        "score": 2.4,
+        "raw_score": 4.13,
+        "events": 2,
+        "fatalities": 0,
+        "news_mentions": 0
+      },
+      "ES": {
+        "level": 2,
+        "label": "LOW",
+        "color": "🟡",
+        "score": 2.3,
+        "raw_score": 3.87,
+        "events": 1,
+        "fatalities": 0,
+        "news_mentions": 0
+      },
+      "NG": {
+        "level": 1,
+        "label": "MINIMAL",
+        "color": "🟢",
+        "score": 2.0,
+        "raw_score": 3.3,
+        "events": 0,
+        "fatalities": 0,
+        "news_mentions": 1
+      },
+      "NE": {
+        "level": 1,
+        "label": "MINIMAL",
+        "color": "🟢",
+        "score": 2.0,
+        "raw_score": 3.3,
+        "events": 0,
+        "fatalities": 0,
+        "news_mentions": 1
+      },
+      "IQ": {
+        "level": 1,
+        "label": "MINIMAL",
+        "color": "🟢",
+        "score": 1.8,
+        "raw_score": 2.9,
+        "events": 0,
+        "fatalities": 0,
+        "news_mentions": 3
+      },
+      "PS": {
+        "level": 1,
+        "label": "MINIMAL",
+        "color": "🟢",
+        "score": 1.0,
+        "raw_score": 1.5,
+        "events": 0,
+        "fatalities": 0,
+        "news_mentions": 5
+      },
+      "KW": {
+        "level": 1,
+        "label": "MINIMAL",
+        "color": "🟢",
+        "score": 0.6,
+        "raw_score": 0.9,
+        "events": 0,
+        "fatalities": 0,
+        "news_mentions": 3
+      },
+      "FR": {
+        "level": 1,
+        "label": "MINIMAL",
+        "color": "🟢",
+        "score": 0.4,
+        "raw_score": 0.6,
+        "events": 0,
+        "fatalities": 0,
+        "news_mentions": 2
+      },
+      "CN": {
+        "level": 1,
+        "label": "MINIMAL",
+        "color": "🟢",
+        "score": 0.2,
+        "raw_score": 0.3,
+        "events": 0,
+        "fatalities": 0,
+        "news_mentions": 1
+      }
+    },
+    "daily_diff": {
+      "available": false
+    },
+    "org_tracker": [
+      {
+        "name": "Iran's Counter-Terror Special Forces",
+        "designation": "us_ofac_sdn",
+        "events_today": 17,
+        "fatalities_today": 0,
+        "events_7d": 17,
+        "fatalities_7d": 0,
+        "countries": [
+          "ES",
+          "AU",
+          "US",
+          "IL",
+          "IR"
+        ],
+        "attack_types": [
+          "Unclassified"
+        ]
+      },
+      {
+        "name": "MUJAHIDIN INDONESIAN TIMUR (MIT)",
+        "designation": "un_sc_sanctions",
+        "events_today": 5,
+        "fatalities_today": 0,
+        "events_7d": 5,
+        "fatalities_7d": 0,
+        "countries": [
+          "IL",
+          "ID"
+        ],
+        "attack_types": [
+          "Unclassified"
+        ]
+      },
+      {
+        "name": "VTB FACTORING LTD",
+        "designation": "us_ofac_sdn",
+        "events_today": 1,
+        "fatalities_today": 0,
+        "events_7d": 1,
+        "fatalities_7d": 0,
+        "countries": [
+          "US"
+        ],
+        "attack_types": [
+          "Unclassified"
+        ]
+      },
+      {
+        "name": "Russian community \"Sobol\"",
+        "designation": "eu_fsf",
+        "events_today": 1,
+        "fatalities_today": 0,
+        "events_7d": 1,
+        "fatalities_7d": 0,
+        "countries": [
+          "AU"
+        ],
+        "attack_types": [
+          "Unclassified"
+        ]
+      },
+      {
+        "name": "Hizbollah Military Wing",
+        "designation": "eu_fsf",
+        "events_today": 1,
+        "fatalities_today": 0,
+        "events_7d": 1,
+        "fatalities_7d": 0,
+        "countries": [
+          "IL"
+        ],
+        "attack_types": [
+          "Unclassified"
+        ]
+      },
+      {
+        "name": "PALESTINE ISLAMIC JIHAD - SHAQAQI FACTION",
+        "designation": "us_ofac_sdn",
+        "events_today": 1,
+        "fatalities_today": 0,
+        "events_7d": 1,
+        "fatalities_7d": 0,
+        "countries": [
+          "IL"
+        ],
+        "attack_types": [
+          "Unclassified"
+        ]
+      }
+    ],
+    "hotspots": [
+      {
+        "center": [
+          -36.7,
+          146.91
+        ],
+        "grid": [
+          -36.0,
+          146.0
+        ],
+        "events": 9,
+        "fatalities": 0,
+        "countries": [
+          "AU"
+        ],
+        "actors": [
+          "AUSTRALIA",
+          "VICTORIA",
+          "POLICE OFFICER",
+          "POLICE"
+        ],
+        "event_types": [
+          "190",
+          "193"
+        ],
+        "density_score": 9
+      },
+      {
+        "center": [
+          31.38,
+          34.77
+        ],
+        "grid": [
+          32.0,
+          34.0
+        ],
+        "events": 6,
+        "fatalities": 0,
+        "countries": [
+          "IL"
+        ],
+        "actors": [
+          "ISRAEL",
+          "VILLAGE",
+          "INDONESIAN",
+          "ISRAELI"
+        ],
+        "event_types": [
+          "190",
+          "194"
+        ],
+        "density_score": 6
+      },
+      {
+        "center": [
+          -37.82,
+          144.97
+        ],
+        "grid": [
+          -38.0,
+          144.0
+        ],
+        "events": 4,
+        "fatalities": 0,
+        "countries": [
+          "AU"
+        ],
+        "actors": [
+          "AUSTRALIA",
+          "VICTORIA"
+        ],
+        "event_types": [
+          "190",
+          "193"
+        ],
+        "density_score": 4
+      },
+      {
+        "center": [
+          31.77,
+          35.23
+        ],
+        "grid": [
+          32.0,
+          36.0
+        ],
+        "events": 4,
+        "fatalities": 0,
+        "countries": [
+          "IL"
+        ],
+        "actors": [
+          "ISRAELI",
+          "MILITARY",
+          "POLICE",
+          "RELIGION"
+        ],
+        "event_types": [
+          "190"
+        ],
+        "density_score": 4
+      },
+      {
+        "center": [
+          -35.97,
+          147.73
+        ],
+        "grid": [
+          -36.0,
+          148.0
+        ],
+        "events": 3,
+        "fatalities": 0,
+        "countries": [
+          "AU"
+        ],
+        "actors": [
+          "POLICE"
+        ],
+        "event_types": [
+          "193"
+        ],
+        "density_score": 3
+      },
+      {
+        "center": [
+          -30.0,
+          -71.0
+        ],
+        "grid": [
+          -30.0,
+          -72.0
+        ],
+        "events": 3,
+        "fatalities": 0,
+        "countries": [
+          "CL"
+        ],
+        "actors": [
+          "CHILEAN",
+          "CHILE"
+        ],
+        "event_types": [
+          "190",
+          "180",
+          "1822"
+        ],
+        "density_score": 3
+      },
+      {
+        "center": [
+          37.59,
+          -119.61
+        ],
+        "grid": [
+          38.0,
+          -120.0
+        ],
+        "events": 2,
+        "fatalities": 0,
+        "countries": [
+          "US"
+        ],
+        "actors": [
+          "UNITED STATES",
+          "YOSEMITE"
+        ],
+        "event_types": [
+          "186"
+        ],
+        "density_score": 2
+      },
+      {
+        "center": [
+          35.75,
+          51.51
+        ],
+        "grid": [
+          36.0,
+          52.0
+        ],
+        "events": 2,
+        "fatalities": 0,
+        "countries": [
+          "IR"
+        ],
+        "actors": [
+          "IRAN"
+        ],
+        "event_types": [
+          "190",
+          "194"
+        ],
+        "density_score": 2
+      },
+      {
+        "center": [
+          -5.0,
+          120.0
+        ],
+        "grid": [
+          -4.0,
+          120.0
+        ],
+        "events": 2,
+        "fatalities": 0,
+        "countries": [
+          "ID"
+        ],
+        "actors": [
+          "INDONESIAN",
+          "INDONESIA"
+        ],
+        "event_types": [
+          "183"
+        ],
+        "density_score": 2
+      },
+      {
+        "center": [
+          33.83,
+          35.83
+        ],
+        "grid": [
+          34.0,
+          36.0
+        ],
+        "events": 2,
+        "fatalities": 0,
+        "countries": [
+          "LB"
+        ],
+        "actors": [
+          "LEBANON"
+        ],
+        "event_types": [
+          "183"
+        ],
+        "density_score": 2
+      }
+    ]
+  },
+  "meta": {
+    "collected_at": "2026-04-01T09:00:38.511892",
+    "total": 137,
+    "enrichment": {
+      "total_enriched": 50,
+      "org_matches": 26,
+      "country_matches": 46,
+      "zone_matches": 40
+    }
+  }
+}
