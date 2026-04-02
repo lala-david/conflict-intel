@@ -11,6 +11,7 @@ import io
 import time
 import json
 import zipfile
+import concurrent.futures
 from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -83,39 +84,80 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
         csv_data = z.read(csv_name).decode("utf-8", errors="replace")
         reader = csv.reader(io.StringIO(csv_data), delimiter="\t")
 
+        # D2: Only keep events whose SQLDATE is within 2 days of target_date
+        target_ymd = target_date.strftime("%Y%m%d")
+        min_date = (target_date - timedelta(days=2)).strftime("%Y%m%d")
+
+        # D3: Actor skip list — generic state actors without terror context
+        _ACTOR_SKIP = {"POLICE", "DOCTOR", "SUPREME COURT", "JUDGE", "NAVY",
+                       "BATTALION", "MALE", "FEMALE", "BRITISH", "CITIZEN"}
+        # D3: URL keywords that indicate non-terror content
+        _URL_NOISE = {"gas-price", "bike", "newborn", "ww2", "world-war",
+                      "recipe", "sport", "weather"}
+
         events = []
         for row in reader:
             if len(row) < 58:
+                continue
+
+            # D2: Filter by SQLDATE (column 1, YYYYMMDD) — within 2 days of target
+            sql_date = row[1] if row[1] else ""
+            if sql_date < min_date or sql_date > target_ymd:
                 continue
 
             event_code = row[26]  # CAMEO EventCode
             if not any(event_code.startswith(c) for c in GDELT_TERROR_CODES):
                 continue
 
-            goldstein = float(row[30]) if row[30] else 0
-            num_mentions = int(row[31]) if row[31] else 0
-            num_sources = int(row[32]) if row[32] else 0
-            num_articles = int(row[33]) if row[33] else 0
-            avg_tone = float(row[34]) if row[34] else 0
+            try:
+                goldstein = float(row[30]) if row[30] else 0
+                num_mentions = int(row[31]) if row[31] else 0
+                num_sources = int(row[32]) if row[32] else 0
+                num_articles = int(row[33]) if row[33] else 0
+                avg_tone = float(row[34]) if row[34] else 0
+            except (ValueError, IndexError):
+                continue  # skip rows with unparseable numeric fields
 
             actor1 = row[6] if row[6] else ""
             actor2 = row[16] if row[16] else ""
 
+            # D3: Actor relevance filter — skip generic state-actor-only events
+            actor1_upper = actor1.upper().strip()
+            actor2_upper = actor2.upper().strip()
+            if actor1_upper in _ACTOR_SKIP and (not actor2_upper or actor2_upper in _ACTOR_SKIP):
+                continue
+
             # #1: 좌표 매핑 수정 — ActionGeo 우선, 없으면 Actor1Geo
-            action_lat = row[39] if row[39] else ""
-            action_lon = row[40] if row[40] else ""
-            action_country = row[37] if row[37] else ""
+            # GDELT V1 export columns:
+            #   ActionGeo: CountryCode=51, ADM1Code=52, Lat=53, Long=54
+            #   Actor1Geo: CountryCode=37, ADM1Code=38, Lat=39, Long=40
+            try:
+                action_lat = row[53] if len(row) > 53 and row[53] else ""
+                action_lon = row[54] if len(row) > 54 and row[54] else ""
+                action_country = row[51] if len(row) > 51 and row[51] else ""
+                action_adm1 = row[52] if len(row) > 52 and row[52] else ""
+            except IndexError:
+                action_lat = action_lon = action_country = action_adm1 = ""
             action_location = ""
 
-            # ActionGeo_FullName은 GDELT V1에서 별도 컬럼이 아닐 수 있음
-            # ADM1Code에서 추출
-            action_adm1 = row[38] if row[38] else ""
+            # ActionGeo가 비어있으면 Actor1Geo 폴백 (columns 37-40)
+            if not action_lat:
+                try:
+                    action_lat = row[39] if len(row) > 39 and row[39] else ""
+                    action_lon = row[40] if len(row) > 40 and row[40] else ""
+                    action_country = row[37] if len(row) > 37 and row[37] else ""
+                    action_adm1 = row[38] if len(row) > 38 and row[38] else ""
+                except IndexError:
+                    pass
 
-            # ActionGeo가 비어있으면 Actor1Geo 사용 (row[42~46])
-            if not action_lat and len(row) > 46:
-                action_lat = row[46] if row[46] else ""  # Actor1Geo_Lat
-                action_lon = row[47] if len(row) > 47 and row[47] else ""  # Actor1Geo_Long
-                action_country = row[44] if len(row) > 44 and row[44] else ""  # Actor1Geo_CountryCode
+            # Safety check: validate lat/lon are actually numeric
+            try:
+                if action_lat:
+                    float(action_lat)
+                if action_lon:
+                    float(action_lon)
+            except ValueError:
+                action_lat = action_lon = ""
 
             # 위치명 구성
             if action_adm1:
@@ -125,8 +167,16 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
 
             source_url = row[57] if len(row) > 57 else ""
 
+            # D3: URL keyword filter — skip obvious non-terror content
+            url_lower = source_url.lower()
+            if any(noise in url_lower for noise in _URL_NOISE):
+                continue
+
             # #1: FIPS → ISO 변환
             iso_country = fips_to_iso(action_country) if action_country else ""
+
+            # D2: Format SQLDATE "20260329" → "2026-03-29"
+            formatted_date = f"{sql_date[:4]}-{sql_date[4:6]}-{sql_date[6:8]}" if len(sql_date) == 8 else sql_date
 
             events.append({
                 "source": "gdelt",
@@ -134,6 +184,7 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
                 "actor1": actor1,
                 "actor2": actor2,
                 "country_code": iso_country,
+                "country": "",  # D4: GDELT has country codes only, not names
                 "location": action_location,
                 "latitude": action_lat,
                 "longitude": action_lon,
@@ -143,11 +194,22 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
                 "num_articles": num_articles,
                 "avg_tone": avg_tone,
                 "source_url": source_url,
-                "date": date_str,
+                "date": formatted_date,
             })
 
+        # D18: Regional diversity — top 30 by mentions + fill from unseen countries
         events.sort(key=lambda x: x["num_mentions"] + x["num_sources"], reverse=True)
-        return events[:limit]
+        top_events = events[:30]
+        seen_countries = {e.get("country_code") for e in top_events}
+        diverse = []
+        for e in events[30:]:
+            cc = e.get("country_code", "")
+            if cc and cc not in seen_countries:
+                diverse.append(e)
+                seen_countries.add(cc)
+            if len(diverse) >= 20:
+                break
+        return (top_events + diverse)[:limit]
 
     except Exception as e:
         print(f"    [gdelt] 파싱 실패: {e}")
@@ -185,6 +247,9 @@ def fetch_acled(target_date: datetime, limit: int = 100) -> list[dict]:
     if not token:
         return []
 
+    # 14-day window: ACLED events are often reported/coded days after they occur.
+    # The wider window catches late-reported events. INSERT OR IGNORE in database.py
+    # handles deduplication so overlapping collection periods are safe.
     since = (target_date - timedelta(days=14)).strftime("%Y-%m-%d")
     until = target_date.strftime("%Y-%m-%d")
     sub_types = "|".join(ACLED_TERROR_SUBTYPES)
@@ -305,8 +370,9 @@ def fetch_sanctions_updates(limit: int = 30) -> list[dict]:
                 except Exception:
                     continue
 
-        # 캐시 업데이트
-        _save_sanctions_cache(current_ids)
+        # 캐시 업데이트: merge new IDs into existing cache (union) so it accumulates
+        merged_ids = list(previous_ids | set(current_ids))
+        _save_sanctions_cache(merged_ids)
 
         # 신규 엔티티 우선 정렬
         results.sort(key=lambda x: (not x["is_new"], x["name"]))
@@ -332,10 +398,33 @@ def fetch_google_news(limit: int = 30) -> list[dict]:
     for query in GOOGLE_NEWS_QUERIES:
         try:
             url = f"https://news.google.com/rss/search?q={query.replace(' ', '+')}&hl=en-US&gl=US&ceid=US:en"
-            feed = feedparser.parse(url)
+            rss_resp = requests.get(url, timeout=15)
+            feed = feedparser.parse(rss_resp.content)
+
+            # D19: Skip articles older than 3 days
+            staleness_cutoff = datetime.now() - timedelta(days=3)
+            # D19: URL domains that indicate non-news (encyclopedias, etc.)
+            _GNEWS_URL_NOISE = ("britannica.com", "wikipedia.org", "aol.com/", "dictionary.com")
 
             for entry in feed.entries[:8]:
+                # D19: Date staleness filter — skip articles older than 3 days
+                pub_parsed = entry.get("published_parsed")
+                if pub_parsed:
+                    try:
+                        pub_dt = datetime(*pub_parsed[:6])
+                        if pub_dt < staleness_cutoff:
+                            continue
+                    except (TypeError, ValueError):
+                        pass
+
                 title = entry.title
+                link = entry.link or ""
+
+                # D19: URL-based noise filter — skip encyclopedias & non-news
+                link_lower = link.lower()
+                if any(domain in link_lower for domain in _GNEWS_URL_NOISE):
+                    continue
+
                 if title in seen_titles:
                     continue
 
@@ -358,7 +447,7 @@ def fetch_google_news(limit: int = 30) -> list[dict]:
                     "source": "google_news",
                     "query": query,
                     "title": title,
-                    "url": entry.link,
+                    "url": link,
                     "summary": re.sub(r"<[^>]+>", "", entry.get("summary", ""))[:300],
                     "date": entry.get("published", ""),
                 })
@@ -398,7 +487,8 @@ def fetch_expert_rss(limit: int = 30) -> list[dict]:
 
     for name, url in RSS_FEEDS.items():
         try:
-            feed = feedparser.parse(url)
+            rss_resp = requests.get(url, timeout=15)
+            feed = feedparser.parse(rss_resp.content)
             for entry in feed.entries[:10]:
                 # #5: 48시간 필터
                 pub_date = entry.get("published", "")
@@ -459,34 +549,42 @@ def fetch_ofac_recent(limit: int = 15) -> list[dict]:
 # ─────────────────────────────────────────────
 # 통합 수집
 # ─────────────────────────────────────────────
+def _safe_fetch(name, fn, *args, **kwargs):
+    """Run a fetch function with error isolation so one source failure doesn't kill others."""
+    try:
+        return fn(*args, **kwargs)
+    except Exception as e:
+        print(f"    [{name}] failed: {e}")
+        return []
+
+
 def collect_all(target_date: datetime) -> dict:
     print("=" * 55)
     print("  Terror Intelligence — Data Collection")
     print("=" * 55)
 
-    print("\n  [1/6] GDELT (global events)...")
-    gdelt = fetch_gdelt(target_date)
-    print(f"         {len(gdelt)} events")
+    # #20: Fetch all 6 sources in parallel — each source is independent
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+        future_gdelt = executor.submit(_safe_fetch, "gdelt", fetch_gdelt, target_date)
+        future_acled = executor.submit(_safe_fetch, "acled", fetch_acled, target_date)
+        future_news = executor.submit(_safe_fetch, "google_news", fetch_google_news)
+        future_expert = executor.submit(_safe_fetch, "expert_rss", fetch_expert_rss)
+        future_sanctions = executor.submit(_safe_fetch, "sanctions", fetch_sanctions_updates)
+        future_ofac = executor.submit(_safe_fetch, "ofac", fetch_ofac_recent)
 
-    print("  [2/6] ACLED (coded incidents)...")
-    acled = fetch_acled(target_date)
-    print(f"         {len(acled)} incidents")
+    gdelt = future_gdelt.result()
+    acled = future_acled.result()
+    news = future_news.result()
+    expert = future_expert.result()
+    sanctions = future_sanctions.result()
+    ofac = future_ofac.result()
 
-    print("  [3/6] Google News...")
-    news = fetch_google_news()
-    print(f"         {len(news)} articles")
-
-    print("  [4/6] Expert RSS feeds...")
-    expert = fetch_expert_rss()
-    print(f"         {len(expert)} articles")
-
-    print("  [5/6] OpenSanctions...")
-    sanctions = fetch_sanctions_updates()
-    print(f"         {len(sanctions)} entities")
-
-    print("  [6/6] OFAC recent actions...")
-    ofac = fetch_ofac_recent()
-    print(f"         {len(ofac)} actions")
+    print(f"\n  [1/6] GDELT:          {len(gdelt)} events")
+    print(f"  [2/6] ACLED:          {len(acled)} incidents")
+    print(f"  [3/6] Google News:    {len(news)} articles")
+    print(f"  [4/6] Expert RSS:     {len(expert)} articles")
+    print(f"  [5/6] OpenSanctions:  {len(sanctions)} entities")
+    print(f"  [6/6] OFAC:           {len(ofac)} actions")
 
     total = len(gdelt) + len(acled) + len(news) + len(expert) + len(sanctions) + len(ofac)
     print(f"\n  Total: {total} items")

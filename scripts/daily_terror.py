@@ -31,10 +31,11 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 mapper = TerrorMapper()
 
 
-def generate_with_retry(data, date, lang, max_retries=2):
+def generate_with_retry(fn, *args, max_retries=2):
     """#11: LLM 응답이 빈 경우 재시도"""
+    result = ""
     for attempt in range(max_retries + 1):
-        result = generate_report(data, date, lang)
+        result = fn(*args)
         if result and len(result.strip()) > 100:
             return result
         print(f"   WARNING: empty response (attempt {attempt + 1}/{max_retries + 1}), retrying...")
@@ -103,11 +104,11 @@ def compute_statistics(data: dict) -> str:
 
         if geo_events:
             lines.append(f"\n**Georeferenced Incidents (top by fatalities):**")
-            for e in geo_events[:15]:
+            for e in geo_events[:8]:
                 lines.append(
-                    f"  - [{e['latitude']}, {e['longitude']}] {e['country']}, {e['location']} | "
-                    f"{e['sub_event_type']} | {e['actor1']} | "
-                    f"Fatalities: {e['fatalities']} | {e['date']}"
+                    f"  - [{e.get('latitude', '')}, {e.get('longitude', '')}] {e.get('country', 'Unknown')}, {e.get('location', 'Unknown')} | "
+                    f"{e.get('sub_event_type', 'Unknown')} | {e.get('actor1', 'Unknown')} | "
+                    f"Fatalities: {e.get('fatalities', 0)} | {e.get('date', '')}"
                 )
 
     # GDELT 통계
@@ -134,11 +135,12 @@ def compute_statistics(data: dict) -> str:
         geo_gdelt = [e for e in gdelt if e.get("latitude") and e.get("longitude")]
         if geo_gdelt:
             lines.append(f"\n**Georeferenced Events (top by mentions):**")
-            for e in geo_gdelt[:10]:
+            for e in geo_gdelt[:5]:
+                tone = e.get('avg_tone', 0)
                 lines.append(
-                    f"  - [{e['latitude']}, {e['longitude']}] {e['location']} ({e['country_code']}) | "
-                    f"Code: {e['event_code']} | Mentions: {e['num_mentions']} | "
-                    f"Tone: {e['avg_tone']:.1f}"
+                    f"  - [{e.get('latitude', '')}, {e.get('longitude', '')}] {e.get('location', 'Unknown')} ({e.get('country_code', '??')}) | "
+                    f"Code: {e.get('event_code', '')} | Mentions: {e.get('num_mentions', 0)} | "
+                    f"Tone: {tone:.1f}"
                 )
 
     # News 통계
@@ -212,94 +214,61 @@ def build_raw_context(data: dict) -> str:
         sections.append(stats)
 
     if data.get("gdelt"):
-        sections.append("\n## GDELT Events (Global Conflict/Terror)")
-        for e in data["gdelt"][:20]:
+        sections.append(f"\n## GDELT Events (Top 10 of {len(data['gdelt'])})")
+        for e in data["gdelt"][:10]:
             enr = e.get("_enrichment", {})
-            zone_info = ""
+            extras = []
             if enr.get("conflict_zone"):
                 z = enr["conflict_zone"]
-                zone_info = f"\n  CONFLICT ZONE: {z['zone_name']} | Intensity: {z['intensity']} | Trend: {z['trend']}"
-            country_info = ""
-            if enr.get("country"):
-                c = enr["country"]
-                country_info = f"\n  COUNTRY THREAT: {c['name']} | Level: {c['threat_level']} | Region: {c['region']}"
-            org_info = ""
+                extras.append(f"Zone: {z['zone_name']}({z['intensity']})")
             if enr.get("actor1_org"):
                 o = enr["actor1_org"]
-                org_info = f"\n  DESIGNATED ORG: {o['matched_name']} ({o['designation']}) [{o['match_type']}]"
+                extras.append(f"Org: {o['matched_name']}")
+            extra_str = " | " + " | ".join(extras) if extras else ""
 
+            tone = e.get('avg_tone', 0)
             sections.append(
-                f"- EventCode: {e['event_code']} | Actor1: {e['actor1']} | Actor2: {e['actor2']}\n"
-                f"  Location: {e['location']} ({e['country_code']}) | Coords: [{e['latitude']}, {e['longitude']}]\n"
-                f"  Mentions: {e['num_mentions']} | Sources: {e['num_sources']} | Tone: {e['avg_tone']:.1f}\n"
-                f"  URL: {e['source_url']}"
-                f"{zone_info}{country_info}{org_info}"
+                f"- Date:{e.get('date', '')} | Code:{e.get('event_code', '')} | {e.get('actor1', 'Unknown')} vs {e.get('actor2', 'Unknown')} | "
+                f"{e.get('location', 'Unknown')}({e.get('country_code', '??')}) [{e.get('latitude', '')},{e.get('longitude', '')}] | "
+                f"Mentions:{e.get('num_mentions', 0)} Tone:{tone:.1f}{extra_str}\n"
+                f"  URL: {e.get('source_url', '')}"
             )
 
     if data.get("acled"):
-        sections.append("\n## ACLED Incidents (Coded Political Violence)")
-        for e in data["acled"][:25]:
+        sections.append(f"\n## ACLED Incidents (Top 15 of {len(data['acled'])})")
+        for e in data["acled"][:15]:
             enr = e.get("_enrichment", {})
-            zone_info = ""
+            extras = []
             if enr.get("conflict_zone"):
-                z = enr["conflict_zone"]
-                zone_info = f"\n  CONFLICT ZONE: {z['zone_name']} | Intensity: {z['intensity']} | Trend: {z['trend']} | Pop at risk: {z.get('population_at_risk', 'N/A'):,}"
-            country_info = ""
-            if enr.get("country"):
-                c = enr["country"]
-                country_info = f"\n  COUNTRY THREAT: {c['name']} | Level: {c['threat_level']} | Active groups: {', '.join(c['active_groups'][:3])}"
-            org_info = ""
+                extras.append(f"Zone: {enr['conflict_zone']['zone_name']}")
             if enr.get("actor1_org"):
-                o = enr["actor1_org"]
-                org_info = f"\n  DESIGNATED ORG (Actor1): {o['matched_name']} ({o['designation']})"
-            if enr.get("actor2_org"):
-                o = enr["actor2_org"]
-                org_info += f"\n  DESIGNATED ORG (Actor2): {o['matched_name']} ({o['designation']})"
-            attack_info = ""
+                extras.append(f"Org: {enr['actor1_org']['matched_name']}")
             if enr.get("attack_classification"):
-                a = enr["attack_classification"]
-                attack_info = f"\n  ATTACK TYPE: {a['category_name']}"
+                extras.append(enr["attack_classification"]["category_name"])
+            extra_str = " | " + " | ".join(extras) if extras else ""
 
+            notes = e.get('notes', '')
             sections.append(
-                f"- {e['date']} | {e['sub_event_type']} | {e['country']} ({e['admin1']}, {e['location']})\n"
-                f"  Coords: [{e['latitude']}, {e['longitude']}]\n"
-                f"  Actor1: {e['actor1']} | Actor2: {e['actor2']}\n"
-                f"  Fatalities: {e['fatalities']}\n"
-                f"  Notes: {e['notes'][:250]}"
-                f"{zone_info}{country_info}{org_info}{attack_info}"
+                f"- {e.get('date', '')} | {e.get('sub_event_type', 'Unknown')} | {e.get('country', 'Unknown')}({e.get('admin1', '')},{e.get('location', 'Unknown')}) "
+                f"[{e.get('latitude', '')},{e.get('longitude', '')}] | "
+                f"{e.get('actor1', 'Unknown')} vs {e.get('actor2', 'Unknown')} | Fatal:{e.get('fatalities', 0)}{extra_str}\n"
+                f"  {notes[:150]}"
             )
 
     # 이벤트 클러스터 (교차 매칭 결과)
     if data.get("event_clusters"):
         clusters = data["event_clusters"]
-        sections.append(f"\n## EVENT CLUSTERS (Cross-Source Linked) — {len(clusters)} events")
-        for c in clusters[:15]:
-            score = c.get("importance_score", 0)
-            size = c.get("cluster_size", 1)
-            gdelt_n = c.get("gdelt_count", 0)
-            rss_n = c.get("rss_count", 0)
+        sections.append(f"\n## EVENT CLUSTERS — {len(clusters)} events")
+        for c in clusters[:10]:
             countries = ", ".join(c.get("countries", []))
-            tone = c.get("tone_label", "")
-            avg_tone = c.get("avg_media_tone")
-            tone_str = f" | Media Tone: {avg_tone} ({tone})" if avg_tone is not None else ""
-
+            summary = c.get('summary', '')
             sections.append(
-                f"- [Score:{score} | News:{size} | GDELT:{gdelt_n} | RSS:{rss_n}] {c['title']}\n"
-                f"  URL: {c['url']}\n"
-                f"  Countries: {countries}{tone_str}\n"
-                f"  {c['summary'][:150]}"
+                f"- [Score:{c.get('importance_score',0)} News:{c.get('cluster_size',1)} GDELT:{c.get('gdelt_count',0)} RSS:{c.get('rss_count',0)}] "
+                f"{c.get('title', 'Untitled')}\n  {c.get('url', '')}\n  Countries: {countries} | {summary[:120]}"
             )
-
-            # 연결된 GDELT 이벤트 요약
-            for g in c.get("linked_gdelt", [])[:3]:
-                sections.append(
-                    f"    -> GDELT: {g['country']} {g['location']} | Code:{g['event_code']} | "
-                    f"Mentions:{g['mentions']} | Tone:{g['tone']:.1f} ({g['tone_label']})"
-                )
 
     # 클러스터에 안 묶인 RSS
     if data.get("expert_rss"):
-        # 클러스터에 이미 매칭된 RSS 제외
         matched_rss_titles = set()
         for c in data.get("event_clusters", []):
             matched_rss_titles.update(c.get("matched_rss", []))
@@ -307,18 +276,19 @@ def build_raw_context(data: dict) -> str:
         unmatched = [a for a in data["expert_rss"] if a.get("title", "") not in matched_rss_titles]
         if unmatched:
             sections.append(f"\n## Expert Analysis (Standalone)")
-            for a in unmatched[:10]:
-                sections.append(f"- [{a['feed_name']}] {a['title']}\n  URL: {a['url']}\n  {a['summary'][:200]}")
+            for a in unmatched[:5]:
+                a_summary = a.get('summary', '')
+                sections.append(f"- [{a.get('feed_name', 'Unknown')}] {a.get('title', 'Untitled')}\n  {a.get('url', '')}\n  {a_summary[:120]}")
 
     if data.get("sanctions"):
-        sections.append("\n## Sanctions Updates")
-        for s in data["sanctions"][:15]:
-            sections.append(f"- [{s['datasets']}] {s['name']} | Schema: {s['schema']} | Topics: {s['topics']}")
+        sections.append(f"\n## Sanctions Updates ({len(data['sanctions'])} entities)")
+        for s in data["sanctions"][:10]:
+            sections.append(f"- [{s.get('datasets', '')}] {s.get('name', 'Unknown')} ({s.get('schema', '')})")
 
     if data.get("ofac"):
-        sections.append("\n## OFAC Recent Actions")
-        for o in data["ofac"][:10]:
-            sections.append(f"- {o['title']}\n  URL: {o['url']}")
+        sections.append(f"\n## OFAC Recent Actions ({len(data['ofac'])})")
+        for o in data["ofac"][:5]:
+            sections.append(f"- {o.get('title', 'Untitled')} | {o.get('url', '')}")
 
     # ─── 심층 분석 결과 (#1 위협수준, #2 전일비교, #4 조직, #5 핫스팟) ───
     analysis = data.get("_analysis", {})
@@ -329,7 +299,7 @@ def build_raw_context(data: dict) -> str:
         sections.append("\n## COMPUTED THREAT LEVELS (Data-Driven)")
         sections.append("| Country | Score | Level | Events | Fatalities | News |")
         sections.append("|---------|-------|-------|--------|------------|------|")
-        for country, t in list(threat.items())[:15]:
+        for country, t in list(threat.items())[:10]:
             sections.append(
                 f"| {country} | {t['score']}/10 | {t['label']} | {t['events']} | {t['fatalities']} | {t['news_mentions']} |"
             )
@@ -349,7 +319,7 @@ def build_raw_context(data: dict) -> str:
         sections.append("\n## ORGANIZATION ACTIVITY TRACKER")
         sections.append("| Organization | Designation | Events Today | Fatalities | Countries | Attack Types |")
         sections.append("|-------------|-------------|-------------|------------|-----------|-------------|")
-        for o in orgs[:10]:
+        for o in orgs[:7]:
             name = o["name"][:30].replace("|", "/").replace('"', "'")
             countries = ", ".join(str(c) for c in o["countries"][:3])
             attacks = ", ".join(str(a) for a in o["attack_types"][:3])
@@ -385,47 +355,57 @@ ABSOLUTE RULES:
    - "We assess with LOW CONFIDENCE" = limited or fragmentary reporting
 5. BLUF (Bottom Line Up Front): Lead with the most critical assessment.
 6. For Korean: 문장은 "~이다", "~하다", "~한다", "~으로 판단된다", "~으로 평가된다"로 종결한다.
-7. NEVER speculate beyond what the data supports."""
+7. NEVER speculate beyond what the data supports.
+8. Source links MUST use actual URLs from the provided data. NEVER use '#' placeholder links like [text](#). Every incident in the report MUST include [description](actual-url-from-data). This is a CRITICAL integrity requirement.
+9. Use the ACTUAL event date from the data (the Date field), NOT the report generation date. If GDELT shows Date:2026-03-29, report that date, not today's date."""
 
 
-def generate_report(data: dict, date: datetime, lang: str) -> str:
-    """LLM으로 인텔리전스 리포트 생성"""
+def generate_report_ko(data: dict, date: datetime) -> str:
+    """LLM으로 한국어 인텔리전스 리포트 생성"""
     raw = build_raw_context(data)
-    date_str = date.strftime("%Y-%m-%d")
 
-    # 통계 요약
     acled_count = len(data.get("acled", []))
     acled_fatalities = sum(e.get("fatalities", 0) for e in data.get("acled", []))
     gdelt_count = len(data.get("gdelt", []))
-    news_count = len(data.get("google_news", []))
 
-    stats_block = f"""
-## Collection Stats:
-- ACLED incidents: {acled_count} (total fatalities: {acled_fatalities})
-- GDELT events: {gdelt_count}
-- News articles: {news_count}
-- Expert analyses: {len(data.get('expert_rss', []))}
-- Sanctions updates: {len(data.get('sanctions', []))}
-"""
+    stats_block = (
+        f"- ACLED: {acled_count}건 (사망 {acled_fatalities}) | GDELT: {gdelt_count}건 | "
+        f"뉴스: {len(data.get('google_news', []))}건 | 전문가: {len(data.get('expert_rss', []))}건 | "
+        f"제재: {len(data.get('sanctions', []))}건"
+    )
 
-    if lang == "ko":
-        weekday = ["월", "화", "수", "목", "금", "토", "일"][date.weekday()]
-        date_display = f"{date.strftime('%Y년 %m월 %d일')} ({weekday})"
-        prompt = f"""아래 수집 데이터를 분석하여 한국어 테러 인텔리전스 데일리 브리프를 작성하라.
+    weekday = ["월", "화", "수", "목", "금", "토", "일"][date.weekday()]
+    date_display = f"{date.strftime('%Y년 %m월 %d일')} ({weekday})"
+    rules = (
+        "1. BLUF 원칙: 가장 중요한 판단을 최상단에 배치\n"
+        "2. 각 항목 3~4줄 분석문. ~이다/~하다/~한다/~으로 판단된다 로 종결\n"
+        "3. 신뢰도 등급 명시 (높은 확신/중간 확신/낮은 확신). 출처는 마크다운 링크\n"
+        "4. 데이터에 없는 사건 절대 작성 금지. 데이터 없는 섹션은 '보고된 주요 활동 없음'\n"
+        "5. 출처 링크는 수집 데이터에 포함된 실제 URL을 사용한다. '#' 플레이스홀더를 절대 사용하지 않는다."
+    )
+
+    template = (
+        "## BLUF (Bottom Line Up Front)\n"
+        "> (핵심 위협 판단 2~3문장)\n\n---\n\n"
+        "## 1. 위협 수준 평가\n| 지역 | 수준 | 근거 |\n|------|------|------|\n\n"
+        "## 2. 통계 대시보드\n### 사건 개요\n| 지표 | 수치 |\n|------|------|\n\n"
+        "### 공격 유형 분포\n| 유형 | 건수 |\n|------|------|\n\n"
+        "## 3. 주요 사건 상세\n| 날짜 | 위치 | 좌표 | 유형 | 조직/행위자 | 사상자 | 출처 |\n"
+        "|------|------|------|------|-------------|--------|------|\n\n"
+        "## 4. 지역별 분석\n### 중동/북아프리카\n### 사하라 이남 아프리카\n### 남아시아/동남아시아\n### 유럽/북미\n### 기타\n\n"
+        "## 5. 조직 동향\n## 6. 제재/정책 변동\n## 7. 전문가 분석 요약\n## 8. 트렌드 & 패턴\n"
+        "## 9. 실무 시사점\n> (번호 나열)"
+    )
+
+    prompt = f"""아래 수집 데이터를 분석하여 한국어 테러 인텔리전스 데일리 브리프를 작성하라.
 
 ## 날짜: {date_display}
-{stats_block}
+## 수집 통계: {stats_block}
 ## 수집 데이터:
 {raw}
 
 ## 작성 규칙:
-1. BLUF 원칙: 가장 중요한 판단을 최상단에 배치한다
-2. 각 항목을 3~4줄의 분석문으로 작성한다
-3. 문장은 "~이다/~하다/~한다/~으로 판단된다"로 종결한다
-4. 신뢰도 등급을 명시한다 (높은 확신 / 중간 확신 / 낮은 확신)
-5. 출처는 마크다운 링크로 표기한다
-6. 수집 데이터에 없는 사건은 절대 작성하지 않는다
-7. 해당 섹션에 데이터가 없으면 "보고된 주요 활동 없음"으로 표기한다
+{rules}
 
 ## 출력 형식:
 
@@ -435,159 +415,10 @@ def generate_report(data: dict, date: datetime, lang: str) -> str:
 
 ---
 
-## BLUF (Bottom Line Up Front)
-
-> (오늘 가장 중요한 위협 판단 2~3문장. URL 없이 핵심만 서술한다)
+{template}
 
 ---
-
-## 1. 위협 수준 평가
-
-| 지역 | 수준 | 근거 |
-|------|------|------|
-(수집 데이터 기반으로 주요 지역별 위협 수준을 평가한다)
-
-## 2. 통계 대시보드
-
-(수집 데이터의 STATISTICS DASHBOARD를 기반으로 아래 테이블을 작성한다)
-
-### 사건 개요
-| 지표 | 수치 |
-|------|------|
-| 총 사건 수 | (ACLED + GDELT) |
-| 총 사망자 | (ACLED fatalities 합계) |
-| 가장 활발한 국가 | (상위 5개국) |
-| 가장 활발한 조직 | (상위 5개) |
-
-### 공격 유형 분포
-| 유형 | 건수 |
-|------|------|
-(데이터의 By Attack Type에서 추출)
-
-## 3. 주요 사건 상세
-
-| 날짜 | 위치 | 좌표 | 유형 | 조직/행위자 | 사상자 | 출처 |
-|------|------|------|------|-------------|--------|------|
-(ACLED + GDELT 데이터에서 좌표 포함하여 주요 사건을 테이블로 정리한다. 좌표는 [lat, lon] 형식)
-
-## 4. 지역별 분석
-
-### 중동 / 북아프리카
-### 사하라 이남 아프리카
-### 남아시아 / 동남아시아
-### 유럽 / 북미
-### 기타 지역
-
-(각 지역별로 주요 동향을 분석한다. 좌표 데이터가 있으면 [lat, lon]을 포함한다. 데이터가 없는 지역은 "보고된 주요 활동 없음")
-
-## 5. 조직 동향
-
-(통계 대시보드의 By Actor 데이터를 기반으로 활동이 확인된 조직의 사건 수, 지역, 공격 유형을 분석한다)
-
-## 6. 제재 / 정책 변동
-
-(OFAC, UN, EU 제재 목록 변동 및 대테러 정책 변화를 분석한다)
-
-## 7. 전문가 분석 요약
-
-(Long War Journal, Soufan Center 등 전문 기관의 분석을 요약한다)
-
-## 8. 트렌드 & 패턴
-
-(통계 대시보드 데이터를 기반으로 관찰되는 패턴을 분석한다. 미디어 톤, 언급량 변화도 포함)
-
-## 9. 실무 시사점
-
-> (구체적 액션 아이템. 번호로 나열한다)
-
----
-
-*Sources: ACLED, GDELT, Google News, Long War Journal, Soufan Center, CTC Sentinel, Jamestown, OpenSanctions, OFAC*
-*Generated: {date_display} | Model: {ANALYSIS_MODEL} | UNCLASSIFIED*
-"""
-    else:
-        weekday = date.strftime("%A")
-        date_display = f"{date_str} ({weekday})"
-        prompt = f"""Analyze the collected data and produce an English daily terror intelligence brief.
-
-## Date: {date_display}
-{stats_block}
-## Collected Data:
-{raw}
-
-## Rules:
-1. BLUF principle: Lead with the most critical assessment
-2. Each item: 3-4 line analytical paragraph
-3. Use estimative language with confidence levels (HIGH/MODERATE/LOW CONFIDENCE)
-4. Source as markdown link: [text](URL)
-5. NEVER fabricate. Only use provided data.
-6. Empty sections: "No significant activity reported"
-
-## Output format:
-
-# Terror Intelligence Brief — {date_display}
-
-> CLASSIFICATION: UNCLASSIFIED // FOR OFFICIAL USE ONLY
-
----
-
-## BLUF (Bottom Line Up Front)
-
-> (2-3 sentences. Most critical threat assessment. No URLs.)
-
----
-
-## 1. Threat Level Assessment
-
-| Region | Level | Basis |
-|--------|-------|-------|
-
-## 2. Statistics Dashboard
-
-### Incident Overview
-| Metric | Value |
-|--------|-------|
-(Use STATISTICS DASHBOARD data)
-
-### Attack Type Distribution
-| Type | Count |
-|------|-------|
-
-## 3. Key Incidents Detail
-
-| Date | Location | Coords | Type | Actor | Casualties | Source |
-|------|----------|--------|------|-------|------------|--------|
-(Include [lat, lon] coordinates from data)
-
-## 4. Regional Analysis
-
-### Middle East / North Africa
-### Sub-Saharan Africa
-### South / Southeast Asia
-### Europe / North America
-### Other Regions
-
-(Include coordinates where available)
-
-## 5. Threat Group Activity
-
-(Use By Actor statistics for incident counts per group)
-
-## 6. Sanctions & Policy Updates
-
-## 7. Expert Analysis Summary
-
-## 8. Trends & Patterns
-
-(Include media tone analysis and mention volume from GDELT)
-
-## 9. Actionable Takeaways
-
-> (Numbered action items)
-
----
-
-*Sources: ACLED, GDELT, Google News, Long War Journal, Soufan Center, CTC Sentinel, Jamestown, OpenSanctions, OFAC*
+*Sources: ACLED, GDELT, Google News, LWJ, Soufan, CTC, Jamestown, OpenSanctions, OFAC*
 *Generated: {date_display} | Model: {ANALYSIS_MODEL} | UNCLASSIFIED*
 """
 
@@ -598,6 +429,46 @@ def generate_report(data: dict, date: datetime, lang: str) -> str:
             {"role": "user", "content": prompt},
         ],
         temperature=TEMPERATURE,
+        max_completion_tokens=MAX_TOKENS,
+    )
+
+    content = response.choices[0].message.content or ""
+    usage = response.usage
+    if usage:
+        print(f"   tokens: in={usage.prompt_tokens:,} out={usage.completion_tokens:,} total={usage.total_tokens:,}")
+    return content
+
+
+def translate_to_en(ko_report: str, date: datetime) -> str:
+    """한국어 보고서를 영문으로 번역 (컨텍스트 재전송 없이)"""
+    weekday = date.strftime("%A")
+    date_display = f"{date.strftime('%Y-%m-%d')} ({weekday})"
+
+    emdash = "\u2014"
+    arrow = "\u2192"
+    translate_rules = (
+        "- Preserve all markdown formatting, tables, links, and structure exactly\n"
+        f"- Replace Korean date header with: Terror Intelligence Brief {emdash} {date_display}\n"
+        "- Use professional intelligence language (HIGH/MODERATE/LOW CONFIDENCE)\n"
+        f'- Replace "높은 확신" {arrow} "HIGH CONFIDENCE", "중간 확신" {arrow} "MODERATE CONFIDENCE", "낮은 확신" {arrow} "LOW CONFIDENCE"\n'
+        "- Keep all URLs, coordinates, and numbers unchanged\n"
+        "- Replace footer date with English equivalent"
+    )
+    prompt = f"""Translate the following Korean intelligence brief into English.
+
+Rules:
+{translate_rules}
+
+Korean report:
+{ko_report}"""
+
+    response = client.chat.completions.create(
+        model=ANALYSIS_MODEL,
+        messages=[
+            {"role": "system", "content": "You are a professional translator specializing in intelligence and security documents. Translate accurately without adding or removing information."},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.1,
         max_completion_tokens=MAX_TOKENS,
     )
 
@@ -724,14 +595,20 @@ def main():
 
     # 7. 한글 리포트 (#11 재시도)
     print("\n  [KO] Generating...")
-    ko = generate_with_retry(data, target_date, "ko")
+    ko = generate_with_retry(generate_report_ko, data, target_date)
+    if ko.startswith("Report generation failed"):
+        print(f"   ERROR: KO report generation failed.")
+        sys.exit(1)
     ko_path = report_dir / f"{date_str}_ko.md"
     ko_path.write_text(ko, encoding="utf-8")
     print(f"   -> {ko_path.relative_to(ROOT)} ({len(ko):,} chars)")
 
-    # 6. 영문 리포트
-    print("\n  [EN] Generating...")
-    en = generate_with_retry(data, target_date, "en")
+    # 8. 영문 리포트 (KO 번역)
+    print("\n  [EN] Translating from KO...")
+    en = generate_with_retry(translate_to_en, ko, target_date)
+    if en.startswith("Report generation failed"):
+        print(f"   ERROR: EN report generation failed.")
+        sys.exit(1)
     en_path = report_dir / f"{date_str}_en.md"
     en_path.write_text(en, encoding="utf-8")
     print(f"   -> {en_path.relative_to(ROOT)} ({len(en):,} chars)")

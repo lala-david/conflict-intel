@@ -26,7 +26,7 @@ DB_PATH = ROOT / "data" / "terror.db"
 
 def get_weekly_data(end_date: datetime) -> dict:
     """최근 7일 데이터 집계"""
-    start = (end_date - timedelta(days=7)).strftime("%Y-%m-%d")
+    start = (end_date - timedelta(days=6)).strftime("%Y-%m-%d")
     end = end_date.strftime("%Y-%m-%d")
 
     conn = sqlite3.connect(str(DB_PATH))

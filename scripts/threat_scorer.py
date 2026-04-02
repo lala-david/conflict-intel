@@ -70,9 +70,11 @@ def compute_threat_levels(data: dict, zones_db: list) -> dict:
             continue
         # ISO 2자리로 변환 시도
         enr = e.get("_enrichment", {}).get("country", {})
-        iso = enr.get("iso", c[:2].upper())
+        iso = enr.get("iso", "")
+        if not iso:
+            continue
         country_stats[iso]["events"] += 1
-        country_stats[iso]["fatalities"] += e.get("fatalities", 0)
+        country_stats[iso]["fatalities"] += int(e.get("fatalities", 0) or 0)
 
     # 뉴스 클러스터 국가 집계
     for cluster in data.get("event_clusters", []):
@@ -126,19 +128,19 @@ def compute_threat_levels(data: dict, zones_db: list) -> dict:
 def compute_daily_diff(date_str: str) -> dict:
     """어제 vs 오늘 통계 비교"""
     conn = _get_conn()
+    try:
+        today = conn.execute(
+            "SELECT gdelt_count, acled_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
+            "FROM daily_stats WHERE date = ?", (date_str,)
+        ).fetchone()
 
-    today = conn.execute(
-        "SELECT gdelt_count, acled_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
-        "FROM daily_stats WHERE date = ?", (date_str,)
-    ).fetchone()
-
-    # 어제 찾기 (데이터가 있는 가장 최근 날)
-    yesterday = conn.execute(
-        "SELECT date, gdelt_count, acled_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
-        "FROM daily_stats WHERE date < ? ORDER BY date DESC LIMIT 1", (date_str,)
-    ).fetchone()
-
-    conn.close()
+        # 어제 찾기 (데이터가 있는 가장 최근 날)
+        yesterday = conn.execute(
+            "SELECT date, gdelt_count, acled_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
+            "FROM daily_stats WHERE date < ? ORDER BY date DESC LIMIT 1", (date_str,)
+        ).fetchone()
+    finally:
+        conn.close()
 
     if not today:
         return {"available": False}
@@ -211,7 +213,7 @@ def track_org_activity(data: dict, days: int = 7) -> list[dict]:
                     continue
 
                 org_activity[name]["events_today"] += 1
-                org_activity[name]["fatalities_today"] += e.get("fatalities", 0)
+                org_activity[name]["fatalities_today"] += int(e.get("fatalities", 0) or 0)
                 org_activity[name]["designation"] = org.get("designation", "")
 
                 country = e.get("country", "") or e.get("country_code", "")
@@ -274,7 +276,7 @@ def detect_hotspots(data: dict, grid_size: float = 2.0) -> list[dict]:
         for e in data.get(source_key, []):
             lat = e.get("latitude", "")
             lon = e.get("longitude", "")
-            if not lat or not lon:
+            if lat is None or lon is None:
                 continue
             try:
                 lat_f = float(lat)
@@ -288,7 +290,7 @@ def detect_hotspots(data: dict, grid_size: float = 2.0) -> list[dict]:
             key = (grid_lat, grid_lon)
 
             grid[key]["events"] += 1
-            grid[key]["fatalities"] += e.get("fatalities", 0)
+            grid[key]["fatalities"] += int(e.get("fatalities", 0) or 0)
             grid[key]["lats"].append(lat_f)
             grid[key]["lons"].append(lon_f)
 

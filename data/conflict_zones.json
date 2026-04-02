@@ -12,14 +12,17 @@
       "zone_name": "Syria - Idlib",
       "country": "Syria",
       "iso_code": "SY",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Levant",
-      "center_coordinates": { "lat": 35.93, "lon": 36.63 },
+      "center_coordinates": {
+        "lat": 35.93,
+        "lon": 36.63
+      },
       "bounding_box": {
         "north": 36.35,
-        "south": 35.50,
-        "east": 37.00,
-        "west": 36.10
+        "south": 35.5,
+        "east": 37.0,
+        "west": 36.1
       },
       "active_groups": [
         "Hayat Tahrir al-Sham (HTS)",
@@ -31,7 +34,14 @@
       "conflict_type": "Civil War / Insurgency",
       "intensity": "Medium",
       "recent_trend": "De-escalating",
-      "key_locations": ["Idlib city", "Jisr al-Shughur", "Ariha", "Maarat Misrin", "Saraqib", "Binnish"],
+      "key_locations": [
+        "Idlib city",
+        "Jisr al-Shughur",
+        "Ariha",
+        "Maarat Misrin",
+        "Saraqib",
+        "Binnish"
+      ],
       "estimated_civilian_population_at_risk": 3000000,
       "notes": "HTS-administered zone; post-2024 political transition has altered dynamics significantly. Former rebel enclave now integrated into broader Syrian transitional governance discussions."
     },
@@ -40,14 +50,17 @@
       "zone_name": "Syria - Northeast (Rojava / AANES)",
       "country": "Syria",
       "iso_code": "SY",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Levant",
-      "center_coordinates": { "lat": 36.50, "lon": 40.50 },
+      "center_coordinates": {
+        "lat": 36.5,
+        "lon": 40.5
+      },
       "bounding_box": {
-        "north": 37.30,
-        "south": 35.50,
-        "east": 42.40,
-        "west": 38.50
+        "north": 37.3,
+        "south": 35.5,
+        "east": 42.4,
+        "west": 38.5
       },
       "active_groups": [
         "ISIS remnants / sleeper cells",
@@ -58,7 +71,16 @@
       "conflict_type": "Insurgency / Border Conflict",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Hasakah", "Qamishli", "Kobani (Ain al-Arab)", "Tal Abyad", "Ras al-Ain", "Raqqa", "Manbij", "Ain Issa"],
+      "key_locations": [
+        "Hasakah",
+        "Qamishli",
+        "Kobani (Ain al-Arab)",
+        "Tal Abyad",
+        "Ras al-Ain",
+        "Raqqa",
+        "Manbij",
+        "Ain Issa"
+      ],
       "estimated_civilian_population_at_risk": 2500000,
       "notes": "ISIS sleeper cells continue attacks. Turkish cross-border operations ongoing. Al-Hol and Roj displacement camps hold tens of thousands of ISIS-affiliated detainees."
     },
@@ -67,14 +89,17 @@
       "zone_name": "Syria - Deir ez-Zor",
       "country": "Syria",
       "iso_code": "SY",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Levant",
-      "center_coordinates": { "lat": 35.33, "lon": 40.14 },
+      "center_coordinates": {
+        "lat": 35.33,
+        "lon": 40.14
+      },
       "bounding_box": {
-        "north": 36.00,
-        "south": 34.50,
-        "east": 41.50,
-        "west": 39.00
+        "north": 36.0,
+        "south": 34.5,
+        "east": 41.5,
+        "west": 39.0
       },
       "active_groups": [
         "ISIS remnants",
@@ -85,7 +110,12 @@
       "conflict_type": "Insurgency / Sectarian",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Deir ez-Zor city", "Abu Kamal (Al-Bukamal)", "Mayadin", "Euphrates River Valley"],
+      "key_locations": [
+        "Deir ez-Zor city",
+        "Abu Kamal (Al-Bukamal)",
+        "Mayadin",
+        "Euphrates River Valley"
+      ],
       "estimated_civilian_population_at_risk": 800000,
       "notes": "Key ISIS resurgence corridor along the Euphrates Valley. Cross-border movement with Iraq. Tribal tensions between Arab population and Kurdish-led SDF."
     },
@@ -94,14 +124,17 @@
       "zone_name": "Iraq - Western Anbar",
       "country": "Iraq",
       "iso_code": "IQ",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Mesopotamia",
-      "center_coordinates": { "lat": 33.50, "lon": 41.50 },
+      "center_coordinates": {
+        "lat": 33.5,
+        "lon": 41.5
+      },
       "bounding_box": {
-        "north": 34.50,
-        "south": 32.50,
-        "east": 43.00,
-        "west": 40.00
+        "north": 34.5,
+        "south": 32.5,
+        "east": 43.0,
+        "west": 40.0
       },
       "active_groups": [
         "ISIS remnants",
@@ -110,7 +143,14 @@
       "conflict_type": "Insurgency",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Ramadi", "Fallujah", "Haditha", "Al-Qaim", "Rutba", "Anbar desert"],
+      "key_locations": [
+        "Ramadi",
+        "Fallujah",
+        "Haditha",
+        "Al-Qaim",
+        "Rutba",
+        "Anbar desert"
+      ],
       "estimated_civilian_population_at_risk": 1500000,
       "notes": "ISIS maintains desert hideouts and conducts intermittent ambushes and IED attacks. Iraqi security forces conduct regular clearance operations."
     },
@@ -119,14 +159,17 @@
       "zone_name": "Iraq - Northern (Kirkuk/Diyala/Salahuddin)",
       "country": "Iraq",
       "iso_code": "IQ",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Mesopotamia",
-      "center_coordinates": { "lat": 34.80, "lon": 44.00 },
+      "center_coordinates": {
+        "lat": 34.8,
+        "lon": 44.0
+      },
       "bounding_box": {
-        "north": 36.00,
-        "south": 33.80,
-        "east": 45.50,
-        "west": 43.00
+        "north": 36.0,
+        "south": 33.8,
+        "east": 45.5,
+        "west": 43.0
       },
       "active_groups": [
         "ISIS remnants",
@@ -136,7 +179,15 @@
       "conflict_type": "Insurgency",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Kirkuk", "Tikrit", "Baqubah", "Tuz Khurmatu", "Hamrin Mountains", "Makhmour", "Diyala province"],
+      "key_locations": [
+        "Kirkuk",
+        "Tikrit",
+        "Baqubah",
+        "Tuz Khurmatu",
+        "Hamrin Mountains",
+        "Makhmour",
+        "Diyala province"
+      ],
       "estimated_civilian_population_at_risk": 3000000,
       "notes": "Hamrin Mountains and rural Diyala remain ISIS stronghold areas. Ethno-sectarian tensions between Arabs, Kurds, and Turkmen compound security challenges."
     },
@@ -145,14 +196,17 @@
       "zone_name": "Afghanistan - Eastern Provinces (Nangarhar/Kunar/Laghman)",
       "country": "Afghanistan",
       "iso_code": "AF",
-      "region": "South Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Central-South Asia",
-      "center_coordinates": { "lat": 34.50, "lon": 70.50 },
+      "center_coordinates": {
+        "lat": 34.5,
+        "lon": 70.5
+      },
       "bounding_box": {
-        "north": 35.50,
-        "south": 33.80,
-        "east": 71.60,
-        "west": 69.50
+        "north": 35.5,
+        "south": 33.8,
+        "east": 71.6,
+        "west": 69.5
       },
       "active_groups": [
         "ISIS-Khorasan Province (ISKP)",
@@ -163,7 +217,13 @@
       "conflict_type": "Insurgency / Terrorism-only",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Jalalabad", "Asadabad", "Mehtarlam", "Torkham border crossing", "Spin Ghar mountains"],
+      "key_locations": [
+        "Jalalabad",
+        "Asadabad",
+        "Mehtarlam",
+        "Torkham border crossing",
+        "Spin Ghar mountains"
+      ],
       "estimated_civilian_population_at_risk": 3500000,
       "notes": "ISKP remains the primary threat, conducting attacks against Taliban, civilians, and foreign targets. This is ISKP's historical stronghold despite Taliban counter-operations."
     },
@@ -172,14 +232,17 @@
       "zone_name": "Afghanistan - Northern Provinces (Kunduz/Takhar/Baghlan/Balkh)",
       "country": "Afghanistan",
       "iso_code": "AF",
-      "region": "South Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Central-South Asia",
-      "center_coordinates": { "lat": 36.70, "lon": 68.50 },
+      "center_coordinates": {
+        "lat": 36.7,
+        "lon": 68.5
+      },
       "bounding_box": {
-        "north": 37.50,
-        "south": 35.80,
-        "east": 70.50,
-        "west": 66.50
+        "north": 37.5,
+        "south": 35.8,
+        "east": 70.5,
+        "west": 66.5
       },
       "active_groups": [
         "ISIS-Khorasan Province (ISKP)",
@@ -189,7 +252,13 @@
       "conflict_type": "Insurgency / Terrorism-only",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Kunduz", "Mazar-i-Sharif", "Pul-e-Khumri", "Taloqan", "Baghlan"],
+      "key_locations": [
+        "Kunduz",
+        "Mazar-i-Sharif",
+        "Pul-e-Khumri",
+        "Taloqan",
+        "Baghlan"
+      ],
       "estimated_civilian_population_at_risk": 4000000,
       "notes": "ISKP has expanded recruitment among ethnic Uzbeks and Tajiks. Cross-border threat to Central Asian states. Taliban conducts regular counter-ISKP operations."
     },
@@ -198,14 +267,17 @@
       "zone_name": "Afghanistan - Southern Provinces (Kandahar/Helmand/Zabul)",
       "country": "Afghanistan",
       "iso_code": "AF",
-      "region": "South Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Central-South Asia",
-      "center_coordinates": { "lat": 31.60, "lon": 65.70 },
+      "center_coordinates": {
+        "lat": 31.6,
+        "lon": 65.7
+      },
       "bounding_box": {
-        "north": 33.00,
-        "south": 30.00,
-        "east": 67.50,
-        "west": 63.50
+        "north": 33.0,
+        "south": 30.0,
+        "east": 67.5,
+        "west": 63.5
       },
       "active_groups": [
         "Taliban (governing authority, internal dissent)",
@@ -215,7 +287,12 @@
       "conflict_type": "Insurgency / Terrorism-only",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Kandahar city", "Lashkar Gah", "Qalat", "Spin Boldak"],
+      "key_locations": [
+        "Kandahar city",
+        "Lashkar Gah",
+        "Qalat",
+        "Spin Boldak"
+      ],
       "estimated_civilian_population_at_risk": 3000000,
       "notes": "Taliban heartland; relatively controlled but periodic ISKP attacks. Key narcotics production area fueling instability economics."
     },
@@ -224,14 +301,17 @@
       "zone_name": "Afghanistan - Kabul",
       "country": "Afghanistan",
       "iso_code": "AF",
-      "region": "South Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Central-South Asia",
-      "center_coordinates": { "lat": 34.53, "lon": 69.17 },
+      "center_coordinates": {
+        "lat": 34.53,
+        "lon": 69.17
+      },
       "bounding_box": {
-        "north": 34.70,
+        "north": 34.7,
         "south": 34.35,
-        "east": 69.40,
-        "west": 68.90
+        "east": 69.4,
+        "west": 68.9
       },
       "active_groups": [
         "ISIS-Khorasan Province (ISKP)",
@@ -240,7 +320,11 @@
       "conflict_type": "Terrorism-only",
       "intensity": "High",
       "recent_trend": "Stable",
-      "key_locations": ["Kabul city", "Dasht-e-Barchi (Hazara neighborhood)", "Kabul Airport area"],
+      "key_locations": [
+        "Kabul city",
+        "Dasht-e-Barchi (Hazara neighborhood)",
+        "Kabul Airport area"
+      ],
       "estimated_civilian_population_at_risk": 5000000,
       "notes": "ISKP targets Shia Hazara communities, Taliban officials, and symbolic targets. High-profile attack location."
     },
@@ -249,14 +333,17 @@
       "zone_name": "Yemen - Northern Houthi-controlled territory",
       "country": "Yemen",
       "iso_code": "YE",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Arabian Peninsula",
-      "center_coordinates": { "lat": 15.35, "lon": 44.20 },
+      "center_coordinates": {
+        "lat": 15.35,
+        "lon": 44.2
+      },
       "bounding_box": {
-        "north": 17.00,
-        "south": 14.50,
-        "east": 46.00,
-        "west": 43.00
+        "north": 17.0,
+        "south": 14.5,
+        "east": 46.0,
+        "west": 43.0
       },
       "active_groups": [
         "Ansar Allah (Houthis)",
@@ -266,7 +353,14 @@
       "conflict_type": "Civil War",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Sanaa", "Saada", "Hodeidah", "Amran", "Hajjah", "Marib frontline"],
+      "key_locations": [
+        "Sanaa",
+        "Saada",
+        "Hodeidah",
+        "Amran",
+        "Hajjah",
+        "Marib frontline"
+      ],
       "estimated_civilian_population_at_risk": 12000000,
       "notes": "Houthi Red Sea/Gulf of Aden shipping attacks since late 2023 have drawn significant US/UK military strikes. Severe humanitarian crisis. Ceasefire efforts ongoing but fragile."
     },
@@ -275,14 +369,17 @@
       "zone_name": "Yemen - Southern / AQAP corridor",
       "country": "Yemen",
       "iso_code": "YE",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Arabian Peninsula",
-      "center_coordinates": { "lat": 14.00, "lon": 47.50 },
+      "center_coordinates": {
+        "lat": 14.0,
+        "lon": 47.5
+      },
       "bounding_box": {
-        "north": 15.00,
-        "south": 13.00,
-        "east": 50.00,
-        "west": 45.00
+        "north": 15.0,
+        "south": 13.0,
+        "east": 50.0,
+        "west": 45.0
       },
       "active_groups": [
         "Al-Qaeda in the Arabian Peninsula (AQAP)",
@@ -293,7 +390,14 @@
       "conflict_type": "Insurgency / Civil War",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Aden", "Abyan", "Shabwah", "Hadramaut", "Al-Bayda", "Marib"],
+      "key_locations": [
+        "Aden",
+        "Abyan",
+        "Shabwah",
+        "Hadramaut",
+        "Al-Bayda",
+        "Marib"
+      ],
       "estimated_civilian_population_at_risk": 5000000,
       "notes": "AQAP maintains operational capability in remote areas. Power vacuum between STC and government forces enables militant activity. Al-Bayda is key AQAP/ISIS battleground."
     },
@@ -302,14 +406,17 @@
       "zone_name": "Somalia - South-Central",
       "country": "Somalia",
       "iso_code": "SO",
-      "region": "East Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Horn of Africa",
-      "center_coordinates": { "lat": 2.50, "lon": 44.50 },
+      "center_coordinates": {
+        "lat": 2.5,
+        "lon": 44.5
+      },
       "bounding_box": {
-        "north": 5.00,
-        "south": 0.00,
-        "east": 47.00,
-        "west": 42.00
+        "north": 5.0,
+        "south": 0.0,
+        "east": 47.0,
+        "west": 42.0
       },
       "active_groups": [
         "Al-Shabaab",
@@ -321,7 +428,18 @@
       "conflict_type": "Insurgency",
       "intensity": "High",
       "recent_trend": "Stable",
-      "key_locations": ["Mogadishu", "Beledweyne", "Baidoa", "Kismayo", "Marka", "El Buur", "Jowhar", "Lower Shabelle", "Middle Shabelle", "Galmudug"],
+      "key_locations": [
+        "Mogadishu",
+        "Beledweyne",
+        "Baidoa",
+        "Kismayo",
+        "Marka",
+        "El Buur",
+        "Jowhar",
+        "Lower Shabelle",
+        "Middle Shabelle",
+        "Galmudug"
+      ],
       "estimated_civilian_population_at_risk": 8000000,
       "notes": "Al-Shabaab remains one of the most capable jihadist groups globally. Generates significant revenue through taxation/extortion. Government offensive since 2022 made gains but Al-Shabaab retains rural control."
     },
@@ -330,14 +448,17 @@
       "zone_name": "Nigeria - Northeast (Borno/Yobe/Adamawa)",
       "country": "Nigeria",
       "iso_code": "NG",
-      "region": "West Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Lake Chad Basin",
-      "center_coordinates": { "lat": 11.80, "lon": 13.10 },
+      "center_coordinates": {
+        "lat": 11.8,
+        "lon": 13.1
+      },
       "bounding_box": {
-        "north": 13.70,
-        "south": 9.50,
-        "east": 14.70,
-        "west": 11.50
+        "north": 13.7,
+        "south": 9.5,
+        "east": 14.7,
+        "west": 11.5
       },
       "active_groups": [
         "Islamic State West Africa Province (ISWAP)",
@@ -347,7 +468,16 @@
       "conflict_type": "Insurgency",
       "intensity": "High",
       "recent_trend": "Stable",
-      "key_locations": ["Maiduguri", "Bama", "Gwoza", "Dikwa", "Monguno", "Damaturu", "Sambisa Forest", "Lake Chad islands"],
+      "key_locations": [
+        "Maiduguri",
+        "Bama",
+        "Gwoza",
+        "Dikwa",
+        "Monguno",
+        "Damaturu",
+        "Sambisa Forest",
+        "Lake Chad islands"
+      ],
       "estimated_civilian_population_at_risk": 8000000,
       "notes": "ISWAP is now the dominant faction after Boko Haram's Shekau died in 2021. Over 2 million IDPs. Lake Chad islands serve as key ISWAP base. Multinational Joint Task Force operations ongoing."
     },
@@ -356,14 +486,17 @@
       "zone_name": "Nigeria - Northwest (Zamfara/Katsina/Kaduna/Sokoto/Niger)",
       "country": "Nigeria",
       "iso_code": "NG",
-      "region": "West Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Sahel fringe",
-      "center_coordinates": { "lat": 11.50, "lon": 6.50 },
+      "center_coordinates": {
+        "lat": 11.5,
+        "lon": 6.5
+      },
       "bounding_box": {
-        "north": 13.50,
-        "south": 9.50,
-        "east": 8.50,
-        "west": 4.00
+        "north": 13.5,
+        "south": 9.5,
+        "east": 8.5,
+        "west": 4.0
       },
       "active_groups": [
         "Bandit groups / armed criminal gangs",
@@ -375,7 +508,14 @@
       "conflict_type": "Insurgency / Sectarian",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Zamfara (Gusau)", "Katsina", "Kaduna", "Sokoto", "Birnin Gwari", "Niger State (Shiroro, Munya)"],
+      "key_locations": [
+        "Zamfara (Gusau)",
+        "Katsina",
+        "Kaduna",
+        "Sokoto",
+        "Birnin Gwari",
+        "Niger State (Shiroro, Munya)"
+      ],
       "estimated_civilian_population_at_risk": 15000000,
       "notes": "Banditry-terrorism nexus is growing. Mass kidnappings for ransom. Ansaru expanding influence among bandit groups. Some groups pledging allegiance to ISWAP. Mining areas particularly affected."
     },
@@ -384,14 +524,17 @@
       "zone_name": "Sahel Tri-Border (Liptako-Gourma)",
       "country": "Mali / Burkina Faso / Niger",
       "iso_code": "ML / BF / NE",
-      "region": "West Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Sahel",
-      "center_coordinates": { "lat": 14.50, "lon": 0.00 },
+      "center_coordinates": {
+        "lat": 14.5,
+        "lon": 0.0
+      },
       "bounding_box": {
-        "north": 16.50,
-        "south": 12.50,
-        "east": 2.50,
-        "west": -2.50
+        "north": 16.5,
+        "south": 12.5,
+        "east": 2.5,
+        "west": -2.5
       },
       "active_groups": [
         "Jama'at Nusrat al-Islam wal-Muslimin (JNIM / al-Qaeda)",
@@ -404,9 +547,17 @@
       "intensity": "High",
       "recent_trend": "Escalating",
       "key_locations": [
-        "Mopti (Mali)", "Gao (Mali)", "Timbuktu (Mali)", "Menaka (Mali)",
-        "Djibo (Burkina Faso)", "Ouagadougou (Burkina Faso)", "Dori (Burkina Faso)", "Kaya (Burkina Faso)",
-        "Tillabéri (Niger)", "Niamey surroundings (Niger)", "Tahoua (Niger)"
+        "Mopti (Mali)",
+        "Gao (Mali)",
+        "Timbuktu (Mali)",
+        "Menaka (Mali)",
+        "Djibo (Burkina Faso)",
+        "Ouagadougou (Burkina Faso)",
+        "Dori (Burkina Faso)",
+        "Kaya (Burkina Faso)",
+        "Tillabéri (Niger)",
+        "Niamey surroundings (Niger)",
+        "Tahoua (Niger)"
       ],
       "estimated_civilian_population_at_risk": 15000000,
       "notes": "Epicenter of global jihadist expansion. JNIM and ISSP compete and clash. Post-coup military juntas in all three countries expelled French/UN forces. Wagner/Africa Corps mercenaries deployed in Mali and Burkina Faso. Massive displacement crisis."
@@ -416,14 +567,17 @@
       "zone_name": "Mali - Northern (Kidal/Gao/Timbuktu)",
       "country": "Mali",
       "iso_code": "ML",
-      "region": "West Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Sahel / Sahara",
-      "center_coordinates": { "lat": 18.00, "lon": -1.00 },
+      "center_coordinates": {
+        "lat": 18.0,
+        "lon": -1.0
+      },
       "bounding_box": {
-        "north": 25.00,
-        "south": 15.00,
-        "east": 4.00,
-        "west": -5.00
+        "north": 25.0,
+        "south": 15.0,
+        "east": 4.0,
+        "west": -5.0
       },
       "active_groups": [
         "JNIM",
@@ -434,7 +588,14 @@
       "conflict_type": "Insurgency / Separatist",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Kidal", "Gao", "Timbuktu", "Menaka", "Aguelhok", "Tessalit"],
+      "key_locations": [
+        "Kidal",
+        "Gao",
+        "Timbuktu",
+        "Menaka",
+        "Aguelhok",
+        "Tessalit"
+      ],
       "estimated_civilian_population_at_risk": 2000000,
       "notes": "Malian army recaptured Kidal from Tuareg separatists in late 2023 with Wagner support. JNIM and ISSP both active across the north. Tuareg resistance continues."
     },
@@ -443,14 +604,17 @@
       "zone_name": "Burkina Faso - Nationwide",
       "country": "Burkina Faso",
       "iso_code": "BF",
-      "region": "West Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Sahel",
-      "center_coordinates": { "lat": 12.37, "lon": -1.52 },
+      "center_coordinates": {
+        "lat": 12.37,
+        "lon": -1.52
+      },
       "bounding_box": {
-        "north": 15.10,
-        "south": 9.40,
-        "east": 2.40,
-        "west": -5.50
+        "north": 15.1,
+        "south": 9.4,
+        "east": 2.4,
+        "west": -5.5
       },
       "active_groups": [
         "JNIM",
@@ -461,7 +625,13 @@
       "conflict_type": "Insurgency",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Sahel Region (Djibo, Dori)", "North Region (Ouahigouya)", "East Region (Fada N'Gourma)", "Boucle du Mouhoun", "Centre-Nord"],
+      "key_locations": [
+        "Sahel Region (Djibo, Dori)",
+        "North Region (Ouahigouya)",
+        "East Region (Fada N'Gourma)",
+        "Boucle du Mouhoun",
+        "Centre-Nord"
+      ],
       "estimated_civilian_population_at_risk": 6000000,
       "notes": "Over 40% of territory under jihadist influence or control. Estimated 2+ million IDPs. Numerous siege conditions in northern towns like Djibo. One of the fastest-deteriorating security situations globally."
     },
@@ -470,14 +640,17 @@
       "zone_name": "Mozambique - Cabo Delgado",
       "country": "Mozambique",
       "iso_code": "MZ",
-      "region": "Southern Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "East Africa",
-      "center_coordinates": { "lat": -12.50, "lon": 40.00 },
+      "center_coordinates": {
+        "lat": -12.5,
+        "lon": 40.0
+      },
       "bounding_box": {
-        "north": -10.50,
-        "south": -14.00,
+        "north": -10.5,
+        "south": -14.0,
         "east": 40.85,
-        "west": 38.50
+        "west": 38.5
       },
       "active_groups": [
         "ISIS-Mozambique (Ansar al-Sunna / Al-Shabaab Mozambique / locally 'Mashababos')",
@@ -488,7 +661,15 @@
       "conflict_type": "Insurgency",
       "intensity": "Medium",
       "recent_trend": "De-escalating",
-      "key_locations": ["Mocímboa da Praia", "Palma", "Macomia", "Mueda", "Nangade", "Muidumbe", "Pemba (provincial capital)"],
+      "key_locations": [
+        "Mocímboa da Praia",
+        "Palma",
+        "Macomia",
+        "Mueda",
+        "Nangade",
+        "Muidumbe",
+        "Pemba (provincial capital)"
+      ],
       "estimated_civilian_population_at_risk": 1500000,
       "notes": "Rwandan military intervention since 2021 significantly degraded insurgent capability. Insurgents displaced southward and into Tanzania/Nampula. LNG project (TotalEnergies) remains suspended. Over 1 million displaced."
     },
@@ -497,14 +678,17 @@
       "zone_name": "DRC - Eastern Provinces (North Kivu/South Kivu/Ituri)",
       "country": "Democratic Republic of the Congo",
       "iso_code": "CD",
-      "region": "Central Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Great Lakes",
-      "center_coordinates": { "lat": -1.50, "lon": 29.00 },
+      "center_coordinates": {
+        "lat": -1.5,
+        "lon": 29.0
+      },
       "bounding_box": {
-        "north": 2.50,
-        "south": -5.00,
-        "east": 30.50,
-        "west": 27.00
+        "north": 2.5,
+        "south": -5.0,
+        "east": 30.5,
+        "west": 27.0
       },
       "active_groups": [
         "M23 (backed by Rwanda)",
@@ -519,7 +703,17 @@
       "conflict_type": "Civil War / Insurgency",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Goma", "Bukavu", "Bunia", "Beni", "Rutshuru", "Masisi", "Lubero", "Sake", "Minova"],
+      "key_locations": [
+        "Goma",
+        "Bukavu",
+        "Bunia",
+        "Beni",
+        "Rutshuru",
+        "Masisi",
+        "Lubero",
+        "Sake",
+        "Minova"
+      ],
       "estimated_civilian_population_at_risk": 10000000,
       "notes": "M23 advanced significantly in 2024-2025, at times reaching the outskirts of Goma. ADF (ISIS affiliate) conducts mass-casualty attacks in Beni area. Over 120 armed groups active. 7+ million IDPs in eastern DRC. MONUSCO withdrawal accelerating."
     },
@@ -528,14 +722,17 @@
       "zone_name": "Myanmar - Rakhine State",
       "country": "Myanmar",
       "iso_code": "MM",
-      "region": "Southeast Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Mainland Southeast Asia",
-      "center_coordinates": { "lat": 20.00, "lon": 93.50 },
+      "center_coordinates": {
+        "lat": 20.0,
+        "lon": 93.5
+      },
       "bounding_box": {
-        "north": 21.50,
-        "south": 17.50,
-        "east": 95.00,
-        "west": 92.00
+        "north": 21.5,
+        "south": 17.5,
+        "east": 95.0,
+        "west": 92.0
       },
       "active_groups": [
         "Arakan Army (AA)",
@@ -546,7 +743,15 @@
       "conflict_type": "Civil War / Insurgency",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Sittwe", "Buthidaung", "Maungdaw", "Rathedaung", "Paletwa (Chin)", "Mrauk-U", "Ann"],
+      "key_locations": [
+        "Sittwe",
+        "Buthidaung",
+        "Maungdaw",
+        "Rathedaung",
+        "Paletwa (Chin)",
+        "Mrauk-U",
+        "Ann"
+      ],
       "estimated_civilian_population_at_risk": 3500000,
       "notes": "Arakan Army has taken control of large parts of Rakhine since late 2023 offensive. Rohingya civilian population caught between competing armed groups. Massive displacement into Bangladesh. Humanitarian access severely restricted."
     },
@@ -555,14 +760,17 @@
       "zone_name": "Myanmar - Shan State",
       "country": "Myanmar",
       "iso_code": "MM",
-      "region": "Southeast Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Mainland Southeast Asia",
-      "center_coordinates": { "lat": 21.00, "lon": 98.00 },
+      "center_coordinates": {
+        "lat": 21.0,
+        "lon": 98.0
+      },
       "bounding_box": {
-        "north": 24.00,
-        "south": 19.00,
-        "east": 101.50,
-        "west": 96.00
+        "north": 24.0,
+        "south": 19.0,
+        "east": 101.5,
+        "west": 96.0
       },
       "active_groups": [
         "Myanmar National Democratic Alliance Army (MNDAA)",
@@ -576,7 +784,15 @@
       "conflict_type": "Civil War",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Lashio", "Kokang (Laukkai)", "Taunggyi", "Kengtung", "Hsipaw", "Kutkai", "Muse"],
+      "key_locations": [
+        "Lashio",
+        "Kokang (Laukkai)",
+        "Taunggyi",
+        "Kengtung",
+        "Hsipaw",
+        "Kutkai",
+        "Muse"
+      ],
       "estimated_civilian_population_at_risk": 6000000,
       "notes": "Operation 1027 (Oct 2023) by the Three Brotherhood Alliance captured major towns. MNDAA took Kokang. TNLA expanded control. Military regime lost significant territory. Ceasefire negotiations ongoing but fragile."
     },
@@ -585,14 +801,17 @@
       "zone_name": "Myanmar - Kachin / Sagaing",
       "country": "Myanmar",
       "iso_code": "MM",
-      "region": "Southeast Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Mainland Southeast Asia",
-      "center_coordinates": { "lat": 24.50, "lon": 96.50 },
+      "center_coordinates": {
+        "lat": 24.5,
+        "lon": 96.5
+      },
       "bounding_box": {
-        "north": 28.50,
-        "south": 21.50,
-        "east": 98.50,
-        "west": 94.00
+        "north": 28.5,
+        "south": 21.5,
+        "east": 98.5,
+        "west": 94.0
       },
       "active_groups": [
         "Kachin Independence Army (KIA)",
@@ -603,7 +822,15 @@
       "conflict_type": "Civil War",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Myitkyina", "Bhamo", "Monywa", "Shwebo", "Kale (Kalay)", "Tamu", "Hpakant jade mines"],
+      "key_locations": [
+        "Myitkyina",
+        "Bhamo",
+        "Monywa",
+        "Shwebo",
+        "Kale (Kalay)",
+        "Tamu",
+        "Hpakant jade mines"
+      ],
       "estimated_civilian_population_at_risk": 5000000,
       "notes": "KIA is one of the strongest ethnic armed organizations. Sagaing is the heartland of the resistance movement against the junta. Military uses airstrikes and artillery against civilian areas. Significant PDF operations."
     },
@@ -612,14 +839,17 @@
       "zone_name": "Myanmar - Kayah (Karenni) / Kayin (Karen)",
       "country": "Myanmar",
       "iso_code": "MM",
-      "region": "Southeast Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Mainland Southeast Asia",
-      "center_coordinates": { "lat": 18.50, "lon": 97.50 },
+      "center_coordinates": {
+        "lat": 18.5,
+        "lon": 97.5
+      },
       "bounding_box": {
-        "north": 20.50,
-        "south": 16.00,
-        "east": 99.00,
-        "west": 96.50
+        "north": 20.5,
+        "south": 16.0,
+        "east": 99.0,
+        "west": 96.5
       },
       "active_groups": [
         "Karenni Nationalities Defence Force (KNDF)",
@@ -630,7 +860,14 @@
       "conflict_type": "Civil War",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Loikaw", "Demoso", "Hpa-an", "Myawaddy", "Kawkareik", "Lay Kay Kaw"],
+      "key_locations": [
+        "Loikaw",
+        "Demoso",
+        "Hpa-an",
+        "Myawaddy",
+        "Kawkareik",
+        "Lay Kay Kaw"
+      ],
       "estimated_civilian_population_at_risk": 3000000,
       "notes": "Karenni resistance controls significant territory. Karen forces took Myawaddy (key border trade town with Thailand) in early 2024. Massive displacement to Thailand border."
     },
@@ -639,14 +876,17 @@
       "zone_name": "Pakistan - Balochistan",
       "country": "Pakistan",
       "iso_code": "PK",
-      "region": "South Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Central-South Asia",
-      "center_coordinates": { "lat": 28.50, "lon": 66.00 },
+      "center_coordinates": {
+        "lat": 28.5,
+        "lon": 66.0
+      },
       "bounding_box": {
-        "north": 32.00,
-        "south": 25.00,
-        "east": 70.00,
-        "west": 61.00
+        "north": 32.0,
+        "south": 25.0,
+        "east": 70.0,
+        "west": 61.0
       },
       "active_groups": [
         "Balochistan Liberation Army (BLA)",
@@ -659,7 +899,16 @@
       "conflict_type": "Insurgency / Separatist",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Quetta", "Turbat", "Gwadar", "Zhob", "Dera Bugti", "Panjgur", "Noshki", "Mastung"],
+      "key_locations": [
+        "Quetta",
+        "Turbat",
+        "Gwadar",
+        "Zhob",
+        "Dera Bugti",
+        "Panjgur",
+        "Noshki",
+        "Mastung"
+      ],
       "estimated_civilian_population_at_risk": 12000000,
       "notes": "BLA Majeed Brigade has escalated sophisticated attacks (suicide, complex). TTP also very active. Attacks target security forces, Chinese nationals/CPEC projects, and Hazara Shia community. Significant escalation in 2024-2025."
     },
@@ -668,14 +917,17 @@
       "zone_name": "Pakistan - Khyber Pakhtunkhwa / Former FATA",
       "country": "Pakistan",
       "iso_code": "PK",
-      "region": "South Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Central-South Asia",
-      "center_coordinates": { "lat": 33.50, "lon": 70.50 },
+      "center_coordinates": {
+        "lat": 33.5,
+        "lon": 70.5
+      },
       "bounding_box": {
-        "north": 36.00,
-        "south": 31.50,
-        "east": 72.00,
-        "west": 69.00
+        "north": 36.0,
+        "south": 31.5,
+        "east": 72.0,
+        "west": 69.0
       },
       "active_groups": [
         "Tehrik-i-Taliban Pakistan (TTP)",
@@ -687,7 +939,17 @@
       "conflict_type": "Insurgency / Terrorism-only",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Peshawar", "North Waziristan (Mir Ali, Miranshah)", "South Waziristan (Wana)", "Swat", "Dir", "Bajaur", "Kurram", "Dera Ismail Khan", "Tank"],
+      "key_locations": [
+        "Peshawar",
+        "North Waziristan (Mir Ali, Miranshah)",
+        "South Waziristan (Wana)",
+        "Swat",
+        "Dir",
+        "Bajaur",
+        "Kurram",
+        "Dera Ismail Khan",
+        "Tank"
+      ],
       "estimated_civilian_population_at_risk": 10000000,
       "notes": "TTP is the primary threat. Massive surge in attacks since Afghan Taliban takeover in 2021. Cross-border safe havens in Afghanistan. Pakistani military operations Azm-e-Istehkam launched. Sectarian violence in Kurram district extremely severe."
     },
@@ -696,14 +958,17 @@
       "zone_name": "Pakistan - Sindh (targeted areas)",
       "country": "Pakistan",
       "iso_code": "PK",
-      "region": "South Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Central-South Asia",
-      "center_coordinates": { "lat": 26.00, "lon": 68.50 },
+      "center_coordinates": {
+        "lat": 26.0,
+        "lon": 68.5
+      },
       "bounding_box": {
-        "north": 28.00,
-        "south": 24.00,
-        "east": 70.50,
-        "west": 66.50
+        "north": 28.0,
+        "south": 24.0,
+        "east": 70.5,
+        "west": 66.5
       },
       "active_groups": [
         "Sindhudesh Revolutionary Army (SRA)",
@@ -715,7 +980,13 @@
       "conflict_type": "Insurgency / Separatist",
       "intensity": "Low",
       "recent_trend": "Escalating",
-      "key_locations": ["Karachi (targeted areas)", "Hyderabad", "Sukkur", "Larkana", "Shikarpur"],
+      "key_locations": [
+        "Karachi (targeted areas)",
+        "Hyderabad",
+        "Sukkur",
+        "Larkana",
+        "Shikarpur"
+      ],
       "estimated_civilian_population_at_risk": 5000000,
       "notes": "Sindhi separatist groups have increased low-level attacks. Karachi remains a target for sectarian and political violence. Lower intensity than Balochistan/KP but emerging trend."
     },
@@ -724,14 +995,17 @@
       "zone_name": "Philippines - Mindanao",
       "country": "Philippines",
       "iso_code": "PH",
-      "region": "Southeast Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Maritime Southeast Asia",
-      "center_coordinates": { "lat": 7.00, "lon": 124.00 },
+      "center_coordinates": {
+        "lat": 7.0,
+        "lon": 124.0
+      },
       "bounding_box": {
-        "north": 9.50,
-        "south": 5.50,
-        "east": 127.00,
-        "west": 121.50
+        "north": 9.5,
+        "south": 5.5,
+        "east": 127.0,
+        "west": 121.5
       },
       "active_groups": [
         "ISIS-Philippines (Abu Sayyaf Group - ASG, remnants)",
@@ -743,7 +1017,14 @@
       "conflict_type": "Insurgency / Terrorism-only",
       "intensity": "Low",
       "recent_trend": "De-escalating",
-      "key_locations": ["Sulu Archipelago (Jolo)", "Basilan", "Maguindanao", "Lanao del Sur", "Cotabato", "Zamboanga"],
+      "key_locations": [
+        "Sulu Archipelago (Jolo)",
+        "Basilan",
+        "Maguindanao",
+        "Lanao del Sur",
+        "Cotabato",
+        "Zamboanga"
+      ],
       "estimated_civilian_population_at_risk": 4000000,
       "notes": "BARMM (Bangsamoro Autonomous Region) transition has reduced mainstream Moro insurgency. Remaining threat is from ISIS-linked splinter groups. ASG significantly degraded. Marawi rebuilt. Kidnap-for-ransom still a concern in Sulu seas."
     },
@@ -752,14 +1033,17 @@
       "zone_name": "Cameroon - Far North",
       "country": "Cameroon",
       "iso_code": "CM",
-      "region": "Central Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Lake Chad Basin",
-      "center_coordinates": { "lat": 10.80, "lon": 14.30 },
+      "center_coordinates": {
+        "lat": 10.8,
+        "lon": 14.3
+      },
       "bounding_box": {
-        "north": 13.10,
-        "south": 9.50,
-        "east": 15.70,
-        "west": 13.00
+        "north": 13.1,
+        "south": 9.5,
+        "east": 15.7,
+        "west": 13.0
       },
       "active_groups": [
         "Boko Haram (JAS)",
@@ -769,7 +1053,14 @@
       "conflict_type": "Insurgency",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Maroua", "Mora", "Kolofata", "Fotokol", "Waza", "Mayo-Tsanaga"],
+      "key_locations": [
+        "Maroua",
+        "Mora",
+        "Kolofata",
+        "Fotokol",
+        "Waza",
+        "Mayo-Tsanaga"
+      ],
       "estimated_civilian_population_at_risk": 2000000,
       "notes": "Spillover from Nigerian Boko Haram/ISWAP insurgency. Cross-border raids and suicide attacks. Multinational Joint Task Force operates in the area. Civilian vigilante groups (CPDM) active."
     },
@@ -778,26 +1069,39 @@
       "zone_name": "Cameroon - Anglophone Regions (Northwest/Southwest)",
       "country": "Cameroon",
       "iso_code": "CM",
-      "region": "Central Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "West-Central Africa",
-      "center_coordinates": { "lat": 5.90, "lon": 9.90 },
+      "center_coordinates": {
+        "lat": 5.9,
+        "lon": 9.9
+      },
       "bounding_box": {
-        "north": 7.00,
-        "south": 4.50,
-        "east": 10.80,
-        "west": 8.90
+        "north": 7.0,
+        "south": 4.5,
+        "east": 10.8,
+        "west": 8.9
       },
       "active_groups": [
         "Ambazonia Defence Forces (ADF)",
         "Ambazonia Self-Defence Council",
         "Various separatist factions ('Amba Boys')",
         "Cameroon military (BIR)",
-        "Red Dragons", "Tigers", "7Kotto"
+        "Red Dragons",
+        "Tigers",
+        "7Kotto"
       ],
       "conflict_type": "Insurgency / Separatist",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Bamenda", "Buea", "Kumba", "Mamfe", "Kumbo", "Wum", "Lebialem"],
+      "key_locations": [
+        "Bamenda",
+        "Buea",
+        "Kumba",
+        "Mamfe",
+        "Kumbo",
+        "Wum",
+        "Lebialem"
+      ],
       "estimated_civilian_population_at_risk": 4000000,
       "notes": "Anglophone separatist crisis since 2017. School boycotts, ghost towns. Multiple fragmented armed groups. Both sides accused of atrocities. Over 700,000 displaced. No peace process making progress."
     },
@@ -806,14 +1110,17 @@
       "zone_name": "Libya - Multiple zones",
       "country": "Libya",
       "iso_code": "LY",
-      "region": "North Africa",
+      "region": "MENA",
       "sub_region": "Maghreb",
-      "center_coordinates": { "lat": 31.00, "lon": 17.00 },
+      "center_coordinates": {
+        "lat": 31.0,
+        "lon": 17.0
+      },
       "bounding_box": {
-        "north": 33.20,
-        "south": 19.50,
-        "east": 25.20,
-        "west": 9.40
+        "north": 33.2,
+        "south": 19.5,
+        "east": 25.2,
+        "west": 9.4
       },
       "active_groups": [
         "ISIS-Libya (remnants in south)",
@@ -826,7 +1133,16 @@
       "conflict_type": "Civil War / Fragmented",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Tripoli", "Benghazi", "Misrata", "Sirte", "Sabha", "Derna", "Fezzan region", "Ubari"],
+      "key_locations": [
+        "Tripoli",
+        "Benghazi",
+        "Misrata",
+        "Sirte",
+        "Sabha",
+        "Derna",
+        "Fezzan region",
+        "Ubari"
+      ],
       "estimated_civilian_population_at_risk": 3000000,
       "notes": "Divided governance between GNU (west) and LNA (east). Relative calm but underlying tensions remain. Southern Libya is a transit hub for weapons, fighters, and migrants flowing into the Sahel. ISIS reduced but not eliminated."
     },
@@ -835,14 +1151,17 @@
       "zone_name": "Sudan - Nationwide conflict",
       "country": "Sudan",
       "iso_code": "SD",
-      "region": "East Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Horn of Africa / Sahel",
-      "center_coordinates": { "lat": 15.60, "lon": 32.50 },
+      "center_coordinates": {
+        "lat": 15.6,
+        "lon": 32.5
+      },
       "bounding_box": {
-        "north": 22.00,
-        "south": 8.70,
-        "east": 38.60,
-        "west": 21.80
+        "north": 22.0,
+        "south": 8.7,
+        "east": 38.6,
+        "west": 21.8
       },
       "active_groups": [
         "Sudanese Armed Forces (SAF)",
@@ -856,7 +1175,16 @@
       "conflict_type": "Civil War",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Khartoum", "Omdurman", "El-Fasher (North Darfur)", "Nyala (South Darfur)", "El-Obeid (North Kordofan)", "Wad Madani", "Port Sudan (de facto SAF capital)", "El Geneina (West Darfur)"],
+      "key_locations": [
+        "Khartoum",
+        "Omdurman",
+        "El-Fasher (North Darfur)",
+        "Nyala (South Darfur)",
+        "El-Obeid (North Kordofan)",
+        "Wad Madani",
+        "Port Sudan (de facto SAF capital)",
+        "El Geneina (West Darfur)"
+      ],
       "estimated_civilian_population_at_risk": 30000000,
       "notes": "War between SAF and RSF erupted April 2023. One of the world's worst humanitarian crises — 10+ million displaced, famine conditions. RSF controls most of Darfur and Khartoum. Ethnic cleansing documented in Darfur. Risk of state collapse. Foreign powers fueling conflict."
     },
@@ -865,14 +1193,17 @@
       "zone_name": "Ethiopia - Amhara Region",
       "country": "Ethiopia",
       "iso_code": "ET",
-      "region": "East Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Horn of Africa",
-      "center_coordinates": { "lat": 11.50, "lon": 38.50 },
+      "center_coordinates": {
+        "lat": 11.5,
+        "lon": 38.5
+      },
       "bounding_box": {
-        "north": 13.50,
-        "south": 9.50,
-        "east": 40.50,
-        "west": 36.00
+        "north": 13.5,
+        "south": 9.5,
+        "east": 40.5,
+        "west": 36.0
       },
       "active_groups": [
         "Fano militia (Amhara nationalist)",
@@ -882,7 +1213,15 @@
       "conflict_type": "Insurgency",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Bahir Dar", "Gondar", "Lalibela", "Dessie", "Debre Birhan", "North Shewa", "North Wollo"],
+      "key_locations": [
+        "Bahir Dar",
+        "Gondar",
+        "Lalibela",
+        "Dessie",
+        "Debre Birhan",
+        "North Shewa",
+        "North Wollo"
+      ],
       "estimated_civilian_population_at_risk": 8000000,
       "notes": "Fano insurgency erupted after government attempted to dissolve Amhara regional forces (post-Tigray war). State of emergency declared. Fano controls rural areas; ENDF holds cities. Significant civilian toll."
     },
@@ -891,14 +1230,17 @@
       "zone_name": "Ethiopia - Oromia Region",
       "country": "Ethiopia",
       "iso_code": "ET",
-      "region": "East Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Horn of Africa",
-      "center_coordinates": { "lat": 8.00, "lon": 39.00 },
+      "center_coordinates": {
+        "lat": 8.0,
+        "lon": 39.0
+      },
       "bounding_box": {
-        "north": 10.50,
-        "south": 4.00,
-        "east": 43.00,
-        "west": 34.50
+        "north": 10.5,
+        "south": 4.0,
+        "east": 43.0,
+        "west": 34.5
       },
       "active_groups": [
         "Oromo Liberation Army (OLA / OLF-Shane)",
@@ -908,7 +1250,14 @@
       "conflict_type": "Insurgency",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Wellega zones (East, West, Kellem)", "Guji", "Borena", "Shewa zones", "Ambo", "Nekemte"],
+      "key_locations": [
+        "Wellega zones (East, West, Kellem)",
+        "Guji",
+        "Borena",
+        "Shewa zones",
+        "Ambo",
+        "Nekemte"
+      ],
       "estimated_civilian_population_at_risk": 5000000,
       "notes": "OLA active primarily in western and southern Oromia. Ethnic dimension to conflict. Government conducts counter-insurgency operations. Periodic reports of civilian massacres by both sides."
     },
@@ -917,14 +1266,17 @@
       "zone_name": "Ethiopia - Tigray (post-war tensions)",
       "country": "Ethiopia",
       "iso_code": "ET",
-      "region": "East Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Horn of Africa",
-      "center_coordinates": { "lat": 13.50, "lon": 39.00 },
+      "center_coordinates": {
+        "lat": 13.5,
+        "lon": 39.0
+      },
       "bounding_box": {
-        "north": 14.90,
-        "south": 12.20,
-        "east": 40.20,
-        "west": 36.80
+        "north": 14.9,
+        "south": 12.2,
+        "east": 40.2,
+        "west": 36.8
       },
       "active_groups": [
         "Tigray People's Liberation Front (TPLF - post-war)",
@@ -934,7 +1286,14 @@
       "conflict_type": "Post-conflict / Border Conflict",
       "intensity": "Low",
       "recent_trend": "De-escalating",
-      "key_locations": ["Mekelle", "Axum", "Adwa", "Shire", "Humera (Western Tigray)", "Irob (border)"],
+      "key_locations": [
+        "Mekelle",
+        "Axum",
+        "Adwa",
+        "Shire",
+        "Humera (Western Tigray)",
+        "Irob (border)"
+      ],
       "estimated_civilian_population_at_risk": 6000000,
       "notes": "Cessation of Hostilities Agreement (Nov 2022) ended main conflict. But Eritrean troops remain, Western Tigray contested. Humanitarian crisis continues. Disarmament proceeding slowly."
     },
@@ -943,14 +1302,17 @@
       "zone_name": "Colombia - Border Regions / Pacific Coast",
       "country": "Colombia",
       "iso_code": "CO",
-      "region": "South America",
+      "region": "Americas",
       "sub_region": "Andean / Caribbean",
-      "center_coordinates": { "lat": 3.00, "lon": -77.00 },
+      "center_coordinates": {
+        "lat": 3.0,
+        "lon": -77.0
+      },
       "bounding_box": {
-        "north": 8.00,
-        "south": 0.50,
-        "east": -72.00,
-        "west": -79.00
+        "north": 8.0,
+        "south": 0.5,
+        "east": -72.0,
+        "west": -79.0
       },
       "active_groups": [
         "FARC dissident factions (Estado Mayor Central - EMC, Segunda Marquetalia)",
@@ -961,7 +1323,15 @@
       "conflict_type": "Insurgency / Narco-conflict",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Cauca department", "Nariño department (Tumaco)", "Norte de Santander (Catatumbo, Cúcuta)", "Chocó (Pacific coast)", "Arauca", "Putumayo", "Guaviare"],
+      "key_locations": [
+        "Cauca department",
+        "Nariño department (Tumaco)",
+        "Norte de Santander (Catatumbo, Cúcuta)",
+        "Chocó (Pacific coast)",
+        "Arauca",
+        "Putumayo",
+        "Guaviare"
+      ],
       "estimated_civilian_population_at_risk": 5000000,
       "notes": "Peace process with EMC and ELN ongoing but fragile. FARC dissidents control coca-growing regions. Clashes between armed groups for territorial control. Venezuelan border region particularly volatile. Forced displacement continues."
     },
@@ -970,11 +1340,14 @@
       "zone_name": "Israel/Palestine - Gaza Strip",
       "country": "Israel / Palestine",
       "iso_code": "IL / PS",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Levant",
-      "center_coordinates": { "lat": 31.40, "lon": 34.36 },
+      "center_coordinates": {
+        "lat": 31.4,
+        "lon": 34.36
+      },
       "bounding_box": {
-        "north": 31.60,
+        "north": 31.6,
         "south": 31.22,
         "east": 34.56,
         "west": 34.22
@@ -989,7 +1362,17 @@
       "conflict_type": "War / Insurgency",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Gaza City", "Khan Younis", "Rafah", "Deir al-Balah", "Jabalia", "Nuseirat", "Beit Hanoun", "Philadelphi Corridor", "Netzarim Corridor"],
+      "key_locations": [
+        "Gaza City",
+        "Khan Younis",
+        "Rafah",
+        "Deir al-Balah",
+        "Jabalia",
+        "Nuseirat",
+        "Beit Hanoun",
+        "Philadelphi Corridor",
+        "Netzarim Corridor"
+      ],
       "estimated_civilian_population_at_risk": 2200000,
       "notes": "Major escalation since October 7, 2023 Hamas attack and subsequent Israeli military operations. Unprecedented civilian casualties and destruction. Majority of population displaced, severe famine conditions. Ceasefire negotiations ongoing. Catastrophic humanitarian situation."
     },
@@ -998,9 +1381,12 @@
       "zone_name": "Israel/Palestine - West Bank",
       "country": "Israel / Palestine",
       "iso_code": "IL / PS",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Levant",
-      "center_coordinates": { "lat": 31.90, "lon": 35.20 },
+      "center_coordinates": {
+        "lat": 31.9,
+        "lon": 35.2
+      },
       "bounding_box": {
         "north": 32.55,
         "south": 31.35,
@@ -1019,7 +1405,16 @@
       "conflict_type": "Insurgency / Occupation",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Jenin (city and refugee camp)", "Nablus", "Tulkarm", "Tubas", "Hebron", "Ramallah", "Bethlehem", "Jericho"],
+      "key_locations": [
+        "Jenin (city and refugee camp)",
+        "Nablus",
+        "Tulkarm",
+        "Tubas",
+        "Hebron",
+        "Ramallah",
+        "Bethlehem",
+        "Jericho"
+      ],
       "estimated_civilian_population_at_risk": 3000000,
       "notes": "Significant escalation since October 2023. IDF raids in Jenin, Tulkarm, Nablus intensified. Settler violence surged. New armed groups emerged. Palestinian Authority governance weakening. Settlement expansion accelerating."
     },
@@ -1028,14 +1423,17 @@
       "zone_name": "Lebanon - South Lebanon / Bekaa",
       "country": "Lebanon",
       "iso_code": "LB",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Levant",
-      "center_coordinates": { "lat": 33.50, "lon": 35.50 },
+      "center_coordinates": {
+        "lat": 33.5,
+        "lon": 35.5
+      },
       "bounding_box": {
-        "north": 34.70,
+        "north": 34.7,
         "south": 33.05,
         "east": 36.65,
-        "west": 35.10
+        "west": 35.1
       },
       "active_groups": [
         "Hezbollah",
@@ -1046,7 +1444,12 @@
       "conflict_type": "Border Conflict / Terrorism-only",
       "intensity": "High",
       "recent_trend": "De-escalating",
-      "key_locations": ["South Lebanon (Tyre, Nabatieh, Bint Jbeil)", "Southern Beirut (Dahiyeh)", "Bekaa Valley (Baalbek)", "Ain al-Hilweh refugee camp"],
+      "key_locations": [
+        "South Lebanon (Tyre, Nabatieh, Bint Jbeil)",
+        "Southern Beirut (Dahiyeh)",
+        "Bekaa Valley (Baalbek)",
+        "Ain al-Hilweh refugee camp"
+      ],
       "estimated_civilian_population_at_risk": 2000000,
       "notes": "Major escalation in 2024 between Israel and Hezbollah, including Israeli ground incursion into southern Lebanon and extensive airstrikes on Beirut suburbs. Hezbollah senior leadership decimated. Ceasefire in late 2024. Massive displacement and destruction of southern towns."
     },
@@ -1055,14 +1458,17 @@
       "zone_name": "Sahel Expansion - Coastal West Africa (Togo/Benin/Ghana borders)",
       "country": "Togo / Benin / Ghana",
       "iso_code": "TG / BJ / GH",
-      "region": "West Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Gulf of Guinea hinterland",
-      "center_coordinates": { "lat": 10.50, "lon": 1.00 },
+      "center_coordinates": {
+        "lat": 10.5,
+        "lon": 1.0
+      },
       "bounding_box": {
-        "north": 11.50,
-        "south": 9.00,
-        "east": 3.50,
-        "west": -1.50
+        "north": 11.5,
+        "south": 9.0,
+        "east": 3.5,
+        "west": -1.5
       },
       "active_groups": [
         "JNIM (expanding south from Burkina Faso)",
@@ -1087,14 +1493,17 @@
       "zone_name": "Niger - Multiple zones (Tillabéri/Tahoua/Diffa)",
       "country": "Niger",
       "iso_code": "NE",
-      "region": "West Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Sahel",
-      "center_coordinates": { "lat": 14.00, "lon": 6.00 },
+      "center_coordinates": {
+        "lat": 14.0,
+        "lon": 6.0
+      },
       "bounding_box": {
-        "north": 17.00,
-        "south": 11.70,
-        "east": 15.00,
-        "west": 0.20
+        "north": 17.0,
+        "south": 11.7,
+        "east": 15.0,
+        "west": 0.2
       },
       "active_groups": [
         "JNIM",
@@ -1105,7 +1514,15 @@
       "conflict_type": "Insurgency",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Tillabéri", "Tahoua", "Diffa", "Maradi", "Torodi", "Ouallam", "Banibangou"],
+      "key_locations": [
+        "Tillabéri",
+        "Tahoua",
+        "Diffa",
+        "Maradi",
+        "Torodi",
+        "Ouallam",
+        "Banibangou"
+      ],
       "estimated_civilian_population_at_risk": 4000000,
       "notes": "Post-coup Niger (July 2023) expelled French and US military forces. ISSP extremely active in Tillabéri (Mali-Niger border). Boko Haram/ISWAP threatens Diffa (Lake Chad border). Security vacuum growing."
     },
@@ -1114,14 +1531,17 @@
       "zone_name": "Somalia - Puntland (ISIS stronghold)",
       "country": "Somalia",
       "iso_code": "SO",
-      "region": "East Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Horn of Africa",
-      "center_coordinates": { "lat": 10.50, "lon": 49.00 },
+      "center_coordinates": {
+        "lat": 10.5,
+        "lon": 49.0
+      },
       "bounding_box": {
-        "north": 11.80,
-        "south": 8.00,
-        "east": 51.50,
-        "west": 47.00
+        "north": 11.8,
+        "south": 8.0,
+        "east": 51.5,
+        "west": 47.0
       },
       "active_groups": [
         "ISIS-Somalia",
@@ -1131,7 +1551,12 @@
       "conflict_type": "Insurgency / Terrorism-only",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Bari region", "Cal Miskaad mountains", "Bosaso (port city)", "Galgala"],
+      "key_locations": [
+        "Bari region",
+        "Cal Miskaad mountains",
+        "Bosaso (port city)",
+        "Galgala"
+      ],
       "estimated_civilian_population_at_risk": 500000,
       "notes": "ISIS-Somalia maintains a small but persistent presence in the Bari highlands. Conducts periodic attacks and generates revenue through taxation of trade routes."
     },
@@ -1140,14 +1565,17 @@
       "zone_name": "Chad - Lac Province (Lake Chad Basin)",
       "country": "Chad",
       "iso_code": "TD",
-      "region": "Central Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Lake Chad Basin",
-      "center_coordinates": { "lat": 13.50, "lon": 14.50 },
+      "center_coordinates": {
+        "lat": 13.5,
+        "lon": 14.5
+      },
       "bounding_box": {
-        "north": 14.50,
-        "south": 12.50,
-        "east": 15.50,
-        "west": 13.50
+        "north": 14.5,
+        "south": 12.5,
+        "east": 15.5,
+        "west": 13.5
       },
       "active_groups": [
         "Boko Haram (JAS)",
@@ -1157,7 +1585,12 @@
       "conflict_type": "Insurgency",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Bol", "Baga Sola", "Lake Chad islands", "Kaiga-Kindjiria"],
+      "key_locations": [
+        "Bol",
+        "Baga Sola",
+        "Lake Chad islands",
+        "Kaiga-Kindjiria"
+      ],
       "estimated_civilian_population_at_risk": 600000,
       "notes": "Lake Chad islands serve as base for Boko Haram/ISWAP fighters. Cross-border attacks affect all four Lake Chad Basin countries. Chadian military is the most capable in the region."
     },
@@ -1166,14 +1599,17 @@
       "zone_name": "Egypt - North Sinai",
       "country": "Egypt",
       "iso_code": "EG",
-      "region": "Middle East / North Africa",
+      "region": "MENA",
       "sub_region": "Northeast Africa",
-      "center_coordinates": { "lat": 31.00, "lon": 33.80 },
+      "center_coordinates": {
+        "lat": 31.0,
+        "lon": 33.8
+      },
       "bounding_box": {
-        "north": 31.30,
-        "south": 30.40,
-        "east": 34.50,
-        "west": 32.50
+        "north": 31.3,
+        "south": 30.4,
+        "east": 34.5,
+        "west": 32.5
       },
       "active_groups": [
         "Wilayat Sinai (ISIS-Sinai Province)",
@@ -1182,7 +1618,12 @@
       "conflict_type": "Insurgency / Terrorism-only",
       "intensity": "Low",
       "recent_trend": "De-escalating",
-      "key_locations": ["El-Arish", "Rafah (Egyptian side)", "Sheikh Zuweid", "Bir al-Abd"],
+      "key_locations": [
+        "El-Arish",
+        "Rafah (Egyptian side)",
+        "Sheikh Zuweid",
+        "Bir al-Abd"
+      ],
       "estimated_civilian_population_at_risk": 500000,
       "notes": "Egyptian military's comprehensive operation (Sinai 2018) significantly degraded ISIS-Sinai. Attacks greatly reduced but not eliminated. Bedouin population affected by displacement and restrictions. Gaza crisis creates new border tensions."
     },
@@ -1191,14 +1632,17 @@
       "zone_name": "Tunisia - Kasserine/Mount Chaambi border zone",
       "country": "Tunisia",
       "iso_code": "TN",
-      "region": "North Africa",
+      "region": "MENA",
       "sub_region": "Maghreb",
-      "center_coordinates": { "lat": 35.20, "lon": 8.80 },
+      "center_coordinates": {
+        "lat": 35.2,
+        "lon": 8.8
+      },
       "bounding_box": {
-        "north": 35.70,
-        "south": 34.50,
-        "east": 9.50,
-        "west": 8.00
+        "north": 35.7,
+        "south": 34.5,
+        "east": 9.5,
+        "west": 8.0
       },
       "active_groups": [
         "AQIM-linked cells",
@@ -1208,7 +1652,12 @@
       "conflict_type": "Terrorism-only",
       "intensity": "Low",
       "recent_trend": "De-escalating",
-      "key_locations": ["Kasserine", "Mount Chaambi", "Jendouba", "Kef"],
+      "key_locations": [
+        "Kasserine",
+        "Mount Chaambi",
+        "Jendouba",
+        "Kef"
+      ],
       "estimated_civilian_population_at_risk": 300000,
       "notes": "Significantly reduced threat from 2015-2016 peak. Small cells persist in mountainous Algerian border areas. Security forces maintain heavy presence."
     },
@@ -1217,14 +1666,17 @@
       "zone_name": "India - Jammu & Kashmir",
       "country": "India",
       "iso_code": "IN",
-      "region": "South Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Central-South Asia",
-      "center_coordinates": { "lat": 34.00, "lon": 74.80 },
+      "center_coordinates": {
+        "lat": 34.0,
+        "lon": 74.8
+      },
       "bounding_box": {
-        "north": 35.50,
-        "south": 32.50,
-        "east": 76.00,
-        "west": 73.50
+        "north": 35.5,
+        "south": 32.5,
+        "east": 76.0,
+        "west": 73.5
       },
       "active_groups": [
         "Lashkar-e-Taiba (LeT) / The Resistance Front (TRF)",
@@ -1236,7 +1688,16 @@
       "conflict_type": "Insurgency / Border Conflict",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Srinagar", "Pulwama", "Shopian", "Anantnag", "Rajouri", "Poonch", "Kupwara", "Baramulla"],
+      "key_locations": [
+        "Srinagar",
+        "Pulwama",
+        "Shopian",
+        "Anantnag",
+        "Rajouri",
+        "Poonch",
+        "Kupwara",
+        "Baramulla"
+      ],
       "estimated_civilian_population_at_risk": 7000000,
       "notes": "Post Article 370 abrogation (2019), insurgent attacks reduced but continue. TRF emerged as new front for Pakistan-backed groups. Encounters in forested areas of Rajouri/Poonch increased. Cross-border infiltration continues."
     },
@@ -1245,14 +1706,17 @@
       "zone_name": "Myanmar - Chin State",
       "country": "Myanmar",
       "iso_code": "MM",
-      "region": "Southeast Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Mainland Southeast Asia",
-      "center_coordinates": { "lat": 21.50, "lon": 93.50 },
+      "center_coordinates": {
+        "lat": 21.5,
+        "lon": 93.5
+      },
       "bounding_box": {
-        "north": 23.50,
-        "south": 19.50,
-        "east": 94.50,
-        "west": 92.50
+        "north": 23.5,
+        "south": 19.5,
+        "east": 94.5,
+        "west": 92.5
       },
       "active_groups": [
         "Chinland Defence Force (CDF)",
@@ -1264,7 +1728,14 @@
       "conflict_type": "Civil War",
       "intensity": "Medium",
       "recent_trend": "Escalating",
-      "key_locations": ["Hakha", "Falam", "Tedim", "Mindat", "Matupi", "Thantlang"],
+      "key_locations": [
+        "Hakha",
+        "Falam",
+        "Tedim",
+        "Mindat",
+        "Matupi",
+        "Thantlang"
+      ],
       "estimated_civilian_population_at_risk": 500000,
       "notes": "Chin resistance forces control much of rural Chin State. Towns like Thantlang heavily destroyed. Displacement to India (Mizoram). Resistance linked with broader anti-junta movement."
     },
@@ -1273,14 +1744,17 @@
       "zone_name": "Central African Republic - Multiple zones",
       "country": "Central African Republic",
       "iso_code": "CF",
-      "region": "Central Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Central Africa",
-      "center_coordinates": { "lat": 6.60, "lon": 20.90 },
+      "center_coordinates": {
+        "lat": 6.6,
+        "lon": 20.9
+      },
       "bounding_box": {
-        "north": 11.00,
-        "south": 2.20,
-        "east": 27.50,
-        "west": 14.40
+        "north": 11.0,
+        "south": 2.2,
+        "east": 27.5,
+        "west": 14.4
       },
       "active_groups": [
         "Coalition of Patriots for Change (CPC - remnants)",
@@ -1293,7 +1767,15 @@
       "conflict_type": "Civil War / Insurgency",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Bangui (capital)", "Bambari", "Bria", "Kaga-Bandoro", "Bossangoa", "Ndélé", "Bangassou"],
+      "key_locations": [
+        "Bangui (capital)",
+        "Bambari",
+        "Bria",
+        "Kaga-Bandoro",
+        "Bossangoa",
+        "Ndélé",
+        "Bangassou"
+      ],
       "estimated_civilian_population_at_risk": 3000000,
       "notes": "Wagner/Africa Corps mercenaries deployed since 2018 supporting government. Armed groups still control territory outside Bangui. Human rights abuses by all parties. Resource competition (diamonds, gold, cattle) drives conflict."
     },
@@ -1302,14 +1784,17 @@
       "zone_name": "Sudan - Darfur (specific focus)",
       "country": "Sudan",
       "iso_code": "SD",
-      "region": "East Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Sahel / Horn of Africa",
-      "center_coordinates": { "lat": 13.00, "lon": 25.00 },
+      "center_coordinates": {
+        "lat": 13.0,
+        "lon": 25.0
+      },
       "bounding_box": {
-        "north": 16.00,
-        "south": 10.00,
-        "east": 28.00,
-        "west": 22.00
+        "north": 16.0,
+        "south": 10.0,
+        "east": 28.0,
+        "west": 22.0
       },
       "active_groups": [
         "Rapid Support Forces (RSF) - dominant force",
@@ -1322,7 +1807,14 @@
       "conflict_type": "Civil War / Ethnic Conflict",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["El-Fasher (besieged)", "Nyala", "El Geneina", "Zalingei", "Kutum", "Kebkabiya"],
+      "key_locations": [
+        "El-Fasher (besieged)",
+        "Nyala",
+        "El Geneina",
+        "Zalingei",
+        "Kutum",
+        "Kebkabiya"
+      ],
       "estimated_civilian_population_at_risk": 9000000,
       "notes": "Worst atrocities of the Sudan war concentrated in Darfur. RSF and allied Arab militias accused of ethnic cleansing against Masalit, Fur, and Zaghawa. El-Fasher under prolonged siege. Echoes of 2003 Darfur genocide. Massive cross-border displacement to Chad."
     },
@@ -1333,12 +1825,15 @@
       "iso_code": "UA",
       "region": "Europe",
       "sub_region": "Eastern Europe",
-      "center_coordinates": { "lat": 48.00, "lon": 37.00 },
+      "center_coordinates": {
+        "lat": 48.0,
+        "lon": 37.0
+      },
       "bounding_box": {
-        "north": 52.00,
-        "south": 46.00,
-        "east": 40.00,
-        "west": 33.00
+        "north": 52.0,
+        "south": 46.0,
+        "east": 40.0,
+        "west": 33.0
       },
       "active_groups": [
         "Russian Armed Forces",
@@ -1350,7 +1845,17 @@
       "conflict_type": "Interstate War",
       "intensity": "High",
       "recent_trend": "Stable",
-      "key_locations": ["Donetsk", "Luhansk", "Zaporizhzhia", "Kherson", "Bakhmut/Chasiv Yar", "Avdiivka", "Pokrovsk", "Kursk (Russia)", "Sumy border"],
+      "key_locations": [
+        "Donetsk",
+        "Luhansk",
+        "Zaporizhzhia",
+        "Kherson",
+        "Bakhmut/Chasiv Yar",
+        "Avdiivka",
+        "Pokrovsk",
+        "Kursk (Russia)",
+        "Sumy border"
+      ],
       "estimated_civilian_population_at_risk": 10000000,
       "notes": "Full-scale Russian invasion since February 2022. While primarily a conventional interstate war, included here due to terrorism-relevant dynamics: drone/missile attacks on civilian infrastructure, occupation zone resistance, and foreign fighter flows."
     },
@@ -1359,14 +1864,17 @@
       "zone_name": "Iran - Sistan-Baluchestan / Kurdistan border",
       "country": "Iran",
       "iso_code": "IR",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Western Asia",
-      "center_coordinates": { "lat": 29.00, "lon": 60.00 },
+      "center_coordinates": {
+        "lat": 29.0,
+        "lon": 60.0
+      },
       "bounding_box": {
-        "north": 37.00,
-        "south": 25.00,
-        "east": 63.50,
-        "west": 45.00
+        "north": 37.0,
+        "south": 25.0,
+        "east": 63.5,
+        "west": 45.0
       },
       "active_groups": [
         "Jaish al-Adl (Sunni Baloch militants)",
@@ -1378,7 +1886,13 @@
       "conflict_type": "Insurgency / Terrorism-only",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Zahedan", "Saravan", "Chabahar", "Kurdistan Province (Sanandaj)", "West Azerbaijan Province"],
+      "key_locations": [
+        "Zahedan",
+        "Saravan",
+        "Chabahar",
+        "Kurdistan Province (Sanandaj)",
+        "West Azerbaijan Province"
+      ],
       "estimated_civilian_population_at_risk": 3000000,
       "notes": "Jaish al-Adl conducts cross-border attacks from Pakistan. PJAK sporadically active in Kurdish regions. ISIS claimed major attack in Kerman (Jan 2024). Border security remains a challenge."
     },
@@ -1387,14 +1901,17 @@
       "zone_name": "Kenya - Northeastern border region",
       "country": "Kenya",
       "iso_code": "KE",
-      "region": "East Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Horn of Africa",
-      "center_coordinates": { "lat": 1.00, "lon": 40.50 },
+      "center_coordinates": {
+        "lat": 1.0,
+        "lon": 40.5
+      },
       "bounding_box": {
-        "north": 4.00,
-        "south": -2.00,
-        "east": 41.90,
-        "west": 39.00
+        "north": 4.0,
+        "south": -2.0,
+        "east": 41.9,
+        "west": 39.0
       },
       "active_groups": [
         "Al-Shabaab (cross-border operations from Somalia)",
@@ -1403,7 +1920,13 @@
       "conflict_type": "Terrorism-only",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Garissa", "Mandera", "Wajir", "Lamu County (Boni Forest)", "Mombasa (radicalization hub)"],
+      "key_locations": [
+        "Garissa",
+        "Mandera",
+        "Wajir",
+        "Lamu County (Boni Forest)",
+        "Mombasa (radicalization hub)"
+      ],
       "estimated_civilian_population_at_risk": 2000000,
       "notes": "Al-Shabaab conducts cross-border attacks and IED ambushes targeting KDF and civilians. Boni Forest serves as operational base. Periodic attacks on infrastructure and communication towers."
     },
@@ -1412,14 +1935,17 @@
       "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
       "country": "Saudi Arabia",
       "iso_code": "SA",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Arabian Peninsula",
-      "center_coordinates": { "lat": 17.50, "lon": 43.50 },
+      "center_coordinates": {
+        "lat": 17.5,
+        "lon": 43.5
+      },
       "bounding_box": {
-        "north": 18.50,
-        "south": 16.50,
-        "east": 45.00,
-        "west": 42.00
+        "north": 18.5,
+        "south": 16.5,
+        "east": 45.0,
+        "west": 42.0
       },
       "active_groups": [
         "Ansar Allah (Houthis) - drone/missile attacks",
@@ -1428,7 +1954,12 @@
       "conflict_type": "Border Conflict / Terrorism-only",
       "intensity": "Low",
       "recent_trend": "De-escalating",
-      "key_locations": ["Jizan", "Najran", "Asir", "Khamis Mushait"],
+      "key_locations": [
+        "Jizan",
+        "Najran",
+        "Asir",
+        "Khamis Mushait"
+      ],
       "estimated_civilian_population_at_risk": 1000000,
       "notes": "Houthi drone and missile attacks on Saudi territory significantly reduced since Saudi-Houthi diplomatic engagement. Main Houthi threat shifted to Red Sea shipping. AQAP domestic plots disrupted."
     },
@@ -1437,14 +1968,17 @@
       "zone_name": "Algeria - Southern Saharan border region",
       "country": "Algeria",
       "iso_code": "DZ",
-      "region": "North Africa",
+      "region": "MENA",
       "sub_region": "Maghreb / Sahara",
-      "center_coordinates": { "lat": 25.00, "lon": 2.00 },
+      "center_coordinates": {
+        "lat": 25.0,
+        "lon": 2.0
+      },
       "bounding_box": {
-        "north": 30.00,
-        "south": 19.00,
-        "east": 9.00,
-        "west": -3.00
+        "north": 30.0,
+        "south": 19.0,
+        "east": 9.0,
+        "west": -3.0
       },
       "active_groups": [
         "AQIM (Al-Qaeda in the Islamic Maghreb) remnants",
@@ -1454,7 +1988,13 @@
       "conflict_type": "Terrorism-only",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Bordj Badji Mokhtar", "In Amenas", "Tamanrasset", "Illizi", "Tindouf"],
+      "key_locations": [
+        "Bordj Badji Mokhtar",
+        "In Amenas",
+        "Tamanrasset",
+        "Illizi",
+        "Tindouf"
+      ],
       "estimated_civilian_population_at_risk": 500000,
       "notes": "Algeria's security forces maintain strong control. Southern border region vulnerable to spillover from Sahel. AQIM leadership relocated south into Sahel. Algeria opposes foreign military intervention in neighboring states."
     },
@@ -1463,14 +2003,17 @@
       "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
       "country": "Russia",
       "iso_code": "RU",
-      "region": "Europe / Central Asia",
+      "region": "Europe",
       "sub_region": "Caucasus",
-      "center_coordinates": { "lat": 42.80, "lon": 46.00 },
+      "center_coordinates": {
+        "lat": 42.8,
+        "lon": 46.0
+      },
       "bounding_box": {
-        "north": 44.50,
-        "south": 41.50,
-        "east": 48.50,
-        "west": 43.50
+        "north": 44.5,
+        "south": 41.5,
+        "east": 48.5,
+        "west": 43.5
       },
       "active_groups": [
         "ISIS-Caucasus Province (Wilayat Qawqaz)",
@@ -1480,7 +2023,12 @@
       "conflict_type": "Terrorism-only",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Makhachkala (Dagestan)", "Derbent", "Grozny (Chechnya)", "Nalchik (Kabardino-Balkaria)"],
+      "key_locations": [
+        "Makhachkala (Dagestan)",
+        "Derbent",
+        "Grozny (Chechnya)",
+        "Nalchik (Kabardino-Balkaria)"
+      ],
       "estimated_civilian_population_at_risk": 1000000,
       "notes": "Insurgency largely suppressed under heavy security. ISIS-K claimed Crocus City Hall attack (Moscow, March 2024). Radicalization pipeline continues — many North Caucasus fighters joined ISIS in Syria/Iraq. Kadyrov's forces maintain tight control in Chechnya."
     },
@@ -1489,14 +2037,17 @@
       "zone_name": "Bangladesh - Chittagong Hill Tracts / Rohingya camps",
       "country": "Bangladesh",
       "iso_code": "BD",
-      "region": "South Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Bay of Bengal",
-      "center_coordinates": { "lat": 22.00, "lon": 92.20 },
+      "center_coordinates": {
+        "lat": 22.0,
+        "lon": 92.2
+      },
       "bounding_box": {
-        "north": 23.50,
-        "south": 20.80,
-        "east": 92.70,
-        "west": 91.50
+        "north": 23.5,
+        "south": 20.8,
+        "east": 92.7,
+        "west": 91.5
       },
       "active_groups": [
         "ARSA (Arakan Rohingya Salvation Army)",
@@ -1507,7 +2058,11 @@
       "conflict_type": "Terrorism-only / Refugee crisis",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Cox's Bazar (Rohingya camps - Kutupalong, Balukhali)", "Teknaf", "Bandarban"],
+      "key_locations": [
+        "Cox's Bazar (Rohingya camps - Kutupalong, Balukhali)",
+        "Teknaf",
+        "Bandarban"
+      ],
       "estimated_civilian_population_at_risk": 1000000,
       "notes": "Nearly 1 million Rohingya refugees. ARSA maintains presence in camps. Drug trafficking (yaba) through Myanmar border. Radicalization risk in camps due to poor conditions and lack of opportunity. Repatriation stalled."
     },
@@ -1516,14 +2071,17 @@
       "zone_name": "Indonesia - Central Sulawesi (Poso)",
       "country": "Indonesia",
       "iso_code": "ID",
-      "region": "Southeast Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Maritime Southeast Asia",
-      "center_coordinates": { "lat": -1.50, "lon": 121.00 },
+      "center_coordinates": {
+        "lat": -1.5,
+        "lon": 121.0
+      },
       "bounding_box": {
-        "north": -0.50,
-        "south": -2.50,
-        "east": 122.00,
-        "west": 120.00
+        "north": -0.5,
+        "south": -2.5,
+        "east": 122.0,
+        "west": 120.0
       },
       "active_groups": [
         "Mujahidin Indonesia Timur (MIT) - severely degraded",
@@ -1533,7 +2091,11 @@
       "conflict_type": "Terrorism-only",
       "intensity": "Low",
       "recent_trend": "De-escalating",
-      "key_locations": ["Poso", "Palu", "Sigi"],
+      "key_locations": [
+        "Poso",
+        "Palu",
+        "Sigi"
+      ],
       "estimated_civilian_population_at_risk": 200000,
       "notes": "MIT leader Ali Kalora killed in 2021. Group severely weakened. Indonesia's Densus 88 counter-terrorism unit very effective. Remaining threat is from JAD cells and lone actors inspired by ISIS."
     },
@@ -1542,14 +2104,17 @@
       "zone_name": "Thailand - Deep South (Pattani/Yala/Narathiwat)",
       "country": "Thailand",
       "iso_code": "TH",
-      "region": "Southeast Asia",
+      "region": "South / Southeast Asia",
       "sub_region": "Mainland Southeast Asia",
-      "center_coordinates": { "lat": 6.50, "lon": 101.50 },
+      "center_coordinates": {
+        "lat": 6.5,
+        "lon": 101.5
+      },
       "bounding_box": {
-        "north": 7.20,
-        "south": 5.80,
-        "east": 102.20,
-        "west": 100.80
+        "north": 7.2,
+        "south": 5.8,
+        "east": 102.2,
+        "west": 100.8
       },
       "active_groups": [
         "BRN (Barisan Revolusi Nasional Melayu Patani)",
@@ -1559,7 +2124,12 @@
       "conflict_type": "Insurgency / Separatist",
       "intensity": "Low",
       "recent_trend": "De-escalating",
-      "key_locations": ["Pattani", "Yala", "Narathiwat", "Songkhla (partial)"],
+      "key_locations": [
+        "Pattani",
+        "Yala",
+        "Narathiwat",
+        "Songkhla (partial)"
+      ],
       "estimated_civilian_population_at_risk": 2000000,
       "notes": "Low-level Malay Muslim insurgency since 2004. Peace talks with BRN have made some progress. Violence has decreased but IEDs, shootings, and arson continue. Not linked to global jihadist networks."
     },
@@ -1568,14 +2138,17 @@
       "zone_name": "Venezuela - Colombian border / Apure",
       "country": "Venezuela",
       "iso_code": "VE",
-      "region": "South America",
+      "region": "Americas",
       "sub_region": "Andean / Caribbean",
-      "center_coordinates": { "lat": 7.00, "lon": -71.00 },
+      "center_coordinates": {
+        "lat": 7.0,
+        "lon": -71.0
+      },
       "bounding_box": {
-        "north": 8.50,
-        "south": 6.00,
-        "east": -69.00,
-        "west": -73.00
+        "north": 8.5,
+        "south": 6.0,
+        "east": -69.0,
+        "west": -73.0
       },
       "active_groups": [
         "ELN",
@@ -1587,7 +2160,12 @@
       "conflict_type": "Border Conflict / Narco-conflict",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Apure State", "Táchira State", "Zulia State", "Amazonas State"],
+      "key_locations": [
+        "Apure State",
+        "Táchira State",
+        "Zulia State",
+        "Amazonas State"
+      ],
       "estimated_civilian_population_at_risk": 2000000,
       "notes": "Colombian armed groups operate freely in Venezuelan border regions. ELN has significant presence in Apure and Zulia. Complex narco-political dynamics. Venezuelan government alternately cooperates with and confronts these groups."
     },
@@ -1596,14 +2174,17 @@
       "zone_name": "Mali - Central (Mopti/Ségou)",
       "country": "Mali",
       "iso_code": "ML",
-      "region": "West Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Sahel",
-      "center_coordinates": { "lat": 14.00, "lon": -4.50 },
+      "center_coordinates": {
+        "lat": 14.0,
+        "lon": -4.5
+      },
       "bounding_box": {
-        "north": 15.50,
-        "south": 12.50,
-        "east": -2.00,
-        "west": -6.50
+        "north": 15.5,
+        "south": 12.5,
+        "east": -2.0,
+        "west": -6.5
       },
       "active_groups": [
         "JNIM (Katiba Macina dominant)",
@@ -1614,7 +2195,15 @@
       "conflict_type": "Insurgency / Sectarian",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Mopti", "Djenné", "Bandiagara", "Ségou", "Niono", "Bankass", "Koro"],
+      "key_locations": [
+        "Mopti",
+        "Djenné",
+        "Bandiagara",
+        "Ségou",
+        "Niono",
+        "Bankass",
+        "Koro"
+      ],
       "estimated_civilian_population_at_risk": 4000000,
       "notes": "Epicenter of Fulani-Dogon communal violence exploited by jihadists. Katiba Macina (JNIM) recruits heavily from Fulani communities. Mass atrocity events. Wagner operations have drawn allegations of civilian massacres (Moura, 2022)."
     },
@@ -1623,14 +2212,17 @@
       "zone_name": "Nigeria - Middle Belt (Plateau/Benue/Nasarawa)",
       "country": "Nigeria",
       "iso_code": "NG",
-      "region": "West Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "West Africa",
-      "center_coordinates": { "lat": 8.50, "lon": 8.50 },
+      "center_coordinates": {
+        "lat": 8.5,
+        "lon": 8.5
+      },
       "bounding_box": {
-        "north": 10.00,
-        "south": 7.00,
-        "east": 10.00,
-        "west": 7.00
+        "north": 10.0,
+        "south": 7.0,
+        "east": 10.0,
+        "west": 7.0
       },
       "active_groups": [
         "Fulani herder militias",
@@ -1641,7 +2233,13 @@
       "conflict_type": "Sectarian / Ethnic",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Jos", "Makurdi", "Lafia", "Benue State (Guma, Logo)", "Southern Kaduna"],
+      "key_locations": [
+        "Jos",
+        "Makurdi",
+        "Lafia",
+        "Benue State (Guma, Logo)",
+        "Southern Kaduna"
+      ],
       "estimated_civilian_population_at_risk": 8000000,
       "notes": "Farmer-herder conflict with ethnic and religious dimensions. Frequent mass casualty attacks on villages. Some evidence of jihadist groups exploiting the violence. One of the most lethal conflict dynamics in West Africa by civilian death toll."
     },
@@ -1650,14 +2248,17 @@
       "zone_name": "Haiti - Port-au-Prince gang-controlled areas",
       "country": "Haiti",
       "iso_code": "HT",
-      "region": "Caribbean",
+      "region": "Americas",
       "sub_region": "Caribbean",
-      "center_coordinates": { "lat": 18.54, "lon": -72.34 },
+      "center_coordinates": {
+        "lat": 18.54,
+        "lon": -72.34
+      },
       "bounding_box": {
-        "north": 18.70,
-        "south": 18.40,
-        "east": -72.00,
-        "west": -72.70
+        "north": 18.7,
+        "south": 18.4,
+        "east": -72.0,
+        "west": -72.7
       },
       "active_groups": [
         "Viv Ansanm coalition (G9 and allies)",
@@ -1670,7 +2271,11 @@
       "conflict_type": "Gang warfare / State collapse",
       "intensity": "High",
       "recent_trend": "Stable",
-      "key_locations": ["Port-au-Prince (Cité Soleil, Martissant, Croix-des-Bouquets)", "Artibonite Valley", "Kenscoff road"],
+      "key_locations": [
+        "Port-au-Prince (Cité Soleil, Martissant, Croix-des-Bouquets)",
+        "Artibonite Valley",
+        "Kenscoff road"
+      ],
       "estimated_civilian_population_at_risk": 3000000,
       "notes": "Gangs control ~80% of Port-au-Prince. While not terrorism per se, included due to armed non-state actor dynamics, mass displacement, and potential extremist exploitation of state collapse. Kenya-led MSS deployed but limited impact so far."
     },
@@ -1679,14 +2284,17 @@
       "zone_name": "Mexico - Cartel conflict zones",
       "country": "Mexico",
       "iso_code": "MX",
-      "region": "North America",
+      "region": "Americas",
       "sub_region": "Mesoamerica",
-      "center_coordinates": { "lat": 23.00, "lon": -104.00 },
+      "center_coordinates": {
+        "lat": 23.0,
+        "lon": -104.0
+      },
       "bounding_box": {
-        "north": 32.70,
-        "south": 14.50,
-        "east": -86.70,
-        "west": -118.40
+        "north": 32.7,
+        "south": 14.5,
+        "east": -86.7,
+        "west": -118.4
       },
       "active_groups": [
         "Sinaloa Cartel (fractured)",
@@ -1698,7 +2306,16 @@
       "conflict_type": "Narco-conflict",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Sinaloa", "Guerrero", "Michoacán", "Guanajuato", "Tamaulipas", "Chiapas", "Zacatecas", "Chihuahua"],
+      "key_locations": [
+        "Sinaloa",
+        "Guerrero",
+        "Michoacán",
+        "Guanajuato",
+        "Tamaulipas",
+        "Chiapas",
+        "Zacatecas",
+        "Chihuahua"
+      ],
       "estimated_civilian_population_at_risk": 20000000,
       "notes": "Included due to scale of violence (30,000+ homicides/year) and narco-terrorism dynamics. Sinaloa Cartel fractured after Zambada/Guzmán arrests. CJNG expanding aggressively. Chiapas emerging as new hotspot. Not traditional terrorism but terrorism-adjacent dynamics."
     },
@@ -1707,14 +2324,17 @@
       "zone_name": "South Sudan - Multiple zones",
       "country": "South Sudan",
       "iso_code": "SS",
-      "region": "East Africa",
+      "region": "Sub-Saharan Africa",
       "sub_region": "Horn of Africa / Great Lakes",
-      "center_coordinates": { "lat": 7.00, "lon": 30.00 },
+      "center_coordinates": {
+        "lat": 7.0,
+        "lon": 30.0
+      },
       "bounding_box": {
-        "north": 12.20,
-        "south": 3.50,
-        "east": 36.00,
-        "west": 24.00
+        "north": 12.2,
+        "south": 3.5,
+        "east": 36.0,
+        "west": 24.0
       },
       "active_groups": [
         "Various ethnic militias",
@@ -1726,7 +2346,14 @@
       "conflict_type": "Civil War / Ethnic",
       "intensity": "Medium",
       "recent_trend": "Stable",
-      "key_locations": ["Juba", "Upper Nile (Malakal)", "Unity State (Bentiu)", "Jonglei (Bor)", "Western Equatoria", "Central Equatoria"],
+      "key_locations": [
+        "Juba",
+        "Upper Nile (Malakal)",
+        "Unity State (Bentiu)",
+        "Jonglei (Bor)",
+        "Western Equatoria",
+        "Central Equatoria"
+      ],
       "estimated_civilian_population_at_risk": 8000000,
       "notes": "Subnational violence continues despite 2018 peace agreement. Delayed elections and transitional period. Flooding and famine exacerbate crisis. Spillover from Sudan war creating new refugee influx. Not terrorism-focused but terrorism-enabling environment."
     },
@@ -1735,14 +2362,17 @@
       "zone_name": "Syria - Southern (Daraa/Sweida)",
       "country": "Syria",
       "iso_code": "SY",
-      "region": "Middle East",
+      "region": "MENA",
       "sub_region": "Levant",
-      "center_coordinates": { "lat": 32.80, "lon": 36.50 },
+      "center_coordinates": {
+        "lat": 32.8,
+        "lon": 36.5
+      },
       "bounding_box": {
-        "north": 33.50,
-        "south": 32.30,
-        "east": 37.50,
-        "west": 35.80
+        "north": 33.5,
+        "south": 32.3,
+        "east": 37.5,
+        "west": 35.8
       },
       "active_groups": [
         "ISIS cells",
@@ -1754,7 +2384,12 @@
       "conflict_type": "Insurgency / Terrorism-only",
       "intensity": "Low",
       "recent_trend": "Stable",
-      "key_locations": ["Daraa city", "Sweida city", "Lajat region", "Yarmouk Basin"],
+      "key_locations": [
+        "Daraa city",
+        "Sweida city",
+        "Lajat region",
+        "Yarmouk Basin"
+      ],
       "estimated_civilian_population_at_risk": 1500000,
       "notes": "Assassinations, IEDs, and ambushes continue. Captagon drug trade generates significant revenue. Druze community in Sweida periodically protests. ISIS conducts sporadic attacks from Badia desert."
     },
@@ -1763,14 +2398,17 @@
       "zone_name": "Red Sea / Gulf of Aden - Maritime threat zone",
       "country": "International waters (Yemen/Eritrea/Djibouti/Somalia coast)",
       "iso_code": "YE / ER / DJ / SO",
-      "region": "Middle East / East Africa",
+      "region": "MENA",
       "sub_region": "Red Sea / Indian Ocean",
-      "center_coordinates": { "lat": 14.00, "lon": 43.00 },
+      "center_coordinates": {
+        "lat": 14.0,
+        "lon": 43.0
+      },
       "bounding_box": {
-        "north": 20.00,
-        "south": 11.00,
-        "east": 50.00,
-        "west": 38.00
+        "north": 20.0,
+        "south": 11.0,
+        "east": 50.0,
+        "west": 38.0
       },
       "active_groups": [
         "Ansar Allah (Houthis) - anti-shipping attacks",
@@ -1780,9 +2418,203 @@
       "conflict_type": "Maritime terrorism / Hybrid",
       "intensity": "High",
       "recent_trend": "Escalating",
-      "key_locations": ["Bab al-Mandab Strait", "Gulf of Aden", "Southern Red Sea", "Hodeidah port"],
+      "key_locations": [
+        "Bab al-Mandab Strait",
+        "Gulf of Aden",
+        "Southern Red Sea",
+        "Hodeidah port"
+      ],
       "estimated_civilian_population_at_risk": 0,
       "notes": "Houthi anti-shipping campaign since November 2023 is unprecedented. Attacks using drones, ballistic missiles, and naval mines against commercial vessels. US/UK conducted strikes on Houthi positions. Major disruption to global trade. Shipping rerouted around Cape of Good Hope."
+    },
+    {
+      "id": "ECU-CARTEL",
+      "zone_name": "Ecuador - Guayaquil/Esmeraldas Cartel Violence",
+      "country": "Ecuador",
+      "iso_code": "EC",
+      "region": "Americas",
+      "center_coordinates": {
+        "lat": -2.19,
+        "lon": -79.89
+      },
+      "bounding_box": {
+        "north": 1.5,
+        "south": -3.5,
+        "east": -75.0,
+        "west": -80.5
+      },
+      "active_groups": [
+        "Los Lobos",
+        "Los Choneros",
+        "R7",
+        "Tiguerones"
+      ],
+      "conflict_type": "Organized Crime / Narco-Terrorism",
+      "intensity": "High",
+      "recent_trend": "Escalating",
+      "key_locations": [
+        "Guayaquil",
+        "Esmeraldas",
+        "Duran",
+        "Los Rios"
+      ],
+      "estimated_civilian_population_at_risk": 5000000
+    },
+    {
+      "id": "UKR-EAST",
+      "zone_name": "Ukraine - Eastern Front (Donetsk/Luhansk/Zaporizhzhia)",
+      "country": "Ukraine",
+      "iso_code": "UA",
+      "region": "Europe",
+      "center_coordinates": {
+        "lat": 48.0,
+        "lon": 37.8
+      },
+      "bounding_box": {
+        "north": 50.0,
+        "south": 46.5,
+        "east": 40.0,
+        "west": 34.0
+      },
+      "active_groups": [
+        "Russian Armed Forces",
+        "Wagner Group",
+        "DPR Militia",
+        "LPR Militia"
+      ],
+      "conflict_type": "Interstate War",
+      "intensity": "High",
+      "recent_trend": "Sustained",
+      "key_locations": [
+        "Donetsk",
+        "Luhansk",
+        "Bakhmut",
+        "Avdiivka",
+        "Zaporizhzhia"
+      ],
+      "estimated_civilian_population_at_risk": 3000000
+    },
+    {
+      "id": "UKR-SOUTH",
+      "zone_name": "Ukraine - Southern Front (Kherson/Crimea)",
+      "country": "Ukraine",
+      "iso_code": "UA",
+      "region": "Europe",
+      "center_coordinates": {
+        "lat": 46.6,
+        "lon": 33.5
+      },
+      "bounding_box": {
+        "north": 47.5,
+        "south": 44.5,
+        "east": 36.5,
+        "west": 32.0
+      },
+      "active_groups": [
+        "Russian Armed Forces"
+      ],
+      "conflict_type": "Interstate War",
+      "intensity": "Medium",
+      "recent_trend": "Sustained",
+      "key_locations": [
+        "Kherson",
+        "Crimea",
+        "Sevastopol"
+      ],
+      "estimated_civilian_population_at_risk": 1500000
+    },
+    {
+      "id": "IND-JK",
+      "zone_name": "India - Jammu & Kashmir",
+      "country": "India",
+      "iso_code": "IN",
+      "region": "South / Southeast Asia",
+      "center_coordinates": {
+        "lat": 34.08,
+        "lon": 74.79
+      },
+      "bounding_box": {
+        "north": 37.0,
+        "south": 32.5,
+        "east": 77.0,
+        "west": 73.0
+      },
+      "active_groups": [
+        "Lashkar-e-Taiba",
+        "Jaish-e-Mohammed",
+        "Hizbul Mujahideen"
+      ],
+      "conflict_type": "Insurgency / Separatism",
+      "intensity": "Medium",
+      "recent_trend": "Stable",
+      "key_locations": [
+        "Srinagar",
+        "Pulwama",
+        "Anantnag",
+        "Shopian",
+        "Rajouri"
+      ],
+      "estimated_civilian_population_at_risk": 7000000
+    },
+    {
+      "id": "IDN-PAPUA",
+      "zone_name": "Indonesia - Papua Insurgency",
+      "country": "Indonesia",
+      "iso_code": "ID",
+      "region": "South / Southeast Asia",
+      "center_coordinates": {
+        "lat": -4.0,
+        "lon": 138.5
+      },
+      "bounding_box": {
+        "north": -1.5,
+        "south": -9.0,
+        "east": 141.5,
+        "west": 134.0
+      },
+      "active_groups": [
+        "West Papua National Liberation Army (TPNPB-OPM)"
+      ],
+      "conflict_type": "Separatist Insurgency",
+      "intensity": "Low",
+      "recent_trend": "Stable",
+      "key_locations": [
+        "Nduga",
+        "Intan Jaya",
+        "Puncak",
+        "Mimika"
+      ],
+      "estimated_civilian_population_at_risk": 500000
+    },
+    {
+      "id": "RUS-NCAUCASUS",
+      "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+      "country": "Russia",
+      "iso_code": "RU",
+      "region": "Europe",
+      "center_coordinates": {
+        "lat": 43.0,
+        "lon": 45.5
+      },
+      "bounding_box": {
+        "north": 44.5,
+        "south": 41.5,
+        "east": 48.5,
+        "west": 43.0
+      },
+      "active_groups": [
+        "Islamic State - Caucasus Province"
+      ],
+      "conflict_type": "Low-level Insurgency",
+      "intensity": "Low",
+      "recent_trend": "Declining",
+      "key_locations": [
+        "Makhachkala",
+        "Derbent",
+        "Grozny",
+        "Nalchik"
+      ],
+      "estimated_civilian_population_at_risk": 4000000
     }
   ],
   "summary_statistics": {

@@ -22,6 +22,7 @@ class TerrorMapper:
 
         # 검색용 인덱스 구축
         self._org_index = self._build_org_index()
+        self._alias_index = self._build_alias_index()
         self._country_index = self._build_country_index()
         self._zone_list = self.zones.get("conflict_zones", [])
 
@@ -80,41 +81,125 @@ class TerrorMapper:
                     index[iso3] = entry
         return index
 
+    def _build_alias_index(self) -> dict:
+        """조직/인물의 모든 이름·별칭을 하나의 flat dict로 구축 + 약어 매핑"""
+        index = {}
+
+        # 1. organizations.json 에서 name + aliases 등록
+        for org in self.orgs.get("organizations", []):
+            name = org.get("name", "").strip()
+            source = org.get("source", "")
+            entry = {**org, "designation": source, "entity_type": "organization"}
+            if name:
+                index[name.lower()] = entry
+            for alias in org.get("aliases", []):
+                a = alias.strip()
+                if a:
+                    index[a.lower()] = entry
+
+        for person in self.orgs.get("persons", []):
+            name = person.get("name", "").strip()
+            source = person.get("source", "")
+            entry = {**person, "designation": source, "entity_type": "person"}
+            if name:
+                index[name.lower()] = entry
+            for alias in person.get("aliases", []):
+                a = alias.strip()
+                if a:
+                    index[a.lower()] = entry
+
+        # 2. 잘 알려진 약어 매핑 (모호하지 않은 것만)
+        _abbreviations = {
+            "hts": "Hay'at Tahrir al-Sham",
+            "ttp": "Tehrik-e Taliban Pakistan (TTP)",
+            "pkk": "Kurdistan Workers Party (PKK)",
+            "bla": "Balochistan Liberation Army",
+            "rsf": "Rapid Support Forces",
+            "eln": "ELN",
+            "m23": "M23",
+            "isil": "Islamic State in Iraq and the Levant",
+            "isis": "Islamic State in Iraq and the Levant",
+            "daesh": "Islamic State in Iraq and the Levant",
+            "islamic state": "Islamic State in Iraq and the Levant",
+            "is": None,  # too ambiguous, skip
+            "al qaeda": "Al-Qaida",
+            "al qaida": "Al-Qaida",
+            "al-qaeda": "Al-Qaida",
+            "hezbollah": "Hizballah",
+            "hizbollah": "Hizballah",
+            "houthi": "Ansarallah",
+            "houthis": "Ansarallah",
+            "houthi rebels": "Ansarallah",
+            "ansar allah": "Ansarallah",
+            "boko haram": "Jama'atu Ahlis Sunna Lidda'awati Wal-Jihad",
+            "al-shabaab": "Al-Shabaab",
+            "al shabaab": "Al-Shabaab",
+            "al shabab": "Al-Shabaab",
+            "jnim": "Jama'a Nusrat ul-Islam wa al-Muslimin (JNIM)",
+            "iswap": "Islamic State West Africa Province (ISWAP)",
+            "hamas": "Hamas",
+            "wagner": "Wagner Group",
+            "wagner group": "Wagner Group",
+        }
+
+        for abbr, target_name in _abbreviations.items():
+            if target_name is None:
+                continue
+            abbr_lower = abbr.lower()
+            if abbr_lower in index:
+                continue  # 이미 존재하면 덮어쓰지 않음
+            # 대상 이름이 인덱스에 있으면 같은 entry 재사용
+            target_lower = target_name.lower()
+            if target_lower in index:
+                index[abbr_lower] = index[target_lower]
+            else:
+                # 인덱스에 없는 조직이면 최소 entry 생성
+                index[abbr_lower] = {
+                    "name": target_name,
+                    "aliases": [],
+                    "countries": [],
+                    "topics": [],
+                    "designation": "",
+                    "entity_type": "organization",
+                }
+
+        return index
+
     # ─────────────────────────────────────
-    # 조직 매칭
+    # 조직 매칭 (exact + alias only, no partial)
     # ─────────────────────────────────────
     def match_organization(self, actor_name: str) -> Optional[dict]:
-        """행위자 이름을 지정 조직 DB와 매칭"""
+        """행위자 이름을 alias index와 정확 매칭 (부분 매칭 없음)"""
         if not actor_name:
             return None
 
-        actor_lower = actor_name.lower().strip()
+        actor_lower = actor_name.strip().lower()
 
-        # 1. 정확한 매칭
-        if actor_lower in self._org_index:
-            org = self._org_index[actor_lower]
+        # 1. 정확 매칭
+        if actor_lower in self._alias_index:
+            org = self._alias_index[actor_lower]
+            # 원래 이름과 동일하면 exact, 아니면 alias
+            match_type = "exact" if actor_lower == org.get("name", "").lower() else "alias"
             return {
                 "matched_name": org.get("name", ""),
                 "designation": org.get("designation", ""),
                 "countries": org.get("countries", []),
                 "topics": org.get("topics", []),
-                "match_type": "exact",
+                "match_type": match_type,
             }
 
-        # 2. 부분 매칭 (#6: 최소 6자 + 일반적 단어 제외)
-        skip_words = {"government", "military", "police", "forces", "army", "group", "state", "united", "national"}
-        for org_name, org_data in self._org_index.items():
-            if len(org_name) < 6:
-                continue
-            if org_name in skip_words:
-                continue
-            if org_name in actor_lower or actor_lower in org_name:
+        # 2. "the " 접두사 제거 후 재시도
+        if actor_lower.startswith("the "):
+            stripped = actor_lower[4:]
+            if stripped in self._alias_index:
+                org = self._alias_index[stripped]
+                match_type = "exact" if stripped == org.get("name", "").lower() else "alias"
                 return {
-                    "matched_name": org_data.get("name", ""),
-                    "designation": org_data.get("designation", ""),
-                    "countries": org_data.get("countries", []),
-                    "topics": org_data.get("topics", []),
-                    "match_type": "partial",
+                    "matched_name": org.get("name", ""),
+                    "designation": org.get("designation", ""),
+                    "countries": org.get("countries", []),
+                    "topics": org.get("topics", []),
+                    "match_type": match_type,
                 }
 
         return None
@@ -148,7 +233,7 @@ class TerrorMapper:
     # ─────────────────────────────────────
     def match_conflict_zone(self, lat: float, lon: float) -> Optional[dict]:
         """좌표를 분쟁 지역 DB와 매칭 (바운딩 박스)"""
-        if not lat or not lon:
+        if lat is None or lon is None:
             return None
 
         try:
@@ -188,7 +273,7 @@ class TerrorMapper:
             center = zone.get("center_coordinates", {})
             clat = center.get("lat", 0)
             clon = center.get("lon", 0)
-            if not clat or not clon:
+            if clat is None or clon is None:
                 continue
             dist = self._haversine(lat, lon, clat, clon)
             if dist < min_dist:
@@ -258,26 +343,51 @@ class TerrorMapper:
     # ─────────────────────────────────────
     # 공격 유형 분류
     # ─────────────────────────────────────
-    def classify_attack(self, event_type: str, sub_event_type: str = "") -> Optional[dict]:
-        """공격 유형을 분류 체계와 매칭"""
-        text = f"{event_type} {sub_event_type}".lower()
+    # CAMEO 이벤트 코드 → 공격 유형 매핑
+    CAMEO_TO_ATTACK = {
+        "18": "armed_assault", "180": "armed_assault",
+        "181": "bombing", "182": "armed_assault", "183": "cbrn",
+        "184": "armed_assault", "185": "armed_assault", "186": "armed_assault",
+        "190": "armed_assault", "191": "assassination", "192": "armed_assault",
+        "193": "armed_assault", "194": "shelling", "195": "airstrike",
+        "196": "armed_assault",
+        "200": "bombing", "201": "bombing", "202": "armed_assault",
+        "203": "armed_assault", "204": "cbrn",
+    }
+
+    def classify_attack(self, event_type: str, sub_event_type: str = "", event_code: str = "") -> Optional[dict]:
+        """공격 유형을 분류 체계와 매칭 (CAMEO 코드 우선 → 키워드 폴백)"""
         attack_types = self.classifications.get("attack_types", {})
 
-        # 키워드 매핑
-        mappings = {
-            "bombing": ["bomb", "ied", "vbied", "explosive", "landmine", "mine"],
-            "armed_assault": ["armed assault", "armed clash", "shooting", "ambush", "raid", "firefight"],
-            "assassination": ["assassination", "targeted killing", "targeted"],
-            "hostage_kidnapping": ["kidnap", "hostage", "abduct", "hijack"],
-            "arson_incendiary": ["arson", "fire", "incendiary", "burn"],
-            "melee": ["stab", "knife", "machete", "vehicle ramming", "ram"],
-            "shelling": ["shell", "artillery", "missile", "mortar", "rocket"],
-            "airstrike": ["airstrike", "air strike", "drone strike", "drone"],
-            "cbrn": ["chemical", "biological", "nuclear", "radiological"],
-            "cyber": ["cyber", "hack"],
-        }
+        # 1. CAMEO 코드 매핑 (GDELT 이벤트)
+        if event_code:
+            category = self.CAMEO_TO_ATTACK.get(str(event_code))
+            if category:
+                cat_data = attack_types.get(category, {})
+                return {
+                    "category": category,
+                    "category_name": cat_data.get("name", category),
+                    "original_type": event_type,
+                    "original_subtype": sub_event_type,
+                }
 
-        for category, keywords in mappings.items():
+        # 2. 키워드 매핑 (ACLED 등 텍스트 기반)
+        text = f"{event_type} {sub_event_type}".lower()
+        # armed_assault를 arson보다 먼저 배치 (firefight→fire 오분류 방지)
+        mappings = [
+            ("bombing", ["bomb", "ied", "vbied", "explosive", "landmine", "mine", "suicide"]),
+            ("armed_assault", ["armed assault", "armed clash", "shooting", "ambush", "raid", "firefight", "gunfire"]),
+            ("assassination", ["assassination", "targeted killing", "targeted"]),
+            ("hostage_kidnapping", ["kidnap", "hostage", "abduct", "hijack"]),
+            ("shelling", ["shell", "artillery", "missile", "mortar", "rocket"]),
+            ("airstrike", ["airstrike", "air strike", "drone strike", "drone"]),
+            ("arson_incendiary", ["arson", "incendiary", "burn", "firebomb"]),
+            ("melee", ["stab", "knife", "machete", "vehicle ramming", "ram"]),
+            ("cbrn", ["chemical", "biological", "nuclear", "radiological"]),
+            ("cyber", ["cyber", "hack"]),
+        ]
+
+        for category, keywords in mappings:
             if any(k in text for k in keywords):
                 cat_data = attack_types.get(category, {})
                 return {
@@ -322,10 +432,11 @@ class TerrorMapper:
         if zone:
             enriched["_enrichment"]["conflict_zone"] = zone
 
-        # 4. 공격 유형 분류
-        etype = event.get("event_type", "") or event.get("event_code", "")
+        # 4. 공격 유형 분류 (CAMEO 코드 우선)
+        etype = event.get("event_type", "")
         subtype = event.get("sub_event_type", "")
-        attack = self.classify_attack(etype, subtype)
+        ecode = event.get("event_code", "")
+        attack = self.classify_attack(etype, subtype, event_code=ecode)
         if attack:
             enriched["_enrichment"]["attack_classification"] = attack
 

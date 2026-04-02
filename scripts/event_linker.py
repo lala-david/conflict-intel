@@ -16,7 +16,7 @@ CITY_TO_COUNTRY = {
     "paris": "FR", "baghdad": "IQ", "mosul": "IQ", "basra": "IQ", "erbil": "IQ",
     "kabul": "AF", "kandahar": "AF", "jalalabad": "AF", "nangarhar": "AF",
     "damascus": "SY", "aleppo": "SY", "idlib": "SY", "raqqa": "SY", "deir ez-zor": "SY",
-    "tehran": "IR", "isfahan": "IR", "beirut": "LB", "tripoli": "LB",
+    "tehran": "IR", "isfahan": "IR", "beirut": "LB", "tripoli lebanon": "LB",
     "riyadh": "SA", "jeddah": "SA", "yemen": "YE", "sanaa": "YE", "aden": "YE",
     "gaza": "PS", "west bank": "PS", "jerusalem": "IL", "tel aviv": "IL",
     "istanbul": "TR", "ankara": "TR", "kuwait": "KW", "doha": "QA", "dubai": "AE",
@@ -73,7 +73,9 @@ def extract_countries_from_text(text: str) -> list[str]:
     text_lower = text.lower()
     found = set()
     for city, iso in CITY_TO_COUNTRY.items():
-        if city in text_lower:
+        if len(city) <= 2:
+            continue
+        if re.search(r'\b' + re.escape(city) + r'\b', text_lower):
             found.add(iso)
     return list(found)
 
@@ -113,7 +115,7 @@ def link_events(data: dict) -> dict:
             if j in used:
                 continue
             title_j = google_news[j].get("title", "").lower()
-            if SequenceMatcher(None, title_i, title_j).ratio() > 0.4:
+            if SequenceMatcher(None, title_i, title_j).ratio() > 0.5:
                 cluster_articles.append(google_news[j])
                 used.add(j)
 
@@ -121,7 +123,7 @@ def link_events(data: dict) -> dict:
         matched_rss = []
         for rss in expert_rss:
             rss_title = rss.get("title", "").lower()
-            if SequenceMatcher(None, title_i, rss_title).ratio() > 0.35:
+            if SequenceMatcher(None, title_i, rss_title).ratio() > 0.45:
                 matched_rss.append(rss)
 
         # 대표 기사
@@ -157,7 +159,7 @@ def link_events(data: dict) -> dict:
             event_text = f"{event.get('actor1', '')} {event.get('actor2', '')} {event.get('source_url', '')}".lower()
             text_sim = SequenceMatcher(None, cluster_title[:50], event_text[:50]).ratio()
 
-            if country_match and text_sim > 0.15:
+            if country_match and text_sim > 0.25:
                 linked_gdelt.append({
                     "event_code": event.get("event_code", ""),
                     "country": event_country,

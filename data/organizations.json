@@ -1,14 +1,14 @@
 {
   "meta": {
-    "description": "Terror-related designated entities from UN SC + US OFAC + EU FSF",
-    "organizations": 277,
+    "description": "Terror-related designated entities from UN SC + US OFAC + EU FSF + manual additions",
+    "organizations": 286,
     "persons": 341,
     "sources": [
       "un_sc_sanctions",
       "us_ofac_sdn",
       "eu_fsf"
     ],
-    "updated": "2026-03-30"
+    "updated": "2026-04-01"
   },
   "organizations": [
     {
@@ -4532,6 +4532,159 @@
         "sanction"
       ],
       "source": "eu_fsf"
+    },
+    {
+      "name": "Hay'at Tahrir al-Sham (HTS)",
+      "aliases": [
+        "HTS",
+        "Hayat Tahrir al-Sham",
+        "Jabhat Fateh al-Sham",
+        "Jabhat al-Nusra",
+        "Al-Nusra Front",
+        "Nusra Front"
+      ],
+      "schema": "LegalEntity",
+      "countries": [
+        "SY"
+      ],
+      "programs": [],
+      "topics": [
+        "armed_group"
+      ],
+      "source": "manual"
+    },
+    {
+      "name": "Wagner Group",
+      "aliases": [
+        "Wagner PMC",
+        "PMC Wagner",
+        "Africa Corps"
+      ],
+      "schema": "LegalEntity",
+      "countries": [
+        "RU",
+        "ML",
+        "BF",
+        "LY",
+        "SD",
+        "CF",
+        "MZ"
+      ],
+      "programs": [],
+      "topics": [
+        "armed_group"
+      ],
+      "source": "manual"
+    },
+    {
+      "name": "Balochistan Liberation Army",
+      "aliases": [
+        "BLA"
+      ],
+      "schema": "LegalEntity",
+      "countries": [
+        "PK"
+      ],
+      "programs": [],
+      "topics": [
+        "armed_group"
+      ],
+      "source": "manual"
+    },
+    {
+      "name": "Rapid Support Forces",
+      "aliases": [
+        "RSF"
+      ],
+      "schema": "LegalEntity",
+      "countries": [
+        "SD"
+      ],
+      "programs": [],
+      "topics": [
+        "armed_group"
+      ],
+      "source": "manual"
+    },
+    {
+      "name": "M23",
+      "aliases": [
+        "March 23 Movement",
+        "Mouvement du 23 Mars"
+      ],
+      "schema": "LegalEntity",
+      "countries": [
+        "CD"
+      ],
+      "programs": [],
+      "topics": [
+        "armed_group"
+      ],
+      "source": "manual"
+    },
+    {
+      "name": "Arakan Army",
+      "aliases": [
+        "AA"
+      ],
+      "schema": "LegalEntity",
+      "countries": [
+        "MM"
+      ],
+      "programs": [],
+      "topics": [
+        "armed_group"
+      ],
+      "source": "manual"
+    },
+    {
+      "name": "People's Defence Force (Myanmar)",
+      "aliases": [
+        "PDF",
+        "Myanmar PDF"
+      ],
+      "schema": "LegalEntity",
+      "countries": [
+        "MM"
+      ],
+      "programs": [],
+      "topics": [
+        "armed_group"
+      ],
+      "source": "manual"
+    },
+    {
+      "name": "ELN",
+      "aliases": [
+        "Ejercito de Liberacion Nacional",
+        "National Liberation Army"
+      ],
+      "schema": "LegalEntity",
+      "countries": [
+        "CO",
+        "VE"
+      ],
+      "programs": [],
+      "topics": [
+        "armed_group"
+      ],
+      "source": "manual"
+    },
+    {
+      "name": "Oromo Liberation Army",
+      "aliases": [
+        "OLA",
+        "OLF-Shane"
+      ],
+      "schema": "LegalEntity",
+      "countries": [
+        "ET"
+      ],
+      "programs": [],
+      "topics": [
+        "armed_group"
+      ],
+      "source": "manual"
     }
   ],
   "persons": [
