@@ -113,14 +113,14 @@ def save_events(data: dict, date_str: str):
                 print(f"   WARN: skipped event: {e}")
                 continue
 
-        # ACLED 이벤트
-        for e in data.get("acled", []):
-            event_id = e.get("event_id", f"acled-{e.get('date', '')}-{e.get('location', '')}")
+        # UCDP 이벤트
+        for e in data.get("ucdp", []):
+            event_id = e.get("event_id", f"ucdp-{e.get('date', '')}-{e.get('location', '')}")
             enrichment = json.dumps(e.get("_enrichment", {}), ensure_ascii=False)
             try:
                 conn.execute(
                     "INSERT OR IGNORE INTO events (id, source, date, event_type, sub_event_type, actor1, actor2, country, location, latitude, longitude, fatalities, notes, enrichment, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    (event_id, "acled", e.get("date", ""), e.get("event_type", ""),
+                    (event_id, "ucdp", e.get("date", ""), e.get("event_type", ""),
                      e.get("sub_event_type", ""), e.get("actor1", ""), e.get("actor2", ""),
                      e.get("country", ""), e.get("location", ""),
                      float(e["latitude"]) if e.get("latitude") else None,
@@ -158,7 +158,7 @@ def save_daily_stats(date_str: str, data: dict, enrichment_stats: dict):
     actor_counts = {}
     total_fat = 0
 
-    for source_key in ["acled", "gdelt"]:
+    for source_key in ["ucdp", "gdelt"]:
         for e in data.get(source_key, []):
             c = e.get("country", "") or e.get("country_code", "")
             if c:
@@ -194,7 +194,7 @@ def save_daily_stats(date_str: str, data: dict, enrichment_stats: dict):
                  top_actors=excluded.top_actors""",
             (date_str,
              len(data.get("gdelt", [])),
-             len(data.get("acled", [])),
+             len(data.get("ucdp", [])),
              len(data.get("google_news", [])),
              len(data.get("expert_rss", [])),
              len(data.get("sanctions", [])),

@@ -60,7 +60,7 @@ def compute_statistics(data: dict) -> str:
     lines = ["## STATISTICS DASHBOARD\n"]
 
     # ACLED 통계
-    acled = data.get("acled", [])
+    acled = data.get("ucdp", [])
     if acled:
         total_fatalities = sum(e.get("fatalities", 0) for e in acled)
         # 국가별 사건 수
@@ -235,8 +235,8 @@ def build_raw_context(data: dict) -> str:
             )
 
     if data.get("acled"):
-        sections.append(f"\n## ACLED Incidents (Top 15 of {len(data['acled'])})")
-        for e in data["acled"][:15]:
+        sections.append(f"\n## UCDP Incidents (Top 15 of {len(data['acled'])})")
+        for e in data["ucdp"][:15]:
             enr = e.get("_enrichment", {})
             extras = []
             if enr.get("conflict_zone"):
@@ -364,12 +364,12 @@ def generate_report_ko(data: dict, date: datetime) -> str:
     """LLM으로 한국어 인텔리전스 리포트 생성"""
     raw = build_raw_context(data)
 
-    acled_count = len(data.get("acled", []))
-    acled_fatalities = sum(e.get("fatalities", 0) for e in data.get("acled", []))
+    ucdp_count = len(data.get("ucdp", []))
+    ucdp_fatalities = sum(e.get("fatalities", 0) for e in data.get("ucdp", []))
     gdelt_count = len(data.get("gdelt", []))
 
     stats_block = (
-        f"- ACLED: {acled_count}건 (사망 {acled_fatalities}) | GDELT: {gdelt_count}건 | "
+        f"- UCDP: {ucdp_count}건 (사망 {ucdp_fatalities}) | GDELT: {gdelt_count}건 | "
         f"뉴스: {len(data.get('google_news', []))}건 | 전문가: {len(data.get('expert_rss', []))}건 | "
         f"제재: {len(data.get('sanctions', []))}건"
     )

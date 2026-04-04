@@ -64,7 +64,7 @@ def compute_threat_levels(data: dict, zones_db: list) -> dict:
         country_stats[c]["tone_count"] += 1
 
     # ACLED 사건 집계
-    for e in data.get("acled", []):
+    for e in data.get("ucdp", []):
         c = e.get("country", "")
         if not c:
             continue
@@ -148,7 +148,7 @@ def compute_daily_diff(date_str: str) -> dict:
     result = {
         "available": True,
         "today": {
-            "gdelt": today[0], "acled": today[1], "news": today[2],
+            "gdelt": today[0], "ucdp": today[1], "news": today[2],
             "fatalities": today[3], "new_sanctions": today[4],
         },
     }
@@ -156,13 +156,13 @@ def compute_daily_diff(date_str: str) -> dict:
     if yesterday:
         prev = {
             "date": yesterday[0],
-            "gdelt": yesterday[1], "acled": yesterday[2], "news": yesterday[3],
+            "gdelt": yesterday[1], "ucdp": yesterday[2], "news": yesterday[3],
             "fatalities": yesterday[4], "new_sanctions": yesterday[5],
         }
         result["previous"] = prev
         result["diff"] = {
             "gdelt": today[0] - yesterday[1],
-            "acled": today[1] - yesterday[2],
+            "ucdp": today[1] - yesterday[2],
             "news": today[2] - yesterday[3],
             "fatalities": today[3] - yesterday[4],
         }
@@ -176,7 +176,7 @@ def compute_daily_diff(date_str: str) -> dict:
 
         result["trend_text"] = {
             "gdelt": _trend(today[0] - yesterday[1]),
-            "acled": _trend(today[1] - yesterday[2]),
+            "ucdp": _trend(today[1] - yesterday[2]),
             "fatalities": _trend(today[3] - yesterday[4]),
         }
     else:
@@ -199,7 +199,7 @@ def track_org_activity(data: dict, days: int = 7) -> list[dict]:
     })
 
     # 오늘 데이터
-    for source_key in ["acled", "gdelt"]:
+    for source_key in ["ucdp", "gdelt"]:
         for e in data.get(source_key, []):
             enr = e.get("_enrichment", {})
 
@@ -272,7 +272,7 @@ def detect_hotspots(data: dict, grid_size: float = 2.0) -> list[dict]:
         "countries": set(), "actors": set(), "types": set(),
     })
 
-    for source_key in ["gdelt", "acled"]:
+    for source_key in ["gdelt", "ucdp"]:
         for e in data.get(source_key, []):
             lat = e.get("latitude", "")
             lon = e.get("longitude", "")

@@ -1,6 +1,6 @@
 """
 Terror Intelligence 데이터 소스 수집 모듈
-- GDELT (실시간 이벤트), ACLED (코딩된 사건), OpenSanctions (제재)
+- GDELT (실시간 이벤트), UCDP (분쟁 사건+사상자), OpenSanctions (제재)
 - RSS (전문 기관), Google News (뉴스)
 """
 import requests
@@ -17,9 +17,8 @@ from difflib import SequenceMatcher
 from pathlib import Path
 
 from config import (
-    ACLED_EMAIL, ACLED_PASSWORD,
-    ACLED_TERROR_SUBTYPES, GDELT_TERROR_CODES,
-    RSS_FEEDS, GOOGLE_NEWS_QUERIES,
+    UCDP_TOKEN, GDELT_TERROR_CODES,
+    RSS_FEEDS, RSS_TIER1_FEEDS, GOOGLE_NEWS_QUERIES,
 )
 from fips_to_iso import fips_to_iso
 
@@ -217,88 +216,84 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
 
 
 # ─────────────────────────────────────────────
-# 2. ACLED — 코딩된 정치폭력 사건
+# 2. UCDP — 분쟁 사건 + 사상자 데이터
 # ─────────────────────────────────────────────
-def _get_acled_token() -> str:
-    resp = requests.post(
-        "https://acleddata.com/oauth/token",
-        headers={"Content-Type": "application/x-www-form-urlencoded"},
-        data={
-            "username": ACLED_EMAIL,
-            "password": ACLED_PASSWORD,
-            "grant_type": "password",
-            "client_id": "acled",
-        },
-        timeout=15,
-    )
-    if resp.status_code == 200:
-        return resp.json().get("access_token", "")
-    else:
-        print(f"    [acled] OAuth 실패: {resp.status_code}")
-        return ""
-
-
-def fetch_acled(target_date: datetime, limit: int = 100) -> list[dict]:
-    if not ACLED_EMAIL or not ACLED_PASSWORD:
-        print("    [acled] 인증 정보 없음 — 스킵")
+def fetch_ucdp(target_date: datetime, limit: int = 100) -> list[dict]:
+    """UCDP GED Candidate API — 분쟁 사건 수집 (사상자 포함)"""
+    if not UCDP_TOKEN:
+        print("    [ucdp] 토큰 없음 — 스킵 (.env에 UCDP_TOKEN 설정 필요)")
         return []
 
-    token = _get_acled_token()
-    if not token:
-        return []
-
-    # 14-day window: ACLED events are often reported/coded days after they occur.
-    # The wider window catches late-reported events. INSERT OR IGNORE in database.py
-    # handles deduplication so overlapping collection periods are safe.
-    since = (target_date - timedelta(days=14)).strftime("%Y-%m-%d")
+    # 최근 30일 범위 (UCDP는 ~1개월 코딩 지연)
+    since = (target_date - timedelta(days=30)).strftime("%Y-%m-%d")
     until = target_date.strftime("%Y-%m-%d")
-    sub_types = "|".join(ACLED_TERROR_SUBTYPES)
 
     try:
-        resp = requests.get(
-            "https://acleddata.com/api/acled/read",
-            params={
-                "_format": "json",
-                "sub_event_type": sub_types,
-                "event_date": f"{since}|{until}",
-                "event_date_where": "BETWEEN",
-                "limit": limit,
-                "fields": "event_id_cnty|event_date|event_type|sub_event_type|actor1|actor2|country|admin1|location|latitude|longitude|fatalities|notes|source",
-            },
-            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
-            timeout=30,
-        )
-
-        if resp.status_code != 200:
-            print(f"    [acled] HTTP {resp.status_code}")
-            return []
-
-        data = resp.json()
         events = []
-        for item in data.get("data", []):
-            events.append({
-                "source": "acled",
-                "event_id": item.get("event_id_cnty", ""),
-                "date": item.get("event_date", ""),
-                "event_type": item.get("event_type", ""),
-                "sub_event_type": item.get("sub_event_type", ""),
-                "actor1": item.get("actor1", ""),
-                "actor2": item.get("actor2", ""),
-                "country": item.get("country", ""),
-                "admin1": item.get("admin1", ""),
-                "location": item.get("location", ""),
-                "latitude": item.get("latitude", ""),
-                "longitude": item.get("longitude", ""),
-                "fatalities": int(item.get("fatalities", 0) or 0),
-                "notes": (item.get("notes", "") or "")[:500],
-                "source_text": item.get("source", ""),
-            })
+        page = 0
+        while len(events) < limit:
+            resp = requests.get(
+                "https://ucdpapi.pcr.uu.se/api/gedevents/26.0.2",
+                params={
+                    "pagesize": min(100, limit - len(events)),
+                    "page": page,
+                    "StartDate": since,
+                    "EndDate": until,
+                },
+                headers={"x-ucdp-access-token": UCDP_TOKEN},
+                timeout=30,
+            )
+
+            if resp.status_code == 401:
+                print("    [ucdp] 토큰 만료 또는 유효하지 않음")
+                break
+            if resp.status_code != 200:
+                print(f"    [ucdp] HTTP {resp.status_code}")
+                break
+
+            data = resp.json()
+            results = data.get("Result", [])
+            if not results:
+                break
+
+            for item in results:
+                best_deaths = int(item.get("best", 0) or 0)
+                events.append({
+                    "source": "ucdp",
+                    "event_id": str(item.get("id", "")),
+                    "date": item.get("date_start", ""),
+                    "event_type": f"type_{item.get('type_of_violence', '')}",
+                    "sub_event_type": item.get("conflict_name", ""),
+                    "actor1": item.get("side_a", ""),
+                    "actor2": item.get("side_b", ""),
+                    "country": item.get("country", ""),
+                    "country_code": "",
+                    "admin1": item.get("adm_1", ""),
+                    "location": item.get("where_coordinates", ""),
+                    "latitude": str(item.get("latitude", "")),
+                    "longitude": str(item.get("longitude", "")),
+                    "fatalities": best_deaths,
+                    "deaths_a": int(item.get("deaths_a", 0) or 0),
+                    "deaths_b": int(item.get("deaths_b", 0) or 0),
+                    "deaths_civilians": int(item.get("deaths_civilians", 0) or 0),
+                    "fatalities_low": int(item.get("low", 0) or 0),
+                    "fatalities_high": int(item.get("high", 0) or 0),
+                    "notes": (item.get("source_headline", "") or "")[:500],
+                    "source_text": (item.get("source_article", "") or "")[:300],
+                    "conflict_name": item.get("conflict_name", ""),
+                    "dyad_name": item.get("dyad_name", ""),
+                })
+
+            total_pages = data.get("TotalPages", 0)
+            page += 1
+            if page >= total_pages:
+                break
 
         events.sort(key=lambda x: x["fatalities"], reverse=True)
-        return events
+        return events[:limit]
 
     except Exception as e:
-        print(f"    [acled] 수집 실패: {e}")
+        print(f"    [ucdp] 수집 실패: {e}")
         return []
 
 
@@ -483,7 +478,7 @@ def fetch_expert_rss(limit: int = 30) -> list[dict]:
     """테러/안보 전문 기관 RSS — 48시간 필터 적용"""
     articles = []
     cutoff = datetime.now() - timedelta(hours=48)
-    tier1 = ["Long War Journal", "Soufan Center", "CTC Sentinel", "Jamestown Foundation"]
+    tier1 = RSS_TIER1_FEEDS
 
     for name, url in RSS_FEEDS.items():
         try:
@@ -563,35 +558,35 @@ def collect_all(target_date: datetime) -> dict:
     print("  Terror Intelligence — Data Collection")
     print("=" * 55)
 
-    # #20: Fetch all 6 sources in parallel — each source is independent
+    # Fetch all 6 sources in parallel
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
         future_gdelt = executor.submit(_safe_fetch, "gdelt", fetch_gdelt, target_date)
-        future_acled = executor.submit(_safe_fetch, "acled", fetch_acled, target_date)
+        future_ucdp = executor.submit(_safe_fetch, "ucdp", fetch_ucdp, target_date)
         future_news = executor.submit(_safe_fetch, "google_news", fetch_google_news)
         future_expert = executor.submit(_safe_fetch, "expert_rss", fetch_expert_rss)
         future_sanctions = executor.submit(_safe_fetch, "sanctions", fetch_sanctions_updates)
         future_ofac = executor.submit(_safe_fetch, "ofac", fetch_ofac_recent)
 
     gdelt = future_gdelt.result()
-    acled = future_acled.result()
+    ucdp = future_ucdp.result()
     news = future_news.result()
     expert = future_expert.result()
     sanctions = future_sanctions.result()
     ofac = future_ofac.result()
 
     print(f"\n  [1/6] GDELT:          {len(gdelt)} events")
-    print(f"  [2/6] ACLED:          {len(acled)} incidents")
+    print(f"  [2/6] UCDP:           {len(ucdp)} incidents")
     print(f"  [3/6] Google News:    {len(news)} articles")
     print(f"  [4/6] Expert RSS:     {len(expert)} articles")
     print(f"  [5/6] OpenSanctions:  {len(sanctions)} entities")
     print(f"  [6/6] OFAC:           {len(ofac)} actions")
 
-    total = len(gdelt) + len(acled) + len(news) + len(expert) + len(sanctions) + len(ofac)
+    total = len(gdelt) + len(ucdp) + len(news) + len(expert) + len(sanctions) + len(ofac)
     print(f"\n  Total: {total} items")
 
     return {
         "gdelt": gdelt,
-        "acled": acled,
+        "ucdp": ucdp,
         "google_news": news,
         "expert_rss": expert,
         "sanctions": sanctions,

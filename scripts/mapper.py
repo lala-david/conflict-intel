@@ -447,7 +447,7 @@ class TerrorMapper:
         enriched = {}
         stats = {"total_enriched": 0, "org_matches": 0, "country_matches": 0, "zone_matches": 0}
 
-        for source_key in ["acled", "gdelt"]:
+        for source_key in ["ucdp", "gdelt"]:
             events = data.get(source_key, [])
             enriched_events = []
             for event in events:
