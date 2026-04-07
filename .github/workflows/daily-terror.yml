@@ -1,8 +1,8 @@
 name: Daily Terror Intelligence
 
 on:
-  schedule:
-    - cron: '0 6 * * *'
+  # schedule:
+  #   - cron: '0 6 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -28,10 +28,12 @@ jobs:
       - name: Run daily terror intelligence
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          ACLED_API_KEY: ${{ secrets.ACLED_API_KEY }}
-          ACLED_EMAIL: ${{ secrets.ACLED_EMAIL }}
+          UCDP_TOKEN: ${{ secrets.UCDP_TOKEN }}
         run: python scripts/daily_terror.py
       - name: Weekly summary (Sundays only)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          UCDP_TOKEN: ${{ secrets.UCDP_TOKEN }}
         run: |
           if [ "$(date +%u)" = "7" ]; then
             python scripts/weekly_summary.py

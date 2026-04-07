@@ -1,34 +1,73 @@
-<div align="center">
-
 # Terror Researcher
 
-**Automated Daily Terror Intelligence System**
+자동화된 일일 테러/분쟁 인텔리전스 시스템.
 
-전 세계 테러 사건, 위협 동향, 제재 변동을 자동으로 수집·분석하는 인텔리전스 엔진
+6개 데이터 소스를 매일 자동 수집 → 정제 → 교차검증 → 분석 → 보고서 생성.
 
-</div>
+## 데이터 소스
 
----
+| 소스 | 유형 | 데이터 |
+|------|------|--------|
+| GDELT | 미디어 이벤트 | CAMEO 코드 기반 분쟁/테러 이벤트 |
+| UCDP | 분쟁 사건 DB | 사상자 포함 코딩된 분쟁 사건 |
+| Google News | 뉴스 검색 | 8개 테러 관련 검색어 RSS |
+| Expert RSS | 전문가 피드 | 17개 기관 (ISW, CTC, Soufan 등) |
+| OpenSanctions | 제재 목록 | UN/US/EU 제재 대상 변동 감지 |
+| OFAC | 미 재무부 | 최근 제재 조치 |
 
-## 배경
+## 분석 파이프라인
 
-테러 위협은 예고 없이 발생하고, 관련 정보는 ACLED, GDELT, OFAC, UN 제재 목록, 싱크탱크 분석, 뉴스 등 수십 개 채널에 흩어져 있다. 매일 수백 건의 분쟁 이벤트와 수십 편의 전문가 분석이 쏟아지지만, 이를 종합하여 위협 수준을 판단하고 패턴을 읽어내는 건 전문 인력이 아니면 불가능하다. 이 시스템은 13개 소스에서 데이터를 자동 수집하고, LLM이 전문 인텔리전스 브리프 형식으로 분석하여 매일 GitHub에 자동 커밋한다. BLUF(Bottom Line Up Front) 원칙, 신뢰도 등급, EUROPOL TE-SAT 분류 체계를 적용한 전문 분석 리포트를 한글/영문 듀얼로 생성한다.
+```
+수집(병렬) → 조직/국가/분쟁지역 매칭 → 뉴스 클러스터링 → 위협도/핫스팟 분석 → 보고서 생성
+```
 
----
+## 보고서 구조
 
-## 무엇을 추적하는가
+- **BLUF**: 3~5줄 핵심 요약 (유일한 LLM 사용, ~600 토큰/일)
+- 수집 통계, 위협 수준, 지역별 분석
+- UCDP 주요 사건 (사상자 포함)
+- GDELT 미디어 이벤트
+- 뉴스 클러스터, 조직 동향, 핫스팟
+- 제재 동향, 전문가 분석
 
-- **사건 데이터** — 폭탄 공격, IED, 자살 공격, 무장 습격, 드론/미사일 공격 (ACLED + GDELT)
-- **조직 동향** — ISIS, Al-Qaeda, 헤즈볼라, 탈레반, 지역 무장단체 활동 패턴
-- **지역별 위협** — 중동, 아프리카, 남아시아, 유럽, 북미 위협 수준 평가
-- **제재 변동** — OFAC SDN, UN 안보리, EU 제재 목록 신규/변경 추적
-- **전문가 분석** — Long War Journal, Soufan Center, CTC Sentinel, Jamestown 등 전문 기관 리서치
-- **정책 변화** — 대테러 법안, 국제 협력, 규제 동향
+## 설치
 
----
+```bash
+pip install -r requirements.txt
+```
 
-<div align="center">
+## 환경 변수 (.env)
 
-*Automated terror intelligence — so analysts can focus on judgment, not collection.*
+```
+OPENAI_API_KEY=your-key    # BLUF 생성용
+UCDP_TOKEN=your-token      # UCDP API (https://ucdp.uu.se/apidocs/)
+```
 
-</div>
+## 실행
+
+```bash
+# 오늘 보고서
+python scripts/daily_terror.py
+
+# 특정 날짜
+python scripts/daily_terror.py 2026-04-07
+
+# 주간 요약
+python scripts/weekly_summary.py
+```
+
+## 참조 데이터
+
+| 파일 | 내용 | 규모 |
+|------|------|------|
+| organizations.json | 제재 대상 + 무장단체 | 286 조직, 341 인물 |
+| countries.json | 국가별 위협도/활동단체 | 172개국 |
+| conflict_zones.json | 분쟁지역 좌표 | 71개 zone |
+| classifications.json | 공격/표적/무기 분류 체계 | 33 카테고리 |
+
+## CI/CD
+
+GitHub Actions: 매일 UTC 06:00 (KST 15:00) 자동 실행
+- 데이터 수집 → 보고서 생성 → git commit/push
+- 일요일: 주간 요약 추가 생성
+- 실패 시 GitHub Issue 자동 생성

@@ -87,12 +87,26 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
         target_ymd = target_date.strftime("%Y%m%d")
         min_date = (target_date - timedelta(days=2)).strftime("%Y%m%d")
 
-        # D3: Actor skip list — generic state actors without terror context
-        _ACTOR_SKIP = {"POLICE", "DOCTOR", "SUPREME COURT", "JUDGE", "NAVY",
-                       "BATTALION", "MALE", "FEMALE", "BRITISH", "CITIZEN"}
-        # D3: URL keywords that indicate non-terror content
-        _URL_NOISE = {"gas-price", "bike", "newborn", "ww2", "world-war",
-                      "recipe", "sport", "weather"}
+        # D3: Actor skip list — generic/non-terror actors
+        _ACTOR_SKIP = {
+            "POLICE", "DOCTOR", "SUPREME COURT", "JUDGE", "NAVY",
+            "BATTALION", "MALE", "FEMALE", "BRITISH", "CITIZEN",
+            "ACTOR", "FIREFIGHTER", "PROSECUTOR", "HOSPITAL", "WORKER",
+            "PENNSYLVANIA", "PHOENIX", "LOS ANGELES", "COLORADO",
+            "CHANDIGARH", "ABU DHABI", "TELEVISION", "NEWSPAPER",
+            "INTELLIGENCE", "NATIONALS", "CAMBODIA",
+        }
+        # D3: URL domains/keywords that indicate non-terror content
+        _URL_NOISE = {
+            "gas-price", "bike", "newborn", "ww2", "world-war",
+            "recipe", "sport", "weather", "zoo", "reunion",
+            "celebrity", "entertainment", "kanye", "schitts",
+            "iheart.com", "aol.co.uk", "aol.com",
+            "mix106", "mymagic", "kfbx", "q106",
+            "perthnow.com.au",
+        }
+        # D3: Minimum Goldstein hostility — skip events with weak conflict signal
+        _MIN_GOLDSTEIN = -5.0
 
         events = []
         for row in reader:
@@ -120,10 +134,14 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
             actor1 = row[6] if row[6] else ""
             actor2 = row[16] if row[16] else ""
 
-            # D3: Actor relevance filter — skip generic state-actor-only events
+            # D3: Goldstein filter — skip events with weak conflict signal
+            if goldstein > _MIN_GOLDSTEIN:
+                continue
+
+            # D3: Actor relevance filter — skip generic/non-terror actors
             actor1_upper = actor1.upper().strip()
             actor2_upper = actor2.upper().strip()
-            if actor1_upper in _ACTOR_SKIP and (not actor2_upper or actor2_upper in _ACTOR_SKIP):
+            if actor1_upper in _ACTOR_SKIP or actor2_upper in _ACTOR_SKIP:
                 continue
 
             # #1: 좌표 매핑 수정 — ActionGeo 우선, 없으면 Actor1Geo
@@ -183,7 +201,7 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
                 "actor1": actor1,
                 "actor2": actor2,
                 "country_code": iso_country,
-                "country": "",  # D4: GDELT has country codes only, not names
+                "country": iso_country,  # D4: populated with ISO code, enrichment resolves full name
                 "location": action_location,
                 "latitude": action_lat,
                 "longitude": action_lon,
@@ -224,8 +242,10 @@ def fetch_ucdp(target_date: datetime, limit: int = 100) -> list[dict]:
         print("    [ucdp] 토큰 없음 — 스킵 (.env에 UCDP_TOKEN 설정 필요)")
         return []
 
-    # 최근 30일 범위 (UCDP는 ~1개월 코딩 지연)
-    since = (target_date - timedelta(days=30)).strftime("%Y-%m-%d")
+    # 최근 90일 범위 (UCDP Candidate는 월 1회 일괄 업데이트되므로 넓은 범위가 필요).
+    # 매일 같은 이벤트를 다시 가져오지만, DB에 INSERT OR IGNORE로 저장하므로
+    # 중복 없이 누적된다. API 호출 비용보다 데이터 누락 방지가 더 중요.
+    since = (target_date - timedelta(days=90)).strftime("%Y-%m-%d")
     until = target_date.strftime("%Y-%m-%d")
 
     try:
@@ -258,6 +278,9 @@ def fetch_ucdp(target_date: datetime, limit: int = 100) -> list[dict]:
 
             for item in results:
                 best_deaths = int(item.get("best", 0) or 0)
+                ucdp_country = item.get("country", "")
+                # UCDP provides country name but no ISO code;
+                # copy country name to country_code as fallback — mapper will resolve
                 events.append({
                     "source": "ucdp",
                     "event_id": str(item.get("id", "")),
@@ -266,8 +289,8 @@ def fetch_ucdp(target_date: datetime, limit: int = 100) -> list[dict]:
                     "sub_event_type": item.get("conflict_name", ""),
                     "actor1": item.get("side_a", ""),
                     "actor2": item.get("side_b", ""),
-                    "country": item.get("country", ""),
-                    "country_code": "",
+                    "country": ucdp_country,
+                    "country_code": ucdp_country,
                     "admin1": item.get("adm_1", ""),
                     "location": item.get("where_coordinates", ""),
                     "latitude": str(item.get("latitude", "")),

@@ -1,26 +1,20 @@
 """
-주간 요약 리포트 생성
+주간 요약 리포트 생성 (LLM 없이 코드 기반)
 - SQLite에 쌓인 데이터를 기반으로 주간 통계 + 트렌드 분석
 """
-import os
 import sys
 import io
-import json
 import sqlite3
 from datetime import datetime, timedelta
 from pathlib import Path
-from openai import OpenAI
-from dotenv import load_dotenv
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
-load_dotenv(ROOT / ".env")
 
-from config import ANALYSIS_MODEL, TEMPERATURE, REPORTS_DIR
+from config import REPORTS_DIR
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 DB_PATH = ROOT / "data" / "terror.db"
 
 
@@ -30,44 +24,39 @@ def get_weekly_data(end_date: datetime) -> dict:
     end = end_date.strftime("%Y-%m-%d")
 
     conn = sqlite3.connect(str(DB_PATH))
+    try:
+        daily = conn.execute(
+            "SELECT date, gdelt_count, acled_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
+            "FROM daily_stats WHERE date BETWEEN ? AND ? ORDER BY date",
+            (start, end),
+        ).fetchall()
 
-    # 일일 통계
-    daily = conn.execute(
-        "SELECT date, gdelt_count, acled_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
-        "FROM daily_stats WHERE date BETWEEN ? AND ? ORDER BY date",
-        (start, end),
-    ).fetchall()
+        country_events = conn.execute(
+            "SELECT COALESCE(NULLIF(country,''), country_code) as c, COUNT(*) as cnt "
+            "FROM events WHERE collected_at >= ? GROUP BY c ORDER BY cnt DESC LIMIT 15",
+            (start,),
+        ).fetchall()
 
-    # 이벤트 국가별
-    country_events = conn.execute(
-        "SELECT COALESCE(NULLIF(country,''), country_code) as c, COUNT(*) as cnt "
-        "FROM events WHERE collected_at >= ? GROUP BY c ORDER BY cnt DESC LIMIT 15",
-        (start,),
-    ).fetchall()
+        source_events = conn.execute(
+            "SELECT source, COUNT(*) FROM events WHERE collected_at >= ? GROUP BY source",
+            (start,),
+        ).fetchall()
 
-    # 이벤트 소스별
-    source_events = conn.execute(
-        "SELECT source, COUNT(*) FROM events WHERE collected_at >= ? GROUP BY source",
-        (start,),
-    ).fetchall()
+        total_events = conn.execute(
+            "SELECT COUNT(*) FROM events WHERE collected_at >= ?", (start,)
+        ).fetchone()[0]
 
-    # 총 이벤트
-    total_events = conn.execute(
-        "SELECT COUNT(*) FROM events WHERE collected_at >= ?", (start,)
-    ).fetchone()[0]
-
-    # 제재 변동
-    new_sanctions = conn.execute(
-        "SELECT name, dataset, schema_type FROM sanctions WHERE is_new=1 AND collected_date BETWEEN ? AND ?",
-        (start, end),
-    ).fetchall()
-
-    conn.close()
+        new_sanctions = conn.execute(
+            "SELECT name, dataset, schema_type FROM sanctions WHERE is_new=1 AND collected_date BETWEEN ? AND ?",
+            (start, end),
+        ).fetchall()
+    finally:
+        conn.close()
 
     return {
         "period": f"{start} ~ {end}",
         "daily_stats": [
-            {"date": r[0], "gdelt": r[1], "acled": r[2], "news": r[3], "fatalities": r[4], "new_sanctions": r[5],
+            {"date": r[0], "gdelt": r[1], "ucdp": r[2], "news": r[3], "fatalities": r[4], "new_sanctions": r[5],
              "top_countries": r[6], "top_actors": r[7]}
             for r in daily
         ],
@@ -78,69 +67,64 @@ def get_weekly_data(end_date: datetime) -> dict:
     }
 
 
-def generate_weekly(data: dict, end_date: datetime) -> str:
-    """주간 요약 리포트 생성"""
+def build_weekly_report(data: dict, end_date: datetime) -> str:
+    """주간 요약을 코드로 생성 (LLM 없음)"""
+    week_num = end_date.isocalendar()[1]
     weekday = ["월", "화", "수", "목", "금", "토", "일"][end_date.weekday()]
     date_display = f"{end_date.strftime('%Y년 %m월 %d일')} ({weekday})"
-    week_num = end_date.isocalendar()[1]
 
-    context = json.dumps(data, ensure_ascii=False, indent=2, default=str)
+    lines = []
+    lines.append(f"# Weekly Intelligence Summary \u2014 Week {week_num} ({data['period']})")
+    lines.append("")
 
-    prompt = f"""아래 주간 수집 데이터를 분석하여 한국어 주간 인텔리전스 요약을 작성하라.
+    # 주간 통계 테이블
+    lines.append("## 주간 통계")
+    lines.append("")
+    lines.append("| 날짜 | GDELT | UCDP | 뉴스 | 사망자 | 신규제재 |")
+    lines.append("|------|-------|------|------|--------|----------|")
 
-## 기간: {data['period']} (Week {week_num})
+    total_gdelt = total_ucdp = total_news = total_fat = total_sanctions = 0
+    for d in data["daily_stats"]:
+        lines.append(f"| {d['date']} | {d['gdelt']} | {d['ucdp']} | {d['news']} | {d['fatalities']} | {d['new_sanctions']} |")
+        total_gdelt += d["gdelt"]
+        total_ucdp += d["ucdp"]
+        total_news += d["news"]
+        total_fat += d["fatalities"]
+        total_sanctions += d["new_sanctions"]
 
-## 수집 데이터:
-{context}
+    lines.append(f"| **합계** | **{total_gdelt}** | **{total_ucdp}** | **{total_news}** | **{total_fat}** | **{total_sanctions}** |")
+    lines.append("")
 
-## 작성 규칙:
-1. 문장은 "~이다/~하다/~한다"로 종결한다
-2. 출처는 마크다운 링크로 표기한다
-3. 수집 데이터에 없는 내용은 절대 작성하지 않는다
-4. 주간 트렌드(증가/감소/안정)를 명확히 서술한다
+    # 국가별 순위
+    if data["country_ranking"]:
+        lines.append("## 국가별 활동 순위")
+        lines.append("")
+        lines.append("| 순위 | 국가 | 이벤트 수 |")
+        lines.append("|------|------|-----------|")
+        for i, cr in enumerate(data["country_ranking"][:10], 1):
+            lines.append(f"| {i} | {cr['country']} | {cr['events']} |")
+        lines.append("")
 
-## 출력 형식:
+    # 소스별 분포
+    if data["source_breakdown"]:
+        lines.append("## 소스별 분포")
+        lines.append("")
+        for sb in data["source_breakdown"]:
+            lines.append(f"- {sb['source']}: {sb['count']}건")
+        lines.append("")
 
-# Weekly Intelligence Summary — Week {week_num} ({data['period']})
+    # 신규 제재
+    if data["new_sanctions"]:
+        lines.append("## 신규 제재 엔티티")
+        lines.append("")
+        for ns in data["new_sanctions"]:
+            lines.append(f"- [{ns['dataset']}] {ns['name']} ({ns['type']})")
+        lines.append("")
 
-## 주간 핵심 요약
-> (이번 주 가장 중요한 3가지를 서술한다)
+    lines.append("---")
+    lines.append(f"*Weekly Summary | Generated: {date_display}*")
 
-## 주간 통계
-
-| 날짜 | GDELT | ACLED | 뉴스 | 사망자 | 신규제재 |
-|------|-------|-------|------|--------|----------|
-(일별 데이터를 테이블로 정리한다)
-
-## 국가별 활동 순위
-
-| 순위 | 국가 | 이벤트 수 | 트렌드 |
-|------|------|-----------|--------|
-
-## 주간 트렌드 분석
-(전주 대비 변화, 패턴, 이상 징후를 분석한다)
-
-## 제재 변동
-(이번 주 신규 제재 엔티티를 정리한다)
-
-## 다음 주 전망
-> (다음 주 주목해야 할 포인트)
-
----
-*Weekly Summary | Generated: {date_display}*
-"""
-
-    response = client.chat.completions.create(
-        model=ANALYSIS_MODEL,
-        messages=[
-            {"role": "system", "content": "Senior counterterrorism analyst producing weekly intelligence summary. Use ONLY provided data."},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=TEMPERATURE,
-        max_completion_tokens=4000,
-    )
-
-    return response.choices[0].message.content or ""
+    return "\n".join(lines)
 
 
 def main():
@@ -150,9 +134,8 @@ def main():
         end_date = datetime.now()
 
     week_num = end_date.isocalendar()[1]
-    print(f"\n  Weekly Summary — Week {week_num}\n")
+    print(f"\n  Weekly Summary \u2014 Week {week_num}\n")
 
-    # 데이터 집계
     data = get_weekly_data(end_date)
     if not data["daily_stats"]:
         print("  No data for this week.")
@@ -162,11 +145,8 @@ def main():
     print(f"  Days with data: {len(data['daily_stats'])}")
     print(f"  Total events: {data['total_events']}")
 
-    # 리포트 생성
-    print("\n  Generating weekly summary...")
-    report = generate_weekly(data, end_date)
+    report = build_weekly_report(data, end_date)
 
-    # 저장
     year = end_date.strftime("%Y")
     month = end_date.strftime("%m")
     week = f"week-{week_num:02d}"
