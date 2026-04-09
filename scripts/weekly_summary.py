@@ -26,7 +26,7 @@ def get_weekly_data(end_date: datetime) -> dict:
     conn = sqlite3.connect(str(DB_PATH))
     try:
         daily = conn.execute(
-            "SELECT date, gdelt_count, acled_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
+            "SELECT date, gdelt_count, ucdp_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
             "FROM daily_stats WHERE date BETWEEN ? AND ? ORDER BY date",
             (start, end),
         ).fetchall()

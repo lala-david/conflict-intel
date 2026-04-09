@@ -130,13 +130,13 @@ def compute_daily_diff(date_str: str) -> dict:
     conn = _get_conn()
     try:
         today = conn.execute(
-            "SELECT gdelt_count, acled_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
+            "SELECT gdelt_count, ucdp_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
             "FROM daily_stats WHERE date = ?", (date_str,)
         ).fetchone()
 
         # 어제 찾기 (데이터가 있는 가장 최근 날)
         yesterday = conn.execute(
-            "SELECT date, gdelt_count, acled_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
+            "SELECT date, gdelt_count, ucdp_count, news_count, total_fatalities, sanctions_new, top_countries, top_actors "
             "FROM daily_stats WHERE date < ? ORDER BY date DESC LIMIT 1", (date_str,)
         ).fetchone()
     finally:

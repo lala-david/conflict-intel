@@ -61,7 +61,7 @@ def init_db():
             CREATE TABLE IF NOT EXISTS daily_stats (
                 date TEXT PRIMARY KEY,
                 gdelt_count INTEGER DEFAULT 0,
-                acled_count INTEGER DEFAULT 0,
+                ucdp_count INTEGER DEFAULT 0,
                 news_count INTEGER DEFAULT 0,
                 expert_count INTEGER DEFAULT 0,
                 sanctions_count INTEGER DEFAULT 0,
@@ -175,13 +175,13 @@ def save_daily_stats(date_str: str, data: dict, enrichment_stats: dict):
 
     try:
         conn.execute(
-            """INSERT INTO daily_stats (date, gdelt_count, acled_count, news_count, expert_count,
+            """INSERT INTO daily_stats (date, gdelt_count, ucdp_count, news_count, expert_count,
                sanctions_count, sanctions_new, total_fatalities, org_matches,
                country_matches, zone_matches, top_countries, top_actors)
                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
                ON CONFLICT(date) DO UPDATE SET
                  gdelt_count=excluded.gdelt_count,
-                 acled_count=excluded.acled_count,
+                 ucdp_count=excluded.ucdp_count,
                  news_count=excluded.news_count,
                  expert_count=excluded.expert_count,
                  sanctions_count=excluded.sanctions_count,
@@ -218,10 +218,10 @@ def get_weekly_trend(date_str: str) -> dict:
     conn = get_conn()
     try:
         rows = conn.execute(
-            "SELECT date, gdelt_count, acled_count, total_fatalities, sanctions_new FROM daily_stats ORDER BY date DESC LIMIT 7"
+            "SELECT date, gdelt_count, ucdp_count, total_fatalities, sanctions_new FROM daily_stats ORDER BY date DESC LIMIT 7"
         ).fetchall()
         return {
-            "days": [{"date": r[0], "gdelt": r[1], "acled": r[2], "fatalities": r[3], "new_sanctions": r[4]} for r in rows]
+            "days": [{"date": r[0], "gdelt": r[1], "ucdp": r[2], "fatalities": r[3], "new_sanctions": r[4]} for r in rows]
         }
     except Exception:
         return {"days": []}
@@ -242,10 +242,42 @@ def get_known_ucdp_ids() -> set:
 
 
 def cleanup_db():
-    """Clean legacy data issues"""
+    """Clean legacy data + migrate schema"""
     conn = get_conn()
     try:
-        # Remove GDELT events with known noise actors (legacy data before filter)
+        # --- 마이그레이션: acled_count → ucdp_count ---
+        cols = [r[1] for r in conn.execute("PRAGMA table_info(daily_stats)").fetchall()]
+        if "acled_count" in cols and "ucdp_count" not in cols:
+            print("  [db] migrating daily_stats: acled_count → ucdp_count")
+            conn.executescript("""
+                CREATE TABLE IF NOT EXISTS daily_stats_new (
+                    date TEXT PRIMARY KEY,
+                    gdelt_count INTEGER DEFAULT 0,
+                    ucdp_count INTEGER DEFAULT 0,
+                    news_count INTEGER DEFAULT 0,
+                    expert_count INTEGER DEFAULT 0,
+                    sanctions_count INTEGER DEFAULT 0,
+                    sanctions_new INTEGER DEFAULT 0,
+                    total_fatalities INTEGER DEFAULT 0,
+                    org_matches INTEGER DEFAULT 0,
+                    country_matches INTEGER DEFAULT 0,
+                    zone_matches INTEGER DEFAULT 0,
+                    top_countries TEXT,
+                    top_actors TEXT,
+                    created_at TEXT DEFAULT (datetime('now'))
+                );
+                INSERT OR IGNORE INTO daily_stats_new
+                    SELECT date, gdelt_count, acled_count, news_count, expert_count,
+                           sanctions_count, sanctions_new, total_fatalities,
+                           org_matches, country_matches, zone_matches,
+                           top_countries, top_actors, created_at
+                    FROM daily_stats;
+                DROP TABLE daily_stats;
+                ALTER TABLE daily_stats_new RENAME TO daily_stats;
+            """)
+            print("  [db] migration complete")
+
+        # --- 노이즈 GDELT 이벤트 삭제 ---
         noise_actors = ('POLICE', 'DOCTOR', 'FIREFIGHTER', 'SUPREME COURT', 'JUDGE',
                        'BATTALION', 'MALE', 'FEMALE', 'ACTOR', 'PROSECUTOR', 'HOSPITAL',
                        'WORKER', 'ABU DHABI', 'TELEVISION', 'NEWSPAPER', 'PRINCE',
@@ -258,7 +290,7 @@ def cleanup_db():
         if deleted:
             print(f"  [db] cleaned {deleted} noise GDELT events")
 
-        # Fill empty country from country_code for GDELT events
+        # --- 빈 country 채우기 ---
         updated = conn.execute(
             "UPDATE events SET country = country_code WHERE source='gdelt' AND (country IS NULL OR country = '') AND country_code != ''"
         ).rowcount
