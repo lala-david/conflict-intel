@@ -103,6 +103,9 @@ def build_report(data: dict, date: datetime, mapper=None) -> str:
     clusters = data.get("event_clusters", [])
 
     total_fatalities = sum(int(e.get("fatalities", 0) or 0) for e in ucdp)
+    ucdp_new = [e for e in ucdp if e.get("is_new", False)]
+    ucdp_old = [e for e in ucdp if not e.get("is_new", False)]
+    new_fatalities = sum(int(e.get("fatalities", 0) or 0) for e in ucdp_new)
 
     lines = []
     lines.append(f"# Terror Intelligence Brief \u2014 {date_display}")
@@ -128,12 +131,12 @@ def build_report(data: dict, date: datetime, mapper=None) -> str:
     lines.append("| 소스 | 건수 |")
     lines.append("|------|------|")
     lines.append(f"| GDELT 이벤트 | {len(gdelt)} |")
-    lines.append(f"| UCDP 분쟁 사건 | {len(ucdp)} |")
+    lines.append(f"| UCDP 분쟁 사건 (신규/전체) | **{len(ucdp_new)}** / {len(ucdp)} |")
     lines.append(f"| Google News | {len(news)} |")
     lines.append(f"| 전문가 RSS | {len(expert)} |")
     lines.append(f"| 제재 엔티티 | {len(sanctions)} |")
     lines.append(f"| OFAC 조치 | {len(ofac)} |")
-    lines.append(f"| **총 사망자 (UCDP)** | **{total_fatalities}** |")
+    lines.append(f"| **신규 사망자 / 누적 사망자** | **{new_fatalities}** / {total_fatalities} |")
     lines.append("")
 
     # ─── 2. 위협 수준 ───
@@ -176,21 +179,43 @@ def build_report(data: dict, date: datetime, mapper=None) -> str:
         lines.append(f"- 사망자: {diff['trend_text'].get('fatalities', 'N/A')}")
         lines.append("")
 
-    # ─── 4. 주요 UCDP 사건 (사상자 포함) ───
+    # ─── 4. UCDP 분쟁 사건 ───
     if ucdp:
-        lines.append(f"## 4. 주요 분쟁 사건 (UCDP, 상위 {min(15, len(ucdp))}건)")
+        # 4a. 신규 사건 (이번에 처음 감지된 것)
+        if ucdp_new:
+            lines.append(f"## 4. 신규 분쟁 사건 ({len(ucdp_new)}건, 사망 {new_fatalities}명)")
+            lines.append("")
+            lines.append("| 날짜 | 국가 | 위치 | 행위자A | 행위자B | 사망자 | 좌표 |")
+            lines.append("|------|------|------|---------|---------|--------|------|")
+            for e in ucdp_new[:15]:
+                lat = e.get("latitude", "")
+                lon = e.get("longitude", "")
+                coord = f"[{lat},{lon}]" if lat and lon else ""
+                lines.append(
+                    f"| {e.get('date', '')} | {e.get('country', '')} | {e.get('location', '')} "
+                    f"| {e.get('actor1', '')[:25]} | {e.get('actor2', '')[:25]} "
+                    f"| {e.get('fatalities', 0)} | {coord} |"
+                )
+            lines.append("")
+        else:
+            lines.append("## 4. 신규 분쟁 사건")
+            lines.append("")
+            lines.append("UCDP 신규 사건 없음 (월간 업데이트 대기 중)")
+            lines.append("")
+
+        # 4b. 월간 누적 통계 (요약만)
+        country_fat = {}
+        for e in ucdp:
+            c = e.get("country", "Unknown")
+            country_fat[c] = country_fat.get(c, 0) + int(e.get("fatalities", 0) or 0)
+        top_countries = sorted(country_fat.items(), key=lambda x: x[1], reverse=True)[:8]
+
+        lines.append(f"### UCDP 누적 현황 ({len(ucdp)}건, 사망 {total_fatalities}명)")
         lines.append("")
-        lines.append("| 날짜 | 국가 | 위치 | 행위자A | 행위자B | 사망자 | 좌표 |")
-        lines.append("|------|------|------|---------|---------|--------|------|")
-        for e in ucdp[:15]:
-            lat = e.get("latitude", "")
-            lon = e.get("longitude", "")
-            coord = f"[{lat},{lon}]" if lat and lon else ""
-            lines.append(
-                f"| {e.get('date', '')} | {e.get('country', '')} | {e.get('location', '')} "
-                f"| {e.get('actor1', '')[:25]} | {e.get('actor2', '')[:25]} "
-                f"| {e.get('fatalities', 0)} | {coord} |"
-            )
+        lines.append("| 국가 | 사망자 |")
+        lines.append("|------|--------|")
+        for c, f in top_countries:
+            lines.append(f"| {c} | {f} |")
         lines.append("")
 
     # ─── 5. GDELT 주요 이벤트 ───
@@ -309,14 +334,18 @@ def _build_bluf_context(data: dict, analysis: dict) -> str:
         top5 = list(threat.items())[:5]
         parts.append("위협 상위 국가: " + ", ".join(f"{c}({t['label']},{t['score']}/10,사건{t['events']},사망{t['fatalities']})" for c, t in top5))
 
-    # UCDP 사상자
+    # UCDP 사상자 (신규 우선)
     ucdp = data.get("ucdp", [])
     if ucdp:
+        ucdp_new = [e for e in ucdp if e.get("is_new", False)]
         total_dead = sum(int(e.get("fatalities", 0) or 0) for e in ucdp)
-        top_incidents = ucdp[:5]
-        parts.append(f"UCDP 사건 {len(ucdp)}건, 총 사망 {total_dead}명")
+        new_dead = sum(int(e.get("fatalities", 0) or 0) for e in ucdp_new)
+        parts.append(f"UCDP 전체 {len(ucdp)}건(사망{total_dead}), 신규 {len(ucdp_new)}건(사망{new_dead})")
+        # 신규 사건 우선, 없으면 전체에서
+        top_incidents = (ucdp_new or ucdp)[:5]
         for e in top_incidents:
-            parts.append(f"  - {e.get('country','')} {e.get('location','')}: {e.get('actor1','')} vs {e.get('actor2','')}, 사망 {e.get('fatalities',0)}")
+            tag = "[신규] " if e.get("is_new") else ""
+            parts.append(f"  - {tag}{e.get('country','')} {e.get('location','')}: {e.get('actor1','')} vs {e.get('actor2','')}, 사망 {e.get('fatalities',0)}")
 
     # GDELT 요약
     gdelt = data.get("gdelt", [])

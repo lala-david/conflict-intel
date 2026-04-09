@@ -229,6 +229,18 @@ def get_weekly_trend(date_str: str) -> dict:
         conn.close()
 
 
+def get_known_ucdp_ids() -> set:
+    """DB에 이미 저장된 UCDP event ID 목록 반환"""
+    conn = get_conn()
+    try:
+        rows = conn.execute("SELECT id FROM events WHERE source='ucdp'").fetchall()
+        return {r[0] for r in rows}
+    except Exception:
+        return set()
+    finally:
+        conn.close()
+
+
 # 모듈 로드 시 DB 초기화
 try:
     init_db()

@@ -21,6 +21,7 @@ from config import (
     RSS_FEEDS, RSS_TIER1_FEEDS, GOOGLE_NEWS_QUERIES,
 )
 from fips_to_iso import fips_to_iso
+from database import get_known_ucdp_ids
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -242,11 +243,10 @@ def fetch_ucdp(target_date: datetime, limit: int = 100) -> list[dict]:
         print("    [ucdp] 토큰 없음 — 스킵 (.env에 UCDP_TOKEN 설정 필요)")
         return []
 
-    # 최근 90일 범위 (UCDP Candidate는 월 1회 일괄 업데이트되므로 넓은 범위가 필요).
-    # 매일 같은 이벤트를 다시 가져오지만, DB에 INSERT OR IGNORE로 저장하므로
-    # 중복 없이 누적된다. API 호출 비용보다 데이터 누락 방지가 더 중요.
+    # 최근 90일 범위 (UCDP Candidate는 월 1회 일괄 업데이트, ~2개월 지연)
     since = (target_date - timedelta(days=90)).strftime("%Y-%m-%d")
     until = target_date.strftime("%Y-%m-%d")
+    known_ids = get_known_ucdp_ids()
 
     try:
         events = []
@@ -279,11 +279,11 @@ def fetch_ucdp(target_date: datetime, limit: int = 100) -> list[dict]:
             for item in results:
                 best_deaths = int(item.get("best", 0) or 0)
                 ucdp_country = item.get("country", "")
-                # UCDP provides country name but no ISO code;
-                # copy country name to country_code as fallback — mapper will resolve
+                event_id = str(item.get("id", ""))
                 events.append({
                     "source": "ucdp",
-                    "event_id": str(item.get("id", "")),
+                    "event_id": event_id,
+                    "is_new": event_id not in known_ids,
                     "date": item.get("date_start", ""),
                     "event_type": f"type_{item.get('type_of_violence', '')}",
                     "sub_event_type": item.get("conflict_name", ""),
