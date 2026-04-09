@@ -26,6 +26,7 @@ from mapper import TerrorMapper
 from event_linker import link_events
 from threat_scorer import run_analysis
 from database import save_events, save_daily_stats
+from casualty_extractor import enrich_articles_with_casualties
 from config import ANALYSIS_MODEL, REPORTS_DIR
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -136,7 +137,13 @@ def build_report(data: dict, date: datetime, mapper=None) -> str:
     lines.append(f"| 전문가 RSS | {len(expert)} |")
     lines.append(f"| 제재 엔티티 | {len(sanctions)} |")
     lines.append(f"| OFAC 조치 | {len(ofac)} |")
-    lines.append(f"| **신규 사망자 / 누적 사망자** | **{new_fatalities}** / {total_fatalities} |")
+    lines.append(f"| **UCDP 사망자 (신규/누적)** | **{new_fatalities}** / {total_fatalities} |")
+    # 뉴스 기반 사상자 추정
+    news_est = sum(a.get("fatalities_estimated", 0) for a in news)
+    rss_est = sum(a.get("fatalities_estimated", 0) for a in expert)
+    total_est = news_est + rss_est
+    if total_est > 0:
+        lines.append(f"| **오늘 뉴스 추정 사망자** | **~{total_est}** (뉴스 {news_est} + RSS {rss_est}) |")
     lines.append("")
 
     # ─── 2. 위협 수준 ───
@@ -246,8 +253,10 @@ def build_report(data: dict, date: datetime, mapper=None) -> str:
             title = c.get("title", "Untitled")
             url = c.get("url", "")
             countries = ", ".join(c.get("countries", []))
+            est_dead = c.get("fatalities_estimated", 0)
+            casualty_tag = f" | ~{est_dead} killed" if est_dead > 0 else ""
             link = f"[{title[:60]}]({url})" if url else title[:60]
-            lines.append(f"{i}. **[Score:{score}]** {link}")
+            lines.append(f"{i}. **[Score:{score}]** {link}{casualty_tag}")
             if countries:
                 lines.append(f"   - 관련 국가: {countries}")
         lines.append("")
@@ -437,22 +446,32 @@ def main():
         print("No data collected.")
         return
 
-    # 2. 기반 데이터 매핑
+    # 2. 뉴스 사상자 추출 (NLP)
+    print("\n  Extracting casualties from news text...")
+    for key in ["google_news", "expert_rss"]:
+        articles = data.get(key, [])
+        if articles:
+            data[key] = enrich_articles_with_casualties(articles)
+    news_fatalities = sum(a.get("fatalities_estimated", 0) for a in data.get("google_news", []))
+    rss_fatalities = sum(a.get("fatalities_estimated", 0) for a in data.get("expert_rss", []))
+    print(f"   news: {news_fatalities} estimated killed | rss: {rss_fatalities} estimated killed")
+
+    # 3. 기반 데이터 매핑
     print("\n  Enriching with foundation data...")
     data = mapper.enrich_all(data)
     stats = data.get("_enrichment_stats", {})
     print(f"   enriched: {stats.get('total_enriched', 0)} events")
 
-    # 3. 이벤트 링킹
+    # 4. 이벤트 링킹
     print("\n  Linking events across sources...")
     data = link_events(data)
 
-    # 4. 심층 분석
+    # 5. 심층 분석
     print("\n  Running deep analysis...")
     analysis = run_analysis(data, date_str)
     data["_analysis"] = analysis
 
-    # 5. DB 저장
+    # 6. DB 저장
     report_dir = get_report_dir(target_date)
     print("\n  Saving to database...")
     save_events(data, date_str)

@@ -48,32 +48,42 @@ THREAT_LEVELS = {
 
 # RSS 피드
 RSS_FEEDS = {
-    # Tier 1 — 테러/분쟁 전문
+    # Tier 1 — 테러/분쟁 전문 (키워드 필터 면제)
     "Long War Journal": "https://www.longwarjournal.org/feed",
     "Soufan Center": "https://thesoufancenter.org/feed/",
     "CTC Sentinel": "https://ctc.westpoint.edu/feed/",
     "Jamestown Foundation": "https://jamestown.org/feed/",
     "ICG CrisisWatch": "https://www.crisisgroup.org/rss.xml",
-    # Tier 2 — 군사/작전
+    "Defense Post Terror": "https://thedefensepost.com/category/terrorism/feed/",
+    # Tier 2 — 군사/작전 (키워드 필터 면제)
     "ISW": "https://www.iswresearch.org/feeds/posts/default",
     "AFRICOM": "https://www.africom.mil/syndication-feed/rss/press-releases",
     "CENTCOM": "https://www.centcom.mil/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=808&max=20",
     "Pentagon": "https://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?max=10&ContentType=1&Site=945",
-    # Tier 3 — 지역 뉴스/분석
+    "The War Zone": "https://www.twz.com/feed",
+    "Military Times": "https://www.militarytimes.com/arc/outboundfeeds/rss/?outputType=xml",
+    # Tier 3 — 지역 분쟁 뉴스 (사건 보도 중심)
+    "Dawn Pakistan": "https://www.dawn.com/feeds/home",
+    "Premium Times NG": "https://www.premiumtimesng.com/feed",
+    "Daily Star BD": "https://www.thedailystar.net/rss.xml",
+    "Arab News": "https://www.arabnews.com/rss/main",
+    "Anadolu Agency": "https://www.aa.com.tr/en/rss/default?cat=world",
+    "France 24": "https://www.france24.com/en/rss",
+    # Tier 4 — 분석/국제뉴스
     "Al-Monitor": "https://www.al-monitor.com/rss",
     "Middle East Eye": "https://www.middleeasteye.net/rss",
     "ISS Africa": "https://issafrica.org/feed",
     "RUSI": "https://www.rusi.org/rss.xml",
     "MEMRI": "https://www.memri.org/rss/all/blog",
-    # Tier 4 — 일반 국제뉴스
     "BBC World": "http://feeds.bbci.co.uk/news/world/rss.xml",
     "Al Jazeera": "https://www.aljazeera.com/xml/rss/all.xml",
 }
 
-# RSS 피드 Tier 분류 (Tier 1-2는 전문가 소스로 키워드 필터 면제)
+# Tier 1-2는 전문가 소스로 키워드 필터 면제
 RSS_TIER1_FEEDS = {
     "Long War Journal", "Soufan Center", "CTC Sentinel", "Jamestown Foundation",
-    "ICG CrisisWatch", "ISW", "AFRICOM", "CENTCOM", "Pentagon",
+    "ICG CrisisWatch", "Defense Post Terror",
+    "ISW", "AFRICOM", "CENTCOM", "Pentagon", "The War Zone", "Military Times",
 }
 
 # Google News 테러 관련 검색 쿼리
