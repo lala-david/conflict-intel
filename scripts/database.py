@@ -241,8 +241,40 @@ def get_known_ucdp_ids() -> set:
         conn.close()
 
 
+def cleanup_db():
+    """Clean legacy data issues"""
+    conn = get_conn()
+    try:
+        # Remove GDELT events with known noise actors (legacy data before filter)
+        noise_actors = ('POLICE', 'DOCTOR', 'FIREFIGHTER', 'SUPREME COURT', 'JUDGE',
+                       'BATTALION', 'MALE', 'FEMALE', 'ACTOR', 'PROSECUTOR', 'HOSPITAL',
+                       'WORKER', 'ABU DHABI', 'TELEVISION', 'NEWSPAPER', 'PRINCE',
+                       'VICTORIA', 'AUTHORITIES')
+        placeholders = ','.join('?' * len(noise_actors))
+        deleted = conn.execute(
+            f"DELETE FROM events WHERE source='gdelt' AND (actor1 IN ({placeholders}) OR actor2 IN ({placeholders}))",
+            noise_actors + noise_actors
+        ).rowcount
+        if deleted:
+            print(f"  [db] cleaned {deleted} noise GDELT events")
+
+        # Fill empty country from country_code for GDELT events
+        updated = conn.execute(
+            "UPDATE events SET country = country_code WHERE source='gdelt' AND (country IS NULL OR country = '') AND country_code != ''"
+        ).rowcount
+        if updated:
+            print(f"  [db] filled {updated} empty GDELT country fields")
+
+        conn.commit()
+    except Exception as e:
+        print(f"  [db] cleanup failed: {e}")
+    finally:
+        conn.close()
+
+
 # 모듈 로드 시 DB 초기화
 try:
     init_db()
+    cleanup_db()
 except Exception as e:
     print(f"  [db] init_db failed (will retry on first use): {e}")
