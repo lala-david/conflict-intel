@@ -277,11 +277,20 @@ def cleanup_db():
             """)
             print("  [db] migration complete")
 
+        # --- 구형식 날짜 변환 (YYYYMMDD -> YYYY-MM-DD) ---
+        fixed_dates = conn.execute("""
+            UPDATE events
+            SET date = substr(date,1,4) || '-' || substr(date,5,2) || '-' || substr(date,7,2)
+            WHERE source='gdelt' AND length(date)=8 AND date NOT LIKE '____-__-__'
+        """).rowcount
+        if fixed_dates:
+            print(f"  [db] fixed {fixed_dates} old date formats")
+
         # --- 노이즈 GDELT 이벤트 삭제 ---
         noise_actors = ('POLICE', 'DOCTOR', 'FIREFIGHTER', 'SUPREME COURT', 'JUDGE',
                        'BATTALION', 'MALE', 'FEMALE', 'ACTOR', 'PROSECUTOR', 'HOSPITAL',
                        'WORKER', 'ABU DHABI', 'TELEVISION', 'NEWSPAPER', 'PRINCE',
-                       'VICTORIA', 'AUTHORITIES')
+                       'VICTORIA', 'AUTHORITIES', 'CAMBODIA')
         placeholders = ','.join('?' * len(noise_actors))
         deleted = conn.execute(
             f"DELETE FROM events WHERE source='gdelt' AND (actor1 IN ({placeholders}) OR actor2 IN ({placeholders}))",
