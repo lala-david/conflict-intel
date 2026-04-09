@@ -565,6 +565,235 @@ def fetch_ofac_recent(limit: int = 15) -> list[dict]:
 
 
 # ─────────────────────────────────────────────
+# 7. Wikipedia — 연도별 테러 사건 목록
+# ─────────────────────────────────────────────
+def fetch_wikipedia_incidents(limit: int = 50) -> list[dict]:
+    """Fetch terrorist incidents from Wikipedia's 'List of terrorist incidents in YYYY' page.
+
+    Uses the MediaWiki API to get wikitext, then parses wiki-table markup.
+    No BeautifulSoup needed — pure regex/string parsing.
+    """
+    year = datetime.now().year
+    cutoff = datetime.now() - timedelta(days=30)
+    page_title = f"List_of_terrorist_incidents_in_{year}"
+    api_url = (
+        "https://en.wikipedia.org/w/api.php"
+        f"?action=parse&page={page_title}&prop=wikitext&format=json"
+    )
+    wiki_page_url = f"https://en.wikipedia.org/wiki/{page_title}"
+
+    try:
+        resp = requests.get(api_url, timeout=20, headers={"User-Agent": "terror-researcher/1.0"})
+        if resp.status_code != 200:
+            print(f"    [wikipedia] HTTP {resp.status_code}")
+            return []
+
+        data = resp.json()
+        if "error" in data:
+            print(f"    [wikipedia] 페이지 없음: {data['error'].get('info', '')}")
+            return []
+
+        wikitext = data.get("parse", {}).get("wikitext", {}).get("*", "")
+        if not wikitext:
+            return []
+
+        results = _parse_wiki_terror_table(wikitext, cutoff, wiki_page_url)
+        return results[:limit]
+
+    except Exception as e:
+        print(f"    [wikipedia] 수집 실패: {e}")
+        return []
+
+
+def _parse_wiki_terror_table(wikitext: str, cutoff: datetime, page_url: str) -> list[dict]:
+    """Parse the 2026 Wikipedia terror incidents table.
+
+    Actual format (each cell on its own line):
+        |-
+        |{{dts|19 January}}
+        |[[Suicide bombing]]
+        | style="..." |7 (+1)
+        | style="..." |13
+        |[[Kabul]], Afghanistan
+        |[[2026 Kabul restaurant bombing]]
+        |A suicide bomber...
+        |{{Flag icon|IS}} [[IS-KP]]
+        |[[Islamic State-Taliban conflict]]
+
+    Columns: Date, Type, Dead, Injured, Location, Article, Details, Perpetrator, Part of
+    """
+    results = []
+    year = datetime.now().year
+
+    # Find the main table
+    table_match = re.search(r'\{\|[^\n]*wikitable.*?\|\}', wikitext, re.DOTALL)
+    if not table_match:
+        return []
+
+    table = table_match.group()
+    # Split into rows by |-
+    rows = re.split(r'\n\|\-[^\n]*', table)
+
+    for row in rows:
+        lines = [l.strip() for l in row.strip().split('\n') if l.strip().startswith('|') and not l.strip().startswith('|}')]
+        if len(lines) < 5:
+            continue
+
+        # Clean each cell
+        cells = [_clean_wiki_cell(l) for l in lines]
+        if len(cells) < 5:
+            continue
+
+        # Column order: Date, Type, Dead, Injured, Location, Article, Details, Perpetrator, Part of
+        try:
+            date_raw = cells[0]
+            attack_type = cells[1] if len(cells) > 1 else ""
+            dead_raw = cells[2] if len(cells) > 2 else "0"
+            injured_raw = cells[3] if len(cells) > 3 else "0"
+            location_raw = cells[4] if len(cells) > 4 else ""
+            notes = cells[6] if len(cells) > 6 else ""
+            perpetrator = cells[7] if len(cells) > 7 else ""
+
+            # Parse date
+            date_parsed = _parse_wiki_date(date_raw, year)
+            if not date_parsed:
+                continue
+            if date_parsed < cutoff:
+                continue
+
+            # Parse fatalities (handle "7 (+1)", "'''32'''", "162-200+", "0")
+            fatalities = _parse_wiki_number(dead_raw)
+            wounded = _parse_wiki_number(injured_raw)
+
+            # Parse location → country
+            country = _guess_country(location_raw)
+
+            results.append({
+                "source": "wikipedia",
+                "event_id": f"wiki-{date_parsed.strftime('%Y%m%d')}-{location_raw[:30]}",
+                "date": date_parsed.strftime("%Y-%m-%d"),
+                "event_type": attack_type,
+                "sub_event_type": "",
+                "actor1": perpetrator[:100],
+                "actor2": "",
+                "country": country,
+                "country_code": "",
+                "location": location_raw[:100],
+                "latitude": "",
+                "longitude": "",
+                "fatalities": fatalities,
+                "wounded": wounded,
+                "notes": notes[:500],
+                "url": page_url,
+            })
+        except (IndexError, ValueError):
+            continue
+
+    return results
+
+
+def _clean_wiki_cell(cell: str) -> str:
+    """Strip wiki markup from a cell value."""
+    text = cell.strip()
+    # Remove leading | and style attributes
+    text = re.sub(r'^\|(?:\s*style="[^"]*"\s*\|)?', '', text).strip()
+    # Extract date from {{dts|...}} template
+    dts = re.search(r'\{\{dts\|([^}]+)\}\}', text)
+    if dts:
+        text = dts.group(1)
+    # Extract from {{Flag icon|...}} [[Name]]
+    text = re.sub(r'\{\{[Ff]lag\s+icon\|[^}]*\}\}\s*', '', text)
+    # Remove [[ ]] wiki links, keep display text
+    text = re.sub(r'\[\[[^\]]*\|([^\]]+)\]\]', r'\1', text)
+    text = re.sub(r'\[\[([^\]]+)\]\]', r'\1', text)
+    # Remove remaining {{ }} templates
+    text = re.sub(r'\{\{[^}]*\}\}', '', text)
+    # Remove external links
+    text = re.sub(r'\[https?://\S+\s*([^\]]*)\]', r'\1', text)
+    # Remove ref tags
+    text = re.sub(r'<ref[^>]*>.*?</ref>', '', text, flags=re.DOTALL)
+    text = re.sub(r'<ref[^/]*/>', '', text)
+    # Remove HTML tags
+    text = re.sub(r'<[^>]+>', '', text)
+    # Remove bold/italic markup
+    text = re.sub(r"'{2,}", '', text)
+    # Collapse whitespace
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
+
+def _parse_wiki_number(s: str) -> int:
+    """Parse casualty numbers from wiki format: '7 (+1)', '32', '162-200+', 'Unknown'"""
+    s = re.sub(r"'{2,}", '', s)  # remove bold markup
+    s = s.strip()
+    if not s or s.lower() in ('unknown', 'none', 'n/a', '?', ''):
+        return 0
+    # Take the first number found
+    m = re.search(r'(\d+)', s)
+    return int(m.group(1)) if m else 0
+
+
+def _parse_wiki_date(date_str: str | None, default_year: int) -> datetime | None:
+    """Parse common date formats found in Wikipedia tables."""
+    if not date_str:
+        return None
+
+    # "1 January 2026" or "12 March 2026"
+    m = re.search(
+        r'(\d{1,2})\s+(January|February|March|April|May|June|July|August|'
+        r'September|October|November|December)\s+(\d{4})', date_str
+    )
+    if m:
+        try:
+            return datetime.strptime(f"{m.group(1)} {m.group(2)} {m.group(3)}", "%d %B %Y")
+        except ValueError:
+            pass
+
+    # "2026-03-15"
+    m = re.search(r'(\d{4})-(\d{2})-(\d{2})', date_str)
+    if m:
+        try:
+            return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+        except ValueError:
+            pass
+
+    # "19 January" or "January 1" (no year) — assume default_year
+    m = re.search(
+        r'(\d{1,2})\s+(January|February|March|April|May|June|July|August|'
+        r'September|October|November|December)', date_str
+    )
+    if m:
+        try:
+            return datetime.strptime(f"{m.group(1)} {m.group(2)} {default_year}", "%d %B %Y")
+        except ValueError:
+            pass
+
+    m = re.search(
+        r'(January|February|March|April|May|June|July|August|'
+        r'September|October|November|December)\s+(\d{1,2})', date_str
+    )
+    if m:
+        try:
+            return datetime.strptime(f"{m.group(2)} {m.group(1)} {default_year}", "%d %B %Y")
+        except ValueError:
+            pass
+
+    return None
+
+
+def _guess_country(location: str) -> str:
+    """Extract a likely country name from a location string.
+
+    Very basic heuristic: take the last comma-separated part, or the whole string
+    if there's no comma.
+    """
+    if not location:
+        return ""
+    parts = [p.strip() for p in location.split(",")]
+    return parts[-1] if parts else location
+
+
+# ─────────────────────────────────────────────
 # 통합 수집
 # ─────────────────────────────────────────────
 def _safe_fetch(name, fn, *args, **kwargs):
@@ -581,14 +810,15 @@ def collect_all(target_date: datetime) -> dict:
     print("  Terror Intelligence — Data Collection")
     print("=" * 55)
 
-    # Fetch all 6 sources in parallel
-    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+    # Fetch all 7 sources in parallel
+    with concurrent.futures.ThreadPoolExecutor(max_workers=7) as executor:
         future_gdelt = executor.submit(_safe_fetch, "gdelt", fetch_gdelt, target_date)
         future_ucdp = executor.submit(_safe_fetch, "ucdp", fetch_ucdp, target_date)
         future_news = executor.submit(_safe_fetch, "google_news", fetch_google_news)
         future_expert = executor.submit(_safe_fetch, "expert_rss", fetch_expert_rss)
         future_sanctions = executor.submit(_safe_fetch, "sanctions", fetch_sanctions_updates)
         future_ofac = executor.submit(_safe_fetch, "ofac", fetch_ofac_recent)
+        future_wiki = executor.submit(_safe_fetch, "wikipedia", fetch_wikipedia_incidents)
 
     gdelt = future_gdelt.result()
     ucdp = future_ucdp.result()
@@ -596,15 +826,17 @@ def collect_all(target_date: datetime) -> dict:
     expert = future_expert.result()
     sanctions = future_sanctions.result()
     ofac = future_ofac.result()
+    wikipedia = future_wiki.result()
 
-    print(f"\n  [1/6] GDELT:          {len(gdelt)} events")
-    print(f"  [2/6] UCDP:           {len(ucdp)} incidents")
-    print(f"  [3/6] Google News:    {len(news)} articles")
-    print(f"  [4/6] Expert RSS:     {len(expert)} articles")
-    print(f"  [5/6] OpenSanctions:  {len(sanctions)} entities")
-    print(f"  [6/6] OFAC:           {len(ofac)} actions")
+    print(f"\n  [1/7] GDELT:          {len(gdelt)} events")
+    print(f"  [2/7] UCDP:           {len(ucdp)} incidents")
+    print(f"  [3/7] Google News:    {len(news)} articles")
+    print(f"  [4/7] Expert RSS:     {len(expert)} articles")
+    print(f"  [5/7] OpenSanctions:  {len(sanctions)} entities")
+    print(f"  [6/7] OFAC:           {len(ofac)} actions")
+    print(f"  [7/7] Wikipedia:      {len(wikipedia)} incidents")
 
-    total = len(gdelt) + len(ucdp) + len(news) + len(expert) + len(sanctions) + len(ofac)
+    total = len(gdelt) + len(ucdp) + len(news) + len(expert) + len(sanctions) + len(ofac) + len(wikipedia)
     print(f"\n  Total: {total} items")
 
     return {
@@ -614,5 +846,6 @@ def collect_all(target_date: datetime) -> dict:
         "expert_rss": expert,
         "sanctions": sanctions,
         "ofac": ofac,
+        "wikipedia": wikipedia,
         "collected_at": datetime.now().isoformat(),
     }
