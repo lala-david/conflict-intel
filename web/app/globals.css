@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: #0a0a0a;
+  color: #fafafa;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #525252;
+}
+
+/* MapLibre overrides */
+.maplibregl-canvas:focus {
+  outline: none;
+}
+.maplibregl-ctrl-attrib {
+  background: rgba(10, 10, 10, 0.7) !important;
+  color: #a3a3a3 !important;
+  font-size: 10px !important;
+}
+.maplibregl-ctrl-attrib a {
+  color: #a3a3a3 !important;
+}
+
+/* react-map-gl popup dark theme */
+.maplibregl-popup-content {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.maplibregl-popup-tip {
+  display: none !important;
+}

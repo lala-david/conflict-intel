@@ -1,0 +1,61 @@
+import type { MetadataRoute } from "next";
+import { getCountryList, getTopOrganizations } from "@/lib/queries";
+import { slugify } from "@/lib/utils";
+
+const BASE = "https://conflict-researcher.david.dev";
+
+const CATEGORIES = [
+  "war",
+  "civil-war",
+  "terrorism",
+  "mass-atrocity",
+  "state-violence",
+  "cartel-violence",
+  "communal-violence",
+  "insurgency",
+  "counterterrorism",
+  "armed-violence",
+];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: BASE, lastModified: now, priority: 1.0 },
+    { url: `${BASE}/events`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/countries`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/organizations`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/categories`, lastModified: now, priority: 0.8 },
+    { url: `${BASE}/brief`, lastModified: now, priority: 0.8 },
+    { url: `${BASE}/weekly`, lastModified: now, priority: 0.7 },
+    { url: `${BASE}/search`, lastModified: now, priority: 0.7 },
+    { url: `${BASE}/widgets`, lastModified: now, priority: 0.6 },
+    { url: `${BASE}/pricing`, lastModified: now, priority: 0.5 },
+    { url: `${BASE}/about`, lastModified: now, priority: 0.5 },
+    { url: `${BASE}/about/methodology`, lastModified: now, priority: 0.5 },
+    { url: `${BASE}/api-docs`, lastModified: now, priority: 0.6 },
+    { url: `${BASE}/data`, lastModified: now, priority: 0.6 },
+  ];
+
+  const categoryPages: MetadataRoute.Sitemap = CATEGORIES.map((cat) => ({
+    url: `${BASE}/categories/${cat}`,
+    lastModified: now,
+    priority: 0.7,
+  }));
+
+  const countries = getCountryList();
+  const countryPages: MetadataRoute.Sitemap = countries.map((c) => ({
+    url: `${BASE}/countries/${encodeURIComponent(c.country)}`,
+    lastModified: now,
+    priority: 0.7,
+  }));
+
+  const orgs = getTopOrganizations(100);
+  const orgPages: MetadataRoute.Sitemap = orgs.map((o) => ({
+    url: `${BASE}/organizations/${slugify(o.name)}`,
+    lastModified: now,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...categoryPages, ...countryPages, ...orgPages];
+}

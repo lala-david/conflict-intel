@@ -38,6 +38,16 @@ jobs:
           if [ "$(date +%u)" = "7" ]; then
             python scripts/weekly_summary.py
           fi
+      - name: Compute dashboard stats
+        run: python scripts/compute_stats.py
+      - name: Send ThreatPulse to Telegram
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_PHONE: ${{ secrets.TELEGRAM_PHONE }}
+          THREAT_PULSE_CHANNEL: ${{ secrets.THREAT_PULSE_CHANNEL }}
+        run: python scripts/threat_pulse.py || echo "ThreatPulse send failed (non-blocking)"
+        continue-on-error: true
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
