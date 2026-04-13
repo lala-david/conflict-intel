@@ -1,6 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { ThreatIndexCard } from "@/components/home/ThreatIndex";
+import { HeroStats } from "@/components/home/HeroStats";
 import { CategoryCards } from "@/components/home/CategoryCards";
 import { HotRegionsList } from "@/components/home/HotRegions";
 import { EventFeed } from "@/components/home/EventFeed";
@@ -25,8 +25,8 @@ export default async function HomePage() {
     <>
       <Header />
       <main>
-        {/* Hero: Threat Index + Key Stats */}
-        <ThreatIndexCard data={data.threatIndex} totals={data.totals} />
+        {/* Hero */}
+        <HeroStats totals={data.totals} />
 
         {/* Global Map */}
         <WorldMapSection />
