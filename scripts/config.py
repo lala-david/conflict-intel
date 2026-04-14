@@ -55,6 +55,10 @@ RSS_FEEDS = {
     "Jamestown Foundation": "https://jamestown.org/feed/",
     "ICG CrisisWatch": "https://www.crisisgroup.org/rss.xml",
     "Defense Post Terror": "https://thedefensepost.com/category/terrorism/feed/",
+    "GNET": "https://gnet-research.org/feed/",
+    "Militant Wire": "https://www.militantwire.com/feed",
+    "Hedayah": "https://hedayahcenter.org/feed/",
+    "Homeland Security Today": "https://www.hstoday.us/feed/",
     # Tier 2 — 군사/작전 (키워드 필터 면제)
     "ISW": "https://www.iswresearch.org/feeds/posts/default",
     "AFRICOM": "https://www.africom.mil/syndication-feed/rss/press-releases",
@@ -62,6 +66,7 @@ RSS_FEEDS = {
     "Pentagon": "https://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?max=10&ContentType=1&Site=945",
     "The War Zone": "https://www.twz.com/feed",
     "Military Times": "https://www.militarytimes.com/arc/outboundfeeds/rss/?outputType=xml",
+    "War on the Rocks": "https://warontherocks.com/feed/",
     # Tier 3 — 지역 분쟁 뉴스 (사건 보도 중심)
     "Dawn Pakistan": "https://www.dawn.com/feeds/home",
     "Premium Times NG": "https://www.premiumtimesng.com/feed",
@@ -77,14 +82,46 @@ RSS_FEEDS = {
     "MEMRI": "https://www.memri.org/rss/all/blog",
     "BBC World": "http://feeds.bbci.co.uk/news/world/rss.xml",
     "Al Jazeera": "https://www.aljazeera.com/xml/rss/all.xml",
+    # Tier 5 — OSINT / 싱크탱크 / 인권
+    "Bellingcat": "https://www.bellingcat.com/feed/",
+    "HRW": "https://www.hrw.org/rss/news",
+    "Oryx Blog": "https://www.oryxspioenkop.com/feeds/posts/default",
+    "ReliefWeb": "https://reliefweb.int/updates/rss.xml",
+    "Atlantic Council": "https://www.atlanticcouncil.org/feed/",
+    "Global Initiative": "https://globalinitiative.net/feed/",
+    # Tier 6 — 일반 뉴스 (키워드 필터 적용)
+    "CEP": "https://www.counterextremism.com/rss.xml",
+    "Fox News World": "https://feeds.foxnews.com/foxnews/world",
+    "CBS News": "https://www.cbsnews.com/latest/rss/main",
+    "NYT World": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+    "ABC News International": "https://abcnews.go.com/abcnews/internationalheadlines",
+    "UN Peace and Security": "https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml",
+    "Homeland Security Newswire": "https://www.homelandsecuritynewswire.com/rss.xml",
 }
 
 # Tier 1-2는 전문가 소스로 키워드 필터 면제
+# 신규: Bellingcat, HRW, Oryx, ReliefWeb, Atlantic Council, Global Initiative도 전문 소스로 면제
 RSS_TIER1_FEEDS = {
+    # 테러/분쟁 전문
     "Long War Journal", "Soufan Center", "CTC Sentinel", "Jamestown Foundation",
     "ICG CrisisWatch", "Defense Post Terror",
+    "GNET", "Militant Wire", "Hedayah", "Homeland Security Today",
+    # 군사/작전
     "ISW", "AFRICOM", "CENTCOM", "Pentagon", "The War Zone", "Military Times",
+    "War on the Rocks",
+    # OSINT / 싱크탱크 / 인권 / 유엔
+    "Bellingcat",           # OSINT 조사 (러-우, 시리아)
+    "HRW",                  # Human Rights Watch (분쟁 중 인권침해)
+    "Oryx Blog",            # 러-우 장비 손실 검증
+    "ReliefWeb",            # 유엔 인도적 위기
+    "Atlantic Council",     # 지정학 싱크탱크
+    "Global Initiative",    # 조직범죄/violence 싱크탱크
+    "CEP",                  # Counter Extremism Project
+    "UN Peace and Security",
 }
+
+# Tier 6: 일반 뉴스 (키워드 필터는 적용)
+# Fox, CBS, NYT, ABC, Homeland Sec Newswire는 일반 뉴스라 테러 키워드 필터 거침
 
 # Google News 테러 관련 검색 쿼리
 GOOGLE_NEWS_QUERIES = [
