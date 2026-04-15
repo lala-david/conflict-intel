@@ -14,18 +14,48 @@ interface Endpoint {
 }
 
 const ENDPOINTS: Endpoint[] = [
+  // Aggregates
   {
     method: "GET",
     path: "/api/stats",
     description:
-      "Global stats — threat index, totals, category breakdown, hot regions, recent events. Returns the full home page data blob.",
+      "Global stats blob — threat index, totals, category breakdown, hot regions, 15 recent events.",
     example: `curl http://localhost:3000/api/stats`,
   },
   {
     method: "GET",
-    path: "/api/countries",
+    path: "/api/status",
     description:
-      "List all countries with all-time and 30-day event counts. Sorted by total fatalities.",
+      "Source health check — per-source freshness (OK/DEGRADED/DOWN), last collected timestamp, total events.",
+    example: `curl http://localhost:3000/api/status`,
+  },
+  // Threats (countries with threat scoring)
+  {
+    method: "GET",
+    path: "/api/threats",
+    description:
+      "All countries with current 90-day threat scores. Sorted by threat_score DESC.",
+    example: `curl http://localhost:3000/api/threats`,
+  },
+  {
+    method: "GET",
+    path: "/api/threats/{name}",
+    description:
+      "Country threat detail — score, fatalities (30d/90d), top category, last event.",
+    example: `curl http://localhost:3000/api/threats/Nigeria`,
+  },
+  {
+    method: "GET",
+    path: "/api/threats/{name}/history",
+    description:
+      "Time series for a country (1989-present). Param: granularity=daily|monthly|yearly (default monthly).",
+    example: `curl "http://localhost:3000/api/threats/Nigeria/history?granularity=yearly"`,
+  },
+  // Countries
+  {
+    method: "GET",
+    path: "/api/countries",
+    description: "List all countries sorted by total fatalities.",
     example: `curl http://localhost:3000/api/countries`,
   },
   {
@@ -35,31 +65,62 @@ const ENDPOINTS: Endpoint[] = [
       "Country detail: stats, 37-year timeline, 50 most recent events.",
     example: `curl http://localhost:3000/api/countries/Nigeria`,
   },
+  // Events
+  {
+    method: "GET",
+    path: "/api/events",
+    description:
+      "Filtered event list. Params: country, category, from, to, source, q (search), limit (max 500), offset.",
+    example: `curl "http://localhost:3000/api/events?country=Nigeria&category=terrorism&from=2024-01-01&limit=10"`,
+  },
   {
     method: "GET",
     path: "/api/events/{id}",
-    description: "Single event detail with full metadata.",
+    description: "Single event detail + 6 related events (same country, ±30 days).",
     example: `curl http://localhost:3000/api/events/612988`,
+  },
+  // Organizations
+  {
+    method: "GET",
+    path: "/api/orgs",
+    description: "List of armed organizations (top by event count). Param: limit (max 500).",
+    example: `curl "http://localhost:3000/api/orgs?limit=50"`,
+  },
+  {
+    method: "GET",
+    path: "/api/orgs/{slug}",
+    description:
+      "Organization detail: stats, events, timeline, countries, related orgs.",
+    example: `curl http://localhost:3000/api/orgs/al-shabaab`,
+  },
+  // Real-time / Geo
+  {
+    method: "GET",
+    path: "/api/sparks",
+    description:
+      "Recent micro-updates feed (last 7 days, ordered by collection time). Param: limit (max 100).",
+    example: `curl "http://localhost:3000/api/sparks?limit=20"`,
   },
   {
     method: "GET",
     path: "/api/hotspots",
     description:
-      "GeoJSON FeatureCollection of events with coordinates (last 90 days, top 500 by fatalities). Ready for MapLibre.",
+      "GeoJSON FeatureCollection — top 500 events by fatalities (last 90 days).",
     example: `curl http://localhost:3000/api/hotspots`,
   },
+  // Export
   {
     method: "GET",
     path: "/api/export/csv",
     description:
-      "Download events as CSV. Supports filters: country, category, from (date), to (date). Max 10,000 rows.",
+      "Download events as CSV (max 10,000 rows). Params: country, category, from, to.",
     example: `curl -o events.csv "http://localhost:3000/api/export/csv?country=Nigeria&from=2024-01-01"`,
   },
   {
     method: "GET",
     path: "/api/og/countries/{name}",
     description:
-      "Dynamic Open Graph image (1200x630 PNG) for a country. Used for social sharing cards.",
+      "Dynamic Open Graph image (1200×630 PNG) for social sharing.",
     example: `curl http://localhost:3000/api/og/countries/Nigeria -o og.png`,
   },
 ];
