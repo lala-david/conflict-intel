@@ -80,9 +80,37 @@ def init_db():
             CREATE INDEX IF NOT EXISTS idx_events_source ON events(source);
             CREATE INDEX IF NOT EXISTS idx_sanctions_date ON sanctions(collected_date);
         """)
+
+        # Additive column migrations (idempotent).
+        # These are needed by compute_stats.py and the web dashboard but were
+        # dropped from the initial schema during an earlier simplification.
+        _ensure_columns(conn, "events", [
+            ("admin1", "TEXT"),
+            ("deaths_a", "INTEGER"),
+            ("deaths_b", "INTEGER"),
+            ("deaths_civilians", "INTEGER"),
+            ("fatalities_low", "INTEGER"),
+            ("fatalities_high", "INTEGER"),
+            ("conflict_name", "TEXT"),
+            ("category", "TEXT"),
+            ("category_confidence", "TEXT"),
+            ("is_aggregate", "INTEGER DEFAULT 0"),
+        ])
+
         conn.commit()
     finally:
         conn.close()
+
+
+def _ensure_columns(conn, table: str, columns: list[tuple[str, str]]):
+    """Add columns via ALTER TABLE if missing. Idempotent."""
+    existing = {r[1] for r in conn.execute(f"PRAGMA table_info({table})").fetchall()}
+    for name, sql_type in columns:
+        if name not in existing:
+            try:
+                conn.execute(f"ALTER TABLE {table} ADD COLUMN {name} {sql_type}")
+            except Exception as e:
+                print(f"  [db] failed to add column {table}.{name}: {e}")
 
 
 def save_events(data: dict, date_str: str):
@@ -242,7 +270,12 @@ def get_known_ucdp_ids() -> set:
 
 
 def cleanup_db():
-    """Clean legacy data + migrate schema"""
+    """Clean legacy data + migrate schema.
+
+    Safe to call repeatedly: uses IF NOT EXISTS, bounded UPDATE/DELETE targets.
+    All mutations are scoped to GDELT noise + old date formats only.
+    Does NOT drop columns or tables.
+    """
     conn = get_conn()
     try:
         # --- 마이그레이션: acled_count → ucdp_count ---
@@ -313,9 +346,9 @@ def cleanup_db():
         conn.close()
 
 
-# 모듈 로드 시 DB 초기화
-try:
-    init_db()
-    cleanup_db()
-except Exception as e:
-    print(f"  [db] init_db failed (will retry on first use): {e}")
+# Module-level auto-init removed — was running on every import
+# (including read-only scripts), which caused spurious cleanup passes.
+# Callers should invoke init_db() and cleanup_db() explicitly when needed.
+#
+# daily_terror.py: explicitly calls init_db() + cleanup_db() before collection
+# compute_stats.py, read-only tools: skip init; just use get_conn()

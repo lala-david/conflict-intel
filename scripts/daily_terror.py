@@ -25,7 +25,7 @@ from sources import collect_all
 from mapper import TerrorMapper
 from event_linker import link_events
 from threat_scorer import run_analysis
-from database import save_events, save_daily_stats
+from database import save_events, save_daily_stats, init_db, cleanup_db
 from casualty_extractor import enrich_articles_with_casualties
 from config import ANALYSIS_MODEL, REPORTS_DIR
 
@@ -438,6 +438,10 @@ def main():
     print(f"\n{'='*55}")
     print(f"  Terror Intelligence Brief \u2014 {date_str}")
     print(f"{'='*55}\n")
+
+    # 0. DB 초기화 + 마이그레이션 (명시적 호출)
+    init_db()
+    cleanup_db()
 
     # 1. 수집
     data = collect_all(target_date)
