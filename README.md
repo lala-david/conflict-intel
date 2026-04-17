@@ -65,33 +65,24 @@ graph LR
 
 ## Architecture
 
-```mermaid
-flowchart TB
-    subgraph SRC["Sources"]
-        direction LR
-        s1["Global Event DB"]
-        s2["Conflict DB"]
-        s3["News & RSS"]
-        s4["Sanctions"]
-        s5["OSINT"]
-    end
-
-    subgraph ENG["Intelligence Engine"]
-        direction LR
-        e1["Collector"] --> e2["Enricher"]
-        e2 --> e3["Linker"]
-        e3 --> e4["Analyzer"]
-    end
-
-    subgraph OUT["Output"]
-        direction LR
-        o1["REST API"]
-        o2["Dashboard"]
-        o3["Daily Brief"]
-        o4["Widgets"]
-    end
-
-    SRC --> ENG --> OUT
+```
+                ┌─────────────────────────────────────────────────────────────┐
+                │                                                             │
+  ╔═══════════╗ │  ┌───────────┐  ┌───────────┐  ┌────────┐  ┌──────────┐   │  ╔════════════╗
+  ║  Global   ║─┤  │           │  │           │  │        │  │          │   ├──║  Dashboard ║
+  ║ Event DB  ║ │  │ Collector │─▶│ Enricher  │─▶│ Linker │─▶│ Analyzer │   │  ╠════════════╣
+  ╠═══════════╣ │  │           │  │           │  │        │  │          │   │  ║  REST API  ║
+  ║ Conflict  ║─┤  └───────────┘  └───────────┘  └────────┘  └──────────┘   ├──╠════════════╣
+  ║    DB     ║ │                                                             │  ║ Daily Brief║
+  ╠═══════════╣ │   parallel        entity         cross        threat        ├──╠════════════╣
+  ║ News &    ║─┤   ingestion      matching       reference    scoring        │  ║  Widgets   ║
+  ║   RSS     ║ │                                                             │  ╚════════════╝
+  ╠═══════════╣ │                                                             │
+  ║ Sanctions ║─┤              I N T E L L I G E N C E    E N G I N E        │
+  ╠═══════════╣ │                                                             │
+  ║   OSINT   ║─┤                                                             │
+  ╚═══════════╝ └─────────────────────────────────────────────────────────────┘
+    SOURCES                                                                      OUTPUT
 ```
 
 ---
