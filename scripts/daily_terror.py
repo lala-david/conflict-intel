@@ -27,6 +27,7 @@ from event_linker import link_events
 from threat_scorer import run_analysis
 from database import save_events, save_daily_stats, init_db, cleanup_db
 from casualty_extractor import enrich_articles_with_casualties
+from compute_stats import compute as compute_stats
 from config import ANALYSIS_MODEL, REPORTS_DIR
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -493,7 +494,15 @@ def main():
     update_week_readme(report_dir, target_date)
     update_month_readme(report_dir, target_date)
 
-    # 8. Raw JSON
+    # 8. 집계 테이블 갱신 (global_stats, country_stats, org_stats)
+    print("\n  Recomputing aggregate stats...")
+    try:
+        compute_stats()
+        print("   -> stats tables updated")
+    except Exception as e:
+        print(f"   -> stats update failed: {e}")
+
+    # 9. Raw JSON
     raw_path = report_dir / f"{date_str}_raw.json"
     raw_out = {k: v for k, v in data.items() if not k.startswith("_")}
     raw_out["meta"] = {"collected_at": data.get("collected_at", ""), "total": total, "enrichment": stats}

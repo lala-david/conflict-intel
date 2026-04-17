@@ -201,12 +201,15 @@ def save_daily_stats(date_str: str, data: dict, enrichment_stats: dict):
 
     sanctions_new = sum(1 for s in data.get("sanctions", []) if s.get("is_new"))
 
+    # wiki_count 컬럼 확보 (idempotent)
+    _ensure_columns(conn, "daily_stats", [("wiki_count", "INTEGER DEFAULT 0")])
+
     try:
         conn.execute(
             """INSERT INTO daily_stats (date, gdelt_count, ucdp_count, news_count, expert_count,
                sanctions_count, sanctions_new, total_fatalities, org_matches,
-               country_matches, zone_matches, top_countries, top_actors)
-               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+               country_matches, zone_matches, top_countries, top_actors, wiki_count)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                ON CONFLICT(date) DO UPDATE SET
                  gdelt_count=excluded.gdelt_count,
                  ucdp_count=excluded.ucdp_count,
@@ -219,7 +222,8 @@ def save_daily_stats(date_str: str, data: dict, enrichment_stats: dict):
                  country_matches=excluded.country_matches,
                  zone_matches=excluded.zone_matches,
                  top_countries=excluded.top_countries,
-                 top_actors=excluded.top_actors""",
+                 top_actors=excluded.top_actors,
+                 wiki_count=excluded.wiki_count""",
             (date_str,
              len(data.get("gdelt", [])),
              len(data.get("ucdp", [])),
@@ -232,7 +236,8 @@ def save_daily_stats(date_str: str, data: dict, enrichment_stats: dict):
              enrichment_stats.get("country_matches", 0),
              enrichment_stats.get("zone_matches", 0),
              json.dumps(top_countries, ensure_ascii=False),
-             json.dumps(top_actors, ensure_ascii=False)),
+             json.dumps(top_actors, ensure_ascii=False),
+             len(data.get("wikipedia", []))),
         )
         conn.commit()
     except Exception as e:
