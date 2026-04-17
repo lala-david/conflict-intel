@@ -1,130 +1,137 @@
-<h1 align="center">
-  Conflict Researcher
-</h1>
-
 <p align="center">
-  <strong>Real-time Global Conflict Intelligence Platform</strong>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=500&lines=Conflict+Researcher">
+    <img alt="Conflict Researcher" src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=500&lines=Conflict+Researcher">
+  </picture>
 </p>
 
 <p align="center">
-  Track armed violence, terrorism, and geopolitical threats<br/>
-  — updated daily, powered by multi-source intelligence fusion.
+  <em>Real-time Global Conflict Intelligence Platform</em>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/LIVE-operational-00c853?style=for-the-badge" alt="Status" />
-  <img src="https://img.shields.io/badge/UPDATES-daily-2979ff?style=for-the-badge" alt="Updates" />
-  <img src="https://img.shields.io/badge/COVERAGE-160%2B_countries-ff6d00?style=for-the-badge" alt="Coverage" />
-  <img src="https://img.shields.io/badge/DATA-37_years-aa00ff?style=for-the-badge" alt="Data" />
+  <a href="#about"><img src="https://img.shields.io/badge/status-operational-00c853?style=flat-square" alt="Status" /></a>
+  <a href="#data-coverage"><img src="https://img.shields.io/badge/coverage-160%2B_countries-448aff?style=flat-square" alt="Coverage" /></a>
+  <a href="#data-coverage"><img src="https://img.shields.io/badge/data_span-37_years-7c4dff?style=flat-square" alt="Data" /></a>
+  <a href="#daily-intelligence-report"><img src="https://img.shields.io/badge/updates-daily_automated-ff6d00?style=flat-square" alt="Updates" /></a>
 </p>
 
-<br/>
+---
 
 ## About
 
-**Conflict Researcher**는 전 세계에서 발생하는 무력 충돌, 테러, 내전, 반란 등을 **매일 자동으로 수집 · 분석 · 시각화**하는 인텔리전스 플랫폼입니다.
+전 세계에서 발생하는 무력 충돌, 테러, 내전, 반란을 **매일 자동으로 수집하고 분석**하는 인텔리전스 플랫폼입니다.
 
-여러 독립적인 공개 데이터 소스를 교차 검증하여 **단일 소스 편향 없는** 신뢰도 높은 분쟁 데이터를 제공하며, 연구자 · 저널리스트 · 정책 분석가 · 안보 전문가를 위해 설계되었습니다.
+7개 이상의 독립 데이터 소스를 교차 검증하여 단일 소스 편향을 제거하고, 연구자 · 저널리스트 · 정책 분석가 · 안보 전문가에게 **신뢰할 수 있는 분쟁 데이터**를 제공합니다.
 
-<br/>
+---
 
-## How It Works
+## Pipeline
 
 ```mermaid
 graph LR
-    A(("Collect")) --> B(("Enrich"))
-    B --> C(("Link"))
-    C --> D(("Analyze"))
-    D --> E(("Report"))
+    A["Collect\n7+ sources"] --> B["Enrich\nentity matching"]
+    B --> C["Link\ncross-reference"]
+    C --> D["Analyze\nthreat scoring"]
+    D --> E["Deliver\nbrief & dashboard"]
+
+    linkStyle default stroke-width:2px
 ```
 
-> **Collect** — 7개 이상의 독립 소스에서 병렬 수집
-> **Enrich** — 국가 · 조직 · 분쟁지역 자동 매칭
-> **Link** — 교차 소스 이벤트 클러스터링
-> **Analyze** — 위협도 산출 · 핫스팟 감지
-> **Report** — 대시보드 + 일일 브리핑 자동 생성
+<table>
+<tr>
+<td width="50%" valign="top">
 
-<br/>
+**Collection & Enrichment**
+
+여러 독립 소스에서 분쟁 이벤트를 병렬 수집합니다.
+수집된 이벤트는 무장단체 · 국가 · 분쟁지역
+데이터베이스와 자동 매칭되어 구조화됩니다.
+
+</td>
+<td width="50%" valign="top">
+
+**Analysis & Delivery**
+
+교차 소스 이벤트 클러스터링, 국가별 위협도 산출,
+지리적 핫스팟 감지를 수행합니다.
+결과물은 웹 대시보드와 일일 보고서로 전달됩니다.
+
+</td>
+</tr>
+</table>
+
+---
 
 ## Architecture
 
 ```mermaid
 flowchart TB
-    subgraph Sources[" Data Sources "]
-        S1["Global Event DB"]
-        S2["Conflict DB"]
-        S3["News & RSS Feeds"]
-        S4["Sanctions Lists"]
-        S5["OSINT Feeds"]
-    end
-
-    subgraph Core[" Intelligence Engine "]
+    subgraph SRC["Sources"]
         direction LR
-        C1["Collector"] --> C2["Enricher"]
-        C2 --> C3["Event Linker"]
-        C3 --> C4["Threat Analyzer"]
+        s1["Global Event DB"]
+        s2["Conflict DB"]
+        s3["News & RSS"]
+        s4["Sanctions"]
+        s5["OSINT"]
     end
 
-    subgraph Outputs[" Delivery "]
-        O1["REST API"]
-        O2["Web Dashboard"]
-        O3["Daily Brief"]
-        O4["Embed Widgets"]
+    subgraph ENG["Intelligence Engine"]
+        direction LR
+        e1["Collector"] --> e2["Enricher"]
+        e2 --> e3["Linker"]
+        e3 --> e4["Analyzer"]
     end
 
-    Sources --> Core
-    Core --> Outputs
+    subgraph OUT["Output"]
+        direction LR
+        o1["REST API"]
+        o2["Dashboard"]
+        o3["Daily Brief"]
+        o4["Widgets"]
+    end
+
+    SRC --> ENG --> OUT
 ```
 
-<br/>
+---
 
-## Features
+## Dashboard
 
-<table>
-  <tr>
-    <td width="50%">
-      <h3>Intelligence Pipeline</h3>
-      <ul>
-        <li><b>Multi-Source Fusion</b> — 단일 소스 편향 제거</li>
-        <li><b>Entity Matching</b> — 무장단체 · 국가 자동 식별</li>
-        <li><b>Event Clustering</b> — 교차 소스 동일 사건 인식</li>
-        <li><b>Threat Scoring</b> — 국가별 위협도 자동 산출</li>
-        <li><b>Hotspot Detection</b> — 지리적 위험 지역 감지</li>
-      </ul>
-    </td>
-    <td width="50%">
-      <h3>Web Dashboard</h3>
-      <ul>
-        <li><b>Interactive Map</b> — 좌표 기반 글로벌 시각화</li>
-        <li><b>Country Profiles</b> — 국가별 위협도 · 사건 추이</li>
-        <li><b>Organization Tracker</b> — 무장단체 활동 이력</li>
-        <li><b>Event Search</b> — 필터링 · 검색 · CSV 내보내기</li>
-        <li><b>Embed Widgets</b> — 외부 사이트 임베드 지원</li>
-      </ul>
-    </td>
-  </tr>
-</table>
+웹 대시보드에서 전 세계 분쟁 상황을 실시간으로 탐색할 수 있습니다.
 
-<br/>
+| Page | Description |
+|:-----|:------------|
+| **Home** | 글로벌 현황 — 인터랙티브 지도, 37년 타임라인, 핫스팟, 실시간 피드 |
+| **Countries** | 국가별 위협도, 사건 추이, 활동 단체 프로필 |
+| **Organizations** | 무장단체 · 테러조직 활동 이력 및 연관 분석 |
+| **Categories** | 분쟁 유형별 분류 — 테러, 내전, 반란, 카르텔 등 |
+| **Events** | 개별 사건 검색 · 필터링 · 상세 보기 · CSV 내보내기 |
+| **Daily Brief** | 일일 인텔리전스 보고서 |
+| **Weekly** | 주간 요약 리포트 |
+| **Widgets** | 외부 사이트 임베드용 지도 · 피드 · 배지 |
+
+---
 
 ## Daily Intelligence Report
 
-매일 자동으로 생성되는 인텔리전스 보고서 구조:
+매일 자동 생성되는 보고서는 다음과 같은 구조를 따릅니다.
 
 ```mermaid
-graph LR
-    R["Daily Brief"] --- B["BLUF\n핵심 판단"]
-    R --- T["Threat Level\n위협 수준"]
-    R --- C["Incidents\n분쟁 사건"]
-    R --- O["Organizations\n조직 동향"]
-    R --- H["Hotspots\n핫스팟"]
-    R --- S["Sanctions\n제재 동향"]
+graph TD
+    R["Daily Intelligence Brief"]
+
+    R --> A["BLUF\n핵심 판단 3~5줄"]
+    R --> B["Threat Assessment\n국가별 위협 수준"]
+    R --> C["Conflict Events\nUCDP · GDELT 사건"]
+    R --> D["News Clusters\n교차 매칭 뉴스"]
+    R --> E["Org Tracking\n조직 동향"]
+    R --> F["Hotspots & Sanctions\n핫스팟 · 제재"]
 ```
 
-> 보고서는 코드 기반으로 자동 구조화되며, 핵심 판단 요약(BLUF)만 AI가 생성합니다.
-> 모든 수치와 분석은 원시 데이터에서 직접 도출됩니다.
+> **BLUF**(Bottom Line Up Front)만 AI가 생성하며, 모든 수치와 분석은 원시 데이터에서 직접 도출됩니다.
 
-<br/>
+---
 
 ## Data Coverage
 
@@ -138,70 +145,86 @@ pie showData
     "Other Violence" : 10
 ```
 
-|  | Metric | |
-|---|---|---|
-| **Time Span** | 1989 — Present | 37 years of conflict data |
-| **Geography** | 160+ countries | Global coverage |
-| **Updates** | Daily | Automated via CI/CD |
-| **Categories** | 10 types | Academic standard classification |
-| **Sources** | 7+ independent | Cross-validated |
+|   | Metric | Detail |
+|:--|:-------|:-------|
+| **Time** | 1989 — Present | 37년 이상의 분쟁 데이터 |
+| **Geography** | 160+ countries | 글로벌 커버리지 |
+| **Updates** | Daily | GitHub Actions 자동화 |
+| **Classification** | 10 categories | 학술 표준 기반 |
+| **Sources** | 7+ independent | 교차 검증 |
 
-<br/>
+---
 
 ## API
 
-```
-GET  /api/stats              Global statistics
-GET  /api/events             Search & filter events
-GET  /api/countries          Country profiles
-GET  /api/orgs               Organization data
-GET  /api/threats            Threat analysis
-GET  /api/hotspots           Geographic hotspots
-GET  /api/export/csv         Data export
-```
+<details>
+<summary><b>Available Endpoints</b></summary>
 
 <br/>
+
+```
+GET  /api/stats              글로벌 통계
+GET  /api/events             이벤트 검색 & 필터
+GET  /api/events/:id         이벤트 상세
+GET  /api/countries          국가별 현황
+GET  /api/countries/:name    국가 상세
+GET  /api/orgs               조직 정보
+GET  /api/orgs/:slug         조직 상세
+GET  /api/threats            위협 분석
+GET  /api/threats/:name      국가별 위협 상세
+GET  /api/hotspots           지리적 핫스팟
+GET  /api/sparks             스파크라인 데이터
+GET  /api/export/csv         CSV 내보내기
+GET  /api/status             시스템 상태
+```
+
+</details>
+
+---
 
 ## Getting Started
 
 ```bash
-# Clone
+# Clone & setup
 git clone https://github.com/lala-david/terror.git && cd terror
-
-# Backend
 pip install -r requirements.txt
-cp .env.example .env          # Add your API keys
+cp .env.example .env          # configure API keys
 
-# Run pipeline
+# Run intelligence pipeline
 python scripts/daily_terror.py
 
-# Web dashboard
+# Start dashboard
 cd web && npm install && npm run dev
 ```
 
-<br/>
+<details>
+<summary><b>Project Structure</b></summary>
 
-## Project Structure
+<br/>
 
 ```
 conflict-researcher/
-├── scripts/        Intelligence pipeline (collection, enrichment, analysis)
-├── web/            Dashboard & API (Next.js)
-├── data/           Reference data (organizations, countries, conflict zones)
-├── reports/        Auto-generated intelligence briefs
-├── tests/          Test suite
-└── .github/        CI/CD (daily automated runs)
+├── scripts/        # Intelligence pipeline
+│   ├── sources.py          Collection (7+ sources, parallel)
+│   ├── mapper.py           Entity matching & enrichment
+│   ├── event_linker.py     Cross-source event clustering
+│   ├── threat_scorer.py    Threat analysis & hotspot detection
+│   ├── daily_terror.py     Daily pipeline orchestrator
+│   └── compute_stats.py    Aggregate statistics
+├── web/            # Dashboard & API (Next.js)
+├── data/           # Reference data
+├── reports/        # Auto-generated intelligence briefs
+├── tests/          # Test suite
+└── .github/        # CI/CD automation
 ```
 
-<br/>
+</details>
 
 ---
 
 <p align="center">
-  <sub>
-    This project is for <b>research and educational purposes only</b>.<br/>
-    All data is sourced from publicly available open-source intelligence (OSINT) providers.
-  </sub>
+  This project is for <b>research and educational purposes</b>.<br/>
+  All data is sourced from publicly available OSINT providers.
 </p>
 
 <p align="center">
