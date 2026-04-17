@@ -1,227 +1,208 @@
+<h1 align="center">
+  Conflict Researcher
+</h1>
+
 <p align="center">
-  <img src="https://img.shields.io/badge/status-live-brightgreen?style=flat-square" alt="Status" />
-  <img src="https://img.shields.io/badge/updates-daily-blue?style=flat-square" alt="Updates" />
-  <img src="https://img.shields.io/badge/coverage-160%2B_countries-orange?style=flat-square" alt="Coverage" />
-  <img src="https://img.shields.io/badge/data-37_years-purple?style=flat-square" alt="Data" />
+  <strong>Real-time Global Conflict Intelligence Platform</strong>
 </p>
 
-# Conflict Researcher
+<p align="center">
+  Track armed violence, terrorism, and geopolitical threats<br/>
+  — updated daily, powered by multi-source intelligence fusion.
+</p>
 
-> Real-time global conflict intelligence platform.
-> Track armed violence, terrorism, and geopolitical threats — updated daily, powered by multi-source intelligence fusion.
+<p align="center">
+  <img src="https://img.shields.io/badge/LIVE-operational-00c853?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/UPDATES-daily-2979ff?style=for-the-badge" alt="Updates" />
+  <img src="https://img.shields.io/badge/COVERAGE-160%2B_countries-ff6d00?style=for-the-badge" alt="Coverage" />
+  <img src="https://img.shields.io/badge/DATA-37_years-aa00ff?style=for-the-badge" alt="Data" />
+</p>
 
----
+<br/>
 
-## What is this?
+## About
 
 **Conflict Researcher**는 전 세계에서 발생하는 무력 충돌, 테러, 내전, 반란 등을 **매일 자동으로 수집 · 분석 · 시각화**하는 인텔리전스 플랫폼입니다.
 
-여러 공개 데이터 소스를 교차 검증하여 신뢰도 높은 분쟁 데이터를 제공하며, 연구자 · 저널리스트 · 정책 분석가 · 안보 전문가를 위해 설계되었습니다.
+여러 독립적인 공개 데이터 소스를 교차 검증하여 **단일 소스 편향 없는** 신뢰도 높은 분쟁 데이터를 제공하며, 연구자 · 저널리스트 · 정책 분석가 · 안보 전문가를 위해 설계되었습니다.
 
-```
-"한 곳에서 전 세계 분쟁 상황을 파악한다"
-```
+<br/>
 
----
-
-## Core Features
+## How It Works
 
 ```mermaid
 graph LR
-    A[Multi-Source\nCollection] --> B[Enrichment\n& Validation]
-    B --> C[Cross-Reference\nLinking]
-    C --> D[Threat\nAnalysis]
-    D --> E[Dashboard\n& Reports]
-
-    style A fill:#1e293b,stroke:#3b82f6,color:#e2e8f0
-    style B fill:#1e293b,stroke:#8b5cf6,color:#e2e8f0
-    style C fill:#1e293b,stroke:#f59e0b,color:#e2e8f0
-    style D fill:#1e293b,stroke:#ef4444,color:#e2e8f0
-    style E fill:#1e293b,stroke:#10b981,color:#e2e8f0
+    A(("Collect")) --> B(("Enrich"))
+    B --> C(("Link"))
+    C --> D(("Analyze"))
+    D --> E(("Report"))
 ```
 
-### Intelligence Pipeline
+> **Collect** — 7개 이상의 독립 소스에서 병렬 수집
+> **Enrich** — 국가 · 조직 · 분쟁지역 자동 매칭
+> **Link** — 교차 소스 이벤트 클러스터링
+> **Analyze** — 위협도 산출 · 핫스팟 감지
+> **Report** — 대시보드 + 일일 브리핑 자동 생성
 
-| | Feature | Description |
-|---|---------|-------------|
-| :satellite: | **Multi-Source Fusion** | 7개 이상의 독립 소스를 병렬 수집하여 단일 소스 편향을 제거 |
-| :dart: | **Entity Matching** | 무장단체, 국가, 분쟁지역을 자동 식별하고 교차 매칭 |
-| :bar_chart: | **Threat Scoring** | 국가별 · 지역별 위협도를 자동 산출 |
-| :world_map: | **Geospatial Mapping** | 160개국 이상의 분쟁 이벤트를 좌표 기반으로 시각화 |
-| :newspaper: | **Daily Briefing** | 매일 자동 생성되는 인텔리전스 보고서 (BLUF 포함) |
-| :link: | **Event Clustering** | 여러 소스에서 동일 사건을 자동 인식하고 클러스터링 |
-
----
+<br/>
 
 ## Architecture
 
 ```mermaid
 flowchart TB
-    subgraph Sources["Data Sources"]
-        direction LR
-        S1[Global Event DB]
-        S2[Conflict DB]
-        S3[News & RSS]
-        S4[Sanctions Lists]
-        S5[OSINT Feeds]
+    subgraph Sources[" Data Sources "]
+        S1["Global Event DB"]
+        S2["Conflict DB"]
+        S3["News & RSS Feeds"]
+        S4["Sanctions Lists"]
+        S5["OSINT Feeds"]
     end
 
-    subgraph Pipeline["Intelligence Pipeline"]
+    subgraph Core[" Intelligence Engine "]
         direction LR
-        P1[Collector] --> P2[Enricher]
-        P2 --> P3[Linker]
-        P3 --> P4[Analyzer]
+        C1["Collector"] --> C2["Enricher"]
+        C2 --> C3["Event Linker"]
+        C3 --> C4["Threat Analyzer"]
     end
 
-    subgraph Output["Output Layer"]
-        direction LR
-        O1[REST API]
-        O2[Web Dashboard]
-        O3[Daily Reports]
-        O4[Embeddable Widgets]
+    subgraph Outputs[" Delivery "]
+        O1["REST API"]
+        O2["Web Dashboard"]
+        O3["Daily Brief"]
+        O4["Embed Widgets"]
     end
 
-    Sources --> Pipeline
-    Pipeline --> O1
-    Pipeline --> O2
-    Pipeline --> O3
-    O1 --> O4
-
-    style Sources fill:#0f172a,stroke:#334155,color:#94a3b8
-    style Pipeline fill:#0f172a,stroke:#334155,color:#94a3b8
-    style Output fill:#0f172a,stroke:#334155,color:#94a3b8
+    Sources --> Core
+    Core --> Outputs
 ```
 
----
+<br/>
 
-## Dashboard
+## Features
 
-### Web Application
+<table>
+  <tr>
+    <td width="50%">
+      <h3>Intelligence Pipeline</h3>
+      <ul>
+        <li><b>Multi-Source Fusion</b> — 단일 소스 편향 제거</li>
+        <li><b>Entity Matching</b> — 무장단체 · 국가 자동 식별</li>
+        <li><b>Event Clustering</b> — 교차 소스 동일 사건 인식</li>
+        <li><b>Threat Scoring</b> — 국가별 위협도 자동 산출</li>
+        <li><b>Hotspot Detection</b> — 지리적 위험 지역 감지</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>Web Dashboard</h3>
+      <ul>
+        <li><b>Interactive Map</b> — 좌표 기반 글로벌 시각화</li>
+        <li><b>Country Profiles</b> — 국가별 위협도 · 사건 추이</li>
+        <li><b>Organization Tracker</b> — 무장단체 활동 이력</li>
+        <li><b>Event Search</b> — 필터링 · 검색 · CSV 내보내기</li>
+        <li><b>Embed Widgets</b> — 외부 사이트 임베드 지원</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-대시보드는 다음과 같은 페이지로 구성됩니다:
+<br/>
 
-| Page | Description |
-|------|-------------|
-| **Home** | 글로벌 현황 요약 — 지도, 타임라인, 핫스팟, 실시간 피드 |
-| **Countries** | 국가별 위협도, 사건 추이, 활동 단체 |
-| **Organizations** | 무장단체 · 테러조직 프로필 및 활동 이력 |
-| **Categories** | 분쟁 유형별 분류 (테러, 내전, 반란, 카르텔 등) |
-| **Events** | 개별 사건 검색 · 필터링 · 상세 보기 |
-| **Daily Brief** | 일일 인텔리전스 보고서 열람 |
-| **Weekly** | 주간 요약 리포트 |
-| **Widgets** | 외부 임베드용 위젯 (지도, 피드, 배지) |
+## Daily Intelligence Report
 
----
+매일 자동으로 생성되는 인텔리전스 보고서 구조:
+
+```mermaid
+graph LR
+    R["Daily Brief"] --- B["BLUF\n핵심 판단"]
+    R --- T["Threat Level\n위협 수준"]
+    R --- C["Incidents\n분쟁 사건"]
+    R --- O["Organizations\n조직 동향"]
+    R --- H["Hotspots\n핫스팟"]
+    R --- S["Sanctions\n제재 동향"]
+```
+
+> 보고서는 코드 기반으로 자동 구조화되며, 핵심 판단 요약(BLUF)만 AI가 생성합니다.
+> 모든 수치와 분석은 원시 데이터에서 직접 도출됩니다.
+
+<br/>
 
 ## Data Coverage
 
 ```mermaid
-pie title Event Categories
+pie showData
+    title Conflict Categories
     "Terrorism" : 30
     "Civil War" : 25
-    "State-Based Conflict" : 20
+    "State Conflict" : 20
     "Insurgency" : 15
     "Other Violence" : 10
 ```
 
-- **시간 범위**: 1989년 ~ 현재 (37년+)
-- **지리 범위**: 160개국 이상
-- **업데이트**: 매일 자동 (GitHub Actions CI/CD)
-- **분류 체계**: 학술 표준 기반 10개 카테고리
+|  | Metric | |
+|---|---|---|
+| **Time Span** | 1989 — Present | 37 years of conflict data |
+| **Geography** | 160+ countries | Global coverage |
+| **Updates** | Daily | Automated via CI/CD |
+| **Categories** | 10 types | Academic standard classification |
+| **Sources** | 7+ independent | Cross-validated |
 
----
+<br/>
 
 ## API
 
-RESTful API를 통해 데이터에 프로그래밍 방식으로 접근할 수 있습니다.
-
 ```
-GET /api/stats          — 글로벌 통계
-GET /api/events         — 이벤트 검색 & 필터
-GET /api/countries      — 국가별 현황
-GET /api/orgs           — 조직 정보
-GET /api/threats        — 위협 분석
-GET /api/hotspots       — 지리적 핫스팟
-GET /api/export/csv     — CSV 내보내기
+GET  /api/stats              Global statistics
+GET  /api/events             Search & filter events
+GET  /api/countries          Country profiles
+GET  /api/orgs               Organization data
+GET  /api/threats            Threat analysis
+GET  /api/hotspots           Geographic hotspots
+GET  /api/export/csv         Data export
 ```
 
----
+<br/>
 
-## Intelligence Report
-
-매일 자동으로 생성되는 보고서의 구조:
-
-```mermaid
-graph TD
-    R[Daily Intelligence Brief]
-    R --> B[BLUF — 핵심 판단 3~5줄]
-    R --> T[위협 수준 평가]
-    R --> C[분쟁 사건 분석]
-    R --> M[미디어 이벤트]
-    R --> N[뉴스 클러스터]
-    R --> O[조직 동향]
-    R --> H[지리적 핫스팟]
-    R --> S[제재 동향]
-    R --> E[전문가 분석]
-
-    style R fill:#1e293b,stroke:#f59e0b,color:#fbbf24
-    style B fill:#1e293b,stroke:#ef4444,color:#e2e8f0
-    style T fill:#1e293b,stroke:#ef4444,color:#e2e8f0
-    style C fill:#1e293b,stroke:#3b82f6,color:#e2e8f0
-    style M fill:#1e293b,stroke:#3b82f6,color:#e2e8f0
-    style N fill:#1e293b,stroke:#8b5cf6,color:#e2e8f0
-    style O fill:#1e293b,stroke:#8b5cf6,color:#e2e8f0
-    style H fill:#1e293b,stroke:#10b981,color:#e2e8f0
-    style S fill:#1e293b,stroke:#10b981,color:#e2e8f0
-    style E fill:#1e293b,stroke:#10b981,color:#e2e8f0
-```
-
----
-
-## Quick Start
+## Getting Started
 
 ```bash
-# 1. Clone
-git clone https://github.com/lala-david/terror.git
-cd terror
+# Clone
+git clone https://github.com/lala-david/terror.git && cd terror
 
-# 2. Install dependencies
+# Backend
 pip install -r requirements.txt
+cp .env.example .env          # Add your API keys
 
-# 3. Set environment variables
-cp .env.example .env
-# Edit .env with your API keys
-
-# 4. Run daily pipeline
+# Run pipeline
 python scripts/daily_terror.py
 
-# 5. Start web dashboard
+# Web dashboard
 cd web && npm install && npm run dev
 ```
 
----
+<br/>
 
 ## Project Structure
 
 ```
-terror/
-├── scripts/          # Intelligence pipeline
-├── web/              # Dashboard (Next.js)
-├── data/             # Database & reference data
-├── reports/          # Generated intelligence briefs
-├── tests/            # Test suite
-└── .github/          # CI/CD automation
+conflict-researcher/
+├── scripts/        Intelligence pipeline (collection, enrichment, analysis)
+├── web/            Dashboard & API (Next.js)
+├── data/           Reference data (organizations, countries, conflict zones)
+├── reports/        Auto-generated intelligence briefs
+├── tests/          Test suite
+└── .github/        CI/CD (daily automated runs)
 ```
 
----
-
-## License
-
-This project is for **research and educational purposes only**.
-
-Data is sourced from publicly available open-source intelligence (OSINT) providers.
+<br/>
 
 ---
+
+<p align="center">
+  <sub>
+    This project is for <b>research and educational purposes only</b>.<br/>
+    All data is sourced from publicly available open-source intelligence (OSINT) providers.
+  </sub>
+</p>
 
 <p align="center">
   <sub>Built for researchers, analysts, and anyone who believes transparency saves lives.</sub>
