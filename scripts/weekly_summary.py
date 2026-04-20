@@ -3,12 +3,12 @@
 - SQLite에 쌓인 데이터를 기반으로 주간 통계 + 트렌드 분석
 """
 import sys
-import io
 import sqlite3
 from datetime import datetime, timedelta
 from pathlib import Path
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))

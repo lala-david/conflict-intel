@@ -3,13 +3,13 @@ Pre-computed stats — 매일 CI에서 daily_terror.py 후 실행.
 420K rows 실시간 scan 대신 집계 테이블 1-row lookup으로 대시보드 100x 빠르게.
 """
 import sys
-import io
 from pathlib import Path
 from datetime import datetime
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
 
 from database import get_conn
 from logger import log

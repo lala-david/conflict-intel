@@ -8,14 +8,14 @@ Terror Intelligence Daily Report — 데일리 인텔리전스 자동 생성
 """
 import os
 import sys
-import io
 import json
 from datetime import datetime
 from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
