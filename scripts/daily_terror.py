@@ -25,7 +25,7 @@ from sources import collect_all
 from mapper import TerrorMapper
 from event_linker import link_events
 from threat_scorer import run_analysis
-from database import save_events, save_daily_stats, init_db, cleanup_db
+from database import save_events, save_daily_stats, init_db, cleanup_db, save_known_ucdp_ids
 from casualty_extractor import enrich_articles_with_casualties
 from compute_stats import compute as compute_stats
 from config import ANALYSIS_MODEL, REPORTS_DIR
@@ -481,7 +481,9 @@ def main():
     print("\n  Saving to database...")
     save_events(data, date_str)
     save_daily_stats(date_str, data, stats)
-    print("   -> terror.db updated")
+    ucdp_ids = [e.get("event_id") for e in data.get("ucdp", []) if e.get("event_id")]
+    total_known = save_known_ucdp_ids(ucdp_ids)
+    print(f"   -> terror.db updated | known UCDP ids: {total_known}")
 
     # 6. 보고서 생성 (코드 기반 + LLM BLUF만)
     print("\n  Building report...")

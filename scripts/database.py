@@ -262,16 +262,37 @@ def get_weekly_trend(date_str: str) -> dict:
         conn.close()
 
 
+KNOWN_UCDP_IDS_FILE = Path(__file__).resolve().parent.parent / "data" / "known_ucdp_ids.json"
+
+
 def get_known_ucdp_ids() -> set:
-    """DB에 이미 저장된 UCDP event ID 목록 반환"""
+    """committed JSON + DB union. JSON이 CI 실행 간 영속 상태를 담당."""
+    ids: set[str] = set()
+    try:
+        if KNOWN_UCDP_IDS_FILE.exists():
+            ids.update(str(x) for x in json.loads(KNOWN_UCDP_IDS_FILE.read_text(encoding="utf-8")))
+    except Exception as e:
+        print(f"  [db] known_ucdp_ids.json load failed: {e}")
     conn = get_conn()
     try:
         rows = conn.execute("SELECT id FROM events WHERE source='ucdp'").fetchall()
-        return {r[0] for r in rows}
+        ids.update(str(r[0]) for r in rows)
     except Exception:
-        return set()
+        pass
     finally:
         conn.close()
+    return ids
+
+
+def save_known_ucdp_ids(fetched_ids) -> int:
+    """이번 수집에서 본 UCDP ID를 영속 JSON에 union 저장. 반환: 파일의 총 ID 수."""
+    existing = get_known_ucdp_ids()
+    merged = existing | {str(x) for x in fetched_ids if x}
+    KNOWN_UCDP_IDS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    KNOWN_UCDP_IDS_FILE.write_text(
+        json.dumps(sorted(merged), ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    return len(merged)
 
 
 def cleanup_db():

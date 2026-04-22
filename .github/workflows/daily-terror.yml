@@ -52,7 +52,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/ data/classifications.json data/conflict_zones.json data/countries.json data/organizations.json data/.sanctions_cache.json
+          git add reports/ data/classifications.json data/conflict_zones.json data/countries.json data/organizations.json data/.sanctions_cache.json data/known_ucdp_ids.json
           git diff --staged --quiet || (git commit -m "intel: $(date +%Y-%m-%d) daily brief" && git push)
       - name: Alert on failure
         if: failure()
