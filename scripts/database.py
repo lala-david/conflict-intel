@@ -159,6 +159,23 @@ def save_events(data: dict, date_str: str):
                 print(f"   WARN: skipped event: {e}")
                 continue
 
+        # NCTC 사건 — source='nctc' → 항상 terrorism 분류
+        for e in data.get("nctc", []):
+            nctc_id = f"nctc-{e.get('date', '')}-{e.get('country', '')[:20]}-{e.get('fatalities', 0)}"
+            desc = e.get("description", "") or e.get("description_ko", "")
+            try:
+                conn.execute(
+                    "INSERT OR IGNORE INTO events (id, source, date, country, actor1, fatalities, notes, category, category_confidence, is_aggregate, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                    (nctc_id, "nctc", e.get("date", ""), e.get("country", ""),
+                     desc[:80],
+                     int(e.get("fatalities", 0) or 0),
+                     desc[:500],
+                     "terrorism", "high", 0, now),
+                )
+            except Exception as exc:
+                print(f"   WARN: skipped nctc event {nctc_id}: {exc}")
+                continue
+
         # 제재
         for s in data.get("sanctions", []):
             try:

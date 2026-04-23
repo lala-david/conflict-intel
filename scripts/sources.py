@@ -22,6 +22,7 @@ from config import (
 )
 from fips_to_iso import fips_to_iso
 from database import get_known_ucdp_ids
+from nctc_source import fetch_nctc_daily
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -810,8 +811,8 @@ def collect_all(target_date: datetime) -> dict:
     print("  Terror Intelligence — Data Collection")
     print("=" * 55)
 
-    # Fetch all 7 sources in parallel
-    with concurrent.futures.ThreadPoolExecutor(max_workers=7) as executor:
+    # Fetch all 8 sources in parallel
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
         future_gdelt = executor.submit(_safe_fetch, "gdelt", fetch_gdelt, target_date)
         future_ucdp = executor.submit(_safe_fetch, "ucdp", fetch_ucdp, target_date)
         future_news = executor.submit(_safe_fetch, "google_news", fetch_google_news)
@@ -819,6 +820,7 @@ def collect_all(target_date: datetime) -> dict:
         future_sanctions = executor.submit(_safe_fetch, "sanctions", fetch_sanctions_updates)
         future_ofac = executor.submit(_safe_fetch, "ofac", fetch_ofac_recent)
         future_wiki = executor.submit(_safe_fetch, "wikipedia", fetch_wikipedia_incidents)
+        future_nctc = executor.submit(_safe_fetch, "nctc", fetch_nctc_daily, 1)
 
     gdelt = future_gdelt.result()
     ucdp = future_ucdp.result()
@@ -827,16 +829,18 @@ def collect_all(target_date: datetime) -> dict:
     sanctions = future_sanctions.result()
     ofac = future_ofac.result()
     wikipedia = future_wiki.result()
+    nctc = future_nctc.result()
 
-    print(f"\n  [1/7] GDELT:          {len(gdelt)} events")
-    print(f"  [2/7] UCDP:           {len(ucdp)} incidents")
-    print(f"  [3/7] Google News:    {len(news)} articles")
-    print(f"  [4/7] Expert RSS:     {len(expert)} articles")
-    print(f"  [5/7] OpenSanctions:  {len(sanctions)} entities")
-    print(f"  [6/7] OFAC:           {len(ofac)} actions")
-    print(f"  [7/7] Wikipedia:      {len(wikipedia)} incidents")
+    print(f"\n  [1/8] GDELT:          {len(gdelt)} events")
+    print(f"  [2/8] UCDP:           {len(ucdp)} incidents")
+    print(f"  [3/8] Google News:    {len(news)} articles")
+    print(f"  [4/8] Expert RSS:     {len(expert)} articles")
+    print(f"  [5/8] OpenSanctions:  {len(sanctions)} entities")
+    print(f"  [6/8] OFAC:           {len(ofac)} actions")
+    print(f"  [7/8] Wikipedia:      {len(wikipedia)} incidents")
+    print(f"  [8/8] NCTC Korea:     {len(nctc)} incidents")
 
-    total = len(gdelt) + len(ucdp) + len(news) + len(expert) + len(sanctions) + len(ofac) + len(wikipedia)
+    total = len(gdelt) + len(ucdp) + len(news) + len(expert) + len(sanctions) + len(ofac) + len(wikipedia) + len(nctc)
     print(f"\n  Total: {total} items")
 
     return {
@@ -847,5 +851,6 @@ def collect_all(target_date: datetime) -> dict:
         "sanctions": sanctions,
         "ofac": ofac,
         "wikipedia": wikipedia,
+        "nctc": nctc,
         "collected_at": datetime.now().isoformat(),
     }
