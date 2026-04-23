@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 
 export const metadata = {
   title: "About — Conflict Researcher",
-  description: "Open-source global armed violence monitor. 420K events, 37 years, academic standards.",
+  description: "Open-source global armed violence monitor. 420K events, 38 years, academic standards.",
 };
 
 export default function AboutPage() {
@@ -18,7 +18,8 @@ export default function AboutPage() {
           <p className="text-lg text-text-dim">
             <strong className="text-text-primary">Conflict Researcher</strong> is an
             open-source daily intelligence pipeline that aggregates global armed violence
-            data from 8 sources and classifies events by academic standard.
+            data from 8 sources (420K events, 1989–2026) and classifies them by
+            academic standard.
           </p>
 
           <h2 className="mt-10 font-display">Why it exists</h2>
@@ -45,9 +46,9 @@ export default function AboutPage() {
           <ol>
             <li>Parallel source collection (8 sources)</li>
             <li>Cross-source event linking (deduplication)</li>
-            <li>Organization mapping (275 designated groups)</li>
+            <li>Organization mapping (286 designated groups + 341 persons)</li>
             <li>Country normalization (FIPS ↔ ISO, 172 countries)</li>
-            <li>Category classification (10 violence types)</li>
+            <li>Category classification (10 violence categories)</li>
             <li>Casualty extraction (regex from news text)</li>
             <li>Threat scoring (sigmoid-normalized, 0-10 per country)</li>
             <li>Hotspot detection (geographic grid clustering)</li>

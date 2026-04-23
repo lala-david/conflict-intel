@@ -31,10 +31,10 @@ export default async function HomePage() {
         {/* Global Map */}
         <WorldMapSection />
 
-        {/* 37-Year Timeline */}
+        {/* 38-Year Timeline */}
         <section className="mx-auto max-w-7xl px-6 py-8">
           <div className="mb-4 flex items-baseline justify-between">
-            <h2 className="font-display text-2xl font-bold">37 Years of Conflict</h2>
+            <h2 className="font-display text-2xl font-bold">38 Years of Conflict</h2>
             <span className="text-sm text-text-dim">1989 – {new Date().getFullYear()}</span>
           </div>
           <div className="rounded-lg border border-border bg-surface p-5">

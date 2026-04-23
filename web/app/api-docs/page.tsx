@@ -62,7 +62,7 @@ const ENDPOINTS: Endpoint[] = [
     method: "GET",
     path: "/api/countries/{name}",
     description:
-      "Country detail: stats, 37-year timeline, 50 most recent events.",
+      "Country detail: stats, 38-year timeline, 50 most recent events.",
     example: `curl http://localhost:3000/api/countries/Nigeria`,
   },
   // Events

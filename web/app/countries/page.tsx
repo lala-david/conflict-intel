@@ -8,7 +8,7 @@ export const revalidate = 3600;
 
 export const metadata = {
   title: "Countries — Conflict Researcher",
-  description: "All 161 countries tracked. Event counts and fatalities from 1989 to present.",
+  description: "All 172 countries tracked. Event counts and fatalities from 1989 to present.",
 };
 
 export default function CountriesPage() {

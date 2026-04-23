@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props) {
     description: `Armed violence events in ${name}. 1989-present. Terrorism, civil war, insurgency data.`,
     openGraph: {
       title: `${name} — Conflict Researcher`,
-      description: `Armed violence events in ${name}. 420K events, 37 years.`,
+      description: `Armed violence events in ${name}. 420K events, 38 years.`,
       images: [{ url: ogUrl, width: 1200, height: 630 }],
     },
     twitter: {
@@ -117,7 +117,7 @@ export default function CountryPage({ params }: Props) {
         {/* Timeline */}
         <section className="mb-12">
           <h2 className="mb-4 font-display text-2xl font-bold">
-            37-Year Timeline
+            38-Year Timeline
           </h2>
           <CountryTimeline data={timeline} />
         </section>

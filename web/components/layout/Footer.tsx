@@ -10,7 +10,7 @@ export function Footer() {
               Conflict Researcher
             </h3>
             <p className="mt-2 text-xs text-text-dim">
-              Open source armed violence monitor. 420K events, 37 years, 161
+              Open source armed violence monitor. 420K events, 38 years, 172
               countries. Academic classification standard.
             </p>
           </div>
@@ -123,7 +123,7 @@ export function Footer() {
         <div className="mt-8 flex items-center justify-between border-t border-border pt-6 text-xs text-text-dim">
           <span>© 2026 David · MIT License</span>
           <span>
-            Data: UCDP · GDELT · Wikipedia · OpenSanctions · NCTC Korea
+            Data: UCDP · GDELT · Wikipedia · OpenSanctions · OFAC · NCTC Korea · RSS
           </span>
         </div>
       </div>

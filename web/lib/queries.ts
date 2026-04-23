@@ -436,7 +436,7 @@ export function searchOrgs(q: string): { name: string; total_events: number; tot
     .all(`%${q}%`) as any[];
 }
 
-// ─── On This Day (37-year archive) ───
+// ─── On This Day (38-year archive) ───
 export function getOnThisDay(): Event | null {
   const db = getDb();
   const today = new Date();
@@ -472,7 +472,7 @@ export function getTodayAnalysis(limit = 4): { feed: string; title: string; url:
     .all(since7d, limit) as { feed: string; title: string; url: string }[];
 }
 
-// ─── 37-year timeline (homepage) ───
+// ─── 38-year timeline (homepage) ───
 export function getYearlyTimeline(): { year: number; events: number; fatalities: number }[] {
   const db = getDb();
   return db
