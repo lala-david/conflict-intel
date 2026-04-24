@@ -102,6 +102,8 @@ def build_report(data: dict, date: datetime, mapper=None) -> str:
     expert = data.get("expert_rss", [])
     sanctions = data.get("sanctions", [])
     ofac = data.get("ofac", [])
+    wikipedia = data.get("wikipedia", [])
+    nctc = data.get("nctc", [])
     clusters = data.get("event_clusters", [])
 
     total_fatalities = sum(int(e.get("fatalities", 0) or 0) for e in ucdp)
@@ -138,6 +140,8 @@ def build_report(data: dict, date: datetime, mapper=None) -> str:
     lines.append(f"| 전문가 RSS | {len(expert)} |")
     lines.append(f"| 제재 엔티티 | {len(sanctions)} |")
     lines.append(f"| OFAC 조치 | {len(ofac)} |")
+    lines.append(f"| Wikipedia 사건 | {len(wikipedia)} |")
+    lines.append(f"| NCTC Korea 사건 | {len(nctc)} |")
     lines.append(f"| **UCDP 사망자 (신규/누적)** | **{new_fatalities}** / {total_fatalities} |")
     # 뉴스 기반 사상자 추정
     news_est = sum(a.get("fatalities_estimated", 0) for a in news)
