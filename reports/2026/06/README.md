@@ -2,4 +2,4 @@
 
 | Week | Reports |
 |------|---------|
-| [week-23](week-23/README.md) | 1 |
+| [week-23](week-23/README.md) | 2 |
