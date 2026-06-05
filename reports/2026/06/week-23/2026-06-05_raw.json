@@ -1,0 +1,4155 @@
+{
+  "ucdp": [],
+  "gdelt": [
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "UNITED KINGDOM",
+      "actor2": "",
+      "country_code": "GB",
+      "country": "GB",
+      "location": "UKF2, UK",
+      "latitude": "51.0833",
+      "longitude": "-1.16667",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1423,
+      "num_sources": 135,
+      "num_articles": 979,
+      "avg_tone": -7.35136683009197,
+      "source_url": "https://www.ludlowadvertiser.co.uk/news/national/26164539.nigel-farage-defends-response-henry-nowak-murder-amid-criticism-pm/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "United Kingdom",
+          "iso": "GB",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Dissident Republican groups (Northern Ireland)",
+            "Far-right extremist networks (Atomwaffen/Sonnenkrieg linked)"
+          ],
+          "conflict_zones": [
+            "Northern Ireland (low-level dissident activity)"
+          ]
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "ISRAEL",
+      "actor2": "IRAN",
+      "country_code": "IR",
+      "country": "IR",
+      "location": "IR07, IR",
+      "latitude": "27.6",
+      "longitude": "53.1333",
+      "goldstein_scale": -10.0,
+      "num_mentions": 1370,
+      "num_sources": 142,
+      "num_articles": 1370,
+      "avg_tone": -5.8669483012868,
+      "source_url": "https://www.castanetkamloops.net/news/World/617904/Trump-acknowledges-calling-Netanyahu-crazy-and-says-Israel-is-complicating-peace-talks-with-Iran",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "IRN-BORDER",
+          "zone_name": "Iran - Sistan-Baluchestan / Kurdistan border",
+          "country": "Iran",
+          "region": "MENA",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "Jaish al-Adl (Sunni Baloch militants)",
+            "PJAK (Kurdish militants, PKK affiliate)",
+            "ISIS-linked cells",
+            "Ansar al-Furqan (Sunni)",
+            "IRGC (Islamic Revolutionary Guard Corps)"
+          ],
+          "conflict_type": "Insurgency / Terrorism-only",
+          "center": {
+            "lat": 29.0,
+            "lon": 60.0
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "shelling",
+          "category_name": "Shelling / Artillery / Missile",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "GOVERNMENT",
+      "actor2": "PROTESTER",
+      "country_code": "GB",
+      "country": "GB",
+      "location": "UKF2, UK",
+      "latitude": "51.0833",
+      "longitude": "-1.16667",
+      "goldstein_scale": -10.0,
+      "num_mentions": 980,
+      "num_sources": 98,
+      "num_articles": 980,
+      "avg_tone": -5.47570078124147,
+      "source_url": "https://www.thejournal.ie/starmer-musk-7060221-Jun2026/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "United Kingdom",
+          "iso": "GB",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Dissident Republican groups (Northern Ireland)",
+            "Far-right extremist networks (Atomwaffen/Sonnenkrieg linked)"
+          ],
+          "conflict_zones": [
+            "Northern Ireland (low-level dissident activity)"
+          ]
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "PROTESTER",
+      "actor2": "GOVERNMENT",
+      "country_code": "GB",
+      "country": "GB",
+      "location": "UKF2, UK",
+      "latitude": "51.0833",
+      "longitude": "-1.16667",
+      "goldstein_scale": -10.0,
+      "num_mentions": 980,
+      "num_sources": 98,
+      "num_articles": 980,
+      "avg_tone": -5.47570078124147,
+      "source_url": "https://www.thejournal.ie/starmer-musk-7060221-Jun2026/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "United Kingdom",
+          "iso": "GB",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Dissident Republican groups (Northern Ireland)",
+            "Far-right extremist networks (Atomwaffen/Sonnenkrieg linked)"
+          ],
+          "conflict_zones": [
+            "Northern Ireland (low-level dissident activity)"
+          ]
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "CIVILIAN",
+      "country_code": "IL",
+      "country": "IL",
+      "location": "IS, IS",
+      "latitude": "31.5",
+      "longitude": "34.75",
+      "goldstein_scale": -10.0,
+      "num_mentions": 914,
+      "num_sources": 143,
+      "num_articles": 914,
+      "avg_tone": -5.86183072669832,
+      "source_url": "https://www.castanetkamloops.net/news/World/617904/Trump-acknowledges-calling-Netanyahu-crazy-and-says-Israel-is-complicating-peace-talks-with-Iran",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 38.6,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "195",
+      "actor1": "VLADIMIR PUTIN",
+      "actor2": "UKRAINE",
+      "country_code": "RU",
+      "country": "RU",
+      "location": "RS66, RS",
+      "latitude": "59.8944",
+      "longitude": "30.2642",
+      "goldstein_scale": -10.0,
+      "num_mentions": 960,
+      "num_sources": 96,
+      "num_articles": 960,
+      "avg_tone": -2.54398982404071,
+      "source_url": "https://www.harwichandmanningtreestandard.co.uk/news/national/26168029.vladimir-putin-says-russia-will-bolster-air-defences-ukraine-drone-attacks/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Russia",
+          "iso": "RU",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Islamic State Caucasus Province (Vilayat Kavkaz)",
+            "ISKP-linked Central Asian cells",
+            "Ukrainian sabotage operations (Russian territory)",
+            "Caucasus Emirate remnants",
+            "Freedom of Russia Legion/Russian Volunteer Corps (anti-Kremlin)"
+          ],
+          "conflict_zones": [
+            "North Caucasus (Dagestan, Chechnya, Ingushetia)",
+            "Belgorod/Bryansk/Kursk border regions"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "airstrike",
+          "category_name": "Air / Drone Strike",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "UNIVERSITY",
+      "actor2": "SAUDI",
+      "country_code": "SA",
+      "country": "SA",
+      "location": "SA, SA",
+      "latitude": "25",
+      "longitude": "45",
+      "goldstein_scale": -10.0,
+      "num_mentions": 924,
+      "num_sources": 92,
+      "num_articles": 924,
+      "avg_tone": -3.02446589731662,
+      "source_url": "https://www.independent.co.uk/news/uk/crime/crossbow-man-shot-surrey-university-police-b2989832.html",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Saudi Arabia",
+          "iso": "SA",
+          "region": "Middle East / North Africa",
+          "sub_region": "Arabian Peninsula",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "AQAP cells",
+            "ISIS-inspired lone actors",
+            "Houthi cross-border attacks (missile/drone)"
+          ],
+          "conflict_zones": [
+            "Southern border with Yemen (Jizan, Najran)"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "IRN-BORDER",
+          "zone_name": "Iran - Sistan-Baluchestan / Kurdistan border",
+          "country": "Iran",
+          "region": "MENA",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "Jaish al-Adl (Sunni Baloch militants)",
+            "PJAK (Kurdish militants, PKK affiliate)",
+            "ISIS-linked cells",
+            "Ansar al-Furqan (Sunni)",
+            "IRGC (Islamic Revolutionary Guard Corps)"
+          ],
+          "conflict_type": "Insurgency / Terrorism-only",
+          "center": {
+            "lat": 29.0,
+            "lon": 60.0
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "KYIV",
+      "actor2": "",
+      "country_code": "UA",
+      "country": "UA",
+      "location": "UP12, UP",
+      "latitude": "50.4333",
+      "longitude": "30.5167",
+      "goldstein_scale": -9.0,
+      "num_mentions": 894,
+      "num_sources": 91,
+      "num_articles": 894,
+      "avg_tone": -2.50340702756397,
+      "source_url": "https://theshillongtimes.com/2026/06/04/ukrainian-drones-hit-russian-oil-terminal-ahead-of-summit/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Ukraine",
+          "iso": "UA",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Russian-backed separatist forces",
+            "Russian military and proxy forces",
+            "Far-right militias (various)",
+            "Wagner Group/Africa Corps remnants"
+          ],
+          "conflict_zones": [
+            "Donetsk Oblast",
+            "Luhansk Oblast",
+            "Zaporizhzhia Oblast",
+            "Kherson Oblast",
+            "Crimea",
+            "Kharkiv Oblast border"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ECU-CARTEL",
+          "zone_name": "Ecuador - Guayaquil/Esmeraldas Cartel Violence",
+          "country": "Ecuador",
+          "region": "Americas",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Los Lobos",
+            "Los Choneros",
+            "R7",
+            "Tiguerones"
+          ],
+          "conflict_type": "Organized Crime / Narco-Terrorism",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAELI",
+      "actor2": "PALESTINIAN",
+      "country_code": "IL",
+      "country": "IL",
+      "location": "IS00, IS",
+      "latitude": "31.4167",
+      "longitude": "34.3333",
+      "goldstein_scale": -10.0,
+      "num_mentions": 832,
+      "num_sources": 146,
+      "num_articles": 703,
+      "avg_tone": -8.58800386380814,
+      "source_url": "https://www.catholicworldreport.com/2026/06/03/gaza-in-need-of-miracles-papal-agency-says/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "center": {
+            "lat": 31.4,
+            "lon": 34.36
+          },
+          "population_at_risk": 2200000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "RUSSIA",
+      "actor2": "",
+      "country_code": "RU",
+      "country": "RU",
+      "location": "RS48, RS",
+      "latitude": "55.7522",
+      "longitude": "37.6156",
+      "goldstein_scale": -10.0,
+      "num_mentions": 783,
+      "num_sources": 111,
+      "num_articles": 783,
+      "avg_tone": -3.03128172393004,
+      "source_url": "https://www.atlanticcouncil.org/dispatches/dispatch-from-kyiv-russia-is-more-vulnerable-than-it-might-seem/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Russia",
+          "iso": "RU",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Islamic State Caucasus Province (Vilayat Kavkaz)",
+            "ISKP-linked Central Asian cells",
+            "Ukrainian sabotage operations (Russian territory)",
+            "Caucasus Emirate remnants",
+            "Freedom of Russia Legion/Russian Volunteer Corps (anti-Kremlin)"
+          ],
+          "conflict_zones": [
+            "North Caucasus (Dagestan, Chechnya, Ingushetia)",
+            "Belgorod/Bryansk/Kursk border regions"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "TEHRAN",
+      "country_code": "US",
+      "country": "US",
+      "location": "US, US",
+      "latitude": "39.828175",
+      "longitude": "-98.5795",
+      "goldstein_scale": -10.0,
+      "num_mentions": 766,
+      "num_sources": 109,
+      "num_articles": 766,
+      "avg_tone": -6.03471116926215,
+      "source_url": "https://english.news.cn/20260604/329ce009a8284c53a997bd4e839ec842/c.html",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "UNITED STATES",
+      "actor2": "IRAN",
+      "country_code": "IR",
+      "country": "IR",
+      "location": "IR26, IR",
+      "latitude": "35.75",
+      "longitude": "51.5148",
+      "goldstein_scale": -10.0,
+      "num_mentions": 678,
+      "num_sources": 128,
+      "num_articles": 678,
+      "avg_tone": -6.05920865916052,
+      "source_url": "https://www.clactonandfrintongazette.co.uk/news/national/26166689.hezbollah-rejects-ceasefire-agreement-demands-israel-withdraw-lebanon/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "IRN-BORDER",
+          "zone_name": "Iran - Sistan-Baluchestan / Kurdistan border",
+          "country": "Iran",
+          "region": "MENA",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "Jaish al-Adl (Sunni Baloch militants)",
+            "PJAK (Kurdish militants, PKK affiliate)",
+            "ISIS-linked cells",
+            "Ansar al-Furqan (Sunni)",
+            "IRGC (Islamic Revolutionary Guard Corps)"
+          ],
+          "conflict_type": "Insurgency / Terrorism-only",
+          "center": {
+            "lat": 29.0,
+            "lon": 60.0
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "shelling",
+          "category_name": "Shelling / Artillery / Missile",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "UNITED STATES",
+      "actor2": "",
+      "country_code": "US",
+      "country": "US",
+      "location": "USTX, US",
+      "latitude": "31.106",
+      "longitude": "-97.6475",
+      "goldstein_scale": -10.0,
+      "num_mentions": 713,
+      "num_sources": 51,
+      "num_articles": 700,
+      "avg_tone": -10.8988503702838,
+      "source_url": "https://www.kvue.com/article/news/crime/homicide-taylor-texas-devin-olguin-murder-charge/269-e3122edc-2c6c-477d-b642-516f024174d7",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "MXC-NARCO",
+          "zone_name": "Mexico - Cartel conflict zones",
+          "country": "Mexico",
+          "region": "Americas",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Sinaloa Cartel (fractured)",
+            "CJNG (Jalisco New Generation Cartel)",
+            "Northeast Cartel",
+            "Los Zetas remnants",
+            "Various regional groups"
+          ],
+          "conflict_type": "Narco-conflict",
+          "center": {
+            "lat": 23.0,
+            "lon": -104.0
+          },
+          "population_at_risk": 20000000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "192",
+      "actor1": "ISRAELI",
+      "actor2": "LEBANON",
+      "country_code": "IL",
+      "country": "IL",
+      "location": "IS, IS",
+      "latitude": "31.5",
+      "longitude": "34.75",
+      "goldstein_scale": -9.5,
+      "num_mentions": 642,
+      "num_sources": 106,
+      "num_articles": 642,
+      "avg_tone": -6.09775542563388,
+      "source_url": "https://www.goskagit.com/news/world/israeli-strikes-on-lebanon-kill-4-after-another-ceasefire-agreement-was-announced/article_b89c24d5-7f60-5471-a574-a1a6e2449ee0.html",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 38.6,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "GAZA",
+      "actor2": "ISRAEL",
+      "country_code": "IL",
+      "country": "IL",
+      "location": "IS00, IS",
+      "latitude": "31.4167",
+      "longitude": "34.3333",
+      "goldstein_scale": -10.0,
+      "num_mentions": 617,
+      "num_sources": 116,
+      "num_articles": 554,
+      "avg_tone": -9.13940519114419,
+      "source_url": "https://www.gdnonline.com:443/Details/1396649",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "center": {
+            "lat": 31.4,
+            "lon": 34.36
+          },
+          "population_at_risk": 2200000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "ISRAEL",
+      "actor2": "IRAN",
+      "country_code": "IR",
+      "country": "IR",
+      "location": "IR26, IR",
+      "latitude": "35.75",
+      "longitude": "51.5148",
+      "goldstein_scale": -10.0,
+      "num_mentions": 590,
+      "num_sources": 107,
+      "num_articles": 590,
+      "avg_tone": -6.09289948033491,
+      "source_url": "https://www.clactonandfrintongazette.co.uk/news/national/26166689.hezbollah-rejects-ceasefire-agreement-demands-israel-withdraw-lebanon/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Iran",
+          "iso": "IR",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish ul-Adl (Balochistan)",
+            "Islamic State elements",
+            "Kurdistan Free Life Party (PJAK)",
+            "Mujahedin-e Khalq (MEK) - exiled"
+          ],
+          "conflict_zones": [
+            "Sistan-Baluchestan Province",
+            "Kurdistan border region"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "IRN-BORDER",
+          "zone_name": "Iran - Sistan-Baluchestan / Kurdistan border",
+          "country": "Iran",
+          "region": "MENA",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "Jaish al-Adl (Sunni Baloch militants)",
+            "PJAK (Kurdish militants, PKK affiliate)",
+            "ISIS-linked cells",
+            "Ansar al-Furqan (Sunni)",
+            "IRGC (Islamic Revolutionary Guard Corps)"
+          ],
+          "conflict_type": "Insurgency / Terrorism-only",
+          "center": {
+            "lat": 29.0,
+            "lon": 60.0
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "shelling",
+          "category_name": "Shelling / Artillery / Missile",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "UNITED STATES",
+      "actor2": "",
+      "country_code": "US",
+      "country": "US",
+      "location": "USDC, US",
+      "latitude": "38.8951",
+      "longitude": "-77.0364",
+      "goldstein_scale": -10.0,
+      "num_mentions": 612,
+      "num_sources": 84,
+      "num_articles": 609,
+      "avg_tone": -1.92916580097011,
+      "source_url": "https://washingtonmonthly.com/2026/06/03/60-minutes-cbs-bari-weiss-scott-pelley/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "ISRAEL",
+      "actor2": "UNITED STATES",
+      "country_code": "IL",
+      "country": "IL",
+      "location": "IS, IS",
+      "latitude": "31.5",
+      "longitude": "34.75",
+      "goldstein_scale": -10.0,
+      "num_mentions": 570,
+      "num_sources": 109,
+      "num_articles": 570,
+      "avg_tone": -6.08404464292595,
+      "source_url": "https://www.clactonandfrintongazette.co.uk/news/national/26166689.hezbollah-rejects-ceasefire-agreement-demands-israel-withdraw-lebanon/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 38.6,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "shelling",
+          "category_name": "Shelling / Artillery / Missile",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "CIVILIAN",
+      "country_code": "LB",
+      "country": "LB",
+      "location": "LE04, LE",
+      "latitude": "33.8719",
+      "longitude": "35.5097",
+      "goldstein_scale": -10.0,
+      "num_mentions": 496,
+      "num_sources": 132,
+      "num_articles": 496,
+      "avg_tone": -5.89425406610284,
+      "source_url": "https://globalnews.ca/news/11889823/iran-israel-lebanon-trump-netanyahu-middle-east/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Lebanon",
+          "iso": "LB",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian militant factions (Hamas, PFLP, etc.)",
+            "ISIS-linked cells",
+            "Fatah al-Islam remnants"
+          ],
+          "conflict_zones": [
+            "Southern Lebanon/Blue Line border",
+            "Bekaa Valley",
+            "Palestinian refugee camps (Ain al-Hilweh)",
+            "Tripoli"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "LBN-MULTIPLE",
+          "zone_name": "Lebanon - South Lebanon / Bekaa",
+          "country": "Lebanon",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian factions (in refugee camps)",
+            "IDF (cross-border operations)",
+            "Various Sunni extremist cells (Ain al-Hilweh camp)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "center": {
+            "lat": 33.5,
+            "lon": 35.5
+          },
+          "population_at_risk": 2000000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "RUSSIAN",
+      "actor2": "UKRAINE",
+      "country_code": "RU",
+      "country": "RU",
+      "location": "RS66, RS",
+      "latitude": "59.8944",
+      "longitude": "30.2642",
+      "goldstein_scale": -10.0,
+      "num_mentions": 516,
+      "num_sources": 89,
+      "num_articles": 516,
+      "avg_tone": -2.58510872093645,
+      "source_url": "https://www.santafenewmexican.com/news/ukrainian-drones-hit-st-petersburg-oil-terminal-before-city-hosts-russian-economic-forum/article_6cf16003-841b-5cb5-af4e-5f8c6452e233.html",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Russia",
+          "iso": "RU",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Islamic State Caucasus Province (Vilayat Kavkaz)",
+            "ISKP-linked Central Asian cells",
+            "Ukrainian sabotage operations (Russian territory)",
+            "Caucasus Emirate remnants",
+            "Freedom of Russia Legion/Russian Volunteer Corps (anti-Kremlin)"
+          ],
+          "conflict_zones": [
+            "North Caucasus (Dagestan, Chechnya, Ingushetia)",
+            "Belgorod/Bryansk/Kursk border regions"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "PRESIDENT",
+      "actor2": "",
+      "country_code": "LB",
+      "country": "LB",
+      "location": "LE07, LE",
+      "latitude": "33.3603",
+      "longitude": "35.5911",
+      "goldstein_scale": -10.0,
+      "num_mentions": 484,
+      "num_sources": 121,
+      "num_articles": 484,
+      "avg_tone": -6.06429606142213,
+      "source_url": "https://www.goskagit.com/news/world/israeli-strikes-on-lebanon-kill-4-after-another-ceasefire-agreement-was-announced/article_b89c24d5-7f60-5471-a574-a1a6e2449ee0.html",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Lebanon",
+          "iso": "LB",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian militant factions (Hamas, PFLP, etc.)",
+            "ISIS-linked cells",
+            "Fatah al-Islam remnants"
+          ],
+          "conflict_zones": [
+            "Southern Lebanon/Blue Line border",
+            "Bekaa Valley",
+            "Palestinian refugee camps (Ain al-Hilweh)",
+            "Tripoli"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "LBN-MULTIPLE",
+          "zone_name": "Lebanon - South Lebanon / Bekaa",
+          "country": "Lebanon",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian factions (in refugee camps)",
+            "IDF (cross-border operations)",
+            "Various Sunni extremist cells (Ain al-Hilweh camp)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "center": {
+            "lat": 33.5,
+            "lon": 35.5
+          },
+          "population_at_risk": 2000000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "UNITED STATES",
+      "actor2": "",
+      "country_code": "US",
+      "country": "US",
+      "location": "USPA, US",
+      "latitude": "39.9523",
+      "longitude": "-75.1638",
+      "goldstein_scale": -10.0,
+      "num_mentions": 452,
+      "num_sources": 57,
+      "num_articles": 452,
+      "avg_tone": 0.446378015358655,
+      "source_url": "https://www.mega979.com/2026/06/03/dexter-wansel-sound-of-philadelphia-innovator-dies-at-75/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "ISRAEL",
+      "actor2": "CIVILIAN",
+      "country_code": "IL",
+      "country": "IL",
+      "location": "IS, IS",
+      "latitude": "31.5",
+      "longitude": "34.75",
+      "goldstein_scale": -10.0,
+      "num_mentions": 448,
+      "num_sources": 56,
+      "num_articles": 448,
+      "avg_tone": -6.30255677499771,
+      "source_url": "https://nbcmontana.com/news/nation-world/israel-lebanon-say-they-agree-to-renew-fragile-ceasefire-create-new-security-zones-president-donald-trump-prime-minister-benjamin-netanyahu",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 38.6,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "ISRAEL",
+      "actor2": "",
+      "country_code": "KW",
+      "country": "KW",
+      "location": "KU, KU",
+      "latitude": "29.5",
+      "longitude": "47.75",
+      "goldstein_scale": -10.0,
+      "num_mentions": 392,
+      "num_sources": 97,
+      "num_articles": 392,
+      "avg_tone": -6.08345139497222,
+      "source_url": "https://www.clickorlando.com/news/world/2026/06/04/israeli-strikes-on-lebanon-kill-4-after-another-ceasefire-agreement-was-announced/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Kuwait",
+          "iso": "KW",
+          "region": "Middle East / North Africa",
+          "sub_region": "Gulf States",
+          "threat_level": "Low",
+          "active_groups": [
+            "ISIS-inspired cells (historically)"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "IRN-BORDER",
+          "zone_name": "Iran - Sistan-Baluchestan / Kurdistan border",
+          "country": "Iran",
+          "region": "MENA",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "Jaish al-Adl (Sunni Baloch militants)",
+            "PJAK (Kurdish militants, PKK affiliate)",
+            "ISIS-linked cells",
+            "Ansar al-Furqan (Sunni)",
+            "IRGC (Islamic Revolutionary Guard Corps)"
+          ],
+          "conflict_type": "Insurgency / Terrorism-only",
+          "center": {
+            "lat": 29.0,
+            "lon": 60.0
+          },
+          "population_at_risk": 3000000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "KING",
+      "actor2": "",
+      "country_code": "",
+      "country": "",
+      "location": "",
+      "latitude": "",
+      "longitude": "",
+      "goldstein_scale": -10.0,
+      "num_mentions": 435,
+      "num_sources": 30,
+      "num_articles": 405,
+      "avg_tone": -2.67250184106923,
+      "source_url": "https://comicbook.com/comics/list/the-10-most-powerful-versions-of-thanos-ranked/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "ISRAELI",
+      "country_code": "US",
+      "country": "US",
+      "location": "US, US",
+      "latitude": "39.828175",
+      "longitude": "-98.5795",
+      "goldstein_scale": -10.0,
+      "num_mentions": 342,
+      "num_sources": 113,
+      "num_articles": 342,
+      "avg_tone": -6.05124217236039,
+      "source_url": "https://www.clickorlando.com/news/world/2026/06/04/israeli-strikes-on-lebanon-kill-4-after-another-ceasefire-agreement-was-announced/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "AUSTRALIA",
+      "actor2": "",
+      "country_code": "AU",
+      "country": "AU",
+      "location": "AS, AS",
+      "latitude": "-25",
+      "longitude": "135",
+      "goldstein_scale": -10.0,
+      "num_mentions": 392,
+      "num_sources": 49,
+      "num_articles": 196,
+      "avg_tone": -5.64553438151228,
+      "source_url": "https://www.redlandcitybulletin.com.au/story/9285842/hero-of-bondi-attack-charged-with-assaulting-father/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Australia",
+          "iso": "AU",
+          "region": "Oceania",
+          "sub_region": "Australasia",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Far-right extremist networks",
+            "Ideologically motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "SAU-BORDER-SOUTH",
+          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
+          "country": "Saudi Arabia",
+          "region": "MENA",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - drone/missile attacks",
+            "AQAP (limited capability in border area)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "LEBANON",
+      "actor2": "CHRISTIAN",
+      "country_code": "LB",
+      "country": "LB",
+      "location": "LE07, LE",
+      "latitude": "33.3603",
+      "longitude": "35.5911",
+      "goldstein_scale": -10.0,
+      "num_mentions": 253,
+      "num_sources": 126,
+      "num_articles": 253,
+      "avg_tone": -6.07305316191716,
+      "source_url": "https://www.goskagit.com/news/world/israeli-strikes-on-lebanon-kill-4-after-another-ceasefire-agreement-was-announced/article_b89c24d5-7f60-5471-a574-a1a6e2449ee0.html",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Lebanon",
+          "iso": "LB",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian militant factions (Hamas, PFLP, etc.)",
+            "ISIS-linked cells",
+            "Fatah al-Islam remnants"
+          ],
+          "conflict_zones": [
+            "Southern Lebanon/Blue Line border",
+            "Bekaa Valley",
+            "Palestinian refugee camps (Ain al-Hilweh)",
+            "Tripoli"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "LBN-MULTIPLE",
+          "zone_name": "Lebanon - South Lebanon / Bekaa",
+          "country": "Lebanon",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian factions (in refugee camps)",
+            "IDF (cross-border operations)",
+            "Various Sunni extremist cells (Ain al-Hilweh camp)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "center": {
+            "lat": 33.5,
+            "lon": 35.5
+          },
+          "population_at_risk": 2000000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "192",
+      "actor1": "ISRAEL",
+      "actor2": "LEBANON",
+      "country_code": "IL",
+      "country": "IL",
+      "location": "IS, IS",
+      "latitude": "31.5",
+      "longitude": "34.75",
+      "goldstein_scale": -9.5,
+      "num_mentions": 242,
+      "num_sources": 110,
+      "num_articles": 242,
+      "avg_tone": -6.08450919918842,
+      "source_url": "https://nationalpost.com/news/world/israel-middle-east/israel-and-lebanon-have-agreed-to-ceasefire-if-hezbollah-stops-hostilities",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
+          "distance_km": 38.6,
+          "match_type": "proximity"
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "DEPUTY",
+      "actor2": "UNITED STATES",
+      "country_code": "US",
+      "country": "US",
+      "location": "USGA, US",
+      "latitude": "32.9866",
+      "longitude": "-83.6487",
+      "goldstein_scale": -9.0,
+      "num_mentions": 312,
+      "num_sources": 39,
+      "num_articles": 156,
+      "avg_tone": -8.01533879643878,
+      "source_url": "https://www.11alive.com/article/news/nation-world/sheriffs-deputy-working-at-school-accused-on-duty-sexual-assault/507-55be6fa6-f802-423f-93c1-b4ce7afa2efb",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "RUS-CAUCASUS",
+          "zone_name": "Russia - North Caucasus (Dagestan/Chechnya/Ingushetia)",
+          "country": "Russia",
+          "region": "Europe",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Caucasus Province (Wilayat Qawqaz)",
+            "Remnant Caucasus Emirate elements",
+            "Russian security forces (FSB, Rosgvardia)"
+          ],
+          "conflict_type": "Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "NAVAL",
+      "actor2": "",
+      "country_code": "CA",
+      "country": "CA",
+      "location": "CA10, CA",
+      "latitude": "47.5",
+      "longitude": "-72",
+      "goldstein_scale": -10.0,
+      "num_mentions": 260,
+      "num_sources": 14,
+      "num_articles": 260,
+      "avg_tone": 2.91005291005291,
+      "source_url": "https://103gbfrocks.com/ixp/366/p/voivod-favorite-prog-albums/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Canada",
+          "iso": "CA",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "ISIS-inspired individuals",
+            "Incel-motivated violent extremists",
+            "Far-right extremists (Proud Boys, etc.)",
+            "Ideologically Motivated Violent Extremism (IMVE)"
+          ],
+          "conflict_zones": []
+        },
+        "conflict_zone": {
+          "zone_id": "CMR-FAR-NORTH",
+          "zone_name": "Cameroon - Far North",
+          "country": "Cameroon",
+          "region": "Sub-Saharan Africa",
+          "intensity": "Medium",
+          "trend": "Stable",
+          "active_groups": [
+            "Boko Haram (JAS)",
+            "ISWAP",
+            "Cameroonian security forces"
+          ],
+          "conflict_type": "Insurgency",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "ISRAEL",
+      "actor2": "",
+      "country_code": "RS",
+      "country": "RS",
+      "location": "RI, RI",
+      "latitude": "44",
+      "longitude": "21",
+      "goldstein_scale": -10.0,
+      "num_mentions": 120,
+      "num_sources": 111,
+      "num_articles": 120,
+      "avg_tone": -6.10753191530605,
+      "source_url": "https://www.goskagit.com/news/world/israeli-strikes-on-lebanon-kill-4-after-another-ceasefire-agreement-was-announced/article_b89c24d5-7f60-5471-a574-a1a6e2449ee0.html",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Serbia",
+          "iso": "RS",
+          "region": "Europe",
+          "sub_region": "Balkans",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": [
+            "Northern Kosovo border (tensions)"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "REDSEA-MARITIME",
+          "zone_name": "Red Sea / Gulf of Aden - Maritime threat zone",
+          "country": "International waters (Yemen/Eritrea/Djibouti/Somalia coast)",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Ansar Allah (Houthis) - anti-shipping attacks",
+            "Al-Shabaab (limited maritime capability)",
+            "Somali pirates (resurgent)"
+          ],
+          "conflict_type": "Maritime terrorism / Hybrid",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "182",
+      "actor1": "RESIDENTS",
+      "actor2": "COLOMBO",
+      "country_code": "LK",
+      "country": "LK",
+      "location": "CE36, CE",
+      "latitude": "6.63833",
+      "longitude": "80.0861",
+      "goldstein_scale": -9.5,
+      "num_mentions": 208,
+      "num_sources": 20,
+      "num_articles": 208,
+      "avg_tone": -4.89238880167741,
+      "source_url": "https://www.wgauradio.com/news/world/fire-nursing-home/MN5AXUU4CA64BCBHSKF5AAKFKY/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Sri Lanka",
+          "iso": "LK",
+          "region": "South Asia",
+          "sub_region": "Island Nations",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "National Thowheed Jamath (NTJ) remnants",
+            "ISIS-inspired cells"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "GOVERNMENT",
+      "actor2": "SOMALIA",
+      "country_code": "SO",
+      "country": "SO",
+      "location": "SO02, SO",
+      "latitude": "2.06667",
+      "longitude": "45.3667",
+      "goldstein_scale": -10.0,
+      "num_mentions": 180,
+      "num_sources": 19,
+      "num_articles": 170,
+      "avg_tone": -9.15247329782041,
+      "source_url": "https://www.winnipegfreepress.com/world/2026/06/04/armed-clashes-erupt-in-somalias-capital-ahead-of-a-planned-anti-government-demonstration",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Somalia",
+          "iso": "SO",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Al-Shabaab",
+            "Islamic State - Somalia Province (ISS)",
+            "Ahlu Sunna Wal Jama'a (ASWJ)"
+          ],
+          "conflict_zones": [
+            "South-Central Somalia",
+            "Lower Shabelle",
+            "Middle Shabelle",
+            "Bay and Bakool",
+            "Mudug",
+            "Puntland"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "SOM-SOUTH-CENTRAL",
+          "zone_name": "Somalia - South-Central",
+          "country": "Somalia",
+          "region": "Sub-Saharan Africa",
+          "intensity": "High",
+          "trend": "Stable",
+          "active_groups": [
+            "Al-Shabaab",
+            "ISIS-Somalia (small faction)",
+            "Somali National Army (SNA)",
+            "ATMIS (African Transition Mission in Somalia)",
+            "Clan militias"
+          ],
+          "conflict_type": "Insurgency",
+          "center": {
+            "lat": 2.5,
+            "lon": 44.5
+          },
+          "population_at_risk": 8000000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "MILITARY",
+      "actor2": "BEIJING",
+      "country_code": "CN",
+      "country": "CN",
+      "location": "CH22, CH",
+      "latitude": "39.9289",
+      "longitude": "116.388",
+      "goldstein_scale": -9.0,
+      "num_mentions": 152,
+      "num_sources": 17,
+      "num_articles": 152,
+      "avg_tone": -4.52071164121751,
+      "source_url": "https://www.yahoo.com/news/articles/taiwan-presses-china-confront-tiananmen-030435150.html",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "DELHI",
+      "country_code": "IN",
+      "country": "IN",
+      "location": "IN07, IN",
+      "latitude": "28.6667",
+      "longitude": "77.2167",
+      "goldstein_scale": -10.0,
+      "num_mentions": 134,
+      "num_sources": 21,
+      "num_articles": 122,
+      "avg_tone": -4.77126574677247,
+      "source_url": "https://www.tribuneindia.com/news/delhi/saga-of-violations-lapses-tragedy-was-waiting-to-happen/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "India",
+          "iso": "IN",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Jaish-e-Mohammed (JeM)",
+            "Lashkar-e-Taiba (LeT)/Hizbul Mujahideen",
+            "Communist Party of India (Maoist)/Naxalites",
+            "Indian Mujahideen remnants",
+            "United Liberation Front of Assam (ULFA)",
+            "National Socialist Council of Nagaland (NSCN)"
+          ],
+          "conflict_zones": [
+            "Jammu & Kashmir",
+            "Red Corridor (Chhattisgarh, Jharkhand, Bihar, Odisha)",
+            "Northeast India (Manipur, Nagaland, Assam)"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "SAHEL-TRIBORDER",
+          "zone_name": "Sahel Tri-Border (Liptako-Gourma)",
+          "country": "Mali / Burkina Faso / Niger",
+          "region": "Sub-Saharan Africa",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Jama'at Nusrat al-Islam wal-Muslimin (JNIM / al-Qaeda)",
+            "Islamic State Sahel Province (ISSP, formerly ISGS)",
+            "Katiba Macina",
+            "Ansarul Islam",
+            "Various self-defense militias (Dan Na Ambassagou, Koglweogo, etc.)"
+          ],
+          "conflict_type": "Insurgency / Sectarian",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "TURKEY",
+      "actor2": "DUBLIN",
+      "country_code": "IE",
+      "country": "IE",
+      "location": "EI07, EI",
+      "latitude": "53.3331",
+      "longitude": "-6.24889",
+      "goldstein_scale": -10.0,
+      "num_mentions": 100,
+      "num_sources": 10,
+      "num_articles": 100,
+      "avg_tone": -1.90809595010707,
+      "source_url": "https://www.goderichsignalstar.com:443/news/ontario-land-tribunal-rules-in-west-perths-favour-in-lagoon-zoning-fight",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Ireland",
+          "iso": "IE",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Low",
+          "active_groups": [
+            "Dissident Republicans (New IRA, Continuity IRA)"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "193",
+      "actor1": "TEXAS",
+      "actor2": "",
+      "country_code": "MX",
+      "country": "MX",
+      "location": "MX, MX",
+      "latitude": "23",
+      "longitude": "-102",
+      "goldstein_scale": -10.0,
+      "num_mentions": 62,
+      "num_sources": 30,
+      "num_articles": 62,
+      "avg_tone": -5.33120706813738,
+      "source_url": "https://www.yahoo.com/news/science/articles/know-world-screwworm-fly-reappearance-190506656.html",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Mexico",
+          "iso": "MX",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "High",
+          "active_groups": [
+            "Sinaloa Cartel",
+            "Cartel Jalisco Nueva Generación (CJNG)",
+            "Los Zetas remnants",
+            "Gulf Cartel",
+            "Zapatista Army of National Liberation (EZLN) - low level",
+            "Various smaller cartels and armed groups"
+          ],
+          "conflict_zones": [
+            "Sinaloa",
+            "Guerrero",
+            "Michoacán",
+            "Tamaulipas",
+            "Chihuahua",
+            "Guanajuato",
+            "Zacatecas",
+            "Chiapas"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "MXC-NARCO",
+          "zone_name": "Mexico - Cartel conflict zones",
+          "country": "Mexico",
+          "region": "Americas",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Sinaloa Cartel (fractured)",
+            "CJNG (Jalisco New Generation Cartel)",
+            "Northeast Cartel",
+            "Los Zetas remnants",
+            "Various regional groups"
+          ],
+          "conflict_type": "Narco-conflict",
+          "center": {
+            "lat": 23.0,
+            "lon": -104.0
+          },
+          "population_at_risk": 20000000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "181",
+      "actor1": "STUDENT",
+      "actor2": "",
+      "country_code": "NG",
+      "country": "NG",
+      "location": "NI32, NI",
+      "latitude": "8",
+      "longitude": "4",
+      "goldstein_scale": -9.0,
+      "num_mentions": 78,
+      "num_sources": 7,
+      "num_articles": 78,
+      "avg_tone": -4.0931630013439,
+      "source_url": "https://punchng.com/over-600-pupils-teachers-abducted-despite-n145bn-safe-school-scheme/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Nigeria",
+          "iso": "NG",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Boko Haram (Jama'atu Ahlis Sunna Lidda'awati wal-Jihad - JAS)",
+            "Islamic State West Africa Province (ISWAP)",
+            "Ansaru",
+            "Indigenous People of Biafra (IPOB)/Eastern Security Network",
+            "Bandit groups (Northwest)"
+          ],
+          "conflict_zones": [
+            "Northeast (Borno, Yobe, Adamawa)",
+            "Northwest (Zamfara, Katsina, Kaduna)",
+            "North Central/Middle Belt",
+            "Niger Delta",
+            "Southeast (Biafra tensions)"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "DRC-EAST",
+          "zone_name": "DRC - Eastern Provinces (North Kivu/South Kivu/Ituri)",
+          "country": "Democratic Republic of the Congo",
+          "region": "Sub-Saharan Africa",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "M23 (backed by Rwanda)",
+            "Allied Democratic Forces (ADF / ISIS-DRC)",
+            "CODECO",
+            "Mai-Mai militias (numerous factions)",
+            "FDLR (Rwandan Hutu militia)",
+            "MONUSCO (UN peacekeeping, withdrawing)",
+            "FARDC (Congolese army)",
+            "Wazalendo ('patriots' coalition)"
+          ],
+          "conflict_type": "Civil War / Insurgency",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "bombing",
+          "category_name": "Bombing / Explosion",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "192",
+      "actor1": "PRESIDENT",
+      "actor2": "BUSINESS",
+      "country_code": "JP",
+      "country": "JP",
+      "location": "JA, JA",
+      "latitude": "36",
+      "longitude": "138",
+      "goldstein_scale": -9.5,
+      "num_mentions": 64,
+      "num_sources": 8,
+      "num_articles": 64,
+      "avg_tone": 5.37733317430973,
+      "source_url": "http://www.vietnamtribune.com/news/279100793/compal-and-datasection-advance-ai-infrastructure-for-the-production-era",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "CHILEAN",
+      "actor2": "ACTIVIST",
+      "country_code": "CL",
+      "country": "CL",
+      "location": "CI12, CI",
+      "latitude": "-33.45",
+      "longitude": "-70.6667",
+      "goldstein_scale": -10.0,
+      "num_mentions": 56,
+      "num_sources": 6,
+      "num_articles": 56,
+      "avg_tone": -6.964010473462,
+      "source_url": "https://www.yoursourceone.com/news/national_news/protesters-clash-with-police-in-chiles-capital-over-president-kast-s-education-cuts/article_9f5ef092-3ff8-5679-8259-becb04df78ee.html",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Chile",
+          "iso": "CL",
+          "region": "Latin America and Caribbean",
+          "sub_region": "South America",
+          "threat_level": "Moderate",
+          "active_groups": [
+            "Mapuche resistance groups (CAM - Coordinadora Arauco-Malleco)",
+            "Anarchist cells"
+          ],
+          "conflict_zones": [
+            "Araucanía/Biobío (Wallmapu/Mapuche conflict)"
+          ]
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "DR CONGO",
+      "actor2": "MILITANT",
+      "country_code": "CG",
+      "country": "CG",
+      "location": "CF, CF",
+      "latitude": "-1",
+      "longitude": "15",
+      "goldstein_scale": -10.0,
+      "num_mentions": 50,
+      "num_sources": 5,
+      "num_articles": 50,
+      "avg_tone": -10.3559870550161,
+      "source_url": "http://www.africaleader.com/news/279101540/islamic-state-linked-militants-kill-21-in-dr-congo",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Republic of the Congo",
+          "iso": "CG",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Central Africa",
+          "threat_level": "Low",
+          "active_groups": [
+            "Ninja militia remnants (Pool region)"
+          ],
+          "conflict_zones": [
+            "Pool Region"
+          ]
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "BURMESE",
+      "actor2": "MIZORAM",
+      "country_code": "MM",
+      "country": "MM",
+      "location": "BM, BM",
+      "latitude": "22",
+      "longitude": "98",
+      "goldstein_scale": -10.0,
+      "num_mentions": 42,
+      "num_sources": 6,
+      "num_articles": 42,
+      "avg_tone": -6.42201834862385,
+      "source_url": "http://www.cambodiantimes.com/news/279101182/smuggling-of-burmese-areca-nuts-into-india-ed-raids-nine-places-in-mizoram",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Myanmar",
+          "iso": "MM",
+          "region": "Southeast Asia",
+          "sub_region": "Mainland Southeast Asia",
+          "threat_level": "Critical",
+          "active_groups": [
+            "People's Defence Force (PDF) / National Unity Government (NUG)",
+            "Kachin Independence Army (KIA)",
+            "Karen National Liberation Army (KNLA)",
+            "Arakan Army (AA)",
+            "Chin National Front (CNF)",
+            "Shan State Army (SSA)",
+            "Ta'ang National Liberation Army (TNLA)",
+            "Myanmar National Democratic Alliance Army (MNDAA)",
+            "Arakan Rohingya Salvation Army (ARSA)"
+          ],
+          "conflict_zones": [
+            "Sagaing Region",
+            "Magway Region",
+            "Chin State",
+            "Kayah (Karenni) State",
+            "Kachin State",
+            "Shan State",
+            "Rakhine State",
+            "Karen State"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "MMR-SHAN",
+          "zone_name": "Myanmar - Shan State",
+          "country": "Myanmar",
+          "region": "South / Southeast Asia",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Myanmar National Democratic Alliance Army (MNDAA)",
+            "Ta'ang National Liberation Army (TNLA)",
+            "Shan State Army - South (SSA-S / RCSS)",
+            "Shan State Army - North (SSA-N)",
+            "Pa-O National Liberation Organisation",
+            "Myanmar military (Tatmadaw)",
+            "PDF (People's Defence Forces)"
+          ],
+          "conflict_type": "Civil War",
+          "center": {
+            "lat": 21.0,
+            "lon": 98.0
+          },
+          "population_at_risk": 6000000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "UNITED STATES",
+      "actor2": "IRAN",
+      "country_code": "PK",
+      "country": "PK",
+      "location": "PK08, PK",
+      "latitude": "33.7",
+      "longitude": "73.1667",
+      "goldstein_scale": -10.0,
+      "num_mentions": 44,
+      "num_sources": 3,
+      "num_articles": 44,
+      "avg_tone": -2.50086918730987,
+      "source_url": "https://www.globalsecurity.org/military/library/news/2026/06/mil-260603-sputnik03.htm",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Pakistan",
+          "iso": "PK",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "Islamic State Khorasan Province (ISKP)",
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Lashkar-e-Jhangvi (LeJ)",
+            "Jaish-e-Mohammed (JeM)",
+            "Lashkar-e-Taiba (LeT)",
+            "Sindhudesh Revolutionary Army (SRA)",
+            "Al-Qaeda in the Indian Subcontinent (AQIS)"
+          ],
+          "conflict_zones": [
+            "Khyber Pakhtunkhwa (ex-FATA)",
+            "Balochistan",
+            "Karachi",
+            "South Punjab",
+            "Sindh"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "IND-JK",
+          "zone_name": "India - Jammu & Kashmir",
+          "country": "India",
+          "region": "South / Southeast Asia",
+          "intensity": "Medium",
+          "trend": "Stable",
+          "active_groups": [
+            "Lashkar-e-Taiba",
+            "Jaish-e-Mohammed",
+            "Hizbul Mujahideen"
+          ],
+          "conflict_type": "Insurgency / Separatism",
+          "center": {
+            "lat": 34.08,
+            "lon": 74.79
+          },
+          "population_at_risk": 7000000
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "194",
+      "actor1": "SYRIA",
+      "actor2": "",
+      "country_code": "SY",
+      "country": "SY",
+      "location": "SY13, SY",
+      "latitude": "33.5",
+      "longitude": "36.3833",
+      "goldstein_scale": -10.0,
+      "num_mentions": 42,
+      "num_sources": 5,
+      "num_articles": 42,
+      "avg_tone": -4.94179894179894,
+      "source_url": "https://www.armytimes.com/global/mideast-africa/2026/06/04/hidden-chemical-weapons-sites-emerge-in-syria-amid-fragile-security-transition/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Syria",
+          "iso": "SY",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Hayat Tahrir al-Sham (HTS)",
+            "Islamic State (ISIS) remnants",
+            "Syrian Democratic Forces (SDF)/YPG",
+            "Various Iran-backed militias",
+            "Hurras al-Din (Al-Qaeda affiliate)"
+          ],
+          "conflict_zones": [
+            "Idlib Province",
+            "Deir ez-Zor",
+            "Northeast Syria/Rojava",
+            "Daraa Governorate",
+            "Aleppo outskirts"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "LBN-MULTIPLE",
+          "zone_name": "Lebanon - South Lebanon / Bekaa",
+          "country": "Lebanon",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "De-escalating",
+          "active_groups": [
+            "Hezbollah",
+            "Palestinian factions (in refugee camps)",
+            "IDF (cross-border operations)",
+            "Various Sunni extremist cells (Ain al-Hilweh camp)"
+          ],
+          "conflict_type": "Border Conflict / Terrorism-only",
+          "center": {
+            "lat": 33.5,
+            "lon": 35.5
+          },
+          "population_at_risk": 2000000
+        },
+        "attack_classification": {
+          "category": "shelling",
+          "category_name": "Shelling / Artillery / Missile",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "BAHAMA",
+      "country_code": "BS",
+      "country": "BS",
+      "location": "BF37, BF",
+      "latitude": "26.4667",
+      "longitude": "-77.0833",
+      "goldstein_scale": -10.0,
+      "num_mentions": 36,
+      "num_sources": 9,
+      "num_articles": 36,
+      "avg_tone": -3.23962348472153,
+      "source_url": "https://nypost.com/2026/06/04/us-news/brian-hooker-may-have-left-us-friend-claims-but-former-prosecutor-says-feds-likely-have-him-in-crosshairs/",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "180",
+      "actor1": "MILITANT",
+      "actor2": "",
+      "country_code": "UG",
+      "country": "UG",
+      "location": "UG74, UG",
+      "latitude": "-0.211667",
+      "longitude": "31.4678",
+      "goldstein_scale": -9.0,
+      "num_mentions": 35,
+      "num_sources": 5,
+      "num_articles": 35,
+      "avg_tone": -10.3559870550161,
+      "source_url": "http://www.africaleader.com/news/279101540/islamic-state-linked-militants-kill-21-in-dr-congo",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Uganda",
+          "iso": "UG",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Allied Democratic Forces (ADF/ISIS-linked)",
+            "Al-Shabaab (external threat)",
+            "Lord's Resistance Army (LRA) remnants"
+          ],
+          "conflict_zones": [
+            "Western border (DRC spillover)",
+            "Karamoja sub-region"
+          ]
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "190",
+      "actor1": "",
+      "actor2": "BANGLADESHI",
+      "country_code": "BD",
+      "country": "BD",
+      "location": "BG81, BG",
+      "latitude": "23.7231",
+      "longitude": "90.4086",
+      "goldstein_scale": -10.0,
+      "num_mentions": 34,
+      "num_sources": 3,
+      "num_articles": 24,
+      "avg_tone": -7.75782914323205,
+      "source_url": "https://www.thedailystar.net/opinion/views/news/justifying-border-killings-has-the-home-minister-conceded-the-indian-narrative-4190161",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Bangladesh",
+          "iso": "BD",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "Ansarullah Bangla Team (ABT)",
+            "Jamaat-ul-Mujahideen Bangladesh (JMB)",
+            "Neo-JMB (ISIS-aligned)",
+            "Ansar al-Islam",
+            "Arakan Rohingya Salvation Army (ARSA) - border"
+          ],
+          "conflict_zones": [
+            "Chittagong Hill Tracts",
+            "Cox's Bazar/Rohingya camps"
+          ]
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "182",
+      "actor1": "",
+      "actor2": "IRAQ",
+      "country_code": "IQ",
+      "country": "IQ",
+      "location": "IZ, IZ",
+      "latitude": "33",
+      "longitude": "44",
+      "goldstein_scale": -9.5,
+      "num_mentions": 30,
+      "num_sources": 7,
+      "num_articles": 30,
+      "avg_tone": -5.75410010230226,
+      "source_url": "https://www.winnipegfreepress.com/world/2026/06/04/a-yazidi-tells-an-australian-court-she-was-enslaved-and-raped-in-an-is-home-in-syria",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Iraq",
+          "iso": "IQ",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Islamic State of Iraq (ISI/ISIS remnants)",
+            "Popular Mobilization Forces (PMF) - various militias",
+            "Kata'ib Hezbollah",
+            "Asa'ib Ahl al-Haq",
+            "Kurdistan Workers' Party (PKK)"
+          ],
+          "conflict_zones": [
+            "Kirkuk Governorate",
+            "Diyala Governorate",
+            "Anbar Province",
+            "Nineveh/Mosul corridor",
+            "Sinjar"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "MOZ-CABO-DELGADO",
+          "zone_name": "Mozambique - Cabo Delgado",
+          "country": "Mozambique",
+          "region": "Sub-Saharan Africa",
+          "intensity": "Medium",
+          "trend": "De-escalating",
+          "active_groups": [
+            "ISIS-Mozambique (Ansar al-Sunna / Al-Shabaab Mozambique / locally 'Mashababos')",
+            "Mozambican armed forces (FADM)",
+            "SAMIM (SADC Mission in Mozambique)",
+            "Rwandan forces"
+          ],
+          "conflict_type": "Insurgency",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    },
+    {
+      "source": "gdelt",
+      "event_code": "192",
+      "actor1": "AFRICA",
+      "actor2": "",
+      "country_code": "ZM",
+      "country": "ZM",
+      "location": "ZA, ZA",
+      "latitude": "-15",
+      "longitude": "30",
+      "goldstein_scale": -9.5,
+      "num_mentions": 30,
+      "num_sources": 3,
+      "num_articles": 30,
+      "avg_tone": 4.16055615930119,
+      "source_url": "https://afdb.africa-newsroom.com/press/african-development-bank-group-approves-125-million-investment-in-atidi-to-expand-risk-insurance-capacity-in-africa",
+      "date": "2026-06-04",
+      "_enrichment": {
+        "country": {
+          "name": "Zambia",
+          "iso": "ZM",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "Southern Africa",
+          "threat_level": "Low",
+          "active_groups": [],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "armed_assault",
+          "category_name": "Armed Assault",
+          "original_type": "",
+          "original_subtype": ""
+        }
+      }
+    }
+  ],
+  "google_news": [
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "Italian Police Arrest ISIS-Inspired Moroccan Immigrant Intent on Perpetrating Car Attack - Middle East Forum",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNSnFpY2RteFFELU9ISTQ3Skwtd19kU0F4TG5KRERkT2UzNWZ6MkQ2dlF5NkdlNWhtcEJ5VGRYekhuVkh5aFVTVUZMbm1MaHNVNEhFT0NBdWR2dkhtV0VIVFBmNlVsUFpqQ2t3dm9aZlZsNmY5V1hnRGN0elcwLUZNeExYTkdPbjYybk8yUG5wdThxRFJtMGVWMTNMQWNEbGJSLW1LdzRqdTVydzNxT01PRDFoR1lIbWFodEJQWW5kTkloNFU?oc=5",
+      "summary": "Italian Police Arrest ISIS-Inspired Moroccan Immigrant Intent on Perpetrating Car Attack&nbsp;&nbsp;Middle East Forum",
+      "date": "Thu, 04 Jun 2026 16:07:05 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "The San Diego Attack: A Wake-Up Call for Online Radicalization Prevention - Homeland Security Today",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQcnVOM1hZUWRRSmp1RnYybXJSSXFPVm9pbWl0Qk1GbkNMTW42U0VsSVUwZ1g0QzZ3X1luNWhGLXRMYlhPXzBhbFpxdnRXYklmcHpVNVI4ZjVwVGxyT0FjMko0RnZ5d0tVbk5UOG1pT1pmSzNrOTlQV3NfWVlTYnhJaWFuLXBwM1ZybDFtSGRCcUpmckFyNkdoMDAxa0I3dklrUm1xa2JKNTVDM01WZmMwVkRGTDllYVhHTnlQTjdGeF9Ka2x5YkJKUXZrb1loR05XamVEbg?oc=5",
+      "summary": "The San Diego Attack: A Wake-Up Call for Online Radicalization Prevention&nbsp;&nbsp;Homeland Security Today",
+      "date": "Wed, 03 Jun 2026 08:33:03 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "Calls for unity nine years on from London Bridge terror attacks - BBC",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9OX2FMYXBPRlRMWmc4ZkRrRzVXVEs1Wk5WaHRQQzRNaWZnYXNNNjFnRkNtU21mRV9VMXZwQTRuMUpnT1BxSzN6S0I1aWh1VUFxMkNDWUY5NVlYQQ?oc=5",
+      "summary": "Calls for unity nine years on from London Bridge terror attacks&nbsp;&nbsp;BBC",
+      "date": "Wed, 03 Jun 2026 18:53:28 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "Drop-bomb Attack Targeting School: Terrorists launched drop-bomb attack targeting school - Myanmar International TV",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRmVodXJnVFFnQmJnYVBxTDd3MG9udkQ3TzVMSjZ5WnJtTlZSTWhOSHJPVHBoNm9CM2llRFRpRTNjRDZHQjA5aUVDOG03c0Q0cDU1R3FiYU92b1RzM3hWSzh0dTl6Z216MG44TjZVcThSLVNERUFoTE8yN1ZPZ1ZnaTkycDlMNTB5dUdac3hwVHVTenZ4c210R0M1RU5qbGdCWU9FWHB0cGs0SEtzaEtEZ3Q3c0x0VkN2elhF?oc=5",
+      "summary": "Drop-bomb Attack Targeting School: Terrorists launched drop-bomb attack targeting school&nbsp;&nbsp;Myanmar International TV",
+      "date": "Fri, 05 Jun 2026 04:04:33 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "'Some kind of apocalypse': A Kyiv resident recalls terror of Russian attack - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQTGFMYktFT0VXSmtnU2tqTzRRVlBIVHFLOFhPZmZzbC0tZF9mTjBKRUVjRUw1aWVteW1KdzhWT3RRRDU5NkcwSU12TklCcFZOZThncUdtbkpSZUFfRWRwa2F0bklqOXpGdk45R0xTeUxaNVI4Y1A2cVdTUzNmU3J3MmxfQjJaZ3M2VmxZSENNdGRxcnZDeVRSNlltdGVxRU5fS0VIN003V2xiWDZJLXBKNGhtNzdadU5IZ3YwR015OGdNaEliYkE?oc=5",
+      "summary": "'Some kind of apocalypse': A Kyiv resident recalls terror of Russian attack&nbsp;&nbsp;Reuters",
+      "date": "Tue, 02 Jun 2026 13:41:39 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "terrorist plot foiled",
+      "title": "Authorities Foil Alleged ISIS-Inspired Attack in Northern Italy - The European Conservative",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPSWM1ckp0RHgxTVN4ZjM5cjF2U0dTZ0doRlNkQlBUNWlydTlTOERlR3l5SnhSOVpZMnkxNlRiWno2aFlvMWxtR1dtSkk3ZXdRczlwLVZzTm5sTE50eDE3bUd3X2ZKeUlOT1l3dXA3MUVaNndYVGsyUEtFc2YxMjZvMU41VnF0QjJ6YjdMWmowcDh0NDNwUzJDeXhQTGYxdDhrRS1ReDlCOXVnRjJPREdlUA?oc=5",
+      "summary": "Authorities Foil Alleged ISIS-Inspired Attack in Northern Italy&nbsp;&nbsp;The European Conservative",
+      "date": "Tue, 02 Jun 2026 17:52:02 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Mali junta offers $3.5M reward for Sahel al-Qaeda leader - DW",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBlcVZMaGE4b1J3OFNSa3NaYkhMUmx6UXNFQTVUTWRITHVqd1p4alRmVFZwSVpQVHowUkxSMl9abXhvdWYwWm1MRmhMeVlDenBvTUo0a0dLUkZwSGVBOU9WZ0V4R1BxR1E4OHfSAWpBVV95cUxNTG94aGlzdWNXZWtnWlJCMnJVc2RXVzhFM1VHRWtIV2RzVVZ1Wkx0Z3NUWl81M3lDTjkxZXl4X2VxU2R5bDJSNnZLajZLbDloNmNfamZlNjFGX21OdHFrT0U5OG90ODdwUEFn?oc=5",
+      "summary": "Mali junta offers $3.5M reward for Sahel al-Qaeda leader&nbsp;&nbsp;DW",
+      "date": "Fri, 05 Jun 2026 03:44:43 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "‘Squad’-backed NJ Democrat who volunteered with Al Qaeda-linked group wins primary to replace Rep. Bonnie Watson Coleman - New York Post",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNUUhkUlBHb3lWTW1jSmJZN1o3TEdNWVNTVnoxelE2WkJmRWJxZHZScU5WSXhELTFKTGdPZ3NBeTZNekJhQVhIM0oybWxtQ3h1TnVFd0NLc1k1MzcxVWdZaUFpOTh0ZTEtU0dPc0VKamJqeURiekRBT1ZfcGJJT3h4eklNdVVnRFVyQVRma2VQWXVlQVAwbGp3eWhVWFFJS2RMODk1Zy1PYjNpR1pFdUliTFdZaWRSd0t4ejlwTDh4MldqNUlnQWc?oc=5",
+      "summary": "‘Squad’-backed NJ Democrat who volunteered with Al Qaeda-linked group wins primary to replace Rep. Bonnie Watson Coleman&nbsp;&nbsp;New York Post",
+      "date": "Wed, 03 Jun 2026 01:47:00 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Accused al-Qaeda sleeper agent Mohamed Harkat wins another chance at staying in Canada - National Post",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZUdxbDRQdGtVZnZ3TEEwUWI2WW81RXNtajZTSGtQRVVRYnYwbzJUYlJ6dkFwRjFfU3docDRyZGxyOTBmMjRzN1BrRjhZdm9RNFcyS0F2UGVhTkVfSGFHR1pDdmFLUGgzdUhibGlPOXU0UFFaeUVIZmFxeTlRaUFJSE43cnNHWDNhVXRna1BrcVpneFhwOEJmalhQMDFyajF0dTVHXzNJYlhod05C?oc=5",
+      "summary": "Accused al-Qaeda sleeper agent Mohamed Harkat wins another chance at staying in Canada&nbsp;&nbsp;National Post",
+      "date": "Fri, 05 Jun 2026 01:05:37 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "Pentagon hires convicted Jan. 6 rioter for counterterrorism post - The Hill",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQdVNVNTZodU9yTzlaUk95YmctMFJ3ZFIwSzlNLUowMGs1TW5tZ1V2ZU91WFZPVURWc1hjSDlyXzdYNGNBaHMtSm8zdlhZMlFCX1dmTTZqSUFtc3BQQ3dlT254TXBDN1R0a2ZBVDBFYVZ1TEsyN1RfQlhDODV3U1hJZjhEVHFGWlAzZG9kaE0yWGdFZDDSAZgBQVVfeXFMT3ppcU1tX0hRZEpKVXNZTVZNeDBndFZuNDJRZXF1OGk4c2tyemtzaEc2Yjd2UXRKVkh2dTBITVM0Mmd1aHpwWDR0N0xDMTZXc2MyX3Y0bmVFQjh0SERxOWVobEJLVUcwRVZ4ZERTLU5WUnBPTHFrN0xNOGVJLW5XUmphaG1WWjZEMjBHTjlsbDA0V3dZYXVCbHc?oc=5",
+      "summary": "Pentagon hires convicted Jan. 6 rioter for counterterrorism post&nbsp;&nbsp;The Hill",
+      "date": "Tue, 02 Jun 2026 22:28:00 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "U.S. hails Tinubu’s counterterrorism efforts, confirms joint anti-ISIS operation with Nigeria - Peoples Gazette Nigeria",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOWXVCUkM3alBFZUE0RGdtbmdWTllPQ3Fzd2I2YUpCQzJjVVp6a0U1OXlTUC1FR3ZPRnBFTHZNcDA4Qk5Ga0xNMXFORFlvaDJkcVE0MWxPUm0xNGc5cDRrT1g3VWNYNkRVMTBFdTRRMEtoOENUSmVuam84bjd3Y2tyMUN3ektza3N2MVFsUGhZVlU4Z3dhZTJzTEVXbWk3MmlDUXNUcGJsWlM2N0VCdTNzWks2Zkk?oc=5",
+      "summary": "U.S. hails Tinubu’s counterterrorism efforts, confirms joint anti-ISIS operation with Nigeria&nbsp;&nbsp;Peoples Gazette Nigeria",
+      "date": "Thu, 04 Jun 2026 13:13:13 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "US Lauds Nigeria Counterterrorism Cooperation, Reveals Joint Strike on Senior ISIS Leader - TVC News",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxObW1iMFhCbzJJc2g2SjRaTTR0Mm1FbmlYUHJoeGI5X0NWOUhEaFYxUXVnZzlkbjd1TnRXcUJqdVV3U3NVUVdwQWdoYlh6UnlyUlhkRGdOZXlqOXdaTGhUTHJfTWZOMDVwQkNjelFyaFhrTVFBLWpJbkU4bjFweE1hRnJiSDVNMlY0d3MtS1I2NHVndzhoZktlZjBTTEJDbHY0SmVoNThQNmpOc1RydDBNdDhn?oc=5",
+      "summary": "US Lauds Nigeria Counterterrorism Cooperation, Reveals Joint Strike on Senior ISIS Leader&nbsp;&nbsp;TVC News",
+      "date": "Thu, 04 Jun 2026 13:14:00 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "Rubio highlights US-Nigeria counterterrorism co-operation - The Guardian Nigeria News",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOZTV5aDBGTDlwcDNfVmlZWW5Ea0kyeDlCR04zRFoxOVVWcks3S0tPMDV3NlNUMkVTV2pkOW9haDlBbHdlRzI3VnB0Sy1wdjdSVmpSMWhQbW83cXotTGFIWFgxVUU4eVNoaG9jakZfby1PYkhHQ1VnMkFjRlF6cnZ5b3Q4dWZtejM2VXBR?oc=5",
+      "summary": "Rubio highlights US-Nigeria counterterrorism co-operation&nbsp;&nbsp;The Guardian Nigeria News",
+      "date": "Wed, 03 Jun 2026 22:00:00 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "google_news",
+      "query": "suicide bombing",
+      "title": "Las Vegas trial set for man accused of threatening to take out Trump, commit suicide bombing, in viral video - KLAS 8 News Now",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNZ3ZaQjVaM1lkdGFBcDRRVm13VDhMa2FGanpNV3ZrbnBmVUt1Y09xMXZ0cjlvSFRqcVo1dVBUVXlHSG82RERoVFdZWVNSNW5QMF9GcndGRlE3dWZTdE5jN0xscFBUM2JySXAyQTBiVU9OZnp2X0ZuYVFzeFE0b2JUNlJNVGNROUk2NnpKSnhSeXZkQmRuNWdMQUtYczBRc0RiME9IV0R6YzEzeVduQjBUTlp6dnlDd0pfWkZxZi1NUmxRdzZfV1d5OE9HWWs1LW5EZEhjaVg5V2hiUU5XNmxF0gHkAUFVX3lxTE5BX1ZDbjgyMUIzYVEtSURTZlNfc3hNdUFiWTZ4MEttS0g4YmxKODlyVE9ZaGR5RU55SW9LWGRzLVNtR0RLa1FmZUdCM193U1dZeE9BMEpud3oxUjBMYVAwSG9NSjk2dWppSkx6WGZGMUZwc19PaklRY3BrdE9xcFZSTTAzQm9zS0R5N21BaWlocTFIcGFQOVBDcnNFMl85TVozdURQamlrS2EwRTFXMHQtb08zZlRSbUd6cFZ0c1A5UVlwRjI4SWdpM1lWRWRkM2lITVhuMEFyNE5XT1pMR19ycHdWdg?oc=5",
+      "summary": "Las Vegas trial set for man accused of threatening to take out Trump, commit suicide bombing, in viral video&nbsp;&nbsp;KLAS 8 News Now",
+      "date": "Wed, 03 Jun 2026 19:37:25 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    }
+  ],
+  "expert_rss": [
+    {
+      "source": "rss/Soufan Center",
+      "title": "Assessing The European Terrorist Threat Landscape",
+      "url": "https://thesoufancenter.org/intelbrief-2026-june-5/",
+      "summary": "The terrorist threat landscape in Europe has noticeably evolved since the height of mass casualty external operations by Salafi-jihadi groups like al-Qaeda and Islamic State (IS). Increasingly, Europe faces a pattern of smaller-scale attacks on soft targets, such as sporting events, concerts, and other public spaces across the continent. These attacks are often carried out [&#8230;]\nThe post Asses",
+      "date": "Fri, 05 Jun 2026 04:01:29 +0000",
+      "feed_name": "Soufan Center",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Soufan Center",
+      "title": "Iraq’s New Government Confronts Challenges on All Fronts",
+      "url": "https://thesoufancenter.org/intelbrief-2026-june-4/",
+      "summary": "The government of Iraq’s new Prime Minister Ali al-Zaidi is already facing the same pressures that frustrated his predecessors’ efforts to establish Iraq as a prosperous, moderate actor reintegrated into the region: the intense competition between Iran and the United States for influence in Iraq. Those pressures are magnified by the war between the U.S. [&#8230;]\nThe post Iraq’s New Government Con",
+      "date": "Thu, 04 Jun 2026 04:01:59 +0000",
+      "feed_name": "Soufan Center",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Aliyev’s Digital Silk Road and Middle Corridor Experiences Reliability Gap",
+      "url": "https://jamestown.org/aliyevs-digital-silk-road-and-middle-corridor-experiences-reliability-gap/",
+      "summary": "Executive Summary: The Middle Corridor’s physical infrastructure has seen consistent development over the past few years, and multi-state cooperation agreements continue to be signed. The route’s board approved a digitalization-focused 2026 work plan in Astana in April, and Azerbaijan and Kazakhstan have moved to institutionalize corridor governance (see EDM, April 28, 30, June 2). The [&#8230;]\nT",
+      "date": "Thu, 04 Jun 2026 21:40:31 +0000",
+      "feed_name": "Jamestown Foundation",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Russia and Belarus Preparing for Escalation with Ukraine and NATO",
+      "url": "https://jamestown.org/russia-and-belarus-preparing-for-escalation-with-ukraine-and-nato/",
+      "summary": "Executive Summary: On May 15, following consultations with the leadership of the Ukrainian Armed Forces (AFU) General Staff, the Defense Intelligence of Ukraine (HUR), the Foreign Intelligence Service, and the Security Service of Ukraine (SBU), Ukrainian President Volodymyr Zelenskyy stated that Russia is seeking to draw Belarus more deeply into the war against Ukraine. Zelenskyy [&#8230;]\nThe pos",
+      "date": "Thu, 04 Jun 2026 21:21:57 +0000",
+      "feed_name": "Jamestown Foundation",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Ukrainian Drone Attacks Exacerbating Tensions Between Moscow and Rest of Russia",
+      "url": "https://jamestown.org/ukrainian-drone-attacks-exacerbating-tensions-between-moscow-and-rest-of-russia/",
+      "summary": "Executive Summary: Ukrainian drone attacks have brought Russian President Vladimir Putin’s war against Ukraine home to Russia. The conflict is affecting the population and elites in ever more regions and republics of the Russian Federation and eliminating the sense of security the Kremlin had sought to project and that most residents of that country had [&#8230;]\nThe post Ukrainian Drone Attacks E",
+      "date": "Thu, 04 Jun 2026 21:07:05 +0000",
+      "feed_name": "Jamestown Foundation",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Special Report: A Perfect Storm – Russia Losing Its War Against Ukraine May Lead to Regime Change",
+      "url": "https://jamestown.org/special-report-a-perfect-storm-russia-losing-its-war-against-ukraine-may-lead-to-regime-change/",
+      "summary": "Executive Summary: The growing crisis in Russia and the potential for defeat in its war against Ukraine will be welcome to those who support a ceasefire and a quick end to the war (Kyiv International Institute of Sociology, April 30). The Kremlin’s insistence on Russia’s inevitable victory is out of touch with reality (Interfax, April [&#8230;]\nThe post Special Report: A Perfect Storm – Russia Los",
+      "date": "Thu, 04 Jun 2026 08:03:57 +0000",
+      "feed_name": "Jamestown Foundation",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Russia is Losing its Strategic Depth",
+      "url": "https://jamestown.org/russia-is-losing-its-strategic-depth/",
+      "summary": "Executive Summary: Russia’s war against Ukraine has seen a significant shift in the balance of power in recent months. On June 2, Russia launched a large-scale ballistic missile and drone strike on Ukraine, targeting the cities of Kyiv, Dnipro, and Kharkiv, killing at least 23 people and injuring more than 100 across Ukraine (RBC-Ukraine June [&#8230;]\nThe post Russia is Losing its Strategic Depth",
+      "date": "Wed, 03 Jun 2026 21:27:43 +0000",
+      "feed_name": "Jamestown Foundation",
+      "fatalities_estimated": 23,
+      "wounded_estimated": 0,
+      "casualty_confidence": "MEDIUM",
+      "casualty_matches": [
+        "Kharkiv, killing at least 23 people an"
+      ]
+    },
+    {
+      "source": "rss/Jamestown Foundation",
+      "title": "Pashinyan Receives Western Endorsements Ahead of Parliamentary Elections",
+      "url": "https://jamestown.org/pashinyan-receives-western-endorsements-ahead-of-parliamentary-elections/",
+      "summary": "Executive Summary: On May 26, U.S. Secretary of State Marco Rubio made a brief stopover at Yerevan’s Zvartnots International Airport to meet with Armenian Foreign Minister Ararat Mirzoyan (U.S. Department of State, May 26). The visit lasted barely an hour, but it produced three signed documents and an unambiguous political signal. Rubio and Mirzoyan concluded [&#8230;]\nThe post Pashinyan Receives ",
+      "date": "Wed, 03 Jun 2026 21:21:31 +0000",
+      "feed_name": "Jamestown Foundation",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/GNET",
+      "title": "Rituals of Recruitment: How Right-Wing Extremist Combat Sports Groups Mobilise Young Men Online and Offline",
+      "url": "https://gnet-research.org/2026/06/04/rituals-of-recruitment-how-right-wing-extremist-combat-sports-groups-mobilise-young-men-online-and-offline/",
+      "summary": "The growth of online fitness ecosystems with ties to right-wing extremism (RWE), alongside manosphere influencers who promote self-improvement through physical training and warrior-style identities, has evolved in tandem with a broader surge in interest in mixed martial arts (MMA). In recent years, popularised among mainstream audiences by the strategic branding of the UFC (Ultimate Fighting Champ",
+      "date": "Thu, 04 Jun 2026 10:09:57 +0000",
+      "feed_name": "GNET",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Militant Wire",
+      "title": "Hezbollah's \"Ababil\" FPV Drones Used Against Israeli Tanks, Armored Vehicles, Air-Defense Systems, Military Vehicles, and Armed Forces",
+      "url": "https://www.militantwire.com/p/hezbollahs-ababil-fpv-drones-used",
+      "summary": "In the ongoing clashes in southern Lebanon, Hezbollah has increasingly relied on FPV (First-Person View) kamikaze drones against the Israel Defense Forces (IDF).",
+      "date": "Thu, 04 Jun 2026 22:25:14 GMT",
+      "feed_name": "Militant Wire",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Militant Wire",
+      "title": "Two Years After Crocus City Hall, Moscow’s Latest Terrorist Attack Shows IS Remains a Threat",
+      "url": "https://www.militantwire.com/p/two-years-after-crocus-city-hall",
+      "summary": "While organizational terrorist networks in Russia have degraded, attack plots continue to stem from individual supporters, munasir foundations, and unofficial groups adapted to the new multi-spatial security environment.",
+      "date": "Wed, 03 Jun 2026 22:30:22 GMT",
+      "feed_name": "Militant Wire",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Pentagon",
+      "title": "Exercise Red Flag-Alaska Launches Multinational Air Combat Training",
+      "url": "https://www.war.gov/News/News-Stories/Article/Article/4508737/exercise-red-flag-alaska-launches-multinational-air-combat-training/",
+      "summary": "Exercise Red Flag-Alaska 26-2 brought together more than 2,100 service members from the U.S. and partner nations for realistic air combat training at Eielson Air Force Base and Joint Base Elmendorf-Richardson, Alaska.",
+      "date": "Thu, 04 Jun 2026 16:45:00 GMT",
+      "feed_name": "Pentagon",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Pentagon",
+      "title": "Marine Expeditionary Unit Concludes 10-Month Southcom Deployment",
+      "url": "https://www.war.gov/News/News-Stories/Article/Article/4508722/marine-expeditionary-unit-concludes-10-month-southcom-deployment/",
+      "summary": "Marines and sailors assigned to the 22nd Marine Expeditionary Unit returned to Camp Lejeune, N.C., after a 10-month U.S. Southern Command deployment.",
+      "date": "Thu, 04 Jun 2026 16:23:13 GMT",
+      "feed_name": "Pentagon",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Pentagon",
+      "title": "Navy Forecasters Keep Typhoon Watch Around the Clock",
+      "url": "https://www.war.gov/News/News-Stories/Article/Article/4507331/navy-forecasters-keep-typhoon-watch-around-the-clock/",
+      "summary": "The Naval Oceanography Antisubmarine Warfare Center in Yokosuka, Japan, provides around-the-clock weather tracking and forecasting to protect Navy ships and military communities from unpredictable Pacific typhoons.",
+      "date": "Wed, 03 Jun 2026 14:08:00 GMT",
+      "feed_name": "Pentagon",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Pentagon",
+      "title": "Wrenches to Wings: The Artisan Hands Behind Every Test Flight",
+      "url": "https://www.war.gov/News/News-Stories/Article/Article/4507298/wrenches-to-wings-the-artisan-hands-behind-every-test-flight/",
+      "summary": "The 10th Flight Test Squadron pilots test newly rebuilt, non-airworthy aircraft to ensure they are battle-ready before returning them to active service.",
+      "date": "Wed, 03 Jun 2026 13:41:40 GMT",
+      "feed_name": "Pentagon",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Pentagon",
+      "title": "Joint Interagency Task Force 401 Conducts Multicommand Counter-UAS Qualification",
+      "url": "https://www.war.gov/News/News-Stories/Article/Article/4507000/joint-interagency-task-force-401-conducts-multicommand-counter-uas-qualification/",
+      "summary": "Airmen participated in a counter-small unmanned aircraft systems firing qualification in partnership with Joint Interagency Task Force 401 at Camp Guernsey Joint Training Center, Wyo.",
+      "date": "Wed, 03 Jun 2026 11:34:00 GMT",
+      "feed_name": "Pentagon",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/The War Zone",
+      "title": "USAF Wants “MQ-9 Next” Reaper Replacement To Be Modular, Cheap",
+      "url": "https://www.twz.com/air/usaf-wants-mq-9-next-reaper-replacement-to-be-modular-cheap",
+      "summary": "Concerning MQ-9 losses have turbocharged discussions about a successor to the venerable Reaper.\nThe post USAF Wants &#8220;MQ-9 Next&#8221; Reaper Replacement To Be Modular, Cheap appeared first on The War Zone.",
+      "date": "Thu, 04 Jun 2026 19:20:13 -0400",
+      "feed_name": "The War Zone",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/The War Zone",
+      "title": "Anti-Drone 5.56mm Rifle Rounds That Break Into Multiple Projectiles Sought By Marines",
+      "url": "https://www.twz.com/land/anti-drone-5-56mm-rifle-rounds-the-break-into-multiple-projectiles-sought-by-marines",
+      "summary": "The aim is for specialized rounds to help boost the ability of any Marine with a rifle to swat down small uncrewed attackers.\nThe post Anti-Drone 5.56mm Rifle Rounds That Break Into Multiple Projectiles Sought By Marines appeared first on The War Zone.",
+      "date": "Thu, 04 Jun 2026 16:37:30 -0400",
+      "feed_name": "The War Zone",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/The War Zone",
+      "title": "Ukraine Tests New Missile In Hopes Of Leading To Low Cost Patriot Alternative",
+      "url": "https://www.twz.com/land/ukraine-tests-new-missile-in-hopes-of-leading-to-low-cost-patriot-interceptor-alternative",
+      "summary": "As interceptor shortages strain its defenses, Ukraine has a plan to build anti-ballistic missiles that are cheaper and faster to produce than Western types.\nThe post Ukraine Tests New Missile In Hopes Of Leading To Low Cost Patriot Alternative appeared first on The War Zone.",
+      "date": "Thu, 04 Jun 2026 15:30:52 -0400",
+      "feed_name": "The War Zone",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/The War Zone",
+      "title": "Is This A Glimpse Of The Aircraft That Gave Birth To The F-47?",
+      "url": "https://www.twz.com/air/is-this-a-glimpse-of-the-aircraft-that-gave-birth-to-the-f-47",
+      "summary": "A purported sighting over Area 51 has features that would fit with what we think we know about the F-47, but many questions remain. \nThe post Is This A Glimpse Of The Aircraft That Gave Birth To The F-47? appeared first on The War Zone.",
+      "date": "Thu, 04 Jun 2026 14:30:28 -0400",
+      "feed_name": "The War Zone",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/The War Zone",
+      "title": "New Large Chinese Submarine With Very Unique Feature Just Caught On Satellite Imagery",
+      "url": "https://www.twz.com/sea/new-large-chinese-submarine-with-very-unique-feature-just-caught-on-satellite-imagery",
+      "summary": "The nuclear fast attack-sized mystery submarine could be China's answer to a high-speed interceptor boat.\nThe post New Large Chinese Submarine With Very Unique Feature Just Caught On Satellite Imagery appeared first on The War Zone.",
+      "date": "Wed, 03 Jun 2026 16:16:17 -0400",
+      "feed_name": "The War Zone",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/The War Zone",
+      "title": "The Hidden History of America’s Harrier Jump Jets",
+      "url": "https://www.twz.com/air/the-hidden-history-of-americas-harrier-jump-jets",
+      "summary": "The Harrier story is a transatlantic saga of improvisation, ambition, and unlikely partnership, which helped shape the F-35B.\nThe post The Hidden History of America’s Harrier Jump Jets appeared first on The War Zone.",
+      "date": "Wed, 03 Jun 2026 13:00:12 -0400",
+      "feed_name": "The War Zone",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/The War Zone",
+      "title": "Russia’s Baltic Fleet Successfully Attacked By Ukrainian Drones",
+      "url": "https://www.twz.com/sea/russias-baltic-fleet-successfully-attacked-by-ukrainian-drones",
+      "summary": "Once considered a sanctuary for Russian naval power, the Baltic Fleet is now in the crosshairs of Ukraine’s expanding long-range strike campaign.\nThe post Russia’s Baltic Fleet Successfully Attacked By Ukrainian Drones appeared first on The War Zone.",
+      "date": "Wed, 03 Jun 2026 12:39:19 -0400",
+      "feed_name": "The War Zone",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Military Times",
+      "title": "The US needs drones, not Trump-class battleships, Democrats argue",
+      "url": "https://www.militarytimes.com/news/pentagon-congress/2026/06/04/the-us-needs-drones-not-trump-class-battleships-democrats-argue/",
+      "summary": "Lawmakers struck down a Democratic measure Thursday that would've scrapped $1 billion in defense funding to begin work on the Trump-class battleship.",
+      "date": "Thu, 04 Jun 2026 23:19:21 +0000",
+      "feed_name": "Military Times",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Military Times",
+      "title": "House rejects attempt to get answers about Army flyby of Kid Rock’s mansion",
+      "url": "https://www.militarytimes.com/news/pentagon-congress/2026/06/04/house-rejects-attempt-to-get-answers-about-army-flyby-of-kid-rocks-mansion/",
+      "summary": "Rep. Pat Ryan described the Army flyby as “inappropriate,” “dangerous” and “a massive waste of money. ... Not to mention, it’s in the middle of a war.”",
+      "date": "Thu, 04 Jun 2026 21:12:44 +0000",
+      "feed_name": "Military Times",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Military Times",
+      "title": "Pentagon balks at court order allowing HIV-positive persons to serve",
+      "url": "https://www.militarytimes.com/news/pentagon-congress/2026/06/04/pentagon-balks-at-court-order-allowing-hiv-positive-persons-to-serve/",
+      "summary": "The Pentagon is fighting a court ruling that lifted a ban on potential recruits with controlled HIV from joining the military.",
+      "date": "Thu, 04 Jun 2026 20:12:47 +0000",
+      "feed_name": "Military Times",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Military Times",
+      "title": "Navy fires leadership trio of ship repair facility in Japan",
+      "url": "https://www.militarytimes.com/news/your-navy/2026/06/04/navy-fires-leadership-trio-of-ship-repair-facility-in-japan/",
+      "summary": "The service did not specify the reason for the firings.",
+      "date": "Thu, 04 Jun 2026 16:59:01 +0000",
+      "feed_name": "Military Times",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Military Times",
+      "title": "Navy eliminates regular performance, fitness reports for select paygrades",
+      "url": "https://www.militarytimes.com/news/your-military/2026/06/04/navy-eliminates-regular-performance-fitness-reports-for-select-paygrades/",
+      "summary": "\"Personnel in these paygrades have demonstrated a sustained history of superior performance ... that negate the requirement for annual periodic reporting.\"",
+      "date": "Thu, 04 Jun 2026 16:00:16 +0000",
+      "feed_name": "Military Times",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Military Times",
+      "title": "Navy recognizes USS Carl Vinson with Battle ‘E’ award",
+      "url": "https://www.militarytimes.com/news/your-navy/2026/06/04/navy-recognizes-uss-carl-vinson-with-battle-e-award/",
+      "summary": "The aircraft carrier returned to port in August 2025 after a nine-month deployment covering over 275,000 nautical miles.",
+      "date": "Thu, 04 Jun 2026 15:22:34 +0000",
+      "feed_name": "Military Times",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "rss/Military Times",
+      "title": "Hidden chemical weapons sites emerge in Syria amid fragile security transition",
+      "url": "https://www.militarytimes.com/global/mideast-africa/2026/06/04/hidden-chemical-weapons-sites-emerge-in-syria-amid-fragile-security-transition/",
+      "summary": "Over a decade after Syria agreed to dismantle its arsenal, international inspectors have uncovered scores of previously hidden chemical weapons materials.",
+      "date": "Thu, 04 Jun 2026 15:02:01 +0000",
+      "feed_name": "Military Times",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    }
+  ],
+  "sanctions": [
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-8SREEF6aodrJGQyAywTkGE",
+      "name": "ABD ALLAH MOHAMED RAGAB ABDEL RAHMAN",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-EF5vrJVsqtBrtC2JWYdTvW",
+      "name": "ABDELKADER LAAGOUB",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-2XAfkJ9t2UuWnoRG5EBoYu",
+      "name": "ABDULHAI SALEK",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-7uG8mQjRPD3n3qRvtqpaJj",
+      "name": "ABDULLAH ANSHORI",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-DzKL8PVWm9BtkXXAXCXyvf",
+      "name": "ABU RUSDAN",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-BYiLZjBY7qQ4kgnjVxTUcz",
+      "name": "AKHTAR MOHAMMAD MANSOUR SHAH MOHAMMED",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-8H924sMpeBQ6WhcWPwWxQQ",
+      "name": "AL-BASHAIR TRADING COMPANY, LTD",
+      "schema": "LegalEntity",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-24UMVkuxF3svsAtg55i3Zi",
+      "name": "ALBAHR ALAAHMAR ENERGY FZE",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-9rbvRsjDY4WANyXSjXR37X",
+      "name": "ALFA COMPANY LIMITED FOR INTERNATIONAL TRADING AND MARKETING",
+      "schema": "LegalEntity",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-4sjXgiXRPLpxp2nTMPHQ2s",
+      "name": "AREFULLAH AREF GHAZI MOHAMMAD",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2bein3otDRhfe87u3ZsGxz",
+      "name": "ASAN Nihat",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/un_sc_sanctions",
+      "entity_id": "NK-67MsqQpz2FJVtc5iZKJYHJ",
+      "name": "ATTIQULLAH AKHUND",
+      "schema": "Person",
+      "datasets": "un_sc_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-269FgFWmRnEQYD79aLnKvZ",
+      "name": "AURORATOOLS LIMITED LIABILITY COMPANY",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-27kCkL6ZkA9sQHTR33Hdy7",
+      "name": "AUTO PARTS EAST FZCO",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2HbEwu7mTtP5JEG2gJSwns",
+      "name": "Abderrahim MELHAOUI",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2sJaJRaPJcWUfMbHjTtWcL",
+      "name": "Abdullah Jan Agha",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2tnXEUX8MatnsHoxKuX7AU",
+      "name": "Aghajari Oil & Gas Production Company (AOGPC)",
+      "schema": "Organization",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2mMpw4fhEYmdswP7EQHfMP",
+      "name": "Ahmed Mohamed Zakaria KHALIL",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2snZmvFTaQk48hs2ZRet9d",
+      "name": "Aleksandr MARCHENKO",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-2DQ4pALqrj96E9LmepJzcM",
+      "name": "Alexander Franz Josef Lins",
+      "schema": "Person",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2X8CK6KZKhQb5M3yhWQSRE",
+      "name": "Alexander Matveevich MARKMAN",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-28y6Tj4fTckkqGiUTHMS4k",
+      "name": "Anatoly Anatolyevich BULAVKO",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-24k9PZGKdYTmzHPDJfTUSR",
+      "name": "Angel Daniel BALESTRINI JARAMILLO",
+      "schema": "Person",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2EwBQAzM9Akx3YxZDCYBKM",
+      "name": "Augstākā vēlēšanu padome",
+      "schema": "Organization",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-276gB7L8sFEhctkuEpZsus",
+      "name": "BANK SADERAT PLC",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-23rgYEXa9AHtupZKgS8Tbc",
+      "name": "Bahram Ali SHAYESTEH",
+      "schema": "Person",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-27vgWCH4uAFBmxLHgFFT5T",
+      "name": "Benoil Shipping Inc",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2eSovXusPLMpHzymK3Xvt7",
+      "name": "Berdia PERADZE",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-29QcaMHzMvFWn3ATpveD8Q",
+      "name": "CORPORATIVO FEARFI, S.A. DE C.V.",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-25KkjMMTjetWmgevoAhPXj",
+      "name": "Denis Igorevich Gusev",
+      "schema": "Person",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    }
+  ],
+  "ofac": [
+    {
+      "source": "ofac",
+      "title": "Cuba Designations; Issuance of Cuba-related Frequently Asked Question",
+      "url": "https://ofac.treasury.gov/recent-actions/20260604"
+    },
+    {
+      "source": "ofac",
+      "title": "Sanctions List Updates",
+      "url": "https://ofac.treasury.gov/recent-actions/sanctions-list-updates"
+    },
+    {
+      "source": "ofac",
+      "title": "Counter Terrorism and Iran-related Designations; Democratic Republic of the Congo-related Designations; Issuance of Iran-related Frequently Asked Question",
+      "url": "https://ofac.treasury.gov/recent-actions/20260602"
+    },
+    {
+      "source": "ofac",
+      "title": "Sanctions List Updates",
+      "url": "https://ofac.treasury.gov/recent-actions/sanctions-list-updates"
+    },
+    {
+      "source": "ofac",
+      "title": "Publication of Introduction to OFAC Guide",
+      "url": "https://ofac.treasury.gov/recent-actions/20260601"
+    },
+    {
+      "source": "ofac",
+      "title": "Regulations and Guidance",
+      "url": "https://ofac.treasury.gov/recent-actions/regulations-and-guidance"
+    },
+    {
+      "source": "ofac",
+      "title": "Settlement Agreement between the U.S. Department of the Treasury&#039;s Office of Foreign Assets Control, and FTI Consulting, Inc.",
+      "url": "https://ofac.treasury.gov/recent-actions/20260601_33"
+    },
+    {
+      "source": "ofac",
+      "title": "Enforcement Actions",
+      "url": "https://ofac.treasury.gov/recent-actions/enforcement-actions"
+    },
+    {
+      "source": "ofac",
+      "title": "Counter Terrorism Designations; Issuance of Amended Iran-related Frequently Asked Question",
+      "url": "https://ofac.treasury.gov/recent-actions/20260529"
+    },
+    {
+      "source": "ofac",
+      "title": "Sanctions List Updates",
+      "url": "https://ofac.treasury.gov/recent-actions/sanctions-list-updates"
+    },
+    {
+      "source": "ofac",
+      "title": "Iran-related Designations; Issuance of Russia-related General License and Amended Frequently Asked Questions",
+      "url": "https://ofac.treasury.gov/recent-actions/20260528_33"
+    },
+    {
+      "source": "ofac",
+      "title": "Sanctions List Updates",
+      "url": "https://ofac.treasury.gov/recent-actions/sanctions-list-updates"
+    },
+    {
+      "source": "ofac",
+      "title": "Designations Removals",
+      "url": "https://ofac.treasury.gov/recent-actions/20260528"
+    },
+    {
+      "source": "ofac",
+      "title": "Sanctions List Updates",
+      "url": "https://ofac.treasury.gov/recent-actions/sanctions-list-updates"
+    },
+    {
+      "source": "ofac",
+      "title": "Iran-related Designation; Counter Terrorism Designation",
+      "url": "https://ofac.treasury.gov/recent-actions/20260527_33"
+    }
+  ],
+  "wikipedia": [
+    {
+      "source": "wikipedia",
+      "event_id": "wiki-20260509-Bannu, Khyber Pakhtunkhwa,",
+      "date": "2026-05-09",
+      "event_type": "Suicide Bombing ,",
+      "sub_event_type": "",
+      "actor1": "Ittihad-ul-Mujahideen Pakistan",
+      "actor2": "",
+      "country": "",
+      "country_code": "",
+      "location": "Bannu, Khyber Pakhtunkhwa,",
+      "latitude": "",
+      "longitude": "",
+      "fatalities": 21,
+      "wounded": 5,
+      "notes": "At 8:55 p.m. local time, a suicide bomber and multiple fighters detonated an explosives-laden vehicle near a security post, causing the post to collapse, destroying nearby vehicles and severely damaging nearby civilian areas.",
+      "url": "https://en.wikipedia.org/wiki/List_of_terrorist_incidents_in_2026"
+    },
+    {
+      "source": "wikipedia",
+      "event_id": "wiki-20260524-Quetta, Balochistan ,",
+      "date": "2026-05-24",
+      "event_type": "Suicide Bombing",
+      "sub_event_type": "",
+      "actor1": "Balochistan Liberation Army",
+      "actor2": "",
+      "country": "",
+      "country_code": "",
+      "location": "Quetta, Balochistan ,",
+      "latitude": "",
+      "longitude": "",
+      "fatalities": 30,
+      "wounded": 100,
+      "notes": "Shortly after 8:00 a.m. PKT, an explosives-laden vehicle struck one of the carriages of a shuttle train near Chaman Phatak as the train was travelling through Quetta.",
+      "url": "https://en.wikipedia.org/wiki/List_of_terrorist_incidents_in_2026"
+    },
+    {
+      "source": "wikipedia",
+      "event_id": "wiki-20260528-Winterthur, Switzerland",
+      "date": "2026-05-28",
+      "event_type": "Mass stabbing",
+      "sub_event_type": "",
+      "actor1": "",
+      "actor2": "",
+      "country": "Switzerland",
+      "country_code": "",
+      "location": "Winterthur, Switzerland",
+      "latitude": "",
+      "longitude": "",
+      "fatalities": 0,
+      "wounded": 3,
+      "notes": "An individual with a known history of mental issues and support of Islamic State stabbed and injured three people at the Winterthur railway station while shouting Allahu Akbar. The Zurich canton police described the incident as an act of terrorism.",
+      "url": "https://en.wikipedia.org/wiki/List_of_terrorist_incidents_in_2026"
+    }
+  ],
+  "nctc": [],
+  "collected_at": "2026-06-05T09:49:28.428502",
+  "event_clusters": [
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "U.S. hails Tinubu’s counterterrorism efforts, confirms joint anti-ISIS operation with Nigeria - Peoples Gazette Nigeria",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOWXVCUkM3alBFZUE0RGdtbmdWTllPQ3Fzd2I2YUpCQzJjVVp6a0U1OXlTUC1FR3ZPRnBFTHZNcDA4Qk5Ga0xNMXFORFlvaDJkcVE0MWxPUm0xNGc5cDRrT1g3VWNYNkRVMTBFdTRRMEtoOENUSmVuam84bjd3Y2tyMUN3ektza3N2MVFsUGhZVlU4Z3dhZTJzTEVXbWk3MmlDUXNUcGJsWlM2N0VCdTNzWks2Zkk?oc=5",
+      "summary": "U.S. hails Tinubu’s counterterrorism efforts, confirms joint anti-ISIS operation with Nigeria&nbsp;&nbsp;Peoples Gazette Nigeria",
+      "date": "Thu, 04 Jun 2026 13:13:13 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 2,
+      "articles": [
+        "U.S. hails Tinubu’s counterterrorism efforts, confirms joint anti-ISIS operation with Nigeria - Peoples Gazette Nigeria",
+        "Rubio highlights US-Nigeria counterterrorism co-operation - The Guardian Nigeria News"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "NG"
+      ],
+      "total_sources": 2,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 7
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "Calls for unity nine years on from London Bridge terror attacks - BBC",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9OX2FMYXBPRlRMWmc4ZkRrRzVXVEs1Wk5WaHRQQzRNaWZnYXNNNjFnRkNtU21mRV9VMXZwQTRuMUpnT1BxSzN6S0I1aWh1VUFxMkNDWUY5NVlYQQ?oc=5",
+      "summary": "Calls for unity nine years on from London Bridge terror attacks&nbsp;&nbsp;BBC",
+      "date": "Wed, 03 Jun 2026 18:53:28 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "Calls for unity nine years on from London Bridge terror attacks - BBC"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "GB"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [
+        {
+          "event_code": "190",
+          "country": "GB",
+          "location": "UKF2, UK",
+          "coords": [
+            "51.0833",
+            "-1.16667"
+          ],
+          "mentions": 1423,
+          "tone": -7.35136683009197,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        }
+      ],
+      "gdelt_count": 1,
+      "avg_media_tone": -7.35,
+      "tone_label": "매우 적대적 (Strongly Hostile)",
+      "importance_score": 6
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "‘Squad’-backed NJ Democrat who volunteered with Al Qaeda-linked group wins primary to replace Rep. Bonnie Watson Coleman - New York Post",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNUUhkUlBHb3lWTW1jSmJZN1o3TEdNWVNTVnoxelE2WkJmRWJxZHZScU5WSXhELTFKTGdPZ3NBeTZNekJhQVhIM0oybWxtQ3h1TnVFd0NLc1k1MzcxVWdZaUFpOTh0ZTEtU0dPc0VKamJqeURiekRBT1ZfcGJJT3h4eklNdVVnRFVyQVRma2VQWXVlQVAwbGp3eWhVWFFJS2RMODk1Zy1PYjNpR1pFdUliTFdZaWRSd0t4ejlwTDh4MldqNUlnQWc?oc=5",
+      "summary": "‘Squad’-backed NJ Democrat who volunteered with Al Qaeda-linked group wins primary to replace Rep. Bonnie Watson Coleman&nbsp;&nbsp;New York Post",
+      "date": "Wed, 03 Jun 2026 01:47:00 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "‘Squad’-backed NJ Democrat who volunteered with Al Qaeda-linked group wins primary to replace Rep. Bonnie Watson Coleman - New York Post"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "US"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USTX, US",
+          "coords": [
+            "31.106",
+            "-97.6475"
+          ],
+          "mentions": 713,
+          "tone": -10.8988503702838,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        }
+      ],
+      "gdelt_count": 1,
+      "avg_media_tone": -10.9,
+      "tone_label": "매우 적대적 (Strongly Hostile)",
+      "importance_score": 6
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "Drop-bomb Attack Targeting School: Terrorists launched drop-bomb attack targeting school - Myanmar International TV",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRmVodXJnVFFnQmJnYVBxTDd3MG9udkQ3TzVMSjZ5WnJtTlZSTWhOSHJPVHBoNm9CM2llRFRpRTNjRDZHQjA5aUVDOG03c0Q0cDU1R3FiYU92b1RzM3hWSzh0dTl6Z216MG44TjZVcThSLVNERUFoTE8yN1ZPZ1ZnaTkycDlMNTB5dUdac3hwVHVTenZ4c210R0M1RU5qbGdCWU9FWHB0cGs0SEtzaEtEZ3Q3c0x0VkN2elhF?oc=5",
+      "summary": "Drop-bomb Attack Targeting School: Terrorists launched drop-bomb attack targeting school&nbsp;&nbsp;Myanmar International TV",
+      "date": "Fri, 05 Jun 2026 04:04:33 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "Drop-bomb Attack Targeting School: Terrorists launched drop-bomb attack targeting school - Myanmar International TV"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "MM"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 4
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "'Some kind of apocalypse': A Kyiv resident recalls terror of Russian attack - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQTGFMYktFT0VXSmtnU2tqTzRRVlBIVHFLOFhPZmZzbC0tZF9mTjBKRUVjRUw1aWVteW1KdzhWT3RRRDU5NkcwSU12TklCcFZOZThncUdtbkpSZUFfRWRwa2F0bklqOXpGdk45R0xTeUxaNVI4Y1A2cVdTUzNmU3J3MmxfQjJaZ3M2VmxZSENNdGRxcnZDeVRSNlltdGVxRU5fS0VIN003V2xiWDZJLXBKNGhtNzdadU5IZ3YwR015OGdNaEliYkE?oc=5",
+      "summary": "'Some kind of apocalypse': A Kyiv resident recalls terror of Russian attack&nbsp;&nbsp;Reuters",
+      "date": "Tue, 02 Jun 2026 13:41:39 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "'Some kind of apocalypse': A Kyiv resident recalls terror of Russian attack - Reuters"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "UA"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 4
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Mali junta offers $3.5M reward for Sahel al-Qaeda leader - DW",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBlcVZMaGE4b1J3OFNSa3NaYkhMUmx6UXNFQTVUTWRITHVqd1p4alRmVFZwSVpQVHowUkxSMl9abXhvdWYwWm1MRmhMeVlDenBvTUo0a0dLUkZwSGVBOU9WZ0V4R1BxR1E4OHfSAWpBVV95cUxNTG94aGlzdWNXZWtnWlJCMnJVc2RXVzhFM1VHRWtIV2RzVVZ1Wkx0Z3NUWl81M3lDTjkxZXl4X2VxU2R5bDJSNnZLajZLbDloNmNfamZlNjFGX21OdHFrT0U5OG90ODdwUEFn?oc=5",
+      "summary": "Mali junta offers $3.5M reward for Sahel al-Qaeda leader&nbsp;&nbsp;DW",
+      "date": "Fri, 05 Jun 2026 03:44:43 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "Mali junta offers $3.5M reward for Sahel al-Qaeda leader - DW"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "ML"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 4
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "US Lauds Nigeria Counterterrorism Cooperation, Reveals Joint Strike on Senior ISIS Leader - TVC News",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxObW1iMFhCbzJJc2g2SjRaTTR0Mm1FbmlYUHJoeGI5X0NWOUhEaFYxUXVnZzlkbjd1TnRXcUJqdVV3U3NVUVdwQWdoYlh6UnlyUlhkRGdOZXlqOXdaTGhUTHJfTWZOMDVwQkNjelFyaFhrTVFBLWpJbkU4bjFweE1hRnJiSDVNMlY0d3MtS1I2NHVndzhoZktlZjBTTEJDbHY0SmVoNThQNmpOc1RydDBNdDhn?oc=5",
+      "summary": "US Lauds Nigeria Counterterrorism Cooperation, Reveals Joint Strike on Senior ISIS Leader&nbsp;&nbsp;TVC News",
+      "date": "Thu, 04 Jun 2026 13:14:00 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "US Lauds Nigeria Counterterrorism Cooperation, Reveals Joint Strike on Senior ISIS Leader - TVC News"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "NG"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 4
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "Italian Police Arrest ISIS-Inspired Moroccan Immigrant Intent on Perpetrating Car Attack - Middle East Forum",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNSnFpY2RteFFELU9ISTQ3Skwtd19kU0F4TG5KRERkT2UzNWZ6MkQ2dlF5NkdlNWhtcEJ5VGRYekhuVkh5aFVTVUZMbm1MaHNVNEhFT0NBdWR2dkhtV0VIVFBmNlVsUFpqQ2t3dm9aZlZsNmY5V1hnRGN0elcwLUZNeExYTkdPbjYybk8yUG5wdThxRFJtMGVWMTNMQWNEbGJSLW1LdzRqdTVydzNxT01PRDFoR1lIbWFodEJQWW5kTkloNFU?oc=5",
+      "summary": "Italian Police Arrest ISIS-Inspired Moroccan Immigrant Intent on Perpetrating Car Attack&nbsp;&nbsp;Middle East Forum",
+      "date": "Thu, 04 Jun 2026 16:07:05 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "Italian Police Arrest ISIS-Inspired Moroccan Immigrant Intent on Perpetrating Car Attack - Middle East Forum"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 3
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "The San Diego Attack: A Wake-Up Call for Online Radicalization Prevention - Homeland Security Today",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQcnVOM1hZUWRRSmp1RnYybXJSSXFPVm9pbWl0Qk1GbkNMTW42U0VsSVUwZ1g0QzZ3X1luNWhGLXRMYlhPXzBhbFpxdnRXYklmcHpVNVI4ZjVwVGxyT0FjMko0RnZ5d0tVbk5UOG1pT1pmSzNrOTlQV3NfWVlTYnhJaWFuLXBwM1ZybDFtSGRCcUpmckFyNkdoMDAxa0I3dklrUm1xa2JKNTVDM01WZmMwVkRGTDllYVhHTnlQTjdGeF9Ka2x5YkJKUXZrb1loR05XamVEbg?oc=5",
+      "summary": "The San Diego Attack: A Wake-Up Call for Online Radicalization Prevention&nbsp;&nbsp;Homeland Security Today",
+      "date": "Wed, 03 Jun 2026 08:33:03 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "The San Diego Attack: A Wake-Up Call for Online Radicalization Prevention - Homeland Security Today"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 3
+    },
+    {
+      "source": "google_news",
+      "query": "terrorist plot foiled",
+      "title": "Authorities Foil Alleged ISIS-Inspired Attack in Northern Italy - The European Conservative",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPSWM1ckp0RHgxTVN4ZjM5cjF2U0dTZ0doRlNkQlBUNWlydTlTOERlR3l5SnhSOVpZMnkxNlRiWno2aFlvMWxtR1dtSkk3ZXdRczlwLVZzTm5sTE50eDE3bUd3X2ZKeUlOT1l3dXA3MUVaNndYVGsyUEtFc2YxMjZvMU41VnF0QjJ6YjdMWmowcDh0NDNwUzJDeXhQTGYxdDhrRS1ReDlCOXVnRjJPREdlUA?oc=5",
+      "summary": "Authorities Foil Alleged ISIS-Inspired Attack in Northern Italy&nbsp;&nbsp;The European Conservative",
+      "date": "Tue, 02 Jun 2026 17:52:02 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "Authorities Foil Alleged ISIS-Inspired Attack in Northern Italy - The European Conservative"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 3
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Accused al-Qaeda sleeper agent Mohamed Harkat wins another chance at staying in Canada - National Post",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZUdxbDRQdGtVZnZ3TEEwUWI2WW81RXNtajZTSGtQRVVRYnYwbzJUYlJ6dkFwRjFfU3docDRyZGxyOTBmMjRzN1BrRjhZdm9RNFcyS0F2UGVhTkVfSGFHR1pDdmFLUGgzdUhibGlPOXU0UFFaeUVIZmFxeTlRaUFJSE43cnNHWDNhVXRna1BrcVpneFhwOEJmalhQMDFyajF0dTVHXzNJYlhod05C?oc=5",
+      "summary": "Accused al-Qaeda sleeper agent Mohamed Harkat wins another chance at staying in Canada&nbsp;&nbsp;National Post",
+      "date": "Fri, 05 Jun 2026 01:05:37 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "Accused al-Qaeda sleeper agent Mohamed Harkat wins another chance at staying in Canada - National Post"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 3
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "Pentagon hires convicted Jan. 6 rioter for counterterrorism post - The Hill",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQdVNVNTZodU9yTzlaUk95YmctMFJ3ZFIwSzlNLUowMGs1TW5tZ1V2ZU91WFZPVURWc1hjSDlyXzdYNGNBaHMtSm8zdlhZMlFCX1dmTTZqSUFtc3BQQ3dlT254TXBDN1R0a2ZBVDBFYVZ1TEsyN1RfQlhDODV3U1hJZjhEVHFGWlAzZG9kaE0yWGdFZDDSAZgBQVVfeXFMT3ppcU1tX0hRZEpKVXNZTVZNeDBndFZuNDJRZXF1OGk4c2tyemtzaEc2Yjd2UXRKVkh2dTBITVM0Mmd1aHpwWDR0N0xDMTZXc2MyX3Y0bmVFQjh0SERxOWVobEJLVUcwRVZ4ZERTLU5WUnBPTHFrN0xNOGVJLW5XUmphaG1WWjZEMjBHTjlsbDA0V3dZYXVCbHc?oc=5",
+      "summary": "Pentagon hires convicted Jan. 6 rioter for counterterrorism post&nbsp;&nbsp;The Hill",
+      "date": "Tue, 02 Jun 2026 22:28:00 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "Pentagon hires convicted Jan. 6 rioter for counterterrorism post - The Hill"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 3
+    },
+    {
+      "source": "google_news",
+      "query": "suicide bombing",
+      "title": "Las Vegas trial set for man accused of threatening to take out Trump, commit suicide bombing, in viral video - KLAS 8 News Now",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNZ3ZaQjVaM1lkdGFBcDRRVm13VDhMa2FGanpNV3ZrbnBmVUt1Y09xMXZ0cjlvSFRqcVo1dVBUVXlHSG82RERoVFdZWVNSNW5QMF9GcndGRlE3dWZTdE5jN0xscFBUM2JySXAyQTBiVU9OZnp2X0ZuYVFzeFE0b2JUNlJNVGNROUk2NnpKSnhSeXZkQmRuNWdMQUtYczBRc0RiME9IV0R6YzEzeVduQjBUTlp6dnlDd0pfWkZxZi1NUmxRdzZfV1d5OE9HWWs1LW5EZEhjaVg5V2hiUU5XNmxF0gHkAUFVX3lxTE5BX1ZDbjgyMUIzYVEtSURTZlNfc3hNdUFiWTZ4MEttS0g4YmxKODlyVE9ZaGR5RU55SW9LWGRzLVNtR0RLa1FmZUdCM193U1dZeE9BMEpud3oxUjBMYVAwSG9NSjk2dWppSkx6WGZGMUZwc19PaklRY3BrdE9xcFZSTTAzQm9zS0R5N21BaWlocTFIcGFQOVBDcnNFMl85TVozdURQamlrS2EwRTFXMHQtb08zZlRSbUd6cFZ0c1A5UVlwRjI4SWdpM1lWRWRkM2lITVhuMEFyNE5XT1pMR19ycHdWdg?oc=5",
+      "summary": "Las Vegas trial set for man accused of threatening to take out Trump, commit suicide bombing, in viral video&nbsp;&nbsp;KLAS 8 News Now",
+      "date": "Wed, 03 Jun 2026 19:37:25 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "cluster_size": 1,
+      "articles": [
+        "Las Vegas trial set for man accused of threatening to take out Trump, commit suicide bombing, in viral video - KLAS 8 News Now"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 3
+    }
+  ],
+  "meta": {
+    "collected_at": "2026-06-05T09:49:28.428502",
+    "total": 142,
+    "enrichment": {
+      "total_enriched": 50,
+      "org_matches": 0,
+      "country_matches": 46,
+      "zone_matches": 36
+    }
+  }
+}
