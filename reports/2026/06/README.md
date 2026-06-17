@@ -4,4 +4,4 @@
 |------|---------|
 | [week-23](week-23/README.md) | 8 |
 | [week-24](week-24/README.md) | 8 |
-| [week-25](week-25/README.md) | 2 |
+| [week-25](week-25/README.md) | 3 |
