@@ -97,6 +97,24 @@ _KO_TO_EN = {
     "방글라데시": "Bangladesh", "스리랑카": "Sri Lanka",
 }
 
+# 국가명 한→ISO2
+_KO_TO_ISO = {
+    "나이지리아": "NG", "파키스탄": "PK", "아프가니스탄": "AF",
+    "이라크": "IQ", "시리아": "SY", "소말리아": "SO", "말리": "ML",
+    "부르키나파소": "BF", "수단": "SD", "콩고": "CD",
+    "이스라엘": "IL", "팔레스타인": "PS",
+    "예멘": "YE", "레바논": "LB", "터키": "TR", "이란": "IR",
+    "이집트": "EG", "리비아": "LY", "튀니지": "TN",
+    "모잠비크": "MZ", "에티오피아": "ET", "카메룬": "CM",
+    "차드": "TD", "니제르": "NE", "케냐": "KE",
+    "인도": "IN", "미얀마": "MM", "필리핀": "PH",
+    "인도네시아": "ID", "태국": "TH",
+    "러시아": "RU", "우크라이나": "UA", "프랑스": "FR",
+    "영국": "GB", "독일": "DE", "벨기에": "BE",
+    "미국": "US", "콜롬비아": "CO", "멕시코": "MX",
+    "방글라데시": "BD", "스리랑카": "LK",
+}
+
 
 def _download_pdf(url: str) -> str:
     """PDF 다운로드 → 텍스트 추출"""
@@ -160,7 +178,12 @@ def _parse_daily_pdf(text: str, year: int = None) -> dict:
         day = date_parts[1].zfill(2)
         incident_date = f"{year}-{mon}-{day}"
 
-        country_ko = m.group(2)
+        # trailing punctuation 제거 (PDF 파싱 후 콤마/점이 붙어있는 경우)
+        country_ko = m.group(2).strip(",.()[]:;")
+        # 알 수 없는 매핑 = PDF 추출 실패(모지바케) 또는 단체명. 스킵.
+        iso = _KO_TO_ISO.get(country_ko, "")
+        if not iso:
+            continue
         country_en = _KO_TO_EN.get(country_ko, country_ko)
 
         # 한국어 설명 → 영어 변환
@@ -171,6 +194,7 @@ def _parse_daily_pdf(text: str, year: int = None) -> dict:
             "source": "nctc",
             "date": incident_date,
             "country": country_en,
+            "country_code": iso,
             "country_ko": country_ko,
             "description": desc_en or desc_ko,  # 변환 실패 시 원본
             "description_ko": desc_ko,           # 원본 보존

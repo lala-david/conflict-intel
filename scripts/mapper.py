@@ -64,7 +64,7 @@ class TerrorMapper:
         return index
 
     def _build_country_index(self) -> dict:
-        """국가명/ISO → 국가 데이터 매핑"""
+        """국가명/ISO/별칭 → 국가 데이터 매핑"""
         index = {}
         regions = self.countries.get("regions", {})
         for region_key, region_data in regions.items():
@@ -79,6 +79,11 @@ class TerrorMapper:
                     index[iso2] = entry
                 if iso3:
                     index[iso3] = entry
+                # aliases (e.g. "Burma" → Myanmar, "DR Congo (Zaire)" → DRC)
+                for alias in country.get("aliases", []) or []:
+                    a = (alias or "").lower().strip()
+                    if a and a not in index:
+                        index[a] = entry
         return index
 
     def _build_alias_index(self) -> dict:
@@ -397,6 +402,21 @@ class TerrorMapper:
                     "original_subtype": sub_event_type,
                 }
 
+        # 키워드 매칭 실패 — 폭력/테러 의미 시그널 있는지 폴백 검사
+        violence_signals = (
+            "kill", "dead", "massacre", "slain", "casualt", "wounded",
+            "attack", "militant", "extremist", "insurgent", "guerrilla",
+            "terror", "jihad", "violence",
+        )
+        if any(s in text for s in violence_signals):
+            cat_data = attack_types.get("armed_violence", {})
+            return {
+                "category": "armed_violence",
+                "category_name": cat_data.get("name", "armed_violence"),
+                "original_type": event_type,
+                "original_subtype": sub_event_type,
+            }
+
         return {"category": "unknown", "category_name": "Unclassified", "original_type": event_type}
 
     # ─────────────────────────────────────
@@ -447,10 +467,27 @@ class TerrorMapper:
         enriched = {}
         stats = {"total_enriched": 0, "org_matches": 0, "country_matches": 0, "zone_matches": 0}
 
-        for source_key in ["ucdp", "gdelt"]:
+        # 모든 이벤트성 소스에 enrichment 적용 (sanctions는 entity 형식이라 제외)
+        for source_key in ["ucdp", "gdelt", "wikipedia", "expert_rss", "google_news", "nctc", "ofac"]:
             events = data.get(source_key, [])
             enriched_events = []
             for event in events:
+                # RSS/news 항목에 country가 비어있으면 텍스트+URL 도메인에서 추정
+                if source_key in ("expert_rss", "google_news") and not event.get("country"):
+                    text = (event.get("title", "") or "") + " | " + (event.get("summary", "") or "")
+                    iso = self._guess_iso_from_text(text, event.get("url", ""))
+                    if iso:
+                        country_data = self.match_country(iso)
+                        if country_data:
+                            event["country"] = country_data.get("name", "")
+                            event["country_code"] = country_data.get("iso", iso)
+
+                # wikipedia: country 필드에 영어명이 있으니 ISO도 채움
+                if source_key == "wikipedia" and event.get("country") and not event.get("country_code"):
+                    cd = self.match_country(event["country"])
+                    if cd:
+                        event["country_code"] = cd.get("iso", "")
+
                 e = self.enrich_event(event)
                 enrichment = e.get("_enrichment", {})
                 if enrichment.get("actor1_org") or enrichment.get("actor2_org"):
@@ -470,6 +507,36 @@ class TerrorMapper:
 
         enriched["_enrichment_stats"] = stats
         return enriched
+
+    def _guess_iso_from_text(self, text: str, url: str = "") -> str:
+        """뉴스/RSS 본문에서 가장 많이 언급된 국가의 ISO 코드 반환.
+
+        - 다국가 기사에서 set 해시 순서로 잘못 골라지는 문제 방지.
+        - 제목(`|` 앞부분)은 본문보다 3배 가중치.
+        - URL 도메인이 알려진 자국 매체면 +5 (강한 시그널).
+        - 본문에서 한 건도 못 찾으면 도메인만으로 결정.
+        """
+        if not text and not url:
+            return ""
+        import re
+        from event_linker import CITY_TO_COUNTRY, _domain_country
+        title, _, body = text.partition("|") if text else ("", "", "")
+        counts: dict[str, int] = {}
+        for src, weight in ((title.lower(), 3), (body.lower(), 1)):
+            if not src:
+                continue
+            for city, iso in CITY_TO_COUNTRY.items():
+                if len(city) <= 2:
+                    continue
+                n = len(re.findall(r'\b' + re.escape(city) + r'\b', src))
+                if n:
+                    counts[iso] = counts.get(iso, 0) + n * weight
+        domain_iso = _domain_country(url) if url else ""
+        if domain_iso:
+            counts[domain_iso] = counts.get(domain_iso, 0) + 5
+        if not counts:
+            return ""
+        return max(counts.items(), key=lambda kv: kv[1])[0]
 
     # ─────────────────────────────────────
     # 유틸리티

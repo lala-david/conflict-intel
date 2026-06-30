@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { getDb } from "@/lib/db";
+import { queryAll } from "@/lib/db";
 import { formatNumber } from "@/lib/utils";
 
 export const revalidate = 3600;
@@ -19,11 +19,9 @@ interface WeekData {
   countries: number;
 }
 
-function getRecentWeeks(limit = 12): WeekData[] {
-  const db = getDb();
-  return db
-    .prepare(
-      `SELECT
+async function getRecentWeeks(limit = 12): Promise<WeekData[]> {
+  return await queryAll<WeekData>(
+    `SELECT
          strftime('%Y-W%W', date) as week,
          MIN(date) as start,
          MAX(date) as end,
@@ -34,13 +32,13 @@ function getRecentWeeks(limit = 12): WeekData[] {
        WHERE is_aggregate = 0 AND date >= date('now', '-90 days')
        GROUP BY week
        ORDER BY week DESC
-       LIMIT ?`
-    )
-    .all(limit) as WeekData[];
+       LIMIT ?`,
+    [limit]
+  );
 }
 
-export default function WeeklyPage() {
-  const weeks = getRecentWeeks(12);
+export default async function WeeklyPage() {
+  const weeks = await getRecentWeeks(12);
 
   return (
     <>

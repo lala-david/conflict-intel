@@ -13,12 +13,12 @@ export async function GET(
 ) {
   try {
     const name = decodeURIComponent(params.name);
-    const country = getCountryByName(name);
+    const country = await getCountryByName(name);
     if (!country) {
       return NextResponse.json({ error: "Country not found" }, { status: 404 });
     }
-    const events = getCountryEvents(name, 50);
-    const timeline = getCountryTimeline(name);
+    const events = await getCountryEvents(name, 50);
+    const timeline = await getCountryTimeline(name);
     return NextResponse.json(
       { country, events, timeline },
       {

@@ -1,29 +1,43 @@
 /**
- * Database client — reads from the existing terror.db SQLite file at project root
+ * Database client — libSQL (Turso in production, local SQLite file in dev).
  *
- * Uses better-sqlite3 for synchronous reads (fast for read-only queries in RSC).
- * For production deployment on Vercel, this will be replaced with Turso (libSQL).
+ * - Production (Cloudflare Pages): set TURSO_DATABASE_URL + TURSO_AUTH_TOKEN.
+ * - Local dev: falls back to the pipeline's terror.db file one level up from web/.
+ *
+ * libSQL is async over the network, so every query helper returns a Promise.
  */
-import Database from "better-sqlite3";
+import { createClient, type Client, type InArgs } from "@libsql/client";
 import path from "path";
 
-// Path to the pipeline's SQLite database (one level up from web/)
-const DB_PATH = path.resolve(process.cwd(), "..", "data", "terror.db");
+let _client: Client | null = null;
 
-let _db: Database.Database | null = null;
+function getClient(): Client {
+  if (_client) return _client;
 
-export function getDb(): Database.Database {
-  if (_db) return _db;
-  _db = new Database(DB_PATH, { readonly: true, fileMustExist: true });
-  return _db;
+  const url = process.env.TURSO_DATABASE_URL;
+  const authToken = process.env.TURSO_AUTH_TOKEN;
+
+  if (url) {
+    _client = createClient({ url, authToken });
+  } else {
+    // Local fallback: read the pipeline's SQLite file directly.
+    const dbPath = path
+      .resolve(process.cwd(), "..", "data", "terror.db")
+      .split(path.sep)
+      .join("/");
+    _client = createClient({ url: "file:" + dbPath });
+  }
+  return _client;
 }
 
-// Close on process exit
-if (typeof process !== "undefined") {
-  process.on("beforeExit", () => {
-    if (_db) {
-      _db.close();
-      _db = null;
-    }
-  });
+/** Run a query and return all rows, cast to T. */
+export async function queryAll<T = any>(sql: string, args: InArgs = []): Promise<T[]> {
+  const rs = await getClient().execute({ sql, args });
+  return rs.rows as unknown as T[];
+}
+
+/** Run a query and return the first row (or null), cast to T. */
+export async function queryOne<T = any>(sql: string, args: InArgs = []): Promise<T | null> {
+  const rs = await getClient().execute({ sql, args });
+  return (rs.rows[0] as unknown as T) ?? null;
 }

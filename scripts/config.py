@@ -72,7 +72,6 @@ RSS_FEEDS = {
     "Premium Times NG": "https://www.premiumtimesng.com/feed",
     "Daily Star BD": "https://www.thedailystar.net/rss.xml",
     "Arab News": "https://www.arabnews.com/rss/main",
-    "Anadolu Agency": "https://www.aa.com.tr/en/rss/default?cat=world",
     "France 24": "https://www.france24.com/en/rss",
     # Tier 4 — 분석/국제뉴스
     "Al-Monitor": "https://www.al-monitor.com/rss",
@@ -96,7 +95,6 @@ RSS_FEEDS = {
     "NYT World": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
     "ABC News International": "https://abcnews.go.com/abcnews/internationalheadlines",
     "UN Peace and Security": "https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml",
-    "Homeland Security Newswire": "https://www.homelandsecuritynewswire.com/rss.xml",
 }
 
 # Tier 1-2는 전문가 소스로 키워드 필터 면제

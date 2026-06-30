@@ -1,14 +1,12 @@
-import { getDb } from "@/lib/db";
+import { queryAll } from "@/lib/db";
 import { formatNumber, formatDate, getCategoryMeta } from "@/lib/utils";
 import type { Event } from "@/lib/types";
 
 export const revalidate = 1800;
 
-export default function FeedEmbed() {
-  const db = getDb();
-  const events = db
-    .prepare(
-      `SELECT id, source, date, event_type, actor1, actor2, country, country_code,
+export default async function FeedEmbed() {
+  const events = await queryAll<Event>(
+    `SELECT id, source, date, event_type, actor1, actor2, country, country_code,
               admin1, location, latitude, longitude, fatalities,
               deaths_civilians, fatalities_low, fatalities_high,
               category, category_confidence, is_aggregate, notes, source_url
@@ -18,8 +16,7 @@ export default function FeedEmbed() {
           AND (fatalities > 0 OR category = 'terrorism')
         ORDER BY date DESC, fatalities DESC
         LIMIT 7`
-    )
-    .all() as Event[];
+  );
 
   return (
     <div

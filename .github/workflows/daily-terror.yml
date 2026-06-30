@@ -1,8 +1,20 @@
 name: Daily Terror Intelligence
 
+# 무료 클라우드 자동화 (로컬 Windows 예약작업 대체).
+#   - 매일 09:00 KST(00:00 UTC) 자동 수집
+#   - DB(276MB, gitignore)는 GitHub Release 자산으로 영속화: 시작 시 다운로드 → 종료 시 재업로드
+#   - 수집/통계 후 변경분을 Turso(클라우드 SQLite)에 동기화 → Cloudflare Pages 사이트가 읽음
+#   - 리포트(.md)는 평소처럼 repo 에 커밋
+#
+# 필요한 repo Secrets:
+#   OPENAI_API_KEY, UCDP_TOKEN            — 수집/BLUF
+#   TURSO_DATABASE_URL                    — 예: libsql://terror-xxxx.turso.io
+#   TURSO_API_TOKEN                       — turso CLI 인증 (turso auth api-tokens create)
+# 필요한 repo Variables:
+#   TURSO_DB_NAME                         — Turso DB 이름 (예: terror)
 on:
   schedule:
-    - cron: '0 6 * * *'
+    - cron: "0 0 * * *"      # 매일 00:00 UTC = 09:00 KST
   workflow_dispatch:
 
 concurrency:
@@ -13,23 +25,46 @@ permissions:
   contents: write
   issues: write
 
+env:
+  DB_RELEASE_TAG: db-latest         # terror.db 를 보관하는 Release 태그
+
 jobs:
   research:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
       - run: pip install -r requirements.txt
+
+      - name: Install Turso CLI
+        run: |
+          curl -sSfL https://get.tur.so/install.sh | bash
+          echo "$HOME/.turso" >> $GITHUB_PATH
+
+      # ─── DB 영속화: Release 에서 이전 terror.db 복원 (없으면 새로 시작) ───
+      - name: Restore terror.db from Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p data
+          if gh release download "$DB_RELEASE_TAG" --pattern terror.db --dir data 2>/dev/null; then
+            echo "Restored terror.db ($(du -h data/terror.db | cut -f1))"
+          else
+            echo "No existing DB release — pipeline will create a fresh terror.db"
+          fi
+
       - name: Run daily terror intelligence
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           UCDP_TOKEN: ${{ secrets.UCDP_TOKEN }}
         run: python scripts/daily_terror.py
+
       - name: Weekly summary (Sundays only)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -38,22 +73,37 @@ jobs:
           if [ "$(date +%u)" = "7" ]; then
             python scripts/weekly_summary.py
           fi
+
       - name: Compute dashboard stats
         run: python scripts/compute_stats.py
-      - name: Send ThreatPulse to Telegram
+
+      # ─── 변경분을 Turso 에 동기화 (사이트가 읽는 DB) ───
+      - name: Sync to Turso
+        if: ${{ vars.TURSO_DB_NAME != '' }}
         env:
-          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
-          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
-          TELEGRAM_PHONE: ${{ secrets.TELEGRAM_PHONE }}
-          THREAT_PULSE_CHANNEL: ${{ secrets.THREAT_PULSE_CHANNEL }}
-        run: python scripts/threat_pulse.py || echo "ThreatPulse send failed (non-blocking)"
-        continue-on-error: true
-      - name: Commit and push
+          TURSO_API_TOKEN: ${{ secrets.TURSO_API_TOKEN }}
+        run: |
+          python scripts/export_for_turso.py > turso_sync.sql
+          echo "Generated $(wc -l < turso_sync.sql) lines of sync SQL"
+          turso db shell "${{ vars.TURSO_DB_NAME }}" < turso_sync.sql
+          rm -f turso_sync.sql
+
+      # ─── 갱신된 terror.db 를 Release 로 재업로드 (다음 실행이 이어받음) ───
+      - name: Save terror.db to Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$DB_RELEASE_TAG" >/dev/null 2>&1 || \
+            gh release create "$DB_RELEASE_TAG" --title "DB snapshot" --notes "Latest terror.db (auto-updated daily)"
+          gh release upload "$DB_RELEASE_TAG" data/terror.db --clobber
+
+      - name: Commit reports
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add reports/ data/classifications.json data/conflict_zones.json data/countries.json data/organizations.json data/.sanctions_cache.json data/known_ucdp_ids.json
           git diff --staged --quiet || (git commit -m "intel: $(date +%Y-%m-%d) daily brief" && git push)
+
       - name: Alert on failure
         if: failure()
         uses: actions/github-script@v7

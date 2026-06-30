@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
+import { queryAll, queryOne } from "@/lib/db";
 import type { Event } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -38,24 +38,23 @@ export async function GET(req: NextRequest) {
     }
 
     const where = conditions.join(" AND ");
-    const db = getDb();
 
-    const total = (db
-      .prepare(`SELECT COUNT(*) as c FROM events WHERE ${where}`)
-      .get(...values) as { c: number }).c;
+    const total = ((await queryOne<{ c: number }>(
+      `SELECT COUNT(*) as c FROM events WHERE ${where}`,
+      [...values]
+    )) as { c: number }).c;
 
-    const events = db
-      .prepare(
-        `SELECT id, source, date, event_type, actor1, actor2, country, country_code,
+    const events = await queryAll<Event>(
+      `SELECT id, source, date, event_type, actor1, actor2, country, country_code,
                 admin1, location, latitude, longitude, fatalities,
                 deaths_civilians, fatalities_low, fatalities_high,
                 category, category_confidence, is_aggregate, notes, source_url
            FROM events
           WHERE ${where}
           ORDER BY date DESC, fatalities DESC
-          LIMIT ? OFFSET ?`
-      )
-      .all(...values, limit, offset) as Event[];
+          LIMIT ? OFFSET ?`,
+      [...values, limit, offset]
+    );
 
     return NextResponse.json(
       { total, count: events.length, limit, offset, events },

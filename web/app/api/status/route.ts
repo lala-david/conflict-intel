@@ -1,16 +1,18 @@
 import { NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
+import { queryAll, queryOne } from "@/lib/db";
 
 export const revalidate = 600;
 
 export async function GET() {
   try {
-    const db = getDb();
-
     // Per-source freshness
-    const sources = db
-      .prepare(
-        `SELECT source,
+    const sources = await queryAll<{
+      source: string;
+      latest_event: string;
+      last_collected: string;
+      total_events: number;
+    }>(
+      `SELECT source,
                 MAX(date) as latest_event,
                 MAX(collected_at) as last_collected,
                 COUNT(*) as total_events
@@ -18,13 +20,7 @@ export async function GET() {
           WHERE is_aggregate = 0
           GROUP BY source
           ORDER BY MAX(collected_at) DESC`
-      )
-      .all() as {
-      source: string;
-      latest_event: string;
-      last_collected: string;
-      total_events: number;
-    }[];
+    );
 
     // Status: degraded if last_collected > 2 days old
     const now = Date.now();
@@ -39,9 +35,9 @@ export async function GET() {
     });
 
     // Global stats freshness
-    const globalStats = db
-      .prepare(`SELECT updated_at FROM global_stats WHERE id = 1`)
-      .get() as { updated_at: string } | undefined;
+    const globalStats = await queryOne<{ updated_at: string }>(
+      `SELECT updated_at FROM global_stats WHERE id = 1`
+    );
 
     const okCount = sourceStatus.filter((s) => s.status === "OK").length;
     const overallStatus =

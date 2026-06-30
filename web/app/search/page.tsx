@@ -15,11 +15,11 @@ interface Props {
   searchParams: { q?: string };
 }
 
-export default function SearchPage({ searchParams }: Props) {
+export default async function SearchPage({ searchParams }: Props) {
   const q = searchParams.q || "";
-  const countries = q ? searchCountries(q) : [];
-  const orgs = q ? searchOrgs(q) : [];
-  const events = q ? searchEvents(q, 15) : [];
+  const countries = q ? await searchCountries(q) : [];
+  const orgs = q ? await searchOrgs(q) : [];
+  const events = q ? await searchEvents(q, 15) : [];
 
   const totalResults = countries.length + orgs.length + events.length;
 

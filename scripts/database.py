@@ -6,11 +6,72 @@ SQLite 데이터베이스 — 수집 데이터 누적 저장
 """
 import sqlite3
 import json
+import re
 from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "data" / "terror.db"
+
+
+# ── 국가명 정규화 ─────────────────────────────
+# GDELT/뉴스가 ISO-2 코드(예: "IL", "NG")를 country로 넣으면 정식명("Israel")과
+# 분리 집계되어 국가 수가 부풀려진다. 저장 시점에 항상 정식명으로 변환한다.
+def _load_iso2name() -> dict:
+    m = {}
+    try:
+        cj = json.loads((ROOT / "data" / "countries.json").read_text(encoding="utf-8"))
+        for rd in cj.get("regions", {}).values():
+            for co in rd.get("countries", []):
+                iso = (co.get("iso_alpha2", "") or "").upper()
+                name = co.get("name", "")
+                if iso and name:
+                    m[iso] = name
+    except Exception:
+        pass
+    # 누락 보강 + DB 내 지배적 명칭으로 통일 (신규 분리 방지)
+    m.update({
+        "CN": "China", "JP": "Japan", "MH": "Marshall Islands", "VA": "Vatican",
+        "RU": "Russia (Soviet Union)", "US": "United States of America",
+        "MM": "Myanmar (Burma)", "EE": "Estonia", "LV": "Latvia",
+        "IT": "Italy", "NZ": "New Zealand", "OM": "Oman",
+    })
+    return m
+
+
+_ISO2NAME = _load_iso2name()
+
+
+def _canon_country(val: str) -> str:
+    """country 값이 2글자 ISO 코드면 정식명으로 변환, 아니면 그대로."""
+    v = (val or "").strip()
+    if len(v) == 2 and v.isupper() and v.isalpha():
+        return _ISO2NAME.get(v, v)
+    return v
+
+
+def _normalize_date(raw: str) -> str:
+    """다양한 날짜 포맷을 YYYY-MM-DD로 정규화. 실패 시 오늘 날짜."""
+    if not raw:
+        return datetime.now().strftime("%Y-%m-%d")
+    s = raw.strip()
+    # 이미 ISO 형식
+    m = re.match(r'(\d{4}-\d{2}-\d{2})', s)
+    if m:
+        return m.group(1)
+    # RSS: "Sun, 26 Apr 2026 12:34:56 +0000"
+    for fmt in (
+        "%a, %d %b %Y %H:%M:%S %z",
+        "%a, %d %b %Y %H:%M:%S %Z",
+        "%Y-%m-%dT%H:%M:%S%z",
+        "%Y-%m-%d %H:%M:%S",
+        "%a, %d %b %Y %H:%M:%S",
+    ):
+        try:
+            return datetime.strptime(s, fmt).strftime("%Y-%m-%d")
+        except (ValueError, TypeError):
+            continue
+    return datetime.now().strftime("%Y-%m-%d")
 
 
 def get_conn() -> sqlite3.Connection:
@@ -78,6 +139,8 @@ def init_db():
             CREATE INDEX IF NOT EXISTS idx_events_date ON events(date);
             CREATE INDEX IF NOT EXISTS idx_events_country ON events(country);
             CREATE INDEX IF NOT EXISTS idx_events_source ON events(source);
+            CREATE INDEX IF NOT EXISTS idx_events_actor1 ON events(actor1);
+            CREATE INDEX IF NOT EXISTS idx_events_source_url ON events(source_url);
             CREATE INDEX IF NOT EXISTS idx_sanctions_date ON sanctions(collected_date);
         """)
 
@@ -96,6 +159,10 @@ def init_db():
             ("category_confidence", "TEXT"),
             ("is_aggregate", "INTEGER DEFAULT 0"),
         ])
+
+        # is_aggregate 컬럼이 보장된 뒤에 인덱스 생성 (fresh DB에서 컬럼보다
+        # 먼저 만들면 'no such column: is_aggregate'로 init이 깨짐).
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_events_aggregate ON events(is_aggregate)")
 
         conn.commit()
     finally:
@@ -124,7 +191,7 @@ def save_events(data: dict, date_str: str):
             event_id = f"gdelt-{e.get('date', '')}-{e.get('event_code', '')}-{e.get('source_url', '')[:50]}"
             enrichment = json.dumps(e.get("_enrichment", {}), ensure_ascii=False)
             # D4: Use country field if present, fall back to country_code
-            country_val = e.get("country", "") or e.get("country_code", "")
+            country_val = _canon_country(e.get("country", "") or e.get("country_code", ""))
             try:
                 conn.execute(
                     "INSERT OR IGNORE INTO events (id, source, date, event_type, sub_event_type, actor1, actor2, country, country_code, location, latitude, longitude, fatalities, source_url, enrichment, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -165,8 +232,9 @@ def save_events(data: dict, date_str: str):
             desc = e.get("description", "") or e.get("description_ko", "")
             try:
                 conn.execute(
-                    "INSERT OR IGNORE INTO events (id, source, date, country, actor1, fatalities, notes, category, category_confidence, is_aggregate, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                    "INSERT OR IGNORE INTO events (id, source, date, country, country_code, actor1, fatalities, notes, category, category_confidence, is_aggregate, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
                     (nctc_id, "nctc", e.get("date", ""), e.get("country", ""),
+                     e.get("country_code", ""),
                      desc[:80],
                      int(e.get("fatalities", 0) or 0),
                      desc[:500],
@@ -174,6 +242,80 @@ def save_events(data: dict, date_str: str):
                 )
             except Exception as exc:
                 print(f"   WARN: skipped nctc event {nctc_id}: {exc}")
+                continue
+
+        # Wikipedia 사건
+        for e in data.get("wikipedia", []):
+            wiki_id = e.get("event_id") or f"wiki-{e.get('date','')}-{(e.get('location','') or '')[:30]}"
+            enrichment = json.dumps(e.get("_enrichment", {}), ensure_ascii=False)
+            try:
+                conn.execute(
+                    "INSERT OR IGNORE INTO events (id, source, date, event_type, actor1, country, country_code, location, fatalities, notes, source_url, enrichment, category, category_confidence, is_aggregate, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    (wiki_id, "wikipedia", e.get("date", ""), e.get("event_type", ""),
+                     e.get("actor1", ""), e.get("country", ""), e.get("country_code", ""),
+                     (e.get("location", "") or "")[:100],
+                     int(e.get("fatalities", 0) or 0),
+                     (e.get("notes", "") or "")[:500],
+                     e.get("url", ""), enrichment,
+                     "terrorism", "medium", 0, now),
+                )
+            except Exception as exc:
+                print(f"   WARN: skipped wikipedia event {wiki_id}: {exc}")
+                continue
+
+        # Expert RSS / Google News — 텍스트 기반, casualty_extractor가 fatalities_estimated 채움
+        # NOTE: 피드명은 sub_event_type에 저장 (web의 getTodayAnalysis가 이 필드 참조).
+        for source_key in ("expert_rss", "google_news"):
+            for e in data.get(source_key, []):
+                title = e.get("title", "") or ""
+                url = e.get("url", "") or ""
+                ev_date = _normalize_date(e.get("date", ""))
+                news_country = _canon_country(e.get("country", ""))
+                # D-clean: 국가 미상 + 사망자 0 인 비분쟁 뉴스는 DB 노이즈로 저장 제외
+                # (NASA·동문·항모추적 등 Tier-1 피드 비분쟁 기사가 country=NULL로 적재되던 문제 방지)
+                if not news_country and not int(e.get("fatalities_estimated", 0) or 0):
+                    continue
+                # ID에는 title 사용 (URL은 utm 등으로 동일 기사가 다른 URL을 갖는 케이스 회피)
+                event_id = f"{source_key}-{ev_date}-{title[:80]}" if title else f"{source_key}-{ev_date}-{url[:80]}"
+                enrichment = json.dumps(e.get("_enrichment", {}), ensure_ascii=False)
+                feed_name = (e.get("feed_name") or "")[:60]
+                try:
+                    conn.execute(
+                        "INSERT OR IGNORE INTO events (id, source, date, sub_event_type, country, country_code, location, fatalities, notes, source_url, enrichment, category, category_confidence, is_aggregate, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        (event_id, source_key, ev_date,
+                         feed_name,
+                         news_country, e.get("country_code", ""),
+                         "",
+                         int(e.get("fatalities_estimated", 0) or 0),
+                         (title + " | " + (e.get("summary", "") or ""))[:500],
+                         url, enrichment,
+                         "terrorism" if e.get("fatalities_estimated", 0) else None,
+                         e.get("casualty_confidence", "").lower() if e.get("fatalities_estimated", 0) else None,
+                         0, now),
+                    )
+                except Exception as exc:
+                    print(f"   WARN: skipped {source_key} event {event_id}: {exc}")
+                    continue
+
+        # OFAC 조치
+        for e in data.get("ofac", []):
+            title = e.get("title", "") or ""
+            url = e.get("url", "") or ""
+            ofac_id = f"ofac-{url[:120]}" if url else f"ofac-{title[:80]}"
+            try:
+                conn.execute(
+                    "INSERT OR IGNORE INTO events (id, source, date, actor1, country, fatalities, notes, source_url, category, category_confidence, is_aggregate, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                    (ofac_id, "ofac",
+                     datetime.now().strftime("%Y-%m-%d"),
+                     "OFAC",
+                     "United States of America",
+                     0,
+                     title[:500],
+                     url,
+                     "counterterrorism", "high", 0, now),
+                )
+            except Exception as exc:
+                print(f"   WARN: skipped ofac event {ofac_id}: {exc}")
                 continue
 
         # 제재

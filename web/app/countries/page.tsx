@@ -11,8 +11,8 @@ export const metadata = {
   description: "All 172 countries tracked. Event counts and fatalities from 1989 to present.",
 };
 
-export default function CountriesPage() {
-  const countries = getCountryList();
+export default async function CountriesPage() {
+  const countries = await getCountryList();
   const maxFat30 = Math.max(...countries.map((c) => c.recent_30d_fatalities), 1);
 
   return (

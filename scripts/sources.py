@@ -194,6 +194,11 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
             # #1: FIPS → ISO 변환
             iso_country = fips_to_iso(action_country) if action_country else ""
 
+            # D-clean: 국가 미지정 이벤트는 글로벌 모니터에 배치 불가 → 노이즈로 제외
+            # (과거 US-로컬 미지오코딩 행 228건이 country=NULL로 누적되던 문제 방지)
+            if not iso_country:
+                continue
+
             # D2: Format SQLDATE "20260329" → "2026-03-29"
             formatted_date = f"{sql_date[:4]}-{sql_date[4:6]}-{sql_date[6:8]}" if len(sql_date) == 8 else sql_date
 
@@ -238,23 +243,55 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
 # ─────────────────────────────────────────────
 # 2. UCDP — 분쟁 사건 + 사상자 데이터
 # ─────────────────────────────────────────────
+def _latest_ucdp_version(target_date: datetime) -> str:
+    """UCDP Candidate 최신 월간 버전 자동 탐지.
+
+    UCDP는 매월 새 후보 버전(예: 26.0.3 = 2026-03)을 발행한다.
+    버전을 하드코딩하면 시간이 지날수록 데이터가 수집 날짜범위 밖으로 밀려나 0건이 된다.
+    현재연도(및 직전연도) prefix로 .12 → .1 역순 탐지해 응답 200인 최신 버전을 반환.
+    """
+    yr = target_date.year - 2000  # 2026 → 26
+    for prefix in (yr, yr - 1):
+        for minor in range(12, 0, -1):
+            ver = f"{prefix}.0.{minor}"
+            try:
+                r = requests.get(
+                    f"https://ucdpapi.pcr.uu.se/api/gedevents/{ver}",
+                    params={"pagesize": 1, "page": 0},
+                    headers={"x-ucdp-access-token": UCDP_TOKEN} if UCDP_TOKEN else {},
+                    timeout=15,
+                )
+                if r.status_code == 200:
+                    return ver
+            except Exception:
+                continue
+    return ""
+
+
 def fetch_ucdp(target_date: datetime, limit: int = 100) -> list[dict]:
     """UCDP GED Candidate API — 분쟁 사건 수집 (사상자 포함)"""
     if not UCDP_TOKEN:
         print("    [ucdp] 토큰 없음 — 스킵 (.env에 UCDP_TOKEN 설정 필요)")
         return []
 
-    # 최근 90일 범위 (UCDP Candidate는 월 1회 일괄 업데이트, ~2개월 지연)
-    since = (target_date - timedelta(days=90)).strftime("%Y-%m-%d")
+    version = _latest_ucdp_version(target_date)
+    if not version:
+        print("    [ucdp] 사용 가능한 Candidate 버전을 찾지 못함")
+        return []
+
+    # 최신 버전 데이터 전체를 대상으로 함 (버전 자체가 최근 1~2개월 스냅샷).
+    # 날짜 하한은 버전 발행시점을 넉넉히 포함하도록 180일로 둠.
+    since = (target_date - timedelta(days=180)).strftime("%Y-%m-%d")
     until = target_date.strftime("%Y-%m-%d")
     known_ids = get_known_ucdp_ids()
+    print(f"    [ucdp] using version {version}")
 
     try:
         events = []
         page = 0
         while len(events) < limit:
             resp = requests.get(
-                "https://ucdpapi.pcr.uu.se/api/gedevents/26.0.2",
+                f"https://ucdpapi.pcr.uu.se/api/gedevents/{version}",
                 params={
                     "pagesize": min(100, limit - len(events)),
                     "page": page,

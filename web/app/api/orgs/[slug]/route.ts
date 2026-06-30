@@ -16,16 +16,16 @@ export async function GET(
   { params }: { params: { slug: string } }
 ) {
   try {
-    const orgs = getTopOrganizations(500);
+    const orgs = await getTopOrganizations(500);
     const found = findBySlug(orgs, params.slug);
     if (!found) {
       return NextResponse.json({ error: "Organization not found" }, { status: 404 });
     }
-    const stats = getOrganizationStats(found.name);
-    const events = getOrganizationEvents(found.name, 30);
-    const timeline = getOrganizationTimeline(found.name);
-    const countries = getOrganizationCountries(found.name);
-    const related = getRelatedOrganizations(found.name, 8);
+    const stats = await getOrganizationStats(found.name);
+    const events = await getOrganizationEvents(found.name, 30);
+    const timeline = await getOrganizationTimeline(found.name);
+    const countries = await getOrganizationCountries(found.name);
+    const related = await getRelatedOrganizations(found.name, 8);
 
     return NextResponse.json(
       { organization: stats, events, timeline, countries, related },

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
+import { queryOne } from "@/lib/db";
 
 export const revalidate = 3600;
 
@@ -9,10 +9,10 @@ export async function GET(
 ) {
   try {
     const name = decodeURIComponent(params.name);
-    const db = getDb();
-    const cs = db
-      .prepare(`SELECT * FROM country_stats WHERE country = ?`)
-      .get(name) as any;
+    const cs = await queryOne<any>(
+      `SELECT * FROM country_stats WHERE country = ?`,
+      [name]
+    );
     if (!cs) {
       return NextResponse.json({ error: "Country not found" }, { status: 404 });
     }

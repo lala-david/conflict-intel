@@ -8,11 +8,11 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const event = getEventById(decodeURIComponent(params.id));
+    const event = await getEventById(decodeURIComponent(params.id));
     if (!event) {
       return NextResponse.json({ error: "Event not found" }, { status: 404 });
     }
-    const related = getRelatedEvents(event, 6);
+    const related = await getRelatedEvents(event, 6);
     return NextResponse.json(
       { event, related },
       {

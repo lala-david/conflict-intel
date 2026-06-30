@@ -1,8 +1,8 @@
 import { getCountryThreatScores } from "@/lib/queries";
 import { WorldMapClient } from "./WorldMapClient";
 
-export function WorldMapSection() {
-  const countryScores = getCountryThreatScores();
+export async function WorldMapSection() {
+  const countryScores = await getCountryThreatScores();
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-12">

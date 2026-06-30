@@ -198,8 +198,8 @@ def track_org_activity(data: dict, days: int = 7) -> list[dict]:
         "designation": "",
     })
 
-    # 오늘 데이터
-    for source_key in ["ucdp", "gdelt"]:
+    # 오늘 데이터 — 모든 이벤트성 소스 커버
+    for source_key in ["ucdp", "gdelt", "wikipedia", "expert_rss", "google_news", "nctc"]:
         for e in data.get(source_key, []):
             enr = e.get("_enrichment", {})
 
@@ -213,7 +213,8 @@ def track_org_activity(data: dict, days: int = 7) -> list[dict]:
                     continue
 
                 org_activity[name]["events_today"] += 1
-                org_activity[name]["fatalities_today"] += int(e.get("fatalities", 0) or 0)
+                fat = int(e.get("fatalities", 0) or e.get("fatalities_estimated", 0) or 0)
+                org_activity[name]["fatalities_today"] += fat
                 org_activity[name]["designation"] = org.get("designation", "")
 
                 country = e.get("country", "") or e.get("country_code", "")
@@ -224,13 +225,16 @@ def track_org_activity(data: dict, days: int = 7) -> list[dict]:
                 if attack:
                     org_activity[name]["attack_types"].add(attack)
 
-    # DB에서 최근 N일 이력
+    # DB에서 최근 N일 이력 — Government/aggregate 제외 (compute_stats와 일관)
     conn = _get_conn()
     try:
         cutoff = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
         rows = conn.execute(
             "SELECT actor1, COUNT(*), SUM(fatalities) FROM events "
-            "WHERE date >= ? AND actor1 != '' GROUP BY actor1 ORDER BY COUNT(*) DESC LIMIT 20",
+            "WHERE date >= ? AND actor1 != '' "
+            "  AND actor1 NOT LIKE 'Government of%' "
+            "  AND is_aggregate = 0 "
+            "GROUP BY actor1 ORDER BY COUNT(*) DESC LIMIT 20",
             (cutoff,)
         ).fetchall()
 
@@ -272,7 +276,7 @@ def detect_hotspots(data: dict, grid_size: float = 2.0) -> list[dict]:
         "countries": set(), "actors": set(), "types": set(),
     })
 
-    for source_key in ["gdelt", "ucdp"]:
+    for source_key in ["gdelt", "ucdp", "wikipedia", "expert_rss", "google_news", "nctc"]:
         for e in data.get(source_key, []):
             lat = e.get("latitude", "")
             lon = e.get("longitude", "")

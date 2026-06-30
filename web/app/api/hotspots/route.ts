@@ -5,7 +5,7 @@ export const revalidate = 3600;
 
 export async function GET() {
   try {
-    const hotspots = getMapHotspots();
+    const hotspots = await getMapHotspots();
     const geojson = {
       type: "FeatureCollection" as const,
       features: hotspots.map((h, i) => ({
