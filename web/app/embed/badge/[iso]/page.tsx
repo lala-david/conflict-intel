@@ -8,9 +8,9 @@ interface Props {
   params: { iso: string };
 }
 
-export default function BadgeEmbed({ params }: Props) {
+export default async function BadgeEmbed({ params }: Props) {
   const name = decodeURIComponent(params.iso);
-  const country = getCountryByName(name);
+  const country = await getCountryByName(name);
   if (!country) notFound();
 
   // Threat level based on 30-day fatalities

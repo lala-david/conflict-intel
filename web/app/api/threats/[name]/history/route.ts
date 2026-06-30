@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
+import { queryAll } from "@/lib/db";
 
 export const revalidate = 3600;
 
@@ -11,7 +11,6 @@ export async function GET(
     const name = decodeURIComponent(params.name);
     const granularity = req.nextUrl.searchParams.get("granularity") ?? "monthly";
 
-    const db = getDb();
     let groupBy: string;
     if (granularity === "yearly") {
       groupBy = "substr(date, 1, 4)";
@@ -21,17 +20,16 @@ export async function GET(
       groupBy = "substr(date, 1, 7)"; // monthly
     }
 
-    const series = db
-      .prepare(
-        `SELECT ${groupBy} as period,
+    const series = await queryAll<{ period: string; events: number; fatalities: number }>(
+      `SELECT ${groupBy} as period,
                 COUNT(*) as events,
                 COALESCE(SUM(fatalities), 0) as fatalities
            FROM events
           WHERE is_aggregate = 0 AND country = ? AND date >= '1989'
           GROUP BY period
-          ORDER BY period`
-      )
-      .all(name) as { period: string; events: number; fatalities: number }[];
+          ORDER BY period`,
+      [name]
+    );
 
     if (series.length === 0) {
       return NextResponse.json({ error: "Country not found" }, { status: 404 });

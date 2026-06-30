@@ -29,11 +29,11 @@ function resolveCategory(slug: string): Category | null {
   return null;
 }
 
-export default function CategoryDetailPage({ params }: Props) {
+export default async function CategoryDetailPage({ params }: Props) {
   const cat = resolveCategory(params.name);
   if (!cat) notFound();
   const meta = CATEGORY_META[cat];
-  const data = getCategoryStats(cat);
+  const data = await getCategoryStats(cat);
   if (!data) notFound();
 
   const maxYear = Math.max(...data.timeline.map((t) => t.count), 1);

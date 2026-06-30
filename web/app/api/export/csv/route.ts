@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   const from = params.get("from") || undefined;
   const to = params.get("to") || undefined;
 
-  const events = getEventsForExport({ country, category, from, to }, 10000);
+  const events = await getEventsForExport({ country, category, from, to }, 10000);
 
   const headers = [
     "id", "date", "source", "category", "actor1", "actor2",

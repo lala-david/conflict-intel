@@ -10,10 +10,10 @@ from difflib import SequenceMatcher
 from typing import Optional
 
 
-# 주요 도시/지역 → 국가 매핑 (상위 200개)
+# 주요 도시/지역/형용사/별칭 → 국가 매핑
 CITY_TO_COUNTRY = {
     # 중동
-    "paris": "FR", "baghdad": "IQ", "mosul": "IQ", "basra": "IQ", "erbil": "IQ",
+    "baghdad": "IQ", "mosul": "IQ", "basra": "IQ", "erbil": "IQ",
     "kabul": "AF", "kandahar": "AF", "jalalabad": "AF", "nangarhar": "AF",
     "damascus": "SY", "aleppo": "SY", "idlib": "SY", "raqqa": "SY", "deir ez-zor": "SY",
     "tehran": "IR", "isfahan": "IR", "beirut": "LB", "tripoli lebanon": "LB",
@@ -29,7 +29,7 @@ CITY_TO_COUNTRY = {
     "khartoum": "SD", "sudan": "SD", "darfur": "SD",
     "addis ababa": "ET", "ethiopia": "ET", "tigray": "ET",
     "mozambique": "MZ", "cabo delgado": "MZ",
-    "congo": "CD", "kinshasa": "CD", "goma": "CD",
+    "kinshasa": "CD", "goma": "CD", "dr congo": "CD", "drc": "CD", "zaire": "CD",
     "cameroon": "CM", "chad": "TD", "sahel": "ML",
     # 남아시아
     "islamabad": "PK", "karachi": "PK", "peshawar": "PK", "quetta": "PK",
@@ -38,25 +38,101 @@ CITY_TO_COUNTRY = {
     "colombo": "LK", "dhaka": "BD",
     # 동남아
     "manila": "PH", "mindanao": "PH", "marawi": "PH",
-    "jakarta": "ID", "myanmar": "MM", "yangon": "MM", "rakhine": "MM",
+    "jakarta": "ID", "myanmar": "MM", "burma": "MM", "yangon": "MM", "rakhine": "MM",
     "bangkok": "TH",
     # 유럽
+    "paris": "FR",
     "london": "GB", "manchester": "GB", "brussels": "BE", "berlin": "DE",
     "madrid": "ES", "barcelona": "ES", "rome": "IT", "moscow": "RU",
     "vienna": "AT", "stockholm": "SE", "copenhagen": "DK", "oslo": "NO",
     "amsterdam": "NL", "zurich": "CH", "kyiv": "UA", "ukraine": "UA",
+    "georgia": "GE", "tbilisi": "GE",
+    "hungary": "HU", "budapest": "HU",
+    "belarus": "BY", "minsk": "BY",
+    "poland": "PL", "warsaw": "PL",
+    "caucasus": "GE", "south caucasus": "GE",
     # 북미/중남미
     "washington": "US", "new york": "US", "bogota": "CO", "colombia": "CO",
-    "mexico city": "MX", "caracas": "VE",
+    "mexico city": "MX", "caracas": "VE", "venezuela": "VE",
+    "haiti": "HT", "port-au-prince": "HT",
+    "brazil": "BR", "brasilia": "BR", "rio de janeiro": "BR", "sao paulo": "BR",
+    # 동아시아
+    "beijing": "CN", "shanghai": "CN", "hong kong": "CN",
+    "seoul": "KR", "south korea": "KR",
+    "pyongyang": "KP", "north korea": "KP",
+    "tokyo": "JP", "japan": "JP",
+    "taipei": "TW", "taiwan": "TW",
+    "uzbekistan": "UZ", "tashkent": "UZ",
+    "central asia": "KZ",  # 모호하면 카자흐스탄 default
+    "kazakhstan": "KZ", "kyrgyzstan": "KG", "tajikistan": "TJ", "turkmenistan": "TM",
     # 국가명 직접 매핑
     "france": "FR", "germany": "DE", "britain": "GB", "uk": "GB", "united kingdom": "GB",
     "israel": "IL", "iran": "IR", "iraq": "IQ", "syria": "SY", "turkey": "TR",
     "afghanistan": "AF", "pakistan": "PK", "india": "IN", "china": "CN",
     "russia": "RU", "saudi arabia": "SA", "egypt": "EG", "lebanon": "LB",
     "nigeria": "NG", "kenya": "KE", "philippines": "PH", "indonesia": "ID",
-    "palestine": "PS", "palestinian": "PS", "sri lanka": "LK",
-    "united states": "US", "america": "US", "american": "US",
+    "palestine": "PS", "sri lanka": "LK",
+    "united states": "US", "america": "US",
+    "spain": "ES", "italy": "IT", "netherlands": "NL", "belgium": "BE",
+    "switzerland": "CH", "austria": "AT", "sweden": "SE", "norway": "NO",
+    "denmark": "DK", "finland": "FI", "ireland": "IE", "portugal": "PT",
+    "greece": "GR", "romania": "RO", "bulgaria": "BG", "czech": "CZ",
+    "slovakia": "SK", "croatia": "HR", "slovenia": "SI", "albania": "AL",
+    # 형용사 (보통 본문에 자주 등장 — 강력한 시그널)
+    "iranian": "IR", "iraqi": "IQ", "syrian": "SY", "afghan": "AF", "pakistani": "PK",
+    "indian": "IN", "chinese": "CN", "russian": "RU", "ukrainian": "UA",
+    "israeli": "IL", "palestinian": "PS", "lebanese": "LB", "saudi": "SA",
+    "yemeni": "YE", "egyptian": "EG", "turkish": "TR", "kurdish": "IQ",
+    "nigerian": "NG", "kenyan": "KE", "somali": "SO", "ethiopian": "ET",
+    "sudanese": "SD", "libyan": "LY", "malian": "ML", "burkinabe": "BF",
+    "filipino": "PH", "indonesian": "ID", "myanmar military": "MM", "burmese": "MM",
+    "thai": "TH", "vietnamese": "VN", "cambodian": "KH",
+    "british": "GB", "french": "FR", "german": "DE", "italian": "IT", "spanish": "ES",
+    "georgian": "GE", "hungarian": "HU", "belarusian": "BY", "polish": "PL",
+    "american": "US", "mexican": "MX", "colombian": "CO", "venezuelan": "VE", "brazilian": "BR",
+    "japanese": "JP", "korean": "KR", "north korean": "KP", "south korean": "KR",
+    "prc": "CN", "soviet": "RU",
 }
+
+# 뉴스 도메인 → 국가 (도메인 TLD 또는 알려진 매체)
+DOMAIN_TO_COUNTRY = {
+    "israelnationalnews.com": "IL", "haaretz.com": "IL", "timesofisrael.com": "IL",
+    "aljazeera.com": "QA", "dawn.com": "PK", "thedailystar.net": "BD",
+    "thehindu.com": "IN", "indiatimes.com": "IN", "ndtv.com": "IN",
+    "rferl.org": "RU", "tass.com": "RU", "rt.com": "RU",
+    "premiumtimesng.com": "NG", "vanguardngr.com": "NG", "dailytrust.com": "NG",
+    "alarabiya.net": "SA", "arabnews.com": "SA",
+    "presstv.ir": "IR", "tehrantimes.com": "IR",
+    "anadolu agency": "TR", "aa.com.tr": "TR", "trtworld.com": "TR",
+    "kyivindependent.com": "UA", "kyivpost.com": "UA",
+    "scmp.com": "HK", "globaltimes.cn": "CN",
+}
+
+
+def _domain_country(url: str) -> str:
+    """URL의 도메인에서 국가 코드 추출."""
+    if not url:
+        return ""
+    import re as _re
+    m = _re.search(r'https?://([^/]+)/', url + "/")
+    if not m:
+        return ""
+    host = m.group(1).lower()
+    # 정확 일치
+    for d, iso in DOMAIN_TO_COUNTRY.items():
+        if d in host:
+            return iso
+    # 국가 코드 TLD (.kr, .jp, .uk, .pk 등) — 단 .com/.org/.net 제외
+    tld = host.rsplit('.', 1)[-1] if '.' in host else ''
+    cctld_map = {
+        'kr':'KR','jp':'JP','cn':'CN','hk':'HK','tw':'TW','sg':'SG','my':'MY',
+        'pk':'PK','in':'IN','bd':'BD','lk':'LK','np':'NP',
+        'ru':'RU','ua':'UA','de':'DE','fr':'FR','it':'IT','es':'ES','nl':'NL','pl':'PL',
+        'gr':'GR','ie':'IE','pt':'PT','tr':'TR','il':'IL','sa':'SA','ae':'AE',
+        'eg':'EG','ng':'NG','ke':'KE','za':'ZA','et':'ET','sd':'SD','ly':'LY','ma':'MA',
+        'au':'AU','nz':'NZ','ca':'CA','mx':'MX','br':'BR','ar':'AR','co':'CO','ve':'VE',
+    }
+    return cctld_map.get(tld, "")
 
 # 톤 해석
 TONE_LABELS = {

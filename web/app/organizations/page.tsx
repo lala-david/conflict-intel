@@ -11,8 +11,8 @@ export const metadata = {
   description: "Top 100 non-state armed groups by activity. Years active, event counts, fatalities.",
 };
 
-export default function OrganizationsPage() {
-  const orgs = getTopOrganizations(100);
+export default async function OrganizationsPage() {
+  const orgs = await getTopOrganizations(100);
 
   return (
     <>

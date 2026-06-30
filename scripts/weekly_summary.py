@@ -19,7 +19,7 @@ DB_PATH = ROOT / "data" / "terror.db"
 
 
 def get_weekly_data(end_date: datetime) -> dict:
-    """최근 7일 데이터 집계"""
+    """최근 7일 데이터 집계 — event.date(사건 발생일) 기준, aggregate 제외."""
     start = (end_date - timedelta(days=6)).strftime("%Y-%m-%d")
     end = end_date.strftime("%Y-%m-%d")
 
@@ -31,20 +31,30 @@ def get_weekly_data(end_date: datetime) -> dict:
             (start, end),
         ).fetchall()
 
+        # 사건 발생일(date) 기준 — collected_at은 UCDP-GED 같이 과거 이벤트 일괄 수집을 잘못 포함시킴
         country_events = conn.execute(
             "SELECT COALESCE(NULLIF(country,''), country_code) as c, COUNT(*) as cnt "
-            "FROM events WHERE collected_at >= ? GROUP BY c ORDER BY cnt DESC LIMIT 15",
-            (start,),
+            "FROM events WHERE date BETWEEN ? AND ? AND is_aggregate=0 "
+            "GROUP BY c ORDER BY cnt DESC LIMIT 15",
+            (start, end),
         ).fetchall()
 
         source_events = conn.execute(
-            "SELECT source, COUNT(*) FROM events WHERE collected_at >= ? GROUP BY source",
-            (start,),
+            "SELECT source, COUNT(*) FROM events WHERE date BETWEEN ? AND ? AND is_aggregate=0 GROUP BY source",
+            (start, end),
         ).fetchall()
 
         total_events = conn.execute(
-            "SELECT COUNT(*) FROM events WHERE collected_at >= ?", (start,)
+            "SELECT COUNT(*) FROM events WHERE date BETWEEN ? AND ? AND is_aggregate=0",
+            (start, end),
         ).fetchone()[0]
+
+        category_breakdown = conn.execute(
+            "SELECT COALESCE(NULLIF(category,''), 'unclassified') as cat, COUNT(*) as cnt, COALESCE(SUM(fatalities),0) "
+            "FROM events WHERE date BETWEEN ? AND ? AND is_aggregate=0 "
+            "GROUP BY cat ORDER BY cnt DESC",
+            (start, end),
+        ).fetchall()
 
         new_sanctions = conn.execute(
             "SELECT name, dataset, schema_type FROM sanctions WHERE is_new=1 AND collected_date BETWEEN ? AND ?",
@@ -62,6 +72,7 @@ def get_weekly_data(end_date: datetime) -> dict:
         ],
         "country_ranking": [{"country": r[0], "events": r[1]} for r in country_events],
         "source_breakdown": [{"source": r[0], "count": r[1]} for r in source_events],
+        "category_breakdown": [{"category": r[0], "events": r[1], "fatalities": r[2]} for r in category_breakdown],
         "total_events": total_events,
         "new_sanctions": [{"name": r[0], "dataset": r[1], "type": r[2]} for r in new_sanctions],
     }
@@ -111,6 +122,16 @@ def build_weekly_report(data: dict, end_date: datetime) -> str:
         lines.append("")
         for sb in data["source_breakdown"]:
             lines.append(f"- {sb['source']}: {sb['count']}건")
+        lines.append("")
+
+    # 카테고리별 분포
+    if data.get("category_breakdown"):
+        lines.append("## 카테고리별 분포")
+        lines.append("")
+        lines.append("| 카테고리 | 이벤트 | 사망자 |")
+        lines.append("|----------|--------|--------|")
+        for cb in data["category_breakdown"]:
+            lines.append(f"| {cb['category']} | {cb['events']} | {cb['fatalities']} |")
         lines.append("")
 
     # 신규 제재

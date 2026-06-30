@@ -6,3 +6,7 @@ data/terror.db
 data/terror.db-shm
 data/terror.db-wal
 logs/
+
+# local backups / temp
+*.bak
+data/terror.db.bak

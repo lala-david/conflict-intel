@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { getDb } from "@/lib/db";
+import { queryAll, queryOne } from "@/lib/db";
 import { formatNumber, formatDate, getCategoryMeta } from "@/lib/utils";
 import type { Event, Category } from "@/lib/types";
 import { Search } from "lucide-react";
@@ -31,8 +31,7 @@ const ALL_CATEGORIES: Category[] = [
   "cartel_violence", "communal_violence", "insurgency", "counterterrorism", "armed_violence",
 ];
 
-export default function EventsPage({ searchParams }: Props) {
-  const db = getDb();
+export default async function EventsPage({ searchParams }: Props) {
   const page = Math.max(1, parseInt(searchParams.page ?? "1"));
   const offset = (page - 1) * PER_PAGE;
 
@@ -69,32 +68,30 @@ export default function EventsPage({ searchParams }: Props) {
   const where = conditions.join(" AND ");
 
   // Count total results
-  const countRow = db
-    .prepare(`SELECT COUNT(*) as total FROM events WHERE ${where}`)
-    .get(...params) as { total: number };
+  const countRow = (await queryOne<{ total: number }>(
+    `SELECT COUNT(*) as total FROM events WHERE ${where}`,
+    [...params]
+  )) as { total: number };
   const total = countRow.total;
   const totalPages = Math.ceil(total / PER_PAGE);
 
   // Fetch events
-  const events = db
-    .prepare(
-      `SELECT id, source, date, event_type, actor1, actor2, country, country_code,
+  const events = await queryAll<Event>(
+    `SELECT id, source, date, event_type, actor1, actor2, country, country_code,
               admin1, location, latitude, longitude, fatalities,
               deaths_civilians, fatalities_low, fatalities_high,
               category, category_confidence, is_aggregate, notes, source_url
          FROM events
         WHERE ${where}
         ORDER BY date DESC, fatalities DESC
-        LIMIT ? OFFSET ?`
-    )
-    .all(...params, PER_PAGE, offset) as Event[];
+        LIMIT ? OFFSET ?`,
+    [...params, PER_PAGE, offset]
+  );
 
   // Distinct countries for filter dropdown
-  const countries = db
-    .prepare(
-      `SELECT DISTINCT country FROM country_stats ORDER BY total_fatalities DESC LIMIT 50`
-    )
-    .all() as { country: string }[];
+  const countries = await queryAll<{ country: string }>(
+    `SELECT DISTINCT country FROM country_stats ORDER BY total_fatalities DESC LIMIT 50`
+  );
 
   // Build URL helper
   function buildUrl(overrides: Record<string, string | undefined>) {

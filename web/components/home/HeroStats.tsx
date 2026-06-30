@@ -36,7 +36,7 @@ export function HeroStats({ totals }: Props) {
           />
           <StatCard
             icon={<Calendar className="h-4 w-4" />}
-            value="37"
+            value={String(new Date().getFullYear() - 1989 + 1)}
             label="Years of data (1989–)"
           />
         </div>

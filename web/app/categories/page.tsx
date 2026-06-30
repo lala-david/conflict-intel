@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { getDb } from "@/lib/db";
+import { queryAll } from "@/lib/db";
 import { CATEGORY_META, formatNumber, slugify } from "@/lib/utils";
 import type { Category } from "@/lib/types";
 
@@ -12,13 +12,10 @@ export const metadata = {
   description: "10 violence categories: war, civil war, terrorism, insurgency, cartel violence, and more.",
 };
 
-export default function CategoriesPage() {
-  const db = getDb();
-  const rows = db
-    .prepare(
-      `SELECT category, total_events as events, total_fatalities as fatalities FROM category_stats`
-    )
-    .all() as { category: Category; events: number; fatalities: number }[];
+export default async function CategoriesPage() {
+  const rows = (await queryAll<{ category: Category; events: number; fatalities: number }>(
+    `SELECT category, total_events as events, total_fatalities as fatalities FROM category_stats`
+  ));
 
   const sorted = rows.sort((a, b) => b.events - a.events);
 

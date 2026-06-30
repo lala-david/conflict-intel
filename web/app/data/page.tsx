@@ -30,7 +30,7 @@ export default function DataPage() {
             <div className="flex-1">
               <div className="font-semibold">terror.db</div>
               <div className="text-xs text-text-dim">
-                SQLite · 419,943 events · 233 MB · 1989–present
+                SQLite · 420K events · 276 MB · 1989–present
               </div>
             </div>
             <Download className="h-5 w-5 text-text-dim" />

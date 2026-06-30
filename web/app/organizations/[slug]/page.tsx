@@ -26,7 +26,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const orgs = getTopOrganizations(500);
+  const orgs = await getTopOrganizations(500);
   const org = findBySlug(orgs, params.slug);
   if (!org) return { title: "Organization not found" };
   return {
@@ -35,15 +35,15 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default function OrgPage({ params }: Props) {
-  const orgs = getTopOrganizations(500);
+export default async function OrgPage({ params }: Props) {
+  const orgs = await getTopOrganizations(500);
   const org = findBySlug(orgs, params.slug);
   if (!org) notFound();
 
-  const events = getOrganizationEvents(org.name, 30);
-  const timeline = getOrganizationTimeline(org.name);
-  const countries = getOrganizationCountries(org.name);
-  const relatedOrgs = getRelatedOrganizations(org.name, 8);
+  const events = await getOrganizationEvents(org.name, 30);
+  const timeline = await getOrganizationTimeline(org.name);
+  const countries = await getOrganizationCountries(org.name);
+  const relatedOrgs = await getRelatedOrganizations(org.name, 8);
 
   const activeYears =
     parseInt(org.last_seen?.slice(0, 4) ?? "0") -

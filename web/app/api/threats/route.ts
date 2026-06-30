@@ -5,7 +5,7 @@ export const revalidate = 3600;
 
 export async function GET() {
   try {
-    const scores = getCountryThreatScores();
+    const scores = await getCountryThreatScores();
     return NextResponse.json(
       { count: scores.length, threats: scores },
       {

@@ -1,56 +1,48 @@
-import { getDb } from "@/lib/db";
+import { queryOne } from "@/lib/db";
 import { formatNumber } from "@/lib/utils";
 import { TrendingUp, TrendingDown, BarChart3 } from "lucide-react";
 
-export function HistoricalComparison() {
-  const db = getDb();
-
+export async function HistoricalComparison() {
   // Current year fatalities
   const currentYear = new Date().getFullYear();
-  const currentYearStats = db
-    .prepare(
-      `SELECT COUNT(*) as events, COALESCE(SUM(fatalities), 0) as fatalities
+  const currentYearStats = (await queryOne<{ events: number; fatalities: number }>(
+    `SELECT COUNT(*) as events, COALESCE(SUM(fatalities), 0) as fatalities
          FROM events
-        WHERE is_aggregate = 0 AND substr(date, 1, 4) = ?`
-    )
-    .get(String(currentYear)) as { events: number; fatalities: number };
+        WHERE is_aggregate = 0 AND substr(date, 1, 4) = ?`,
+    [String(currentYear)]
+  )) as { events: number; fatalities: number };
 
   // Previous year same period
   const dayOfYear = Math.floor(
     (Date.now() - new Date(currentYear, 0, 1).getTime()) / 86400000
   );
   const prevYearEnd = `${currentYear - 1}-${String(Math.floor(dayOfYear / 30) + 1).padStart(2, "0")}-${String((dayOfYear % 30) + 1).padStart(2, "0")}`;
-  const prevYearStats = db
-    .prepare(
-      `SELECT COUNT(*) as events, COALESCE(SUM(fatalities), 0) as fatalities
+  const prevYearStats = (await queryOne<{ events: number; fatalities: number }>(
+    `SELECT COUNT(*) as events, COALESCE(SUM(fatalities), 0) as fatalities
          FROM events
         WHERE is_aggregate = 0
-          AND date >= ? AND date <= ?`
-    )
-    .get(`${currentYear - 1}-01-01`, prevYearEnd) as { events: number; fatalities: number };
+          AND date >= ? AND date <= ?`,
+    [`${currentYear - 1}-01-01`, prevYearEnd]
+  )) as { events: number; fatalities: number };
 
   // Peak year
-  const peakYear = db
-    .prepare(
-      `SELECT substr(date, 1, 4) as year, COALESCE(SUM(fatalities), 0) as fatalities
+  const peakYear = (await queryOne<{ year: string; fatalities: number }>(
+    `SELECT substr(date, 1, 4) as year, COALESCE(SUM(fatalities), 0) as fatalities
          FROM events
         WHERE is_aggregate = 0 AND date >= '1989'
         GROUP BY year
         ORDER BY fatalities DESC
         LIMIT 1`
-    )
-    .get() as { year: string; fatalities: number };
+  )) as { year: string; fatalities: number };
 
   // Deadliest single event ever
-  const deadliestEvent = db
-    .prepare(
-      `SELECT actor1, country, fatalities, date
+  const deadliestEvent = (await queryOne<{ actor1: string; country: string; fatalities: number; date: string }>(
+    `SELECT actor1, country, fatalities, date
          FROM events
         WHERE is_aggregate = 0
         ORDER BY fatalities DESC
         LIMIT 1`
-    )
-    .get() as { actor1: string; country: string; fatalities: number; date: string };
+  )) as { actor1: string; country: string; fatalities: number; date: string };
 
   const yoyChange = prevYearStats.fatalities > 0
     ? Math.round(((currentYearStats.fatalities - prevYearStats.fatalities) / prevYearStats.fatalities) * 100)

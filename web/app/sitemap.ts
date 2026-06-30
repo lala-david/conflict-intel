@@ -17,7 +17,7 @@ const CATEGORIES = [
   "armed-violence",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -43,14 +43,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const countries = getCountryList();
+  const countries = await getCountryList();
   const countryPages: MetadataRoute.Sitemap = countries.map((c) => ({
     url: `${BASE}/countries/${encodeURIComponent(c.country)}`,
     lastModified: now,
     priority: 0.7,
   }));
 
-  const orgs = getTopOrganizations(100);
+  const orgs = await getTopOrganizations(100);
   const orgPages: MetadataRoute.Sitemap = orgs.map((o) => ({
     url: `${BASE}/organizations/${slugify(o.name)}`,
     lastModified: now,

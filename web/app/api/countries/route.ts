@@ -5,7 +5,7 @@ export const revalidate = 3600;
 
 export async function GET() {
   try {
-    const countries = getCountryList();
+    const countries = await getCountryList();
     return NextResponse.json(
       { count: countries.length, countries },
       {

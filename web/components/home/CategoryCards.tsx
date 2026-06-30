@@ -29,6 +29,7 @@ export function CategoryCards({ categories }: Props) {
       <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
         {entries.map(([cat, stats]) => {
           const meta = CATEGORY_META[cat];
+          if (!meta) return null;
           return (
             <Link
               key={cat}

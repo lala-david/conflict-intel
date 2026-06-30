@@ -1,20 +1,16 @@
-import { getDb } from "@/lib/db";
+import { queryAll, queryOne } from "@/lib/db";
 
-export function DataFreshness() {
-  const db = getDb();
-
-  const sources = db
-    .prepare(
-      `SELECT source, MAX(date) as latest, COUNT(*) as count
+export async function DataFreshness() {
+  const sources = await queryAll<{ source: string; latest: string; count: number }>(
+    `SELECT source, MAX(date) as latest, COUNT(*) as count
        FROM events WHERE is_aggregate = 0
        GROUP BY source
        ORDER BY MAX(date) DESC`
-    )
-    .all() as { source: string; latest: string; count: number }[];
+  );
 
-  const updated = db
-    .prepare(`SELECT updated_at FROM global_stats WHERE id = 1`)
-    .get() as { updated_at: string } | null;
+  const updated = await queryOne<{ updated_at: string }>(
+    `SELECT updated_at FROM global_stats WHERE id = 1`
+  );
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-8">

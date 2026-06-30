@@ -8,7 +8,7 @@ export async function GET(
   { params }: { params: { name: string } }
 ) {
   const name = decodeURIComponent(params.name);
-  const country = getCountryByName(name);
+  const country = await getCountryByName(name);
 
   if (!country) {
     return new Response("Not found", { status: 404 });

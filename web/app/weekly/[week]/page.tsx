@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { getDb } from "@/lib/db";
+import { queryAll } from "@/lib/db";
 import { formatNumber, getCategoryMeta, formatDate } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 import type { Event } from "@/lib/types";
@@ -13,18 +13,16 @@ interface Props {
   params: { week: string };
 }
 
-export default function WeeklyDetailPage({ params }: Props) {
+export default async function WeeklyDetailPage({ params }: Props) {
   const week = params.week; // e.g. "2026-W14"
-  const db = getDb();
 
   // Get events for this week
-  const weekEvents = db
-    .prepare(
-      `SELECT * FROM events
+  const weekEvents = await queryAll<Event>(
+    `SELECT * FROM events
        WHERE is_aggregate = 0 AND strftime('%Y-W%W', date) = ?
-       ORDER BY fatalities DESC`
-    )
-    .all(week) as Event[];
+       ORDER BY fatalities DESC`,
+    [week]
+  );
 
   if (weekEvents.length === 0) notFound();
 

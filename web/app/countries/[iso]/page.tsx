@@ -17,7 +17,7 @@ export const revalidate = 3600;
 
 // Pre-generate top 30 countries at build time
 export async function generateStaticParams() {
-  const countries = getCountryList();
+  const countries = await getCountryList();
   return countries.slice(0, 30).map((c) => ({
     iso: encodeURIComponent(c.country),
   }));
@@ -45,13 +45,13 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default function CountryPage({ params }: Props) {
+export default async function CountryPage({ params }: Props) {
   const name = decodeURIComponent(params.iso);
-  const country = getCountryByName(name);
+  const country = await getCountryByName(name);
   if (!country) notFound();
 
-  const events = getCountryEvents(name, 30);
-  const timeline = getCountryTimeline(name);
+  const events = await getCountryEvents(name, 30);
+  const timeline = await getCountryTimeline(name);
 
   // Calculate category breakdown
   const catBreakdown = new Map<string, { count: number; deaths: number }>();

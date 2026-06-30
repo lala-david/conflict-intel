@@ -14,7 +14,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const event = getEventById(decodeURIComponent(params.id));
+  const event = await getEventById(decodeURIComponent(params.id));
   if (!event) return { title: "Event not found" };
 
   const meta = getCategoryMeta(event.category);
@@ -30,11 +30,11 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default function EventPage({ params }: Props) {
-  const event = getEventById(decodeURIComponent(params.id));
+export default async function EventPage({ params }: Props) {
+  const event = await getEventById(decodeURIComponent(params.id));
   if (!event) notFound();
 
-  const related = getRelatedEvents(event, 6);
+  const related = await getRelatedEvents(event, 6);
   const meta = getCategoryMeta(event.category);
 
   return (
