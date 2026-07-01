@@ -158,6 +158,7 @@ def init_db():
             ("category", "TEXT"),
             ("category_confidence", "TEXT"),
             ("is_aggregate", "INTEGER DEFAULT 0"),
+            ("dup_of", "TEXT"),
         ])
 
         # is_aggregate 컬럼이 보장된 뒤에 인덱스 생성 (fresh DB에서 컬럼보다

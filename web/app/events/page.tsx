@@ -37,7 +37,7 @@ export default async function EventsPage({ searchParams }: Props) {
   const offset = (page - 1) * PER_PAGE;
 
   // Build dynamic WHERE clause
-  const conditions: string[] = ["is_aggregate = 0"];
+  const conditions: string[] = ["is_aggregate = 0", "dup_of IS NULL"];
   const params: any[] = [];
 
   if (searchParams.q && searchParams.q.length >= 2) {

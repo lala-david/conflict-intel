@@ -171,7 +171,7 @@ export async function getCountryEvents(country: string, limit = 15): Promise<Eve
               deaths_civilians, fatalities_low, fatalities_high,
               category, category_confidence, is_aggregate, notes, source_url
          FROM events
-        WHERE is_aggregate = 0 AND country = ?
+        WHERE is_aggregate = 0 AND country = ? AND dup_of IS NULL
         ORDER BY date DESC
         LIMIT ?`,
     [country, limit]
@@ -186,7 +186,7 @@ export async function getCountryPoints(
     `SELECT id, longitude, latitude, fatalities, date, category, country,
               location, actor1, actor2
        FROM events
-      WHERE country = ? AND is_aggregate = 0
+      WHERE country = ? AND is_aggregate = 0 AND dup_of IS NULL
         AND latitude IS NOT NULL AND longitude IS NOT NULL
       ORDER BY date DESC
       LIMIT ?`,
@@ -279,7 +279,7 @@ export async function getOrganizationEvents(name: string, limit = 30): Promise<E
               deaths_civilians, fatalities_low, fatalities_high,
               category, category_confidence, is_aggregate, notes, source_url
          FROM events
-        WHERE actor1 = ? AND is_aggregate = 0
+        WHERE actor1 = ? AND is_aggregate = 0 AND dup_of IS NULL
         ORDER BY date DESC
         LIMIT ?`,
     [name, limit]
@@ -294,7 +294,7 @@ export async function getOrganizationPoints(
     `SELECT id, longitude, latitude, fatalities, date, category, country,
               location, actor1, actor2
        FROM events
-      WHERE actor1 = ? AND is_aggregate = 0
+      WHERE actor1 = ? AND is_aggregate = 0 AND dup_of IS NULL
         AND latitude IS NOT NULL AND longitude IS NOT NULL
       ORDER BY date DESC
       LIMIT ?`,

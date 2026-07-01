@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
     const limit = Math.min(parseInt(params.get("limit") ?? "50"), 500);
     const offset = Math.max(parseInt(params.get("offset") ?? "0"), 0);
 
-    const conditions: string[] = ["is_aggregate = 0"];
+    const conditions: string[] = ["is_aggregate = 0", "dup_of IS NULL"];
     const values: any[] = [];
 
     if (country) { conditions.push("country = ?"); values.push(country); }
