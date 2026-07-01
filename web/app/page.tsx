@@ -11,6 +11,7 @@ import { DataFreshness } from "@/components/home/DataFreshness";
 import { getHomeData, getOnThisDay, getTodayAnalysis, getYearlyTimeline } from "@/lib/queries";
 import { HistoricalComparison } from "@/components/home/HistoricalComparison";
 import { TimelineScrubber } from "@/components/home/TimelineScrubber";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import Link from "next/link";
 
 export const revalidate = 3600;
@@ -33,10 +34,11 @@ export default async function HomePage() {
 
         {/* 38-Year Timeline */}
         <section className="mx-auto max-w-7xl px-6 py-8">
-          <div className="mb-4 flex items-baseline justify-between">
-            <h2 className="font-display text-2xl font-bold">38 Years of Conflict</h2>
-            <span className="text-sm text-text-dim">1989 – {new Date().getFullYear()}</span>
-          </div>
+          <SectionHeading
+            kicker="1989 — today"
+            title="Nearly four decades of conflict"
+            action={<span>{new Date().getFullYear() - 1989 + 1} years</span>}
+          />
           <div className="rounded-lg border border-border bg-surface p-5">
             <TimelineScrubber data={yearlyTimeline} />
           </div>
@@ -64,11 +66,14 @@ export default async function HomePage() {
 
         {/* Subscribe CTA */}
         <section className="mx-auto max-w-7xl px-6 py-16">
-          <div className="rounded-xl border border-border bg-surface p-8 text-center">
-            <h3 className="font-display text-2xl font-bold">
-              Daily Brief — Free
+          <div className="rounded-xl border border-border bg-surface p-10 text-center">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
+              Every morning
+            </div>
+            <h3 className="mt-2 font-display text-3xl font-semibold tracking-tight md:text-4xl">
+              The Daily Brief, free.
             </h3>
-            <p className="mt-2 text-sm text-text-dim">
+            <p className="mt-3 text-sm text-text-dim">
               Get the daily conflict brief on{" "}
               <a
                 href="https://t.me/ThreatPulse"

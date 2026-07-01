@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { HotRegion } from "@/lib/types";
 import { formatNumber } from "@/lib/utils";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 interface Props {
   regions: HotRegion[];
@@ -11,12 +12,10 @@ export function HotRegionsList({ regions }: Props) {
 
   return (
     <div>
-      <div className="mb-4">
-        <h2 className="font-display text-2xl font-bold">Hot Regions</h2>
-        <p className="mt-1 text-sm text-text-dim">
-          Deadliest countries in the last 90 days
-        </p>
-      </div>
+      <SectionHeading
+        kicker="Last 90 days"
+        title="Deadliest regions"
+      />
 
       <div className="rounded-lg border border-border bg-surface">
         {regions.slice(0, 10).map((region, i) => {
@@ -40,7 +39,7 @@ export function HotRegionsList({ regions }: Props) {
                   <span className="font-mono text-xs text-text-dim">
                     {formatNumber(region.events)} events
                   </span>
-                  <span className="font-mono text-sm font-semibold tabular-nums text-text-primary">
+                  <span className="min-w-[3.5rem] text-right font-display text-xl font-semibold tabular-nums text-text-primary">
                     {formatNumber(region.fatalities)}
                   </span>
                 </div>

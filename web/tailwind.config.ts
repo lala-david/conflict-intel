@@ -9,13 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0a0a0a",
-        surface: "#171717",
-        "surface-2": "#262626",
-        border: "#404040",
-        "text-primary": "#fafafa",
-        "text-dim": "#a3a3a3",
-        accent: "#dc2626",
+        // Editorial / newsroom — warm near-black "newsprint dark", cream ink, signature red
+        background: "#14110D",
+        surface: "#1C1813",
+        "surface-2": "#26211A",
+        border: "#38322A",
+        "text-primary": "#F5EFE3",
+        "text-dim": "#A89F8D",
+        accent: "#D6482F",
         "cat-war": "#991b1b",
         "cat-civil-war": "#dc2626",
         "cat-terrorism": "#6d28d9",
@@ -29,7 +30,9 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Inter Tight", "Inter", "sans-serif"],
+        // Editorial serif for headlines/mastheads
+        display: ["Fraunces", "Georgia", "Times New Roman", "serif"],
+        serif: ["Fraunces", "Georgia", "serif"],
         mono: ["JetBrains Mono", "Consolas", "monospace"],
       },
     },
