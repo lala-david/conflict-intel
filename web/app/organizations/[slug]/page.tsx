@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { TrackButton } from "@/components/ui/TrackButton";
 import {
   getTopOrganizations,
   getOrganizationEvents,
@@ -64,9 +65,12 @@ export default async function OrgPage({ params }: Props) {
 
         {/* Header */}
         <div className="mb-10 border-b border-border pb-8">
-          <h1 className="font-display text-4xl font-bold leading-tight md:text-5xl">
-            {org.name}
-          </h1>
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <h1 className="font-display text-4xl font-bold leading-tight md:text-5xl">
+              {org.name}
+            </h1>
+            <TrackButton type="org" value={org.name} />
+          </div>
           <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
             <Stat label="Events" value={formatNumber(org.events)} />
             <Stat label="Fatalities" value={formatNumber(org.fatalities)} />

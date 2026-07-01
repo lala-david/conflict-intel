@@ -87,7 +87,7 @@ export default function PricingPage() {
           <p className="mx-auto mt-4 max-w-xl text-lg text-text-dim">
             Janes costs $150K/year. We cost $29/month.
             <br />
-            Same data depth. Open source core. Honest classification.
+            Same data depth. Honest classification.
           </p>
         </div>
 

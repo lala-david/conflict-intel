@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CountryTimeline } from "@/components/charts/CountryTimeline";
+import { TrackButton } from "@/components/ui/TrackButton";
 import {
   getCountryByName,
   getCountryEvents,
@@ -85,6 +86,7 @@ export default async function CountryPage({ params }: Props) {
             <ShareButton title={`${country.country} — Conflict & Security Intelligence`} />
           </div>
           <div className="mt-3 flex items-center gap-3">
+            <TrackButton type="country" value={name} />
             <a
               href={`/api/export/csv?country=${encodeURIComponent(name)}`}
               className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium text-text-dim transition hover:bg-surface-2 hover:text-text-primary"

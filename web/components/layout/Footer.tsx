@@ -10,8 +10,8 @@ export function Footer() {
               Conflict &amp; Security Intelligence
             </h3>
             <p className="mt-2 text-xs text-text-dim">
-              Open source armed violence monitor. 420K events, 38 years, 172
-              countries. Academic classification standard.
+              Track global conflict. 420K events, 38 years, 172 countries,
+              categorized by academic standard.
             </p>
           </div>
 

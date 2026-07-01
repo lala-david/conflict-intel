@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
     const params = req.nextUrl.searchParams;
     const country = params.get("country");
     const category = params.get("category");
+    const actor = params.get("actor");
     const from = params.get("from");
     const to = params.get("to");
     const source = params.get("source");
@@ -28,6 +29,7 @@ export async function GET(req: NextRequest) {
     if (category && ALL_CATEGORIES.includes(category)) {
       conditions.push("category = ?"); values.push(category);
     }
+    if (actor) { conditions.push("actor1 = ?"); values.push(actor); }
     if (from) { conditions.push("date >= ?"); values.push(from); }
     if (to) { conditions.push("date <= ?"); values.push(to); }
     if (source) { conditions.push("source = ?"); values.push(source); }

@@ -25,7 +25,7 @@ export default async function CategoriesPage() {
       <main className="mx-auto max-w-7xl px-6 py-12">
         <h1 className="font-display text-5xl font-bold">Categories</h1>
         <p className="mt-2 text-text-dim">
-          Events classified by academic standard (UCDP + GTD-inspired taxonomy)
+          Events classified by academic-standard taxonomy
         </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

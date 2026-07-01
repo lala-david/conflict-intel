@@ -5,6 +5,7 @@ import { queryAll, queryOne } from "@/lib/db";
 import { formatNumber, formatDate, getCategoryMeta } from "@/lib/utils";
 import type { Event, Category } from "@/lib/types";
 import { Search } from "lucide-react";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export const dynamic = "force-dynamic";
 
@@ -107,10 +108,21 @@ export default async function EventsPage({ searchParams }: Props) {
     <>
       <Header />
       <main className="mx-auto max-w-7xl px-6 py-12">
-        <h1 className="font-display text-5xl font-bold">Events</h1>
-        <p className="mt-2 text-text-dim">
-          {formatNumber(total)} events matching your filters
-        </p>
+        <PageHeader
+          kicker="1989 — today"
+          title="Every event, searchable"
+          standfirst="More than 420,000 individual records of organized violence, categorized by academic standard. Filter by actor, country, category or date."
+          aside={
+            <div className="text-right">
+              <div className="font-display text-4xl font-semibold tabular-nums text-text-primary">
+                {formatNumber(total)}
+              </div>
+              <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-text-dim">
+                matching events
+              </div>
+            </div>
+          }
+        />
 
         {/* Filters */}
         <form className="mt-8 grid gap-4 rounded-lg border border-border bg-surface p-5 md:grid-cols-5">
@@ -261,11 +273,11 @@ export default async function EventsPage({ searchParams }: Props) {
                       </div>
                     )}
                   </div>
-                  <div className="text-right">
-                    <div className="font-mono text-lg font-semibold tabular-nums">
+                  <div className="shrink-0 text-right">
+                    <div className="font-display text-2xl font-semibold tabular-nums leading-none">
                       {formatNumber(event.fatalities)}
                     </div>
-                    <div className="text-[10px] uppercase tracking-wider text-text-dim">
+                    <div className="mt-1 text-[10px] uppercase tracking-wider text-text-dim">
                       killed
                     </div>
                   </div>

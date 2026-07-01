@@ -5,12 +5,12 @@ import Link from "next/link";
 import { Menu, X, Search } from "lucide-react";
 
 const NAV_ITEMS = [
+  { href: "/tracking", label: "Tracking" },
   { href: "/events", label: "Events" },
   { href: "/countries", label: "Countries" },
   { href: "/organizations", label: "Organizations" },
   { href: "/categories", label: "Categories" },
   { href: "/brief", label: "Brief" },
-  { href: "/data", label: "Data" },
 ];
 
 export function Header() {
