@@ -126,18 +126,6 @@ graph TD
 
 ## Data Coverage
 
-```mermaid
-pie showData
-    title Conflict Categories
-    "Civil War" : 37
-    "Counterterrorism" : 23
-    "Armed Violence" : 11
-    "War" : 9
-    "Cartel Violence" : 7
-    "Terrorism" : 7
-    "State Violence" : 5
-```
-
 |   | Metric | Detail |
 |:--|:-------|:-------|
 | **Time** | 1989 — Present | 37년 이상의 분쟁 데이터 |
