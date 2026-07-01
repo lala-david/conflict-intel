@@ -12,6 +12,7 @@ import type {
   Event,
   HomeData,
   HotRegion,
+  SpreadPoint,
   ThreatIndex,
 } from "./types";
 
@@ -180,9 +181,10 @@ export async function getCountryEvents(country: string, limit = 15): Promise<Eve
 export async function getCountryPoints(
   country: string,
   limit = 800
-): Promise<{ longitude: number; latitude: number; fatalities: number }[]> {
-  return await queryAll<{ longitude: number; latitude: number; fatalities: number }>(
-    `SELECT longitude, latitude, fatalities
+): Promise<SpreadPoint[]> {
+  return await queryAll<SpreadPoint>(
+    `SELECT id, longitude, latitude, fatalities, date, category, country,
+              location, actor1, actor2
        FROM events
       WHERE country = ? AND is_aggregate = 0
         AND latitude IS NOT NULL AND longitude IS NOT NULL
@@ -287,9 +289,10 @@ export async function getOrganizationEvents(name: string, limit = 30): Promise<E
 export async function getOrganizationPoints(
   name: string,
   limit = 500
-): Promise<{ longitude: number; latitude: number; fatalities: number }[]> {
-  return await queryAll<{ longitude: number; latitude: number; fatalities: number }>(
-    `SELECT longitude, latitude, fatalities
+): Promise<SpreadPoint[]> {
+  return await queryAll<SpreadPoint>(
+    `SELECT id, longitude, latitude, fatalities, date, category, country,
+              location, actor1, actor2
        FROM events
       WHERE actor1 = ? AND is_aggregate = 0
         AND latitude IS NOT NULL AND longitude IS NOT NULL

@@ -103,7 +103,7 @@ export default async function OrgPage({ params }: Props) {
               <div className="mb-4">
                 <NodeSpreadMapClient points={points} />
                 <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-text-dim">
-                  {formatNumber(points.length)} geolocated events · dot size = fatalities
+                  {formatNumber(points.length)} geolocated events · dot size = fatalities · click a dot for details
                 </p>
               </div>
             )}

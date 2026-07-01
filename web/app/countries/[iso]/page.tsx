@@ -137,7 +137,7 @@ export default async function CountryPage({ params }: Props) {
             </h2>
             <NodeSpreadMapClient points={points} />
             <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-text-dim">
-              {formatNumber(points.length)} geolocated events · dot size = fatalities
+              {formatNumber(points.length)} geolocated events · dot size = fatalities · click a dot for details
             </p>
           </section>
         )}
