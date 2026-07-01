@@ -22,17 +22,15 @@ const CIRCLE_PAINT = {
   "circle-radius": [
     "interpolate",
     ["linear"],
-    ["get", "f"],
-    0, 3,
-    10, 5,
-    100, 9,
-    1000, 15,
+    ["zoom"],
+    2, ["interpolate", ["linear"], ["get", "f"], 0, 3, 10, 5, 100, 8, 1000, 12],
+    7, ["interpolate", ["linear"], ["get", "f"], 0, 5, 10, 8, 100, 14, 1000, 24],
   ],
-  "circle-color": "#EF4444",
-  "circle-opacity": 0.5,
-  "circle-stroke-color": "#EF4444",
+  "circle-color": "#F04438",
+  "circle-opacity": 0.75,
+  "circle-stroke-color": "#FCA5A5",
   "circle-stroke-width": 1,
-  "circle-stroke-opacity": 0.9,
+  "circle-stroke-opacity": 0.6,
 } as const;
 
 /** Plots a node's events on a map, auto-fit to their spread. */
@@ -75,10 +73,9 @@ export function NodeSpreadMap({ points, height = 380 }: Props) {
         initialViewState={{ bounds, fitBoundsOptions: { padding: 56, maxZoom: 6 } }}
         style={{ width: "100%", height }}
         mapStyle={BASEMAP}
-        minZoom={1.3}
-        maxZoom={9}
+        minZoom={1.2}
+        maxZoom={10}
         renderWorldCopies={false}
-        maxBounds={[[-180, -78], [180, 84]]}
         dragRotate={false}
         touchZoomRotate={false}
       >
