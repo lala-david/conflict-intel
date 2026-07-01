@@ -1,4 +1,4 @@
-# 2026년 06월 Terror Intelligence
+# 2026년 06월 분쟁·안보 인텔리전스
 
 | Week | Reports |
 |------|---------|
