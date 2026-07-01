@@ -121,6 +121,16 @@ RSS_TIER1_FEEDS = {
 # Tier 6: 일반 뉴스 (키워드 필터는 적용)
 # Fox, CBS, NYT, ABC, Homeland Sec Newswire는 일반 뉴스라 테러 키워드 필터 거침
 
+# Telegram OSINT 공개 채널 (t.me/s/<channel> 스크래핑, 인증 불필요)
+# 실제 살아있는(공개 프리뷰 제공) 분쟁/전쟁 모니터 채널만 등록.
+TELEGRAM_CHANNELS = [
+    "intelslava",       # 러-우/글로벌 분쟁
+    "worldsource24",    # 글로벌 속보
+    "war_monitor",      # 우크라이나 전황
+    "Faytuks",          # 글로벌 분쟁/안보 속보
+    "spectatorindex",   # 글로벌 사건 속보
+]
+
 # Google News 테러 관련 검색 쿼리
 GOOGLE_NEWS_QUERIES = [
     "terrorism attack",

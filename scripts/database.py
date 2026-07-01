@@ -265,7 +265,7 @@ def save_events(data: dict, date_str: str):
 
         # Expert RSS / Google News — 텍스트 기반, casualty_extractor가 fatalities_estimated 채움
         # NOTE: 피드명은 sub_event_type에 저장 (web의 getTodayAnalysis가 이 필드 참조).
-        for source_key in ("expert_rss", "google_news"):
+        for source_key in ("expert_rss", "google_news", "telegram"):
             for e in data.get(source_key, []):
                 title = e.get("title", "") or ""
                 url = e.get("url", "") or ""
