@@ -22,18 +22,18 @@
 
 전 세계에서 발생하는 무력 충돌, 테러, 내전, 반란을 **매일 자동으로 수집하고 분석**하는 인텔리전스 플랫폼입니다.
 
-7개 이상의 독립 데이터 소스를 교차 검증하여 단일 소스 편향을 제거하고, 연구자 · 저널리스트 · 정책 분석가 · 안보 전문가에게 **신뢰할 수 있는 분쟁 데이터**를 제공합니다.
+9개 이상의 독립 데이터 소스(UCDP · GDELT · 공개 Telegram OSINT · 전문 RSS · 제재 등)를 교차 검증하여 단일 소스 편향을 제거하고, 분석가 · 연구자 · 저널리스트에게 **추적 가능한 분쟁 데이터**를 제공합니다.
 
 ---
 
-## Pipeline
+## Pipeline — Medallion (Bronze → Silver → Gold)
 
 ```mermaid
 graph LR
-    A["Collect\n7+ sources"] --> B["Enrich\nentity matching"]
-    B --> C["Link\ncross-reference"]
-    C --> D["Analyze\nthreat scoring"]
-    D --> E["Deliver\nbrief & dashboard"]
+    S["9 sources\nparallel connectors"] --> B["BRONZE\nraw Parquet\n(immutable)"]
+    B --> Si["SILVER\nenrich · link · dedup\n→ events"]
+    Si --> G["GOLD\naggregates + brief"]
+    G --> D["Dashboard\n+ REST API"]
 
     linkStyle default stroke-width:2px
 ```
@@ -42,24 +42,26 @@ graph LR
 <tr>
 <td width="50%" valign="top">
 
-**Collection & Enrichment**
+**Bronze — immutable raw**
 
-여러 독립 소스에서 분쟁 이벤트를 병렬 수집합니다.
-수집된 이벤트는 무장단체 · 국가 · 분쟁지역
-데이터베이스와 자동 매칭되어 구조화됩니다.
+9개 소스 커넥터가 병렬 수집한 원본을 파티션된
+**Parquet**(`data/bronze/{source}/dt=날짜/`)으로 불변 적재합니다.
+재수집 없이 재처리(replay)가 가능한 원천입니다.
 
 </td>
 <td width="50%" valign="top">
 
-**Analysis & Delivery**
+**Silver → Gold**
 
-교차 소스 이벤트 클러스터링, 국가별 위협도 산출,
-지리적 핫스팟 감지를 수행합니다.
-결과물은 웹 대시보드와 일일 보고서로 전달됩니다.
+정규화 · dedup · 엔티티 매칭 · 교차 링크 후 `events` 테이블(Silver)로,
+국가/조직/카테고리 집계(Gold)로 승격됩니다.
+소스별 **헬스 관측성**(count/ok/error)이 매 실행 기록됩니다.
 
 </td>
 </tr>
 </table>
+
+> 모듈형 커넥터 레지스트리 — 새 소스는 한 줄로 추가. `docker compose up -d scheduler` 로 상시 수집.
 
 ---
 
@@ -132,7 +134,8 @@ graph TD
 | **Geography** | 160+ countries | 글로벌 커버리지 |
 | **Updates** | Daily | GitHub Actions 자동화 |
 | **Classification** | 10 categories | 학술 표준 기반 |
-| **Sources** | 7+ independent | 교차 검증 |
+| **Sources** | 9+ independent | UCDP · GDELT · Telegram OSINT · RSS · Sanctions · OFAC · NCTC 등 |
+| **Storage** | Bronze/Silver/Gold | Parquet(raw) + SQLite(serving) |
 
 ---
 
@@ -166,17 +169,24 @@ GET  /api/status             시스템 상태
 ## Getting Started
 
 ```bash
-# Clone & setup
-git clone https://github.com/lala-david/terror.git && cd terror
+git clone https://github.com/lala-david/terror_researcher.git && cd terror_researcher
+cp .env.example .env                 # OPENAI_API_KEY, UCDP_TOKEN
+gh release download db-latest --pattern terror.db --dir data   # optional: seed the DB
+
+# ── Run the pipeline ──
+# A) Docker (recommended — runs anywhere)
+docker compose run --rm pipeline     # one-shot: bronze → silver → gold
+docker compose up -d scheduler       # continuous daily collection
+
+# B) Local
 pip install -r requirements.txt
-cp .env.example .env          # configure API keys
+python scripts/pipeline/run.py        # medallion pipeline
 
-# Run intelligence pipeline
-python scripts/daily_terror.py
-
-# Start dashboard
+# ── Dashboard ──
 cd web && npm install && npm run dev
 ```
+
+Handy: `make pipeline` · `make docker-schedule` · `make health` · `make web`.
 
 <details>
 <summary><b>Project Structure</b></summary>
@@ -184,22 +194,36 @@ cd web && npm install && npm run dev
 <br/>
 
 ```
-conflict-researcher/
-├── scripts/        # Intelligence pipeline
-│   ├── sources.py          Collection (7+ sources, parallel)
-│   ├── mapper.py           Entity matching & enrichment
-│   ├── event_linker.py     Cross-source event clustering
-│   ├── threat_scorer.py    Threat analysis & hotspot detection
-│   ├── daily_terror.py     Daily pipeline orchestrator
-│   └── compute_stats.py    Aggregate statistics
-├── web/            # Dashboard & API (Next.js)
-├── data/           # Reference data
-├── reports/        # Auto-generated intelligence briefs
-├── tests/          # Test suite
+terror_researcher/
+├── scripts/
+│   ├── pipeline/           # Medallion pipeline
+│   │   ├── base.py             Connector interface
+│   │   ├── registry.py         Source registry (add a source in 1 line)
+│   │   ├── bronze.py           Immutable raw → partitioned Parquet
+│   │   ├── health.py           Per-source observability
+│   │   └── run.py              Orchestrator (bronze → silver → gold)
+│   ├── sources.py          Source collectors (GDELT, UCDP, RSS, …)
+│   ├── telegram_source.py  Public Telegram OSINT (t.me/s scraping)
+│   ├── mapper.py           Entity matching & enrichment (Silver)
+│   ├── event_linker.py     Cross-source clustering (Silver)
+│   ├── threat_scorer.py    Threat scoring & hotspots
+│   └── compute_stats.py    Serving aggregates (Gold)
+├── web/            # Dashboard & REST API (Next.js) — node tracking + maps
+├── data/           # Reference data · terror.db (Silver/Gold) · bronze/ (Parquet)
+├── reports/        # Auto-generated daily/weekly briefs
+├── Dockerfile · docker-compose.yml · Makefile
 └── .github/        # CI/CD automation
 ```
 
 </details>
+
+---
+
+## Roadmap — Knowledge Graph / Ontology
+
+정규화된 이벤트 위에 **온톨로지 + 지식그래프**를 단계적으로 입힙니다: 엔티티 해소(행위자·장소) →
+관계 모델(Event–Actor–Place–Source, 동맹/분파) → 링크 분석 · 관계 추론. 기존 벤더 표준
+(SEM · schema.org Event · W3C PROV · STIX)을 재사용하고, 규모에 맞는 경량 그래프로 시작합니다.
 
 ---
 
