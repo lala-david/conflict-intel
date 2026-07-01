@@ -3,7 +3,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata = {
-  title: "Methodology — Conflict Researcher",
+  title: "Methodology — Conflict & Security Intelligence",
   description: "Data classification rules, sources, and known limitations.",
 };
 
@@ -111,7 +111,7 @@ export default function MethodologyPage() {
 
           <h2 className="mt-10 font-display">Citation</h2>
           <pre className="overflow-x-auto rounded-lg border border-border bg-background p-4 text-xs">
-{`Conflict Researcher (2026).
+{`Conflict & Security Intelligence (2026).
 Daily Global Armed Violence Monitor.
 https://github.com/lala-david/terror
 

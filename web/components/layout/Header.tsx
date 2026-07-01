@@ -22,7 +22,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2">
           <Globe2 className="h-5 w-5 text-accent" />
           <span className="font-display text-lg font-bold tracking-tight">
-            Conflict Researcher
+            Conflict &amp; Security Intelligence
           </span>
         </Link>
 

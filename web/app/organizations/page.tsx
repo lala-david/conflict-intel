@@ -7,7 +7,7 @@ import { formatNumber, slugify } from "@/lib/utils";
 export const revalidate = 3600;
 
 export const metadata = {
-  title: "Organizations — Conflict Researcher",
+  title: "Organizations — Conflict & Security Intelligence",
   description: "Top 100 non-state armed groups by activity. Years active, event counts, fatalities.",
 };
 

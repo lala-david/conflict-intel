@@ -7,7 +7,7 @@ import { formatNumber } from "@/lib/utils";
 export const revalidate = 3600;
 
 export const metadata = {
-  title: "Weekly Recap — Conflict Researcher",
+  title: "Weekly Recap — Conflict & Security Intelligence",
 };
 
 interface WeekData {

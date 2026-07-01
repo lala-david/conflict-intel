@@ -8,7 +8,7 @@ import type { Category } from "@/lib/types";
 export const revalidate = 3600;
 
 export const metadata = {
-  title: "Categories — Conflict Researcher",
+  title: "Categories — Conflict & Security Intelligence",
   description: "10 violence categories: war, civil war, terrorism, insurgency, cartel violence, and more.",
 };
 

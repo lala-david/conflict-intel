@@ -1,5 +1,5 @@
 /**
- * Shared TypeScript types for the Conflict Researcher dashboard.
+ * Shared TypeScript types for the Conflict & Security Intelligence dashboard.
  */
 
 export type Category =

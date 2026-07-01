@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props) {
   const org = findBySlug(orgs, params.slug);
   if (!org) return { title: "Organization not found" };
   return {
-    title: `${org.name} — Conflict Researcher`,
+    title: `${org.name} — Conflict & Security Intelligence`,
     description: `${formatNumber(org.events)} events, ${formatNumber(org.fatalities)} fatalities tracked. Activity from ${org.first_seen?.slice(0, 4)} to ${org.last_seen?.slice(0, 4)}.`,
   };
 }

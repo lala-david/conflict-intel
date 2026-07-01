@@ -79,7 +79,7 @@ export async function GET(
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#dc2626" }} />
             <div style={{ fontSize: "24px", fontWeight: 600, color: "#fafafa" }}>
-              Conflict Researcher
+              Conflict & Security Intelligence
             </div>
           </div>
           <div style={{ fontSize: "16px", color: "#525252" }}>

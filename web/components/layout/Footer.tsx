@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-4">
           <div>
             <h3 className="font-display text-sm font-semibold text-text-primary">
-              Conflict Researcher
+              Conflict &amp; Security Intelligence
             </h3>
             <p className="mt-2 text-xs text-text-dim">
               Open source armed violence monitor. 420K events, 38 years, 172

@@ -8,7 +8,7 @@ import { Search } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Search — Conflict Researcher",
+  title: "Search — Conflict & Security Intelligence",
 };
 
 interface Props {
