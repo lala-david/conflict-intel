@@ -72,9 +72,15 @@ export function NodeSpreadMap({ points, height = 380 }: Props) {
   return (
     <div className="overflow-hidden rounded-lg border border-border">
       <Map
-        initialViewState={{ bounds, fitBoundsOptions: { padding: 48, maxZoom: 6 } }}
+        initialViewState={{ bounds, fitBoundsOptions: { padding: 56, maxZoom: 6 } }}
         style={{ width: "100%", height }}
         mapStyle={BASEMAP}
+        minZoom={1.3}
+        maxZoom={9}
+        renderWorldCopies={false}
+        maxBounds={[[-180, -78], [180, 84]]}
+        dragRotate={false}
+        touchZoomRotate={false}
       >
         <NavigationControl position="top-right" showCompass={false} />
         <Source id="spread" type="geojson" data={geojson}>

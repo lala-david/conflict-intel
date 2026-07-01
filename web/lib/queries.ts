@@ -177,6 +177,40 @@ export async function getCountryEvents(country: string, limit = 15): Promise<Eve
   );
 }
 
+export async function getCountryPoints(
+  country: string,
+  limit = 800
+): Promise<{ longitude: number; latitude: number; fatalities: number }[]> {
+  return await queryAll<{ longitude: number; latitude: number; fatalities: number }>(
+    `SELECT longitude, latitude, fatalities
+       FROM events
+      WHERE country = ? AND is_aggregate = 0
+        AND latitude IS NOT NULL AND longitude IS NOT NULL
+      ORDER BY date DESC
+      LIMIT ?`,
+    [country, limit]
+  );
+}
+
+export async function getCountryTopActors(
+  country: string,
+  limit = 8
+): Promise<{ name: string; events: number; fatalities: number }[]> {
+  return await queryAll<{ name: string; events: number; fatalities: number }>(
+    `SELECT actor1 as name,
+              COUNT(*) as events,
+              COALESCE(SUM(fatalities), 0) as fatalities
+         FROM events
+        WHERE country = ? AND is_aggregate = 0
+          AND actor1 != '' AND actor1 NOT LIKE 'Government of%'
+          AND length(actor1) < 60
+        GROUP BY actor1
+        ORDER BY events DESC
+        LIMIT ?`,
+    [country, limit]
+  );
+}
+
 // ─── Event queries ───
 export async function getEventById(id: string): Promise<Event | null> {
   return await queryOne<Event>(
