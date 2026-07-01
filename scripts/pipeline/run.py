@@ -25,6 +25,7 @@ load_dotenv(ROOT / ".env")
 
 from pipeline import bronze, health
 from pipeline.registry import build_registry
+from pipeline.dedup import deduplicate
 
 from casualty_extractor import enrich_articles_with_casualties
 from mapper import TerrorMapper
@@ -85,6 +86,12 @@ def run(target_date: datetime | None = None) -> None:
     save_events(data, date_str)
     save_daily_stats(date_str, data, stats)
     save_known_ucdp_ids([e.get("event_id") for e in data.get("ucdp", []) if e.get("event_id")])
+
+    # cross-source dedup via local LLM (free/private); heuristic fallback if unreachable
+    try:
+        deduplicate(days=7)
+    except Exception as e:  # noqa: BLE001
+        print(f"  dedup skipped: {e}")
 
     # ── GOLD: aggregates + brief ──
     print("\n[GOLD] aggregate + brief")
