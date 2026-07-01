@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=500&lines=Conflict+Researcher">
-    <img alt="Conflict Researcher" src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=500&lines=Conflict+Researcher">
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=640&lines=Conflict+%26+Security+Intelligence">
+    <img alt="Conflict & Security Intelligence" src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=640&lines=Conflict+%26+Security+Intelligence">
   </picture>
 </p>
 
@@ -125,16 +125,6 @@ graph TD
 ---
 
 ## Data Coverage
-
-```mermaid
-pie showData
-    title Conflict Categories
-    "Terrorism" : 30
-    "Civil War" : 25
-    "State Conflict" : 20
-    "Insurgency" : 15
-    "Other Violence" : 10
-```
 
 |   | Metric | Detail |
 |:--|:-------|:-------|
