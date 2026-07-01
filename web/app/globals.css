@@ -2,27 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import fonts — Fraunces (editorial serif display), Inter (UI/body), JetBrains Mono (data) */
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+/* Fonts — Pretendard (UI/body/display), JetBrains Mono (data figures) */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/static/pretendard.min.css");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
 
 :root {
   color-scheme: dark;
 }
 
 html {
-  background: #14110D;
-  color: #F5EFE3;
+  background: #0C0D0F;
+  color: #ECEEF1;
 }
 
 body {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: "Pretendard", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Editorial serif headlines: optical sizing + tighter tracking for large display */
+/* Display headlines: tighter tracking */
 .font-display {
-  font-optical-sizing: auto;
   letter-spacing: -0.02em;
 }
 
@@ -32,14 +32,14 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #14110D;
+  background: #0C0D0F;
 }
 ::-webkit-scrollbar-thumb {
-  background: #38322A;
+  background: #2A2E36;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #4A4238;
+  background: #3A4049;
 }
 
 /* MapLibre overrides */

@@ -9,14 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Editorial / newsroom — warm near-black "newsprint dark", cream ink, signature red
-        background: "#14110D",
-        surface: "#1C1813",
-        "surface-2": "#26211A",
-        border: "#38322A",
-        "text-primary": "#F5EFE3",
-        "text-dim": "#A89F8D",
-        accent: "#D6482F",
+        // Clean cool-neutral dark — analyst tool tone (no warmth)
+        background: "#0C0D0F",
+        surface: "#15171B",
+        "surface-2": "#1E2127",
+        border: "#2A2E36",
+        "text-primary": "#ECEEF1",
+        "text-dim": "#98A0AC",
+        accent: "#EF4444",
         "cat-war": "#991b1b",
         "cat-civil-war": "#dc2626",
         "cat-terrorism": "#6d28d9",
@@ -29,10 +29,8 @@ const config: Config = {
         "cat-armed-violence": "#475569",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        // Editorial serif for headlines/mastheads
-        display: ["Fraunces", "Georgia", "Times New Roman", "serif"],
-        serif: ["Fraunces", "Georgia", "serif"],
+        sans: ["Pretendard", "system-ui", "-apple-system", "sans-serif"],
+        display: ["Pretendard", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "Consolas", "monospace"],
       },
     },

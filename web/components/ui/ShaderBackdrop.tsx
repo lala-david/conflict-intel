@@ -22,7 +22,7 @@ export function ShaderBackdrop() {
         scale={1.5}
         rotation={0}
         speed={0.22}
-        colors={["#14110D", "#3A0E0A", "#D6482F", "#1C1813"]}
+        colors={["#0C0D0F", "#15171B", "#EF4444", "#1E2127"]}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
     </div>
