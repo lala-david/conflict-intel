@@ -2,7 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata = {
-  title: "API — Conflict Researcher",
+  title: "API — Conflict & Security Intelligence",
   description: "REST API for armed violence data. Free, open, no auth.",
 };
 
@@ -132,7 +132,7 @@ export default function ApiDocsPage() {
       <main className="mx-auto max-w-4xl px-6 py-12">
         <h1 className="font-display text-5xl font-bold">API</h1>
         <p className="mt-3 text-text-dim">
-          REST API for the Conflict Researcher database. Free, no auth, no
+          REST API for the Conflict & Security Intelligence database. Free, no auth, no
           rate limit (yet). JSON responses. Cache-friendly.
         </p>
 

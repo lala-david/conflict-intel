@@ -8,7 +8,7 @@ import { FileText } from "lucide-react";
 export const revalidate = 3600;
 
 export const metadata = {
-  title: "Daily Briefs — Conflict Researcher",
+  title: "Daily Briefs — Conflict & Security Intelligence",
   description: "Archive of daily intelligence briefs. Auto-generated every morning.",
 };
 

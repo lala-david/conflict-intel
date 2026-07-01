@@ -3,7 +3,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata = {
-  title: "About — Conflict Researcher",
+  title: "About — Conflict & Security Intelligence",
   description: "Open-source global armed violence monitor. 420K events, 38 years, academic standards.",
 };
 
@@ -16,7 +16,7 @@ export default function AboutPage() {
 
         <div className="prose prose-invert prose-sm mt-8 max-w-none">
           <p className="text-lg text-text-dim">
-            <strong className="text-text-primary">Conflict Researcher</strong> is an
+            <strong className="text-text-primary">Conflict & Security Intelligence</strong> is an
             open-source daily intelligence pipeline that aggregates global armed violence
             data from 8 sources (420K events, 1989–2026) and classifies them by
             academic standard.

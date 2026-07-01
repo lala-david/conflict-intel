@@ -101,7 +101,7 @@ export default async function FeedEmbed() {
       })}
       <div style={{ marginTop: "10px", fontSize: "9px", color: "#525252", textAlign: "center" }}>
         <a href="/" target="_top" style={{ color: "#525252", textDecoration: "none" }}>
-          Conflict Researcher ↗
+          Conflict & Security Intelligence ↗
         </a>
       </div>
     </div>

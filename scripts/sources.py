@@ -1,5 +1,5 @@
 """
-Terror Intelligence 데이터 소스 수집 모듈
+분쟁·안보 인텔리전스 데이터 소스 수집 모듈
 - GDELT (실시간 이벤트), UCDP (분쟁 사건+사상자), OpenSanctions (제재)
 - RSS (전문 기관), Google News (뉴스)
 """
@@ -845,7 +845,7 @@ def _safe_fetch(name, fn, *args, **kwargs):
 
 def collect_all(target_date: datetime) -> dict:
     print("=" * 55)
-    print("  Terror Intelligence — Data Collection")
+    print("  분쟁·안보 인텔리전스 — Data Collection")
     print("=" * 55)
 
     # Fetch all 8 sources in parallel

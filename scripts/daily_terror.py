@@ -1,6 +1,7 @@
 """
-Terror Intelligence Daily Report — 데일리 인텔리전스 자동 생성
+분쟁·안보 인텔리전스 데일리 리포트 (Conflict & Security Intelligence) — 자동 생성
 - 보고서는 코드로 자동 생성, LLM은 BLUF 요약(3~5줄)만 담당
+- 테러는 다루는 여러 폭력 카테고리(내전·반란·전쟁·카르텔·국가폭력 등) 중 하나
 
 사용법:
     python scripts/daily_terror.py              # 오늘 날짜
@@ -58,7 +59,9 @@ def generate_bluf(summary_text: str) -> str:
             model=ANALYSIS_MODEL,
             messages=[
                 {"role": "system", "content": (
-                    "You are a senior counterterrorism analyst. "
+                    "You are a senior conflict and security intelligence analyst "
+                    "covering all forms of organized and political violence "
+                    "(armed conflict, insurgency, terrorism, cartel and state violence). "
                     "Write a 3-5 line executive summary (BLUF) in Korean. "
                     "Use only the provided data. Never fabricate. "
                     "End sentences with ~이다/~하다/~한다/~으로 판단된다."
@@ -112,7 +115,7 @@ def build_report(data: dict, date: datetime, mapper=None) -> str:
     new_fatalities = sum(int(e.get("fatalities", 0) or 0) for e in ucdp_new)
 
     lines = []
-    lines.append(f"# Terror Intelligence Brief \u2014 {date_display}")
+    lines.append(f"# \ubd84\uc7c1\u00b7\uc548\ubcf4 \uc778\ud154\ub9ac\uc804\uc2a4 \ube0c\ub9ac\ud504 \u2014 {date_display}")
     lines.append("")
     lines.append("> CLASSIFICATION: UNCLASSIFIED // FOR OFFICIAL USE ONLY")
     lines.append("")
@@ -422,7 +425,7 @@ def update_month_readme(report_dir: Path, date: datetime):
         rows.append(f"| [{w.name}]({w.name}/README.md) | {count} |")
     table = "\n".join(rows) if rows else "| - | 0 |"
 
-    content = f"""# {year}년 {month} Terror Intelligence
+    content = f"""# {year}년 {month} 분쟁·안보 인텔리전스
 
 | Week | Reports |
 |------|---------|
@@ -441,7 +444,7 @@ def main():
 
     date_str = target_date.strftime("%Y-%m-%d")
     print(f"\n{'='*55}")
-    print(f"  Terror Intelligence Brief \u2014 {date_str}")
+    print(f"  \ubd84\uc7c1\u00b7\uc548\ubcf4 \uc778\ud154\ub9ac\uc804\uc2a4 \ube0c\ub9ac\ud504 \u2014 {date_str}")
     print(f"{'='*55}\n")
 
     # 0. DB 초기화 + 마이그레이션 (명시적 호출)

@@ -31,10 +31,10 @@ export async function generateMetadata({ params }: Props) {
   const name = decodeURIComponent(params.iso);
   const ogUrl = `/api/og/countries/${encodeURIComponent(name)}`;
   return {
-    title: `${name} — Conflict Researcher`,
+    title: `${name} — Conflict & Security Intelligence`,
     description: `Armed violence events in ${name}. 1989-present. Terrorism, civil war, insurgency data.`,
     openGraph: {
-      title: `${name} — Conflict Researcher`,
+      title: `${name} — Conflict & Security Intelligence`,
       description: `Armed violence events in ${name}. 420K events, 38 years.`,
       images: [{ url: ogUrl, width: 1200, height: 630 }],
     },
@@ -82,7 +82,7 @@ export default async function CountryPage({ params }: Props) {
         <div className="mb-10 border-b border-border pb-8">
           <div className="flex items-start justify-between">
             <h1 className="font-display text-5xl font-bold">{country.country}</h1>
-            <ShareButton title={`${country.country} — Conflict Researcher`} />
+            <ShareButton title={`${country.country} — Conflict & Security Intelligence`} />
           </div>
           <div className="mt-3 flex items-center gap-3">
             <a

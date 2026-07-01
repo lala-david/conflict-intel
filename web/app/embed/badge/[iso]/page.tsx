@@ -103,7 +103,7 @@ export default async function BadgeEmbed({ params }: Props) {
             textDecoration: "none",
           }}
         >
-          Conflict Researcher ↗
+          Conflict & Security Intelligence ↗
         </a>
         <span
           style={{

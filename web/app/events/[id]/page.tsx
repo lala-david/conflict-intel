@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props) {
   const description = `${meta.label} event in ${event.location || event.country} on ${formatDate(event.date)}. ${event.fatalities} killed.`;
 
   return {
-    title: `${title} | Conflict Researcher`,
+    title: `${title} | Conflict & Security Intelligence`,
     description,
     openGraph: { title, description },
   };

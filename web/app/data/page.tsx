@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Download, Github, Database } from "lucide-react";
 
 export const metadata = {
-  title: "Data Download — Conflict Researcher",
+  title: "Data Download — Conflict & Security Intelligence",
   description: "Download the full 420K event database or query via API.",
 };
 
@@ -117,7 +117,7 @@ export default function DataPage() {
         <section className="mt-12">
           <h2 className="mb-4 font-display text-2xl font-bold">Citation</h2>
           <pre className="overflow-x-auto rounded-lg border border-border bg-surface p-5 font-mono text-xs">
-{`Conflict Researcher (2026).
+{`Conflict & Security Intelligence (2026).
 Daily Global Armed Violence Monitor.
 https://github.com/lala-david/terror
 

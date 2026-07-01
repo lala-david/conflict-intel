@@ -9,7 +9,7 @@ import { Search } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Events — Conflict Researcher",
+  title: "Events — Conflict & Security Intelligence",
   description: "Browse 420,000+ armed violence events from 1989 to present.",
 };
 

@@ -7,7 +7,7 @@ import { formatNumber } from "@/lib/utils";
 export const revalidate = 3600;
 
 export const metadata = {
-  title: "Countries — Conflict Researcher",
+  title: "Countries — Conflict & Security Intelligence",
   description: "All 172 countries tracked. Event counts and fatalities from 1989 to present.",
 };
 
