@@ -2,7 +2,7 @@ name: Daily Terror Intelligence
 
 # 무료 클라우드 자동화 (로컬 Windows 예약작업 대체).
 #   - 매일 09:00 KST(00:00 UTC) 자동 수집
-#   - DB(276MB, gitignore)는 GitHub Release 자산으로 영속화: 시작 시 다운로드 → 종료 시 재업로드
+#   - DB(276MB, gitignore)는 GitHub Actions 캐시로 영속화(레포 비공개, 공개 다운로드 불가): 복원 → 저장
 #   - 수집/통계 후 변경분을 Turso(클라우드 SQLite)에 동기화 → Cloudflare Pages 사이트가 읽음
 #   - 리포트(.md)는 평소처럼 repo 에 커밋
 #
@@ -25,9 +25,6 @@ permissions:
   contents: write
   issues: write
 
-env:
-  DB_RELEASE_TAG: db-latest         # terror.db 를 보관하는 Release 태그
-
 jobs:
   research:
     runs-on: ubuntu-latest
@@ -47,17 +44,15 @@ jobs:
           curl -sSfL https://get.tur.so/install.sh | bash
           echo "$HOME/.turso" >> $GITHUB_PATH
 
-      # ─── DB 영속화: Release 에서 이전 terror.db 복원 (없으면 새로 시작) ───
-      - name: Restore terror.db from Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          mkdir -p data
-          if gh release download "$DB_RELEASE_TAG" --pattern terror.db --dir data 2>/dev/null; then
-            echo "Restored terror.db ($(du -h data/terror.db | cut -f1))"
-          else
-            echo "No existing DB release — pipeline will create a fresh terror.db"
-          fi
+      # ─── DB 영속화: 이전 terror.db 를 Actions 캐시(비공개)에서 복원 (없으면 새로 시작) ───
+      #     run_id 키는 매 실행 고유 → 저장은 항상 성공, restore-keys 접두어로 직전 캐시를 복원.
+      - name: Restore terror.db (private cache)
+        uses: actions/cache/restore@v4
+        with:
+          path: data/terror.db
+          key: terror-db-${{ github.run_id }}
+          restore-keys: |
+            terror-db-
 
       - name: Run daily terror intelligence
         env:
@@ -88,14 +83,12 @@ jobs:
           turso db shell "${{ vars.TURSO_DB_NAME }}" < turso_sync.sql
           rm -f turso_sync.sql
 
-      # ─── 갱신된 terror.db 를 Release 로 재업로드 (다음 실행이 이어받음) ───
-      - name: Save terror.db to Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release view "$DB_RELEASE_TAG" >/dev/null 2>&1 || \
-            gh release create "$DB_RELEASE_TAG" --title "DB snapshot" --notes "Latest terror.db (auto-updated daily)"
-          gh release upload "$DB_RELEASE_TAG" data/terror.db --clobber
+      # ─── 갱신된 terror.db 를 Actions 캐시(비공개)에 저장 (다음 실행이 이어받음) ───
+      - name: Save terror.db (private cache)
+        uses: actions/cache/save@v4
+        with:
+          path: data/terror.db
+          key: terror-db-${{ github.run_id }}
 
       - name: Commit reports
         run: |
