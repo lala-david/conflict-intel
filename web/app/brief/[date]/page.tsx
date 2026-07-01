@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import fs from "fs";
 import path from "path";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ArrowLeft } from "lucide-react";
@@ -45,8 +46,8 @@ export default function BriefDetailPage({ params }: Props) {
           All briefs
         </Link>
 
-        <article className="prose prose-invert prose-sm max-w-none prose-headings:font-display prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
-          <ReactMarkdown>{content}</ReactMarkdown>
+        <article className="prose prose-invert prose-sm max-w-none prose-headings:font-display prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-table:block prose-table:overflow-x-auto prose-th:text-left prose-td:align-top">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
         </article>
       </main>
       <Footer />
