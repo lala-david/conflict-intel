@@ -15,10 +15,29 @@
 
 ---
 
+## 0단계 — Docker 셀프호스트 (가장 간단, 클라우드 불필요)
+
+집/서버 어디서든 Docker만 있으면 바로 돕니다:
+
+```bash
+git clone https://github.com/lala-david/terror_researcher.git && cd terror_researcher
+cp .env.example .env                                            # OPENAI_API_KEY, UCDP_TOKEN
+gh release download db-latest --pattern terror.db --dir data   # 기존 DB 시드(선택)
+
+docker compose run --rm pipeline     # 1회 수집 (bronze → silver → gold)
+docker compose up -d scheduler       # 매일 자동 수집 (상시)
+cd web && npm install && npm run dev  # 대시보드
+```
+
+`data/`(terror.db + bronze Parquet)와 `reports/`는 볼륨으로 영속됩니다.
+아래 Turso/Cloudflare 단계는 **공개 클라우드 사이트**를 운영할 때만 필요합니다.
+
+---
+
 ## 사전 준비: 현재 상태
 - 웹 데이터 레이어는 `@libsql/client`(Turso 호환)로 전환 완료 — `npm run build` 통과
 - `TURSO_DATABASE_URL` 미설정 시 로컬 `data/terror.db` 파일을 그대로 읽음(개발용)
-- 파이프라인(`scripts/daily_terror.py`)은 변경 없이 로컬 sqlite 에 기록
+- 파이프라인(`scripts/pipeline/run.py`, 메달리온 Bronze/Silver/Gold)이 로컬 sqlite + Parquet(bronze) 에 기록
 - `scripts/export_for_turso.py` 가 변경분을 Turso 동기화 SQL 로 출력
 
 ---
