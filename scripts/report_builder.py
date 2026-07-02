@@ -490,7 +490,7 @@ def main():
     save_daily_stats(date_str, data, stats)
     ucdp_ids = [e.get("event_id") for e in data.get("ucdp", []) if e.get("event_id")]
     total_known = save_known_ucdp_ids(ucdp_ids)
-    print(f"   -> terror.db updated | known UCDP ids: {total_known}")
+    print(f"   -> conflict.db updated | known UCDP ids: {total_known}")
 
     # 6. 보고서 생성 (코드 기반 + LLM BLUF만)
     print("\n  Building report...")

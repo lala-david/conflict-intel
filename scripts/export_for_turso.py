@@ -2,7 +2,7 @@
 Turso 동기화용 SQL 생성기.
 
 웹사이트(Cloudflare Pages)는 Turso(클라우드 SQLite)를 읽는다. 파이프라인은 로컬
-terror.db(sqlite3)에 그대로 쓰고, 이 스크립트가 "Turso에 반영할 변경분"만 SQL로 출력한다.
+conflict.db(sqlite3)에 그대로 쓰고, 이 스크립트가 "Turso에 반영할 변경분"만 SQL로 출력한다.
 출력은 `turso db shell <db>` 에 파이프해서 적용한다.
 
   python scripts/export_for_turso.py            # 일일 증분 (오늘 수집분 + 통계 전체)
@@ -18,7 +18,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-DB_PATH = Path(__file__).resolve().parent.parent / "data" / "terror.db"
+DB_PATH = Path(__file__).resolve().parent.parent / "data" / "conflict.db"
 
 STATS_TABLES = ["global_stats", "country_stats", "org_stats", "category_stats", "daily_stats"]
 APPEND_TABLES = ["events", "sanctions"]
