@@ -8,7 +8,9 @@ export async function GET(request: NextRequest) {
   const from = params.get("from") || undefined;
   const to = params.get("to") || undefined;
 
-  const events = await getEventsForExport({ country, category, from, to }, 10000);
+  // Bounded so the CSV fits the Worker CPU/memory budget (free plan). For bulk
+  // data, the full DB is published on GitHub Releases (db-latest).
+  const events = await getEventsForExport({ country, category, from, to }, 5000);
 
   const headers = [
     "id", "date", "source", "category", "actor1", "actor2",
