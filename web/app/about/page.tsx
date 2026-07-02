@@ -2,8 +2,6 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
-export const runtime = "edge";
-
 export const metadata = {
   title: "About — Conflict & Security Intelligence",
   description: "Open-source global armed violence monitor. 420K events, 38 years, academic standards.",

@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { queryOne } from "@/lib/db";
 
-export const runtime = "edge";
-
 export const revalidate = 3600;
 
 export async function GET(

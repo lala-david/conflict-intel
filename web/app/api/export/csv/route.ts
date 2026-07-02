@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getEventsForExport } from "@/lib/queries";
 
-export const runtime = "edge";
-
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const country = params.get("country") || undefined;

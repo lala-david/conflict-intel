@@ -8,8 +8,6 @@ import { WorldMapSection } from "@/components/map/WorldMapSection";
 import { getHomeData } from "@/lib/queries";
 import Link from "next/link";
 
-export const runtime = "edge";
-
 export const revalidate = 3600;
 
 export default async function HomePage() {

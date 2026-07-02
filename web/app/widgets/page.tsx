@@ -1,8 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
-export const runtime = "edge";
-
 export const metadata = {
   title: "Embed Widgets — Conflict & Security Intelligence",
   description: "Free embeddable widgets for country risk, live feed, and threat map.",
