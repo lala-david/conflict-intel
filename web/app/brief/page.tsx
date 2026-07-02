@@ -1,10 +1,9 @@
 import Link from "next/link";
-import fs from "fs";
-import path from "path";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ArrowRight } from "lucide-react";
+import { listBriefs } from "@/lib/briefs";
 
 export const revalidate = 3600;
 
@@ -13,42 +12,8 @@ export const metadata = {
   description: "Archive of daily intelligence briefs. Auto-generated every morning.",
 };
 
-interface BriefMeta {
-  date: string;
-  week: string;
-  month: string;
-}
-
-function listBriefs(): BriefMeta[] {
-  const reportsDir = path.resolve(process.cwd(), "..", "reports");
-  const results: BriefMeta[] = [];
-  try {
-    const years = fs.readdirSync(reportsDir).filter((y) => /^\d{4}$/.test(y));
-    for (const y of years.sort().reverse()) {
-      const yearDir = path.join(reportsDir, y);
-      const months = fs.readdirSync(yearDir).filter((m) => /^\d{2}$/.test(m));
-      for (const m of months.sort().reverse()) {
-        const monthDir = path.join(yearDir, m);
-        const weeks = fs.readdirSync(monthDir).filter((w) => /^week-/.test(w));
-        for (const w of weeks.sort().reverse()) {
-          const weekDir = path.join(monthDir, w);
-          const files = fs.readdirSync(weekDir).filter((f) => /^\d{4}-\d{2}-\d{2}\.md$/.test(f));
-          for (const f of files.sort().reverse()) {
-            results.push({
-              date: f.replace(".md", ""),
-              week: w,
-              month: `${y}-${m}`,
-            });
-          }
-        }
-      }
-    }
-  } catch {}
-  return results.slice(0, 60);
-}
-
-export default function BriefArchivePage() {
-  const briefs = listBriefs();
+export default async function BriefArchivePage() {
+  const briefs = await listBriefs(60);
 
   return (
     <>
