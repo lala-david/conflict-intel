@@ -21,10 +21,16 @@ export const revalidate = 3600;
 
 // Pre-generate top 30 countries at build time
 export async function generateStaticParams() {
-  const countries = await getCountryList();
-  return countries.slice(0, 30).map((c) => ({
-    iso: encodeURIComponent(c.country),
-  }));
+  try {
+    const countries = await getCountryList();
+    return countries.slice(0, 30).map((c) => ({
+      iso: encodeURIComponent(c.country),
+    }));
+  } catch {
+    // DB not reachable at build time (TURSO env only set at runtime) →
+    // skip prerendering; pages render on-demand (ISR) using runtime vars.
+    return [];
+  }
 }
 
 interface Props {
