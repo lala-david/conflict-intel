@@ -125,7 +125,9 @@ export async function queryAll<T = any>(sql: string, args: SqlArg[] = []): Promi
   const { cols, rows } = await exec(sql, args, url, token);
   const data = rowsToObjects<T>(cols, rows);
 
-  if (cache && keyReq) {
+  // Don't cache large result sets — JSON.stringify'ing them costs more CPU than
+  // the round-trip it saves and can blow the Worker's memory/CPU budget.
+  if (cache && keyReq && rows.length <= 2000) {
     try {
       await cache.put(
         keyReq,
