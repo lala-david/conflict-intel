@@ -43,11 +43,13 @@ export default async function OrgPage({ params }: Props) {
   const org = findBySlug(orgs, params.slug);
   if (!org) notFound();
 
-  const events = await getOrganizationEvents(org.name, 30);
-  const timeline = await getOrganizationTimeline(org.name);
-  const countries = await getOrganizationCountries(org.name);
-  const points = await getOrganizationPoints(org.name, 500);
-  const relatedOrgs = await getRelatedOrganizations(org.name, 8);
+  const [events, timeline, countries, points, relatedOrgs] = await Promise.all([
+    getOrganizationEvents(org.name, 30),
+    getOrganizationTimeline(org.name),
+    getOrganizationCountries(org.name),
+    getOrganizationPoints(org.name, 500),
+    getRelatedOrganizations(org.name, 8),
+  ]);
 
   const activeYears =
     parseInt(org.last_seen?.slice(0, 4) ?? "0") -

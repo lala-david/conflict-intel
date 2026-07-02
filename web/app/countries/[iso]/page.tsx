@@ -60,10 +60,12 @@ export default async function CountryPage({ params }: Props) {
   const country = await getCountryByName(name);
   if (!country) notFound();
 
-  const events = await getCountryEvents(name, 30);
-  const timeline = await getCountryTimeline(name);
-  const points = await getCountryPoints(name, 800);
-  const topActors = await getCountryTopActors(name, 8);
+  const [events, timeline, points, topActors] = await Promise.all([
+    getCountryEvents(name, 30),
+    getCountryTimeline(name),
+    getCountryPoints(name, 800),
+    getCountryTopActors(name, 8),
+  ]);
 
   // Calculate category breakdown
   const catBreakdown = new Map<string, { count: number; deaths: number }>();

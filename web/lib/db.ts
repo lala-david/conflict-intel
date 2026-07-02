@@ -77,14 +77,60 @@ async function exec(sql: string, args: SqlArg[]): Promise<{ cols: string[]; rows
   return { cols: result.cols.map((c: any) => c.name), rows: result.rows };
 }
 
-/** Run a query and return all rows, cast to T. */
-export async function queryAll<T = any>(sql: string, args: SqlArg[] = []): Promise<T[]> {
-  const { cols, rows } = await exec(sql, args);
+function rowsToObjects<T>(cols: string[], rows: any[][]): T[] {
   return rows.map((row) => {
     const obj: any = {};
     cols.forEach((c, i) => (obj[c] = fromCell(row[i])));
     return obj as T;
   });
+}
+
+// djb2 hash → short stable cache key
+function hashKey(s: string): string {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0;
+  return h.toString(36) + s.length.toString(36);
+}
+
+const CACHE_TTL = 600; // seconds — data refreshes ~daily, so 10 min is safe
+
+/**
+ * Run a query, caching the result at the Cloudflare edge (caches.default) keyed
+ * by sql+args. Repeat reads across requests in the same colo skip Turso entirely.
+ * No binding/infra needed; falls back to a direct query where the Cache API is
+ * unavailable (local dev / build).
+ */
+export async function queryAll<T = any>(sql: string, args: SqlArg[] = []): Promise<T[]> {
+  const cache: Cache | undefined = (globalThis as any).caches?.default;
+  const keyReq = cache
+    ? new Request(`https://q.cache/${hashKey(JSON.stringify([sql, args]))}`)
+    : undefined;
+
+  if (cache && keyReq) {
+    try {
+      const hit = await cache.match(keyReq);
+      if (hit) return (await hit.json()) as T[];
+    } catch {
+      /* ignore cache read errors */
+    }
+  }
+
+  const { cols, rows } = await exec(sql, args);
+  const data = rowsToObjects<T>(cols, rows);
+
+  if (cache && keyReq) {
+    try {
+      await cache.put(
+        keyReq,
+        new Response(JSON.stringify(data), {
+          headers: { "Content-Type": "application/json", "Cache-Control": `max-age=${CACHE_TTL}` },
+        }),
+      );
+    } catch {
+      /* ignore cache write errors */
+    }
+  }
+  return data;
 }
 
 /** Run a query and return the first row (or null), cast to T. */
