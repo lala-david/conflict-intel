@@ -108,7 +108,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://github.com/lala-david/terror"
+                  href="https://github.com/lala-david/conflict-intel"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-text-dim hover:text-text-primary"

@@ -23,7 +23,7 @@ export default function DataPage() {
             Full database (SQLite)
           </h2>
           <a
-            href="https://github.com/lala-david/terror/raw/main/data/terror.db"
+            href="https://github.com/lala-david/conflict-intel/raw/main/data/terror.db"
             className="flex items-center gap-4 rounded-lg border border-border bg-surface p-5 transition hover:bg-surface-2"
           >
             <Database className="h-8 w-8 text-accent" />
@@ -86,14 +86,14 @@ export default function DataPage() {
             Source code
           </h2>
           <a
-            href="https://github.com/lala-david/terror"
+            href="https://github.com/lala-david/conflict-intel"
             target="_blank"
             rel="noopener"
             className="flex items-center gap-4 rounded-lg border border-border bg-surface p-5 transition hover:bg-surface-2"
           >
             <Github className="h-8 w-8 text-text-primary" />
             <div className="flex-1">
-              <div className="font-semibold">lala-david/terror</div>
+              <div className="font-semibold">lala-david/conflict-intel</div>
               <div className="text-xs text-text-dim">
                 MIT licensed · Python pipeline + Next.js dashboard
               </div>
@@ -119,7 +119,7 @@ export default function DataPage() {
           <pre className="overflow-x-auto rounded-lg border border-border bg-surface p-5 font-mono text-xs">
 {`Conflict & Security Intelligence (2026).
 Daily Global Armed Violence Monitor.
-https://github.com/lala-david/terror
+https://github.com/lala-david/conflict-intel
 
 Primary data:
   Pettersson et al. (2024). UCDP GED. CC BY 4.0.
