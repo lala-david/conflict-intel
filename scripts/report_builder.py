@@ -4,8 +4,8 @@
 - 테러는 다루는 여러 폭력 카테고리(내전·반란·전쟁·카르텔·국가폭력 등) 중 하나
 
 사용법:
-    python scripts/daily_terror.py              # 오늘 날짜
-    python scripts/daily_terror.py 2026-03-27   # 특정 날짜
+    python scripts/pipeline/run.py              # 오늘 날짜
+    python scripts/pipeline/run.py 2026-03-27   # 특정 날짜
 """
 import os
 import sys

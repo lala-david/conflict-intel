@@ -35,7 +35,7 @@ from database import (
     save_events, save_daily_stats, init_db, cleanup_db, save_known_ucdp_ids,
 )
 from compute_stats import compute as compute_stats
-from daily_terror import (
+from report_builder import (
     build_report, get_report_dir, update_week_readme, update_month_readme,
 )
 

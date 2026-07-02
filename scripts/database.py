@@ -536,5 +536,5 @@ def cleanup_db():
 # (including read-only scripts), which caused spurious cleanup passes.
 # Callers should invoke init_db() and cleanup_db() explicitly when needed.
 #
-# daily_terror.py: explicitly calls init_db() + cleanup_db() before collection
+# pipeline/run.py (report_builder.py 제공 함수 사용): explicitly calls init_db() + cleanup_db() before collection
 # compute_stats.py, read-only tools: skip init; just use get_conn()
