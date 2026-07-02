@@ -140,7 +140,12 @@ def init_db():
             CREATE INDEX IF NOT EXISTS idx_events_country ON events(country);
             CREATE INDEX IF NOT EXISTS idx_events_source ON events(source);
             CREATE INDEX IF NOT EXISTS idx_events_actor1 ON events(actor1);
+            CREATE INDEX IF NOT EXISTS idx_events_category ON events(category);
             CREATE INDEX IF NOT EXISTS idx_events_source_url ON events(source_url);
+            -- composite indexes: speed up per-country / per-actor GROUP BY aggregations
+            CREATE INDEX IF NOT EXISTS idx_ev_country_date ON events(country, date);
+            CREATE INDEX IF NOT EXISTS idx_ev_country_actor ON events(country, actor1);
+            CREATE INDEX IF NOT EXISTS idx_ev_actor_date ON events(actor1, date);
             CREATE INDEX IF NOT EXISTS idx_sanctions_date ON sanctions(collected_date);
         """)
 
