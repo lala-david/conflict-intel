@@ -18,7 +18,7 @@ export default function AboutPage() {
           <p className="text-lg text-text-dim">
             <strong className="text-text-primary">Conflict & Security Intelligence</strong> is an
             open-source daily intelligence pipeline that aggregates global armed violence
-            data from 8 sources (420K events, 1989–2026) and classifies them by
+            data from 70+ sources (420K events, 1989–2026) and classifies them by
             academic standard.
           </p>
 
@@ -44,7 +44,7 @@ export default function AboutPage() {
 
           <h2 className="mt-10 font-display">Pipeline</h2>
           <ol>
-            <li>Parallel source collection (8 sources)</li>
+            <li>Parallel source collection (70+ sources across 9 connectors)</li>
             <li>Cross-source event linking (deduplication)</li>
             <li>Organization mapping (286 designated groups + 341 persons)</li>
             <li>Country normalization (FIPS ↔ ISO, 172 countries)</li>
@@ -56,7 +56,7 @@ export default function AboutPage() {
           </ol>
           <p>
             Executes daily at 06:00 UTC via GitHub Actions. Full source code on{" "}
-            <a href="https://github.com/lala-david/terror">GitHub</a>.
+            <a href="https://github.com/lala-david/conflict-intel">GitHub</a>.
           </p>
 
           <h2 className="mt-10 font-display">License</h2>

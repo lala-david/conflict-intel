@@ -20,7 +20,7 @@
 집/서버 어디서든 Docker만 있으면 바로 돕니다:
 
 ```bash
-git clone https://github.com/lala-david/terror_researcher.git && cd terror_researcher
+git clone https://github.com/lala-david/conflict-intel.git && cd terror_researcher
 cp .env.example .env                                            # OPENAI_API_KEY, UCDP_TOKEN
 gh release download db-latest --pattern conflict.db --dir data   # 기존 DB 시드(선택)
 

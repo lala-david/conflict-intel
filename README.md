@@ -22,7 +22,7 @@
 
 전 세계에서 발생하는 무력 충돌, 테러, 내전, 반란을 **매일 자동으로 수집하고 분석**하는 인텔리전스 플랫폼입니다.
 
-9개 이상의 독립 데이터 소스(UCDP · GDELT · 공개 Telegram OSINT · 전문 RSS · 제재 등)를 교차 검증하여 단일 소스 편향을 제거하고, 분석가 · 연구자 · 저널리스트에게 **추적 가능한 분쟁 데이터**를 제공합니다.
+70개 이상의 독립 소스(RSS 매체 56 · Telegram OSINT 14 · UCDP·GDELT·제재 등 구조화 6)를 교차 검증하여 단일 소스 편향을 제거하고, 분석가 · 연구자 · 저널리스트에게 **추적 가능한 분쟁 데이터**를 제공합니다.
 
 ---
 
@@ -30,7 +30,7 @@
 
 ```mermaid
 graph LR
-    S["9 sources\nparallel connectors"] --> B["BRONZE\nraw Parquet\n(immutable)"]
+    S["76 sources\n9 connectors"] --> B["BRONZE\nraw Parquet\n(immutable)"]
     B --> Si["SILVER\nenrich · link · dedup\n→ events"]
     Si --> G["GOLD\naggregates + brief"]
     G --> D["Dashboard\n+ REST API"]
@@ -44,7 +44,7 @@ graph LR
 
 **Bronze — immutable raw**
 
-9개 소스 커넥터가 병렬 수집한 원본을 파티션된
+9개 커넥터가 70+개 소스에서 병렬 수집한 원본을 파티션된
 **Parquet**(`data/bronze/{source}/dt=날짜/`)으로 불변 적재합니다.
 재수집 없이 재처리(replay)가 가능한 원천입니다.
 
@@ -134,7 +134,7 @@ graph TD
 | **Geography** | 160+ countries | 글로벌 커버리지 |
 | **Updates** | Daily | GitHub Actions 자동화 |
 | **Classification** | 10 categories | 학술 표준 기반 |
-| **Sources** | 9+ independent | UCDP · GDELT · Telegram OSINT · RSS · Sanctions · OFAC · NCTC 등 |
+| **Sources** | **76+** | RSS 매체 56 · Telegram OSINT 14 · 구조화 6(UCDP·GDELT·OpenSanctions·OFAC·Wikipedia·NCTC) |
 | **Storage** | Bronze/Silver/Gold | Parquet(raw) + SQLite(serving) |
 
 ---
@@ -169,7 +169,7 @@ GET  /api/status             시스템 상태
 ## Getting Started
 
 ```bash
-git clone https://github.com/lala-david/terror_researcher.git && cd terror_researcher
+git clone https://github.com/lala-david/conflict-intel.git && cd terror_researcher
 cp .env.example .env                 # OPENAI_API_KEY, UCDP_TOKEN
 gh release download db-latest --pattern terror.db --dir data   # optional: seed the DB
 

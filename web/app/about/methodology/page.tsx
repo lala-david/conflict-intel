@@ -113,7 +113,7 @@ export default function MethodologyPage() {
           <pre className="overflow-x-auto rounded-lg border border-border bg-background p-4 text-xs">
 {`Conflict & Security Intelligence (2026).
 Daily Global Armed Violence Monitor.
-https://github.com/lala-david/terror
+https://github.com/lala-david/conflict-intel
 
 Primary data:
   Pettersson et al. (2024). UCDP GED. CC BY 4.0.
