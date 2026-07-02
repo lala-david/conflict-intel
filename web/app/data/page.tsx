@@ -2,6 +2,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Download, Github, Database } from "lucide-react";
 
+export const runtime = "edge";
+
 export const metadata = {
   title: "Data Download — Conflict & Security Intelligence",
   description: "Download the full 420K event database or query via API.",

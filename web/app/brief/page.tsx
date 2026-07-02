@@ -5,6 +5,8 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { ArrowRight } from "lucide-react";
 import { listBriefs } from "@/lib/briefs";
 
+export const runtime = "edge";
+
 export const revalidate = 3600;
 
 export const metadata = {

@@ -7,6 +7,8 @@ import type { Event, Category } from "@/lib/types";
 import { Search } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
 
+export const runtime = "edge";
+
 export const dynamic = "force-dynamic";
 
 export const metadata = {

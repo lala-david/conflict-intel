@@ -1,5 +1,7 @@
 import { WorldMapSection } from "@/components/map/WorldMapSection";
 
+export const runtime = "edge";
+
 export const revalidate = 3600;
 
 export default function MapEmbed() {

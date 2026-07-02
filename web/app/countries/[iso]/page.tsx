@@ -17,6 +17,8 @@ import { formatNumber, formatDate, getCategoryMeta, slugify } from "@/lib/utils"
 import { ArrowLeft, Download } from "lucide-react";
 import { ShareButton } from "@/components/ui/ShareButton";
 
+export const runtime = "edge";
+
 export const revalidate = 3600;
 
 // Pre-generate top 30 countries at build time
