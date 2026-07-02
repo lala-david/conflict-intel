@@ -42,12 +42,20 @@ def _desc(e: dict) -> str:
     return f"{e['date'][:10]} {e['country']} — {e['actor1']}{a2} at {place}; {e['fatalities']} killed. {e['notes'][:140]}".strip()
 
 
+def _llm_up() -> bool:
+    """Fast health check — is the local LLM reachable? (Avoids per-pair timeouts in CI.)"""
+    try:
+        return requests.get(f"{LOCAL_LLM_BASE_URL}/models", timeout=3).status_code == 200
+    except Exception:
+        return False
+
+
 def _llm_same(a: dict, b: dict) -> bool | None:
     """Ask the local LLM if two events are the same incident. None = unknown (LLM down)."""
     try:
         r = requests.post(
             f"{LOCAL_LLM_BASE_URL}/chat/completions",
-            timeout=60,
+            timeout=25,
             json={
                 "model": LOCAL_LLM_MODEL,
                 "temperature": 0,
@@ -91,6 +99,7 @@ def deduplicate(days: int = 7) -> int:
         for e in events:
             by_country[e["country"]].append(e)
 
+        llm_ok = _llm_up()  # decide once — no per-pair timeouts when the LLM is unreachable (e.g. CI)
         marked = 0
         llm_calls = 0
         dropped: set[str] = set()
@@ -119,11 +128,13 @@ def deduplicate(days: int = 7) -> int:
                         continue
                     if sim >= 0.85:
                         same = True
-                    else:
+                    elif llm_ok:
                         same = _llm_same(a, b)
                         llm_calls += 1
-                        if same is None:  # LLM down → only trust strong similarity
+                        if same is None:  # transient LLM error → skip this pair
                             continue
+                    else:
+                        continue  # no LLM (e.g. CI) → trust only strong similarity
                     if same:
                         keep, drop = (
                             (a, b)
