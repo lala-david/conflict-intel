@@ -28,7 +28,7 @@ from pipeline.registry import build_registry
 from pipeline.dedup import deduplicate
 
 from casualty_extractor import enrich_articles_with_casualties
-from mapper import TerrorMapper
+from mapper import ConflictMapper
 from event_linker import link_events
 from threat_scorer import run_analysis
 from database import (
@@ -77,7 +77,7 @@ def run(target_date: datetime | None = None) -> None:
         if data.get(key):
             data[key] = enrich_articles_with_casualties(data[key])
 
-    mapper = TerrorMapper()
+    mapper = ConflictMapper()
     data = mapper.enrich_all(data)
     stats = data.get("_enrichment_stats", {})
     data = link_events(data)

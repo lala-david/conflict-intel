@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from database import get_conn
-from mapper import TerrorMapper
+from mapper import ConflictMapper
 from event_linker import extract_countries_from_text
 from nctc_source import _KO_TO_EN, _KO_TO_ISO
 
@@ -121,7 +121,7 @@ def enrich_existing(conn, mapper):
 
 
 def main():
-    mapper = TerrorMapper()
+    mapper = ConflictMapper()
     conn = get_conn()
     try:
         print("[1/4] NCTC country_code")

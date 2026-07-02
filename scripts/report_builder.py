@@ -23,7 +23,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 load_dotenv(ROOT / ".env")
 
 from sources import collect_all
-from mapper import TerrorMapper
+from mapper import ConflictMapper
 from event_linker import link_events
 from threat_scorer import run_analysis
 from database import save_events, save_daily_stats, init_db, cleanup_db, save_known_ucdp_ids
@@ -32,7 +32,7 @@ from compute_stats import compute as compute_stats
 from config import ANALYSIS_MODEL, REPORTS_DIR
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-mapper = TerrorMapper()
+mapper = ConflictMapper()
 
 
 # ─── 유틸리티 ─────────────────────────────────
