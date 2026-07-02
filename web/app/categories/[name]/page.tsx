@@ -8,7 +8,8 @@ import type { Category } from "@/lib/types";
 import { ArrowLeft } from "lucide-react";
 import { TrackButton } from "@/components/ui/TrackButton";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+
 
 const CATEGORIES: Category[] = [
   "war", "civil_war", "terrorism", "mass_atrocity", "state_violence",

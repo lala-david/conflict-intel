@@ -8,7 +8,8 @@ import { WorldMapSection } from "@/components/map/WorldMapSection";
 import { getHomeData } from "@/lib/queries";
 import Link from "next/link";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+
 
 export default async function HomePage() {
   const data = await getHomeData();

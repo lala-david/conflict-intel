@@ -5,7 +5,8 @@ import { queryAll } from "@/lib/db";
 import { CATEGORY_META, formatNumber, slugify } from "@/lib/utils";
 import type { Category } from "@/lib/types";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+
 
 export const metadata = {
   title: "Categories — Conflict & Security Intelligence",
