@@ -7,8 +7,6 @@ import { formatNumber, getCategoryMeta, formatDate } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 import type { Event } from "@/lib/types";
 
-export const runtime = "edge";
-
 export const revalidate = 3600;
 
 interface Props {

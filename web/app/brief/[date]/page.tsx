@@ -7,8 +7,6 @@ import { Footer } from "@/components/layout/Footer";
 import { ArrowLeft } from "lucide-react";
 import { getBrief } from "@/lib/briefs";
 
-export const runtime = "edge";
-
 export const revalidate = 86400;
 
 interface Props {

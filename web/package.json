@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
@@ -30,7 +33,9 @@
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "1.6.5",
     "@tailwindcss/typography": "^0.5.19",
+    "wrangler": "^4.20.0",
     "@types/node": "^22.9.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

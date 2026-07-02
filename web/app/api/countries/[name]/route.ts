@@ -5,8 +5,6 @@ import {
   getCountryTimeline,
 } from "@/lib/queries";
 
-export const runtime = "edge";
-
 export const revalidate = 3600;
 
 export async function GET(

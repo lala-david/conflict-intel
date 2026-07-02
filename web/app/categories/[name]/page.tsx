@@ -8,8 +8,6 @@ import type { Category } from "@/lib/types";
 import { ArrowLeft } from "lucide-react";
 import { TrackButton } from "@/components/ui/TrackButton";
 
-export const runtime = "edge";
-
 export const revalidate = 3600;
 
 const CATEGORIES: Category[] = [

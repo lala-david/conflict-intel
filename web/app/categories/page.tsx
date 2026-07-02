@@ -5,8 +5,6 @@ import { queryAll } from "@/lib/db";
 import { CATEGORY_META, formatNumber, slugify } from "@/lib/utils";
 import type { Category } from "@/lib/types";
 
-export const runtime = "edge";
-
 export const revalidate = 3600;
 
 export const metadata = {

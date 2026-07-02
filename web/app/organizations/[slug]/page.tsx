@@ -22,8 +22,6 @@ import {
 import { ArrowLeft } from "lucide-react";
 import { OrgTimelineChart } from "@/components/charts/OrgTimelineChart";
 
-export const runtime = "edge";
-
 export const revalidate = 3600;
 
 interface Props {

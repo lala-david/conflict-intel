@@ -2,8 +2,6 @@ import { queryAll } from "@/lib/db";
 import { formatNumber, formatDate, getCategoryMeta } from "@/lib/utils";
 import type { Event } from "@/lib/types";
 
-export const runtime = "edge";
-
 export const revalidate = 1800;
 
 export default async function FeedEmbed() {

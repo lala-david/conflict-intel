@@ -5,8 +5,6 @@ import { searchEvents, searchCountries, searchOrgs } from "@/lib/queries";
 import { formatNumber, formatDate, getCategoryMeta, slugify } from "@/lib/utils";
 import { Search } from "lucide-react";
 
-export const runtime = "edge";
-
 export const dynamic = "force-dynamic";
 
 export const metadata = {

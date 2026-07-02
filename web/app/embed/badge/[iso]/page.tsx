@@ -2,8 +2,6 @@ import { notFound } from "next/navigation";
 import { getCountryByName } from "@/lib/queries";
 import { formatNumber } from "@/lib/utils";
 
-export const runtime = "edge";
-
 export const dynamic = "force-dynamic";
 
 interface Props {

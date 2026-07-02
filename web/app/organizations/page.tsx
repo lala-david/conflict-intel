@@ -4,8 +4,6 @@ import { Footer } from "@/components/layout/Footer";
 import { getTopOrganizations } from "@/lib/queries";
 import { formatNumber, slugify } from "@/lib/utils";
 
-export const runtime = "edge";
-
 export const revalidate = 3600;
 
 export const metadata = {

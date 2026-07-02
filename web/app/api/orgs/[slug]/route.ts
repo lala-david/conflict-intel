@@ -9,8 +9,6 @@ import {
 } from "@/lib/queries";
 import { findBySlug } from "@/lib/utils";
 
-export const runtime = "edge";
-
 export const revalidate = 3600;
 
 export async function GET(

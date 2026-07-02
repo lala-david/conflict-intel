@@ -1,39 +1,75 @@
 /**
- * Database client — libSQL / Turso (edge-compatible).
+ * Turso client — zero-dependency, edge/Workers-native.
  *
- * Uses `@libsql/client/web` so it runs on the Cloudflare Workers (edge) runtime,
- * which has no filesystem or native modules. Requires TURSO_DATABASE_URL
- * (+ TURSO_AUTH_TOKEN) in every environment — including local dev.
+ * Talks to Turso's hrana HTTP pipeline endpoint with plain `fetch`, so there are
+ * no native modules or WebSocket deps to bundle (which broke @libsql/client on
+ * the Cloudflare Workers runtime). Requires TURSO_DATABASE_URL (+ TURSO_AUTH_TOKEN)
+ * in every environment. A `libsql://` URL is normalized to `https://`.
  *
- * Local dev: point TURSO_DATABASE_URL at your Turso DB (read-only browsing is
- * fine), or run a local libSQL server (`turso dev`) and use its URL.
- *
- * libSQL is async over the network, so every query helper returns a Promise.
+ * Local dev: point TURSO_DATABASE_URL at your Turso DB, or run `turso dev`.
  */
-import { createClient, type Client, type InArgs } from "@libsql/client/web";
+export type SqlArg = string | number | bigint | boolean | null;
 
-let _client: Client | null = null;
+const HTTP_URL = (process.env.TURSO_DATABASE_URL ?? "")
+  .replace(/^libsql:\/\//, "https://")
+  .replace(/\/+$/, "");
 
-function getClient(): Client {
-  if (_client) return _client;
-  const url = process.env.TURSO_DATABASE_URL;
-  if (!url) {
-    throw new Error(
-      "TURSO_DATABASE_URL is not set. Set it (and TURSO_AUTH_TOKEN) — see DEPLOYMENT.md.",
-    );
+function toArg(v: SqlArg) {
+  if (v === null || v === undefined) return { type: "null" as const };
+  if (typeof v === "boolean") return { type: "integer" as const, value: v ? "1" : "0" };
+  if (typeof v === "bigint") return { type: "integer" as const, value: v.toString() };
+  if (typeof v === "number") {
+    return Number.isInteger(v)
+      ? { type: "integer" as const, value: String(v) }
+      : { type: "float" as const, value: v };
   }
-  _client = createClient({ url, authToken: process.env.TURSO_AUTH_TOKEN });
-  return _client;
+  return { type: "text" as const, value: v };
+}
+
+function fromCell(c: { type: string; value?: any } | null): any {
+  if (!c || c.type === "null") return null;
+  if (c.type === "integer") return Number(c.value);
+  if (c.type === "float") return typeof c.value === "number" ? c.value : Number(c.value);
+  return c.value; // text / blob
+}
+
+async function exec(sql: string, args: SqlArg[]): Promise<{ cols: string[]; rows: any[][] }> {
+  if (!HTTP_URL) throw new Error("TURSO_DATABASE_URL is not set — see DEPLOYMENT.md.");
+  const res = await fetch(`${HTTP_URL}/v2/pipeline`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.TURSO_AUTH_TOKEN ?? ""}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      requests: [
+        { type: "execute", stmt: { sql, args: args.map(toArg) } },
+        { type: "close" },
+      ],
+    }),
+  });
+  if (!res.ok) throw new Error(`Turso HTTP ${res.status}: ${await res.text()}`);
+  const data: any = await res.json();
+  const first = data.results?.[0];
+  if (!first || first.type === "error") {
+    throw new Error(first?.error?.message ?? "Turso query failed");
+  }
+  const result = first.response.result;
+  return { cols: result.cols.map((c: any) => c.name), rows: result.rows };
 }
 
 /** Run a query and return all rows, cast to T. */
-export async function queryAll<T = any>(sql: string, args: InArgs = []): Promise<T[]> {
-  const rs = await getClient().execute({ sql, args });
-  return rs.rows as unknown as T[];
+export async function queryAll<T = any>(sql: string, args: SqlArg[] = []): Promise<T[]> {
+  const { cols, rows } = await exec(sql, args);
+  return rows.map((row) => {
+    const obj: any = {};
+    cols.forEach((c, i) => (obj[c] = fromCell(row[i])));
+    return obj as T;
+  });
 }
 
 /** Run a query and return the first row (or null), cast to T. */
-export async function queryOne<T = any>(sql: string, args: InArgs = []): Promise<T | null> {
-  const rs = await getClient().execute({ sql, args });
-  return (rs.rows[0] as unknown as T) ?? null;
+export async function queryOne<T = any>(sql: string, args: SqlArg[] = []): Promise<T | null> {
+  const rows = await queryAll<T>(sql, args);
+  return rows[0] ?? null;
 }

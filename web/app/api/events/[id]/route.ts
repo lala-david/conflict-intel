@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { getEventById, getRelatedEvents } from "@/lib/queries";
 
-export const runtime = "edge";
-
 export const revalidate = 86400;
 
 export async function GET(

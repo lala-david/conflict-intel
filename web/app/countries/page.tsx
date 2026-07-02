@@ -5,8 +5,6 @@ import { getCountryList } from "@/lib/queries";
 import { formatNumber } from "@/lib/utils";
 import { PageHeader } from "@/components/ui/PageHeader";
 
-export const runtime = "edge";
-
 export const revalidate = 3600;
 
 export const metadata = {
