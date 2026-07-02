@@ -10,9 +10,14 @@
  */
 export type SqlArg = string | number | bigint | boolean | null;
 
-const HTTP_URL = (process.env.TURSO_DATABASE_URL ?? "")
-  .replace(/^libsql:\/\//, "https://")
-  .replace(/\/+$/, "");
+// Read env at REQUEST time, not module-load time: on the Cloudflare Workers
+// runtime `process.env` is only populated once a request is in flight, so
+// reading it at the top level would give an empty URL.
+function httpUrl(): string {
+  return (process.env.TURSO_DATABASE_URL ?? "")
+    .replace(/^libsql:\/\//, "https://")
+    .replace(/\/+$/, "");
+}
 
 function toArg(v: SqlArg) {
   if (v === null || v === undefined) return { type: "null" as const };
@@ -34,8 +39,9 @@ function fromCell(c: { type: string; value?: any } | null): any {
 }
 
 async function exec(sql: string, args: SqlArg[]): Promise<{ cols: string[]; rows: any[][] }> {
-  if (!HTTP_URL) throw new Error("TURSO_DATABASE_URL is not set — see DEPLOYMENT.md.");
-  const res = await fetch(`${HTTP_URL}/v2/pipeline`, {
+  const url = httpUrl();
+  if (!url) throw new Error("TURSO_DATABASE_URL is not set — see DEPLOYMENT.md.");
+  const res = await fetch(`${url}/v2/pipeline`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.TURSO_AUTH_TOKEN ?? ""}`,
