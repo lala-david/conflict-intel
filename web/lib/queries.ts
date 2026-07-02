@@ -41,32 +41,55 @@ export async function getHomeData(): Promise<HomeData> {
 
 async function _getHomeDataInner(): Promise<HomeData> {
   const since90 = daysAgo(90);
+  const since7 = daysAgo(7);
+  const since14 = daysAgo(14);
 
-  // ─── Pre-computed tables (instant) ───
-  const g = await queryOne<any>(`SELECT * FROM global_stats WHERE id = 1`);
+  // All six queries are independent → run concurrently (one round-trip window
+  // to Turso instead of six sequential ones).
+  const [g, trendRows, prev7, catRows, hotRegions, recentEvents] = await Promise.all([
+    queryOne<any>(`SELECT * FROM global_stats WHERE id = 1`),
+    queryAll<{ date: string; daily: number }>(
+      `SELECT date, COALESCE(SUM(fatalities), 0) as daily
+         FROM events
+        WHERE is_aggregate = 0 AND date >= ?
+        GROUP BY date ORDER BY date`,
+      [since7]
+    ),
+    queryOne<{ total: number }>(
+      `SELECT COALESCE(SUM(fatalities), 0) as total
+         FROM events
+        WHERE is_aggregate = 0 AND date >= ? AND date < ?`,
+      [since14, since7]
+    ),
+    queryAll<{ category: Category; events: number; fatalities: number }>(
+      `SELECT category, total_events as events, total_fatalities as fatalities FROM category_stats`
+    ),
+    queryAll<HotRegion>(
+      `SELECT country, events_90d as events, fatalities_90d as fatalities
+         FROM country_stats
+        WHERE fatalities_90d > 0
+        ORDER BY fatalities_90d DESC
+        LIMIT 10`
+    ),
+    queryAll<Event>(
+      `SELECT id, source, date, event_type, actor1, actor2, country, country_code,
+              admin1, location, latitude, longitude, fatalities,
+              deaths_civilians, fatalities_low, fatalities_high,
+              category, category_confidence, is_aggregate, notes, source_url
+         FROM events
+        WHERE is_aggregate = 0 AND date >= ?
+          AND (fatalities > 0 OR category = 'terrorism')
+        ORDER BY date DESC, fatalities DESC
+        LIMIT 15`,
+      [since90]
+    ),
+  ]);
+
   const totals = g
     ? { events: g.total_events, fatalities: g.total_fatalities, countries: g.total_countries }
     : { events: 0, fatalities: 0, countries: 0 };
 
-  // 7-day trend: fatalities per day for the last 7 days
-  const since7 = daysAgo(7);
-  const trendRows = await queryAll<{ date: string; daily: number }>(
-    `SELECT date, COALESCE(SUM(fatalities), 0) as daily
-         FROM events
-        WHERE is_aggregate = 0 AND date >= ?
-        GROUP BY date ORDER BY date`,
-    [since7]
-  );
   const trend7d = trendRows.map((r) => r.daily);
-
-  // Delta: compare last 7d fatalities avg vs previous 7d
-  const since14 = daysAgo(14);
-  const prev7 = await queryOne<{ total: number }>(
-    `SELECT COALESCE(SUM(fatalities), 0) as total
-         FROM events
-        WHERE is_aggregate = 0 AND date >= ? AND date < ?`,
-    [since14, since7]
-  );
   const cur7 = trend7d.reduce((a, b) => a + b, 0);
   const prevAvg = (prev7?.total ?? 0) / 7;
   const curAvg = cur7 / Math.max(trend7d.length, 1);
@@ -78,38 +101,10 @@ async function _getHomeDataInner(): Promise<HomeData> {
     trend7d,
   };
 
-  // Categories (pre-computed)
-  const catRows = await queryAll<{ category: Category; events: number; fatalities: number }>(
-    `SELECT category, total_events as events, total_fatalities as fatalities FROM category_stats`
-  );
-
   const categories = catRows.reduce((acc, r) => {
     acc[r.category] = { events: r.events, fatalities: r.fatalities };
     return acc;
   }, {} as Record<Category, { events: number; fatalities: number }>);
-
-  // Hot regions (pre-computed, 90 days)
-  const hotRegions = await queryAll<HotRegion>(
-    `SELECT country, events_90d as events, fatalities_90d as fatalities
-         FROM country_stats
-        WHERE fatalities_90d > 0
-        ORDER BY fatalities_90d DESC
-        LIMIT 10`
-  );
-
-  // Recent events (90 days, indexed query — fast)
-  const recentEvents = await queryAll<Event>(
-    `SELECT id, source, date, event_type, actor1, actor2, country, country_code,
-              admin1, location, latitude, longitude, fatalities,
-              deaths_civilians, fatalities_low, fatalities_high,
-              category, category_confidence, is_aggregate, notes, source_url
-         FROM events
-        WHERE is_aggregate = 0 AND date >= ?
-          AND (fatalities > 0 OR category = 'terrorism')
-        ORDER BY date DESC, fatalities DESC
-        LIMIT 15`,
-    [since90]
-  );
 
   return {
     threatIndex,
