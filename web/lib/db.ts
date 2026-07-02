@@ -8,13 +8,26 @@
  *
  * Local dev: point TURSO_DATABASE_URL at your Turso DB, or run `turso dev`.
  */
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+
 export type SqlArg = string | number | bigint | boolean | null;
 
-// Read env at REQUEST time, not module-load time: on the Cloudflare Workers
-// runtime `process.env` is only populated once a request is in flight, so
-// reading it at the top level would give an empty URL.
+// On the Cloudflare Workers runtime, dashboard vars/secrets arrive on the
+// Cloudflare context env (getCloudflareContext().env), NOT process.env — the
+// latter only holds build-time vars. Read the CF context first, fall back to
+// process.env for local dev / build. Must be called at request time.
+function cfEnv(key: string): string {
+  try {
+    const v = (getCloudflareContext().env as any)?.[key];
+    if (v) return String(v);
+  } catch {
+    // not in a Cloudflare request context (local dev, build) — fall through
+  }
+  return process.env[key] ?? "";
+}
+
 function httpUrl(): string {
-  return (process.env.TURSO_DATABASE_URL ?? "")
+  return cfEnv("TURSO_DATABASE_URL")
     .replace(/^libsql:\/\//, "https://")
     .replace(/\/+$/, "");
 }
@@ -44,7 +57,7 @@ async function exec(sql: string, args: SqlArg[]): Promise<{ cols: string[]; rows
   const res = await fetch(`${url}/v2/pipeline`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.TURSO_AUTH_TOKEN ?? ""}`,
+      Authorization: `Bearer ${cfEnv("TURSO_AUTH_TOKEN")}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
