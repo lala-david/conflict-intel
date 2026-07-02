@@ -51,13 +51,17 @@ function fromCell(c: { type: string; value?: any } | null): any {
   return c.value; // text / blob
 }
 
-async function exec(sql: string, args: SqlArg[]): Promise<{ cols: string[]; rows: any[][] }> {
-  const url = httpUrl();
+async function exec(
+  sql: string,
+  args: SqlArg[],
+  url: string,
+  token: string,
+): Promise<{ cols: string[]; rows: any[][] }> {
   if (!url) throw new Error("TURSO_DATABASE_URL is not set — see DEPLOYMENT.md.");
   const res = await fetch(`${url}/v2/pipeline`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${cfEnv("TURSO_AUTH_TOKEN")}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -101,6 +105,12 @@ const CACHE_TTL = 600; // seconds — data refreshes ~daily, so 10 min is safe
  * unavailable (local dev / build).
  */
 export async function queryAll<T = any>(sql: string, args: SqlArg[] = []): Promise<T[]> {
+  // Read creds NOW, before any cache/native-async call: Cloudflare's Cache API
+  // can drop the AsyncLocalStorage context getCloudflareContext() relies on, so
+  // reading env after `cache.match` would come back empty.
+  const url = httpUrl();
+  const token = cfEnv("TURSO_AUTH_TOKEN");
+
   const cache: Cache | undefined = (globalThis as any).caches?.default;
   const keyReq = cache
     ? new Request(`https://q.cache/${hashKey(JSON.stringify([sql, args]))}`)
@@ -115,7 +125,7 @@ export async function queryAll<T = any>(sql: string, args: SqlArg[] = []): Promi
     }
   }
 
-  const { cols, rows } = await exec(sql, args);
+  const { cols, rows } = await exec(sql, args, url, token);
   const data = rowsToObjects<T>(cols, rows);
 
   if (cache && keyReq) {
