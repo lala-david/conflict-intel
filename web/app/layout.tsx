@@ -2,30 +2,29 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Conflict & Security Intelligence — Daily Global Armed Violence Monitor",
+  title: "Conflict & Security Intelligence — Track Global Conflict, Daily",
   description:
-    "420,000+ events across 38 years. Civil war, insurgency, terrorism, cartels, and more. Categorized by academic standard. Open source.",
+    "Track the countries, actors and categories you follow across 420,000+ conflict events. One live, categorized feed — updated every morning.",
   keywords: [
     "conflict",
     "terrorism",
     "civil war",
-    "OSINT",
-    "UCDP",
-    "GDELT",
+    "insurgency",
+    "security",
     "armed violence",
   ],
   authors: [{ name: "David" }],
   openGraph: {
     title: "Conflict & Security Intelligence",
     description:
-      "420K events · 38 years · 172 countries · Daily updates · Open source",
+      "420K events · 38 years · 172 countries · Daily updates",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Conflict & Security Intelligence",
     description:
-      "420K events · 38 years · Daily updates · Open source",
+      "420K events · 38 years · Daily updates",
   },
 };
 

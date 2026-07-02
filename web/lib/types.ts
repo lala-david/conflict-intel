@@ -40,6 +40,20 @@ export interface Event {
   source_url: string | null;
 }
 
+/** A geolocated event plotted on a spread map — each point links back to its event. */
+export interface SpreadPoint {
+  id: string;
+  longitude: number;
+  latitude: number;
+  fatalities: number;
+  date: string;
+  category: Category | null;
+  country: string | null;
+  location: string | null;
+  actor1: string | null;
+  actor2: string | null;
+}
+
 export interface Country {
   country: string;
   event_count: number;

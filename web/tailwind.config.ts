@@ -9,13 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0a0a0a",
-        surface: "#171717",
-        "surface-2": "#262626",
-        border: "#404040",
-        "text-primary": "#fafafa",
-        "text-dim": "#a3a3a3",
-        accent: "#dc2626",
+        // Clean cool-neutral dark — analyst tool tone (no warmth)
+        background: "#0C0D0F",
+        surface: "#15171B",
+        "surface-2": "#1E2127",
+        border: "#2A2E36",
+        "text-primary": "#ECEEF1",
+        "text-dim": "#98A0AC",
+        accent: "#EF4444",
         "cat-war": "#991b1b",
         "cat-civil-war": "#dc2626",
         "cat-terrorism": "#6d28d9",
@@ -28,8 +29,8 @@ const config: Config = {
         "cat-armed-violence": "#475569",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Inter Tight", "Inter", "sans-serif"],
+        sans: ["Pretendard", "system-ui", "-apple-system", "sans-serif"],
+        display: ["Pretendard", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "Consolas", "monospace"],
       },
     },

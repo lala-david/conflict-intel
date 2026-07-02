@@ -2,11 +2,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { TrackButton } from "@/components/ui/TrackButton";
+import { NodeSpreadMapClient } from "@/components/map/NodeSpreadMapClient";
 import {
   getTopOrganizations,
   getOrganizationEvents,
   getOrganizationTimeline,
   getOrganizationCountries,
+  getOrganizationPoints,
   getRelatedOrganizations,
 } from "@/lib/queries";
 import {
@@ -43,6 +46,7 @@ export default async function OrgPage({ params }: Props) {
   const events = await getOrganizationEvents(org.name, 30);
   const timeline = await getOrganizationTimeline(org.name);
   const countries = await getOrganizationCountries(org.name);
+  const points = await getOrganizationPoints(org.name, 500);
   const relatedOrgs = await getRelatedOrganizations(org.name, 8);
 
   const activeYears =
@@ -64,9 +68,12 @@ export default async function OrgPage({ params }: Props) {
 
         {/* Header */}
         <div className="mb-10 border-b border-border pb-8">
-          <h1 className="font-display text-4xl font-bold leading-tight md:text-5xl">
-            {org.name}
-          </h1>
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <h1 className="font-display text-4xl font-bold leading-tight md:text-5xl">
+              {org.name}
+            </h1>
+            <TrackButton type="org" value={org.name} />
+          </div>
           <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
             <Stat label="Events" value={formatNumber(org.events)} />
             <Stat label="Fatalities" value={formatNumber(org.fatalities)} />
@@ -86,12 +93,20 @@ export default async function OrgPage({ params }: Props) {
           <OrgTimelineChart data={timeline} />
         </section>
 
-        {/* Geographic spread */}
-        {countries.length > 0 && (
+        {/* Where they operate: spread map + country breakdown */}
+        {(points.length > 0 || countries.length > 0) && (
           <section className="mb-12">
             <h2 className="mb-4 font-display text-2xl font-bold">
-              Geographic Spread
+              Where they operate
             </h2>
+            {points.length > 0 && (
+              <div className="mb-4">
+                <NodeSpreadMapClient points={points} />
+                <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-text-dim">
+                  {formatNumber(points.length)} geolocated events · dot size = fatalities · click a dot for details
+                </p>
+              </div>
+            )}
             <div className="rounded-lg border border-border bg-surface">
               {countries.map((c, i) => {
                 const maxCount = countries[0].count;

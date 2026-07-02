@@ -3,7 +3,8 @@ import fs from "fs";
 import path from "path";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { FileText } from "lucide-react";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { ArrowRight } from "lucide-react";
 
 export const revalidate = 3600;
 
@@ -53,33 +54,36 @@ export default function BriefArchivePage() {
     <>
       <Header />
       <main className="mx-auto max-w-4xl px-6 py-12">
-        <h1 className="font-display text-5xl font-bold">Daily Briefs</h1>
-        <p className="mt-2 text-text-dim">
-          Auto-generated intelligence briefs. Published daily at 06:00 UTC.
-        </p>
+        <PageHeader
+          kicker="Published every morning · 06:00 UTC"
+          title="The Daily Brief"
+          standfirst="A structured intelligence read of the day's organized violence — threat assessment, conflict events, and cross-source news clusters. Auto-generated, human-readable."
+        />
 
         {briefs.length === 0 ? (
           <div className="mt-10 rounded-lg border border-border bg-surface p-8 text-center text-sm text-text-dim">
             No briefs available yet.
           </div>
         ) : (
-          <div className="mt-10 rounded-lg border border-border bg-surface">
+          <div className="mt-10 divide-y divide-border border-y border-border">
             {briefs.map((b) => (
               <Link
                 key={b.date}
                 href={`/brief/${b.date}`}
-                className="group flex items-center justify-between border-b border-border px-5 py-4 transition last:border-b-0 hover:bg-surface-2"
+                className="group flex items-center justify-between gap-4 py-5 transition"
               >
-                <div className="flex items-center gap-3">
-                  <FileText className="h-4 w-4 text-text-dim" />
-                  <div>
-                    <div className="font-medium text-text-primary group-hover:text-accent">
-                      {b.date}
-                    </div>
-                    <div className="font-mono text-xs text-text-dim">{b.week}</div>
-                  </div>
+                <div className="flex items-baseline gap-4">
+                  <span className="font-display text-2xl font-semibold tabular-nums text-text-primary transition group-hover:text-accent">
+                    {b.date}
+                  </span>
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-text-dim">
+                    {b.week}
+                  </span>
                 </div>
-                <span className="text-xs text-text-dim">Read →</span>
+                <span className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-text-dim transition group-hover:text-accent">
+                  Read
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </span>
               </Link>
             ))}
           </div>

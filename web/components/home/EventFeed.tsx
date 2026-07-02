@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Event } from "@/lib/types";
 import { formatDate, getCategoryMeta, formatNumber } from "@/lib/utils";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 interface Props {
   events: Event[];
@@ -9,10 +10,11 @@ interface Props {
 export function EventFeed({ events }: Props) {
   return (
     <section className="mx-auto max-w-7xl px-6 py-12">
-      <div className="mb-6 flex items-baseline justify-between">
-        <h2 className="font-display text-2xl font-bold">Recent Events</h2>
-        <span className="text-sm text-text-dim">Last 90 days</span>
-      </div>
+      <SectionHeading
+        kicker="On the wire"
+        title="Recent events"
+        action={<span>Last 90 days</span>}
+      />
 
       <div className="rounded-lg border border-border bg-surface">
         {events.map((event) => {
@@ -52,11 +54,11 @@ export function EventFeed({ events }: Props) {
                   )}
                 </div>
 
-                <div className="text-right">
-                  <div className="font-mono text-lg font-semibold tabular-nums text-text-primary">
+                <div className="shrink-0 text-right">
+                  <div className="font-display text-2xl font-semibold tabular-nums leading-none text-text-primary">
                     {formatNumber(event.fatalities)}
                   </div>
-                  <div className="text-[10px] uppercase tracking-wider text-text-dim">
+                  <div className="mt-1 text-[10px] uppercase tracking-wider text-text-dim">
                     killed
                   </div>
                 </div>

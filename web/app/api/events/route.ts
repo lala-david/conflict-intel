@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
     const params = req.nextUrl.searchParams;
     const country = params.get("country");
     const category = params.get("category");
+    const actor = params.get("actor");
     const from = params.get("from");
     const to = params.get("to");
     const source = params.get("source");
@@ -21,13 +22,14 @@ export async function GET(req: NextRequest) {
     const limit = Math.min(parseInt(params.get("limit") ?? "50"), 500);
     const offset = Math.max(parseInt(params.get("offset") ?? "0"), 0);
 
-    const conditions: string[] = ["is_aggregate = 0"];
+    const conditions: string[] = ["is_aggregate = 0", "dup_of IS NULL"];
     const values: any[] = [];
 
     if (country) { conditions.push("country = ?"); values.push(country); }
     if (category && ALL_CATEGORIES.includes(category)) {
       conditions.push("category = ?"); values.push(category);
     }
+    if (actor) { conditions.push("actor1 = ?"); values.push(actor); }
     if (from) { conditions.push("date >= ?"); values.push(from); }
     if (to) { conditions.push("date <= ?"); values.push(to); }
     if (source) { conditions.push("source = ?"); values.push(source); }

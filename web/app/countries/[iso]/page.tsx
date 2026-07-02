@@ -3,13 +3,17 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CountryTimeline } from "@/components/charts/CountryTimeline";
+import { TrackButton } from "@/components/ui/TrackButton";
+import { NodeSpreadMapClient } from "@/components/map/NodeSpreadMapClient";
 import {
   getCountryByName,
   getCountryEvents,
   getCountryTimeline,
+  getCountryPoints,
+  getCountryTopActors,
   getCountryList,
 } from "@/lib/queries";
-import { formatNumber, formatDate, getCategoryMeta } from "@/lib/utils";
+import { formatNumber, formatDate, getCategoryMeta, slugify } from "@/lib/utils";
 import { ArrowLeft, Download } from "lucide-react";
 import { ShareButton } from "@/components/ui/ShareButton";
 
@@ -52,6 +56,8 @@ export default async function CountryPage({ params }: Props) {
 
   const events = await getCountryEvents(name, 30);
   const timeline = await getCountryTimeline(name);
+  const points = await getCountryPoints(name, 800);
+  const topActors = await getCountryTopActors(name, 8);
 
   // Calculate category breakdown
   const catBreakdown = new Map<string, { count: number; deaths: number }>();
@@ -85,6 +91,7 @@ export default async function CountryPage({ params }: Props) {
             <ShareButton title={`${country.country} — Conflict & Security Intelligence`} />
           </div>
           <div className="mt-3 flex items-center gap-3">
+            <TrackButton type="country" value={name} />
             <a
               href={`/api/export/csv?country=${encodeURIComponent(name)}`}
               className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium text-text-dim transition hover:bg-surface-2 hover:text-text-primary"
@@ -121,6 +128,49 @@ export default async function CountryPage({ params }: Props) {
           </h2>
           <CountryTimeline data={timeline} />
         </section>
+
+        {/* Where it happens: spread map */}
+        {points.length > 0 && (
+          <section className="mb-12">
+            <h2 className="mb-4 font-display text-2xl font-bold">
+              Where it happens
+            </h2>
+            <NodeSpreadMapClient points={points} />
+            <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-text-dim">
+              {formatNumber(points.length)} geolocated events · dot size = fatalities · click a dot for details
+            </p>
+          </section>
+        )}
+
+        {/* Groups active here: node network → organization nodes */}
+        {topActors.length > 0 && (
+          <section className="mb-12">
+            <h2 className="mb-4 font-display text-2xl font-bold">
+              Groups active here
+            </h2>
+            <div className="grid gap-3 md:grid-cols-2">
+              {topActors.map((a) => (
+                <Link
+                  key={a.name}
+                  href={`/organizations/${slugify(a.name)}`}
+                  className="group flex items-center justify-between gap-4 rounded-lg border border-border bg-surface p-4 transition hover:bg-surface-2"
+                >
+                  <div className="min-w-0">
+                    <div className="truncate font-medium text-text-primary group-hover:text-accent">
+                      {a.name}
+                    </div>
+                    <div className="mt-1 font-mono text-xs text-text-dim">
+                      {formatNumber(a.fatalities)} killed
+                    </div>
+                  </div>
+                  <span className="shrink-0 font-display text-xl font-semibold tabular-nums text-text-dim">
+                    {formatNumber(a.events)}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Category breakdown */}
         {topCats.length > 0 && (

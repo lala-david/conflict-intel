@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 interface Props {
   articles: { feed: string; title: string; url: string }[];
@@ -9,7 +10,7 @@ export function TodayAnalysis({ articles }: Props) {
 
   return (
     <div>
-      <h2 className="mb-4 font-display text-2xl font-bold">Expert Analysis</h2>
+      <SectionHeading kicker="From the field" title="Expert analysis" />
       <div className="rounded-lg border border-border bg-surface">
         {articles.map((a, i) => {
           const hasUrl = a.url && a.url !== "#";

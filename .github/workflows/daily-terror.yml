@@ -54,11 +54,11 @@ jobs:
           restore-keys: |
             terror-db-
 
-      - name: Run daily terror intelligence
+      - name: Run medallion pipeline (bronze → silver → gold)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           UCDP_TOKEN: ${{ secrets.UCDP_TOKEN }}
-        run: python scripts/daily_terror.py
+        run: python scripts/pipeline/run.py
 
       - name: Weekly summary (Sundays only)
         env:

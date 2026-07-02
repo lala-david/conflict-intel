@@ -1,0 +1,26 @@
+# Conflict & Security Intelligence — pipeline services
+#
+#   One-shot run:     docker compose run --rm pipeline
+#   Run for a date:   docker compose run --rm pipeline 2026-07-01
+#   Continuous daily: docker compose up -d scheduler
+#
+# terror.db + bronze/ persist on the host via the ./data volume.
+services:
+  pipeline:
+    build: .
+    image: csi-pipeline
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+    profiles: ["oneshot"]
+
+  scheduler:
+    build: .
+    image: csi-pipeline
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+    entrypoint: ["sh", "-c", "while true; do python scripts/pipeline/run.py || true; echo 'sleeping 24h…'; sleep 86400; done"]
+    restart: unless-stopped

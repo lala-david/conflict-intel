@@ -6,6 +6,7 @@ import { getCategoryStats } from "@/lib/queries";
 import { CATEGORY_META, formatNumber, slugify } from "@/lib/utils";
 import type { Category } from "@/lib/types";
 import { ArrowLeft } from "lucide-react";
+import { TrackButton } from "@/components/ui/TrackButton";
 
 export const revalidate = 3600;
 
@@ -51,12 +52,15 @@ export default async function CategoryDetailPage({ params }: Props) {
         </Link>
 
         <div className="mb-10 border-b border-border pb-8">
-          <div className="flex items-center gap-3">
-            <div
-              className="h-4 w-4 rounded-full"
-              style={{ background: meta.color }}
-            />
-            <h1 className="font-display text-5xl font-bold">{meta.label}</h1>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div
+                className="h-4 w-4 rounded-full"
+                style={{ background: meta.color }}
+              />
+              <h1 className="font-display text-5xl font-bold">{meta.label}</h1>
+            </div>
+            <TrackButton type="category" value={cat} />
           </div>
           <p className="mt-3 text-text-dim">{meta.description}</p>
           <div className="mt-6 flex gap-10">

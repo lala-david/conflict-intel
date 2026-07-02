@@ -3,6 +3,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { getCountryList } from "@/lib/queries";
 import { formatNumber } from "@/lib/utils";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export const revalidate = 3600;
 
@@ -19,10 +20,11 @@ export default async function CountriesPage() {
     <>
       <Header />
       <main className="mx-auto max-w-7xl px-6 py-12">
-        <h1 className="font-display text-5xl font-bold">Countries</h1>
-        <p className="mt-2 text-text-dim">
-          {formatNumber(countries.length)} countries tracked · All-time and 30-day stats
-        </p>
+        <PageHeader
+          kicker="The world, ranked"
+          title="Countries"
+          standfirst={`Every one of ${formatNumber(countries.length)} countries we track, ranked by recent toll — all-time and last-30-day events and fatalities.`}
+        />
 
         <div className="mt-8 overflow-hidden rounded-lg border border-border bg-surface">
           <div className="grid grid-cols-12 gap-4 border-b border-border bg-surface-2 px-5 py-3 text-[10px] font-semibold uppercase tracking-wider text-text-dim">

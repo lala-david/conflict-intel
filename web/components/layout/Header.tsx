@@ -2,32 +2,31 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Globe2, Menu, X, Search } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 
 const NAV_ITEMS = [
+  { href: "/tracking", label: "Tracking" },
   { href: "/events", label: "Events" },
   { href: "/countries", label: "Countries" },
   { href: "/organizations", label: "Organizations" },
   { href: "/categories", label: "Categories" },
   { href: "/brief", label: "Brief" },
-  { href: "/data", label: "Data" },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-2">
-          <Globe2 className="h-5 w-5 text-accent" />
-          <span className="font-display text-lg font-bold tracking-tight">
-            Conflict &amp; Security Intelligence
+    <header className="sticky top-0 z-50 border-t-2 border-accent border-b border-border bg-background/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
+        <Link href="/" className="group flex items-baseline gap-2.5">
+          <span className="font-display text-xl font-bold leading-none tracking-tight text-text-primary">
+            Conflict <span className="text-accent">&amp;</span> Security Intelligence
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 text-sm md:flex">
+        <nav className="hidden items-center gap-6 text-[13px] font-medium uppercase tracking-wide md:flex">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}

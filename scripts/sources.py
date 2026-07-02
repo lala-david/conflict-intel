@@ -19,10 +19,12 @@ from pathlib import Path
 from config import (
     UCDP_TOKEN, GDELT_TERROR_CODES,
     RSS_FEEDS, RSS_TIER1_FEEDS, GOOGLE_NEWS_QUERIES,
+    TELEGRAM_CHANNELS,
 )
 from fips_to_iso import fips_to_iso
 from database import get_known_ucdp_ids
 from nctc_source import fetch_nctc_daily
+from telegram_source import fetch_telegram
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -858,6 +860,7 @@ def collect_all(target_date: datetime) -> dict:
         future_ofac = executor.submit(_safe_fetch, "ofac", fetch_ofac_recent)
         future_wiki = executor.submit(_safe_fetch, "wikipedia", fetch_wikipedia_incidents)
         future_nctc = executor.submit(_safe_fetch, "nctc", fetch_nctc_daily, 1)
+        future_tg = executor.submit(_safe_fetch, "telegram", fetch_telegram, TELEGRAM_CHANNELS)
 
     gdelt = future_gdelt.result()
     ucdp = future_ucdp.result()
@@ -867,6 +870,7 @@ def collect_all(target_date: datetime) -> dict:
     ofac = future_ofac.result()
     wikipedia = future_wiki.result()
     nctc = future_nctc.result()
+    telegram = future_tg.result()
 
     print(f"\n  [1/8] GDELT:          {len(gdelt)} events")
     print(f"  [2/8] UCDP:           {len(ucdp)} incidents")
@@ -874,10 +878,12 @@ def collect_all(target_date: datetime) -> dict:
     print(f"  [4/8] Expert RSS:     {len(expert)} articles")
     print(f"  [5/8] OpenSanctions:  {len(sanctions)} entities")
     print(f"  [6/8] OFAC:           {len(ofac)} actions")
-    print(f"  [7/8] Wikipedia:      {len(wikipedia)} incidents")
-    print(f"  [8/8] NCTC Korea:     {len(nctc)} incidents")
+    print(f"  [7/9] Wikipedia:      {len(wikipedia)} incidents")
+    print(f"  [8/9] NCTC Korea:     {len(nctc)} incidents")
+    print(f"  [9/9] Telegram OSINT: {len(telegram)} messages")
 
-    total = len(gdelt) + len(ucdp) + len(news) + len(expert) + len(sanctions) + len(ofac) + len(wikipedia) + len(nctc)
+    total = (len(gdelt) + len(ucdp) + len(news) + len(expert) + len(sanctions)
+             + len(ofac) + len(wikipedia) + len(nctc) + len(telegram))
     print(f"\n  Total: {total} items")
 
     return {
@@ -889,5 +895,6 @@ def collect_all(target_date: datetime) -> dict:
         "ofac": ofac,
         "wikipedia": wikipedia,
         "nctc": nctc,
+        "telegram": telegram,
         "collected_at": datetime.now().isoformat(),
     }

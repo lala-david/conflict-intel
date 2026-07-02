@@ -460,7 +460,7 @@ def main():
 
     # 2. 뉴스 사상자 추출 (NLP)
     print("\n  Extracting casualties from news text...")
-    for key in ["google_news", "expert_rss"]:
+    for key in ["google_news", "expert_rss", "telegram"]:
         articles = data.get(key, [])
         if articles:
             data[key] = enrich_articles_with_casualties(articles)

@@ -12,6 +12,7 @@ import type {
   Event,
   HomeData,
   HotRegion,
+  SpreadPoint,
   ThreatIndex,
 } from "./types";
 
@@ -170,8 +171,43 @@ export async function getCountryEvents(country: string, limit = 15): Promise<Eve
               deaths_civilians, fatalities_low, fatalities_high,
               category, category_confidence, is_aggregate, notes, source_url
          FROM events
-        WHERE is_aggregate = 0 AND country = ?
+        WHERE is_aggregate = 0 AND country = ? AND dup_of IS NULL
         ORDER BY date DESC
+        LIMIT ?`,
+    [country, limit]
+  );
+}
+
+export async function getCountryPoints(
+  country: string,
+  limit = 800
+): Promise<SpreadPoint[]> {
+  return await queryAll<SpreadPoint>(
+    `SELECT id, longitude, latitude, fatalities, date, category, country,
+              location, actor1, actor2
+       FROM events
+      WHERE country = ? AND is_aggregate = 0 AND dup_of IS NULL
+        AND latitude IS NOT NULL AND longitude IS NOT NULL
+      ORDER BY date DESC
+      LIMIT ?`,
+    [country, limit]
+  );
+}
+
+export async function getCountryTopActors(
+  country: string,
+  limit = 8
+): Promise<{ name: string; events: number; fatalities: number }[]> {
+  return await queryAll<{ name: string; events: number; fatalities: number }>(
+    `SELECT actor1 as name,
+              COUNT(*) as events,
+              COALESCE(SUM(fatalities), 0) as fatalities
+         FROM events
+        WHERE country = ? AND is_aggregate = 0
+          AND actor1 != '' AND actor1 NOT LIKE 'Government of%'
+          AND length(actor1) < 60
+        GROUP BY actor1
+        ORDER BY events DESC
         LIMIT ?`,
     [country, limit]
   );
@@ -243,9 +279,25 @@ export async function getOrganizationEvents(name: string, limit = 30): Promise<E
               deaths_civilians, fatalities_low, fatalities_high,
               category, category_confidence, is_aggregate, notes, source_url
          FROM events
-        WHERE actor1 = ? AND is_aggregate = 0
+        WHERE actor1 = ? AND is_aggregate = 0 AND dup_of IS NULL
         ORDER BY date DESC
         LIMIT ?`,
+    [name, limit]
+  );
+}
+
+export async function getOrganizationPoints(
+  name: string,
+  limit = 500
+): Promise<SpreadPoint[]> {
+  return await queryAll<SpreadPoint>(
+    `SELECT id, longitude, latitude, fatalities, date, category, country,
+              location, actor1, actor2
+       FROM events
+      WHERE actor1 = ? AND is_aggregate = 0 AND dup_of IS NULL
+        AND latitude IS NOT NULL AND longitude IS NOT NULL
+      ORDER BY date DESC
+      LIMIT ?`,
     [name, limit]
   );
 }
@@ -449,22 +501,27 @@ export async function getRelatedOrganizations(
   name: string,
   limit = 8
 ): Promise<{ name: string; events: number; shared_countries: number }[]> {
+  // Actors active in the same countries as `name`. Avoids the catastrophic
+  // events×events self-join (which hangs for any actor in a busy country) by
+  // matching on a bounded set of the actor's countries instead.
   return await queryAll<{ name: string; events: number; shared_countries: number }>(
-    `SELECT e2.actor1 as name,
+    `SELECT actor1 as name,
               COUNT(*) as events,
-              COUNT(DISTINCT e2.country) as shared_countries
-         FROM events e1
-         JOIN events e2 ON e1.country = e2.country
-           AND e2.actor1 != e1.actor1
-           AND e2.actor1 != ''
-           AND e2.actor1 NOT LIKE 'Government of%'
-           AND e2.is_aggregate = 0
-           AND ABS(julianday(e1.date) - julianday(e2.date)) <= 365
-        WHERE e1.actor1 = ? AND e1.is_aggregate = 0
-        GROUP BY e2.actor1
+              COUNT(DISTINCT country) as shared_countries
+         FROM events
+        WHERE country IN (
+                SELECT country FROM events
+                 WHERE actor1 = ? AND is_aggregate = 0 AND country != ''
+                 GROUP BY country ORDER BY COUNT(*) DESC LIMIT 10
+              )
+          AND actor1 != ?
+          AND actor1 != ''
+          AND actor1 NOT LIKE 'Government of%'
+          AND is_aggregate = 0
+        GROUP BY actor1
         ORDER BY events DESC
         LIMIT ?`,
-    [name, limit]
+    [name, name, limit]
   );
 }
 
