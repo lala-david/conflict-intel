@@ -1,6 +1,7 @@
 import { WorldMapSection } from "@/components/map/WorldMapSection";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+
 
 export default function MapEmbed() {
   return (

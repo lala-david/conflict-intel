@@ -4,7 +4,8 @@ import { Footer } from "@/components/layout/Footer";
 import { queryAll } from "@/lib/db";
 import { formatNumber } from "@/lib/utils";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+
 
 export const metadata = {
   title: "Weekly Recap — Conflict & Security Intelligence",

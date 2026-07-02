@@ -5,7 +5,8 @@ import { getCountryList } from "@/lib/queries";
 import { formatNumber } from "@/lib/utils";
 import { PageHeader } from "@/components/ui/PageHeader";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+
 
 export const metadata = {
   title: "Countries — Conflict & Security Intelligence",
