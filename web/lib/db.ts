@@ -13,23 +13,23 @@ import { getCloudflareContext } from "@opennextjs/cloudflare";
 export type SqlArg = string | number | bigint | boolean | null;
 
 // On the Cloudflare Workers runtime, dashboard vars/secrets arrive on the
-// Cloudflare context env (getCloudflareContext().env), NOT process.env — the
-// latter only holds build-time vars. Read the CF context first, fall back to
-// process.env for local dev / build. Must be called at request time.
-function cfEnv(key: string): string {
+// Cloudflare context env, NOT process.env. The SYNC getCloudflareContext() only
+// resolves inside a page render; in API route handlers it throws. The async
+// form initialises the context and works everywhere, so use it and fall back to
+// process.env for local dev / build.
+async function getCreds(): Promise<{ url: string; token: string }> {
+  let env: Record<string, any> = {};
   try {
-    const v = (getCloudflareContext().env as any)?.[key];
-    if (v) return String(v);
+    const ctx = await getCloudflareContext({ async: true });
+    env = (ctx?.env as any) ?? {};
   } catch {
-    // not in a Cloudflare request context (local dev, build) — fall through
+    /* not on the Workers runtime (local dev / build) */
   }
-  return process.env[key] ?? "";
-}
-
-function httpUrl(): string {
-  return cfEnv("TURSO_DATABASE_URL")
-    .replace(/^libsql:\/\//, "https://")
-    .replace(/\/+$/, "");
+  const rawUrl = env.TURSO_DATABASE_URL ?? process.env.TURSO_DATABASE_URL ?? "";
+  return {
+    url: String(rawUrl).replace(/^libsql:\/\//, "https://").replace(/\/+$/, ""),
+    token: String(env.TURSO_AUTH_TOKEN ?? process.env.TURSO_AUTH_TOKEN ?? ""),
+  };
 }
 
 function toArg(v: SqlArg) {
@@ -105,11 +105,8 @@ const CACHE_TTL = 600; // seconds — data refreshes ~daily, so 10 min is safe
  * unavailable (local dev / build).
  */
 export async function queryAll<T = any>(sql: string, args: SqlArg[] = []): Promise<T[]> {
-  // Read creds NOW, before any cache/native-async call: Cloudflare's Cache API
-  // can drop the AsyncLocalStorage context getCloudflareContext() relies on, so
-  // reading env after `cache.match` would come back empty.
-  const url = httpUrl();
-  const token = cfEnv("TURSO_AUTH_TOKEN");
+  // Resolve creds before any Cache API call (which can drop the ALS context).
+  const { url, token } = await getCreds();
 
   const cache: Cache | undefined = (globalThis as any).caches?.default;
   const keyReq = cache
