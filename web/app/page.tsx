@@ -7,6 +7,18 @@ import { EventFeed } from "@/components/home/EventFeed";
 import { WorldMapSection } from "@/components/map/WorldMapSection";
 import { getHomeData } from "@/lib/queries";
 import Link from "next/link";
+import { Suspense } from "react";
+
+function MapSkeleton() {
+  return (
+    <section className="mx-auto max-w-7xl px-6 py-12">
+      <div className="mb-4 h-8 w-56 animate-pulse rounded bg-surface-2" />
+      <div className="flex h-[460px] animate-pulse items-center justify-center rounded-xl border border-border bg-surface text-sm text-text-dim">
+        Loading map…
+      </div>
+    </section>
+  );
+}
 
 export const dynamic = "force-dynamic";
 
@@ -21,8 +33,10 @@ export default async function HomePage() {
         {/* Hero */}
         <HeroStats totals={data.totals} />
 
-        {/* Global Map */}
-        <WorldMapSection />
+        {/* Global Map — streamed so the rest of the page isn't blocked on its query */}
+        <Suspense fallback={<MapSkeleton />}>
+          <WorldMapSection />
+        </Suspense>
 
         {/* Categories */}
         <CategoryCards categories={data.categories} />
