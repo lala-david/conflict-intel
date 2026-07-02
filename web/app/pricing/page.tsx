@@ -2,6 +2,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Check, X } from "lucide-react";
 
+export const runtime = "edge";
+
 export const metadata = {
   title: "Pricing — Conflict & Security Intelligence",
   description: "Free, Pro, and Team plans for conflict intelligence data.",

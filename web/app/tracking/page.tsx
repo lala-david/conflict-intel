@@ -3,6 +3,8 @@ import { Footer } from "@/components/layout/Footer";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { TrackingDashboard } from "@/components/tracking/TrackingDashboard";
 
+export const runtime = "edge";
+
 export const metadata = {
   title: "Tracking — Conflict & Security Intelligence",
   description: "Track the countries and categories you follow. Your personal conflict watchlist.",

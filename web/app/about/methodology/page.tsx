@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
+export const runtime = "edge";
+
 export const metadata = {
   title: "Methodology — Conflict & Security Intelligence",
   description: "Data classification rules, sources, and known limitations.",

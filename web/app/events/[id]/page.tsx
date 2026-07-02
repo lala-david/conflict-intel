@@ -7,6 +7,8 @@ import { formatNumber, formatDate, getCategoryMeta } from "@/lib/utils";
 import { ArrowLeft, MapPin, Calendar, Users, ExternalLink } from "lucide-react";
 import { EventMiniMapClient } from "@/components/map/EventMiniMapClient";
 
+export const runtime = "edge";
+
 export const revalidate = 86400; // 24h
 
 interface Props {

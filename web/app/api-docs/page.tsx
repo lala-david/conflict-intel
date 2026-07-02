@@ -1,6 +1,8 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
+export const runtime = "edge";
+
 export const metadata = {
   title: "API — Conflict & Security Intelligence",
   description: "REST API for armed violence data. Free, open, no auth.",
