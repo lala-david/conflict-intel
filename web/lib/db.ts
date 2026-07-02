@@ -2,7 +2,7 @@
  * Database client — libSQL (Turso in production, local SQLite file in dev).
  *
  * - Production (Cloudflare Pages): set TURSO_DATABASE_URL + TURSO_AUTH_TOKEN.
- * - Local dev: falls back to the pipeline's terror.db file one level up from web/.
+ * - Local dev: falls back to the pipeline's conflict.db file one level up from web/.
  *
  * libSQL is async over the network, so every query helper returns a Promise.
  */
@@ -22,7 +22,7 @@ function getClient(): Client {
   } else {
     // Local fallback: read the pipeline's SQLite file directly.
     const dbPath = path
-      .resolve(process.cwd(), "..", "data", "terror.db")
+      .resolve(process.cwd(), "..", "data", "conflict.db")
       .split(path.sep)
       .join("/");
     _client = createClient({ url: "file:" + dbPath });

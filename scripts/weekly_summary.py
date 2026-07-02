@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from config import REPORTS_DIR
 
-DB_PATH = ROOT / "data" / "terror.db"
+DB_PATH = ROOT / "data" / "conflict.db"
 
 
 def get_weekly_data(end_date: datetime) -> dict:

@@ -44,15 +44,25 @@ jobs:
           curl -sSfL https://get.tur.so/install.sh | bash
           echo "$HOME/.turso" >> $GITHUB_PATH
 
-      # ─── DB 영속화: 이전 terror.db 를 Actions 캐시(비공개)에서 복원 (없으면 새로 시작) ───
-      #     run_id 키는 매 실행 고유 → 저장은 항상 성공, restore-keys 접두어로 직전 캐시를 복원.
-      - name: Restore terror.db (private cache)
+      # ─── DB 영속화: 이전 conflict.db 를 Actions 캐시(비공개)에서 복원 (없으면 새로 시작) ───
+      #     conflict-db-* 우선, 없으면 legacy terror-db-* 도 복원 (이름 변경 마이그레이션).
+      - name: Restore DB (private cache)
         uses: actions/cache/restore@v4
         with:
-          path: data/terror.db
-          key: terror-db-${{ github.run_id }}
+          path: |
+            data/conflict.db
+            data/terror.db
+          key: conflict-db-${{ github.run_id }}
           restore-keys: |
+            conflict-db-
             terror-db-
+
+      - name: Migrate legacy DB filename (terror.db → conflict.db)
+        run: |
+          if [ -f data/terror.db ] && [ ! -f data/conflict.db ]; then
+            mv data/terror.db data/conflict.db
+            echo "migrated legacy terror.db → conflict.db"
+          fi
 
       - name: Run medallion pipeline (bronze → silver → gold)
         env:
@@ -83,12 +93,12 @@ jobs:
           turso db shell "${{ vars.TURSO_DB_NAME }}" < turso_sync.sql
           rm -f turso_sync.sql
 
-      # ─── 갱신된 terror.db 를 Actions 캐시(비공개)에 저장 (다음 실행이 이어받음) ───
-      - name: Save terror.db (private cache)
+      # ─── 갱신된 conflict.db 를 Actions 캐시(비공개)에 저장 (다음 실행이 이어받음) ───
+      - name: Save DB (private cache)
         uses: actions/cache/save@v4
         with:
-          path: data/terror.db
-          key: terror-db-${{ github.run_id }}
+          path: data/conflict.db
+          key: conflict-db-${{ github.run_id }}
 
       - name: Commit reports
         run: |

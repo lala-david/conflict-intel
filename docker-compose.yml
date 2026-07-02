@@ -4,7 +4,7 @@
 #   Run for a date:   docker compose run --rm pipeline 2026-07-01
 #   Continuous daily: docker compose up -d scheduler
 #
-# terror.db + bronze/ persist on the host via the ./data volume.
+# conflict.db + bronze/ persist on the host via the ./data volume.
 services:
   pipeline:
     build: .

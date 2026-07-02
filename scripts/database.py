@@ -11,7 +11,7 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "terror.db"
+DB_PATH = ROOT / "data" / "conflict.db"
 
 
 # ── 국가명 정규화 ─────────────────────────────

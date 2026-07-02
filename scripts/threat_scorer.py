@@ -13,7 +13,7 @@ from pathlib import Path
 from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "terror.db"
+DB_PATH = ROOT / "data" / "conflict.db"
 
 
 def _get_conn():
