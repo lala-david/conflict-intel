@@ -28,7 +28,7 @@ IDEOLOGY_CATEGORIES = [
 ]
 
 # GDELT CAMEO 테러 관련 코드
-GDELT_TERROR_CODES = [
+GDELT_CONFLICT_CODES = [
     "18",   # Assault
     "181",  # Use unconventional violence
     "182",  # Use conventional military force
