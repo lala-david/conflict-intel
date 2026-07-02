@@ -17,7 +17,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 
 from config import (
-    UCDP_TOKEN, GDELT_TERROR_CODES,
+    UCDP_TOKEN, GDELT_CONFLICT_CODES,
     RSS_FEEDS, RSS_TIER1_FEEDS, GOOGLE_NEWS_QUERIES,
     TELEGRAM_CHANNELS,
 )
@@ -29,7 +29,7 @@ from telegram_source import fetch_telegram
 ROOT = Path(__file__).resolve().parent.parent
 
 # 테러 관련 키워드 (2차 필터링용)
-TERROR_KEYWORDS = [
+CONFLICT_KEYWORDS = [
     "terror", "terrorism", "terrorist", "extremis", "militant",
     "bomb", "bombing", "suicide attack", "ied", "explosive",
     "isis", "isil", "islamic state", "al-qaeda", "al qaeda",
@@ -48,9 +48,9 @@ TERROR_KEYWORDS = [
 ]
 
 
-def _is_terror_relevant(text: str) -> bool:
+def _is_conflict_relevant(text: str) -> bool:
     text_lower = text.lower()
-    return sum(1 for k in TERROR_KEYWORDS if k in text_lower) >= 1
+    return sum(1 for k in CONFLICT_KEYWORDS if k in text_lower) >= 1
 
 
 def _similar(a: str, b: str) -> float:
@@ -123,7 +123,7 @@ def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
                 continue
 
             event_code = row[26]  # CAMEO EventCode
-            if not any(event_code.startswith(c) for c in GDELT_TERROR_CODES):
+            if not any(event_code.startswith(c) for c in GDELT_CONFLICT_CODES):
                 continue
 
             try:
@@ -498,7 +498,7 @@ def fetch_google_news(limit: int = 30) -> list[dict]:
                 seen_titles.add(title)
 
                 text = title + " " + entry.get("summary", "")
-                if not _is_terror_relevant(text):
+                if not _is_conflict_relevant(text):
                     continue
 
                 articles.append({
@@ -559,7 +559,7 @@ def fetch_expert_rss(limit: int = 30) -> list[dict]:
                 summary = re.sub(r"<[^>]+>", "", entry.get("summary", ""))[:400]
                 text = title + " " + summary
 
-                if name not in tier1 and not _is_terror_relevant(text):
+                if name not in tier1 and not _is_conflict_relevant(text):
                     continue
 
                 articles.append({
@@ -637,7 +637,7 @@ def fetch_wikipedia_incidents(limit: int = 50) -> list[dict]:
         if not wikitext:
             return []
 
-        results = _parse_wiki_terror_table(wikitext, cutoff, wiki_page_url)
+        results = _parse_wiki_conflict_table(wikitext, cutoff, wiki_page_url)
         return results[:limit]
 
     except Exception as e:
@@ -645,7 +645,7 @@ def fetch_wikipedia_incidents(limit: int = 50) -> list[dict]:
         return []
 
 
-def _parse_wiki_terror_table(wikitext: str, cutoff: datetime, page_url: str) -> list[dict]:
+def _parse_wiki_conflict_table(wikitext: str, cutoff: datetime, page_url: str) -> list[dict]:
     """Parse the 2026 Wikipedia terror incidents table.
 
     Actual format (each cell on its own line):

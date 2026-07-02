@@ -4,8 +4,8 @@
 - 테러는 다루는 여러 폭력 카테고리(내전·반란·전쟁·카르텔·국가폭력 등) 중 하나
 
 사용법:
-    python scripts/daily_terror.py              # 오늘 날짜
-    python scripts/daily_terror.py 2026-03-27   # 특정 날짜
+    python scripts/pipeline/run.py              # 오늘 날짜
+    python scripts/pipeline/run.py 2026-03-27   # 특정 날짜
 """
 import os
 import sys
@@ -23,7 +23,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 load_dotenv(ROOT / ".env")
 
 from sources import collect_all
-from mapper import TerrorMapper
+from mapper import ConflictMapper
 from event_linker import link_events
 from threat_scorer import run_analysis
 from database import save_events, save_daily_stats, init_db, cleanup_db, save_known_ucdp_ids
@@ -32,7 +32,7 @@ from compute_stats import compute as compute_stats
 from config import ANALYSIS_MODEL, REPORTS_DIR
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-mapper = TerrorMapper()
+mapper = ConflictMapper()
 
 
 # ─── 유틸리티 ─────────────────────────────────

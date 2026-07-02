@@ -28,14 +28,14 @@ from pipeline.registry import build_registry
 from pipeline.dedup import deduplicate
 
 from casualty_extractor import enrich_articles_with_casualties
-from mapper import TerrorMapper
+from mapper import ConflictMapper
 from event_linker import link_events
 from threat_scorer import run_analysis
 from database import (
     save_events, save_daily_stats, init_db, cleanup_db, save_known_ucdp_ids,
 )
 from compute_stats import compute as compute_stats
-from daily_terror import (
+from report_builder import (
     build_report, get_report_dir, update_week_readme, update_month_readme,
 )
 
@@ -77,7 +77,7 @@ def run(target_date: datetime | None = None) -> None:
         if data.get(key):
             data[key] = enrich_articles_with_casualties(data[key])
 
-    mapper = TerrorMapper()
+    mapper = ConflictMapper()
     data = mapper.enrich_all(data)
     stats = data.get("_enrichment_stats", {})
     data = link_events(data)

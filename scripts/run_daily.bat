@@ -7,9 +7,9 @@ set "LOG=logs\run_daily_%TS%.log"
 if not exist logs mkdir logs
 
 echo === %TS% %time% === >> "%LOG%"
-python scripts\daily_terror.py >> "%LOG%" 2>&1
+python scripts\pipeline\run.py >> "%LOG%" 2>&1
 if errorlevel 1 (
-    echo [ERROR] daily_terror.py failed >> "%LOG%"
+    echo [ERROR] pipeline/run.py failed >> "%LOG%"
     exit /b 1
 )
 

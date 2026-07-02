@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
 
-class TerrorMapper:
+class ConflictMapper:
     """수집 데이터를 기반 DB와 매핑하는 엔진"""
 
     def __init__(self):

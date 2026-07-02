@@ -1,5 +1,5 @@
 """
-Pre-computed stats — 매일 CI에서 daily_terror.py 후 실행.
+Pre-computed stats — 매일 CI에서 pipeline/run.py (report_builder.py 제공 함수 사용) 후 실행.
 420K rows 실시간 scan 대신 집계 테이블 1-row lookup으로 대시보드 100x 빠르게.
 """
 import sys
