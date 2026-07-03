@@ -147,3 +147,9 @@ export async function queryOne<T = any>(sql: string, args: SqlArg[] = []): Promi
   const rows = await queryAll<T>(sql, args);
   return rows[0] ?? null;
 }
+
+/** Run a write (INSERT/UPDATE/DELETE) — never cached. */
+export async function execute(sql: string, args: SqlArg[] = []): Promise<void> {
+  const { url, token } = await getCreds();
+  await exec(sql, args, url, token);
+}
