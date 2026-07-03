@@ -9,12 +9,14 @@ import type {
   Category,
   CategoryStats,
   Country,
+  CryptoWallet,
   Event,
   HomeData,
   HotRegion,
   SpreadPoint,
   ThreatIndex,
 } from "./types";
+export type { CryptoWallet };
 
 const RECENT_WINDOW_DAYS = 90;
 
@@ -601,40 +603,39 @@ export async function getMapHotspots(): Promise<{
 }
 
 // ─── Sanctioned crypto wallets (terror-financing intel) ───
-export interface CryptoWallet {
-  address: string;
-  chain: string;
-  entity_name: string;
-  is_terror: number;
-  org: string | null;
-  topics: string;
-  source: string;
-  dataset: string;
-}
-
 export async function getCryptoStats(): Promise<{
   total: number;
   terror: number;
   chains: number;
   byChain: { chain: string; n: number }[];
+  byCategory: { category: string; n: number }[];
   byOrg: { org: string; n: number; chains: number }[];
 }> {
-  const g = await queryOne<{ total: number; terror: number; chains: number }>(
-    `SELECT COUNT(*) as total, COALESCE(SUM(is_terror),0) as terror, COUNT(DISTINCT chain) as chains FROM crypto_addresses`
-  );
-  const byChain = await queryAll<{ chain: string; n: number }>(
-    `SELECT chain, COUNT(*) n FROM crypto_addresses GROUP BY chain ORDER BY n DESC`
-  );
-  const byOrg = await queryAll<{ org: string; n: number; chains: number }>(
-    `SELECT org, COUNT(*) n, COUNT(DISTINCT chain) chains FROM crypto_addresses
-       WHERE org IS NOT NULL GROUP BY org ORDER BY n DESC`
-  );
-  return { total: g?.total ?? 0, terror: g?.terror ?? 0, chains: g?.chains ?? 0, byChain, byOrg };
+  const [g, byChain, byCategory, byOrg] = await Promise.all([
+    queryOne<{ total: number; terror: number; chains: number }>(
+      `SELECT COUNT(*) as total, COALESCE(SUM(is_terror),0) as terror, COUNT(DISTINCT chain) as chains FROM crypto_addresses`
+    ),
+    queryAll<{ chain: string; n: number }>(
+      `SELECT chain, COUNT(*) n FROM crypto_addresses GROUP BY chain ORDER BY n DESC`
+    ),
+    queryAll<{ category: string; n: number }>(
+      `SELECT category, COUNT(*) n FROM crypto_addresses GROUP BY category ORDER BY n DESC`
+    ),
+    queryAll<{ org: string; n: number; chains: number }>(
+      `SELECT org, COUNT(*) n, COUNT(DISTINCT chain) chains FROM crypto_addresses
+         WHERE org IS NOT NULL GROUP BY org ORDER BY n DESC`
+    ),
+  ]);
+  return {
+    total: g?.total ?? 0, terror: g?.terror ?? 0, chains: g?.chains ?? 0,
+    byChain, byCategory, byOrg,
+  };
 }
 
 export async function getCryptoWallets(opts: {
   terrorOnly?: boolean;
   org?: string;
+  category?: string;
   limit?: number;
 } = {}): Promise<CryptoWallet[]> {
   const cond: string[] = [];
@@ -644,12 +645,16 @@ export async function getCryptoWallets(opts: {
     cond.push("org = ?");
     args.push(opts.org);
   }
+  if (opts.category) {
+    cond.push("category = ?");
+    args.push(opts.category);
+  }
   const where = cond.length ? "WHERE " + cond.join(" AND ") : "";
-  args.push(opts.limit ?? 500);
+  args.push(opts.limit ?? 1000);
   return queryAll<CryptoWallet>(
-    `SELECT address, chain, entity_name, is_terror, org, topics, source, dataset
+    `SELECT address, chain, entity_name, category, is_terror, org, topics, source
        FROM crypto_addresses ${where}
-      ORDER BY is_terror DESC, entity_name, chain LIMIT ?`,
+      ORDER BY is_terror DESC, category, entity_name, chain LIMIT ?`,
     args
   );
 }

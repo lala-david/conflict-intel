@@ -100,3 +100,14 @@ export interface HomeData {
   hotRegions: HotRegion[];
   recentEvents: Event[];
 }
+
+export interface CryptoWallet {
+  address: string;
+  chain: string;
+  entity_name: string;
+  is_terror: number;
+  org: string | null;
+  category: string;
+  topics: string;
+  source: string;
+}
