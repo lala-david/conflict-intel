@@ -16,10 +16,9 @@ import { formatNumber, formatDate, getCategoryMeta, slugify } from "@/lib/utils"
 import { ArrowLeft, Download } from "lucide-react";
 import { ShareButton } from "@/components/ui/ShareButton";
 
-export const revalidate = 3600;
-// No generateStaticParams: an empty list (build has no DB) makes OpenNext 404
-// every on-demand param. Render each country on demand (ISR, cached 1h).
-export const dynamicParams = true;
+// Fully dynamic: ISR had cached stale 404s for these paths during an earlier
+// broken deploy and kept serving them. force-dynamic renders every request fresh.
+export const dynamic = "force-dynamic";
 
 interface Props {
   params: { iso: string };
@@ -46,13 +45,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function CountryPage({ params }: Props) {
   const name = decodeURIComponent(params.iso);
   const country = await getCountryByName(name);
-  if (!country) {
-    return (
-      <pre style={{ padding: 24, color: "#fff" }}>
-        DEBUG country not found{"\n"}iso=[{params.iso}]{"\n"}name=[{name}] len={name.length}
-      </pre>
-    );
-  }
+  if (!country) notFound();
 
   const [events, timeline, points, topActors] = await Promise.all([
     getCountryEvents(name, 30),
