@@ -42,20 +42,53 @@ function CopyBtn({ text }: { text: string }) {
 
 export function WalletTable({ wallets }: { wallets: CryptoWallet[] }) {
   const [q, setQ] = useState("");
+  const [org, setOrg] = useState<string | null>(null);
+
+  const orgs = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const w of wallets) if (w.org) m.set(w.org, (m.get(w.org) ?? 0) + 1);
+    return [...m.entries()].sort((a, b) => b[1] - a[1]);
+  }, [wallets]);
+
   const rows = useMemo(() => {
     const s = q.trim().toLowerCase();
-    if (!s) return wallets;
-    return wallets.filter(
-      (w) =>
+    return wallets.filter((w) => {
+      if (org && w.org !== org) return false;
+      if (!s) return true;
+      return (
         w.address.toLowerCase().includes(s) ||
         w.entity_name.toLowerCase().includes(s) ||
         (w.org ?? "").toLowerCase().includes(s) ||
-        w.chain.toLowerCase().includes(s),
-    );
-  }, [q, wallets]);
+        w.chain.toLowerCase().includes(s)
+      );
+    });
+  }, [q, org, wallets]);
 
   return (
     <div>
+      {orgs.length > 1 && (
+        <div className="mb-4 flex flex-wrap gap-2">
+          <button
+            onClick={() => setOrg(null)}
+            className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
+              org === null ? "border-accent bg-accent/15 text-accent" : "border-border text-text-dim hover:text-text-primary"
+            }`}
+          >
+            All groups
+          </button>
+          {orgs.map(([name, n]) => (
+            <button
+              key={name}
+              onClick={() => setOrg(name === org ? null : name)}
+              className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
+                org === name ? "border-accent bg-accent/15 text-accent" : "border-border text-text-dim hover:text-text-primary"
+              }`}
+            >
+              {name} <span className="text-text-dim">({n})</span>
+            </button>
+          ))}
+        </div>
+      )}
       <div className="relative mb-4 max-w-md">
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-dim" />
         <input
