@@ -140,7 +140,6 @@ def init_db():
             CREATE INDEX IF NOT EXISTS idx_events_country ON events(country);
             CREATE INDEX IF NOT EXISTS idx_events_source ON events(source);
             CREATE INDEX IF NOT EXISTS idx_events_actor1 ON events(actor1);
-            CREATE INDEX IF NOT EXISTS idx_events_category ON events(category);
             CREATE INDEX IF NOT EXISTS idx_events_source_url ON events(source_url);
             -- composite indexes: speed up per-country / per-actor GROUP BY aggregations
             CREATE INDEX IF NOT EXISTS idx_ev_country_date ON events(country, date);
@@ -169,6 +168,8 @@ def init_db():
         # is_aggregate 컬럼이 보장된 뒤에 인덱스 생성 (fresh DB에서 컬럼보다
         # 먼저 만들면 'no such column: is_aggregate'로 init이 깨짐).
         conn.execute("CREATE INDEX IF NOT EXISTS idx_events_aggregate ON events(is_aggregate)")
+        # category is also added via _ensure_columns, so its index must come after too.
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_events_category ON events(category)")
 
         conn.commit()
     finally:
