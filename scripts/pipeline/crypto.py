@@ -35,7 +35,7 @@ PRODUCT_CATEGORIES = {"terror", "sanction", "extremism", "ransomware", "mixer", 
 # Curated, high-precision holder-name → canonical organization map.
 _ORG_ALIASES: list[tuple[tuple[str, ...], str]] = [
     (("isil", "isis", "islamic state", "daesh", "khorasan", "iswap"), "Islamic State"),
-    (("hamas", "al-qassam", "qassam"), "Hamas"),
+    (("hamas", "al-qassam", "qassam", "izz al-din", "izz ad-din", "gaza now", "buy cash"), "Hamas"),
     (("hizballah", "hezbollah"), "Hezbollah"),
     (("ansarallah", "ansar allah", "houthi"), "Houthis (Ansarallah)"),
     (("al-qaida", "al-qaeda", "al qaeda", "alqaeda", "aqap", "aqim", "qaeda"), "al-Qaeda"),
