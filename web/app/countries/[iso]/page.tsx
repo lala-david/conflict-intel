@@ -46,7 +46,13 @@ export async function generateMetadata({ params }: Props) {
 export default async function CountryPage({ params }: Props) {
   const name = decodeURIComponent(params.iso);
   const country = await getCountryByName(name);
-  if (!country) notFound();
+  if (!country) {
+    return (
+      <pre style={{ padding: 24, color: "#fff" }}>
+        DEBUG country not found{"\n"}iso=[{params.iso}]{"\n"}name=[{name}] len={name.length}
+      </pre>
+    );
+  }
 
   const [events, timeline, points, topActors] = await Promise.all([
     getCountryEvents(name, 30),
