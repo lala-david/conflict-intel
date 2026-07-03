@@ -52,7 +52,10 @@ def _first(props: dict, key: str):
     return v[0] if isinstance(v, list) and v else None
 
 
-# ── 1. OpenSanctions ────────────────────────────────────────────────────────
+# OFAC/EU/UN sanction programs that denote terrorism (vs drugs, WMD, cyber, …).
+TERROR_PROGRAMS = {"SDGT", "SDT", "FTO", "US-TERR", "EU-TERR", "UN-TERR"}
+
+
 def fetch_opensanctions(timeout: int = 150) -> list[dict]:
     out: list[dict] = []
     for ds in OS_DATASETS:
@@ -61,6 +64,7 @@ def fetch_opensanctions(timeout: int = 150) -> list[dict]:
             resp.raise_for_status()
             entities: dict[str, dict] = {}
             wallets: list[dict] = []
+            holder_programs: dict[str, set[str]] = {}
             for raw in resp.iter_lines():
                 if not raw:
                     continue
@@ -70,21 +74,32 @@ def fetch_opensanctions(timeout: int = 150) -> list[dict]:
                     continue
                 if e.get("id"):
                     entities[e["id"]] = e
-                if e.get("schema") == "CryptoWallet":
+                sch = e.get("schema")
+                if sch == "CryptoWallet":
                     wallets.append(e)
+                elif sch == "Sanction":
+                    ep = e.get("properties", {})
+                    progs = set(ep.get("program", []) or []) | set(ep.get("programId", []) or [])
+                    for tgt in ep.get("entity", []) or []:
+                        holder_programs.setdefault(tgt, set()).update(progs)
             for w in wallets:
                 p = w.get("properties", {})
                 addr = _first(p, "publicKey")
                 if not addr:
                     continue
-                holder = entities.get(_first(p, "holder") or "", {})
+                holder_id = _first(p, "holder") or ""
+                holder = entities.get(holder_id, {})
                 hp = holder.get("properties", {})
                 name = _first(hp, "name") or "Unknown entity"
                 topics = hp.get("topics", []) or p.get("topics", []) or []
+                programs = holder_programs.get(holder_id, set())
+                # terror if the OFAC program says so, or the name/topics hint at it
+                terror = bool(programs & TERROR_PROGRAMS) or _is_terror(name + " " + " ".join(topics))
                 out.append({
                     "address": addr, "chain": _chain(_first(p, "currency")),
-                    "entity_name": name, "topics": ",".join(topics),
-                    "category": "sanction", "is_terror": 1 if _is_terror(name + " " + " ".join(topics)) else 0,
+                    "entity_name": name,
+                    "topics": ",".join(sorted(programs | set(topics))),
+                    "category": "sanction", "is_terror": 1 if terror else 0,
                     "source": f"opensanctions/{ds}",
                 })
         except Exception as ex:
