@@ -37,6 +37,15 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="min-h-screen bg-background text-text-primary antialiased">
         {children}
+        {process.env.NEXT_PUBLIC_CF_BEACON_TOKEN && (
+          // Cloudflare Web Analytics — privacy-friendly, no cookies. Token from
+          // the CF dashboard (Web Analytics → add site), set as NEXT_PUBLIC_CF_BEACON_TOKEN.
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}`}
+          />
+        )}
       </body>
     </html>
   );

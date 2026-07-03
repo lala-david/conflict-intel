@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { WaitlistForm } from "@/components/ui/WaitlistForm";
 import { Check, X } from "lucide-react";
 
 export const metadata = {
@@ -158,19 +159,9 @@ export default function PricingPage() {
           <p className="mt-2 text-sm text-text-dim">
             We&apos;ll email you once. No spam.
           </p>
-          <form className="mt-6 flex gap-2" action="#" method="POST">
-            <input
-              type="email"
-              placeholder="you@company.com"
-              className="flex-1 rounded-lg border border-border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-dim focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-            />
-            <button
-              type="submit"
-              className="rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-accent/90"
-            >
-              Notify me
-            </button>
-          </form>
+          <div className="mt-6 text-left">
+            <WaitlistForm interest="pro" cta="Notify me" placeholder="you@company.com" />
+          </div>
         </div>
 
         {/* Enterprise */}

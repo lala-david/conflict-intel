@@ -1,6 +1,6 @@
-name: Daily Terror Intelligence
+name: Daily Conflict Intelligence
 
-# 무료 클라우드 자동화 (로컬 Windows 예약작업 대체).
+# 무료 클라우드 자동화 (일일 분쟁·안보 인텔 수집).
 #   - 매일 09:00 KST(00:00 UTC) 자동 수집
 #   - DB(276MB, gitignore)는 GitHub Actions 캐시로 영속화(레포 비공개, 공개 다운로드 불가): 복원 → 저장
 #   - 수집/통계 후 변경분을 Turso(클라우드 SQLite)에 동기화 → Cloudflare Pages 사이트가 읽음
@@ -115,7 +115,7 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `Daily terror brief failed — ${new Date().toISOString().split('T')[0]}`,
+              title: `Daily conflict brief failed — ${new Date().toISOString().split('T')[0]}`,
               body: `Workflow run failed: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
               labels: ['bug', 'automated']
             })

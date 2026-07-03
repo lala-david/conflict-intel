@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { WaitlistForm } from "@/components/ui/WaitlistForm";
 
 export const metadata = {
   title: "API — Conflict & Security Intelligence",
@@ -142,7 +143,7 @@ export default function ApiDocsPage() {
               Base URL
             </div>
             <code className="mt-1 block font-mono text-accent">
-              https://conflict-researcher.david.dev
+              https://conflict-intel.conflict-intel.workers.dev
             </code>
           </div>
           <div>
@@ -158,6 +159,20 @@ export default function ApiDocsPage() {
               Auth
             </div>
             <code className="mt-1 block font-mono text-text-primary">None</code>
+          </div>
+        </div>
+
+        {/* API demand capture */}
+        <div className="mt-6 rounded-lg border border-accent/30 bg-accent/5 p-5">
+          <div className="font-display text-lg font-semibold">
+            Building on this? Get API keys, higher limits & webhooks.
+          </div>
+          <p className="mt-1 text-sm text-text-dim">
+            The free API is open today. Tell us what you&apos;re building and we&apos;ll
+            notify you when authenticated keys, higher rate limits, and alert webhooks land.
+          </p>
+          <div className="mt-4 max-w-md">
+            <WaitlistForm interest="api" cta="Request access" placeholder="you@work.com" />
           </div>
         </div>
 
