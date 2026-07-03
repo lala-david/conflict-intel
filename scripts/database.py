@@ -120,17 +120,23 @@ def init_db():
             );
 
             CREATE TABLE IF NOT EXISTS crypto_addresses (
-                address TEXT,
+                address TEXT PRIMARY KEY,
                 chain TEXT,
                 entity_name TEXT,
-                entity_schema TEXT,
+                category TEXT,
                 topics TEXT,
                 is_terror INTEGER DEFAULT 0,
                 org TEXT,
-                dataset TEXT,
                 source TEXT,
-                collected_date TEXT,
-                PRIMARY KEY (address, chain)
+                collected_date TEXT
+            );
+
+            CREATE TABLE IF NOT EXISTS crypto_stats (
+                scope TEXT,
+                key TEXT,
+                n INTEGER DEFAULT 0,
+                chains INTEGER DEFAULT 0,
+                PRIMARY KEY (scope, key)
             );
 
             CREATE TABLE IF NOT EXISTS daily_stats (
@@ -163,6 +169,7 @@ def init_db():
             CREATE INDEX IF NOT EXISTS idx_crypto_entity ON crypto_addresses(entity_name);
             CREATE INDEX IF NOT EXISTS idx_crypto_org ON crypto_addresses(org);
             CREATE INDEX IF NOT EXISTS idx_crypto_terror ON crypto_addresses(is_terror);
+            CREATE INDEX IF NOT EXISTS idx_crypto_category ON crypto_addresses(category);
         """)
 
         # Additive column migrations (idempotent).

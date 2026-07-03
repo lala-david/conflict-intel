@@ -93,10 +93,10 @@ def run(target_date: datetime | None = None) -> None:
     except Exception as e:  # noqa: BLE001
         print(f"  dedup skipped: {e}")
 
-    # sanctioned crypto wallets (terror-financing intel) → crypto_addresses
+    # crypto threat-finance — its own bronze → silver → gold medallion
     try:
-        from collect_crypto import main as collect_crypto
-        collect_crypto()
+        from pipeline import crypto as crypto_pipeline
+        crypto_pipeline.run(run_id)
     except Exception as e:  # noqa: BLE001
         print(f"  crypto skipped: {e}")
 
