@@ -11,27 +11,15 @@ import {
   getCountryTimeline,
   getCountryPoints,
   getCountryTopActors,
-  getCountryList,
 } from "@/lib/queries";
 import { formatNumber, formatDate, getCategoryMeta, slugify } from "@/lib/utils";
 import { ArrowLeft, Download } from "lucide-react";
 import { ShareButton } from "@/components/ui/ShareButton";
 
 export const revalidate = 3600;
-
-// Pre-generate top 30 countries at build time
-export async function generateStaticParams() {
-  try {
-    const countries = await getCountryList();
-    return countries.slice(0, 30).map((c) => ({
-      iso: encodeURIComponent(c.country),
-    }));
-  } catch {
-    // DB not reachable at build time (TURSO env only set at runtime) →
-    // skip prerendering; pages render on-demand (ISR) using runtime vars.
-    return [];
-  }
-}
+// No generateStaticParams: an empty list (build has no DB) makes OpenNext 404
+// every on-demand param. Render each country on demand (ISR, cached 1h).
+export const dynamicParams = true;
 
 interface Props {
   params: { iso: string };
