@@ -1,129 +1,106 @@
-import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { PageHeader } from "@/components/ui/PageHeader";
 import { WalletTable } from "@/components/wallets/WalletTable";
 import { getCryptoStats, getCryptoWallets } from "@/lib/queries";
+import { ShieldAlert, Link2, Boxes } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Terror Financing — Sanctioned Crypto Wallets",
+  title: "Terror-Financing Wallets — Conflict & Security Intelligence",
   description:
-    "Publicly designated cryptocurrency wallet addresses linked to terrorist organizations and sanctioned threat actors — from OFAC/EU/UN, GraphSense and Ransomwhere — mapped to the groups we track.",
+    "Cryptocurrency wallet addresses publicly attributed to terrorist organizations — from OFAC/EU/UN sanctions and DOJ forfeiture data — mapped to the groups we track. On-chain threat-finance intelligence.",
 };
 
-const CAT_COLOR: Record<string, string> = {
-  terror: "#ef4444", sanction: "#f59e0b", extremism: "#fb7185",
-  ransomware: "#f97316", hack: "#a855f7", scam: "#eab308", mixer: "#22d3ee",
-};
-
-export default async function WalletsPage({
-  searchParams,
-}: {
-  searchParams: { cat?: string };
-}) {
-  const cat = searchParams?.cat;
+export default async function WalletsPage() {
   const [stats, wallets] = await Promise.all([
     getCryptoStats(),
-    cat && cat !== "terror"
-      ? getCryptoWallets({ category: cat, limit: 2000 })
-      : getCryptoWallets({ terrorOnly: true, limit: 2000 }),
+    getCryptoWallets({ terrorOnly: true, limit: 3000 }),
   ]);
-  const active = cat ?? "terror";
+  const chains = new Set(wallets.map((w) => w.chain)).size;
 
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-6xl px-6 py-12">
-        <PageHeader
-          kicker="Threat finance · on-chain intelligence"
-          title="Terror-linked crypto wallets"
-          standfirst="Cryptocurrency addresses publicly attributed to terrorist organizations and sanctioned threat actors — aggregated from OFAC/EU/UN sanctions, GraphSense forfeiture data and the Ransomwhere database, deduplicated and mapped to the groups we track."
-        />
-
-        {/* Stat strip */}
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {[
-            { label: "Threat-finance wallets", value: stats.total, accent: false },
-            { label: "Terror-linked", value: stats.terror, accent: true },
-            { label: "Blockchains", value: stats.chains, accent: false },
-            { label: "Groups mapped", value: stats.byOrg.length, accent: false },
-          ].map((s) => (
-            <div key={s.label} className="rounded-xl border border-border bg-surface p-4">
-              <div
-                className={`font-display text-3xl font-bold tabular-nums ${s.accent ? "text-accent" : "text-text-primary"}`}
-              >
-                {s.value.toLocaleString()}
-              </div>
-              <div className="mt-1 text-xs uppercase tracking-wider text-text-dim">{s.label}</div>
+      <main>
+        {/* Hero */}
+        <section className="relative overflow-hidden border-b border-border">
+          <div
+            className="pointer-events-none absolute inset-0 opacity-70"
+            style={{
+              background:
+                "radial-gradient(60% 120% at 15% 0%, rgba(239,68,68,0.18), transparent 60%), radial-gradient(50% 100% at 100% 100%, rgba(239,68,68,0.10), transparent 55%)",
+            }}
+          />
+          <div className="relative mx-auto max-w-6xl px-6 py-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+              <ShieldAlert className="h-3.5 w-3.5" />
+              Threat finance · on-chain intelligence
             </div>
-          ))}
-        </div>
+            <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl">
+              Terror-financing <span className="text-accent">wallets</span>
+            </h1>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-dim">
+              Cryptocurrency addresses publicly attributed to terrorist organizations —
+              aggregated from OFAC / EU / UN sanctions and DOJ forfeiture data, deduplicated
+              on-chain and mapped to the groups we track.
+            </p>
 
-        {/* Groups */}
-        {stats.byOrg.length > 0 && (
-          <>
-            <h2 className="mt-12 mb-4 font-display text-2xl font-bold">Designated groups</h2>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {stats.byOrg.map((o) => (
-                <div key={o.org} className="rounded-xl border border-border bg-surface p-4">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-accent" />
-                    <span className="font-display text-lg font-semibold text-text-primary">{o.org}</span>
+            <div className="mt-8 grid max-w-2xl grid-cols-3 gap-4">
+              {[
+                { icon: ShieldAlert, label: "Terror wallets", value: wallets.length },
+                { icon: Link2, label: "Groups", value: stats.byOrg.length },
+                { icon: Boxes, label: "Blockchains", value: chains },
+              ].map((s) => (
+                <div key={s.label} className="rounded-xl border border-border bg-surface/60 p-4 backdrop-blur">
+                  <s.icon className="h-4 w-4 text-accent" />
+                  <div className="mt-2 font-display text-3xl font-bold tabular-nums text-text-primary">
+                    {s.value.toLocaleString()}
                   </div>
-                  <div className="mt-2 font-mono text-sm text-text-dim">
-                    <span className="text-accent">{o.n}</span> wallets · {o.chains} chain{o.chains > 1 ? "s" : ""}
-                  </div>
+                  <div className="text-xs uppercase tracking-wider text-text-dim">{s.label}</div>
                 </div>
               ))}
             </div>
-          </>
-        )}
+          </div>
+        </section>
 
-        {/* Category filter */}
-        <div className="mt-12 flex flex-wrap items-center gap-2">
-          <span className="mr-1 text-xs uppercase tracking-wider text-text-dim">Class:</span>
-          <Link
-            href="/wallets"
-            className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
-              active === "terror"
-                ? "border-accent bg-accent/15 text-accent"
-                : "border-border text-text-dim hover:text-text-primary"
-            }`}
-          >
-            Terror ({stats.terror})
-          </Link>
-          {stats.byCategory
-            .filter((c) => c.category !== "terror")
-            .map((c) => (
-              <Link
-                key={c.category}
-                href={`/wallets?cat=${c.category}`}
-                className={`rounded-full border px-3 py-1 text-xs font-semibold capitalize transition ${
-                  active === c.category
-                    ? "border-current"
-                    : "border-border text-text-dim hover:text-text-primary"
-                }`}
-                style={active === c.category ? { color: CAT_COLOR[c.category] ?? "#94a3b8" } : undefined}
-              >
-                {c.category} ({c.n})
-              </Link>
-            ))}
-        </div>
+        <div className="mx-auto max-w-6xl px-6 py-12">
+          {/* Group cards */}
+          {stats.byOrg.length > 0 && (
+            <>
+              <h2 className="mb-4 font-display text-xl font-bold">Designated organizations</h2>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {stats.byOrg.map((o) => (
+                  <div
+                    key={o.org}
+                    className="group relative overflow-hidden rounded-xl border border-border bg-surface p-5 transition hover:border-accent/50"
+                  >
+                    <div className="absolute left-0 top-0 h-full w-1 bg-accent/70" />
+                    <div className="font-display text-lg font-semibold text-text-primary">{o.org}</div>
+                    <div className="mt-2 flex items-baseline gap-2">
+                      <span className="font-display text-3xl font-bold tabular-nums text-accent">{o.n}</span>
+                      <span className="text-sm text-text-dim">wallets · {o.chains} chain{o.chains > 1 ? "s" : ""}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
 
-        <div className="mt-5">
+          {/* Table */}
+          <h2 className="mb-4 mt-12 font-display text-xl font-bold">
+            Designated addresses <span className="text-text-dim">({wallets.length})</span>
+          </h2>
           <WalletTable wallets={wallets} />
-        </div>
 
-        <p className="mt-6 text-xs leading-relaxed text-text-dim">
-          Sources: OpenSanctions (OFAC SDN, EU, UN), GraphSense TagPacks (authority/forfeiture data,
-          e.g. DOJ al-Qaeda seizures), and Ransomwhere. These are publicly designated or reported
-          addresses for sanctions screening and threat-finance analysis. Inclusion reflects the
-          issuing authority&apos;s designation, not our assessment. Verify against the primary source
-          before acting. Wallet addresses dedupe exactly; the terror subset is flagged and mapped to
-          a canonical organization.
-        </p>
+          <p className="mt-6 max-w-3xl text-xs leading-relaxed text-text-dim">
+            Sources: OpenSanctions (OFAC SDN, EU, UN) and GraphSense TagPacks (authority /
+            forfeiture data — e.g. DOJ al-Qaeda seizures). Publicly designated addresses for
+            sanctions screening and threat-finance analysis; inclusion reflects the issuing
+            authority&apos;s designation, not our assessment. Addresses may be reused or dormant —
+            verify against the primary source before acting.
+          </p>
+        </div>
       </main>
       <Footer />
     </>
