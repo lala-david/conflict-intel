@@ -93,6 +93,13 @@ def run(target_date: datetime | None = None) -> None:
     except Exception as e:  # noqa: BLE001
         print(f"  dedup skipped: {e}")
 
+    # sanctioned crypto wallets (terror-financing intel) → crypto_addresses
+    try:
+        from collect_crypto import main as collect_crypto
+        collect_crypto()
+    except Exception as e:  # noqa: BLE001
+        print(f"  crypto skipped: {e}")
+
     # ── GOLD: aggregates + brief ──
     print("\n[GOLD] aggregate + brief")
     report_dir = get_report_dir(target_date)

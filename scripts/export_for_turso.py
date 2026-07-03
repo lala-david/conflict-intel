@@ -20,7 +20,7 @@ from pathlib import Path
 
 DB_PATH = Path(__file__).resolve().parent.parent / "data" / "conflict.db"
 
-STATS_TABLES = ["global_stats", "country_stats", "org_stats", "category_stats", "daily_stats"]
+STATS_TABLES = ["global_stats", "country_stats", "org_stats", "category_stats", "daily_stats", "crypto_addresses"]
 APPEND_TABLES = ["events", "sanctions"]
 
 

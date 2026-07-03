@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { href: "/countries", label: "Countries" },
   { href: "/organizations", label: "Organizations" },
   { href: "/categories", label: "Categories" },
+  { href: "/wallets", label: "Wallets" },
   { href: "/brief", label: "Brief" },
 ];
 
