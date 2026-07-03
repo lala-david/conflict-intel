@@ -119,6 +119,20 @@ def init_db():
                 PRIMARY KEY (entity_id, collected_date)
             );
 
+            CREATE TABLE IF NOT EXISTS crypto_addresses (
+                address TEXT,
+                chain TEXT,
+                entity_name TEXT,
+                entity_schema TEXT,
+                topics TEXT,
+                is_terror INTEGER DEFAULT 0,
+                org TEXT,
+                dataset TEXT,
+                source TEXT,
+                collected_date TEXT,
+                PRIMARY KEY (address, chain)
+            );
+
             CREATE TABLE IF NOT EXISTS daily_stats (
                 date TEXT PRIMARY KEY,
                 gdelt_count INTEGER DEFAULT 0,
@@ -146,6 +160,9 @@ def init_db():
             CREATE INDEX IF NOT EXISTS idx_ev_country_actor ON events(country, actor1);
             CREATE INDEX IF NOT EXISTS idx_ev_actor_date ON events(actor1, date);
             CREATE INDEX IF NOT EXISTS idx_sanctions_date ON sanctions(collected_date);
+            CREATE INDEX IF NOT EXISTS idx_crypto_entity ON crypto_addresses(entity_name);
+            CREATE INDEX IF NOT EXISTS idx_crypto_org ON crypto_addresses(org);
+            CREATE INDEX IF NOT EXISTS idx_crypto_terror ON crypto_addresses(is_terror);
         """)
 
         # Additive column migrations (idempotent).

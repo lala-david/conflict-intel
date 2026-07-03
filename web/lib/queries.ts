@@ -599,3 +599,57 @@ export async function getMapHotspots(): Promise<{
     [since90]
   );
 }
+
+// ─── Sanctioned crypto wallets (terror-financing intel) ───
+export interface CryptoWallet {
+  address: string;
+  chain: string;
+  entity_name: string;
+  is_terror: number;
+  org: string | null;
+  topics: string;
+  source: string;
+  dataset: string;
+}
+
+export async function getCryptoStats(): Promise<{
+  total: number;
+  terror: number;
+  chains: number;
+  byChain: { chain: string; n: number }[];
+  byOrg: { org: string; n: number; chains: number }[];
+}> {
+  const g = await queryOne<{ total: number; terror: number; chains: number }>(
+    `SELECT COUNT(*) as total, COALESCE(SUM(is_terror),0) as terror, COUNT(DISTINCT chain) as chains FROM crypto_addresses`
+  );
+  const byChain = await queryAll<{ chain: string; n: number }>(
+    `SELECT chain, COUNT(*) n FROM crypto_addresses GROUP BY chain ORDER BY n DESC`
+  );
+  const byOrg = await queryAll<{ org: string; n: number; chains: number }>(
+    `SELECT org, COUNT(*) n, COUNT(DISTINCT chain) chains FROM crypto_addresses
+       WHERE org IS NOT NULL GROUP BY org ORDER BY n DESC`
+  );
+  return { total: g?.total ?? 0, terror: g?.terror ?? 0, chains: g?.chains ?? 0, byChain, byOrg };
+}
+
+export async function getCryptoWallets(opts: {
+  terrorOnly?: boolean;
+  org?: string;
+  limit?: number;
+} = {}): Promise<CryptoWallet[]> {
+  const cond: string[] = [];
+  const args: (string | number)[] = [];
+  if (opts.terrorOnly) cond.push("is_terror = 1");
+  if (opts.org) {
+    cond.push("org = ?");
+    args.push(opts.org);
+  }
+  const where = cond.length ? "WHERE " + cond.join(" AND ") : "";
+  args.push(opts.limit ?? 500);
+  return queryAll<CryptoWallet>(
+    `SELECT address, chain, entity_name, is_terror, org, topics, source, dataset
+       FROM crypto_addresses ${where}
+      ORDER BY is_terror DESC, entity_name, chain LIMIT ?`,
+    args
+  );
+}
