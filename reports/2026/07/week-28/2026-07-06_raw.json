@@ -10729,10 +10729,10 @@
     },
     {
       "source": "rss/Dawn Pakistan",
-      "title": "Suspect who shot PAF officer dead arrested within 9 hours: Islamabad IG",
-      "url": "https://www.dawn.com/news/2013169/suspect-who-shot-paf-officer-dead-arrested-within-9-hours-islamabad-ig",
-      "summary": "Islamabad Inspector General (IG) Ali Nasir Rizvi on Sunday said that the suspect who allegedly shot dead a Pakistan Air Force (PAF) officer was arrested “within nine hours”.\nAddressing a press conference in Islamabad, the IG said the suspect was “arrested within nine hours” of the incident.\nIG Rizvi noted that PAF Group Captain Asim Tariq tried to “save” a woman after witnessing an argument betwee",
-      "date": "Sun, 05 Jul 2026 23:02:59 +0500",
+      "title": "Ogra notifies 15pc increase in Regasified Liquefied Natural Gas price for June",
+      "url": "https://www.dawn.com/news/2013262/ogra-notifies-15pc-increase-in-regasified-liquefied-natural-gas-price-for-june",
+      "summary": "ISLAMABAD: The Oil and Gas Regulatory Authority (Ogra) has notified an around 15pc increase in the price of Regasified Liquefied Natural Gas (RLNG) for sales at the distribution stage by the two Sui gas companies for the current month, mainly because of purchases from the international spot market at short notice amid supply disruptions caused by the US-Iran war.\nThe latest price notification plac",
+      "date": "Mon, 06 Jul 2026 07:08:29 +0500",
       "feed_name": "Dawn Pakistan",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
@@ -10782,6 +10782,129 @@
             "Sindhudesh Revolutionary Army (occasionally)"
           ],
           "conflict_type": "Insurgency / Separatist",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      }
+    },
+    {
+      "source": "rss/Dawn Pakistan",
+      "title": "Police vow no fear or favour in foreigners’ kidnap case",
+      "url": "https://www.dawn.com/news/2013258/police-vow-no-fear-or-favour-in-foreigners-kidnap-case",
+      "summary": "\n        \n        DIG Operations Kamran Faisal (centre) addresses a press conference in Lahore.—Dawn\n    \n• DIG confirms role of ‘high-profile individual’, says all will be ‘treated like criminals’• Sources say all eight suspects behind bars; victims departed the country on July 3• ‘Big boss’ caught in injured condition after he jumps off 2nd storey of villa during raid\nLAHORE: Confirming the invo",
+      "date": "Mon, 06 Jul 2026 09:20:23 +0500",
+      "feed_name": "Dawn Pakistan",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Pakistan",
+      "country_code": "PK",
+      "_enrichment": {
+        "country": {
+          "name": "Pakistan",
+          "iso": "PK",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "Islamic State Khorasan Province (ISKP)",
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Lashkar-e-Jhangvi (LeJ)",
+            "Jaish-e-Mohammed (JeM)",
+            "Lashkar-e-Taiba (LeT)",
+            "Sindhudesh Revolutionary Army (SRA)",
+            "Al-Qaeda in the Indian Subcontinent (AQIS)"
+          ],
+          "conflict_zones": [
+            "Khyber Pakhtunkhwa (ex-FATA)",
+            "Balochistan",
+            "Karachi",
+            "South Punjab",
+            "Sindh"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "PAK-BALOCHISTAN",
+          "zone_name": "Pakistan - Balochistan",
+          "country": "Pakistan",
+          "region": "South / Southeast Asia",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "ISIS-Khorasan Province (ISKP)",
+            "Lashkar-e-Jhangvi (sectarian)",
+            "Sindhudesh Revolutionary Army (occasionally)"
+          ],
+          "conflict_type": "Insurgency / Separatist",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      }
+    },
+    {
+      "source": "rss/Dawn Pakistan",
+      "title": "Netanyahu claims Christians in Lebanon sought Israeli annexation",
+      "url": "https://www.dawn.com/news/2013293/netanyahu-claims-christians-in-lebanon-sought-israeli-annexation",
+      "summary": "JERUSALEM: Israeli Prime Minister Benjamin Netanyahu said on Sunday that some Christian villages in southern Lebanon had asked to be annexed by Israel, in order to be protected from Hezbollah.\n“Christian villages in Lebanon, some of them have actually asked to be annexed to Israel, because we protect them against the Hezbollah, Hezbollah fanatics who want to kill them, and we do the same things wi",
+      "date": "Mon, 06 Jul 2026 08:44:06 +0500",
+      "feed_name": "Dawn Pakistan",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Israel",
+      "country_code": "IL",
+      "_enrichment": {
+        "country": {
+          "name": "Israel",
+          "iso": "IL",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "High",
+          "active_groups": [
+            "Hamas",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Hezbollah (cross-border)",
+            "Lone-wolf attackers"
+          ],
+          "conflict_zones": [
+            "Gaza Strip border",
+            "West Bank/Judea and Samaria",
+            "Northern border (Lebanon)",
+            "Jerusalem"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ISR-PAL-GAZA",
+          "zone_name": "Israel/Palestine - Gaza Strip",
+          "country": "Israel / Palestine",
+          "region": "MENA",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Hamas (Izz ad-Din al-Qassam Brigades)",
+            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Various smaller Palestinian factions",
+            "Israel Defense Forces (IDF)"
+          ],
+          "conflict_type": "War / Insurgency",
           "match_type": "text",
           "match_score": 1
         },
@@ -11244,53 +11367,10 @@
     },
     {
       "source": "rss/Al Jazeera",
-      "title": "Palestinian baby dies in West Bank after Israel blocks urgent medical care",
-      "url": "https://www.aljazeera.com/news/2026/7/5/palestinian-baby-dies-in-west-bank-after-israel-blocks-urgent-medical-care?traffic_source=rss",
-      "summary": "Israeli forces also shoot dead a 16-year-old boy in the occupied West Bank and kill two Palestinians in Gaza.",
-      "date": "Sun, 05 Jul 2026 22:03:52 +0000",
-      "feed_name": "Al Jazeera",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Palestinian Territories",
-      "country_code": "PS",
-      "_enrichment": {
-        "country": {
-          "name": "Palestinian Territories",
-          "iso": "PS",
-          "region": "Middle East / North Africa",
-          "sub_region": "Levant",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Hamas (governing Gaza)",
-            "Palestinian Islamic Jihad (PIJ)",
-            "Popular Front for the Liberation of Palestine (PFLP)",
-            "Al-Aqsa Martyrs' Brigades",
-            "Lion's Den (Areen al-Usood)",
-            "Jenin Brigades"
-          ],
-          "conflict_zones": [
-            "Gaza Strip",
-            "Jenin",
-            "Nablus",
-            "Tulkarm",
-            "Hebron"
-          ]
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      }
-    },
-    {
-      "source": "rss/Al Jazeera",
-      "title": "Albanian court frees protesters who rallied against Kushner-linked resort",
-      "url": "https://www.aljazeera.com/news/2026/7/5/albanian-court-frees-protesters-who-rallied-against-kushner-linked-resort?traffic_source=rss",
-      "summary": "The planned resort linked to US President Donald Trump&#039;s son-in-law has become a flashpoint for anti-government protests",
-      "date": "Sun, 05 Jul 2026 20:50:58 +0000",
+      "title": "How conflict minerals fuel war in eastern DR Congo amid US sanctions",
+      "url": "https://www.aljazeera.com/news/2026/7/6/us-sanctions-target-rwandan-firms-linked-to-conflict-minerals-funding-m23?traffic_source=rss",
+      "summary": "The move underscores growing scrutiny of the conflict mineral trade fuelling violence in eastern DR Congo.",
+      "date": "Mon, 06 Jul 2026 02:10:37 +0000",
       "feed_name": "Al Jazeera",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
@@ -11307,6 +11387,63 @@
           "threat_level": "Low",
           "active_groups": [],
           "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      }
+    },
+    {
+      "source": "rss/HRW",
+      "title": "Ethiopia: Tigray Authorities Forcibly Recruiting Civilians",
+      "url": "https://www.hrw.org/news/2026/07/06/ethiopia-tigray-authorities-forcibly-recruiting-civilians",
+      "summary": "Click to expand Image\n          \n\n\n\n  \n        \n  \n\n        \n                      \n      \n        \n              Tigray People's Liberation Front (TPLF) fighters in Mekele, Tigray region, Ethiopia, June 30, 2021.\n                    © 2021 Yasuyoshi Chiba/AFP via Getty Images \n          \n    \n\n\n  \n(Nairobi) – Regional authorities in Ethiopia’s northern Tigray region have been abducting and unlawf",
+      "date": "Mon, 06 Jul 2026 00:00:00 -0400",
+      "feed_name": "HRW",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Ethiopia",
+      "country_code": "ET",
+      "_enrichment": {
+        "country": {
+          "name": "Ethiopia",
+          "iso": "ET",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "High",
+          "active_groups": [
+            "Oromo Liberation Army (OLA/OLF-Shane)",
+            "Al-Shabaab (cross-border)",
+            "Fano militia (Amhara)",
+            "Tigray People's Liberation Front (TPLF) remnants"
+          ],
+          "conflict_zones": [
+            "Amhara Region",
+            "Oromia Region",
+            "Somali Region border",
+            "Tigray (post-conflict)",
+            "Benishangul-Gumuz"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "ETH-AMHARA",
+          "zone_name": "Ethiopia - Amhara Region",
+          "country": "Ethiopia",
+          "region": "Sub-Saharan Africa",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Fano militia (Amhara nationalist)",
+            "Ethiopian National Defense Force (ENDF)",
+            "Amhara regional forces (integrated/dissolved)"
+          ],
+          "conflict_type": "Insurgency",
+          "match_type": "text",
+          "match_score": 1
         },
         "attack_classification": {
           "category": "unknown",
@@ -11804,55 +11941,29 @@
     },
     {
       "source": "rss/ReliefWeb",
-      "title": "Somalia Humanitarian WASH Situation Update (As of 22 June 2026)",
-      "url": "https://reliefweb.int/report/somalia/somalia-humanitarian-wash-situation-update-22-june-2026",
-      "summary": "Country: Somalia\n                                      Sources: UN Children's Fund, WASH Cluster\n                                                                                                \n                        Please refer to the attached file.\n                        SITUATIONAL UPDATE\nHumanitarian WASH conditions across Somalia continue to deteriorate due to the combined effects of prolo",
-      "date": "Mon, 06 Jul 2026 01:57:12 +0000",
+      "title": "Sri Lanka National Dengue Control Unit: Current Status of Dengue in Sri Lanka (As of 04.07.2026 midnight)",
+      "url": "https://reliefweb.int/report/sri-lanka/sri-lanka-national-dengue-control-unit-current-status-dengue-sri-lanka-04072026-midnight",
+      "summary": "Country: Sri Lanka\n                                      Source: Government of Sri Lanka\n                                                                                                \n                        Please refer to the attached Infographic.",
+      "date": "Mon, 06 Jul 2026 03:52:16 +0000",
       "feed_name": "ReliefWeb",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": [],
-      "country": "Somalia",
-      "country_code": "SO",
+      "country": "Sri Lanka",
+      "country_code": "LK",
       "_enrichment": {
         "country": {
-          "name": "Somalia",
-          "iso": "SO",
-          "region": "Sub-Saharan Africa",
-          "sub_region": "East Africa",
-          "threat_level": "Critical",
+          "name": "Sri Lanka",
+          "iso": "LK",
+          "region": "South Asia",
+          "sub_region": "Island Nations",
+          "threat_level": "Moderate",
           "active_groups": [
-            "Al-Shabaab",
-            "Islamic State - Somalia Province (ISS)",
-            "Ahlu Sunna Wal Jama'a (ASWJ)"
+            "National Thowheed Jamath (NTJ) remnants",
+            "ISIS-inspired cells"
           ],
-          "conflict_zones": [
-            "South-Central Somalia",
-            "Lower Shabelle",
-            "Middle Shabelle",
-            "Bay and Bakool",
-            "Mudug",
-            "Puntland"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "SOM-SOUTH-CENTRAL",
-          "zone_name": "Somalia - South-Central",
-          "country": "Somalia",
-          "region": "Sub-Saharan Africa",
-          "intensity": "High",
-          "trend": "Stable",
-          "active_groups": [
-            "Al-Shabaab",
-            "ISIS-Somalia (small faction)",
-            "Somali National Army (SNA)",
-            "ATMIS (African Transition Mission in Somalia)",
-            "Clan militias"
-          ],
-          "conflict_type": "Insurgency",
-          "match_type": "text",
-          "match_score": 1
+          "conflict_zones": []
         },
         "attack_classification": {
           "category": "unknown",
@@ -11863,58 +11974,29 @@
     },
     {
       "source": "rss/ReliefWeb",
-      "title": "Sudan, conflict Global LTC Teleconference #33 (Date: 22/06/2026 Time: 11:02 UTC)",
-      "url": "https://reliefweb.int/report/sudan/sudan-conflict-global-ltc-teleconference-33-date-22062026-time-1102-utc",
-      "summary": "Country: Sudan\n                                      Sources: Emergency Telecommunications Cluster, Logistics Cluster, World Food Programme\n                                                                              \n                        Please refer to the attached file.",
-      "date": "Mon, 06 Jul 2026 00:15:22 +0000",
+      "title": "Sri Lanka National Dengue Control Unit: Weekly Dengue Update, Week 26 (22th – 28th June 2026)",
+      "url": "https://reliefweb.int/report/sri-lanka/sri-lanka-national-dengue-control-unit-weekly-dengue-update-week-26-22th-28th-june-2026",
+      "summary": "Country: Sri Lanka\n                                      Source: Government of Sri Lanka\n                                                                                                \n                        Please refer to the attached file.\n                        DENGUE CASE REPORTING\nDuring the 26th week, 6009 suspected dengue cases were reported across all 26 districts, compared to 5238 cas",
+      "date": "Mon, 06 Jul 2026 03:39:58 +0000",
       "feed_name": "ReliefWeb",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": [],
-      "country": "Sudan",
-      "country_code": "SD",
+      "country": "Sri Lanka",
+      "country_code": "LK",
       "_enrichment": {
         "country": {
-          "name": "Sudan",
-          "iso": "SD",
-          "region": "Sub-Saharan Africa",
-          "sub_region": "East Africa",
-          "threat_level": "Critical",
+          "name": "Sri Lanka",
+          "iso": "LK",
+          "region": "South Asia",
+          "sub_region": "Island Nations",
+          "threat_level": "Moderate",
           "active_groups": [
-            "Rapid Support Forces (RSF)",
-            "Sudanese Armed Forces (SAF) aligned militias",
-            "Sudan Liberation Movement factions (Darfur)",
-            "ISIS cells",
-            "Al-Qaeda elements"
+            "National Thowheed Jamath (NTJ) remnants",
+            "ISIS-inspired cells"
           ],
-          "conflict_zones": [
-            "Khartoum",
-            "Darfur (all five states)",
-            "Kordofan",
-            "Al Jazirah",
-            "Blue Nile"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "SDN-NATIONWIDE",
-          "zone_name": "Sudan - Nationwide conflict",
-          "country": "Sudan",
-          "region": "Sub-Saharan Africa",
-          "intensity": "High",
-          "trend": "Escalating",
-          "active_groups": [
-            "Sudanese Armed Forces (SAF)",
-            "Rapid Support Forces (RSF)",
-            "Sudan Liberation Movement/Army (SLM/A - various factions)",
-            "Justice and Equality Movement (JEM)",
-            "Al-Qaeda-linked elements (limited)",
-            "Various tribal militias",
-            "Foreign mercenaries (Wagner-linked, Chadian, Libyan)"
-          ],
-          "conflict_type": "Civil War",
-          "match_type": "text",
-          "match_score": 1
+          "conflict_zones": []
         },
         "attack_classification": {
           "category": "unknown",
@@ -11925,233 +12007,108 @@
     },
     {
       "source": "rss/ReliefWeb",
-      "title": "Ukraine – conflict: LTC Situation Report (Telecoms Area) #60 - Reporting period: June 2026",
-      "url": "https://reliefweb.int/report/ukraine/ukraine-conflict-ltc-situation-report-telecoms-area-60-reporting-period-june-2026",
-      "summary": "Country: Ukraine\n                                      Sources: Emergency Telecommunications Cluster, Logistics Cluster, World Food Programme\n                                                                              \n                        Please refer to the attached file.\n                        The WFP-led Logistics and Telecommunications Cluster (LTC) was activated as the Emergency Teleco",
-      "date": "Mon, 06 Jul 2026 00:12:06 +0000",
+      "title": "Philippines: Mayon Volcano Summary of 24Hr Observation 06 July 2026 12:00 AM [EN/TL]",
+      "url": "https://reliefweb.int/report/philippines/mayon-volcano-summary-24hr-observation-06-july-2026-1200-am-entl",
+      "summary": "Country: Philippines\n                                      Source: Philippine Institute of Volcanology and Seismology\n                                                                              \n                        Please refer to the attached Infographic.",
+      "date": "Mon, 06 Jul 2026 03:32:07 +0000",
       "feed_name": "ReliefWeb",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": [],
-      "country": "Ukraine",
-      "country_code": "UA",
+      "country": "Philippines",
+      "country_code": "PH",
       "_enrichment": {
         "country": {
-          "name": "Ukraine",
-          "iso": "UA",
-          "region": "Europe",
-          "sub_region": "Eastern Europe",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Russian-backed separatist forces",
-            "Russian military and proxy forces",
-            "Far-right militias (various)",
-            "Wagner Group/Africa Corps remnants"
-          ],
-          "conflict_zones": [
-            "Donetsk Oblast",
-            "Luhansk Oblast",
-            "Zaporizhzhia Oblast",
-            "Kherson Oblast",
-            "Crimea",
-            "Kharkiv Oblast border"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "UKR-FRONT",
-          "zone_name": "Ukraine - Eastern/Southern frontlines",
-          "country": "Ukraine",
-          "region": "Europe",
-          "intensity": "High",
-          "trend": "Stable",
-          "active_groups": [
-            "Russian Armed Forces",
-            "Ukrainian Armed Forces",
-            "Wagner Group remnants / Russian volunteer battalions",
-            "Chechen Kadyrovtsy units",
-            "International volunteers (both sides)"
-          ],
-          "conflict_type": "Interstate War",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      }
-    },
-    {
-      "source": "rss/ReliefWeb",
-      "title": "Ukraine - LTC (Telecoms Area) Services Dashboard (June 2026)",
-      "url": "https://reliefweb.int/map/ukraine/ukraine-ltc-telecoms-area-services-dashboard-june-2026",
-      "summary": "Country: Ukraine\n                                      Sources: Emergency Telecommunications Cluster, Logistics Cluster, World Food Programme\n                                                                              \n                        Please refer to the attached Map.",
-      "date": "Mon, 06 Jul 2026 00:09:26 +0000",
-      "feed_name": "ReliefWeb",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Ukraine",
-      "country_code": "UA",
-      "_enrichment": {
-        "country": {
-          "name": "Ukraine",
-          "iso": "UA",
-          "region": "Europe",
-          "sub_region": "Eastern Europe",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Russian-backed separatist forces",
-            "Russian military and proxy forces",
-            "Far-right militias (various)",
-            "Wagner Group/Africa Corps remnants"
-          ],
-          "conflict_zones": [
-            "Donetsk Oblast",
-            "Luhansk Oblast",
-            "Zaporizhzhia Oblast",
-            "Kherson Oblast",
-            "Crimea",
-            "Kharkiv Oblast border"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "UKR-FRONT",
-          "zone_name": "Ukraine - Eastern/Southern frontlines",
-          "country": "Ukraine",
-          "region": "Europe",
-          "intensity": "High",
-          "trend": "Stable",
-          "active_groups": [
-            "Russian Armed Forces",
-            "Ukrainian Armed Forces",
-            "Wagner Group remnants / Russian volunteer battalions",
-            "Chechen Kadyrovtsy units",
-            "International volunteers (both sides)"
-          ],
-          "conflict_type": "Interstate War",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      }
-    },
-    {
-      "source": "rss/ReliefWeb",
-      "title": "Sudan: LTC Telecoms Services Dashboard (June 2026)",
-      "url": "https://reliefweb.int/report/sudan/sudan-ltc-telecoms-services-dashboard-june-2026",
-      "summary": "Country: Sudan\n                                      Sources: Emergency Telecommunications Cluster, Logistics Cluster, World Food Programme\n                                                                              \n                        Please refer to the attached Infographic.",
-      "date": "Mon, 06 Jul 2026 00:07:25 +0000",
-      "feed_name": "ReliefWeb",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Sudan",
-      "country_code": "SD",
-      "_enrichment": {
-        "country": {
-          "name": "Sudan",
-          "iso": "SD",
-          "region": "Sub-Saharan Africa",
-          "sub_region": "East Africa",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Rapid Support Forces (RSF)",
-            "Sudanese Armed Forces (SAF) aligned militias",
-            "Sudan Liberation Movement factions (Darfur)",
-            "ISIS cells",
-            "Al-Qaeda elements"
-          ],
-          "conflict_zones": [
-            "Khartoum",
-            "Darfur (all five states)",
-            "Kordofan",
-            "Al Jazirah",
-            "Blue Nile"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "SDN-NATIONWIDE",
-          "zone_name": "Sudan - Nationwide conflict",
-          "country": "Sudan",
-          "region": "Sub-Saharan Africa",
-          "intensity": "High",
-          "trend": "Escalating",
-          "active_groups": [
-            "Sudanese Armed Forces (SAF)",
-            "Rapid Support Forces (RSF)",
-            "Sudan Liberation Movement/Army (SLM/A - various factions)",
-            "Justice and Equality Movement (JEM)",
-            "Al-Qaeda-linked elements (limited)",
-            "Various tribal militias",
-            "Foreign mercenaries (Wagner-linked, Chadian, Libyan)"
-          ],
-          "conflict_type": "Civil War",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      }
-    },
-    {
-      "source": "rss/ReliefWeb",
-      "title": "Lebanon: Middle East Escalation, LTC Situation Report (Telecoms) #07 - Reporting period: June 2026",
-      "url": "https://reliefweb.int/report/lebanon/lebanon-middle-east-escalation-ltc-situation-report-telecoms-07-reporting-period-june-2026",
-      "summary": "Country: Lebanon\n                                      Sources: Emergency Telecommunications Cluster, Logistics Cluster, World Food Programme\n                                                                              \n                        Please refer to the attached file.\n                        This situation report provides updates on the Middle East escalation, with focus on Lebanon’s se",
-      "date": "Mon, 06 Jul 2026 00:03:42 +0000",
-      "feed_name": "ReliefWeb",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Lebanon",
-      "country_code": "LB",
-      "_enrichment": {
-        "country": {
-          "name": "Lebanon",
-          "iso": "LB",
-          "region": "Middle East / North Africa",
-          "sub_region": "Levant",
+          "name": "Philippines",
+          "iso": "PH",
+          "region": "Southeast Asia",
+          "sub_region": "Maritime Southeast Asia",
           "threat_level": "High",
           "active_groups": [
-            "Hezbollah",
-            "Palestinian militant factions (Hamas, PFLP, etc.)",
-            "ISIS-linked cells",
-            "Fatah al-Islam remnants"
+            "Abu Sayyaf Group (ASG)",
+            "Bangsamoro Islamic Freedom Fighters (BIFF)",
+            "Maute Group/ISIS-Philippines",
+            "Communist Party of the Philippines/New People's Army (CPP/NPA)",
+            "Dawlah Islamiyah"
           ],
           "conflict_zones": [
-            "Southern Lebanon/Blue Line border",
-            "Bekaa Valley",
-            "Palestinian refugee camps (Ain al-Hilweh)",
-            "Tripoli"
+            "Mindanao (Sulu Archipelago, Maguindanao, Lanao)",
+            "Samar/Visayas (NPA)"
           ]
         },
         "conflict_zone": {
-          "zone_id": "LBN-MULTIPLE",
-          "zone_name": "Lebanon - South Lebanon / Bekaa",
-          "country": "Lebanon",
-          "region": "MENA",
-          "intensity": "High",
+          "zone_id": "PHL-MINDANAO",
+          "zone_name": "Philippines - Mindanao",
+          "country": "Philippines",
+          "region": "South / Southeast Asia",
+          "intensity": "Low",
           "trend": "De-escalating",
           "active_groups": [
-            "Hezbollah",
-            "Palestinian factions (in refugee camps)",
-            "IDF (cross-border operations)",
-            "Various Sunni extremist cells (Ain al-Hilweh camp)"
+            "ISIS-Philippines (Abu Sayyaf Group - ASG, remnants)",
+            "Bangsamoro Islamic Freedom Fighters (BIFF)",
+            "Dawlah Islamiyah",
+            "Maute Group remnants",
+            "Communist New People's Army (NPA) remnants"
           ],
-          "conflict_type": "Border Conflict / Terrorism-only",
+          "conflict_type": "Insurgency / Terrorism-only",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      }
+    },
+    {
+      "source": "rss/ReliefWeb",
+      "title": "Philippines: DSWD DROMIC Report #52 on the Effects of Mw 7.8 Earthquake Incident in Maasim, Sarangani as of 05 July 2026, 6PM",
+      "url": "https://reliefweb.int/report/philippines/dswd-dromic-report-52-effects-mw-78-earthquake-incident-maasim-sarangani-05-july-2026-6pm",
+      "summary": "Country: Philippines\n                                      Source: Government of the Philippines\n                                                                                                \n                        Please refer to the attached file.",
+      "date": "Mon, 06 Jul 2026 03:25:30 +0000",
+      "feed_name": "ReliefWeb",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Philippines",
+      "country_code": "PH",
+      "_enrichment": {
+        "country": {
+          "name": "Philippines",
+          "iso": "PH",
+          "region": "Southeast Asia",
+          "sub_region": "Maritime Southeast Asia",
+          "threat_level": "High",
+          "active_groups": [
+            "Abu Sayyaf Group (ASG)",
+            "Bangsamoro Islamic Freedom Fighters (BIFF)",
+            "Maute Group/ISIS-Philippines",
+            "Communist Party of the Philippines/New People's Army (CPP/NPA)",
+            "Dawlah Islamiyah"
+          ],
+          "conflict_zones": [
+            "Mindanao (Sulu Archipelago, Maguindanao, Lanao)",
+            "Samar/Visayas (NPA)"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "PHL-MINDANAO",
+          "zone_name": "Philippines - Mindanao",
+          "country": "Philippines",
+          "region": "South / Southeast Asia",
+          "intensity": "Low",
+          "trend": "De-escalating",
+          "active_groups": [
+            "ISIS-Philippines (Abu Sayyaf Group - ASG, remnants)",
+            "Bangsamoro Islamic Freedom Fighters (BIFF)",
+            "Dawlah Islamiyah",
+            "Maute Group remnants",
+            "Communist New People's Army (NPA) remnants"
+          ],
+          "conflict_type": "Insurgency / Terrorism-only",
           "match_type": "text",
           "match_score": 1
         },
@@ -12385,6 +12342,42 @@
     {
       "source": "google_news",
       "query": "al-Qaeda",
+      "title": "UK Releases Al-Qaeda-Linked Terror Suspect Tied to 7/7 London Bombings Despite Security Warnings - VINnews",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPN001d2pqSHozWEZGWDRQU0V1RmZkNG1qVmp6NGFjUXRNZHZnNUZBMFlNOGZWamR3cXNvNFRXSDRaQmhPV1pFaXZyeGtWLWNJR0R3QkU3YzdlYVdKd2U2Q2ZqeDgwNElJSVhncGlkb0JUTGdtbGFxUWtvMEQwU2REMDlHSmxsS0UyTWt0dWkzb3pISmlMRFlockNUT1VYTzNpT19ScmgyUE01NW9DelM1M2dOOTdJRUlkenpmUWhfZUFmaXo0RV93?oc=5",
+      "summary": "UK Releases Al-Qaeda-Linked Terror Suspect Tied to 7/7 London Bombings Despite Security Warnings&nbsp;&nbsp;VINnews",
+      "date": "Sun, 05 Jul 2026 19:54:25 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "United Kingdom",
+      "country_code": "GB",
+      "_enrichment": {
+        "country": {
+          "name": "United Kingdom",
+          "iso": "GB",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Dissident Republican groups (Northern Ireland)",
+            "Far-right extremist networks (Atomwaffen/Sonnenkrieg linked)"
+          ],
+          "conflict_zones": [
+            "Northern Ireland (low-level dissident activity)"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      }
+    },
+    {
+      "source": "google_news",
+      "query": "al-Qaeda",
       "title": "Al-Qaeda affiliate claims responsibility for attacks on military sites in Mali - The Jerusalem Post",
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1CaHRJczFWbTdEVEt5QmJtWnA4QXZwMEtrdDY5cTY3VExUYXVxWm54Q09EZWQxRndibVY1ZDdNRjZBUkVYZXZqXzFQSjluMXp4eE1KN3gwREVDVUpiVENj?oc=5",
       "summary": "Al-Qaeda affiliate claims responsibility for attacks on military sites in Mali&nbsp;&nbsp;The Jerusalem Post",
@@ -12432,42 +12425,6 @@
           "conflict_type": "War / Insurgency",
           "match_type": "text",
           "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      }
-    },
-    {
-      "source": "google_news",
-      "query": "al-Qaeda",
-      "title": "UK Releases Al-Qaeda-Linked Terror Suspect Tied to 7/7 London Bombings Despite Security Warnings - VINnews",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPN001d2pqSHozWEZGWDRQU0V1RmZkNG1qVmp6NGFjUXRNZHZnNUZBMFlNOGZWamR3cXNvNFRXSDRaQmhPV1pFaXZyeGtWLWNJR0R3QkU3YzdlYVdKd2U2Q2ZqeDgwNElJSVhncGlkb0JUTGdtbGFxUWtvMEQwU2REMDlHSmxsS0UyTWt0dWkzb3pISmlMRFlockNUT1VYTzNpT19ScmgyUE01NW9DelM1M2dOOTdJRUlkenpmUWhfZUFmaXo0RV93?oc=5",
-      "summary": "UK Releases Al-Qaeda-Linked Terror Suspect Tied to 7/7 London Bombings Despite Security Warnings&nbsp;&nbsp;VINnews",
-      "date": "Sun, 05 Jul 2026 19:54:25 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "United Kingdom",
-      "country_code": "GB",
-      "_enrichment": {
-        "country": {
-          "name": "United Kingdom",
-          "iso": "GB",
-          "region": "Europe",
-          "sub_region": "Western Europe",
-          "threat_level": "Elevated",
-          "active_groups": [
-            "ISIS-inspired lone actors",
-            "Dissident Republican groups (Northern Ireland)",
-            "Far-right extremist networks (Atomwaffen/Sonnenkrieg linked)"
-          ],
-          "conflict_zones": [
-            "Northern Ireland (low-level dissident activity)"
-          ]
         },
         "attack_classification": {
           "category": "unknown",
@@ -12666,66 +12623,6 @@
     },
     {
       "source": "google_news",
-      "query": "suicide bombing",
-      "title": "Mourners bury victims of Damascus cafe bombing with six lawyers among dead - Al Jazeera",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxORjhHS1ZaTUtiNkNzek1LaVhXOUw4RFhsTjdaODJza0h3aFZJenBSOUlYVTBQWHFhcVdJZnpkWHdhT2V3SGsxOXJ3SzFxOW5tZ2pBV2wyMWExRmZCN2ZIN3F0MjV1QUZKSHNuMVBPazJHdkFtRkNLaUdKelJ0b3FlMGZVX0UyMEJPY0V3Y0RNSklPNFB1YVlKcDJTUF9mUHNJYmhxRS01WWY1X2M4R2tWUUNscnrSAboBQVVfeXFMTW9MLWFjQU9GQ0lWT0RzX0ZyU1pfRDI0VTNnd3o5UHdQZGo5V2p0aG1ZQkJmR1htZW1kSGhwS2Ewamtrd3lOUG15U3piMGxZc2VPdmI4OXVTaElIY2U0SUY0dU9tV0FpaDdvbHAxZkc3dVd6MXhVRHUzRDZadmhxc3hndFJrbEpUcVZDOGMxa2NpY0hHckhGblVKOXU3N1Y0WHBCLVB0OHpGRWw2Nk5EWGdGWktPWHdNMFdR?oc=5",
-      "summary": "Mourners bury victims of Damascus cafe bombing with six lawyers among dead&nbsp;&nbsp;Al Jazeera",
-      "date": "Fri, 03 Jul 2026 14:45:05 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Syria",
-      "country_code": "SY",
-      "_enrichment": {
-        "country": {
-          "name": "Syria",
-          "iso": "SY",
-          "region": "Middle East / North Africa",
-          "sub_region": "Levant",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Hayat Tahrir al-Sham (HTS)",
-            "Islamic State (ISIS) remnants",
-            "Syrian Democratic Forces (SDF)/YPG",
-            "Various Iran-backed militias",
-            "Hurras al-Din (Al-Qaeda affiliate)"
-          ],
-          "conflict_zones": [
-            "Idlib Province",
-            "Deir ez-Zor",
-            "Northeast Syria/Rojava",
-            "Daraa Governorate",
-            "Aleppo outskirts"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "SYR-IDLIB",
-          "zone_name": "Syria - Idlib",
-          "country": "Syria",
-          "region": "MENA",
-          "intensity": "Medium",
-          "trend": "De-escalating",
-          "active_groups": [
-            "Hayat Tahrir al-Sham (HTS)",
-            "Hurras al-Din (al-Qaeda affiliate)",
-            "Turkistan Islamic Party (TIP)",
-            "Ansar al-Tawhid",
-            "Various Turkish-backed factions (Syrian National Army)"
-          ],
-          "conflict_type": "Civil War / Insurgency",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      }
-    },
-    {
-      "source": "google_news",
       "query": "IED attack",
       "title": "Troops foil ambush after IED attack in Borno - Daily Post Nigeria",
       "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPaWlMYjBQMUZrVHFsbl93bllZVjhiM3BRQjl1NzRZbDNVZV9FWmFBc1RfWkhXWmJtNmUtVVpzMllzYUp1cDdoQ19GMmVBRDAyT2dPSFoyTmcycE9VTFdHQ0hFcTZRc3ZtYVNtWjZFNld4ekhLN1ExbWl2YjZrS0FkU1FYdw?oc=5",
@@ -12775,25 +12672,6 @@
           "match_type": "text",
           "match_score": 1
         },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      }
-    },
-    {
-      "source": "google_news",
-      "query": "IED attack",
-      "title": "Military Clear Bomb Threats On Zamfara Highway After IED Attack Hit Police Counter-Terror Vehicle - Sahara Reporters",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPcFotbW5YdWVOWmlHYXptWjFuVm9MeHJYRmFLVTVNelBKX0JqMXNPdk5WLU1vYmp1WG5PQm9EUDV0YkdtZ0RGanZISl93QnlfNkE5Vnp0SU1yamZMLUZ0eHJ5Tm9Xb3hCa09aZzBGME1pUDZLSWZCNW9kVXlSY2JaNE1aVjNJdE9TdG8zVmdsclc0Vkkzc0M0WU5VMldONEcxVTRsRVlqWWZFeVJVXzR5a2owb010N2o4bnJnTElLZkFWbE0?oc=5",
-      "summary": "Military Clear Bomb Threats On Zamfara Highway After IED Attack Hit Police Counter-Terror Vehicle&nbsp;&nbsp;Sahara Reporters",
-      "date": "Fri, 03 Jul 2026 17:01:58 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "_enrichment": {
         "attack_classification": {
           "category": "unknown",
           "category_name": "Unclassified",
@@ -13064,6 +12942,17 @@
       "is_new": false
     },
     {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-24UMVkuxF3svsAtg55i3Zi",
+      "name": "ALBAHR ALAAHMAR ENERGY FZE",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
       "source": "opensanctions/un_sc_sanctions",
       "entity_id": "NK-9rbvRsjDY4WANyXSjXR37X",
       "name": "ALFA COMPANY LIMITED FOR INTERNATIONAL TRADING AND MARKETING",
@@ -13241,6 +13130,17 @@
     },
     {
       "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-26xfRVn7tbtTbE4hQEQkYb",
+      "name": "Bargawine Hong Kong Limited",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
       "entity_id": "NK-27vgWCH4uAFBmxLHgFFT5T",
       "name": "Benoil Shipping Inc",
       "schema": "Organization",
@@ -13274,6 +13174,17 @@
     },
     {
       "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-29V6pA7jCaxw5r5jMNHvYR",
+      "name": "Cloud Nine No. 4 Leasing Company Limited",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
       "entity_id": "NK-24kDoEn7nGXeuCyFCm2RDi",
       "name": "Desarrollos Cartok S.A. de C.V.",
       "schema": "Organization",
@@ -13282,81 +13193,9 @@
         "sanction"
       ],
       "is_new": false
-    },
-    {
-      "source": "opensanctions/us_ofac_sdn",
-      "entity_id": "NK-22T6dTsc6umYgEA33vME3t",
-      "name": "Digital Marketing Awards FZ LLC",
-      "schema": "Organization",
-      "datasets": "us_ofac_sdn",
-      "topics": [
-        "sanction"
-      ],
-      "is_new": false
-    },
-    {
-      "source": "opensanctions/us_ofac_sdn",
-      "entity_id": "NK-2CD2oSMdYpeA2x6FEV4ZXb",
-      "name": "Dingtai Industrial Technology Co Limited",
-      "schema": "Organization",
-      "datasets": "us_ofac_sdn",
-      "topics": [
-        "sanction"
-      ],
-      "is_new": false
-    },
-    {
-      "source": "opensanctions/eu_sanctions",
-      "entity_id": "NK-28X5jMopMz2jCXsUDUJczU",
-      "name": "Družba Fajr Aviation Composite Industries",
-      "schema": "Organization",
-      "datasets": "eu_sanctions",
-      "topics": [
-        "sanction"
-      ],
-      "is_new": false
     }
   ],
   "telegram": [
-    {
-      "source": "telegram/intelslava",
-      "title": "🇷🇺❌🇺🇦— NOW: Russian drones striking targets in Kiev.",
-      "summary": "🇷🇺❌🇺🇦— NOW: Russian drones striking targets in Kiev.",
-      "url": "https://t.me/intelslava/89790",
-      "date": "2026-07-05",
-      "feed_name": "TG:intelslava",
-      "channel": "intelslava",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/intelslava",
-      "title": "🇷🇺❌🇺🇦 — Approximately 10 Russian cruise missiles currently in Ukrainian airspace, all heading toward Kiev.",
-      "summary": "🇷🇺❌🇺🇦 — Approximately 10 Russian cruise missiles currently in Ukrainian airspace, all heading toward Kiev.",
-      "url": "https://t.me/intelslava/89791",
-      "date": "2026-07-06",
-      "feed_name": "TG:intelslava",
-      "channel": "intelslava",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/intelslava",
-      "title": "🇷🇺❌🇺🇦 — Russian drones striking targets in Bilhorod-Dnistrovskyi, Odessa region.",
-      "summary": "🇷🇺❌🇺🇦 — Russian drones striking targets in Bilhorod-Dnistrovskyi, Odessa region.",
-      "url": "https://t.me/intelslava/89792",
-      "date": "2026-07-06",
-      "feed_name": "TG:intelslava",
-      "channel": "intelslava",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
     {
       "source": "telegram/intelslava",
       "title": "🇺🇦❌🇷🇺 — Temporary restrictions introduced at Penza and Pskov airports in Russia.",
@@ -13466,6 +13305,45 @@
       "title": "A Russian missile destroyed a Roshen Corporation building in Kyiv. Roshen is a Ukrainian confectionery manufacturing company.",
       "summary": "A Russian missile destroyed a Roshen Corporation building in Kyiv. Roshen is a Ukrainian confectionery manufacturing company.",
       "url": "https://t.me/intelslava/89804",
+      "date": "2026-07-06",
+      "feed_name": "TG:intelslava",
+      "channel": "intelslava",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/intelslava",
+      "title": "🇷🇺🇺🇦⚡️ — Russian Iskander-M ballistic missiles and Zircon hypersonic cruise missiles struck Ukraine's Zhulyany Machine-Building Plant \"Vizar",
+      "summary": "🇷🇺🇺🇦⚡️ — Russian Iskander-M ballistic missiles and Zircon hypersonic cruise missiles struck Ukraine's Zhulyany Machine-Building Plant \"Vizar\" in Vyshneve, Kyiv Oblast. The plant is responsible for manufacturing components for the R-360 Neptune cruise missile, as well as missiles from the 5V55 and 48N6 families used by the S-300 air defense system. @IntelSlava",
+      "url": "https://t.me/intelslava/89805",
+      "date": "2026-07-06",
+      "feed_name": "TG:intelslava",
+      "channel": "intelslava",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/intelslava",
+      "title": "Footage shows ammunition cooking off at the Zhulyany Machine-Building Plant \"Vizar\" in Vyshneve, Kyiv Oblast, following a Russian missile st",
+      "summary": "Footage shows ammunition cooking off at the Zhulyany Machine-Building Plant \"Vizar\" in Vyshneve, Kyiv Oblast, following a Russian missile strike.",
+      "url": "https://t.me/intelslava/89807",
+      "date": "2026-07-06",
+      "feed_name": "TG:intelslava",
+      "channel": "intelslava",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/intelslava",
+      "title": "🇷🇺❌🇺🇦 — Footage from earlier shows a Russian Kh-101 cruise missile impacting Kyiv. @IntelSlava",
+      "summary": "🇷🇺❌🇺🇦 — Footage from earlier shows a Russian Kh-101 cruise missile impacting Kyiv. @IntelSlava",
+      "url": "https://t.me/intelslava/89808",
       "date": "2026-07-06",
       "feed_name": "TG:intelslava",
       "channel": "intelslava",
@@ -13632,45 +13510,6 @@
     },
     {
       "source": "telegram/clashreport",
-      "title": "Trump: Thank you to FIFA for doing what was right, and reversing a great injustice!",
-      "summary": "Trump: Thank you to FIFA for doing what was right, and reversing a great injustice!",
-      "url": "https://t.me/ClashReport/88006",
-      "date": "2026-07-05",
-      "feed_name": "TG:clashreport",
-      "channel": "clashreport",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/clashreport",
-      "title": "Trump will meet with Ukraine’s Zelensky and Syria’s al-Sharaa on the sidelines of the upcoming NATO summit in Ankara.",
-      "summary": "Trump will meet with Ukraine’s Zelensky and Syria’s al-Sharaa on the sidelines of the upcoming NATO summit in Ankara.",
-      "url": "https://t.me/ClashReport/88007",
-      "date": "2026-07-05",
-      "feed_name": "TG:clashreport",
-      "channel": "clashreport",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/clashreport",
-      "title": "Trump: Thank you to FIFA for doing what was right, and reversing a great injustice!",
-      "summary": "Trump: Thank you to FIFA for doing what was right, and reversing a great injustice!",
-      "url": "https://t.me/ClashReport/88008",
-      "date": "2026-07-05",
-      "feed_name": "TG:clashreport",
-      "channel": "clashreport",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/clashreport",
       "title": "WATCH: Tuareg fighters shot down a Russian Africa Corps Mi-24 helicopter in Mali. The crew was killed.",
       "summary": "WATCH: Tuareg fighters shot down a Russian Africa Corps Mi-24 helicopter in Mali. The crew was killed.",
       "url": "https://t.me/ClashReport/88009",
@@ -13787,13 +13626,42 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/warmonitors",
-      "title": "⚡️ At Beirut's international airport - an American flag displayed inside the terminal, in celebration of the United States' Independence Day",
-      "summary": "⚡️ At Beirut's international airport - an American flag displayed inside the terminal, in celebration of the United States' Independence Day. 💧 Rainbet.com the #1 Non-KYC Crypto Casino & Sportsbook @rainbetcom +18",
-      "url": "https://t.me/warmonitors/44811",
-      "date": "2026-07-05",
-      "feed_name": "TG:warmonitors",
-      "channel": "warmonitors",
+      "source": "telegram/clashreport",
+      "title": "Trump: Harry Kane of England is a GREAT player!!!",
+      "summary": "Trump: Harry Kane of England is a GREAT player!!!",
+      "url": "https://t.me/ClashReport/88021",
+      "date": "2026-07-06",
+      "feed_name": "TG:clashreport",
+      "channel": "clashreport",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/clashreport",
+      "title": "Russia launched ballistic missiles and drones at Kyiv and the surrounding region overnight, killing at least eight people and injuring dozen",
+      "summary": "Russia launched ballistic missiles and drones at Kyiv and the surrounding region overnight, killing at least eight people and injuring dozens. Apartment buildings and other civilian sites were hit, with rescue crews searching for survivors.",
+      "url": "https://t.me/ClashReport/88022",
+      "date": "2026-07-06",
+      "feed_name": "TG:clashreport",
+      "channel": "clashreport",
+      "fatalities_estimated": 8,
+      "wounded_estimated": 0,
+      "casualty_confidence": "HIGH",
+      "casualty_matches": [
+        "vernight, killing at least eight people an",
+        "vernight, killing at least eight people an"
+      ]
+    },
+    {
+      "source": "telegram/clashreport",
+      "title": "Map showing the approximate routes of the Russian drones and missiles that targeted Ukraine overnight.",
+      "summary": "Map showing the approximate routes of the Russian drones and missiles that targeted Ukraine overnight.",
+      "url": "https://t.me/ClashReport/88025",
+      "date": "2026-07-06",
+      "feed_name": "TG:clashreport",
+      "channel": "clashreport",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -13943,39 +13811,13 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/war_monitor",
-      "title": "❗️ Київ КР Оболонь Куренівка",
-      "summary": "❗️ Київ КР Оболонь Куренівка",
-      "url": "https://t.me/war_monitor/41313",
+      "source": "telegram/warmonitors",
+      "title": "Having your stadium in space wasn’t saving it… 💧 Rainbet.com the #1 Non-KYC Crypto Casino & Sportsbook @rainbetcom +18",
+      "summary": "Having your stadium in space wasn’t saving it… 💧 Rainbet.com the #1 Non-KYC Crypto Casino & Sportsbook @rainbetcom +18",
+      "url": "https://t.me/warmonitors/44823",
       "date": "2026-07-06",
-      "feed_name": "TG:war_monitor",
-      "channel": "war_monitor",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/war_monitor",
-      "title": "❗️ КР від Рожівки на Погреби, Троєщину.",
-      "summary": "❗️ КР від Рожівки на Погреби, Троєщину.",
-      "url": "https://t.me/war_monitor/41315",
-      "date": "2026-07-06",
-      "feed_name": "TG:war_monitor",
-      "channel": "war_monitor",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/war_monitor",
-      "title": "❗️ Київ 1х БпЛА Звіринець",
-      "summary": "❗️ Київ 1х БпЛА Звіринець",
-      "url": "https://t.me/war_monitor/41316",
-      "date": "2026-07-06",
-      "feed_name": "TG:war_monitor",
-      "channel": "war_monitor",
+      "feed_name": "TG:warmonitors",
+      "channel": "warmonitors",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -14099,26 +13941,39 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/ukraine_watch",
-      "title": "⚠️ Venezuela Quake: Natural Disaster — or a Planned Child-Trafficking Operation for the Elite? ​ Sobering questions are emerging in the afte",
-      "summary": "⚠️ Venezuela Quake: Natural Disaster — or a Planned Child-Trafficking Operation for the Elite? ​ Sobering questions are emerging in the aftermath of the Venezuela earthquake. ​ #Venezuela #Earthquake #ChildTrafficking #Elite #Conspiracy ​ 🔘 Subscribe now! Chat",
-      "url": "https://t.me/ukraine_watch/63779",
-      "date": "2026-07-05",
-      "feed_name": "TG:ukraine_watch",
-      "channel": "ukraine_watch",
+      "source": "telegram/war_monitor",
+      "title": "⚪️ Відбій ракетної небезпеки.",
+      "summary": "⚪️ Відбій ракетної небезпеки.",
+      "url": "https://t.me/war_monitor/41326",
+      "date": "2026-07-06",
+      "feed_name": "TG:war_monitor",
+      "channel": "war_monitor",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": []
     },
     {
-      "source": "telegram/ukraine_watch",
-      "title": "⭐️THE MOST FAMOUS MILITARY TELEGRAM CHANNEL @rybar INTERNATIONAL ⚡️the largest Russian military Telegram channel ⚡️with over 1.5 million sub",
-      "summary": "⭐️THE MOST FAMOUS MILITARY TELEGRAM CHANNEL @rybar INTERNATIONAL ⚡️the largest Russian military Telegram channel ⚡️with over 1.5 million subscribers, ⚡️the channel that publishes the most detailed reports and whose texts are referenced by Western media and military experts ⚡️a channel that seeks out topics of interest in a sea of information—and explains them to you in simple words ⚡️news about major world events (including those in the shadows) commented on by a team of analysts. The channel of",
-      "url": "https://t.me/ukraine_watch/63780",
-      "date": "2026-07-05",
-      "feed_name": "TG:ukraine_watch",
-      "channel": "ukraine_watch",
+      "source": "telegram/war_monitor",
+      "title": "Ракетна атака по Києву. З вечора 5 липня ворог запускав ударні БпЛА з півдня та сходу у напрямку Київщини, переважна більшість яких не досяг",
+      "summary": "Ракетна атака по Києву. З вечора 5 липня ворог запускав ударні БпЛА з півдня та сходу у напрямку Київщини, переважна більшість яких не досягла своїх цілей. Ближче до 01 ночі 6 липня ворог спрямував крилаті ракети Калібр у напрямку Київщини, які не досягли поставлених цілей. Одночасно з цим було завдано ударів гіперзвуковими Цирконами з Курська та балістикою з Брянська у напрямку Києва. Загалом застосовано 20+ гіперзвукових ракет по столиці. Ближче до 03 ночі крилаті ракети Х-101/9м727 у дві хвил",
+      "url": "https://t.me/war_monitor/41327",
+      "date": "2026-07-06",
+      "feed_name": "TG:war_monitor",
+      "channel": "war_monitor",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/war_monitor",
+      "title": "Ви можете допомогти у зборах: На реабілітацію бійцям ЗСУ/НГУ - https://send.monobank.ua/jar/AbfmdZEA58 Розіграші за донати від 50грн. На авт",
+      "summary": "Ви можете допомогти у зборах: На реабілітацію бійцям ЗСУ/НГУ - https://send.monobank.ua/jar/AbfmdZEA58 Розіграші за донати від 50грн. На автівки та радіообладнанння на схід - https://send.monobank.ua/jar/6jXVk1ooPK Розіграш авто за донат від 300грн.• Підтримати діяльність каналу монітор (без розіграшу): https://send.monobank.ua/jar/59R9ayPkbp Всім вдячний 🤝",
+      "url": "https://t.me/war_monitor/41328",
+      "date": "2026-07-06",
+      "feed_name": "TG:war_monitor",
+      "channel": "war_monitor",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -14255,39 +14110,26 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/RVvoenkor",
-      "title": "‼️🇷🇺💥Дорога смерти на Запорожском фронте: 58 армия сжигает технику врага на трассе у Орехова ▪️Операторы ударных дронов и расчеты барражирую",
-      "summary": "‼️🇷🇺💥Дорога смерти на Запорожском фронте: 58 армия сжигает технику врага на трассе у Орехова ▪️Операторы ударных дронов и расчеты барражирующих боеприпасов \"Ланцет\" 58 Армии и приданных ей подразделений уничтожают технику врага по дороге от н.п. Камышеваха до г.Орехов. ▪️Транспорт подвоза ВСУ выявляется и сразу уничтожается вместе с позициями врага, куда он двигался. ⚠️Подписаться на RV: MAX | t.me/RVvoenkor",
-      "url": "https://t.me/RVvoenkor/118512",
-      "date": "2026-07-05",
-      "feed_name": "TG:RVvoenkor",
-      "channel": "RVvoenkor",
+      "source": "telegram/ukraine_watch",
+      "title": "🇧🇷 Lula Widens Lead Over Bolsonaro’s Son on Polymarket ​ Brazilian President Luiz Inácio Lula da Silva is gaining ground in betting markets ",
+      "summary": "🇧🇷 Lula Widens Lead Over Bolsonaro’s Son on Polymarket ​ Brazilian President Luiz Inácio Lula da Silva is gaining ground in betting markets ahead of the upcoming presidential election. ​ ➡Polymarket now gives Lula a 61% chance of victory, while Senator Flávio Bolsonaro, son of former President Jair Bolsonaro, stands at just 23%. ​ #Brazil #Lula #Bolsonaro #Elections ​ 🔘 Subscribe now! Chat",
+      "url": "https://t.me/ukraine_watch/63793",
+      "date": "2026-07-06",
+      "feed_name": "TG:ukraine_watch",
+      "channel": "ukraine_watch",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": []
     },
     {
-      "source": "telegram/RVvoenkor",
-      "title": "‼️🇺🇸🇷🇺Трамп намерен связаться с Путиным после встречи с Зеленским на полях саммита НАТО, - Reuters Об этом агентство сообщает со ссылкой на ",
-      "summary": "‼️🇺🇸🇷🇺Трамп намерен связаться с Путиным после встречи с Зеленским на полях саммита НАТО, - Reuters Об этом агентство сообщает со ссылкой на высокопоставленных чиновников США. ⚠️Подписаться на RV: MAX | t.me/RVvoenkor",
-      "url": "https://t.me/RVvoenkor/118513",
-      "date": "2026-07-05",
-      "feed_name": "TG:RVvoenkor",
-      "channel": "RVvoenkor",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/RVvoenkor",
-      "title": "‼️🇷🇺🏴‍☠️Враг снова атакует Крым, Москву и Донбасс ▪️В Крыму и Севастополе тревога, силы ПВО сбивают вражеские дроны летят в том числе по нап",
-      "summary": "‼️🇷🇺🏴‍☠️Враг снова атакует Крым, Москву и Донбасс ▪️В Крыму и Севастополе тревога, силы ПВО сбивают вражеские дроны летят в том числе по направлению к Балаклавской ТЭЦ. ▪️Движение автомашин по Крымскому мосту временно перекрыто (❗️в 1:00 возобновлено). ▪️В Московском регионе беспилотная опасность. Ранее за день были сбиты 16 БПЛА, летевших на столицу, сообщил Собянин. ▪️На Донбассе взрывы, силы ПВО отражают налёт дронов. ▪️Также тревога в Воронежской области, заявил губернатор Гусев. ⚠️Подписать",
-      "url": "https://t.me/RVvoenkor/118514",
-      "date": "2026-07-05",
-      "feed_name": "TG:RVvoenkor",
-      "channel": "RVvoenkor",
+      "source": "telegram/ukraine_watch",
+      "title": "🔘 Merkel: I Really Tried on Climate. Greta Just Wanted More ​ Former German Chancellor Angela Merkel admits that one thing she failed to do ",
+      "summary": "🔘 Merkel: I Really Tried on Climate. Greta Just Wanted More ​ Former German Chancellor Angela Merkel admits that one thing she failed to do well enough was climate protection. ​ She recalls Greta Thunberg and Luisa Neubauer telling her: “If you only wanted to, you could achieve more!” ​ Merkel says she doesn’t believe that. ​ ⁉️ So the climate failed because the table wasn’t banged hard enough. Very convincing. ​ #Germany #Merkel #Climate #GretaThunberg #Politics ​ 🔘 Subscribe now! Chat",
+      "url": "https://t.me/ukraine_watch/63794",
+      "date": "2026-07-06",
+      "feed_name": "TG:ukraine_watch",
+      "channel": "ukraine_watch",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -14363,6 +14205,32 @@
       "title": "‼️🇺🇦🔥Чёрный дым окутывает Киев после атаки ▪️Пожары и прилёты практически во всех районах столицы Украины. ▪️В Киеве происходит детонация ка",
       "summary": "‼️🇺🇦🔥Чёрный дым окутывает Киев после атаки ▪️Пожары и прилёты практически во всех районах столицы Украины. ▪️В Киеве происходит детонация кассетных частей от крылатых ракет, — пишут мониторинговые ресурсы. ➖Киевляне, по возможности закройте окна, - призывают местные СМИ. ▪️Из-за масштабных пожаров после атаки воздух стал едким, с запахом гари. Все районы столицы окутывает чёрный дым. ⚠️Подписаться на RV: MAX | t.me/RVvoenkor",
       "url": "https://t.me/RVvoenkor/118527",
+      "date": "2026-07-06",
+      "feed_name": "TG:RVvoenkor",
+      "channel": "RVvoenkor",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/RVvoenkor",
+      "title": "‼️🇷🇺 Бойцы «Центра» уничтожают пехоту и технику врага, наступая за Красноармейском и на Днепропетровщине ▪️Подразделения группировки войск «",
+      "summary": "‼️🇷🇺 Бойцы «Центра» уничтожают пехоту и технику врага, наступая за Красноармейском и на Днепропетровщине ▪️Подразделения группировки войск «Центр» продолжают атаки за ранее освобожденным г. Покровск (Красноармейск). ▪️Российские войска атакуют в районах Гришино, Новоалександровки, Родинского и Дорожного. ▪️Поддержку штурмовым подразделениям группировки \"Центр\" оказывают расчеты БПЛА, активно уничтожающие пехоту и технику ВСУ в районах Красноармейска, Мирнограда (Димитрова) и в Днепропетровской о",
+      "url": "https://t.me/RVvoenkor/118532",
+      "date": "2026-07-06",
+      "feed_name": "TG:RVvoenkor",
+      "channel": "RVvoenkor",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/RVvoenkor",
+      "title": "‼️🇷🇺Враг пытается отрезать логистику в Крыму и на фронте: для отражения атак дронов нужны тепловизоры ▪️Нас просят тепловизоры бойцы с мобил",
+      "summary": "‼️🇷🇺Враг пытается отрезать логистику в Крыму и на фронте: для отражения атак дронов нужны тепловизоры ▪️Нас просят тепловизоры бойцы с мобильных огневых групп из Крыма и с фронтов СВО. ➖Тепловизоры спасают жизни ночью и помогают сбивать дроны врага: без них…",
+      "url": "https://t.me/RVvoenkor/118533",
       "date": "2026-07-06",
       "feed_name": "TG:RVvoenkor",
       "channel": "RVvoenkor",
@@ -14503,58 +14371,6 @@
     },
     {
       "source": "telegram/new_militarycolumnist",
-      "title": "Личные данные британских военнослужащих, информация о хранении оружия, смене караулов, нарушениях правил безопасности и протоколах реагирова",
-      "summary": "Личные данные британских военнослужащих, информация о хранении оружия, смене караулов, нарушениях правил безопасности и протоколах реагирования на экстренные ситуации - всё это находилось в секретных документах, которые обнаружил случайный прохожий на свалке рядом с крупнейшей в Англии военной базой. #Англия @new_militarycolumnist",
-      "url": "https://t.me/new_militarycolumnist/177951",
-      "date": "2026-07-05",
-      "feed_name": "TG:new_militarycolumnist",
-      "channel": "new_militarycolumnist",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/new_militarycolumnist",
-      "title": "❗️Financial Times сообщает, что американская разведка предоставляет Украине информацию, которая помогает ВСУ обходить российские системы ПВО",
-      "summary": "❗️Financial Times сообщает, что американская разведка предоставляет Украине информацию, которая помогает ВСУ обходить российские системы ПВО во время атак дальнобойных дронов и крылатых ракет по объектам топливно-энергетического комплекса России. #Россия #Украина @new_militarycolumnist",
-      "url": "https://t.me/new_militarycolumnist/177952",
-      "date": "2026-07-05",
-      "feed_name": "TG:new_militarycolumnist",
-      "channel": "new_militarycolumnist",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/new_militarycolumnist",
-      "title": "Польша весной 2026 года тайно передала Украине зенитные ракеты для комплексов Patriot из наличия собственной армии. #Польша #Украина @new_mi",
-      "summary": "Польша весной 2026 года тайно передала Украине зенитные ракеты для комплексов Patriot из наличия собственной армии. #Польша #Украина @new_militarycolumnist",
-      "url": "https://t.me/new_militarycolumnist/177953",
-      "date": "2026-07-05",
-      "feed_name": "TG:new_militarycolumnist",
-      "channel": "new_militarycolumnist",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/new_militarycolumnist",
-      "title": "❗️Польша опубликует полную информацию о поставках оружия на Украину с 2022 по 2026 года. #Польша #Украина @new_militarycolumnist",
-      "summary": "❗️Польша опубликует полную информацию о поставках оружия на Украину с 2022 по 2026 года. #Польша #Украина @new_militarycolumnist",
-      "url": "https://t.me/new_militarycolumnist/177954",
-      "date": "2026-07-05",
-      "feed_name": "TG:new_militarycolumnist",
-      "channel": "new_militarycolumnist",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/new_militarycolumnist",
       "title": "Кадры пуска крылатых ракет новейшим северокорейским эсминцем \"Кан Гон\". #КНДР @new_militarycolumnist",
       "summary": "Кадры пуска крылатых ракет новейшим северокорейским эсминцем \"Кан Гон\". #КНДР @new_militarycolumnist",
       "url": "https://t.me/new_militarycolumnist/177955",
@@ -14656,9 +14472,61 @@
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": []
+    },
+    {
+      "source": "telegram/new_militarycolumnist",
+      "title": "Массированный удар ракетами и дронами нанесён по целям в Киеве. #СВО @new_militarycolumnist",
+      "summary": "Массированный удар ракетами и дронами нанесён по целям в Киеве. #СВО @new_militarycolumnist",
+      "url": "https://t.me/new_militarycolumnist/177963",
+      "date": "2026-07-06",
+      "feed_name": "TG:new_militarycolumnist",
+      "channel": "new_militarycolumnist",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/new_militarycolumnist",
+      "title": "Объект хранения вооружений ВСУ уничтожен под Киевом в ходе ночных ударов. #СВО @new_militarycolumnist",
+      "summary": "Объект хранения вооружений ВСУ уничтожен под Киевом в ходе ночных ударов. #СВО @new_militarycolumnist",
+      "url": "https://t.me/new_militarycolumnist/177967",
+      "date": "2026-07-06",
+      "feed_name": "TG:new_militarycolumnist",
+      "channel": "new_militarycolumnist",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/new_militarycolumnist",
+      "title": "Объект хранения вооружений ВСУ уничтожен под Киевом в ходе ночных ударов. #СВО @new_militarycolumnist",
+      "summary": "Объект хранения вооружений ВСУ уничтожен под Киевом в ходе ночных ударов. #СВО @new_militarycolumnist",
+      "url": "https://t.me/new_militarycolumnist/177968",
+      "date": "2026-07-06",
+      "feed_name": "TG:new_militarycolumnist",
+      "channel": "new_militarycolumnist",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/new_militarycolumnist",
+      "title": "ВС РФ в ночь на 6 июля нанесли массированный удар возмездия по объектам ВПК и ТЭК в Киеве и Киевской области. Также была поражена инфраструк",
+      "summary": "ВС РФ в ночь на 6 июля нанесли массированный удар возмездия по объектам ВПК и ТЭК в Киеве и Киевской области. Также была поражена инфраструктура украинских военных аэродромов в Днепропетровской, Полтавской, Черкасской, Черниговской и Киевской областях. #СВО @new_militarycolumnist",
+      "url": "https://t.me/new_militarycolumnist/177970",
+      "date": "2026-07-06",
+      "feed_name": "TG:new_militarycolumnist",
+      "channel": "new_militarycolumnist",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
     }
   ],
-  "collected_at": "2026-07-06T01:59:45.273281",
+  "collected_at": "2026-07-06T05:03:23.019059",
   "event_clusters": [
     {
       "source": "google_news",
@@ -14814,8 +14682,8 @@
       "matched_rss": [],
       "rss_count": 0,
       "countries": [
-        "IN",
-        "PK"
+        "PK",
+        "IN"
       ],
       "total_sources": 2,
       "linked_gdelt": [
@@ -15250,81 +15118,6 @@
     },
     {
       "source": "google_news",
-      "query": "suicide bombing",
-      "title": "Mourners bury victims of Damascus cafe bombing with six lawyers among dead - Al Jazeera",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxORjhHS1ZaTUtiNkNzek1LaVhXOUw4RFhsTjdaODJza0h3aFZJenBSOUlYVTBQWHFhcVdJZnpkWHdhT2V3SGsxOXJ3SzFxOW5tZ2pBV2wyMWExRmZCN2ZIN3F0MjV1QUZKSHNuMVBPazJHdkFtRkNLaUdKelJ0b3FlMGZVX0UyMEJPY0V3Y0RNSklPNFB1YVlKcDJTUF9mUHNJYmhxRS01WWY1X2M4R2tWUUNscnrSAboBQVVfeXFMTW9MLWFjQU9GQ0lWT0RzX0ZyU1pfRDI0VTNnd3o5UHdQZGo5V2p0aG1ZQkJmR1htZW1kSGhwS2Ewamtrd3lOUG15U3piMGxZc2VPdmI4OXVTaElIY2U0SUY0dU9tV0FpaDdvbHAxZkc3dVd6MXhVRHUzRDZadmhxc3hndFJrbEpUcVZDOGMxa2NpY0hHckhGblVKOXU3N1Y0WHBCLVB0OHpGRWw2Nk5EWGdGWktPWHdNMFdR?oc=5",
-      "summary": "Mourners bury victims of Damascus cafe bombing with six lawyers among dead&nbsp;&nbsp;Al Jazeera",
-      "date": "Fri, 03 Jul 2026 14:45:05 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Syria",
-      "country_code": "SY",
-      "_enrichment": {
-        "country": {
-          "name": "Syria",
-          "iso": "SY",
-          "region": "Middle East / North Africa",
-          "sub_region": "Levant",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Hayat Tahrir al-Sham (HTS)",
-            "Islamic State (ISIS) remnants",
-            "Syrian Democratic Forces (SDF)/YPG",
-            "Various Iran-backed militias",
-            "Hurras al-Din (Al-Qaeda affiliate)"
-          ],
-          "conflict_zones": [
-            "Idlib Province",
-            "Deir ez-Zor",
-            "Northeast Syria/Rojava",
-            "Daraa Governorate",
-            "Aleppo outskirts"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "SYR-IDLIB",
-          "zone_name": "Syria - Idlib",
-          "country": "Syria",
-          "region": "MENA",
-          "intensity": "Medium",
-          "trend": "De-escalating",
-          "active_groups": [
-            "Hayat Tahrir al-Sham (HTS)",
-            "Hurras al-Din (al-Qaeda affiliate)",
-            "Turkistan Islamic Party (TIP)",
-            "Ansar al-Tawhid",
-            "Various Turkish-backed factions (Syrian National Army)"
-          ],
-          "conflict_type": "Civil War / Insurgency",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "cluster_size": 1,
-      "articles": [
-        "Mourners bury victims of Damascus cafe bombing with six lawyers among dead - Al Jazeera"
-      ],
-      "matched_rss": [],
-      "rss_count": 0,
-      "countries": [
-        "SY"
-      ],
-      "total_sources": 1,
-      "linked_gdelt": [],
-      "gdelt_count": 0,
-      "avg_media_tone": null,
-      "tone_label": null,
-      "importance_score": 4
-    },
-    {
-      "source": "google_news",
       "query": "IED attack",
       "title": "Troops foil ambush after IED attack in Borno - Daily Post Nigeria",
       "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPaWlMYjBQMUZrVHFsbl93bllZVjhiM3BRQjl1NzRZbDNVZV9FWmFBc1RfWkhXWmJtNmUtVVpzMllzYUp1cDdoQ19GMmVBRDAyT2dPSFoyTmcycE9VTFdHQ0hFcTZRc3ZtYVNtWjZFNld4ekhLN1ExbWl2YjZrS0FkU1FYdw?oc=5",
@@ -15395,38 +15188,6 @@
       "avg_media_tone": null,
       "tone_label": null,
       "importance_score": 4
-    },
-    {
-      "source": "google_news",
-      "query": "IED attack",
-      "title": "Military Clear Bomb Threats On Zamfara Highway After IED Attack Hit Police Counter-Terror Vehicle - Sahara Reporters",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPcFotbW5YdWVOWmlHYXptWjFuVm9MeHJYRmFLVTVNelBKX0JqMXNPdk5WLU1vYmp1WG5PQm9EUDV0YkdtZ0RGanZISl93QnlfNkE5Vnp0SU1yamZMLUZ0eHJ5Tm9Xb3hCa09aZzBGME1pUDZLSWZCNW9kVXlSY2JaNE1aVjNJdE9TdG8zVmdsclc0Vkkzc0M0WU5VMldONEcxVTRsRVlqWWZFeVJVXzR5a2owb010N2o4bnJnTElLZkFWbE0?oc=5",
-      "summary": "Military Clear Bomb Threats On Zamfara Highway After IED Attack Hit Police Counter-Terror Vehicle&nbsp;&nbsp;Sahara Reporters",
-      "date": "Fri, 03 Jul 2026 17:01:58 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "_enrichment": {
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "cluster_size": 1,
-      "articles": [
-        "Military Clear Bomb Threats On Zamfara Highway After IED Attack Hit Police Counter-Terror Vehicle - Sahara Reporters"
-      ],
-      "matched_rss": [],
-      "rss_count": 0,
-      "countries": [],
-      "total_sources": 1,
-      "linked_gdelt": [],
-      "gdelt_count": 0,
-      "avg_media_tone": null,
-      "tone_label": null,
-      "importance_score": 3
     }
   ]
 }
