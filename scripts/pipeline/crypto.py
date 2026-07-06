@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from pipeline import bronze, health  # noqa: E402
 from pipeline.base import ExtractResult  # noqa: E402
 from crypto_source import (  # noqa: E402
-    fetch_opensanctions, fetch_graphsense, fetch_ransomwhere,
+    fetch_opensanctions, fetch_graphsense, fetch_nbctf, fetch_ransomwhere,
 )
 from database import init_db, get_conn  # noqa: E402
 
@@ -26,6 +26,7 @@ from database import init_db, get_conn  # noqa: E402
 SOURCES = {
     "crypto_opensanctions": fetch_opensanctions,
     "crypto_graphsense": fetch_graphsense,
+    "crypto_nbctf": fetch_nbctf,
     "crypto_ransomwhere": fetch_ransomwhere,
 }
 
