@@ -14,6 +14,7 @@ The web serves `dup_of IS NULL` for a de-duplicated view.
 import os
 import re
 import sys
+import time
 import requests
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -84,7 +85,7 @@ def _openai_same(a: dict, b: dict) -> bool | None:
     ambiguous cross-source pairs per day reach here."""
     try:
         from openai import OpenAI
-        r = OpenAI().chat.completions.create(
+        r = OpenAI(timeout=15, max_retries=1).chat.completions.create(
             model="gpt-4o-mini", temperature=0,
             messages=[
                 {"role": "system", "content": "Decide if two short conflict-event descriptions report the SAME real-world incident (same event, same place, same day). Reply with exactly one word: YES or NO."},
@@ -135,6 +136,10 @@ def deduplicate(days: int = 7) -> int:
         openai_ok = (not llm_ok) and bool(os.getenv("OPENAI_API_KEY"))
         mode = "local-llm" if llm_ok else ("openai" if openai_ok else "heuristic-only")
         print(f"  dedup confirmer: {mode}")
+        # bound LLM work so high-volume days can't stall the pipeline: after the
+        # budget/time is spent, only exact-key and very-high-similarity pairs mark.
+        llm_budget = 250 if llm_ok else 120
+        deadline = time.time() + (600 if llm_ok else 240)
         marked = 0
         llm_calls = 0
         dropped: set[str] = set()
@@ -178,18 +183,13 @@ def deduplicate(days: int = 7) -> int:
                             continue
                         if sim >= 0.9:
                             same = True
-                        elif llm_ok:
-                            same = _llm_same(a, b)
-                            llm_calls += 1
-                            if same is None:
-                                continue
-                        elif openai_ok:
-                            same = _openai_same(a, b)
+                        elif (llm_ok or openai_ok) and llm_calls < llm_budget and time.time() < deadline:
+                            same = _llm_same(a, b) if llm_ok else _openai_same(a, b)
                             llm_calls += 1
                             if same is None:
                                 continue
                         else:
-                            continue
+                            continue  # no LLM, or budget/time spent → only exact + strong-sim mark
                     if same:
                         keep, drop = (
                             (a, b)
