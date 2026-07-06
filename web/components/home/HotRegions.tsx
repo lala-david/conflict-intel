@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { HotRegion } from "@/lib/types";
 import { formatNumber } from "@/lib/utils";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Flag } from "@/components/ui/Flag";
+import { isoFor } from "@/lib/country-iso";
 
 interface Props {
   regions: HotRegion[];
@@ -31,6 +33,7 @@ export function HotRegionsList({ regions }: Props) {
                   <span className="font-mono text-xs text-text-dim">
                     {String(i + 1).padStart(2, "0")}
                   </span>
+                  <Flag iso={isoFor(region.country)} size="md" />
                   <span className="font-medium text-text-primary group-hover:text-accent">
                     {region.country}
                   </span>

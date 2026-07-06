@@ -13,6 +13,8 @@ import {
   getCountryTopActors,
 } from "@/lib/queries";
 import { formatNumber, formatDate, getCategoryMeta, slugify } from "@/lib/utils";
+import { Flag } from "@/components/ui/Flag";
+import { isoFor } from "@/lib/country-iso";
 import { ArrowLeft, Download } from "lucide-react";
 import { ShareButton } from "@/components/ui/ShareButton";
 
@@ -82,7 +84,10 @@ export default async function CountryPage({ params }: Props) {
         {/* Header */}
         <div className="mb-10 border-b border-border pb-8">
           <div className="flex items-start justify-between">
-            <h1 className="font-display text-5xl font-bold">{country.country}</h1>
+            <h1 className="flex items-center gap-4 font-display text-5xl font-bold">
+              <Flag iso={isoFor(country.country)} size="lg" className="rounded" />
+              {country.country}
+            </h1>
             <ShareButton title={`${country.country} — Conflict & Security Intelligence`} />
           </div>
           <div className="mt-3 flex items-center gap-3">

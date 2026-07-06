@@ -4,6 +4,8 @@ import { Footer } from "@/components/layout/Footer";
 import { getCountryList } from "@/lib/queries";
 import { formatNumber } from "@/lib/utils";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { Flag } from "@/components/ui/Flag";
+import { isoFor } from "@/lib/country-iso";
 
 export const dynamic = "force-dynamic";
 
@@ -47,7 +49,8 @@ export default async function CountriesPage() {
                 <div className="col-span-1 font-mono text-xs text-text-dim">
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <div className="col-span-4 font-medium text-text-primary group-hover:text-accent">
+                <div className="col-span-4 flex items-center gap-2.5 font-medium text-text-primary group-hover:text-accent">
+                  <Flag iso={isoFor(c.country)} size="md" />
                   {c.country}
                 </div>
                 <div className="col-span-2 text-right font-mono tabular-nums text-text-dim">

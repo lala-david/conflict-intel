@@ -6,6 +6,7 @@ import { formatNumber, formatDate, getCategoryMeta } from "@/lib/utils";
 import type { Event, Category } from "@/lib/types";
 import { Search } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { Flag } from "@/components/ui/Flag";
 
 export const dynamic = "force-dynamic";
 
@@ -254,7 +255,9 @@ export default async function EventsPage({ searchParams }: Props) {
                       <span className="font-mono text-text-dim">
                         {formatDate(event.date)}
                       </span>
-                      <span className="text-text-dim">· {event.country}</span>
+                      <span className="inline-flex items-center gap-1.5 text-text-dim">
+                        · <Flag iso={event.country_code} size="sm" /> {event.country}
+                      </span>
                       {event.location && (
                         <span className="truncate text-text-dim">
                           · {event.location}
