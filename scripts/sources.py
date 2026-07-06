@@ -61,7 +61,7 @@ def _similar(a: str, b: str) -> float:
 # ─────────────────────────────────────────────
 # 1. GDELT — 글로벌 이벤트 (#1 좌표 수정, #2 3일 폴백)
 # ─────────────────────────────────────────────
-def fetch_gdelt(target_date: datetime, limit: int = 300) -> list[dict]:
+def fetch_gdelt(target_date: datetime, limit: int = 1000) -> list[dict]:
     """GDELT에서 테러 관련 이벤트 수집 (3일 폴백)"""
 
     # #2: 3일 전까지 역순 시도
@@ -270,7 +270,7 @@ def _latest_ucdp_version(target_date: datetime) -> str:
     return ""
 
 
-def fetch_ucdp(target_date: datetime, limit: int = 300) -> list[dict]:
+def fetch_ucdp(target_date: datetime, limit: int = 500) -> list[dict]:
     """UCDP GED Candidate API — 분쟁 사건 수집 (사상자 포함)"""
     if not UCDP_TOKEN:
         print("    [ucdp] 토큰 없음 — 스킵 (.env에 UCDP_TOKEN 설정 필요)")
