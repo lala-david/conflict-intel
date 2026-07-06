@@ -8,10 +8,8 @@ name: Daily Conflict Intelligence
 #
 # 필요한 repo Secrets:
 #   OPENAI_API_KEY, UCDP_TOKEN            — 수집/BLUF
-#   TURSO_DATABASE_URL                    — 예: libsql://terror-xxxx.turso.io
-#   TURSO_API_TOKEN                       — turso CLI 인증 (turso auth api-tokens create)
-# 필요한 repo Variables:
-#   TURSO_DB_NAME                         — Turso DB 이름 (예: terror)
+#   TURSO_DATABASE_URL, TURSO_AUTH_TOKEN  — 사이트 Turso 동기화 (hrana HTTP, CLI 불필요)
+# 풀 DB는 db-latest 릴리스에 보관 → 캐시 미스 시 시드 (통계 정확성 보장).
 on:
   schedule:
     - cron: "0 0 * * *"      # 매일 00:00 UTC = 09:00 KST
@@ -39,11 +37,6 @@ jobs:
           cache: 'pip'
       - run: pip install -r requirements.txt
 
-      - name: Install Turso CLI
-        run: |
-          curl -sSfL https://get.tur.so/install.sh | bash
-          echo "$HOME/.turso" >> $GITHUB_PATH
-
       # ─── DB 영속화: 이전 conflict.db 를 Actions 캐시(비공개)에서 복원 (없으면 새로 시작) ───
       #     conflict-db-* 우선, 없으면 legacy terror-db-* 도 복원 (이름 변경 마이그레이션).
       - name: Restore DB (private cache)
@@ -64,6 +57,17 @@ jobs:
             echo "migrated legacy terror.db → conflict.db"
           fi
 
+      # ─── 캐시가 없으면 db-latest 릴리스에서 풀 DB(419K)를 시드 → 통계가 정확해짐 ───
+      - name: Seed full DB from db-latest (on cache miss)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -f data/conflict.db ]; then
+            echo "cache miss — seeding full DB from db-latest release"
+            gh release download db-latest --pattern conflict.db --dir data --clobber || echo "no db-latest asset"
+          fi
+          [ -f data/conflict.db ] && echo "DB ready: $(du -h data/conflict.db | cut -f1)"
+
       - name: Run medallion pipeline (bronze → silver → gold)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -82,23 +86,25 @@ jobs:
       - name: Compute dashboard stats
         run: python scripts/compute_stats.py
 
-      # ─── 변경분을 Turso 에 동기화 (사이트가 읽는 DB) ───
+      # ─── 사이트가 읽는 Turso 에 동기화 (events append + stats/crypto 교체, 안전가드 내장) ───
       - name: Sync to Turso
-        if: ${{ vars.TURSO_DB_NAME != '' }}
         env:
-          TURSO_API_TOKEN: ${{ secrets.TURSO_API_TOKEN }}
-        run: |
-          python scripts/export_for_turso.py > turso_sync.sql
-          echo "Generated $(wc -l < turso_sync.sql) lines of sync SQL"
-          turso db shell "${{ vars.TURSO_DB_NAME }}" < turso_sync.sql
-          rm -f turso_sync.sql
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+        run: python scripts/sync_to_turso.py
 
-      # ─── 갱신된 conflict.db 를 Actions 캐시(비공개)에 저장 (다음 실행이 이어받음) ───
+      # ─── 갱신된 conflict.db 를 Actions 캐시 + db-latest 릴리스에 저장 (다음 실행이 이어받음) ───
       - name: Save DB (private cache)
         uses: actions/cache/save@v4
         with:
           path: data/conflict.db
           key: conflict-db-${{ github.run_id }}
+
+      - name: Refresh db-latest release
+        if: ${{ hashFiles('data/conflict.db') != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload db-latest data/conflict.db --clobber
 
       - name: Commit reports
         run: |
