@@ -61,7 +61,7 @@ def _similar(a: str, b: str) -> float:
 # ─────────────────────────────────────────────
 # 1. GDELT — 글로벌 이벤트 (#1 좌표 수정, #2 3일 폴백)
 # ─────────────────────────────────────────────
-def fetch_gdelt(target_date: datetime, limit: int = 50) -> list[dict]:
+def fetch_gdelt(target_date: datetime, limit: int = 300) -> list[dict]:
     """GDELT에서 테러 관련 이벤트 수집 (3일 폴백)"""
 
     # #2: 3일 전까지 역순 시도
@@ -270,7 +270,7 @@ def _latest_ucdp_version(target_date: datetime) -> str:
     return ""
 
 
-def fetch_ucdp(target_date: datetime, limit: int = 100) -> list[dict]:
+def fetch_ucdp(target_date: datetime, limit: int = 300) -> list[dict]:
     """UCDP GED Candidate API — 분쟁 사건 수집 (사상자 포함)"""
     if not UCDP_TOKEN:
         print("    [ucdp] 토큰 없음 — 스킵 (.env에 UCDP_TOKEN 설정 필요)")
@@ -380,7 +380,7 @@ def _save_sanctions_cache(entity_ids: list):
     cache.write_text(json.dumps(entity_ids, ensure_ascii=False), encoding="utf-8")
 
 
-def fetch_sanctions_updates(limit: int = 30) -> list[dict]:
+def fetch_sanctions_updates(limit: int = 80) -> list[dict]:
     """OpenSanctions에서 제재 목록 변동 수집 (diff 방식)"""
     previous_ids = _load_previous_sanctions()
 
@@ -448,7 +448,7 @@ def fetch_sanctions_updates(limit: int = 30) -> list[dict]:
 # ─────────────────────────────────────────────
 # 4. Google News — 테러 관련 뉴스 (#4 클러스터링)
 # ─────────────────────────────────────────────
-def fetch_google_news(limit: int = 30) -> list[dict]:
+def fetch_google_news(limit: int = 100) -> list[dict]:
     """Google News RSS — 중복 클러스터링 적용"""
     articles = []
     seen_titles = set()
@@ -537,7 +537,7 @@ def _parse_rss_date(date_str: str) -> datetime:
     return datetime.min
 
 
-def fetch_expert_rss(limit: int = 30) -> list[dict]:
+def fetch_expert_rss(limit: int = 120) -> list[dict]:
     """테러/안보 전문 기관 RSS — 48시간 필터 적용"""
     articles = []
     cutoff = datetime.now() - timedelta(hours=48)
@@ -580,7 +580,7 @@ def fetch_expert_rss(limit: int = 30) -> list[dict]:
 # ─────────────────────────────────────────────
 # 6. OFAC SDN — 미국 제재 대상
 # ─────────────────────────────────────────────
-def fetch_ofac_recent(limit: int = 15) -> list[dict]:
+def fetch_ofac_recent(limit: int = 50) -> list[dict]:
     try:
         resp = requests.get(
             "https://ofac.treasury.gov/recent-actions",
@@ -607,7 +607,7 @@ def fetch_ofac_recent(limit: int = 15) -> list[dict]:
 # ─────────────────────────────────────────────
 # 7. Wikipedia — 연도별 테러 사건 목록
 # ─────────────────────────────────────────────
-def fetch_wikipedia_incidents(limit: int = 50) -> list[dict]:
+def fetch_wikipedia_incidents(limit: int = 100) -> list[dict]:
     """Fetch terrorist incidents from Wikipedia's 'List of terrorist incidents in YYYY' page.
 
     Uses the MediaWiki API to get wikitext, then parses wiki-table markup.
