@@ -263,6 +263,7 @@ export async function getTopOrganizations(limit = 100): Promise<{
               first_seen,
               last_seen
          FROM org_stats
+        WHERE name NOT LIKE 'XXX%'
         ORDER BY total_events DESC
         LIMIT ?`,
     [limit]
