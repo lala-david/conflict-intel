@@ -52,7 +52,7 @@ def compute():
     log.info("Computing global stats...")
     g = conn.execute("""
         SELECT COUNT(*), COALESCE(SUM(fatalities), 0)
-        FROM events WHERE is_aggregate = 0
+        FROM events WHERE is_aggregate = 0 AND dup_of IS NULL
     """).fetchone()
 
     countries = conn.execute("""
@@ -61,17 +61,17 @@ def compute():
 
     w7 = conn.execute("""
         SELECT COUNT(*), COALESCE(SUM(fatalities), 0)
-        FROM events WHERE is_aggregate = 0 AND date >= date('now', '-7 days')
+        FROM events WHERE is_aggregate = 0 AND dup_of IS NULL AND date >= date('now', '-7 days')
     """).fetchone()
 
     w30 = conn.execute("""
         SELECT COUNT(*), COALESCE(SUM(fatalities), 0)
-        FROM events WHERE is_aggregate = 0 AND date >= date('now', '-30 days')
+        FROM events WHERE is_aggregate = 0 AND dup_of IS NULL AND date >= date('now', '-30 days')
     """).fetchone()
 
     w90 = conn.execute("""
         SELECT COUNT(*), COALESCE(SUM(fatalities), 0)
-        FROM events WHERE is_aggregate = 0 AND date >= date('now', '-90 days')
+        FROM events WHERE is_aggregate = 0 AND dup_of IS NULL AND date >= date('now', '-90 days')
     """).fetchone()
 
     # Threat index: weighted score from 7d, 30d, 90d fatalities (sigmoid-like)
@@ -107,14 +107,14 @@ def compute():
             COALESCE(SUM(CASE WHEN e.date >= date('now', '-90 days') THEN e.fatalities ELSE 0 END), 0),
             COALESCE((
                 SELECT category FROM events e2
-                WHERE e2.country = e.country AND e2.is_aggregate = 0 AND e2.category IS NOT NULL
+                WHERE e2.country = e.country AND e2.is_aggregate = 0 AND e2.dup_of IS NULL AND e2.category IS NOT NULL
                 GROUP BY category ORDER BY COUNT(*) DESC LIMIT 1
             ), ''),
             MIN(100, COALESCE(SUM(CASE WHEN e.date >= date('now', '-90 days') THEN e.fatalities ELSE 0 END), 0) * 0.1),
             MAX(e.date),
             ?
         FROM events e
-        WHERE e.is_aggregate = 0 AND e.country != ''
+        WHERE e.is_aggregate = 0 AND e.dup_of IS NULL AND e.country != ''
         GROUP BY e.country
     """, (now,))
 
@@ -136,7 +136,7 @@ def compute():
             MAX(date),
             ?
         FROM events
-        WHERE is_aggregate = 0 AND actor1 != ''
+        WHERE is_aggregate = 0 AND dup_of IS NULL AND actor1 != ''
             AND actor1 NOT LIKE 'Government of%'
             AND length(actor1) < 60
         GROUP BY actor1
@@ -158,7 +158,7 @@ def compute():
     conn.execute("""
         INSERT INTO category_stats (category, total_events, total_fatalities, updated_at)
         SELECT category, COUNT(*), COALESCE(SUM(fatalities), 0), ?
-        FROM events WHERE is_aggregate = 0 AND category IS NOT NULL
+        FROM events WHERE is_aggregate = 0 AND dup_of IS NULL AND category IS NOT NULL
         GROUP BY category
     """, (now,))
 
