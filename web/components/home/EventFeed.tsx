@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Event } from "@/lib/types";
 import { formatDate, getCategoryMeta, formatNumber } from "@/lib/utils";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Flag } from "@/components/ui/Flag";
+import { isoFor } from "@/lib/country-iso";
 
 interface Props {
   events: Event[];
@@ -39,7 +41,10 @@ export function EventFeed({ events }: Props) {
                       {formatDate(event.date)}
                     </span>
                     <span className="text-text-dim">·</span>
-                    <span className="text-text-dim">{event.country}</span>
+                    <span className="inline-flex items-center gap-1.5 text-text-dim">
+                      <Flag iso={isoFor(event.country)} size="sm" />
+                      {event.country}
+                    </span>
                   </div>
                   <div className="mt-2 truncate text-sm font-medium text-text-primary group-hover:text-accent">
                     {actor}
