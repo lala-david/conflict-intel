@@ -44,23 +44,54 @@ def _extract(text: str, country: str) -> str | None:
         return None
 
 
-def main() -> None:
-    conn = sqlite3.connect(DB)
+# actor missing AND no headline AND no place AND no deaths → a contentless shell
+NO_TEXT = "(notes IS NULL OR TRIM(notes)='')"
+NO_LOC = "(location IS NULL OR TRIM(location)='' OR location='None')"
+NO_FAT = "(fatalities IS NULL OR fatalities=0)"
+SHELL = f"{NO_ACTOR} AND {NO_TEXT} AND {NO_LOC} AND {NO_FAT}"
+
+
+def _llm_reachable() -> bool:
+    try:
+        return requests.get(f"{LOCAL_LLM_BASE_URL}/models", timeout=3).status_code == 200
+    except Exception:
+        return False
+
+
+def fill_missing_actors(conn: sqlite3.Connection, limit: int = 500) -> int:
+    """LLM-infer actor1 for actor-less events that still have a headline.
+    No-op when the local LLM is unreachable (e.g. GitHub CI) — avoids per-row timeouts."""
+    if not _llm_reachable():
+        return 0
     rows = conn.execute(
-        f"SELECT id, country, notes FROM events WHERE {NO_ACTOR} AND {HAS_TEXT}").fetchall()
-    print(f"[fill-actors] {len(rows)} events to enrich", flush=True)
+        f"SELECT id, country, notes FROM events WHERE {NO_ACTOR} AND {HAS_TEXT} LIMIT ?",
+        (limit,)).fetchall()
     filled = 0
-    for i, (eid, country, notes) in enumerate(rows, 1):
-        actor = _extract(notes[:300], country or "")
+    for eid, country, notes in rows:
+        actor = _extract((notes or "")[:300], country or "")
         if actor:
             conn.execute("UPDATE events SET actor1 = ? WHERE id = ?", (actor, eid))
             filled += 1
-        if i % 25 == 0:
-            conn.commit()
-            print(f"  …{i}/{len(rows)} filled={filled}", flush=True)
     conn.commit()
+    return filled
+
+
+def drop_empty_shells(conn: sqlite3.Connection) -> int:
+    """Delete contentless events (no actor, no headline, no place, no deaths)."""
+    n = conn.execute(f"SELECT COUNT(*) FROM events WHERE {SHELL}").fetchone()[0]
+    conn.execute(f"DELETE FROM events WHERE {SHELL}")
+    conn.commit()
+    return n
+
+
+def main() -> None:
+    conn = sqlite3.connect(DB)
+    total = conn.execute(f"SELECT COUNT(*) FROM events WHERE {NO_ACTOR} AND {HAS_TEXT}").fetchone()[0]
+    print(f"[fill-actors] {total} events to enrich", flush=True)
+    filled = fill_missing_actors(conn, limit=total or 1)
+    dropped = drop_empty_shells(conn)
     conn.close()
-    print(f"[fill-actors] DONE — filled {filled}/{len(rows)}", flush=True)
+    print(f"[fill-actors] DONE — filled {filled}, dropped {dropped} shells", flush=True)
 
 
 if __name__ == "__main__":
