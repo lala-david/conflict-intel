@@ -11,6 +11,7 @@ wire + a Telegram post). We:
 Canonical = most authoritative source (structured > news), fatalities as tiebreak.
 The web serves `dup_of IS NULL` for a de-duplicated view.
 """
+import os
 import sys
 import requests
 from collections import defaultdict
@@ -74,6 +75,23 @@ def _llm_same(a: dict, b: dict) -> bool | None:
     return None
 
 
+def _openai_same(a: dict, b: dict) -> bool | None:
+    """Fallback confirmer when the local LLM is unreachable. Cheap — only a few
+    ambiguous cross-source pairs per day reach here."""
+    try:
+        from openai import OpenAI
+        r = OpenAI().chat.completions.create(
+            model="gpt-4o-mini", temperature=0,
+            messages=[
+                {"role": "system", "content": "Decide if two short conflict-event descriptions report the SAME real-world incident (same event, same place, same day). Reply with exactly one word: YES or NO."},
+                {"role": "user", "content": f"A: {_desc(a)}\nB: {_desc(b)}\nSame incident?"},
+            ],
+        )
+        return (r.choices[0].message.content or "").strip().upper().startswith("YES")
+    except Exception:
+        return None
+
+
 def deduplicate(days: int = 7) -> int:
     """Mark cross-source duplicates among events dated within the last `days`."""
     conn = get_conn()
@@ -100,6 +118,10 @@ def deduplicate(days: int = 7) -> int:
             by_country[e["country"]].append(e)
 
         llm_ok = _llm_up()  # decide once — no per-pair timeouts when the LLM is unreachable (e.g. CI)
+        # fall back to OpenAI when the local LLM is down (server off) — cheap, few pairs/day
+        openai_ok = (not llm_ok) and bool(os.getenv("OPENAI_API_KEY"))
+        mode = "local-llm" if llm_ok else ("openai" if openai_ok else "heuristic-only")
+        print(f"  dedup confirmer: {mode}")
         marked = 0
         llm_calls = 0
         dropped: set[str] = set()
@@ -133,8 +155,13 @@ def deduplicate(days: int = 7) -> int:
                         llm_calls += 1
                         if same is None:  # transient LLM error → skip this pair
                             continue
+                    elif openai_ok:
+                        same = _openai_same(a, b)
+                        llm_calls += 1
+                        if same is None:
+                            continue
                     else:
-                        continue  # no LLM (e.g. CI) → trust only strong similarity
+                        continue  # no LLM anywhere → trust only strong similarity
                     if same:
                         keep, drop = (
                             (a, b)
