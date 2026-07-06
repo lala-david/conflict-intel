@@ -41,7 +41,7 @@ def _query(q: str, sleep: float) -> tuple[float, float] | None:
     try:
         time.sleep(sleep)  # OSM rate limit (cache misses only)
         r = requests.get(_NOMINATIM, params={"q": q, "format": "json", "limit": 1},
-                         headers=_UA, timeout=15)
+                         headers=_UA, timeout=6)
         d = r.json()
         if d:
             return round(float(d[0]["lat"]), 5), round(float(d[0]["lon"]), 5)
@@ -89,6 +89,7 @@ def enrich_missing_coords(data: dict, sleep: float = 1.0, max_new: int = 200) ->
     cache = _load()
     new_lookups = 0
     filled = 0
+    deadline = time.time() + 120  # hard wall-clock budget for network lookups
     for key, events in data.items():
         if key.startswith("_") or not isinstance(events, list):
             continue
@@ -104,8 +105,9 @@ def enrich_missing_coords(data: dict, sleep: float = 1.0, max_new: int = 200) ->
                 pass
             ckey = f"{(e.get('location') or '').strip()}|{(e.get('country') or '').strip()}".lower()
             if ckey not in cache:
-                if new_lookups >= max_new:
-                    continue  # network budget spent — leave for the next run
+                # only spend the network budget while we have lookups AND time left
+                if new_lookups >= max_new or time.time() > deadline:
+                    continue  # budget spent — leave for the next run (cached ones still apply)
                 new_lookups += 1
             glat, glon = geocode(e.get("location"), e.get("country"), sleep)
             if glat is not None:
