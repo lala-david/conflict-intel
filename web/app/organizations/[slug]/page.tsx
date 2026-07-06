@@ -11,7 +11,26 @@ import {
   getOrganizationCountries,
   getOrganizationPoints,
   getRelatedOrganizations,
+  getCryptoWallets,
 } from "@/lib/queries";
+import { WalletTable } from "@/components/wallets/WalletTable";
+
+// Map an actor name to the canonical crypto-wallet organization label.
+const CRYPTO_ORG_MAP: [RegExp, string][] = [
+  [/islamic state|isis|isil|daesh/i, "Islamic State"],
+  [/hamas|qassam/i, "Hamas"],
+  [/hizballah|hezbollah/i, "Hezbollah"],
+  [/houthi|ansarallah/i, "Houthis (Ansarallah)"],
+  [/al[- ]?qa'?ida|al[- ]?qaeda/i, "al-Qaeda"],
+  [/al[- ]?shabaab/i, "al-Shabaab"],
+  [/islamic jihad|\bpij\b/i, "Palestinian Islamic Jihad"],
+  [/boko haram/i, "Boko Haram"],
+  [/taliban|haqqani/i, "Taliban / Haqqani"],
+];
+function cryptoOrgFor(name: string): string | null {
+  for (const [re, canon] of CRYPTO_ORG_MAP) if (re.test(name)) return canon;
+  return null;
+}
 import {
   formatNumber,
   formatDate,
@@ -43,12 +62,14 @@ export default async function OrgPage({ params }: Props) {
   const org = findBySlug(orgs, params.slug);
   if (!org) notFound();
 
-  const [events, timeline, countries, points, relatedOrgs] = await Promise.all([
+  const cryptoOrg = cryptoOrgFor(org.name);
+  const [events, timeline, countries, points, relatedOrgs, wallets] = await Promise.all([
     getOrganizationEvents(org.name, 30),
     getOrganizationTimeline(org.name),
     getOrganizationCountries(org.name),
     getOrganizationPoints(org.name, 500),
     getRelatedOrganizations(org.name, 8),
+    cryptoOrg ? getCryptoWallets({ org: cryptoOrg, limit: 300 }) : Promise.resolve([]),
   ]);
 
   const activeYears =
@@ -140,6 +161,26 @@ export default async function OrgPage({ params }: Props) {
                 );
               })}
             </div>
+          </section>
+        )}
+
+        {/* Known crypto wallets */}
+        {wallets.length > 0 && (
+          <section className="mb-12">
+            <div className="mb-4 flex items-baseline justify-between">
+              <h2 className="font-display text-2xl font-bold">
+                Known crypto wallets{" "}
+                <span className="text-accent">{wallets.length}</span>
+              </h2>
+              <Link href="/wallets" className="text-xs text-text-dim hover:text-accent">
+                All terror-financing wallets →
+              </Link>
+            </div>
+            <p className="mb-4 text-xs text-text-dim">
+              Cryptocurrency addresses publicly attributed to this group (OFAC/EU/UN sanctions,
+              DOJ forfeiture). Click an address to view it on a blockchain explorer.
+            </p>
+            <WalletTable wallets={wallets} />
           </section>
         )}
 
