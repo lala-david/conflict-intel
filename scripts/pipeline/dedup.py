@@ -12,6 +12,7 @@ Canonical = most authoritative source (structured > news), fatalities as tiebrea
 The web serves `dup_of IS NULL` for a de-duplicated view.
 """
 import os
+import re
 import sys
 import requests
 from collections import defaultdict
@@ -61,15 +62,18 @@ def _llm_same(a: dict, b: dict) -> bool | None:
                 "model": LOCAL_LLM_MODEL,
                 "temperature": 0,
                 "stream": False,
+                "think": False,  # Ollama: skip qwen3 reasoning tokens (≈8× faster for YES/NO)
                 "messages": [
-                    {"role": "system", "content": "You decide if two short conflict-event descriptions report the SAME real-world incident (same event, same place, same day). Reply with exactly one word: YES or NO."},
+                    {"role": "system", "content": "/no_think You decide if two short conflict-event descriptions report the SAME real-world incident (same event, same place, same day). Reply with exactly one word: YES or NO."},
                     {"role": "user", "content": f"A: {_desc(a)}\nB: {_desc(b)}\nSame incident?"},
                 ],
             },
         )
         if r.status_code == 200:
-            ans = r.json()["choices"][0]["message"]["content"].strip().upper()
-            return ans.startswith("YES") or ans[:6].find("YES") >= 0
+            content = r.json()["choices"][0]["message"]["content"] or ""
+            content = re.sub(r"<think>.*?</think>", "", content, flags=re.S)
+            ans = content.strip().upper()
+            return ans.startswith("YES") or "YES" in ans[:20]
     except Exception:
         return None
     return None

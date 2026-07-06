@@ -158,6 +158,11 @@ TELEGRAM_CHANNELS = [
     "militarysummary", "new_militarycolumnist",
     # 중동/아프리카/남아시아 분쟁
     "middleeastspectator", "MiddleEastEye_official", "SomaliaNews",
+    "QudsNen",
+    # OSINT / 검증 / 속보 (t.me/s 미리보기 검증됨)
+    "sotaproject", "wartranslated", "disclosetv", "BNONews", "IntelSky",
+    "bellingcat", "ukrainenowenglish", "conflictzones", "geopolitics_live",
+    "Osint_TV",
 ]
 
 # Google News 테러/분쟁 관련 검색 쿼리
