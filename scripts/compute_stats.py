@@ -138,6 +138,7 @@ def compute():
         FROM events
         WHERE is_aggregate = 0 AND dup_of IS NULL AND actor1 != ''
             AND actor1 NOT LIKE 'Government of%'
+            AND actor1 NOT LIKE 'XXX%'
             AND length(actor1) < 60
         GROUP BY actor1
         HAVING COUNT(*) >= 3
