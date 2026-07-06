@@ -151,14 +151,18 @@ TELEGRAM_CHANNELS = [
     # 글로벌 분쟁/안보 속보
     "intelslava", "worldsource24", "Faytuks", "spectatorindex",
     "insiderpaper", "clashreport", "warmonitors", "auroraintel",
-    "osinttechnical",
+    "osinttechnical", "sentdefender", "sprinterobservers",
+    "IntelRepublic", "visegrad24", "Osint613",
     # 러-우 전황
     "war_monitor", "ukraine_watch", "RVvoenkor",
     "militarysummary", "new_militarycolumnist",
+    # 중동/아프리카/남아시아 분쟁
+    "middleeastspectator", "MiddleEastEye_official", "SomaliaNews",
 ]
 
-# Google News 테러 관련 검색 쿼리
+# Google News 테러/분쟁 관련 검색 쿼리
 GOOGLE_NEWS_QUERIES = [
+    # counter-terrorism
     "terrorism attack",
     "terrorist plot foiled",
     "ISIS ISIL Islamic State",
@@ -167,4 +171,20 @@ GOOGLE_NEWS_QUERIES = [
     "extremist threat",
     "suicide bombing",
     "IED attack",
+    # named groups
+    "Hamas attack",
+    "Hezbollah strike",
+    "Boko Haram attack",
+    "al-Shabaab attack",
+    "Taliban militants",
+    "Houthi attack",
+    "Palestinian Islamic Jihad",
+    # armed violence patterns
+    "drone strike killed",
+    "airstrike killed civilians",
+    "gunmen attack killed",
+    "car bomb explosion",
+    "militants kidnapping",
+    "insurgent attack soldiers",
+    "sectarian clashes killed",
 ]
