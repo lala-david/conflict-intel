@@ -132,19 +132,26 @@ def deduplicate(days: int = 7) -> int:
         for grp in by_country.values():
             if len(grp) < 2:
                 continue
+            # events are date-sorted (ORDER BY country, date) → sliding ±1-day window
+            # instead of O(n²): break as soon as b is >1 day past a. Scales to full history.
             for i in range(len(grp)):
+                a = grp[i]
+                if a["id"] in dropped:
+                    continue
+                try:
+                    da = datetime.strptime(a["date"][:10], "%Y-%m-%d")
+                except ValueError:
+                    continue
                 for j in range(i + 1, len(grp)):
-                    a, b = grp[i], grp[j]
-                    if a["id"] in dropped or b["id"] in dropped:
+                    b = grp[j]
+                    if b["id"] in dropped:
                         continue
-                    # ±1 day window
                     try:
-                        da = datetime.strptime(a["date"][:10], "%Y-%m-%d")
                         db = datetime.strptime(b["date"][:10], "%Y-%m-%d")
-                        if abs((da - db).days) > 1:
-                            continue
                     except ValueError:
                         continue
+                    if (db - da).days > 1:
+                        break
                     sim = SequenceMatcher(
                         None,
                         f"{a['actor1']} {a['actor2']} {a['location']} {a['notes']}".lower()[:200],
