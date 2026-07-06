@@ -223,17 +223,19 @@ def fetch_gdelt(target_date: datetime, limit: int = 1000) -> list[dict]:
                 "date": formatted_date,
             })
 
-        # D18: Regional diversity — top 30 by mentions + fill from unseen countries
+        # Regional diversity — most-reported first (~70% of the budget), then fill
+        # from unseen countries. Scales with `limit` (was hard-capped at 30+20=50).
         events.sort(key=lambda x: x["num_mentions"] + x["num_sources"], reverse=True)
-        top_events = events[:30]
+        top_n = max(30, int(limit * 0.7))
+        top_events = events[:top_n]
         seen_countries = {e.get("country_code") for e in top_events}
         diverse = []
-        for e in events[30:]:
+        for e in events[top_n:]:
             cc = e.get("country_code", "")
             if cc and cc not in seen_countries:
                 diverse.append(e)
                 seen_countries.add(cc)
-            if len(diverse) >= 20:
+            if len(diverse) >= limit - top_n:
                 break
         return (top_events + diverse)[:limit]
 
