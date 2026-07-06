@@ -12,7 +12,7 @@ All ingestion is a medallion pipeline, matching `scripts/pipeline/`.
 | Layer | Purpose | Where |
 |-------|---------|-------|
 | **Bronze** | Extract each source → land raw record dicts **immutably** as Parquet | `pipeline/bronze.py` `land(source, records, run_id)` → `data/bronze/<source>/dt=YYYY-MM-DD/<run_id>.parquet` |
-| **Silver** | Normalize · enrich · **dedupe** · link → clean serving tables | `events`, `crypto_addresses`, `sanctions` |
+| **Silver** | Normalize · enrich · **geocode** · **dedupe** · link → clean serving tables | `events`, `crypto_addresses`, `sanctions` |
 | **Gold** | Pre-computed serving aggregates | `*_stats` tables (`global_stats`, `country_stats`, `crypto_stats`, …) |
 
 **Contracts**
@@ -61,6 +61,12 @@ surfaced in the product; bulk consumer-fraud is dropped in Silver.
   excluded from every serving query and chart.
 - **`org`** (crypto): canonical conflict-organization label from the curated alias map in
   `pipeline/crypto.py::_ORG_ALIASES` (high precision; `NULL` when unknown — never fuzzy-guessed).
+
+### Coordinates
+- **Every event must carry `latitude`/`longitude`.** UCDP/GDELT provide them; text sources
+  (news/RSS/telegram/wikipedia/OFAC) are geocoded in Silver via `scripts/geocoder.py`
+  (Nominatim + on-disk cache `data/.geocode_cache.json` + country-centroid fallback).
+  Coordinates power the map, so this is not optional.
 
 ### Dedup
 - **Exact keys dedupe exactly, no LLM.** Crypto wallet addresses are exact strings →
