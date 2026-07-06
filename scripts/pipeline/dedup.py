@@ -96,6 +96,15 @@ def _openai_same(a: dict, b: dict) -> bool | None:
         return None
 
 
+def _textful(e: dict) -> bool:
+    return bool((e["notes"] or "").strip()) or bool((e["location"] or "").strip())
+
+
+def _exact_key(e: dict) -> tuple:
+    return (e["date"][:10], (e["actor1"] or "").lower().strip(),
+            (e["location"] or "").lower().strip(), e["fatalities"])
+
+
 def deduplicate(days: int = 7) -> int:
     """Mark cross-source duplicates among events dated within the last `days`."""
     conn = get_conn()
@@ -152,27 +161,35 @@ def deduplicate(days: int = 7) -> int:
                         continue
                     if (db - da).days > 1:
                         break
-                    sim = SequenceMatcher(
-                        None,
-                        f"{a['actor1']} {a['actor2']} {a['location']} {a['notes']}".lower()[:200],
-                        f"{b['actor1']} {b['actor2']} {b['location']} {b['notes']}".lower()[:200],
-                    ).ratio()
-                    if sim < 0.35:
+                    # UCDP-GED is internally deduped by design → skip UCDP-vs-UCDP noise
+                    if a["source"].startswith("ucdp") and b["source"].startswith("ucdp"):
                         continue
-                    if sim >= 0.85:
-                        same = True
-                    elif llm_ok:
-                        same = _llm_same(a, b)
-                        llm_calls += 1
-                        if same is None:  # transient LLM error → skip this pair
-                            continue
-                    elif openai_ok:
-                        same = _openai_same(a, b)
-                        llm_calls += 1
-                        if same is None:
-                            continue
+                    if _exact_key(a) == _exact_key(b):
+                        same = True  # identical structural key → reliable duplicate, no LLM
+                    elif not (_textful(a) and _textful(b)):
+                        continue  # sparse text → similarity is meaningless, don't guess
                     else:
-                        continue  # no LLM anywhere → trust only strong similarity
+                        sim = SequenceMatcher(
+                            None,
+                            f"{a['actor1']} {a['actor2']} {a['location']} {a['notes']}".lower()[:200],
+                            f"{b['actor1']} {b['actor2']} {b['location']} {b['notes']}".lower()[:200],
+                        ).ratio()
+                        if sim < 0.35:
+                            continue
+                        if sim >= 0.9:
+                            same = True
+                        elif llm_ok:
+                            same = _llm_same(a, b)
+                            llm_calls += 1
+                            if same is None:
+                                continue
+                        elif openai_ok:
+                            same = _openai_same(a, b)
+                            llm_calls += 1
+                            if same is None:
+                                continue
+                        else:
+                            continue
                     if same:
                         keep, drop = (
                             (a, b)
