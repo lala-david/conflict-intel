@@ -151,6 +151,70 @@ def fetch_graphsense(timeout: int = 60) -> list[dict]:
     return out
 
 
+# ── NBCTF (Israel counter-terror-financing seizures) ────────────────────────
+NBCTF_PAGE = ("nbctf.mod.gov.il/en/Minister%20Sanctions/PropertyPerceptions/"
+              "Pages/Blockchain1.aspx")
+_B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+
+
+def _b58check_ok(s: str) -> bool:
+    """Validate a base58check address (BTC 1/3, TRON T…) — filters false positives."""
+    import hashlib
+    num = 0
+    for c in s:
+        i = _B58.find(c)
+        if i < 0:
+            return False
+        num = num * 58 + i
+    body = num.to_bytes((num.bit_length() + 7) // 8, "big")
+    body = b"\x00" * (len(s) - len(s.lstrip("1"))) + body
+    if len(body) < 5:
+        return False
+    payload, checksum = body[:-4], body[-4:]
+    return hashlib.sha256(hashlib.sha256(payload).digest()).digest()[:4] == checksum
+
+
+def _valid_addr(a: str, chain: str) -> bool:
+    if chain == "ETH":
+        return bool(re.fullmatch(r"0x[a-fA-F0-9]{40}", a))
+    if a.startswith("bc1"):
+        return 25 <= len(a) <= 62  # bech32 — accept (checksum is bech32, rarely spurious)
+    return _b58check_ok(a)
+
+
+def fetch_nbctf(timeout: int = 60) -> list[dict]:
+    """Addresses from Israel's NBCTF crypto-seizure page (via the Wayback Machine —
+    the live site blocks bots). All are terrorism-designated seizures."""
+    out: list[dict] = []
+    try:
+        avail = requests.get(
+            f"http://archive.org/wayback/available?url={NBCTF_PAGE}", timeout=timeout
+        ).json()
+        snap = avail.get("archived_snapshots", {}).get("closest", {}).get("url")
+        if not snap:
+            return out
+        text = re.sub(r"<[^>]+>", " ", requests.get(snap, timeout=timeout).text)
+        seen: set[str] = set()
+        for pat, chain in (
+            (r"0x[a-fA-F0-9]{40}", "ETH"),
+            (r"T[A-Za-z1-9]{33}", "TRX"),
+            (r"bc1[a-z0-9]{20,60}|[13][a-km-zA-HJ-NP-Z1-9]{25,39}", "BTC"),
+        ):
+            for a in re.findall(pat, text):
+                if a in seen or not _valid_addr(a, chain):
+                    continue
+                seen.add(a)
+                out.append({
+                    "address": a, "chain": chain,
+                    "entity_name": "NBCTF seizure (Israel)",
+                    "topics": "terrorism,SEIZURE", "category": "terror", "is_terror": 1,
+                    "source": "nbctf",
+                })
+    except Exception as ex:
+        print(f"    [crypto] nbctf 실패: {ex}")
+    return out
+
+
 # ── 3. Ransomwhere ──────────────────────────────────────────────────────────
 def fetch_ransomwhere(timeout: int = 60) -> list[dict]:
     out: list[dict] = []
@@ -175,7 +239,8 @@ def fetch_ransomwhere(timeout: int = 60) -> list[dict]:
 # ── aggregate + dedupe ──────────────────────────────────────────────────────
 def fetch_crypto_wallets() -> list[dict]:
     """All sources merged, deduped by address (terror-attributed wins)."""
-    everything = fetch_opensanctions() + fetch_graphsense() + fetch_ransomwhere()
+    everything = (fetch_opensanctions() + fetch_graphsense()
+                  + fetch_nbctf() + fetch_ransomwhere())
     by_addr: dict[str, dict] = {}
     for r in everything:
         a = (r.get("address") or "").strip()
