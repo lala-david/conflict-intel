@@ -81,9 +81,13 @@ def geocode(location: str | None, country: str | None, sleep: float = 1.0) -> tu
     return (hit[0], hit[1]) if hit else (None, None)
 
 
-def enrich_missing_coords(data: dict, sleep: float = 1.0) -> int:
+def enrich_missing_coords(data: dict, sleep: float = 1.0, max_new: int = 200) -> int:
     """Fill latitude/longitude for event-source rows that lack them. Mutates the
-    events in-place; returns how many were newly geocoded."""
+    events in-place; returns how many were newly geocoded. Caps *uncached* network
+    lookups at `max_new` per run so a burst of new places can't stall the pipeline
+    (cached places are always applied; the rest resolve on the next run)."""
+    cache = _load()
+    new_lookups = 0
     filled = 0
     for key, events in data.items():
         if key.startswith("_") or not isinstance(events, list):
@@ -98,6 +102,11 @@ def enrich_missing_coords(data: dict, sleep: float = 1.0) -> int:
                     continue
             except (TypeError, ValueError):
                 pass
+            ckey = f"{(e.get('location') or '').strip()}|{(e.get('country') or '').strip()}".lower()
+            if ckey not in cache:
+                if new_lookups >= max_new:
+                    continue  # network budget spent — leave for the next run
+                new_lookups += 1
             glat, glon = geocode(e.get("location"), e.get("country"), sleep)
             if glat is not None:
                 e["latitude"], e["longitude"] = glat, glon
