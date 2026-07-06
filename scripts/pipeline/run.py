@@ -79,6 +79,12 @@ def run(target_date: datetime | None = None) -> None:
 
     mapper = ConflictMapper()
     data = mapper.enrich_all(data)
+
+    # geocode text-source events that arrive without coordinates (news/RSS/telegram)
+    from geocoder import enrich_missing_coords
+    geo_n = enrich_missing_coords(data)
+    print(f"  geocoded {geo_n} events missing coordinates")
+
     stats = data.get("_enrichment_stats", {})
     data = link_events(data)
     data["_analysis"] = run_analysis(data, date_str)
