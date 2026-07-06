@@ -72,7 +72,9 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           UCDP_TOKEN: ${{ secrets.UCDP_TOKEN }}
-        run: python scripts/pipeline/run.py
+          PYTHONUNBUFFERED: "1"
+        timeout-minutes: 22
+        run: python -u scripts/pipeline/run.py
 
       - name: Weekly summary (Sundays only)
         env:
