@@ -5,6 +5,7 @@ Events without an extracted actor but WITH a headline/notes (mostly news/RSS) ge
 their `actor1` inferred from that text. Truly text-less events are left for the
 empty-shell cleanup instead. Uses the local LLM (qwen3, reasoning disabled).
 """
+import os
 import re
 import sys
 import sqlite3
@@ -105,6 +106,59 @@ def drop_junk_events(conn: sqlite3.Connection) -> int:
         conn.execute("DELETE FROM events WHERE id = ?", (jid,))
     conn.commit()
     return len(junk)
+
+
+_CLASSIFY_SYS = (
+    "/no_think Reply with ONE word, YES or NO. YES if the text reports a real-world act of "
+    "ARMED or ORGANIZED VIOLENCE (war, armed attack, terrorism, armed clash, shooting, "
+    "airstrike, bombing, shelling, militant/rebel/insurgent action, killing by armed actors). "
+    "NO for disease, natural disaster, weather, politics, elections, economy, diplomacy, "
+    "sports, ceremonies, or general announcements."
+)
+
+
+def _classify_conflict(text: str) -> bool | None:
+    """True = keep (violence), False = junk, None = undecided."""
+    msgs = [{"role": "system", "content": _CLASSIFY_SYS},
+            {"role": "user", "content": text[:280]}]
+    if _llm_reachable():
+        try:
+            r = requests.post(
+                f"{LOCAL_LLM_BASE_URL}/chat/completions", timeout=20,
+                json={"model": LOCAL_LLM_MODEL, "temperature": 0, "stream": False,
+                      "think": False, "messages": msgs})
+            if r.status_code == 200:
+                out = re.sub(r"<think>.*?</think>", "",
+                             r.json()["choices"][0]["message"]["content"] or "", flags=re.S)
+                out = out.strip().upper()
+                return out.startswith("YES") or "YES" in out[:12]
+        except Exception:
+            return None
+    if os.getenv("OPENAI_API_KEY"):
+        try:
+            from openai import OpenAI
+            r = OpenAI(timeout=15, max_retries=1).chat.completions.create(
+                model="gpt-4o-mini", temperature=0, messages=msgs)
+            return (r.choices[0].message.content or "").strip().upper().startswith("YES")
+        except Exception:
+            return None
+    return None
+
+
+def drop_junk_llm(conn: sqlite3.Connection, budget: int = 80) -> int:
+    """LLM pass over ambiguous scraped news (no clear attack keyword) — drops the
+    ones the model says aren't armed violence. Bounded by `budget` calls/run."""
+    rows = conn.execute(
+        "SELECT id, notes FROM events WHERE source IN ('telegram','google_news') "
+        "AND dup_of IS NULL AND notes IS NOT NULL").fetchall()
+    ambiguous = [(i, n) for i, n in rows if not _VIOLENCE.search(n or "")][:budget]
+    dropped = 0
+    for eid, notes in ambiguous:
+        if _classify_conflict(notes or "") is False:
+            conn.execute("DELETE FROM events WHERE id = ?", (eid,))
+            dropped += 1
+    conn.commit()
+    return dropped
 
 
 def main() -> None:
