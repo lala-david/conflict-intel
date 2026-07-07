@@ -14,7 +14,7 @@ import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from config import LOCAL_LLM_BASE_URL  # noqa: E402
-from llm import is_violence, extract_actor  # noqa: E402
+from llm import is_violence, extract_actor, analyze_event  # noqa: E402
 
 DB = Path(__file__).resolve().parent.parent / "data" / "conflict.db"
 NO_ACTOR = "(actor1 IS NULL OR TRIM(actor1)='' OR actor1='Unknown' OR actor1=UPPER(country))"
@@ -81,6 +81,43 @@ def drop_junk_events(conn: sqlite3.Connection) -> int:
         conn.execute("DELETE FROM events WHERE id = ?", (jid,))
     conn.commit()
     return len(junk)
+
+
+def agentic_enrich(conn: sqlite3.Connection, budget: int = 100) -> tuple[int, int]:
+    """Agentic pass over raw scraped text events: the LLM reads each item, drops
+    non-conflict, and fills any missing actor / target / category / location /
+    fatalities from its structured analysis. Fills gaps only — never overwrites
+    existing values. Bounded by `budget` events/run."""
+    rows = conn.execute(
+        "SELECT id, notes, actor1, actor2, country, category, fatalities, location "
+        "FROM events WHERE source IN ('telegram','google_news','expert_rss') "
+        "AND dup_of IS NULL AND notes IS NOT NULL LIMIT ?", (budget,)).fetchall()
+    dropped = enriched = 0
+    for eid, notes, actor1, actor2, country, cat, fat, loc in rows:
+        a = analyze_event(notes or "", country or "")
+        if a is None:
+            continue
+        if not a["conflict"]:
+            conn.execute("DELETE FROM events WHERE id = ?", (eid,))
+            dropped += 1
+            continue
+        sets, vals = [], []
+        blank = lambda v: not v or str(v).strip() in ("", "Unknown", "None")  # noqa: E731
+        if blank(actor1) and a["actor"]:
+            sets.append("actor1 = ?"); vals.append(a["actor"])
+        if blank(actor2) and a["target"]:
+            sets.append("actor2 = ?"); vals.append(a["target"])
+        if blank(cat) and a["category"]:
+            sets.append("category = ?"); vals.append(a["category"])
+        if blank(loc) and a["location"]:
+            sets.append("location = ?"); vals.append(a["location"])
+        if (not fat or fat == 0) and a["fatalities"]:
+            sets.append("fatalities = ?"); vals.append(a["fatalities"])
+        if sets:
+            conn.execute(f"UPDATE events SET {', '.join(sets)} WHERE id = ?", vals + [eid])
+            enriched += 1
+    conn.commit()
+    return dropped, enriched
 
 
 def drop_junk_llm(conn: sqlite3.Connection, budget: int = 80) -> int:
