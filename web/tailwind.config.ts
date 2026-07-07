@@ -30,7 +30,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Pretendard", "system-ui", "-apple-system", "sans-serif"],
-        display: ["Pretendard", "system-ui", "sans-serif"],
+        display: ["Fraunces", "Times New Roman", "Georgia", "serif"],
         mono: ["JetBrains Mono", "Consolas", "monospace"],
       },
     },
