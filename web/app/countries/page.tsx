@@ -29,7 +29,7 @@ export default async function CountriesPage() {
           standfirst={`Every one of ${formatNumber(countries.length)} countries we track, ranked by recent toll — all-time and last-30-day events and fatalities.`}
         />
 
-        <div className="mt-8 overflow-hidden rounded-lg border border-border bg-surface">
+        <div className="mt-8 overflow-hidden card-elevated">
           <div className="grid grid-cols-12 gap-4 border-b border-border bg-surface-2 px-5 py-3 text-[10px] font-semibold uppercase tracking-wider text-text-dim">
             <div className="col-span-1">#</div>
             <div className="col-span-4">Country</div>

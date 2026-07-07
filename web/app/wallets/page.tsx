@@ -123,13 +123,13 @@ export default async function WalletsPage() {
         <div className="mx-auto max-w-6xl px-6 py-10">
           {/* Proportion charts — ratios, not a raw dump */}
           <div className="grid gap-8 lg:grid-cols-2">
-            <div className="rounded-xl border border-border bg-surface p-6">
+            <div className="card-elevated p-6">
               <h2 className="mb-4 font-display text-lg font-bold">
                 By organization <span className="text-text-dim">· {byOrg.length}</span>
               </h2>
               <Bars items={byOrg} total={wallets.length} />
             </div>
-            <div className="rounded-xl border border-border bg-surface p-6">
+            <div className="card-elevated p-6">
               <h2 className="mb-4 font-display text-lg font-bold">By blockchain</h2>
               <Bars
                 items={byChain}

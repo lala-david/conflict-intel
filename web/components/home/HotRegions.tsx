@@ -19,7 +19,7 @@ export function HotRegionsList({ regions }: Props) {
         title="Deadliest regions"
       />
 
-      <div className="rounded-lg border border-border bg-surface">
+      <div className="card-elevated">
         {regions.slice(0, 10).map((region, i) => {
           const pct = (region.fatalities / maxFatalities) * 100;
           return (
