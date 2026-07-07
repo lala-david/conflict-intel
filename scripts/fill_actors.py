@@ -86,9 +86,11 @@ def drop_empty_shells(conn: sqlite3.Connection) -> int:
 
 _DISASTER = re.compile(r"\b(ebola|outbreak|cholera|pandemic|covid|earthquake|flood|"
                        r"hurricane|cyclone|wildfire|drought|famine|measles)\b", re.I)
-_VIOLENCE = re.compile(r"\b(kill|dead|death|attack|clash|strike|shell|bomb|militant|rebel|"
-                       r"fighter|soldier|troop|gun|assault|raid|offensive|casualt|wound|"
-                       r"abduct|massacre|insurgent|forces|shoot|explos|drone|missile|siege)\b", re.I)
+# attack-specific signals (deliberately NOT 'dead/kill' — disease/disaster news
+# also "kills", so those generic words would keep genuine junk).
+_VIOLENCE = re.compile(r"\b(attack|clash|strike|shell|bomb|militant|rebel|fighter|soldier|"
+                       r"troop|gunmen|gunman|assault|raid|offensive|abduct|massacre|insurgent|"
+                       r"armed|shoot|explos|drone|missile|siege|ambush|airstrike|jihad|terror)\b", re.I)
 
 
 def drop_junk_events(conn: sqlite3.Connection) -> int:
