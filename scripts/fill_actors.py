@@ -5,7 +5,6 @@ Events without an extracted actor but WITH a headline/notes (mostly news/RSS) ge
 their `actor1` inferred from that text. Truly text-less events are left for the
 empty-shell cleanup instead. Uses the local LLM (qwen3, reasoning disabled).
 """
-import os
 import re
 import sys
 import sqlite3
@@ -14,36 +13,12 @@ from pathlib import Path
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import LOCAL_LLM_BASE_URL, LOCAL_LLM_MODEL  # noqa: E402
+from config import LOCAL_LLM_BASE_URL  # noqa: E402
+from llm import is_violence, extract_actor  # noqa: E402
 
 DB = Path(__file__).resolve().parent.parent / "data" / "conflict.db"
 NO_ACTOR = "(actor1 IS NULL OR TRIM(actor1)='' OR actor1='Unknown' OR actor1=UPPER(country))"
 HAS_TEXT = "(notes IS NOT NULL AND TRIM(notes)!='')"
-
-SYS = ("/no_think You extract the primary actor from a conflict/security news headline: "
-       "the armed group, military, state, or perpetrator the item is chiefly about. "
-       "Reply with ONLY that actor's name (e.g. 'Hamas', 'Russian military', "
-       "'Government of Nigeria', 'ISIS'). If there is no clear actor, reply exactly NONE.")
-
-
-def _extract(text: str, country: str) -> str | None:
-    try:
-        r = requests.post(
-            f"{LOCAL_LLM_BASE_URL}/chat/completions", timeout=30,
-            json={"model": LOCAL_LLM_MODEL, "temperature": 0, "stream": False, "think": False,
-                  "messages": [{"role": "system", "content": SYS},
-                               {"role": "user", "content": f"Country: {country}\nHeadline: {text}"}]})
-        if r.status_code != 200:
-            return None
-        out = r.json()["choices"][0]["message"]["content"] or ""
-        out = re.sub(r"<think>.*?</think>", "", out, flags=re.S).strip().strip('"').strip()
-        out = out.splitlines()[-1].strip() if out else ""
-        if not out or out.upper() == "NONE" or len(out) > 60:
-            return None
-        return out
-    except Exception:
-        return None
-
 
 # actor missing AND no headline AND no place AND no deaths → a contentless shell
 NO_TEXT = "(notes IS NULL OR TRIM(notes)='')"
@@ -69,7 +44,7 @@ def fill_missing_actors(conn: sqlite3.Connection, limit: int = 500) -> int:
         (limit,)).fetchall()
     filled = 0
     for eid, country, notes in rows:
-        actor = _extract((notes or "")[:300], country or "")
+        actor = extract_actor(notes or "", country or "")
         if actor:
             conn.execute("UPDATE events SET actor1 = ? WHERE id = ?", (actor, eid))
             filled += 1
@@ -108,43 +83,6 @@ def drop_junk_events(conn: sqlite3.Connection) -> int:
     return len(junk)
 
 
-_CLASSIFY_SYS = (
-    "/no_think Reply with ONE word, YES or NO. YES if the text reports a real-world act of "
-    "ARMED or ORGANIZED VIOLENCE (war, armed attack, terrorism, armed clash, shooting, "
-    "airstrike, bombing, shelling, militant/rebel/insurgent action, killing by armed actors). "
-    "NO for disease, natural disaster, weather, politics, elections, economy, diplomacy, "
-    "sports, ceremonies, or general announcements."
-)
-
-
-def _classify_conflict(text: str) -> bool | None:
-    """True = keep (violence), False = junk, None = undecided."""
-    msgs = [{"role": "system", "content": _CLASSIFY_SYS},
-            {"role": "user", "content": text[:280]}]
-    if _llm_reachable():
-        try:
-            r = requests.post(
-                f"{LOCAL_LLM_BASE_URL}/chat/completions", timeout=20,
-                json={"model": LOCAL_LLM_MODEL, "temperature": 0, "stream": False,
-                      "think": False, "messages": msgs})
-            if r.status_code == 200:
-                out = re.sub(r"<think>.*?</think>", "",
-                             r.json()["choices"][0]["message"]["content"] or "", flags=re.S)
-                out = out.strip().upper()
-                return out.startswith("YES") or "YES" in out[:12]
-        except Exception:
-            return None
-    if os.getenv("OPENAI_API_KEY"):
-        try:
-            from openai import OpenAI
-            r = OpenAI(timeout=15, max_retries=1).chat.completions.create(
-                model="gpt-4o-mini", temperature=0, messages=msgs)
-            return (r.choices[0].message.content or "").strip().upper().startswith("YES")
-        except Exception:
-            return None
-    return None
-
-
 def drop_junk_llm(conn: sqlite3.Connection, budget: int = 80) -> int:
     """LLM pass over ambiguous scraped news (no clear attack keyword) — drops the
     ones the model says aren't armed violence. Bounded by `budget` calls/run."""
@@ -154,7 +92,7 @@ def drop_junk_llm(conn: sqlite3.Connection, budget: int = 80) -> int:
     ambiguous = [(i, n) for i, n in rows if not _VIOLENCE.search(n or "")][:budget]
     dropped = 0
     for eid, notes in ambiguous:
-        if _classify_conflict(notes or "") is False:
+        if is_violence(notes or "") is False:
             conn.execute("DELETE FROM events WHERE id = ?", (eid,))
             dropped += 1
     conn.commit()

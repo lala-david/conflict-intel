@@ -24,6 +24,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from database import get_conn  # noqa: E402
 from config import LOCAL_LLM_BASE_URL, LOCAL_LLM_MODEL  # noqa: E402
+from llm import same_incident  # noqa: E402
 
 # Higher = more authoritative → kept as the canonical record.
 _PRIORITY = {
@@ -184,7 +185,7 @@ def deduplicate(days: int = 7) -> int:
                         if sim >= 0.9:
                             same = True
                         elif (llm_ok or openai_ok) and llm_calls < llm_budget and time.time() < deadline:
-                            same = _llm_same(a, b) if llm_ok else _openai_same(a, b)
+                            same = same_incident(_desc(a), _desc(b))
                             llm_calls += 1
                             if same is None:
                                 continue
