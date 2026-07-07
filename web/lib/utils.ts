@@ -24,6 +24,35 @@ export function formatDate(date: string): string {
   });
 }
 
+/**
+ * Clean an event's raw notes for display: strip source URLs, Telegram links,
+ * promo tails ("Follow @x", "for more news"), and de-dupe repeated segments.
+ * Source data (esp. UCDP citations + Telegram) carries this cruft.
+ */
+export function cleanNote(s?: string | null): string {
+  if (!s) return "";
+  let t = s
+    .replace(/https?:\/\/\S+/gi, " ")
+    .replace(/\bt\.me\/\S+/gi, " ")
+    .replace(/\b(?:follow|subscribe(?:\s+to)?|join)\s+@?[\w.]+(?:\s+(?:for\s+more|channel|news)[^.;|·]*)?/gi, " ")
+    .replace(/\bfor more (?:news|updates|info)\b/gi, " ")
+    .replace(/\b(?:READ|NEW|BREAKING|WATCH|VIDEO)\s*:\s*/gi, " ")
+    .replace(/@[\w.]+/g, " ")
+    .replace(/\s*[|;]\s*/g, " · ")
+    .replace(/\bINCIDENT\s*#\d+\b/gi, " ")
+    .replace(/\s{2,}/g, " ")
+    .replace(/(^[\s·|;,–—-]+)|([\s·|;,–—-]+$)/g, "")
+    .trim();
+  // de-dupe repeated " · " segments (source data often concatenates duplicates)
+  const seen = new Set<string>();
+  t = t
+    .split(" · ")
+    .map((x) => x.trim())
+    .filter((x) => x && !seen.has(x.toLowerCase()) && seen.add(x.toLowerCase()))
+    .join(" · ");
+  return t;
+}
+
 export function formatDateShort(date: string): string {
   if (!date || date.length < 10) return date || "";
   const d = new Date(date);

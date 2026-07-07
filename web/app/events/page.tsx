@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { queryAll, queryOne } from "@/lib/db";
-import { formatNumber, formatDate, getCategoryMeta } from "@/lib/utils";
+import { formatNumber, formatDate, getCategoryMeta, cleanNote } from "@/lib/utils";
 import type { Event, Category } from "@/lib/types";
 import { Search } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -270,9 +270,9 @@ export default async function EventsPage({ searchParams }: Props) {
                         <span className="text-text-dim"> vs {event.actor2}</span>
                       )}
                     </div>
-                    {event.notes && (
+                    {cleanNote(event.notes) && (
                       <div className="mt-1 line-clamp-1 text-xs text-text-dim">
-                        {event.notes}
+                        {cleanNote(event.notes)}
                       </div>
                     )}
                   </div>

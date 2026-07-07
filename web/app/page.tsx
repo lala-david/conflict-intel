@@ -1,7 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroStats } from "@/components/home/HeroStats";
-import { CategoryCards } from "@/components/home/CategoryCards";
 import { HotRegionsList } from "@/components/home/HotRegions";
 import { EventFeed } from "@/components/home/EventFeed";
 import { WorldMapSection } from "@/components/map/WorldMapSection";
@@ -38,16 +37,13 @@ export default async function HomePage() {
           <WorldMapSection />
         </Suspense>
 
-        {/* Categories */}
-        <CategoryCards categories={data.categories} />
-
-        {/* Deadliest regions */}
-        <div className="mx-auto max-w-7xl px-6 py-12">
-          <HotRegionsList regions={data.hotRegions} />
-        </div>
-
-        {/* Recent Events */}
-        <EventFeed events={data.recentEvents.slice(0, 6)} />
+        {/* Situational dashboard — latest events + deadliest regions, compact */}
+        <section className="mx-auto max-w-7xl px-6 py-10">
+          <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+            <EventFeed events={data.recentEvents.slice(0, 7)} bare />
+            <HotRegionsList regions={data.hotRegions.slice(0, 8)} />
+          </div>
+        </section>
 
         {/* Subscribe CTA */}
         <section className="mx-auto max-w-7xl px-6 py-16">

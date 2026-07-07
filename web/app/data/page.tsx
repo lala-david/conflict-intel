@@ -23,14 +23,14 @@ export default function DataPage() {
             Full database (SQLite)
           </h2>
           <a
-            href="https://github.com/lala-david/conflict-intel/raw/main/data/terror.db"
+            href="https://github.com/lala-david/conflict-intel/releases/download/db-latest/conflict.db"
             className="flex items-center gap-4 rounded-lg border border-border bg-surface p-5 transition hover:bg-surface-2"
           >
             <Database className="h-8 w-8 text-accent" />
             <div className="flex-1">
-              <div className="font-semibold">terror.db</div>
+              <div className="font-semibold">conflict.db</div>
               <div className="text-xs text-text-dim">
-                SQLite · 420K events · 276 MB · 1989–present
+                SQLite · 420K events · ~330 MB · refreshed daily · 1989–present
               </div>
             </div>
             <Download className="h-5 w-5 text-text-dim" />

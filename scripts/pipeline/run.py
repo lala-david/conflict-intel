@@ -95,13 +95,14 @@ def run(target_date: datetime | None = None) -> None:
 
     # fill actors from headlines (local LLM), then drop contentless empty shells
     try:
-        from fill_actors import fill_missing_actors, drop_empty_shells
+        from fill_actors import fill_missing_actors, drop_empty_shells, drop_junk_events
         from database import get_conn
         _c = get_conn()
         _f = fill_missing_actors(_c)
         _d = drop_empty_shells(_c)
+        _j = drop_junk_events(_c)
         _c.close()
-        print(f"  cleanup: actors filled {_f}, empty shells dropped {_d}")
+        print(f"  cleanup: actors filled {_f}, shells dropped {_d}, junk dropped {_j}")
     except Exception as e:  # noqa: BLE001
         print(f"  cleanup skipped: {e}")
 

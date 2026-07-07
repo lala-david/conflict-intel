@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { getEventById, getRelatedEvents } from "@/lib/queries";
-import { formatNumber, formatDate, getCategoryMeta } from "@/lib/utils";
+import { formatNumber, formatDate, getCategoryMeta, cleanNote } from "@/lib/utils";
 import { ArrowLeft, MapPin, Calendar, Users, ExternalLink } from "lucide-react";
 import { EventMiniMapClient } from "@/components/map/EventMiniMapClient";
 
@@ -161,13 +161,13 @@ export default async function EventPage({ params }: Props) {
         </section>
 
         {/* Notes */}
-        {event.notes && (
+        {cleanNote(event.notes) && (
           <section className="mt-8">
             <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-text-dim">
               Description
             </h2>
             <div className="rounded-lg border border-border bg-surface p-5 text-sm leading-relaxed text-text-primary">
-              {event.notes}
+              {cleanNote(event.notes)}
             </div>
           </section>
         )}

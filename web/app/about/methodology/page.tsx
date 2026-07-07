@@ -1,129 +1,74 @@
-import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata = {
   title: "Methodology — Conflict & Security Intelligence",
-  description: "Data classification rules, sources, and known limitations.",
+  description:
+    "How we fuse UCDP, GDELT, sanctions and news into one live, categorized record of global organized violence.",
 };
+
+const SOURCES: [string, string][] = [
+  ["UCDP GED", "Georeferenced, casualty-verified organized-violence events, 1989–present."],
+  ["GDELT", "Machine-coded global event stream for real-time coverage."],
+  ["OpenSanctions · OFAC/EU/UN", "Sanctioned entities and designated crypto wallets."],
+  ["DOJ · NBCTF", "Terror-financing forfeitures and Israeli seizure orders."],
+  ["News · Telegram", "Curated OSINT feeds for the latest incidents."],
+];
 
 export default function MethodologyPage() {
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-3xl px-6 py-12">
-        <h1 className="font-display text-5xl font-bold">Methodology</h1>
-
-        <div className="prose prose-invert prose-sm mt-8 max-w-none">
-          <h2 className="mt-10 font-display">Classification Decision Tree</h2>
-          <p>
-            Events are classified into 10 mutually exclusive categories using
-            rule-based logic (no LLM):
-          </p>
-          <ol>
-            <li>
-              <strong>Interstate military engagement</strong> → <code>war</code>
-            </li>
-            <li>
-              <strong>Designated terror group vs civilians</strong> →{" "}
-              <code>terrorism</code>
-            </li>
-            <li>
-              <strong>State mass killing (100+ civilian deaths, 1 day)</strong> →{" "}
-              <code>mass_atrocity</code>
-            </li>
-            <li>
-              <strong>Government security forces vs civilians</strong> →{" "}
-              <code>state_violence</code>
-            </li>
-            <li>
-              <strong>Drug cartel / organized crime</strong> →{" "}
-              <code>cartel_violence</code>
-            </li>
-            <li>
-              <strong>Ethnic/sectarian communal clash</strong> →{" "}
-              <code>communal_violence</code>
-            </li>
-            <li>
-              <strong>Non-state armed group vs government</strong> →{" "}
-              <code>insurgency</code>
-            </li>
-            <li>
-              <strong>Government counterterrorism operation</strong> →{" "}
-              <code>counterterrorism</code>
-            </li>
-            <li>
-              <strong>Intrastate armed conflict (organized)</strong> →{" "}
-              <code>civil_war</code>
-            </li>
-            <li>
-              <strong>Default / unclassified</strong> →{" "}
-              <code>armed_violence</code>
-            </li>
-          </ol>
-
-          <h2 className="mt-10 font-display">Aggregate Filtering</h2>
-          <p>
-            UCDP occasionally records <em>cumulative</em> events (e.g., "Tigray war:
-            121,000 fatalities in a single entry"). These are flagged with{" "}
-            <code>is_aggregate=1</code> and excluded from all charts and
-            statistics by default. Currently 108 events flagged.
-          </p>
-
-          <h2 className="mt-10 font-display">Country Normalization</h2>
-          <p>
-            Source data uses mixed country coding (UCDP uses names, GDELT uses FIPS 10-4,
-            OFAC uses ISO). All are normalized to canonical names via a curated map
-            (172 countries). Disputed territories (Palestinian Territories, Taiwan,
-            Western Sahara) follow UCDP convention.
-          </p>
-
-          <h2 className="mt-10 font-display">Known Limitations</h2>
-          <ul>
-            <li>
-              <strong>UCDP 2-month lag</strong> — UCDP Candidate releases
-              provisional data on a 2-month delay. Recent events may be under-counted
-              until UCDP processes them.
-            </li>
-            <li>
-              <strong>GDELT no fatalities</strong> — GDELT does not provide casualty
-              counts. Those events default to 0 fatalities.
-            </li>
-            <li>
-              <strong>Media bias</strong> — Western media over-represented in GDELT;
-              African/Asian events under-reported.
-            </li>
-            <li>
-              <strong>Classification ambiguity</strong> — counterterrorism vs
-              state_violence can be subjective (e.g., government claims "CT operation"
-              that kills civilians). Confidence level is recorded.
-            </li>
-          </ul>
-
-          <h2 className="mt-10 font-display">Data Quality Checks</h2>
-          <ul>
-            <li>0 ID duplicates across 420K events</li>
-            <li>0 invalid date formats</li>
-            <li>0 future-dated events</li>
-            <li>0 coordinate out-of-range values</li>
-            <li>0 negative fatalities</li>
-          </ul>
-
-          <h2 className="mt-10 font-display">Citation</h2>
-          <pre className="overflow-x-auto rounded-lg border border-border bg-background p-4 text-xs">
-{`Conflict & Security Intelligence (2026).
-Daily Global Armed Violence Monitor.
-https://github.com/lala-david/conflict-intel
-
-Primary data:
-  Pettersson et al. (2024). UCDP GED. CC BY 4.0.
-  Leetaru, K. & Schrodt, P. (2013). GDELT.`}
-          </pre>
-
-          <p>
-            See <Link href="/data">Data Download</Link> for the full SQLite database.
-          </p>
+      <main className="mx-auto max-w-3xl px-6 py-14">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
+          How it works
         </div>
+        <h1 className="mt-3 font-display text-4xl font-bold tracking-tight">Methodology</h1>
+        <p className="mt-4 leading-relaxed text-text-dim">
+          We fuse several open datasets into one live, deduplicated, categorized record of
+          global organized violence — cross-checked across sources, geocoded, and refreshed
+          daily.
+        </p>
+
+        <h2 className="mt-12 mb-4 font-display text-xl font-bold">Sources</h2>
+        <div className="divide-y divide-border rounded-lg border border-border bg-surface">
+          {SOURCES.map(([name, desc]) => (
+            <div key={name} className="flex flex-col gap-0.5 px-5 py-3.5 sm:flex-row sm:gap-4">
+              <div className="w-60 shrink-0 font-semibold text-text-primary">{name}</div>
+              <div className="text-sm text-text-dim">{desc}</div>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="mt-12 mb-3 font-display text-xl font-bold">The essentials</h2>
+        <ul className="space-y-2.5 text-sm leading-relaxed text-text-dim">
+          <li>
+            <span className="text-text-primary">Categorized</span> — every event is typed
+            (war, civil war, terrorism, cartel violence, …) for filtering.
+          </li>
+          <li>
+            <span className="text-text-primary">Deduplicated</span> — the same incident from
+            multiple sources is collapsed; cumulative rollups are excluded from stats.
+          </li>
+          <li>
+            <span className="text-text-primary">Caveats</span> — UCDP lags ~2 months; GDELT
+            carries no casualty counts (defaults to 0) and over-represents Western media.
+            Treat as a triage layer; verify before citing.
+          </li>
+        </ul>
+
+        <p className="mt-12 text-xs leading-relaxed text-text-dim">
+          Open source and open data —{" "}
+          <a href="/data" className="text-accent hover:underline">download the full database</a>{" "}
+          or see the{" "}
+          <a
+            href="https://github.com/lala-david/conflict-intel"
+            className="text-accent hover:underline"
+          >
+            code on GitHub
+          </a>
+          . Primary data: UCDP GED (Pettersson et al., CC BY 4.0) · GDELT (Leetaru &amp; Schrodt).
+        </p>
       </main>
       <Footer />
     </>
