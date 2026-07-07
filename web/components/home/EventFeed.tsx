@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Event } from "@/lib/types";
-import { formatDate, getCategoryMeta, formatNumber } from "@/lib/utils";
+import { formatDate, getCategoryMeta, formatNumber, cleanNote } from "@/lib/utils";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Flag } from "@/components/ui/Flag";
 import { isoFor } from "@/lib/country-iso";
@@ -22,7 +22,13 @@ export function EventFeed({ events, bare = false }: Props) {
       <div className="rounded-lg border border-border bg-surface">
         {events.map((event) => {
           const meta = getCategoryMeta(event.category);
-          const actor = event.actor1 || "Unknown";
+          const hasActor =
+            !!event.actor1 &&
+            event.actor1 !== "Unknown" &&
+            event.actor1 !== (event.country || "").toUpperCase();
+          const actor = hasActor
+            ? event.actor1
+            : cleanNote(event.notes) || "Unattributed incident";
           return (
             <Link
               key={event.id}
@@ -49,7 +55,7 @@ export function EventFeed({ events, bare = false }: Props) {
                   </div>
                   <div className="mt-2 truncate text-sm font-medium text-text-primary group-hover:text-accent">
                     {actor}
-                    {event.actor2 && event.actor2 !== "Civilians" && (
+                    {hasActor && event.actor2 && event.actor2 !== "Civilians" && (
                       <span className="text-text-dim"> vs {event.actor2}</span>
                     )}
                   </div>
