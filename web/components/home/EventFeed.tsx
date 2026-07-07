@@ -76,7 +76,7 @@ export function EventFeed({ events, bare = false }: Props) {
     </>
   );
   return bare ? (
-    inner
+    <div>{inner}</div>
   ) : (
     <section className="mx-auto max-w-7xl px-6 py-12">{inner}</section>
   );
