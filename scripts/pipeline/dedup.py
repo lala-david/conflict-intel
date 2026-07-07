@@ -11,8 +11,6 @@ wire + a Telegram post). We:
 Canonical = most authoritative source (structured > news), fatalities as tiebreak.
 The web serves `dup_of IS NULL` for a de-duplicated view.
 """
-import os
-import re
 import sys
 import time
 import requests
@@ -23,7 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from database import get_conn  # noqa: E402
-from config import LOCAL_LLM_BASE_URL, LOCAL_LLM_MODEL  # noqa: E402
+from config import LOCAL_LLM_BASE_URL  # noqa: E402
 from llm import same_incident  # noqa: E402
 
 # Higher = more authoritative → kept as the canonical record.
@@ -52,50 +50,6 @@ def _llm_up() -> bool:
         return requests.get(f"{LOCAL_LLM_BASE_URL}/models", timeout=3).status_code == 200
     except Exception:
         return False
-
-
-def _llm_same(a: dict, b: dict) -> bool | None:
-    """Ask the local LLM if two events are the same incident. None = unknown (LLM down)."""
-    try:
-        r = requests.post(
-            f"{LOCAL_LLM_BASE_URL}/chat/completions",
-            timeout=25,
-            json={
-                "model": LOCAL_LLM_MODEL,
-                "temperature": 0,
-                "stream": False,
-                "think": False,  # Ollama: skip qwen3 reasoning tokens (≈8× faster for YES/NO)
-                "messages": [
-                    {"role": "system", "content": "/no_think You decide if two short conflict-event descriptions report the SAME real-world incident (same event, same place, same day). Reply with exactly one word: YES or NO."},
-                    {"role": "user", "content": f"A: {_desc(a)}\nB: {_desc(b)}\nSame incident?"},
-                ],
-            },
-        )
-        if r.status_code == 200:
-            content = r.json()["choices"][0]["message"]["content"] or ""
-            content = re.sub(r"<think>.*?</think>", "", content, flags=re.S)
-            ans = content.strip().upper()
-            return ans.startswith("YES") or "YES" in ans[:20]
-    except Exception:
-        return None
-    return None
-
-
-def _openai_same(a: dict, b: dict) -> bool | None:
-    """Fallback confirmer when the local LLM is unreachable. Cheap — only a few
-    ambiguous cross-source pairs per day reach here."""
-    try:
-        from openai import OpenAI
-        r = OpenAI(timeout=15, max_retries=1).chat.completions.create(
-            model="gpt-4o-mini", temperature=0,
-            messages=[
-                {"role": "system", "content": "Decide if two short conflict-event descriptions report the SAME real-world incident (same event, same place, same day). Reply with exactly one word: YES or NO."},
-                {"role": "user", "content": f"A: {_desc(a)}\nB: {_desc(b)}\nSame incident?"},
-            ],
-        )
-        return (r.choices[0].message.content or "").strip().upper().startswith("YES")
-    except Exception:
-        return None
 
 
 def _textful(e: dict) -> bool:
@@ -132,15 +86,13 @@ def deduplicate(days: int = 7) -> int:
         for e in events:
             by_country[e["country"]].append(e)
 
-        llm_ok = _llm_up()  # decide once — no per-pair timeouts when the LLM is unreachable (e.g. CI)
-        # fall back to OpenAI when the local LLM is down (server off) — cheap, few pairs/day
-        openai_ok = (not llm_ok) and bool(os.getenv("OPENAI_API_KEY"))
-        mode = "local-llm" if llm_ok else ("openai" if openai_ok else "heuristic-only")
-        print(f"  dedup confirmer: {mode}")
+        # local LLM only (no paid fallback); unreachable → heuristic (exact-key + strong sim)
+        llm_ok = _llm_up()
+        print(f"  dedup confirmer: {'local-llm' if llm_ok else 'heuristic-only'}")
         # bound LLM work so high-volume days can't stall the pipeline: after the
         # budget/time is spent, only exact-key and very-high-similarity pairs mark.
-        llm_budget = 250 if llm_ok else 120
-        deadline = time.time() + (600 if llm_ok else 240)
+        llm_budget = 250
+        deadline = time.time() + 600
         marked = 0
         llm_calls = 0
         dropped: set[str] = set()
@@ -184,7 +136,7 @@ def deduplicate(days: int = 7) -> int:
                             continue
                         if sim >= 0.9:
                             same = True
-                        elif (llm_ok or openai_ok) and llm_calls < llm_budget and time.time() < deadline:
+                        elif llm_ok and llm_calls < llm_budget and time.time() < deadline:
                             same = same_incident(_desc(a), _desc(b))
                             llm_calls += 1
                             if same is None:

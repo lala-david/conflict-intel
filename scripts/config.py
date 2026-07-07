@@ -10,10 +10,11 @@ UCDP_TOKEN = os.getenv("UCDP_TOKEN", "")
 # LLM (BLUF 요약 생성에만 사용)
 ANALYSIS_MODEL = "gpt-5.4-mini"
 
-# 로컬 LLM (사내 Ollama, OpenAI 호환) — 교차소스 중복제거 판단에 사용.
-# 비용 0 + 데이터 로컬. 도달 불가 시 dedup는 휴리스틱만으로 폴백.
+# 로컬 LLM (사내 Ollama, OpenAI 호환) — dedup 판단 + 정크필터 + actor/이벤트 분석.
+# 비용 0 + 데이터 로컬. 도달 불가 시(예: GitHub CI) LLM 단계는 조용히 스킵되고
+# 키워드/휴리스틱만 동작한다. OpenAI 폴백은 쓰지 않는다(비용 0 정책).
 LOCAL_LLM_BASE_URL = os.getenv("LOCAL_LLM_BASE_URL", "http://192.168.150.225:11434/v1")
-LOCAL_LLM_MODEL = os.getenv("LOCAL_LLM_MODEL", "qwen3:8b")
+LOCAL_LLM_MODEL = os.getenv("LOCAL_LLM_MODEL", "gemma4:26b")
 
 # 리포트 경로
 REPORTS_DIR = "reports"
