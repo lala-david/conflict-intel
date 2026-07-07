@@ -7,14 +7,15 @@ import { isoFor } from "@/lib/country-iso";
 
 interface Props {
   events: Event[];
+  bare?: boolean;
 }
 
-export function EventFeed({ events }: Props) {
-  return (
-    <section className="mx-auto max-w-7xl px-6 py-12">
+export function EventFeed({ events, bare = false }: Props) {
+  const inner = (
+    <>
       <SectionHeading
         kicker="On the wire"
-        title="Recent events"
+        title="Latest events"
         action={<span>Last 90 days</span>}
       />
 
@@ -72,6 +73,11 @@ export function EventFeed({ events }: Props) {
           );
         })}
       </div>
-    </section>
+    </>
+  );
+  return bare ? (
+    inner
+  ) : (
+    <section className="mx-auto max-w-7xl px-6 py-12">{inner}</section>
   );
 }

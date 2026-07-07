@@ -84,6 +84,27 @@ def drop_empty_shells(conn: sqlite3.Connection) -> int:
     return n
 
 
+_DISASTER = re.compile(r"\b(ebola|outbreak|cholera|pandemic|covid|earthquake|flood|"
+                       r"hurricane|cyclone|wildfire|drought|famine|measles)\b", re.I)
+_VIOLENCE = re.compile(r"\b(kill|dead|death|attack|clash|strike|shell|bomb|militant|rebel|"
+                       r"fighter|soldier|troop|gun|assault|raid|offensive|casualt|wound|"
+                       r"abduct|massacre|insurgent|forces|shoot|explos|drone|missile|siege)\b", re.I)
+
+
+def drop_junk_events(conn: sqlite3.Connection) -> int:
+    """Drop scraped news that isn't organized violence — natural-disaster / disease
+    posts (from Telegram/Google News) with no violence signal in the text."""
+    rows = conn.execute(
+        "SELECT id, notes FROM events WHERE source IN ('telegram','google_news') "
+        "AND dup_of IS NULL AND notes IS NOT NULL").fetchall()
+    junk = [eid for eid, notes in rows
+            if _DISASTER.search(notes or "") and not _VIOLENCE.search(notes or "")]
+    for jid in junk:
+        conn.execute("DELETE FROM events WHERE id = ?", (jid,))
+    conn.commit()
+    return len(junk)
+
+
 def main() -> None:
     conn = sqlite3.connect(DB)
     total = conn.execute(f"SELECT COUNT(*) FROM events WHERE {NO_ACTOR} AND {HAS_TEXT}").fetchone()[0]
