@@ -74,6 +74,12 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           UCDP_TOKEN: ${{ secrets.UCDP_TOKEN }}
           PYTHONUNBUFFERED: "1"
+          # Optional: point at the self-hosted LLM through a Cloudflare Tunnel so
+          # CI gets the full gemma4 enrichment. Unset → LLM steps skip gracefully.
+          # e.g. https://llm.example.com/v1  (see docs/LLM_TUNNEL.md)
+          LOCAL_LLM_BASE_URL: ${{ secrets.LOCAL_LLM_BASE_URL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT: ${{ secrets.TELEGRAM_ALERT_CHAT }}
         timeout-minutes: 22
         run: python -u scripts/pipeline/run.py
 

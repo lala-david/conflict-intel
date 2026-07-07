@@ -120,6 +120,18 @@ def run(target_date: datetime | None = None) -> None:
     except Exception as e:  # noqa: BLE001
         print(f"  crypto skipped: {e}")
 
+    # Telegram alerts — broadcast the run's new notable events (no-op without secrets)
+    try:
+        from alerts import send_alerts
+        from database import get_conn
+        _ac = get_conn()
+        _sent = send_alerts(_ac)
+        _ac.close()
+        if _sent:
+            print(f"  alerts: {_sent} events pushed to Telegram")
+    except Exception as e:  # noqa: BLE001
+        print(f"  alerts skipped: {e}")
+
     # ── GOLD: aggregates + brief ──
     print("\n[GOLD] aggregate + brief")
     report_dir = get_report_dir(target_date)
