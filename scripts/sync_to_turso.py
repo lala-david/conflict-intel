@@ -14,6 +14,12 @@ import sys
 import sqlite3
 from datetime import datetime
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+except Exception:
+    pass
+
 DB = os.path.join(os.path.dirname(__file__), "..", "data", "conflict.db")
 URL = os.environ.get("TURSO_DATABASE_URL", "")
 TOK = os.environ.get("TURSO_AUTH_TOKEN", "")
