@@ -11,13 +11,13 @@ const CONFIG: Omit<COBEOptions, "onRender"> = {
   devicePixelRatio: 2,
   phi: 0,
   theta: 0.28,
-  dark: 1,
-  diffuse: 2.6,
+  dark: 0,
+  diffuse: 1.2,
   mapSamples: 18000,
-  mapBrightness: 8,
-  baseColor: [0.42, 0.45, 0.52],
-  markerColor: [1, 0.25, 0.25],
-  glowColor: [0.55, 0.22, 0.22],
+  mapBrightness: 6,
+  baseColor: [0.52, 0.55, 0.62],
+  markerColor: [0.94, 0.13, 0.13],
+  glowColor: [0.95, 0.55, 0.55],
   markers: [
     { location: [31.5, 34.47], size: 0.11 },   // Gaza — Hamas
     { location: [33.89, 35.5], size: 0.08 },    // Beirut — Hezbollah
