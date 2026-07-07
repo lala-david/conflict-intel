@@ -24,7 +24,7 @@ export default async function OrganizationsPage() {
           Top {orgs.length} non-state armed groups by event count
         </p>
 
-        <div className="mt-8 overflow-hidden rounded-lg border border-border bg-surface">
+        <div className="mt-8 overflow-hidden card-elevated">
           <div className="grid grid-cols-12 gap-4 border-b border-border bg-surface-2 px-5 py-3 text-[10px] font-semibold uppercase tracking-wider text-text-dim">
             <div className="col-span-1">#</div>
             <div className="col-span-4">Name</div>

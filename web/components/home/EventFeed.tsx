@@ -19,7 +19,7 @@ export function EventFeed({ events, bare = false }: Props) {
         action={<span>Last 90 days</span>}
       />
 
-      <div className="rounded-lg border border-border bg-surface">
+      <div className="card-elevated">
         {events.map((event) => {
           const meta = getCategoryMeta(event.category);
           const hasActor =
