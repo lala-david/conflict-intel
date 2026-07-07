@@ -2,7 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WalletTable } from "@/components/wallets/WalletTable";
 import { getCryptoStats, getCryptoWallets } from "@/lib/queries";
-import { ShieldAlert, Link2, Boxes } from "lucide-react";
+import { ShieldAlert } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -32,39 +32,42 @@ export default async function WalletsPage() {
                 "radial-gradient(60% 120% at 15% 0%, rgba(239,68,68,0.18), transparent 60%), radial-gradient(50% 100% at 100% 100%, rgba(239,68,68,0.10), transparent 55%)",
             }}
           />
-          <div className="relative mx-auto max-w-6xl px-6 py-16">
-            <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
-              <ShieldAlert className="h-3.5 w-3.5" />
-              Threat finance · on-chain intelligence
-            </div>
-            <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-              Terror-financing <span className="text-accent">wallets</span>
-            </h1>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-dim">
-              Cryptocurrency addresses publicly attributed to terrorist organizations —
-              aggregated from OFAC / EU / UN sanctions and DOJ forfeiture data, deduplicated
-              on-chain and mapped to the groups we track.
-            </p>
-
-            <div className="mt-8 grid max-w-2xl grid-cols-3 gap-4">
-              {[
-                { icon: ShieldAlert, label: "Terror wallets", value: wallets.length },
-                { icon: Link2, label: "Groups", value: stats.byOrg.length },
-                { icon: Boxes, label: "Blockchains", value: chains },
-              ].map((s) => (
-                <div key={s.label} className="rounded-xl border border-border bg-surface/60 p-4 backdrop-blur">
-                  <s.icon className="h-4 w-4 text-accent" />
-                  <div className="mt-2 font-display text-3xl font-bold tabular-nums text-text-primary">
-                    {s.value.toLocaleString()}
-                  </div>
-                  <div className="text-xs uppercase tracking-wider text-text-dim">{s.label}</div>
+          <div className="relative mx-auto max-w-6xl px-6 py-10">
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+                  <ShieldAlert className="h-3.5 w-3.5" />
+                  Threat finance · on-chain intelligence
                 </div>
-              ))}
+                <h1 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+                  Terror-financing <span className="text-accent">wallets</span>
+                </h1>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-text-dim">
+                  Addresses publicly attributed to terrorist organizations — OFAC/EU/UN
+                  sanctions, DOJ forfeitures and NBCTF seizures, deduped and mapped to groups.
+                </p>
+              </div>
+
+              {/* inline stat trio */}
+              <div className="flex gap-6">
+                {[
+                  { label: "Terror wallets", value: wallets.length },
+                  { label: "Groups", value: stats.byOrg.length },
+                  { label: "Chains", value: chains },
+                ].map((s) => (
+                  <div key={s.label}>
+                    <div className="font-display text-3xl font-bold tabular-nums text-text-primary">
+                      {s.value.toLocaleString()}
+                    </div>
+                    <div className="text-[11px] uppercase tracking-wider text-text-dim">{s.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        <div className="mx-auto max-w-6xl px-6 py-12">
+        <div className="mx-auto max-w-6xl px-6 py-8">
           {/* Group cards */}
           {stats.byOrg.length > 0 && (
             <>
