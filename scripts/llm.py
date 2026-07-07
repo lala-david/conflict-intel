@@ -1,16 +1,19 @@
 """
-Unified LLM toolkit for the pipeline.
+Unified LLM toolkit for the pipeline — LOCAL LLM ONLY (cost-0 policy).
 
 One place for every model call, so precision improvements land everywhere:
-  - local LLM (qwen3 via Ollama) first, OpenAI (gpt-4o-mini) fallback — CI has no
-    LAN access so it degrades to OpenAI automatically;
-  - few-shot prompting (small models gain a lot of precision from examples);
-  - reasoning disabled + tight timeouts so it never stalls the pipeline;
-  - optional self-consistency vote for the borderline calls.
+  - self-hosted Ollama model (config.LOCAL_LLM_MODEL, default gemma4:26b) over the
+    OpenAI-compatible API. NO paid fallback: if the local LLM is unreachable
+    (e.g. GitHub CI can't see the LAN), every helper returns None and callers fall
+    back to their keyword/heuristic path. The full LLM enrichment therefore runs on
+    local executions (a machine on the same network as the model server);
+  - few-shot prompting for precision; reasoning disabled + tight timeouts so it
+    never stalls the pipeline.
 
-Public helpers: is_violence(text), extract_actor(text, country), same_incident(a, b).
+Public helpers: is_violence(text), extract_actor(text, country),
+same_incident(a, b), analyze_event(text, country).
 """
-import os
+import json
 import re
 import sys
 from pathlib import Path
@@ -60,16 +63,7 @@ def chat(system: str, shots: list[tuple[str, str]], user: str) -> str | None:
                 return _strip_think(r.json()["choices"][0]["message"]["content"])
         except Exception:
             return None
-        return None
-    if os.getenv("OPENAI_API_KEY"):
-        try:
-            from openai import OpenAI
-            r = OpenAI(timeout=15, max_retries=1).chat.completions.create(
-                model="gpt-4o-mini", temperature=0, messages=msgs)  # type: ignore[arg-type]
-            return (r.choices[0].message.content or "").strip()
-        except Exception:
-            return None
-    return None
+    return None  # local LLM only — no paid fallback (cost-0 policy)
 
 
 def _yesno(system: str, shots: list[tuple[str, str]], user: str) -> bool | None:
@@ -153,8 +147,6 @@ def same_incident(desc_a: str, desc_b: str) -> bool | None:
 
 
 # ── Agentic: read a raw news item and return a STRUCTURED understanding ──────
-import json  # noqa: E402
-
 CATEGORIES = {"war", "civil_war", "insurgency", "terrorism", "counterterrorism",
               "state_violence", "communal_violence", "cartel_violence", "armed_violence",
               "mass_atrocity"}

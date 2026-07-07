@@ -85,4 +85,29 @@ surfaced in the product; bulk consumer-fraud is dropped in Silver.
   `scripts/sync_to_turso.py` appends new events and full-replaces stats/crypto — with a guard
   that skips the replace if the local DB is incomplete (protects the production snapshot).
 
+---
+
+## 5. LLM (local-only, cost-0)
+
+All model calls go through `scripts/llm.py` — one toolkit, few-shot prompted:
+
+| Helper | Use |
+|--------|-----|
+| `is_violence(text)` | junk filter — is this armed/organized violence? |
+| `extract_actor(text, country)` | pull the primary armed actor |
+| `same_incident(a, b)` | dedup confirmer |
+| `analyze_event(text, country)` | agentic structured read → `{conflict, category, actor, target, location, fatalities, confidence}` |
+
+**Rules**
+- **Local LLM only.** Self-hosted Ollama at `LOCAL_LLM_BASE_URL`, model `LOCAL_LLM_MODEL`
+  (default `gemma4:26b`), over the OpenAI-compatible API. **No paid fallback** — cost is 0.
+- **Unreachable → graceful skip.** If the model can't be reached (e.g. GitHub CI has no LAN
+  access to the server), every helper returns `None` and the caller uses its keyword/heuristic
+  path. So the full LLM enrichment (agentic analysis, LLM dedup, actor fill) runs on **local
+  executions** on the model's network; CI does collection + keyword cleanup + heuristic dedup.
+- **Bounded.** Reasoning disabled (`think: false` / `/no_think`), tight timeouts, and per-run
+  call budgets (`agentic_enrich` ~100, dedup ~250) so a run can never stall.
+- The only remaining external model call is the daily BLUF brief (`ANALYSIS_MODEL`), one call
+  per run.
+
 See also: memory `always-medallion-architecture`, `deployment-cloudflare-turso`.
