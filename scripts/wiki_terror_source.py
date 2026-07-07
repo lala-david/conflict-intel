@@ -57,22 +57,54 @@ _MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July",
 
 
 def _tables_for(title: str):
-    for attempt in range(3):
+    for attempt in range(2):
         try:
-            time.sleep(0.4)                              # be polite → avoid 429
-            r = requests.get("https://en.wikipedia.org/w/api.php", timeout=40, headers=_UA,
+            time.sleep(0.3)                              # be polite → avoid 429
+            r = requests.get("https://en.wikipedia.org/w/api.php", timeout=30, headers=_UA,
                              params={"action": "parse", "page": title, "format": "json",
                                      "prop": "text"})
             if r.status_code == 429:
-                time.sleep(2 + attempt * 2)
+                time.sleep(3)
                 continue
             j = r.json()
             if "parse" not in j:
                 return []
             return pd.read_html(StringIO(j["parse"]["text"]["*"]))
         except Exception:
-            time.sleep(1)
+            return []
     return []
+
+
+def _rows_from_tables(tables, year, countries, seen, out) -> int:
+    added = 0
+    for t in tables:
+        cols = [str(c) for c in t.columns]
+        if not any("Date" in c for c in cols) or not any("Dead" in c for c in cols):
+            continue
+        t.columns = cols
+        for _, row in t.iterrows():
+            date = _to_date(row.get("Date", ""), year)
+            if not date:
+                continue
+            city, country = _split_loc(row.get("Location", ""), countries)
+            perp = re.sub(r"\[.*?\]", "", str(row.get("Perpetrator", ""))).strip()
+            if perp.lower() in ("unknown", "nan", "", "unknown perpetrator", "none"):
+                perp = ""
+            details = re.sub(r"\s+", " ", re.sub(r"\[.*?\]", "", str(row.get("Details", "")))).strip()
+            eid = f"wikiterror-{date}-{abs(hash((city, country, perp, details[:40]))) % 10**8}"
+            if eid in seen:
+                continue
+            seen.add(eid)
+            added += 1
+            out.append({
+                "id": eid, "source": "wikipedia", "date": date,
+                "event_type": re.sub(r"\[.*?\]", "", str(row.get("Type", ""))).strip()[:40],
+                "actor1": perp[:60], "actor2": "", "country": country, "location": city,
+                "latitude": None, "longitude": None,
+                "fatalities": _int(row.get("Dead", 0)), "notes": details[:500],
+                "category": "terrorism",
+            })
+    return added
 
 
 def fetch_wiki_terror(years, countries: set[str] | None = None) -> list[dict]:
@@ -80,46 +112,13 @@ def fetch_wiki_terror(years, countries: set[str] | None = None) -> list[dict]:
     out: list[dict] = []
     seen: set[str] = set()
     for year in years:
-        # yearly article + monthly sub-articles (busy years are split by month)
-        titles = [f"List of terrorist incidents in {year}"]
-        titles += [f"List of terrorist incidents in {mo} {year}" for mo in _MONTH_NAMES]
-        tables = []
-        for title in titles:
-            tables += _tables_for(title)
-        for t in tables:
-            cols = [str(c) for c in t.columns]
-            if not any("Date" in c for c in cols) or not any("Dead" in c for c in cols):
-                continue
-            t.columns = cols
-            for _, row in t.iterrows():
-                date = _to_date(row.get("Date", ""), year)
-                if not date:
-                    continue
-                city, country = _split_loc(row.get("Location", ""), countries)
-                perp = re.sub(r"\[.*?\]", "", str(row.get("Perpetrator", ""))).strip()
-                if perp.lower() in ("unknown", "nan", "", "unknown perpetrator", "none"):
-                    perp = ""
-                details = re.sub(r"\[.*?\]|\s+", lambda m: " " if m.group().isspace() else "",
-                                 str(row.get("Details", ""))).strip()
-                eid = f"wikiterror-{date}-{abs(hash((city, country, perp, details[:40]))) % 10**8}"
-                if eid in seen:
-                    continue
-                seen.add(eid)
-                out.append({
-                    "id": eid,
-                    "source": "wikipedia",
-                    "date": date,
-                    "event_type": re.sub(r"\[.*?\]", "", str(row.get("Type", ""))).strip()[:40],
-                    "actor1": perp[:60],
-                    "actor2": "",
-                    "country": country,
-                    "location": city,
-                    "latitude": None,
-                    "longitude": None,
-                    "fatalities": _int(row.get("Dead", 0)),
-                    "notes": details[:500],
-                    "category": "terrorism",
-                })
+        # yearly article first; only if it's sparse (year split by month) fetch months
+        added = _rows_from_tables(_tables_for(f"List of terrorist incidents in {year}"),
+                                  year, countries, seen, out)
+        if added < 15:
+            for mo in _MONTH_NAMES:
+                _rows_from_tables(_tables_for(f"List of terrorist incidents in {mo} {year}"),
+                                  year, countries, seen, out)
     return out
 
 
