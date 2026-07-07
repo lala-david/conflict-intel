@@ -152,8 +152,79 @@ def same_incident(desc_a: str, desc_b: str) -> bool | None:
     return _yesno(_SAME_SYS, _SAME_SHOTS, f"A: {desc_a}\nB: {desc_b}\nSame incident?")
 
 
+# ── Agentic: read a raw news item and return a STRUCTURED understanding ──────
+import json  # noqa: E402
+
+CATEGORIES = {"war", "civil_war", "insurgency", "terrorism", "counterterrorism",
+              "state_violence", "communal_violence", "cartel_violence", "armed_violence",
+              "mass_atrocity"}
+
+_ANALYZE_SYS = (
+    "You are a conflict-intelligence analyst. Read one news item and return ONLY a compact "
+    "JSON object — no prose. Fields:\n"
+    '  "conflict": true if it reports an act of ARMED or ORGANIZED VIOLENCE (war, armed '
+    "attack, terrorism, armed clash, shooting, airstrike, bombing, shelling, militant/rebel/"
+    "insurgent action, armed kidnapping); false for politics, elections, economy, prices, "
+    "diplomacy, disease, natural disaster, weather, sports, ceremonies, announcements.\n"
+    '  "category": one of [war, civil_war, insurgency, terrorism, counterterrorism, '
+    "state_violence, communal_violence, cartel_violence, armed_violence, mass_atrocity], "
+    "or null if conflict is false.\n"
+    '  "actor": the primary armed perpetrator (group/military/state), or null.\n'
+    '  "target": who was attacked (e.g. Civilians, Military, a named group), or null.\n'
+    '  "location": the city/town/place, or null.\n'
+    '  "fatalities": integer deaths if clearly stated, else null.\n'
+    '  "confidence": 0.0-1.0.'
+)
+_ANALYZE_SHOTS = [
+    ("Country: Mali\nBoko Haram fighters raided a village near Mopti, killing 12 civilians and torching homes",
+     '{"conflict": true, "category": "terrorism", "actor": "Boko Haram", "target": "Civilians", '
+     '"location": "Mopti", "fatalities": 12, "confidence": 0.92}'),
+    ("Country: Ukraine\nRussian forces shelled a residential district of Kharkiv overnight; 3 dead",
+     '{"conflict": true, "category": "war", "actor": "Russian military", "target": "Civilians", '
+     '"location": "Kharkiv", "fatalities": 3, "confidence": 0.9}'),
+    ("Country: Pakistan\nOgra notifies 15pc increase in regasified LNG price",
+     '{"conflict": false, "category": null, "actor": null, "target": null, "location": null, '
+     '"fatalities": null, "confidence": 0.96}'),
+]
+
+
+def analyze_event(text: str, country: str = "") -> dict | None:
+    """Agentic structured read of a raw news item → normalized event fields."""
+    out = chat(_ANALYZE_SYS, _ANALYZE_SHOTS, f"Country: {country}\n{(text or '')[:400]}")
+    if not out:
+        return None
+    m = re.search(r"\{.*\}", out, re.S)
+    if not m:
+        return None
+    try:
+        d = json.loads(m.group(0))
+    except Exception:
+        return None
+    if not isinstance(d, dict) or "conflict" not in d:
+        return None
+    # normalize / validate
+    d["conflict"] = bool(d.get("conflict"))
+    cat = (d.get("category") or "").strip().lower() if d.get("category") else None
+    d["category"] = cat if cat in CATEGORIES else None
+    for k in ("actor", "target", "location"):
+        v = d.get(k)
+        d[k] = v.strip() if isinstance(v, str) and v.strip() and v.strip().lower() != "null" else None
+    fat = d.get("fatalities")
+    d["fatalities"] = fat if isinstance(fat, int) and fat >= 0 else None
+    try:
+        d["confidence"] = max(0.0, min(1.0, float(d.get("confidence", 0.5))))
+    except Exception:
+        d["confidence"] = 0.5
+    return d
+
+
 if __name__ == "__main__":
     print("local LLM:", _local_up())
+    import json as _j
+    for t in ["Gunmen kill 8 soldiers in a dawn ambush near Gao, northern Mali",
+              "Ogra notifies 15pc increase in LNG price",
+              "Israel government says it will defy Supreme Court ruling"]:
+        print(f"  analyze({t[:38]!r}) = {_j.dumps(analyze_event(t), ensure_ascii=False)}")
     for t in ["Ogra notifies 15pc increase in LNG price",
               "Gunmen kill 8 soldiers in northern Mali ambush",
               "Macron to visit Syria"]:
