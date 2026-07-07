@@ -9,7 +9,7 @@ import { Warp } from "@paper-design/shaders-react";
  */
 export function ShaderBackdrop() {
   return (
-    <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 -z-10 hidden overflow-hidden sm:block">
       <Warp
         style={{ height: "100%", width: "100%", opacity: 0.4 }}
         proportion={0.4}
