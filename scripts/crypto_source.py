@@ -253,6 +253,42 @@ def fetch_doj_forfeiture(timeout: int = 90) -> list[dict]:
     return out
 
 
+# ── Analyst blogs — attribute seized addresses to a specific organization ────
+# These posts name the org behind a seizure; the addresses mostly overlap our
+# NBCTF set, so ordering this source early attaches the right org to them.
+TERROR_BLOGS = {
+    "https://www.chainalysis.com/blog/israel-nbctf-hezbollah-iran-quds-crypto-seizure/": "Hezbollah",
+    "https://www.chainalysis.com/blog/israel-hamas-cryptocurrency-seizure-july-2021/": "Hamas",
+    "https://www.elliptic.co/blog/analysis/israel-orders-seizure-of-crypto-wallets-worth-94-million-linked-to-palestinian-islamic-jihad": "Palestinian Islamic Jihad",
+}
+
+
+def fetch_terror_blogs(timeout: int = 30) -> list[dict]:
+    out: list[dict] = []
+    for url, org in TERROR_BLOGS.items():
+        try:
+            text = re.sub(r"<[^>]+>", " ", requests.get(url, headers=_BROWSER_UA, timeout=timeout).text)
+        except Exception as ex:
+            print(f"    [crypto] blog {url[-30:]} 실패: {ex}")
+            continue
+        seen: set[str] = set()
+        for pat, chain in (
+            (r"0x[a-fA-F0-9]{40}", "ETH"),
+            (r"T[A-Za-z1-9]{33}", "TRX"),
+            (r"bc1[a-z0-9]{20,60}|[13][a-km-zA-HJ-NP-Z1-9]{25,39}", "BTC"),
+        ):
+            for a in re.findall(pat, text):
+                if a in seen or not _valid_addr(a, chain):
+                    continue
+                seen.add(a)
+                out.append({
+                    "address": a, "chain": chain, "entity_name": org,
+                    "topics": "terrorism,seizure", "category": "terror", "is_terror": 1,
+                    "source": "analyst-blog",
+                })
+    return out
+
+
 # ── 3. Ransomwhere ──────────────────────────────────────────────────────────
 def fetch_ransomwhere(timeout: int = 60) -> list[dict]:
     out: list[dict] = []
@@ -277,8 +313,8 @@ def fetch_ransomwhere(timeout: int = 60) -> list[dict]:
 # ── aggregate + dedupe ──────────────────────────────────────────────────────
 def fetch_crypto_wallets() -> list[dict]:
     """All sources merged, deduped by address (terror-attributed wins)."""
-    everything = (fetch_doj_forfeiture() + fetch_opensanctions() + fetch_graphsense()
-                  + fetch_nbctf() + fetch_ransomwhere())
+    everything = (fetch_doj_forfeiture() + fetch_terror_blogs() + fetch_opensanctions()
+                  + fetch_graphsense() + fetch_nbctf() + fetch_ransomwhere())
     by_addr: dict[str, dict] = {}
     for r in everything:
         a = (r.get("address") or "").strip()
