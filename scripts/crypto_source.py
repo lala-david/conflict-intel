@@ -215,6 +215,44 @@ def fetch_nbctf(timeout: int = 60) -> list[dict]:
     return out
 
 
+# ── DOJ terror-forfeiture complaints (PDF address lists) ────────────────────
+_BROWSER_UA = {"User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                              "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36")}
+# file id → (entity label, row-source). 1304296 is the 2020 al-Qassam Brigades
+# (Hamas) forfeiture complaint — ~320 BTC addresses (GraphSense only had 155 of them).
+DOJ_FORFEITURE = {
+    "1304296": ("al-Qassam Brigades (Hamas)", "doj/2020-alqassam-forfeiture"),
+}
+
+
+def fetch_doj_forfeiture(timeout: int = 90) -> list[dict]:
+    """Crypto addresses extracted from DOJ terror-forfeiture complaint PDFs."""
+    import io
+    out: list[dict] = []
+    try:
+        from pdfminer.high_level import extract_text
+    except Exception as ex:  # pdfminer missing
+        print(f"    [crypto] doj: pdfminer 없음 ({ex})")
+        return out
+    for fid, (entity, src) in DOJ_FORFEITURE.items():
+        try:
+            url = f"https://www.justice.gov/opa/press-release/file/{fid}/download"
+            content = requests.get(url, headers=_BROWSER_UA, timeout=timeout).content
+            text = extract_text(io.BytesIO(content))
+        except Exception as ex:
+            print(f"    [crypto] doj/{fid} 실패: {ex}")
+            continue
+        for a in set(re.findall(r"\b(?:bc1[a-z0-9]{20,60}|[13][a-km-zA-HJ-NP-Z1-9]{25,39})\b", text)):
+            if not (a.startswith("bc1") or _b58check_ok(a)):
+                continue
+            out.append({
+                "address": a, "chain": "BTC", "entity_name": entity,
+                "topics": "terrorism,DOJ-forfeiture", "category": "terror", "is_terror": 1,
+                "source": src,
+            })
+    return out
+
+
 # ── 3. Ransomwhere ──────────────────────────────────────────────────────────
 def fetch_ransomwhere(timeout: int = 60) -> list[dict]:
     out: list[dict] = []
@@ -239,7 +277,7 @@ def fetch_ransomwhere(timeout: int = 60) -> list[dict]:
 # ── aggregate + dedupe ──────────────────────────────────────────────────────
 def fetch_crypto_wallets() -> list[dict]:
     """All sources merged, deduped by address (terror-attributed wins)."""
-    everything = (fetch_opensanctions() + fetch_graphsense()
+    everything = (fetch_doj_forfeiture() + fetch_opensanctions() + fetch_graphsense()
                   + fetch_nbctf() + fetch_ransomwhere())
     by_addr: dict[str, dict] = {}
     for r in everything:
