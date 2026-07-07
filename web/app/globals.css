@@ -13,12 +13,14 @@
 html {
   background: #0C0D0F;
   color: #ECEEF1;
+  overflow-x: hidden;
 }
 
 body {
   font-family: "Pretendard", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* Display headlines: tighter tracking */

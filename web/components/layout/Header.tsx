@@ -19,10 +19,11 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-t-2 border-accent border-b border-border bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
-        <Link href="/" className="group flex items-baseline gap-2.5">
-          <span className="font-display text-xl font-bold leading-none tracking-tight text-text-primary">
-            Conflict <span className="text-accent">&amp;</span> Security Intelligence
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-3.5 sm:px-6">
+        <Link href="/" className="group flex min-w-0 items-baseline gap-2.5">
+          <span className="truncate font-display text-[15px] font-bold leading-none tracking-tight text-text-primary sm:text-lg md:text-xl">
+            Conflict <span className="text-accent">&amp;</span> Security{" "}
+            <span className="hidden sm:inline">Intelligence</span>
           </span>
         </Link>
 

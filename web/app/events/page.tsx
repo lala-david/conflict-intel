@@ -238,6 +238,12 @@ export default async function EventsPage({ searchParams }: Props) {
           ) : (
             events.map((event) => {
               const meta = getCategoryMeta(event.category);
+              const note = cleanNote(event.notes);
+              const hasActor =
+                !!event.actor1 &&
+                event.actor1 !== "Unknown" &&
+                event.actor1 !== (event.country || "").toUpperCase();
+              const title = hasActor ? event.actor1 : note || "Unattributed incident";
               return (
                 <Link
                   key={event.id}
@@ -265,14 +271,14 @@ export default async function EventsPage({ searchParams }: Props) {
                       )}
                     </div>
                     <div className="mt-2 truncate text-sm font-medium text-text-primary group-hover:text-accent">
-                      {event.actor1 || "Unknown"}
-                      {event.actor2 && event.actor2 !== "Civilians" && (
+                      {title}
+                      {hasActor && event.actor2 && event.actor2 !== "Civilians" && (
                         <span className="text-text-dim"> vs {event.actor2}</span>
                       )}
                     </div>
-                    {cleanNote(event.notes) && (
+                    {hasActor && note && (
                       <div className="mt-1 line-clamp-1 text-xs text-text-dim">
-                        {cleanNote(event.notes)}
+                        {note}
                       </div>
                     )}
                   </div>
