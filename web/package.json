@@ -9,7 +9,8 @@
     "lint": "next lint",
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
+    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf:deploy:win": "node deploy-win.mjs"
   },
   "dependencies": {
     "@paper-design/shaders-react": "^0.0.76",

@@ -103,8 +103,16 @@ cd web
 # wrangler.jsonc 의 database_id 가 실제 값으로 채워졌는지 먼저 확인
 npm install
 npx wrangler login          # (1단계에서 이미 했으면 생략)
-npm run cf:deploy           # opennextjs build + deploy
+npm run cf:deploy           # Linux/CI: opennextjs build + deploy
+# Windows: npm run cf:deploy:win  (아래 참고)
 ```
+
+> ⚠️ **Windows 로컬 배포**: `opennextjs-cloudflare deploy`(및 wrangler 의 OpenNext
+> 프레임워크 훅)는 Windows 에서 `open-next.config.ts` 를 `C:\` 절대경로로 import 하다
+> `ERR_UNSUPPORTED_ESM_URL_SCHEME` 로 죽습니다. 그래서 `npm run cf:deploy:win`
+> (`web/deploy-win.mjs`)이 대신 **빌드 → config 잠시 숨김 → `wrangler deploy` → 복원**
+> 순으로 동작합니다. 빌드된 워커 자체는 정상이라 이 우회로 문제없이 배포됩니다.
+> (Linux/CI 에서는 `npm run cf:deploy` 를 그대로 쓰세요.)
 
 - 로컬 프리뷰(로컬 D1 대신 실 D1 바인딩으로 확인하려면): `npm run cf:preview`
 - 대시보드 변수(dashboard vars)는 `wrangler deploy` 시 덮어써지므로, **모든 설정은
