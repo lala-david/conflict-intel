@@ -157,6 +157,9 @@ export default async function EventPage({ params }: Props) {
             {event.event_type && (
               <Detail label="Event type" value={event.event_type} mono />
             )}
+            {event.collected_at && (
+              <Detail label="Recorded (UTC)" value={event.collected_at} mono />
+            )}
           </div>
         </section>
 

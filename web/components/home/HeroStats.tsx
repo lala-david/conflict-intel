@@ -7,7 +7,7 @@ interface Props {
 }
 
 export function HeroStats({ totals }: Props) {
-  const years = new Date().getFullYear() - 1989 + 1;
+  const years = new Date().getFullYear() - 1970 + 1;
 
   return (
     <header className="relative isolate overflow-hidden border-b border-border">
@@ -51,7 +51,7 @@ export function HeroStats({ totals }: Props) {
           <Figure value={formatNumber(totals.events)} label="Events recorded" />
           <Figure value={formatNumber(totals.fatalities)} label="Fatalities documented" muted />
           <Figure value={formatNumber(totals.countries)} label="Countries covered" />
-          <Figure value={`${years}`} label="Years of history · since 1989" />
+          <Figure value={`${years}`} label="Years of history · since 1970" />
         </dl>
       </div>
     </header>

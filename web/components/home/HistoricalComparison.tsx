@@ -29,7 +29,7 @@ export async function HistoricalComparison() {
   const peakYear = (await queryOne<{ year: string; fatalities: number }>(
     `SELECT substr(date, 1, 4) as year, COALESCE(SUM(fatalities), 0) as fatalities
          FROM events
-        WHERE is_aggregate = 0 AND date >= '1989'
+        WHERE is_aggregate = 0 AND date >= '1970'
         GROUP BY year
         ORDER BY fatalities DESC
         LIMIT 1`

@@ -38,6 +38,7 @@ export interface Event {
   is_aggregate: number;
   notes: string | null;
   source_url: string | null;
+  collected_at?: string | null;
 }
 
 /** A geolocated event plotted on a spread map — each point links back to its event. */

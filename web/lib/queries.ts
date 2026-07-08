@@ -154,7 +154,7 @@ export async function getCountryTimeline(
               COUNT(*) as count,
               COALESCE(SUM(fatalities), 0) as deaths
          FROM events
-        WHERE is_aggregate = 0 AND country = ? AND date >= '1989'
+        WHERE is_aggregate = 0 AND country = ? AND date >= '1970'
         GROUP BY year, category
         ORDER BY year`,
     [country]
@@ -216,7 +216,7 @@ export async function getEventById(id: string): Promise<Event | null> {
     `SELECT id, source, date, event_type, actor1, actor2, country, country_code,
               admin1, location, latitude, longitude, fatalities,
               deaths_civilians, fatalities_low, fatalities_high,
-              category, category_confidence, is_aggregate, notes, source_url
+              category, category_confidence, is_aggregate, notes, source_url, collected_at
          FROM events WHERE id = ?`,
     [id]
   );
@@ -308,7 +308,7 @@ export async function getOrganizationTimeline(
               COUNT(*) as count,
               COALESCE(SUM(fatalities), 0) as deaths
          FROM events
-        WHERE actor1 = ? AND is_aggregate = 0 AND date >= '1989'
+        WHERE actor1 = ? AND is_aggregate = 0 AND date >= '1970'
         GROUP BY year
         ORDER BY year`,
     [name]
@@ -402,7 +402,7 @@ export async function getCategoryStats(category: Category): Promise<CategoryStat
   const timeline = await queryAll<{ year: number; count: number }>(
     `SELECT CAST(substr(date, 1, 4) AS INTEGER) as year, COUNT(*) as count
          FROM events
-        WHERE category = ? AND is_aggregate = 0 AND date >= '1989'
+        WHERE category = ? AND is_aggregate = 0 AND date >= '1970'
         GROUP BY year ORDER BY year`,
     [category]
   );
@@ -488,7 +488,7 @@ export async function getYearlyTimeline(): Promise<{ year: number; events: numbe
               COUNT(*) as events,
               COALESCE(SUM(fatalities), 0) as fatalities
          FROM events
-        WHERE is_aggregate = 0 AND date >= '1989'
+        WHERE is_aggregate = 0 AND date >= '1970'
         GROUP BY year
         ORDER BY year`
   );
