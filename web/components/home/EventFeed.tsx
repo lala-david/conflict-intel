@@ -36,7 +36,7 @@ export function EventFeed({ events, bare = false }: Props) {
               className="group block border-b border-border px-5 py-4 transition last:border-b-0 hover:bg-surface-2"
             >
               <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <div className="flex items-center gap-3 text-xs">
                     <span
                       className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white"
@@ -82,7 +82,7 @@ export function EventFeed({ events, bare = false }: Props) {
     </>
   );
   return bare ? (
-    <div>{inner}</div>
+    <div className="min-w-0">{inner}</div>
   ) : (
     <section className="mx-auto max-w-7xl px-6 py-12">{inner}</section>
   );

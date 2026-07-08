@@ -32,6 +32,13 @@ export function formatDate(date: string): string {
 export function cleanNote(s?: string | null): string {
   if (!s) return "";
   let t = s
+    .replace(/&nbsp;?/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#3?9;|&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&[a-z]+;?/gi, " ")
     .replace(/https?:\/\/\S+/gi, " ")
     .replace(/\bt\.me\/\S+/gi, " ")
     .replace(/\b(?:follow|subscribe(?:\s+to)?|join)\s+@?[\w.]+(?:\s+(?:for\s+more|channel|news)[^.;|·]*)?/gi, " ")
