@@ -4,7 +4,7 @@ import { Download, Github, Database } from "lucide-react";
 
 export const metadata = {
   title: "Data Download — Conflict & Security Intelligence",
-  description: "Download the full 420K event database or query via API.",
+  description: "Download the full 570K+ event database or query via API.",
 };
 
 export default function DataPage() {
@@ -30,7 +30,7 @@ export default function DataPage() {
             <div className="flex-1">
               <div className="font-semibold">conflict.db</div>
               <div className="text-xs text-text-dim">
-                SQLite · 420K events · ~330 MB · refreshed daily · 1989–present
+                SQLite · 570K+ events · ~470 MB · refreshed daily · 1970–present
               </div>
             </div>
             <Download className="h-5 w-5 text-text-dim" />

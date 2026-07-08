@@ -449,7 +449,7 @@ export async function searchOrgs(q: string): Promise<{ name: string; total_event
   );
 }
 
-// ─── On This Day (38-year archive) ───
+// ─── On This Day (since-1970 archive) ───
 export async function getOnThisDay(): Promise<Event | null> {
   const today = new Date();
   const monthDay = `${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
@@ -481,7 +481,7 @@ export async function getTodayAnalysis(limit = 4): Promise<{ feed: string; title
   );
 }
 
-// ─── 38-year timeline (homepage) ───
+// ─── since-1970 timeline (homepage) ───
 export async function getYearlyTimeline(): Promise<{ year: number; events: number; fatalities: number }[]> {
   return await queryAll<{ year: number; events: number; fatalities: number }>(
     `SELECT CAST(substr(date, 1, 4) AS INTEGER) as year,

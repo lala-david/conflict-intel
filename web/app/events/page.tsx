@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Events — Conflict & Security Intelligence",
-  description: "Browse 420,000+ armed violence events from 1989 to present.",
+  description: "Browse 570,000+ armed violence events from 1970 to present.",
 };
 
 interface Props {
@@ -113,7 +113,7 @@ export default async function EventsPage({ searchParams }: Props) {
         <PageHeader
           kicker="1989 — today"
           title="Every event, searchable"
-          standfirst="More than 420,000 individual records of organized violence, categorized by academic standard. Filter by actor, country, category or date."
+          standfirst="More than 570,000 individual records of organized violence, categorized by academic standard. Filter by actor, country, category or date."
           aside={
             <div className="text-right">
               <div className="font-display text-4xl font-semibold tabular-nums text-text-primary">

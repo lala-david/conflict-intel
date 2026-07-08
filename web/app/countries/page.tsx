@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Countries — Conflict & Security Intelligence",
-  description: "All 172 countries tracked. Event counts and fatalities from 1989 to present.",
+  description: "All 250+ countries tracked. Event counts and fatalities from 1970 to present.",
 };
 
 export default async function CountriesPage() {

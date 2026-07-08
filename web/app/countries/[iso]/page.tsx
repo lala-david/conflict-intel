@@ -31,10 +31,10 @@ export async function generateMetadata({ params }: Props) {
   const ogUrl = `/api/og/countries/${encodeURIComponent(name)}`;
   return {
     title: `${name} — Conflict & Security Intelligence`,
-    description: `Armed violence events in ${name}. 1989-present. Terrorism, civil war, insurgency data.`,
+    description: `Armed violence events in ${name}. 1970-present. Terrorism, civil war, insurgency data.`,
     openGraph: {
       title: `${name} — Conflict & Security Intelligence`,
-      description: `Armed violence events in ${name}. 420K events, 38 years.`,
+      description: `Armed violence events in ${name}. 570K+ events, since 1970.`,
       images: [{ url: ogUrl, width: 1200, height: 630 }],
     },
     twitter: {

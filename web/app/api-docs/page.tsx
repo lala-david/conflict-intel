@@ -49,7 +49,7 @@ const ENDPOINTS: Endpoint[] = [
     method: "GET",
     path: "/api/threats/{name}/history",
     description:
-      "Time series for a country (1989-present). Param: granularity=daily|monthly|yearly (default monthly).",
+      "Time series for a country (1970-present). Param: granularity=daily|monthly|yearly (default monthly).",
     example: `curl "http://localhost:3000/api/threats/Nigeria/history?granularity=yearly"`,
   },
   // Countries
@@ -63,7 +63,7 @@ const ENDPOINTS: Endpoint[] = [
     method: "GET",
     path: "/api/countries/{name}",
     description:
-      "Country detail: stats, 38-year timeline, 50 most recent events.",
+      "Country detail: stats, full timeline since 1970, 50 most recent events.",
     example: `curl http://localhost:3000/api/countries/Nigeria`,
   },
   // Events
@@ -210,9 +210,9 @@ export default function ApiDocsPage() {
     "trend7d": [42, 51, 68, 73, 71, 75, 73]
   },
   "totals": {
-    "events": 419936,
+    "events": 570391,
     "fatalities": 4180000,
-    "countries": 161
+    "countries": 255
   },
   "categories": {
     "terrorism": { "events": 27895, "fatalities": 168236 },
@@ -239,7 +239,7 @@ export default function ApiDocsPage() {
           Download the full database
         </h2>
         <p className="text-sm text-text-dim">
-          For research or bulk analysis, the entire 420K event SQLite
+          For research or bulk analysis, the entire 570K+ event SQLite
           database is available directly. See{" "}
           <a href="/data" className="text-accent hover:underline">
             Data Download

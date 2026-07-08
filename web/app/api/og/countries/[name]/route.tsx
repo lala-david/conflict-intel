@@ -83,7 +83,7 @@ export async function GET(
             </div>
           </div>
           <div style={{ fontSize: "16px", color: "#525252" }}>
-            420K events · 38 years · 172 countries
+            570K+ events · since 1970 · 250+ countries
           </div>
         </div>
       </div>

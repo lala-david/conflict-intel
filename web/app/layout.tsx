@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Conflict & Security Intelligence — Track Global Conflict, Daily",
   description:
-    "Track the countries, actors and categories you follow across 420,000+ conflict events. One live, categorized feed — updated every morning.",
+    "Track the countries, actors and categories you follow across 570,000+ conflict events since 1970. One live, categorized feed — updated every morning.",
   keywords: [
     "conflict",
     "terrorism",
@@ -17,14 +17,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Conflict & Security Intelligence",
     description:
-      "420K events · 38 years · 172 countries · Daily updates",
+      "570K+ events · since 1970 · 250+ countries · Daily updates",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Conflict & Security Intelligence",
     description:
-      "420K events · 38 years · Daily updates",
+      "570K+ events · since 1970 · Daily updates",
   },
 };
 

@@ -29,7 +29,7 @@ export default async function SearchPage({ searchParams }: Props) {
       <main className="mx-auto max-w-4xl px-6 py-12">
         <h1 className="font-display text-4xl font-bold">Search</h1>
         <p className="mt-2 text-sm text-text-dim">
-          Search 420K events across countries, organizations, and incidents.
+          Search 570K+ events across countries, organizations, and incidents.
         </p>
 
         {/* Search form */}

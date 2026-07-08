@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 
 export const metadata = {
   title: "About — Conflict & Security Intelligence",
-  description: "Open-source global armed violence monitor. 420K events, 38 years, academic standards.",
+  description: "Open-source global armed violence monitor. 570K+ events since 1970, academic standards.",
 };
 
 export default function AboutPage() {
@@ -18,7 +18,7 @@ export default function AboutPage() {
           <p className="text-lg text-text-dim">
             <strong className="text-text-primary">Conflict & Security Intelligence</strong> is an
             open-source daily intelligence pipeline that aggregates global armed violence
-            data from 70+ sources (420K events, 1989–2026) and classifies them by
+            data from 70+ sources (570K+ events, 1970–2026) and classifies them by
             academic standard.
           </p>
 
@@ -34,6 +34,7 @@ export default function AboutPage() {
           <ul>
             <li><strong>UCDP GED</strong> — 386K historical events (1989-2024, academic gold standard)</li>
             <li><strong>UCDP Candidate</strong> — 30K+ provisional events (2025+)</li>
+            <li><strong>GTD (START, Univ. of Maryland)</strong> — 170K terrorism events (1970-2016 historical backfill)</li>
             <li><strong>GDELT</strong> — real-time global event database (media-derived)</li>
             <li><strong>Wikipedia</strong> — notable terror incidents</li>
             <li><strong>43 RSS feeds</strong> — ISW, CTC Sentinel, Soufan, ICG, Jamestown, Bellingcat, HRW, ReliefWeb, and more</li>
@@ -47,7 +48,7 @@ export default function AboutPage() {
             <li>Parallel source collection (70+ sources across 9 connectors)</li>
             <li>Cross-source event linking (deduplication)</li>
             <li>Organization mapping (286 designated groups + 341 persons)</li>
-            <li>Country normalization (FIPS ↔ ISO, 172 countries)</li>
+            <li>Country normalization (FIPS ↔ ISO, 250+ countries)</li>
             <li>Category classification (10 violence categories)</li>
             <li>Casualty extraction (regex from news text)</li>
             <li>Threat scoring (sigmoid-normalized, 0-10 per country)</li>
