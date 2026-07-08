@@ -1,17 +1,20 @@
-# 무료 클라우드 배포 가이드 (Turso + GitHub Actions + Cloudflare Pages)
+# 무료 클라우드 배포 가이드 (Cloudflare D1 + GitHub Actions + Cloudflare Workers)
 
 로컬 Windows 예약작업을 대체해 **전부 무료 클라우드**에서 매일 자동 수집 + 항상 켜진 사이트를 운영합니다.
 
 ```
 [GitHub Actions cron]  ──매일──▶  파이프라인 수집  ──▶  conflict.db (GitHub Release 보관)
                                         │
-                                        └─변경분 동기화─▶  [Turso 클라우드 SQLite]
+                                        └─변경분 동기화─▶  [Cloudflare D1 (SQLite)]
                                                                    ▲
-                                                          읽기      │
-                                                [Cloudflare Pages = 정식 사이트]
+                                                          읽기      │  (D1 바인딩, 외부 서비스 없음)
+                                                [Cloudflare Worker = 정식 사이트]
 ```
 
-코드/설정은 **이미 다 준비**되어 있습니다. 아래는 **계정 생성·시크릿 등록 등 직접 해야 하는 부분**입니다.
+데이터 백엔드는 **Cloudflare D1**(Cloudflare 네이티브 SQLite)입니다. 별도 호스팅 DB·인증
+토큰 없이 Worker에 `DB` 바인딩으로 직접 붙고, 무료 티어(5GB 저장 / 하루 500만 row-read)
+안에서 동작합니다. 코드/설정은 **이미 다 준비**되어 있고, 아래는 **계정 생성·시크릿 등록 등
+직접 해야 하는 부분**입니다.
 
 ---
 
@@ -30,95 +33,95 @@ cd web && npm install && npm run dev  # 대시보드
 ```
 
 `data/`(conflict.db + bronze Parquet)와 `reports/`는 볼륨으로 영속됩니다.
-아래 Turso/Cloudflare 단계는 **공개 클라우드 사이트**를 운영할 때만 필요합니다.
+아래 D1/Cloudflare 단계는 **공개 클라우드 사이트**를 운영할 때만 필요합니다.
 
 ---
 
 ## 사전 준비: 현재 상태
-- 웹 데이터 레이어는 `@libsql/client`(Turso 호환)로 전환 완료 — `npm run build` 통과
-- `TURSO_DATABASE_URL` 미설정 시 로컬 `data/conflict.db` 파일을 그대로 읽음(개발용)
+- 웹 데이터 레이어(`web/lib/db.ts`)는 **Cloudflare D1** 바인딩(`DB`)을 읽음 — `npm run build` 통과
+- Workers 밖(로컬 `npm run dev` / 빌드)에서는 `better-sqlite3`로 `data/conflict.db`를 직접 읽음
+  (better-sqlite3는 external 처리되어 Worker 번들에 안 들어감 — `web/next.config.mjs`)
 - 파이프라인(`scripts/pipeline/run.py`, 메달리온 Bronze/Silver/Gold)이 로컬 sqlite + Parquet(bronze) 에 기록
-- `scripts/export_for_turso.py` 가 변경분을 Turso 동기화 SQL 로 출력
+- `scripts/sync_to_d1.py` 가 변경분을 D1 HTTP API로 동기화 (events append + stats 전체교체, 안전가드 내장)
 
 ---
 
-## 1단계 — Turso (클라우드 SQLite, 무료)
+## 1단계 — Cloudflare D1 (SQLite, 무료)
 
 ```bash
-# 설치 (Windows는 WSL 또는 Git Bash 권장)
-curl -sSfL https://get.tur.so/install.sh | bash
-turso auth signup            # 브라우저로 가입 (GitHub 계정 가능)
+cd web
+npx wrangler login                         # 브라우저로 Cloudflare 로그인
 
-# DB 생성
-turso db create terror
-turso db show terror --url               # → TURSO_DATABASE_URL (libsql://terror-xxxx.turso.io)
-turso db tokens create terror            # → TURSO_AUTH_TOKEN (사이트 읽기용)
-turso auth api-tokens create ci          # → TURSO_API_TOKEN (Actions CLI 인증용)
+# D1 DB 생성 → 출력된 database_id 를 web/wrangler.jsonc 의
+#   "database_id": "REPLACE_WITH_D1_DATABASE_ID" 자리에 붙여넣기
+npx wrangler d1 create conflict-intel
 
-# 기존 데이터 전체를 Turso로 1회 마이그레이션 (419K건, 수 분 소요)
-python scripts/export_for_turso.py --full > turso_full.sql
-turso db shell terror < turso_full.sql
+# 기존 데이터 전체(스키마+인덱스+행)를 D1 로 1회 적재 (벌크, wrangler 가 자동 배치)
+cd ..
+python scripts/dump_for_d1.py                       # → data/conflict_d1.sql (~255MB)
+cd web
+npx wrangler d1 execute conflict-intel --remote --yes --file=../data/conflict_d1.sql
+
+# 사이트 전용 waitlist 테이블 1회 생성 (conflict.db 에는 없는 앱 테이블)
+npx wrangler d1 execute conflict-intel --remote --yes --file=../scripts/d1_waitlist_schema.sql
 ```
 
-> 검증: `turso db shell terror "SELECT total_events,total_countries FROM global_stats"`
-> → `419381 | 170` 처럼 나오면 성공.
+> 검증: `npx wrangler d1 execute conflict-intel --remote \
+>   --command "SELECT total_events,total_countries FROM global_stats"`
+> → `570000+ | 255` 처럼 나오면 성공.
+
+> `d1 execute --file` 은 대용량도 wrangler 가 알아서 청크로 나눠 실행합니다(수십초~수분).
+> wrangler 없이 REST 로만 초기 적재하려면(느림): `sync_to_d1.py --full` (2단계 시크릿 필요).
 
 ---
 
-## 2단계 — GitHub repo 시크릿/변수 등록
+## 2단계 — GitHub repo 시크릿 등록
 
-GitHub repo → **Settings → Secrets and variables → Actions**
+GitHub repo → **Settings → Secrets and variables → Actions → Secrets** (New repository secret):
 
-**Secrets** (New repository secret):
 | 이름 | 값 |
 |------|----|
 | `OPENAI_API_KEY` | 기존 OpenAI 키 (.env 참고) |
 | `UCDP_TOKEN` | 기존 UCDP 토큰 (.env 참고) |
-| `TURSO_API_TOKEN` | 위 `turso auth api-tokens create ci` 결과 |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare 대시보드 우측 Account ID (또는 `wrangler whoami`) |
+| `CLOUDFLARE_API_TOKEN` | My Profile → API Tokens → **D1 Edit** 권한 토큰 |
+| `D1_DATABASE_ID` | 1단계 `wrangler d1 create` 가 출력한 database_id |
 
-**Variables** (Variables 탭 → New repository variable):
-| 이름 | 값 |
-|------|----|
-| `TURSO_DB_NAME` | `terror` |
-
-> 워크플로(`.github/workflows/daily-terror.yml`)는 이미 cron(매일 09:00 KST) + Turso 동기화 + Release DB 영속화로 구성됨.
-> 등록 후 **Actions 탭 → Daily Terror Intelligence → Run workflow** 로 수동 1회 실행해 검증.
+> 워크플로(`.github/workflows/daily-terror.yml`)는 이미 cron(하루 3회, 09/14/19 KST) +
+> D1 동기화(`scripts/sync_to_d1.py`) + Release DB 영속화로 구성됨.
+> 등록 후 **Actions 탭 → Daily Conflict Intelligence → Run workflow** 로 수동 1회 실행해 검증.
 
 ---
 
-## 3단계 — Cloudflare Pages (정식 사이트, 무료)
+## 3단계 — Cloudflare Worker 배포 (정식 사이트, 무료)
 
-1. [Cloudflare 가입](https://dash.cloudflare.com) → **Workers & Pages → Create → Pages → Connect to Git**
-2. `terror_researcher` repo 연결, **Root directory = `web`**
-3. 빌드 설정:
-   - Framework preset: **Next.js**
-   - Build command: `npx @cloudflare/next-on-pages@1`
-   - Build output directory: `.vercel/output/static`
-4. **환경변수** (Settings → Environment variables, Production):
-   | 이름 | 값 |
-   |------|----|
-   | `TURSO_DATABASE_URL` | `libsql://terror-xxxx.turso.io` |
-   | `TURSO_AUTH_TOKEN` | 1단계 `turso db tokens create terror` 결과 |
-   | `NODE_VERSION` | `20` |
-5. Deploy.
+이 앱은 **OpenNext**(`@opennextjs/cloudflare`)로 Cloudflare Workers 에 배포됩니다.
+`web/wrangler.jsonc` 의 `d1_databases` 바인딩(`DB`)이 1단계 D1 을 가리키면 됩니다.
 
-> ⚠️ **엣지 런타임 마무리 작업**: Cloudflare Pages(Workers 런타임)에서 동적 라우트는
-> `export const runtime = 'edge'` 가 필요하고, `db.ts` 의 import 를 `@libsql/client/web` 로
-> 바꿔야 할 수 있습니다. 이 부분은 **첫 배포 빌드 로그를 보고 함께 마무리**하는 게 가장 확실합니다.
-> (계정 연결 후 알려주시면 제가 엣지 대응 커밋을 만들어 드립니다.)
+```bash
+cd web
+# wrangler.jsonc 의 database_id 가 실제 값으로 채워졌는지 먼저 확인
+npm install
+npx wrangler login          # (1단계에서 이미 했으면 생략)
+npm run cf:deploy           # opennextjs build + deploy
+```
+
+- 로컬 프리뷰(로컬 D1 대신 실 D1 바인딩으로 확인하려면): `npm run cf:preview`
+- 대시보드 변수(dashboard vars)는 `wrangler deploy` 시 덮어써지므로, **모든 설정은
+  `wrangler.jsonc` 에 둡니다** (D1 바인딩 포함). 대시보드에서 수동 추가 금지.
 
 ---
 
 ## 4단계 — 검증 체크리스트
-- [ ] `turso db shell terror "SELECT COUNT(*) FROM events"` → 419,000+ 건
-- [ ] GitHub Actions 수동 실행 성공 (녹색) + `db-latest` Release 에 conflict.db 업로드됨
-- [ ] Cloudflare Pages 사이트 접속 → 홈 통계가 Turso 값과 일치
+- [ ] `wrangler d1 execute conflict-intel --remote --command "SELECT COUNT(*) FROM events"` → 590,000+ 건
+- [ ] GitHub Actions 수동 실행 성공(녹색) + `db-latest` Release 에 conflict.db 업로드됨
+- [ ] 배포된 Worker 사이트 접속 → 홈 통계가 D1 값과 일치
 - [ ] 다음날 09:00 KST 자동 실행 확인
 
 ---
 
 ## 롤백 / 참고
-- 로컬 개발은 그대로: `cd web && npm run dev` (Turso 환경변수 없으면 로컬 DB 사용)
+- 로컬 개발은 그대로: `cd web && npm run dev` (D1 바인딩 없으면 `data/conflict.db` 직접 사용)
 - 로컬 예약작업은 더 이상 불필요 → 비활성화 권장:
   `Disable-ScheduledTask -TaskName "TerrorDailyReport"`
 - 정리 전 DB 백업: `data/conflict.db.bak`

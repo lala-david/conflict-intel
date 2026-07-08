@@ -1,93 +1,70 @@
 /**
- * Turso client — zero-dependency, edge/Workers-native.
+ * Database client — Cloudflare D1 in production, local SQLite in dev/build.
  *
- * Talks to Turso's hrana HTTP pipeline endpoint with plain `fetch`, so there are
- * no native modules or WebSocket deps to bundle (which broke @libsql/client on
- * the Cloudflare Workers runtime). Requires TURSO_DATABASE_URL (+ TURSO_AUTH_TOKEN)
- * in every environment. A `libsql://` URL is normalized to `https://`.
+ * On the Workers runtime queries run against the D1 binding `DB` (native SQLite,
+ * no external service, no auth token). Off Workers (local `next dev` / `next build`)
+ * it reads the pipeline's data/conflict.db directly via better-sqlite3, which is
+ * marked external so it never enters the Worker bundle (see next.config.mjs).
  *
- * Local dev: point TURSO_DATABASE_URL at your Turso DB, or run `turso dev`.
+ * Read results are edge-cached (caches.default, 10 min) so repeat reads in a colo
+ * skip D1 entirely and stay well under the free-tier row-read budget.
  */
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 export type SqlArg = string | number | bigint | boolean | null;
 
-// On the Cloudflare Workers runtime, dashboard vars/secrets arrive on the
-// Cloudflare context env, NOT process.env. The SYNC getCloudflareContext() only
-// resolves inside a page render; in API route handlers it throws. The async
-// form initialises the context and works everywhere, so use it and fall back to
-// process.env for local dev / build.
-async function getCreds(): Promise<{ url: string; token: string }> {
-  let env: Record<string, any> = {};
+// ── backend resolution ────────────────────────────────────────────────────
+
+/** The D1 binding on the Workers runtime, or null in local dev / build. */
+async function getD1(): Promise<any | null> {
+  // The async form initialises the Cloudflare context, so it resolves in both
+  // page renders and API route handlers. Off Workers it throws → local fallback.
   try {
     const ctx = await getCloudflareContext({ async: true });
-    env = (ctx?.env as any) ?? {};
+    return (ctx?.env as any)?.DB ?? null;
   } catch {
-    /* not on the Workers runtime (local dev / build) */
+    return null;
   }
-  const rawUrl = env.TURSO_DATABASE_URL ?? process.env.TURSO_DATABASE_URL ?? "";
-  return {
-    url: String(rawUrl).replace(/^libsql:\/\//, "https://").replace(/\/+$/, ""),
-    token: String(env.TURSO_AUTH_TOKEN ?? process.env.TURSO_AUTH_TOKEN ?? ""),
-  };
 }
 
-function toArg(v: SqlArg) {
-  if (v === null || v === undefined) return { type: "null" as const };
-  if (typeof v === "boolean") return { type: "integer" as const, value: v ? "1" : "0" };
-  if (typeof v === "bigint") return { type: "integer" as const, value: v.toString() };
-  if (typeof v === "number") {
-    return Number.isInteger(v)
-      ? { type: "integer" as const, value: String(v) }
-      : { type: "float" as const, value: v };
+/** Lazily-opened local SQLite handle (dev/build only — never on Workers). */
+let _local: any = null;
+function getLocal(): any {
+  if (_local) return _local;
+  // better-sqlite3 is an external package (next.config.mjs); require it at call
+  // time so it stays out of the Worker bundle and only loads under Node.
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const Database = require("better-sqlite3");
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const path = require("path");
+  const dbPath = path.resolve(process.cwd(), "..", "data", "conflict.db");
+  _local = new Database(dbPath, { fileMustExist: true });
+  // The waitlist table is app-owned (not part of the pipeline schema); ensure it
+  // exists locally so the signup form works in dev. On D1 it's created at setup.
+  _local.exec(
+    `CREATE TABLE IF NOT EXISTS waitlist (
+      id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT NOT NULL, interest TEXT,
+      note TEXT, source TEXT, created_at TEXT
+    )`,
+  );
+  return _local;
+}
+
+// better-sqlite3 (and D1's bind) reject raw booleans — coerce to 0/1.
+function normArgs(args: SqlArg[]): (string | number | bigint | null)[] {
+  return args.map((v) => (typeof v === "boolean" ? (v ? 1 : 0) : v));
+}
+
+async function runRead(d1: any | null, sql: string, args: (string | number | bigint | null)[]): Promise<any[]> {
+  if (d1) {
+    const stmt = args.length ? d1.prepare(sql).bind(...args) : d1.prepare(sql);
+    const { results } = await stmt.all();
+    return results ?? [];
   }
-  return { type: "text" as const, value: v };
+  return getLocal().prepare(sql).all(...args);
 }
 
-function fromCell(c: { type: string; value?: any } | null): any {
-  if (!c || c.type === "null") return null;
-  if (c.type === "integer") return Number(c.value);
-  if (c.type === "float") return typeof c.value === "number" ? c.value : Number(c.value);
-  return c.value; // text / blob
-}
-
-async function exec(
-  sql: string,
-  args: SqlArg[],
-  url: string,
-  token: string,
-): Promise<{ cols: string[]; rows: any[][] }> {
-  if (!url) throw new Error("TURSO_DATABASE_URL is not set — see DEPLOYMENT.md.");
-  const res = await fetch(`${url}/v2/pipeline`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      requests: [
-        { type: "execute", stmt: { sql, args: args.map(toArg) } },
-        { type: "close" },
-      ],
-    }),
-  });
-  if (!res.ok) throw new Error(`Turso HTTP ${res.status}: ${await res.text()}`);
-  const data: any = await res.json();
-  const first = data.results?.[0];
-  if (!first || first.type === "error") {
-    throw new Error(first?.error?.message ?? "Turso query failed");
-  }
-  const result = first.response.result;
-  return { cols: result.cols.map((c: any) => c.name), rows: result.rows };
-}
-
-function rowsToObjects<T>(cols: string[], rows: any[][]): T[] {
-  return rows.map((row) => {
-    const obj: any = {};
-    cols.forEach((c, i) => (obj[c] = fromCell(row[i])));
-    return obj as T;
-  });
-}
+// ── query helpers ─────────────────────────────────────────────────────────
 
 // djb2 hash → short stable cache key
 function hashKey(s: string): string {
@@ -100,13 +77,13 @@ const CACHE_TTL = 600; // seconds — data refreshes ~daily, so 10 min is safe
 
 /**
  * Run a query, caching the result at the Cloudflare edge (caches.default) keyed
- * by sql+args. Repeat reads across requests in the same colo skip Turso entirely.
- * No binding/infra needed; falls back to a direct query where the Cache API is
- * unavailable (local dev / build).
+ * by sql+args. Repeat reads across requests in the same colo skip D1 entirely.
+ * Falls back to a direct query where the Cache API is unavailable (local dev).
  */
 export async function queryAll<T = any>(sql: string, args: SqlArg[] = []): Promise<T[]> {
-  // Resolve creds before any Cache API call (which can drop the ALS context).
-  const { url, token } = await getCreds();
+  // Resolve the backend before any Cache API call (which can drop the ALS context).
+  const d1 = await getD1();
+  const a = normArgs(args);
 
   const cache: Cache | undefined = (globalThis as any).caches?.default;
   const keyReq = cache
@@ -122,12 +99,11 @@ export async function queryAll<T = any>(sql: string, args: SqlArg[] = []): Promi
     }
   }
 
-  const { cols, rows } = await exec(sql, args, url, token);
-  const data = rowsToObjects<T>(cols, rows);
+  const data = (await runRead(d1, sql, a)) as T[];
 
   // Don't cache large result sets — JSON.stringify'ing them costs more CPU than
   // the round-trip it saves and can blow the Worker's memory/CPU budget.
-  if (cache && keyReq && rows.length <= 2000) {
+  if (cache && keyReq && data.length <= 2000) {
     try {
       await cache.put(
         keyReq,
@@ -150,6 +126,12 @@ export async function queryOne<T = any>(sql: string, args: SqlArg[] = []): Promi
 
 /** Run a write (INSERT/UPDATE/DELETE) — never cached. */
 export async function execute(sql: string, args: SqlArg[] = []): Promise<void> {
-  const { url, token } = await getCreds();
-  await exec(sql, args, url, token);
+  const d1 = await getD1();
+  const a = normArgs(args);
+  if (d1) {
+    const stmt = a.length ? d1.prepare(sql).bind(...a) : d1.prepare(sql);
+    await stmt.run();
+    return;
+  }
+  getLocal().prepare(sql).run(...a);
 }

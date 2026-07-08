@@ -3,12 +3,12 @@ name: Daily Conflict Intelligence
 # 무료 클라우드 자동화 (일일 분쟁·안보 인텔 수집).
 #   - 매일 09:00 KST(00:00 UTC) 자동 수집
 #   - DB(276MB, gitignore)는 GitHub Actions 캐시로 영속화(레포 비공개, 공개 다운로드 불가): 복원 → 저장
-#   - 수집/통계 후 변경분을 Turso(클라우드 SQLite)에 동기화 → Cloudflare Pages 사이트가 읽음
+#   - 수집/통계 후 변경분을 Cloudflare D1(SQLite)에 동기화 → Cloudflare Worker 사이트가 읽음
 #   - 리포트(.md)는 평소처럼 repo 에 커밋
 #
 # 필요한 repo Secrets:
 #   OPENAI_API_KEY, UCDP_TOKEN            — 수집/BLUF
-#   TURSO_DATABASE_URL, TURSO_AUTH_TOKEN  — 사이트 Turso 동기화 (hrana HTTP, CLI 불필요)
+#   CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN, D1_DATABASE_ID  — 사이트 D1 동기화 (REST, CLI 불필요)
 # 풀 DB는 db-latest 릴리스에 보관 → 캐시 미스 시 시드 (통계 정확성 보장).
 on:
   schedule:
@@ -95,12 +95,13 @@ jobs:
       - name: Compute dashboard stats
         run: python scripts/compute_stats.py
 
-      # ─── 사이트가 읽는 Turso 에 동기화 (events append + stats/crypto 교체, 안전가드 내장) ───
-      - name: Sync to Turso
+      # ─── 사이트가 읽는 Cloudflare D1 에 동기화 (events append + stats/crypto 교체, 안전가드 내장) ───
+      - name: Sync to D1
         env:
-          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
-          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
-        run: python scripts/sync_to_turso.py
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
+        run: python scripts/sync_to_d1.py
 
       # ─── 갱신된 conflict.db 를 Actions 캐시 + db-latest 릴리스에 저장 (다음 실행이 이어받음) ───
       - name: Save DB (private cache)

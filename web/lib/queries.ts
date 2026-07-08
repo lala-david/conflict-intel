@@ -47,7 +47,7 @@ async function _getHomeDataInner(): Promise<HomeData> {
   const since14 = daysAgo(14);
 
   // All six queries are independent → run concurrently (one round-trip window
-  // to Turso instead of six sequential ones).
+  // to D1 instead of six sequential ones).
   const [g, trendRows, prev7, catRows, hotRegions, recentEvents] = await Promise.all([
     queryOne<any>(`SELECT * FROM global_stats WHERE id = 1`),
     queryAll<{ date: string; daily: number }>(
