@@ -66,8 +66,8 @@ export function EventFeed({ events, bare = false }: Props) {
                   )}
                 </div>
 
-                <div className="shrink-0 text-right">
-                  <div className="font-display text-2xl font-semibold tabular-nums leading-none text-text-primary">
+                <div className="w-16 shrink-0 text-right">
+                  <div className="font-mono text-lg font-semibold tabular-nums leading-none text-text-primary">
                     {formatNumber(event.fatalities)}
                   </div>
                   <div className="mt-1 text-[10px] uppercase tracking-wider text-text-dim">
