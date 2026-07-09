@@ -9,7 +9,7 @@ import {
   type Variants,
 } from "framer-motion";
 import { ShaderBackdrop } from "@/components/ui/ShaderBackdrop";
-import { ThreatGlobe } from "@/components/ui/ThreatGlobe";
+import RotatingEarth from "@/components/ui/wireframe-dotted-globe";
 import { HeroFigures } from "@/components/home/HeroStats";
 import { getCategoryMeta, formatDateShort, formatNumber } from "@/lib/utils";
 import type { WireEvent } from "@/lib/queries-wire";
@@ -109,7 +109,11 @@ export function TheWire({ events, fatalities90d, totals }: Props) {
               }}
               aria-hidden
             />
-            <ThreatGlobe className="max-w-[440px] drop-shadow-[0_0_70px_rgba(239,68,68,0.22)]" />
+            <RotatingEarth
+              width={480}
+              height={480}
+              className="w-full max-w-[440px] drop-shadow-[0_0_60px_rgba(239,68,68,0.16)]"
+            />
           </div>
 
           <WireTicker events={events} reduced={reduced} />
