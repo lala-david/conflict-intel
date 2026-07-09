@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroStats } from "@/components/home/HeroStats";
+import { LiveStatusBar } from "@/components/home/LiveStatusBar";
 import { HotRegionsList } from "@/components/home/HotRegions";
 import { EventFeed } from "@/components/home/EventFeed";
 import { WorldMapSection } from "@/components/map/WorldMapSection";
@@ -31,6 +32,9 @@ export default async function HomePage() {
       <main>
         {/* Hero */}
         <HeroStats totals={data.totals} />
+
+        {/* Live status — threat index, weekly trend, data freshness */}
+        <LiveStatusBar threat={data.threatIndex} updatedAt={data.updatedAt} />
 
         {/* Global Map — streamed so the rest of the page isn't blocked on its query */}
         <Suspense fallback={<MapSkeleton />}>

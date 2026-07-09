@@ -60,6 +60,23 @@ export function cleanNote(s?: string | null): string {
   return t;
 }
 
+/** Relative "time ago" for a UTC timestamp ("YYYY-MM-DD HH:MM:SS" or ISO). */
+export function timeAgo(ts?: string | null): string {
+  if (!ts) return "";
+  // DB timestamps are UTC but lack a zone marker — pin to UTC before diffing.
+  const iso = ts.includes("T") ? ts : ts.replace(" ", "T");
+  const d = new Date(/[zZ]|[+-]\d\d:?\d\d$/.test(iso) ? iso : iso + "Z");
+  const sec = Math.floor((Date.now() - d.getTime()) / 1000);
+  if (!isFinite(sec) || sec < 0) return "just now";
+  if (sec < 60) return "just now";
+  const m = Math.floor(sec / 60);
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  const days = Math.floor(h / 24);
+  return days === 1 ? "1 day ago" : `${days} days ago`;
+}
+
 export function formatDateShort(date: string): string {
   if (!date || date.length < 10) return date || "";
   const d = new Date(date);

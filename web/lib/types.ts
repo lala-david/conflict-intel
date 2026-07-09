@@ -100,6 +100,7 @@ export interface HomeData {
   categories: Record<Category, { events: number; fatalities: number }>;
   hotRegions: HotRegion[];
   recentEvents: Event[];
+  updatedAt: string | null;
 }
 
 export interface CryptoWallet {

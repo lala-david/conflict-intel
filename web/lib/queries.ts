@@ -114,6 +114,7 @@ async function _getHomeDataInner(): Promise<HomeData> {
     categories,
     hotRegions,
     recentEvents,
+    updatedAt: g?.updated_at ?? null,
   };
 }
 
