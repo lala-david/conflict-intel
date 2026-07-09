@@ -7,6 +7,7 @@ import { formatNumber, formatDate, getCategoryMeta, cleanNote } from "@/lib/util
 import { ArrowLeft, MapPin, Calendar, Users, ExternalLink } from "lucide-react";
 import { EventMiniMapClient } from "@/components/map/EventMiniMapClient";
 import { SourceBadge, ConfidenceBadge } from "@/components/ui/SourceBadge";
+import { getEventProvenance } from "@/lib/queries-provenance";
 
 export const revalidate = 86400; // 24h
 
@@ -35,8 +36,17 @@ export default async function EventPage({ params }: Props) {
   const event = await getEventById(decodeURIComponent(params.id));
   if (!event) notFound();
 
-  const related = await getRelatedEvents(event, 6);
+  const [related, provenance] = await Promise.all([
+    getRelatedEvents(event, 6),
+    getEventProvenance(event.id),
+  ]);
   const meta = getCategoryMeta(event.category);
+
+  const CONFIDENCE_DEF: Record<string, string> = {
+    high: "Category assignment is unambiguous from the source record.",
+    medium: "Category inferred with some interpretation of the source record.",
+    low: "Category is a best-effort guess — treat with caution.",
+  };
 
   return (
     <>
@@ -110,6 +120,105 @@ export default async function EventPage({ params }: Props) {
             </div>
           )}
         </div>
+
+        {/* Provenance & corroboration */}
+        {provenance && (
+          <section className="mt-8 rounded-lg border border-border bg-surface p-6">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-text-dim">
+                Provenance &amp; corroboration
+              </h2>
+              <span
+                className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold tracking-wide"
+                style={{
+                  background: provenance.grade.bg,
+                  borderColor: provenance.grade.color + "40",
+                  color: provenance.grade.color,
+                }}
+              >
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full"
+                  style={{ background: provenance.grade.color }}
+                />
+                {provenance.grade.label}
+              </span>
+            </div>
+
+            <p className="mt-2 text-sm text-text-dim">{provenance.grade.desc}</p>
+
+            {/* Source list */}
+            <div className="mt-5">
+              <div className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-text-dim">
+                {provenance.sourceCount > 1
+                  ? `Corroborated by ${provenance.sourceCount} sources`
+                  : "Single source"}
+              </div>
+              <ul className="flex flex-col gap-2">
+                {provenance.sources.map((s) => (
+                  <li
+                    key={s.source}
+                    className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-border bg-background px-3 py-2"
+                  >
+                    <SourceBadge source={s.source} />
+                    {s.sourceUrl ? (
+                      <a
+                        href={s.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 font-mono text-[11px] text-text-dim underline transition hover:text-text-primary"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        {(() => {
+                          try {
+                            return new URL(s.sourceUrl).hostname;
+                          } catch {
+                            return "source link";
+                          }
+                        })()}
+                      </a>
+                    ) : (
+                      <span className="font-mono text-[11px] text-text-dim/60">
+                        no link
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Fatality range + confidence */}
+            <div className="mt-5 grid gap-4 border-t border-border pt-4 sm:grid-cols-2">
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-widest text-text-dim">
+                  Fatality estimate
+                </div>
+                <div className="mt-1 font-mono text-sm text-text-primary">
+                  {(() => {
+                    const lo = provenance.fatalitiesLow;
+                    const hi = provenance.fatalitiesHigh;
+                    if (lo != null && hi != null && lo !== hi)
+                      return `${formatNumber(lo)}–${formatNumber(hi)} killed`;
+                    const v = hi ?? lo ?? event.fatalities;
+                    return `${formatNumber(v)} killed`;
+                  })()}
+                </div>
+              </div>
+              {event.category_confidence && (
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-widest text-text-dim">
+                    Category confidence
+                  </div>
+                  <div className="mt-1 flex items-center gap-2">
+                    <ConfidenceBadge confidence={event.category_confidence} />
+                  </div>
+                  <p className="mt-1 text-xs text-text-dim">
+                    {CONFIDENCE_DEF[event.category_confidence]}
+                  </p>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* Map */}
         {event.latitude != null && event.longitude != null && (

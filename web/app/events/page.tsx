@@ -15,6 +15,7 @@ import { Search } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Flag } from "@/components/ui/Flag";
 import { SourceBadge, getSourceMeta } from "@/components/ui/SourceBadge";
+import { getCorroboration } from "@/lib/queries-provenance";
 import { isoFor } from "@/lib/country-iso";
 
 export const dynamic = "force-dynamic";
@@ -69,6 +70,9 @@ export default async function EventsPage({ searchParams }: Props) {
   const offset = (currentPage - 1) * PER_PAGE;
 
   const events = await fetchEvents(where, params, PER_PAGE, offset);
+
+  // One batched query for the whole page: id → number of corroborating sources.
+  const corroboration = await getCorroboration(events.map((e) => e.id));
 
   const hasFilters = !!(
     searchParams.q ||
@@ -323,7 +327,10 @@ export default async function EventsPage({ searchParams }: Props) {
                           · {event.location}
                         </span>
                       )}
-                      <SourceBadge source={event.source} />
+                      <SourceBadge
+                        source={event.source}
+                        count={corroboration.get(event.id)}
+                      />
                     </div>
                     <div className="mt-2 truncate text-sm font-medium text-text-primary group-hover:text-accent">
                       {title}

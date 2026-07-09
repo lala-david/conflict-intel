@@ -6,7 +6,7 @@ import type { Confidence } from "@/lib/types";
  * GDELT blip at a glance. Compact, mono, dark-token styled.
  */
 
-type Tier =
+export type Tier =
   | "verified"
   | "academic"
   | "media"
@@ -38,7 +38,7 @@ const TIER_STYLE: Record<Tier, TierStyle> = {
   other: { label: "source", desc: "Uncategorized source", color: "#94a3b8", bg: "rgba(148,163,184,0.12)" },
 };
 
-interface SourceMeta {
+export interface SourceMeta {
   /** provider name shown on the chip, e.g. "UCDP" */
   provider: string;
   tier: Tier;
@@ -93,15 +93,22 @@ interface Props {
   source?: string | null;
   /** show the tier descriptor after the provider, e.g. "UCDP · casualty-verified" */
   showLabel?: boolean;
+  /** total distinct corroborating sources for the incident; renders "+N" when >1 */
+  count?: number;
   className?: string;
 }
 
-/** Compact provenance pill: colored dot + provider (+ optional tier label). */
-export function SourceBadge({ source, showLabel = true, className = "" }: Props) {
+/** Compact provenance pill: colored dot + provider (+ optional tier label / corroboration count). */
+export function SourceBadge({ source, showLabel = true, count, className = "" }: Props) {
   const { provider, style } = getSourceMeta(source);
+  const extra = count && count > 1 ? count - 1 : 0;
   return (
     <span
-      title={`${provider} · ${style.desc}`}
+      title={
+        extra
+          ? `${provider} · ${style.desc} · corroborated by ${count} sources`
+          : `${provider} · ${style.desc}`
+      }
       className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[10px] font-medium leading-none tracking-wide ${className}`}
       style={{ background: style.bg, borderColor: style.color + "40", color: style.color }}
     >
@@ -112,6 +119,9 @@ export function SourceBadge({ source, showLabel = true, className = "" }: Props)
       <span className="uppercase">{provider}</span>
       {showLabel && (
         <span className="font-normal normal-case opacity-80">· {style.label}</span>
+      )}
+      {extra > 0 && (
+        <span className="font-normal normal-case opacity-90">+{extra}</span>
       )}
     </span>
   );

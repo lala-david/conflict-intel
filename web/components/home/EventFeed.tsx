@@ -4,6 +4,7 @@ import { formatDate, getCategoryMeta, formatNumber, cleanNote } from "@/lib/util
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Flag } from "@/components/ui/Flag";
 import { SourceBadge } from "@/components/ui/SourceBadge";
+import { getCorroboration } from "@/lib/queries-provenance";
 import { isoFor } from "@/lib/country-iso";
 
 interface Props {
@@ -11,7 +12,9 @@ interface Props {
   bare?: boolean;
 }
 
-export function EventFeed({ events, bare = false }: Props) {
+export async function EventFeed({ events, bare = false }: Props) {
+  // One batched, indexed query for the feed: id → corroborating source count.
+  const corroboration = await getCorroboration(events.map((e) => e.id));
   const inner = (
     <>
       <SectionHeading
@@ -53,7 +56,11 @@ export function EventFeed({ events, bare = false }: Props) {
                       <Flag iso={isoFor(event.country)} size="sm" />
                       {event.country}
                     </span>
-                    <SourceBadge source={event.source} showLabel={false} />
+                    <SourceBadge
+                      source={event.source}
+                      showLabel={false}
+                      count={corroboration.get(event.id)}
+                    />
                   </div>
                   <div className="mt-2 truncate text-sm font-medium text-text-primary group-hover:text-accent">
                     {actor}
