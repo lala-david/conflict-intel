@@ -13,6 +13,7 @@ const CFG = "open-next.config.ts";
 const HIDDEN = "_open-next.config.ts.hidden";
 const run = (cmd) => execSync(cmd, { stdio: "inherit" });
 
+run("node scripts/generate-briefs.mjs"); // refresh the bundled daily-brief manifest
 run("opennextjs-cloudflare build");
 renameSync(CFG, HIDDEN);
 try {

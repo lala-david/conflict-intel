@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     "armed violence",
   ],
   authors: [{ name: "David" }],
+  alternates: {
+    types: {
+      "application/rss+xml": [{ url: "/feed.xml", title: "Daily Brief — RSS" }],
+    },
+  },
   openGraph: {
     title: "Conflict & Security Intelligence",
     description:
@@ -30,6 +35,19 @@ export const metadata: Metadata = {
   },
 };
 
+const ORG_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Conflict & Security Intelligence",
+  url: SITE_URL,
+  description:
+    "A live, categorized feed of 570,000+ armed-conflict and security events since 1970, built from UCDP, GTD, GDELT and open-source intelligence.",
+  sameAs: [
+    "https://t.me/conflictintel",
+    "https://github.com/lala-david",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -38,6 +56,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="min-h-screen bg-background text-text-primary antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSON_LD) }}
+        />
         {children}
         {process.env.NEXT_PUBLIC_CF_BEACON_TOKEN && (
           // Cloudflare Web Analytics — privacy-friendly, no cookies. Token from

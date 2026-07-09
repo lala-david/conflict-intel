@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ArrowRight } from "lucide-react";
 import { listBriefs } from "@/lib/briefs";
+import { WaitlistForm } from "@/components/ui/WaitlistForm";
 
 export const revalidate = 3600;
 
@@ -53,6 +54,30 @@ export default async function BriefArchivePage() {
             ))}
           </div>
         )}
+
+        <section className="mt-14 rounded-lg border border-border bg-surface p-6 sm:p-8">
+          <div className="flex flex-col gap-1">
+            <h2 className="font-display text-lg font-semibold text-text-primary">
+              Get the brief in your inbox
+            </h2>
+            <p className="text-sm text-text-dim">
+              A free daily newsletter — the morning intelligence read, delivered. Or
+              subscribe via{" "}
+              <a
+                href="/feed.xml"
+                className="text-accent hover:underline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                RSS
+              </a>
+              .
+            </p>
+          </div>
+          <div className="mt-4 max-w-md">
+            <WaitlistForm interest="daily-brief" cta="Subscribe" placeholder="you@work.com" />
+          </div>
+        </section>
       </main>
       <Footer />
     </>

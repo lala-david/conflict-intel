@@ -6,6 +6,7 @@ import { getEventById, getRelatedEvents } from "@/lib/queries";
 import { formatNumber, formatDate, getCategoryMeta, cleanNote } from "@/lib/utils";
 import { ArrowLeft, MapPin, Calendar, Users, ExternalLink } from "lucide-react";
 import { EventMiniMapClient } from "@/components/map/EventMiniMapClient";
+import { SourceBadge, ConfidenceBadge } from "@/components/ui/SourceBadge";
 
 export const revalidate = 86400; // 24h
 
@@ -49,22 +50,21 @@ export default async function EventPage({ params }: Props) {
           Home
         </Link>
 
-        {/* Category badge + date */}
-        <div className="mb-4 flex items-center gap-3 text-xs">
+        {/* Category badge + provenance + date */}
+        <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs">
           <span
             className="inline-flex rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white"
             style={{ background: meta.color }}
           >
             {meta.label}
           </span>
-          <span className="font-mono text-text-dim">
-            {formatDate(event.date)}
-          </span>
+          <SourceBadge source={event.source} />
           {event.category_confidence && (
-            <span className="font-mono text-text-dim">
-              · {event.category_confidence} confidence
-            </span>
+            <ConfidenceBadge confidence={event.category_confidence} />
           )}
+          <span className="font-mono text-text-dim">
+            · {formatDate(event.date)}
+          </span>
         </div>
 
         {/* Title */}

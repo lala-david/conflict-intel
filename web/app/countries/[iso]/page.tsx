@@ -12,7 +12,7 @@ import {
   getCountryPoints,
   getCountryTopActors,
 } from "@/lib/queries";
-import { formatNumber, formatDate, getCategoryMeta, slugify } from "@/lib/utils";
+import { formatNumber, formatDate, getCategoryMeta, slugify, SITE_URL } from "@/lib/utils";
 import { Flag } from "@/components/ui/Flag";
 import { isoFor } from "@/lib/country-iso";
 import { ArrowLeft, Download } from "lucide-react";
@@ -68,8 +68,53 @@ export default async function CountryPage({ params }: Props) {
     .map(([cat, v]) => ({ cat, ...v }))
     .sort((a, b) => b.count - a.count);
 
+  const currentYear = new Date().getFullYear();
+  const countryUrl = `${SITE_URL}/countries/${encodeURIComponent(name)}`;
+  const datasetJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: `Armed conflict & security events — ${country.country}`,
+    description: `${formatNumber(country.event_count)} categorized armed-violence and security events in ${country.country} from 1970 to present, with ${formatNumber(country.total_fatalities)} recorded fatalities. Sourced from UCDP, GTD, GDELT and open-source intelligence.`,
+    url: countryUrl,
+    keywords: [
+      "conflict",
+      "terrorism",
+      "armed violence",
+      "security",
+      country.country,
+    ],
+    creator: {
+      "@type": "Organization",
+      name: "Conflict & Security Intelligence",
+      url: SITE_URL,
+    },
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    isAccessibleForFree: true,
+    spatialCoverage: {
+      "@type": "Place",
+      name: country.country,
+    },
+    temporalCoverage: `1970/${currentYear}`,
+    distribution: [
+      {
+        "@type": "DataDownload",
+        encodingFormat: "text/csv",
+        contentUrl: `${SITE_URL}/api/export/csv?country=${encodeURIComponent(name)}`,
+      },
+      {
+        "@type": "DataDownload",
+        encodingFormat: "application/vnd.sqlite3",
+        contentUrl: `${SITE_URL}/data`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetJsonLd) }}
+      />
       <Header />
       <main className="mx-auto max-w-7xl px-6 py-12">
         {/* Back */}

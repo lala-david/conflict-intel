@@ -6,6 +6,7 @@ import { formatNumber } from "@/lib/utils";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Flag } from "@/components/ui/Flag";
 import { isoFor } from "@/lib/country-iso";
+import { TrackButton } from "@/components/ui/TrackButton";
 
 export const dynamic = "force-dynamic";
 
@@ -41,39 +42,48 @@ export default async function CountriesPage() {
           {countries.map((c, i) => {
             const pct = (c.recent_30d_fatalities / maxFat30) * 100;
             return (
-              <Link
+              <div
                 key={c.country}
-                href={`/countries/${encodeURIComponent(c.country)}`}
-                className="group relative grid grid-cols-12 gap-4 border-b border-border px-5 py-3 text-sm transition last:border-b-0 hover:bg-surface-2"
+                className="group relative border-b border-border transition last:border-b-0 hover:bg-surface-2"
               >
-                <div className="col-span-1 font-mono text-xs text-text-dim">
-                  {String(i + 1).padStart(2, "0")}
+                <Link
+                  href={`/countries/${encodeURIComponent(c.country)}`}
+                  aria-label={`View ${c.country}`}
+                  className="absolute inset-0 z-0"
+                />
+                <div className="pointer-events-none relative z-10 grid grid-cols-12 gap-4 py-3 pl-5 pr-28 text-sm">
+                  <div className="col-span-1 font-mono text-xs text-text-dim">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div className="col-span-4 flex items-center gap-2.5 font-medium text-text-primary group-hover:text-accent">
+                    <Flag iso={isoFor(c.country)} size="md" />
+                    {c.country}
+                  </div>
+                  <div className="col-span-2 text-right font-mono tabular-nums text-text-dim">
+                    {formatNumber(c.event_count)}
+                  </div>
+                  <div className="col-span-2 text-right font-mono tabular-nums text-text-dim">
+                    {formatNumber(c.total_fatalities)}
+                  </div>
+                  <div className="col-span-1 text-right font-mono tabular-nums text-text-dim">
+                    {formatNumber(c.recent_30d_events)}
+                  </div>
+                  <div className="col-span-2 text-right font-mono tabular-nums">
+                    <span className={c.recent_30d_fatalities > 0 ? "text-accent" : "text-text-dim"}>
+                      {formatNumber(c.recent_30d_fatalities)}
+                    </span>
+                  </div>
                 </div>
-                <div className="col-span-4 flex items-center gap-2.5 font-medium text-text-primary group-hover:text-accent">
-                  <Flag iso={isoFor(c.country)} size="md" />
-                  {c.country}
-                </div>
-                <div className="col-span-2 text-right font-mono tabular-nums text-text-dim">
-                  {formatNumber(c.event_count)}
-                </div>
-                <div className="col-span-2 text-right font-mono tabular-nums text-text-dim">
-                  {formatNumber(c.total_fatalities)}
-                </div>
-                <div className="col-span-1 text-right font-mono tabular-nums text-text-dim">
-                  {formatNumber(c.recent_30d_events)}
-                </div>
-                <div className="col-span-2 text-right font-mono tabular-nums">
-                  <span className={c.recent_30d_fatalities > 0 ? "text-accent" : "text-text-dim"}>
-                    {formatNumber(c.recent_30d_fatalities)}
-                  </span>
+                <div className="absolute right-4 top-1/2 z-20 -translate-y-1/2">
+                  <TrackButton type="country" value={c.country} compact />
                 </div>
                 {c.recent_30d_fatalities > 0 && (
                   <div
-                    className="absolute bottom-0 left-0 h-0.5 bg-accent/40"
+                    className="absolute bottom-0 left-0 z-10 h-0.5 bg-accent/40"
                     style={{ width: `${pct}%` }}
                   />
                 )}
-              </Link>
+              </div>
             );
           })}
         </div>

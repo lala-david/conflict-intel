@@ -3,6 +3,7 @@ import type { Event } from "@/lib/types";
 import { formatDate, getCategoryMeta, formatNumber, cleanNote } from "@/lib/utils";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Flag } from "@/components/ui/Flag";
+import { SourceBadge } from "@/components/ui/SourceBadge";
 import { isoFor } from "@/lib/country-iso";
 
 interface Props {
@@ -52,6 +53,7 @@ export function EventFeed({ events, bare = false }: Props) {
                       <Flag iso={isoFor(event.country)} size="sm" />
                       {event.country}
                     </span>
+                    <SourceBadge source={event.source} showLabel={false} />
                   </div>
                   <div className="mt-2 truncate text-sm font-medium text-text-primary group-hover:text-accent">
                     {actor}

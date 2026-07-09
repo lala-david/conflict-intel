@@ -7,6 +7,7 @@ import type { Event, Category } from "@/lib/types";
 import { Search } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Flag } from "@/components/ui/Flag";
+import { SourceBadge } from "@/components/ui/SourceBadge";
 import { isoFor } from "@/lib/country-iso";
 
 export const dynamic = "force-dynamic";
@@ -270,6 +271,7 @@ export default async function EventsPage({ searchParams }: Props) {
                           · {event.location}
                         </span>
                       )}
+                      <SourceBadge source={event.source} />
                     </div>
                     <div className="mt-2 truncate text-sm font-medium text-text-primary group-hover:text-accent">
                       {title}

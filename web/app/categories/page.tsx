@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { queryAll } from "@/lib/db";
 import { CATEGORY_META, formatNumber, slugify } from "@/lib/utils";
 import type { Category } from "@/lib/types";
+import { TrackButton } from "@/components/ui/TrackButton";
 
 export const dynamic = "force-dynamic";
 
@@ -34,36 +35,45 @@ export default async function CategoriesPage() {
             const meta = CATEGORY_META[r.category];
             if (!meta) return null;
             return (
-              <Link
+              <div
                 key={r.category}
-                href={`/categories/${slugify(r.category.replace("_", "-"))}`}
-                className="group block rounded-lg border border-border bg-surface p-5 transition hover:border-text-dim hover:bg-surface-2"
+                className="group relative rounded-lg border border-border bg-surface p-5 transition hover:border-text-dim hover:bg-surface-2"
               >
-                <div className="flex items-center gap-3">
-                  <div
-                    className="h-3 w-3 rounded-full"
-                    style={{ background: meta.color }}
-                  />
-                  <div className="font-display text-lg font-bold text-text-primary group-hover:text-accent">
-                    {meta.label}
+                <Link
+                  href={`/categories/${slugify(r.category.replace("_", "-"))}`}
+                  aria-label={`View ${meta.label}`}
+                  className="absolute inset-0 z-0 rounded-lg"
+                />
+                <div className="pointer-events-none relative z-10">
+                  <div className="flex items-center gap-3 pr-24">
+                    <div
+                      className="h-3 w-3 rounded-full"
+                      style={{ background: meta.color }}
+                    />
+                    <div className="font-display text-lg font-bold text-text-primary group-hover:text-accent">
+                      {meta.label}
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm text-text-dim">{meta.description}</p>
+                  <div className="mt-4 flex items-baseline gap-4 font-mono text-xs text-text-dim">
+                    <span>
+                      <span className="text-xl font-bold tabular-nums text-text-primary">
+                        {formatNumber(r.events)}
+                      </span>{" "}
+                      events
+                    </span>
+                    <span>
+                      <span className="text-xl font-bold tabular-nums text-text-primary">
+                        {formatNumber(r.fatalities)}
+                      </span>{" "}
+                      killed
+                    </span>
                   </div>
                 </div>
-                <p className="mt-3 text-sm text-text-dim">{meta.description}</p>
-                <div className="mt-4 flex items-baseline gap-4 font-mono text-xs text-text-dim">
-                  <span>
-                    <span className="text-xl font-bold tabular-nums text-text-primary">
-                      {formatNumber(r.events)}
-                    </span>{" "}
-                    events
-                  </span>
-                  <span>
-                    <span className="text-xl font-bold tabular-nums text-text-primary">
-                      {formatNumber(r.fatalities)}
-                    </span>{" "}
-                    killed
-                  </span>
+                <div className="absolute right-4 top-4 z-20">
+                  <TrackButton type="category" value={r.category} />
                 </div>
-              </Link>
+              </div>
             );
           })}
         </div>

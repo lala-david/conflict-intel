@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useWatchlist, type TrackItem } from "@/lib/useWatchlist";
 import { getCategoryMeta, formatNumber, formatDate } from "@/lib/utils";
-import { X, Bell } from "lucide-react";
+import { X, Plus, ChevronDown } from "lucide-react";
+import { WatchlistBuilder } from "@/components/tracking/WatchlistBuilder";
 
 interface Ev {
   id: string;
@@ -22,10 +23,16 @@ function labelFor(item: TrackItem) {
   return item.value;
 }
 
-export function TrackingDashboard() {
+interface Props {
+  countries: string[];
+  orgs: string[];
+}
+
+export function TrackingDashboard({ countries, orgs }: Props) {
   const { items, ready, remove } = useWatchlist();
   const [events, setEvents] = useState<Ev[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
 
   const key = items.map((i) => `${i.type}:${i.value}`).sort().join("|");
 
@@ -73,27 +80,16 @@ export function TrackingDashboard() {
 
   if (items.length === 0) {
     return (
-      <div className="mt-10 rounded-lg border border-dashed border-border bg-surface p-10 text-center">
-        <Bell className="mx-auto h-6 w-6 text-text-dim" />
-        <h2 className="mt-4 font-display text-2xl font-semibold">Your watchlist is empty</h2>
-        <p className="mx-auto mt-2 max-w-md text-sm text-text-dim">
-          Track the countries and categories you follow, then see everything new in
-          one place. Start from any country or category page.
-        </p>
-        <div className="mt-6 flex items-center justify-center gap-3">
-          <Link
-            href="/countries"
-            className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent/90"
-          >
-            Browse countries
-          </Link>
-          <Link
-            href="/categories"
-            className="rounded-md border border-border px-4 py-2 text-sm font-medium text-text-primary hover:bg-surface-2"
-          >
-            Browse categories
-          </Link>
+      <div className="mt-10">
+        <div className="mb-4">
+          <h2 className="font-display text-2xl font-semibold">Build your watchlist</h2>
+          <p className="mt-2 max-w-lg text-sm text-text-dim">
+            Add the countries, categories and armed groups you follow — then see
+            everything new across them in one feed. Start with a popular pick or search
+            below. Saved on this device; no account needed.
+          </p>
         </div>
+        <WatchlistBuilder countries={countries} orgs={orgs} />
       </div>
     );
   }
@@ -123,7 +119,26 @@ export function TrackingDashboard() {
             </button>
           </span>
         ))}
+        <button
+          type="button"
+          aria-expanded={showAdd}
+          onClick={() => setShowAdd((v) => !v)}
+          className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+            showAdd
+              ? "border-accent bg-accent/15 text-accent"
+              : "border-border bg-surface-2 text-text-primary hover:border-accent hover:text-accent"
+          }`}
+        >
+          {showAdd ? <ChevronDown className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+          Add more
+        </button>
       </div>
+
+      {showAdd && (
+        <div className="mt-4">
+          <WatchlistBuilder countries={countries} orgs={orgs} />
+        </div>
+      )}
 
       {/* Summary */}
       <dl className="mt-8 grid grid-cols-3 gap-y-6 border-y border-border py-6">
