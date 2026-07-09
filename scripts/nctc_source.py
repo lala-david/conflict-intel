@@ -5,15 +5,13 @@ NCTC (국가대테러센터) 데이터 수집 모듈
 Selenium 없이 requests + pdfminer만 사용 (경량).
 
 수집 정책 (2026-07 개편):
-- 하루 한 번: 목록 최상단 글번호를 마커(data/.nctc_state.json)에 기록해, 새 글이
-  올라왔을 때만 실제로 PDF를 내려받는다. 새 글이 없으면 목록 조회만 하고 스킵.
-- 그래도 놓친 날을 대비해 최신 N개(기본 5) 글을 훑는다 (INSERT OR IGNORE 로 중복 무해).
+- 하루 한 번: 파이프라인이 17:00 KST 실행에서만 NCTC를 포함한다(registry의 RUN_NCTC 게이트).
+- 최신 N개(기본 5) 글을 훑어 놓친 날을 백필한다 (INSERT OR IGNORE 로 중복 무해).
 - 사건 날짜는 게시일이 아니라 PDF 안 각 사건의 실제 발생일(○ M.D)을 쓴다.
-- 국가 매핑을 크게 확장했고, 매핑에 없어도 이벤트를 버리지 않고 한글 국가명으로 보존한다.
+- 국가 매핑을 크게 확장했고, 매핑에 없는 토큰(단체명·파편)은 버리고 로그만 남긴다.
 """
 import re
 import os
-import json
 import tempfile
 import requests
 from datetime import datetime
@@ -23,8 +21,6 @@ from logger import log
 
 NCTC_BASE = "http://www.nctc.go.kr/nctc/information"
 NCTC_DAILY_URL = f"{NCTC_BASE}/majorDailyTerrorism.do"
-
-_STATE_PATH = os.path.join(os.path.dirname(__file__), "..", "data", ".nctc_state.json")
 
 # 한국어 테러 용어 → 영어 (설명 번역용)
 _KO_TERMS = {
@@ -190,31 +186,14 @@ def _parse_daily_pdf(text: str) -> dict:
     return result
 
 
-def _load_state() -> dict:
-    try:
-        with open(_STATE_PATH, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return {}
-
-
-def _save_state(state: dict) -> None:
-    try:
-        os.makedirs(os.path.dirname(_STATE_PATH), exist_ok=True)
-        with open(_STATE_PATH, "w", encoding="utf-8") as f:
-            json.dump(state, f, ensure_ascii=False)
-    except Exception as e:  # noqa: BLE001
-        log.error(f"[nctc] state save failed: {e}")
-
-
 def _article_no(href: str) -> int:
     m = re.search(r"articleNo=(\d+)", href)
     return int(m.group(1)) if m else 0
 
 
 def fetch_nctc_daily(limit: int = 5) -> list[dict]:
-    """NCTC 일일 테러동향 수집. 새 글이 올라온 경우에만 최신 `limit`개 PDF를 파싱한다
-    (하루 한 번 성격 + 놓친 날 백필). 결과는 INSERT OR IGNORE 로 누적되어 중복 무해."""
+    """NCTC 일일 테러동향 최신 `limit`개 글을 파싱해 사건 목록을 반환한다. 하루 한 번(17:00
+    KST)만 호출되도록 스케줄에서 게이트하며, limit>1 로 놓친 날을 백필한다(INSERT OR IGNORE)."""
     try:
         resp = requests.get(
             NCTC_DAILY_URL,
@@ -240,15 +219,6 @@ def fetch_nctc_daily(limit: int = 5) -> list[dict]:
         if not links:
             return []
 
-        newest = max(n for n, _ in links)
-        state = _load_state()
-        last_seen = int(state.get("last_article", 0))
-
-        # 하루 한 번: 새 글이 없으면 목록 조회만 하고 스킵 (마커가 있는 환경에서만 동작)
-        if last_seen and newest <= last_seen:
-            log.info(f"[nctc] no new post (newest={newest} ≤ seen={last_seen}) — skip")
-            return []
-
         all_incidents = []
         unmapped: set[str] = set()
         for art_no, link in sorted(links, reverse=True):
@@ -263,9 +233,8 @@ def fetch_nctc_daily(limit: int = 5) -> list[dict]:
                     continue
                 all_incidents.append(inc)
 
-        _save_state({"last_article": newest, "last_run": datetime.now().strftime("%Y-%m-%d")})
         if unmapped:
-            log.info(f"  [nctc] unmapped countries (kept, add to _KO_COUNTRY): {sorted(unmapped)}")
+            log.info(f"  [nctc] unmapped tokens (dropped, extend _KO_COUNTRY if a real country): {sorted(unmapped)}")
         log.info(f"  [nctc] {len(all_incidents)} incidents from {len(links)} article(s)")
         return all_incidents
 

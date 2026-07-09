@@ -12,8 +12,10 @@ name: Daily Conflict Intelligence
 # 풀 DB는 db-latest 릴리스에 보관 → 캐시 미스 시 시드 (통계 정확성 보장).
 on:
   schedule:
-    # 하루 3번만 (아침·점심·저녁 KST) — 00:00/05:00/10:00 UTC = 09:00/14:00/19:00 KST
+    # 아침·점심·저녁 KST — 00:00/05:00/10:00 UTC = 09:00/14:00/19:00 KST (NCTC 제외)
     - cron: "0 0,5,10 * * *"
+    # NCTC 전용 하루 1회 — 08:00 UTC = 17:00 KST (이 실행에서만 NCTC 수집)
+    - cron: "0 8 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -46,7 +48,6 @@ jobs:
           path: |
             data/conflict.db
             data/terror.db
-            data/.nctc_state.json
           key: conflict-db-${{ github.run_id }}
           restore-keys: |
             conflict-db-
@@ -81,6 +82,8 @@ jobs:
           LOCAL_LLM_BASE_URL: ${{ secrets.LOCAL_LLM_BASE_URL }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ALERT_CHAT: ${{ secrets.TELEGRAM_ALERT_CHAT }}
+          # NCTC only on the 17:00 KST (08:00 UTC) run; skipped on the 09/14/19 cycles.
+          RUN_NCTC: ${{ github.event.schedule == '0 0,5,10 * * *' && 'skip' || '' }}
         timeout-minutes: 22
         run: python -u scripts/pipeline/run.py
 
@@ -108,9 +111,7 @@ jobs:
       - name: Save DB (private cache)
         uses: actions/cache/save@v4
         with:
-          path: |
-            data/conflict.db
-            data/.nctc_state.json
+          path: data/conflict.db
           key: conflict-db-${{ github.run_id }}
 
       - name: Refresh db-latest release
