@@ -8,6 +8,7 @@ export const metadata = {
 };
 
 const SOURCES: [string, string][] = [
+  ["GTD (START, Univ. of Maryland)", "Global Terrorism Database — 170K terrorism events, 1970–2016 (historical backfill). Redistribution per START's terms."],
   ["UCDP GED", "Georeferenced, casualty-verified organized-violence events, 1989–present."],
   ["GDELT", "Machine-coded global event stream for real-time coverage."],
   ["OpenSanctions · OFAC/EU/UN", "Sanctioned entities and designated crypto wallets."],

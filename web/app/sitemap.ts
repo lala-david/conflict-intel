@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
 import { getCountryList, getTopOrganizations } from "@/lib/queries";
-import { slugify } from "@/lib/utils";
+import { slugify, SITE_URL } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-const BASE = "https://conflict-researcher.david.dev";
+const BASE = SITE_URL;
 
 const CATEGORIES = [
   "war",

@@ -48,10 +48,12 @@ jobs:
           path: |
             data/conflict.db
             data/terror.db
-          key: conflict-db-${{ github.run_id }}
+          # v2: bumped 2026-07 to force a reseed from the refreshed db-latest
+          # (590K w/ GTD backfill) — old caches held a stale pre-GTD ~420K DB
+          # that kept resetting global_stats. Old prefixes intentionally dropped.
+          key: conflict-db-v2-${{ github.run_id }}
           restore-keys: |
-            conflict-db-
-            terror-db-
+            conflict-db-v2-
 
       - name: Migrate legacy DB filename (terror.db → conflict.db)
         run: |
@@ -112,7 +114,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: data/conflict.db
-          key: conflict-db-${{ github.run_id }}
+          key: conflict-db-v2-${{ github.run_id }}
 
       - name: Refresh db-latest release
         if: ${{ hashFiles('data/conflict.db') != '' }}

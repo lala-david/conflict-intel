@@ -124,7 +124,7 @@ export default async function CountryPage({ params }: Props) {
         {/* Timeline */}
         <section className="mb-12">
           <h2 className="mb-4 font-display text-2xl font-bold">
-            38-Year Timeline
+            {new Date().getFullYear() - 1970 + 1}-Year Timeline
           </h2>
           <CountryTimeline data={timeline} />
         </section>

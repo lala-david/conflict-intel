@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/utils";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Conflict & Security Intelligence — Track Global Conflict, Daily",
   description:
     "Track the countries, actors and categories you follow across 570,000+ conflict events since 1970. One live, categorized feed — updated every morning.",

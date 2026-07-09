@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SITE_URL } from "@/lib/utils";
 
 export const metadata = {
   title: "Embed Widgets — Conflict & Security Intelligence",
@@ -13,7 +14,7 @@ const WIDGETS = [
     url: "/embed/badge/Nigeria",
     width: 300,
     height: 100,
-    code: `<iframe src="https://conflict-researcher.david.dev/embed/badge/Nigeria"
+    code: `<iframe src="${SITE_URL}/embed/badge/Nigeria"
   width="300" height="100" frameborder="0"></iframe>`,
   },
   {
@@ -22,7 +23,7 @@ const WIDGETS = [
     url: "/embed/feed",
     width: 400,
     height: 420,
-    code: `<iframe src="https://conflict-researcher.david.dev/embed/feed"
+    code: `<iframe src="${SITE_URL}/embed/feed"
   width="400" height="420" frameborder="0"></iframe>`,
   },
   {
@@ -31,7 +32,7 @@ const WIDGETS = [
     url: "/embed/map",
     width: 600,
     height: 360,
-    code: `<iframe src="https://conflict-researcher.david.dev/embed/map"
+    code: `<iframe src="${SITE_URL}/embed/map"
   width="100%" height="360" frameborder="0"></iframe>`,
   },
 ];
