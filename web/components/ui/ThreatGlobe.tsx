@@ -41,29 +41,34 @@ export function ThreatGlobe({ className }: { className?: string }) {
   const onRender = useCallback((state: Record<string, number>) => {
     phiRef.current += 0.0035;
     state.phi = phiRef.current;
-    state.width = widthRef.current * 2;
-    state.height = widthRef.current * 2;
+    const w = (widthRef.current || 500) * 2;
+    state.width = w;
+    state.height = w;
   }, []);
 
   useEffect(() => {
-    const onResize = () => {
+    const measure = () => {
       if (canvasRef.current) widthRef.current = canvasRef.current.offsetWidth;
     };
-    window.addEventListener("resize", onResize);
-    onResize();
-    const opts = {
+    // ResizeObserver (not just window 'resize') so we catch the initial layout
+    // settling — offsetWidth is often 0 at mount, which left the globe invisible.
+    const ro = new ResizeObserver(measure);
+    if (canvasRef.current) ro.observe(canvasRef.current);
+    measure();
+    // Fallback size so createGlobe never inits at 0; onRender then tracks widthRef.
+    const seed = (widthRef.current || 500) * 2;
+    const globe = createGlobe(canvasRef.current!, {
       ...CONFIG,
-      width: widthRef.current * 2,
-      height: widthRef.current * 2,
+      width: seed,
+      height: seed,
       onRender,
-    };
-    const globe = createGlobe(canvasRef.current!, opts as COBEOptions);
+    } as COBEOptions);
     setTimeout(() => {
       if (canvasRef.current) canvasRef.current.style.opacity = "1";
     });
     return () => {
       globe.destroy();
-      window.removeEventListener("resize", onResize);
+      ro.disconnect();
     };
   }, [onRender]);
 
