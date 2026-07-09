@@ -15,3 +15,6 @@ data/conflict.db.bak
 # generated D1 load/sync SQL artifacts (see scripts/dump_for_d1.py, sync_to_d1.py --dry-run)
 data/conflict_d1.sql
 data/d1_sync_dryrun.sql
+
+# NCTC once-a-day collection marker (runtime state; persisted via CI cache)
+data/.nctc_state.json

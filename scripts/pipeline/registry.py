@@ -32,6 +32,6 @@ def build_registry(target_date: datetime) -> list[Connector]:
         FnConnector("sanctions", fetch_sanctions_updates),
         FnConnector("ofac", fetch_ofac_recent),
         FnConnector("wikipedia", fetch_wikipedia_incidents),
-        FnConnector("nctc", fetch_nctc_daily, 1),
+        FnConnector("nctc", fetch_nctc_daily, 5),
         FnConnector("telegram", fetch_telegram, TELEGRAM_CHANNELS),
     ]

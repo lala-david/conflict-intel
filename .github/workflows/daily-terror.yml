@@ -46,6 +46,7 @@ jobs:
           path: |
             data/conflict.db
             data/terror.db
+            data/.nctc_state.json
           key: conflict-db-${{ github.run_id }}
           restore-keys: |
             conflict-db-
@@ -107,7 +108,9 @@ jobs:
       - name: Save DB (private cache)
         uses: actions/cache/save@v4
         with:
-          path: data/conflict.db
+          path: |
+            data/conflict.db
+            data/.nctc_state.json
           key: conflict-db-${{ github.run_id }}
 
       - name: Refresh db-latest release

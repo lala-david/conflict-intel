@@ -1,118 +1,113 @@
 """
 NCTC (국가대테러센터) 데이터 수집 모듈
 
-일일/주간 테러 동향 PDF를 다운로드하여 구조화 데이터로 변환.
+일일 테러동향 PDF를 다운로드하여 구조화 데이터로 변환.
 Selenium 없이 requests + pdfminer만 사용 (경량).
 
-데이터 구조:
-- 지역별 테러 건수 (총계, 유럽, 미주, 아태, 중동, 아프리카)
-- 주요 사건 목록 (날짜, 국가, 설명, 사망자, 부상자)
+수집 정책 (2026-07 개편):
+- 하루 한 번: 목록 최상단 글번호를 마커(data/.nctc_state.json)에 기록해, 새 글이
+  올라왔을 때만 실제로 PDF를 내려받는다. 새 글이 없으면 목록 조회만 하고 스킵.
+- 그래도 놓친 날을 대비해 최신 N개(기본 5) 글을 훑는다 (INSERT OR IGNORE 로 중복 무해).
+- 사건 날짜는 게시일이 아니라 PDF 안 각 사건의 실제 발생일(○ M.D)을 쓴다.
+- 국가 매핑을 크게 확장했고, 매핑에 없어도 이벤트를 버리지 않고 한글 국가명으로 보존한다.
 """
 import re
 import os
+import json
 import tempfile
 import requests
 from datetime import datetime
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 from pdfminer.high_level import extract_text
 from logger import log
 
 NCTC_BASE = "http://www.nctc.go.kr/nctc/information"
 NCTC_DAILY_URL = f"{NCTC_BASE}/majorDailyTerrorism.do"
-NCTC_WEEKLY_URL = f"{NCTC_BASE}/weeklyTerroristTrends.do"
 
-# 한국어 테러 용어 → 영어 변환 사전
+_STATE_PATH = os.path.join(os.path.dirname(__file__), "..", "data", ".nctc_state.json")
+
+# 한국어 테러 용어 → 영어 (설명 번역용)
 _KO_TERMS = {
-    "무장괴한": "armed gunmen",
-    "무장단체": "armed group",
-    "무장세력": "armed forces",
-    "무장조직": "armed organization",
-    "총기테러": "gun attack",
-    "총격": "shooting",
-    "폭탄테러": "bombing",
-    "자폭테러": "suicide bombing",
-    "자살폭탄": "suicide bombing",
-    "차량폭탄": "car bombing",
-    "급조폭발물": "IED",
-    "박격포": "mortar attack",
-    "로켓공격": "rocket attack",
-    "공습": "airstrike",
-    "민간인": "civilians",
-    "민간인대상": "civilian target",
-    "경찰대상": "police target",
-    "경찰": "police",
-    "군인": "soldiers",
-    "군대": "military",
-    "정부군": "government forces",
-    "테러": "attack",
-    "공격": "attack",
-    "납치": "kidnapping",
-    "인질": "hostages",
-    "사망": "killed",
-    "부상": "wounded",
-    "피해": "casualties",
-    "에서": "in",
-    "州": "state",
-    "성": "province",
-    "지역": "region",
-    "도시": "city",
-    "마을": "village",
-    "시장": "market",
-    "교회": "church",
-    "사원": "mosque",
-    "학교": "school",
+    "무장괴한": "armed gunmen", "무장단체": "armed group", "무장세력": "armed forces",
+    "무장조직": "armed organization", "총기테러": "gun attack", "총격": "shooting",
+    "폭탄테러": "bombing", "자폭테러": "suicide bombing", "자살폭탄": "suicide bombing",
+    "차량폭탄": "car bombing", "급조폭발물": "IED", "박격포": "mortar attack",
+    "로켓공격": "rocket attack", "공습": "airstrike", "민간인": "civilians",
+    "경찰": "police", "군인": "soldiers", "군대": "military", "정부군": "government forces",
+    "테러": "attack", "공격": "attack", "납치": "kidnapping", "인질": "hostages",
+    "사망": "killed", "부상": "wounded", "피해": "casualties",
+    "시장": "market", "교회": "church", "사원": "mosque", "학교": "school",
 }
 
 
 def translate_korean_description(text: str) -> str:
-    """한국어 설명을 영어로 변환 (단순 단어 치환)"""
+    """한국어 설명을 영어로 변환 (단순 단어 치환). 남은 한글·군더더기는 정리."""
     if not text:
         return text
     result = text
-    # 길이 긴 것부터 치환 (부분 매칭 방지)
     for ko, en in sorted(_KO_TERMS.items(), key=lambda x: -len(x[0])):
-        result = result.replace(ko, en)
-    # 한국어 조사 제거
-    import re
-    result = re.sub(r'[가-힣]+', '', result)  # 남은 한국어 제거
-    result = re.sub(r'\s+', ' ', result).strip()
+        result = result.replace(ko, f" {en} ")
+    result = re.sub(r"[가-힣]+", " ", result)         # 남은 한글 제거
+    result = re.sub(r"[一-鿿]+", " ", result)  # 남은 한자(州·省 등) 제거
+    result = re.sub(r"[·∘ㆍ]", " ", result)
+    result = re.sub(r"\s*,\s*", ", ", result)
+    result = re.sub(r"\s{2,}", " ", result).strip(" ,")
     return result
 
 
-# 국가명 한→영 매핑 (주요국)
-_KO_TO_EN = {
-    "나이지리아": "Nigeria", "파키스탄": "Pakistan", "아프가니스탄": "Afghanistan",
-    "이라크": "Iraq", "시리아": "Syria", "소말리아": "Somalia", "말리": "Mali",
-    "부르키나파소": "Burkina Faso", "수단": "Sudan", "콩고": "DR Congo (Zaire)",
-    "이스라엘": "Israel", "팔레스타인": "Palestinian Territories",
-    "예멘": "Yemen", "레바논": "Lebanon", "터키": "Turkey", "이란": "Iran",
-    "이집트": "Egypt", "리비아": "Libya", "튀니지": "Tunisia",
-    "모잠비크": "Mozambique", "에티오피아": "Ethiopia", "카메룬": "Cameroon",
-    "차드": "Chad", "니제르": "Niger", "케냐": "Kenya",
-    "인도": "India", "미얀마": "Myanmar (Burma)", "필리핀": "Philippines",
-    "인도네시아": "Indonesia", "태국": "Thailand",
-    "러시아": "Russia", "우크라이나": "Ukraine", "프랑스": "France",
-    "영국": "United Kingdom", "독일": "Germany", "벨기에": "Belgium",
-    "미국": "United States of America", "콜롬비아": "Colombia", "멕시코": "Mexico",
-    "방글라데시": "Bangladesh", "스리랑카": "Sri Lanka",
-}
-
-# 국가명 한→ISO2
-_KO_TO_ISO = {
-    "나이지리아": "NG", "파키스탄": "PK", "아프가니스탄": "AF",
-    "이라크": "IQ", "시리아": "SY", "소말리아": "SO", "말리": "ML",
-    "부르키나파소": "BF", "수단": "SD", "콩고": "CD",
-    "이스라엘": "IL", "팔레스타인": "PS",
-    "예멘": "YE", "레바논": "LB", "터키": "TR", "이란": "IR",
-    "이집트": "EG", "리비아": "LY", "튀니지": "TN",
-    "모잠비크": "MZ", "에티오피아": "ET", "카메룬": "CM",
-    "차드": "TD", "니제르": "NE", "케냐": "KE",
-    "인도": "IN", "미얀마": "MM", "필리핀": "PH",
-    "인도네시아": "ID", "태국": "TH",
-    "러시아": "RU", "우크라이나": "UA", "프랑스": "FR",
-    "영국": "GB", "독일": "DE", "벨기에": "BE",
-    "미국": "US", "콜롬비아": "CO", "멕시코": "MX",
-    "방글라데시": "BD", "스리랑카": "LK",
+# 국가명 한글 → (ISO2, 영문). 대폭 확장 — 매핑에 없으면 버리지 않고 한글명으로 보존한다.
+_KO_COUNTRY: dict[str, tuple[str, str]] = {
+    # 중동·북아프리카
+    "이라크": ("IQ", "Iraq"), "시리아": ("SY", "Syria"), "예멘": ("YE", "Yemen"),
+    "레바논": ("LB", "Lebanon"), "이스라엘": ("IL", "Israel"),
+    "팔레스타인": ("PS", "Palestinian Territories"), "요르단": ("JO", "Jordan"),
+    "사우디아라비아": ("SA", "Saudi Arabia"), "사우디": ("SA", "Saudi Arabia"),
+    "이란": ("IR", "Iran"), "터키": ("TR", "Turkey"), "튀르키예": ("TR", "Turkey"),
+    "쿠웨이트": ("KW", "Kuwait"), "카타르": ("QA", "Qatar"),
+    "아랍에미리트": ("AE", "United Arab Emirates"), "바레인": ("BH", "Bahrain"),
+    "오만": ("OM", "Oman"), "이집트": ("EG", "Egypt"), "리비아": ("LY", "Libya"),
+    "튀니지": ("TN", "Tunisia"), "알제리": ("DZ", "Algeria"), "모로코": ("MA", "Morocco"),
+    "모리타니": ("MR", "Mauritania"),
+    # 사하라 이남 아프리카
+    "나이지리아": ("NG", "Nigeria"), "말리": ("ML", "Mali"),
+    "부르키나파소": ("BF", "Burkina Faso"), "니제르": ("NE", "Niger"),
+    "차드": ("TD", "Chad"), "카메룬": ("CM", "Cameroon"), "소말리아": ("SO", "Somalia"),
+    "케냐": ("KE", "Kenya"), "에티오피아": ("ET", "Ethiopia"), "수단": ("SD", "Sudan"),
+    "남수단": ("SS", "South Sudan"), "콩고": ("CD", "DR Congo (Zaire)"),
+    "콩고민주공화국": ("CD", "DR Congo (Zaire)"), "콩고공화국": ("CG", "Republic of the Congo"),
+    "중앙아프리카공화국": ("CF", "Central African Republic"),
+    "중아공": ("CF", "Central African Republic"), "모잠비크": ("MZ", "Mozambique"),
+    "우간다": ("UG", "Uganda"), "탄자니아": ("TZ", "Tanzania"), "르완다": ("RW", "Rwanda"),
+    "부룬디": ("BI", "Burundi"), "앙골라": ("AO", "Angola"), "짐바브웨": ("ZW", "Zimbabwe"),
+    "남아프리카공화국": ("ZA", "South Africa"), "남아공": ("ZA", "South Africa"),
+    "세네갈": ("SN", "Senegal"), "기니": ("GN", "Guinea"), "코트디부아르": ("CI", "Cote d'Ivoire"),
+    "가나": ("GH", "Ghana"), "토고": ("TG", "Togo"), "베냉": ("BJ", "Benin"),
+    "가봉": ("GA", "Gabon"), "에리트레아": ("ER", "Eritrea"), "지부티": ("DJ", "Djibouti"),
+    "마다가스카르": ("MG", "Madagascar"), "잠비아": ("ZM", "Zambia"),
+    # 남·중앙 아시아
+    "아프가니스탄": ("AF", "Afghanistan"), "파키스탄": ("PK", "Pakistan"), "인도": ("IN", "India"),
+    "방글라데시": ("BD", "Bangladesh"), "스리랑카": ("LK", "Sri Lanka"), "네팔": ("NP", "Nepal"),
+    "미얀마": ("MM", "Myanmar (Burma)"), "카자흐스탄": ("KZ", "Kazakhstan"),
+    "우즈베키스탄": ("UZ", "Uzbekistan"), "타지키스탄": ("TJ", "Tajikistan"),
+    "키르기스스탄": ("KG", "Kyrgyzstan"), "투르크메니스탄": ("TM", "Turkmenistan"),
+    # 동·동남 아시아
+    "중국": ("CN", "China"), "태국": ("TH", "Thailand"), "필리핀": ("PH", "Philippines"),
+    "인도네시아": ("ID", "Indonesia"), "말레이시아": ("MY", "Malaysia"),
+    "베트남": ("VN", "Vietnam"), "캄보디아": ("KH", "Cambodia"),
+    # 유럽·러시아
+    "러시아": ("RU", "Russia"), "우크라이나": ("UA", "Ukraine"), "프랑스": ("FR", "France"),
+    "영국": ("GB", "United Kingdom"), "독일": ("DE", "Germany"), "벨기에": ("BE", "Belgium"),
+    "스페인": ("ES", "Spain"), "이탈리아": ("IT", "Italy"), "그리스": ("GR", "Greece"),
+    "스웨덴": ("SE", "Sweden"), "노르웨이": ("NO", "Norway"), "네덜란드": ("NL", "Netherlands"),
+    "오스트리아": ("AT", "Austria"), "세르비아": ("RS", "Serbia"), "코소보": ("XK", "Kosovo"),
+    "폴란드": ("PL", "Poland"),
+    # 아메리카
+    "미국": ("US", "United States of America"), "멕시코": ("MX", "Mexico"),
+    "콜롬비아": ("CO", "Colombia"), "브라질": ("BR", "Brazil"), "베네수엘라": ("VE", "Venezuela"),
+    "페루": ("PE", "Peru"), "칠레": ("CL", "Chile"), "아르헨티나": ("AR", "Argentina"),
+    "에콰도르": ("EC", "Ecuador"), "볼리비아": ("BO", "Bolivia"), "아이티": ("HT", "Haiti"),
+    "온두라스": ("HN", "Honduras"), "과테말라": ("GT", "Guatemala"),
+    "엘살바도르": ("SV", "El Salvador"), "니카라과": ("NI", "Nicaragua"),
 }
 
 
@@ -121,96 +116,105 @@ def _download_pdf(url: str) -> str:
     resp = requests.get(url, timeout=30)
     if resp.status_code != 200 or len(resp.content) < 1000:
         return ""
-
     tmp = tempfile.NamedTemporaryFile(suffix=".pdf", delete=False)
     try:
         tmp.write(resp.content)
         tmp.close()
-        text = extract_text(tmp.name)
-        return " ".join(text.split())  # 공백 정규화
-    except Exception as e:
+        return " ".join(extract_text(tmp.name).split())
+    except Exception as e:  # noqa: BLE001
         log.error(f"[nctc] PDF parse failed: {e}")
         return ""
     finally:
         os.unlink(tmp.name)
 
 
-def _parse_daily_pdf(text: str, year: int = None) -> dict:
-    """일일 테러동향 PDF 텍스트 → 구조화 데이터"""
-    if not year:
-        year = datetime.now().year
-
+def _parse_daily_pdf(text: str) -> dict:
+    """일일 테러동향 PDF 텍스트 → 구조화 데이터. 사건 연도는 PDF 자체 발행연도를 쓴다."""
     result = {"date": "", "stats": {}, "incidents": []}
 
-    # 날짜 추출: '26. 4. 10 or '26.4.10
-    dm = re.search(r"['΄']\s*(\d{2})\.\s*(\d{1,2})\.\s*(\d{1,2})", text)
+    # PDF 발행일: '26. 4. 10  → 사건 연도의 기준
+    pub_year = datetime.now().year
+    pub_month = None
+    dm = re.search(r"['΄'’]\s*(\d{2})\.\s*(\d{1,2})\.\s*(\d{1,2})", text)
     if dm:
-        yr = f"20{dm.group(1)}"
-        mon = dm.group(2).zfill(2)
-        day = dm.group(3).zfill(2)
-        result["date"] = f"{yr}-{mon}-{day}"
+        pub_year = int(f"20{dm.group(1)}")
+        pub_month = int(dm.group(2))
+        result["date"] = f"{pub_year}-{dm.group(2).zfill(2)}-{dm.group(3).zfill(2)}"
 
-    # 지역별 통계: 총계(건) 유럽 미주 아태 중동 아프리카 + 숫자들
+    # 지역별 통계
     stats_match = re.search(
         r"총계\(건\)\s*유\s*럽\s*미\s*주\s*아\s*태\s*중\s*동\s*아프리카\s*"
         r"(\d+|[-])\s+(\d+|[-])\s+(\d+|[-])\s+(\d+|[-])\s+(\d+|[-])\s+(\d+|[-])",
-        text
+        text,
     )
     if stats_match:
-        def _parse_val(s):
+        def _v(s):
             return int(s) if s not in ["-", ""] else 0
-
         result["stats"] = {
-            "total": _parse_val(stats_match.group(1)),
-            "europe": _parse_val(stats_match.group(2)),
-            "americas": _parse_val(stats_match.group(3)),
-            "asia_pacific": _parse_val(stats_match.group(4)),
-            "middle_east": _parse_val(stats_match.group(5)),
-            "africa": _parse_val(stats_match.group(6)),
+            "total": _v(stats_match.group(1)), "europe": _v(stats_match.group(2)),
+            "americas": _v(stats_match.group(3)), "asia_pacific": _v(stats_match.group(4)),
+            "middle_east": _v(stats_match.group(5)), "africa": _v(stats_match.group(6)),
         }
 
     # 주요 사건: ○ M.D 국가 설명(사망 N[명], 부상/납치 N[명])
-    # - 날짜 뒤 trailing dot optional, "명" optional (현재 NCTC PDF는 생략)
-    pattern = r"○\s*(\d{1,2}\.\d{1,2})\.?\s+(\S+)\s+(.+?)(?:\(사망\s*(\d+)명?(?:,\s*(?:부상|납치)\s*(\d+)명?)?\))"
+    pattern = r"○\s*(\d{1,2})\.(\d{1,2})\.?\s+(\S+)\s+(.+?)(?:\(사망\s*(\d+)명?(?:,\s*(?:부상|납치)\s*(\d+)명?)?\))"
     for m in re.finditer(pattern, text):
-        date_parts = m.group(1).split(".")
-        mon = date_parts[0].zfill(2)
-        day = date_parts[1].zfill(2)
-        incident_date = f"{year}-{mon}-{day}"
+        mon = int(m.group(1))
+        day = int(m.group(2))
+        # 연도 롤오버: 발행월보다 사건월이 크면 전년도 (예: 1월 발행 PDF의 12월 사건)
+        yr = pub_year - 1 if (pub_month and mon > pub_month) else pub_year
+        incident_date = f"{yr}-{str(mon).zfill(2)}-{str(day).zfill(2)}"
 
-        # trailing punctuation 제거 (PDF 파싱 후 콤마/점이 붙어있는 경우)
-        country_ko = m.group(2).strip(",.()[]:;")
-        # 알 수 없는 매핑 = PDF 추출 실패(모지바케) 또는 단체명. 스킵.
-        iso = _KO_TO_ISO.get(country_ko, "")
-        if not iso:
+        country_ko = m.group(3).strip(",.()[]:;·")
+        # 모지바케(깨진 추출)나 빈 토큰은 스킵, 그 외엔 매핑 없어도 보존한다.
+        if not country_ko or not re.search(r"[가-힣]", country_ko):
             continue
-        country_en = _KO_TO_EN.get(country_ko, country_ko)
+        iso, country_en = _KO_COUNTRY.get(country_ko, ("", country_ko))
 
-        # 한국어 설명 → 영어 변환
-        desc_ko = m.group(3).strip()
+        desc_ko = m.group(4).strip()
         desc_en = translate_korean_description(desc_ko)
-
         result["incidents"].append({
             "source": "nctc",
             "date": incident_date,
             "country": country_en,
             "country_code": iso,
             "country_ko": country_ko,
-            "description": desc_en or desc_ko,  # 변환 실패 시 원본
-            "description_ko": desc_ko,           # 원본 보존
-            "fatalities": int(m.group(4)),
-            "wounded": int(m.group(5)) if m.group(5) else 0,
+            "description": desc_en or desc_ko,
+            "description_ko": desc_ko,
+            "fatalities": int(m.group(5)),
+            "wounded": int(m.group(6)) if m.group(6) else 0,
         })
 
-    # 해당 없음 체크
     if "해당 없음" in text or "해당없음" in text:
         result["no_incidents"] = True
-
     return result
 
 
+def _load_state() -> dict:
+    try:
+        with open(_STATE_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def _save_state(state: dict) -> None:
+    try:
+        os.makedirs(os.path.dirname(_STATE_PATH), exist_ok=True)
+        with open(_STATE_PATH, "w", encoding="utf-8") as f:
+            json.dump(state, f, ensure_ascii=False)
+    except Exception as e:  # noqa: BLE001
+        log.error(f"[nctc] state save failed: {e}")
+
+
+def _article_no(href: str) -> int:
+    m = re.search(r"articleNo=(\d+)", href)
+    return int(m.group(1)) if m else 0
+
+
 def fetch_nctc_daily(limit: int = 5) -> list[dict]:
-    """NCTC 일일 테러동향 최근 N건 수집"""
+    """NCTC 일일 테러동향 수집. 새 글이 올라온 경우에만 최신 `limit`개 PDF를 파싱한다
+    (하루 한 번 성격 + 놓친 날 백필). 결과는 INSERT OR IGNORE 로 누적되어 중복 무해."""
     try:
         resp = requests.get(
             NCTC_DAILY_URL,
@@ -223,44 +227,48 @@ def fetch_nctc_daily(limit: int = 5) -> list[dict]:
 
         soup = BeautifulSoup(resp.text, "html.parser")
         table = soup.find("table")
-        if not table:
+        if not isinstance(table, Tag):
+            return []
+
+        # 다운로드 링크(글번호 순) 수집
+        links: list[tuple[int, str]] = []
+        for row in table.find_all("tr"):
+            for a in row.find_all("a", href=True):
+                if "mode=download" in a["href"]:
+                    links.append((_article_no(a["href"]), NCTC_DAILY_URL + a["href"]))
+                    break
+        if not links:
+            return []
+
+        newest = max(n for n, _ in links)
+        state = _load_state()
+        last_seen = int(state.get("last_article", 0))
+
+        # 하루 한 번: 새 글이 없으면 목록 조회만 하고 스킵 (마커가 있는 환경에서만 동작)
+        if last_seen and newest <= last_seen:
+            log.info(f"[nctc] no new post (newest={newest} ≤ seen={last_seen}) — skip")
             return []
 
         all_incidents = []
-        all_stats = []
-
-        for row in table.find_all("tr"):
-            # PDF 다운로드 링크 찾기
-            link = None
-            for a in row.find_all("a", href=True):
-                href = a.get("href", "")
-                if "download" in href:
-                    link = NCTC_DAILY_URL + href
-                    break
-
-            if not link:
-                continue
-
-            # PDF 다운로드 및 파싱
-            log.info(f"  [nctc] downloading {link.split('articleNo=')[1].split('&')[0] if 'articleNo' in link else 'pdf'}...")
+        unmapped: set[str] = set()
+        for art_no, link in sorted(links, reverse=True):
+            log.info(f"  [nctc] downloading article {art_no}...")
             text = _download_pdf(link)
             if not text:
                 continue
-
-            parsed = _parse_daily_pdf(text)
-
-            if parsed.get("stats"):
-                all_stats.append({"date": parsed["date"], **parsed["stats"]})
-
-            for inc in parsed.get("incidents", []):
+            for inc in _parse_daily_pdf(text).get("incidents", []):
+                # 매핑 안 된 토큰은 대개 단체명(예: 알샤바브)·파편이라 버리고 로그만 남긴다.
+                if not inc["country_code"]:
+                    unmapped.add(inc["country_ko"])
+                    continue
                 all_incidents.append(inc)
 
-        log.info(f"  [nctc] {len(all_incidents)} incidents, {len(all_stats)} daily stats")
+        _save_state({"last_article": newest, "last_run": datetime.now().strftime("%Y-%m-%d")})
+        if unmapped:
+            log.info(f"  [nctc] unmapped countries (kept, add to _KO_COUNTRY): {sorted(unmapped)}")
+        log.info(f"  [nctc] {len(all_incidents)} incidents from {len(links)} article(s)")
         return all_incidents
 
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         log.error(f"[nctc] fetch failed: {e}")
         return []
-
-
-# Note: weekly NCTC parsing removed as unused dead code (use daily only)
