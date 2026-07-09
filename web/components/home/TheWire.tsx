@@ -36,7 +36,17 @@ const item: Variants = {
 
 export function TheWire({ events, hotspots, yearFatalities, year, totals }: Props) {
   const reduced = useReducedMotion() ?? false;
-  const points = hotspots.map((h) => ({ lat: h.lat, lng: h.lng, weight: h.fatalities }));
+  const points = hotspots.map((h) => {
+    const meta = getCategoryMeta(h.category);
+    const toll = h.fatalities > 0 ? ` · ${formatNumber(h.fatalities)} killed` : "";
+    return {
+      lat: h.lat,
+      lng: h.lng,
+      weight: h.fatalities,
+      color: meta.color,
+      label: `${h.country || "Unknown"} · ${meta.label}${toll}`,
+    };
+  });
 
   return (
     <header className="relative isolate overflow-hidden border-b border-border">

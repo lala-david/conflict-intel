@@ -32,6 +32,7 @@ export interface WireHotspot {
   lng: number;
   fatalities: number;
   category: Category | null;
+  country: string | null;
 }
 
 export interface WireData {
@@ -68,7 +69,7 @@ export async function getWireData(): Promise<WireData> {
     // Real event coordinates for the globe — recent + deadliest, last ~2 years so
     // the globe is always populated even while the current year is still sparse.
     queryAll<WireHotspot>(
-      `SELECT latitude AS lat, longitude AS lng, fatalities, category
+      `SELECT latitude AS lat, longitude AS lng, fatalities, category, country
          FROM events
         WHERE is_aggregate = 0 AND dup_of IS NULL
           AND latitude IS NOT NULL AND latitude != 0
