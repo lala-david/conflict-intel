@@ -101,6 +101,13 @@ jobs:
       - name: Compute dashboard stats
         run: python scripts/compute_stats.py
 
+      # ─── AI 검증 패스: 로컬 LLM으로 고가치 이벤트 교차검증 (LLM 미도달 시 안전 no-op) ───
+      - name: AI verification pass
+        env:
+          LOCAL_LLM_BASE_URL: ${{ secrets.LOCAL_LLM_BASE_URL }}
+          AI_VERIFY_LIMIT: "200"
+        run: python scripts/ai_verify.py
+
       # ─── 사이트가 읽는 Cloudflare D1 에 동기화 (events append + stats/crypto 교체, 안전가드 내장) ───
       - name: Sync to D1
         env:

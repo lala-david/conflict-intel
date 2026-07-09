@@ -8,6 +8,7 @@ import { ArrowLeft, MapPin, Calendar, Users, ExternalLink } from "lucide-react";
 import { EventMiniMapClient } from "@/components/map/EventMiniMapClient";
 import { SourceBadge, ConfidenceBadge } from "@/components/ui/SourceBadge";
 import { getEventProvenance } from "@/lib/queries-provenance";
+import { getEventReview } from "@/lib/queries-reviews";
 
 export const revalidate = 86400; // 24h
 
@@ -36,9 +37,10 @@ export default async function EventPage({ params }: Props) {
   const event = await getEventById(decodeURIComponent(params.id));
   if (!event) notFound();
 
-  const [related, provenance] = await Promise.all([
+  const [related, provenance, review] = await Promise.all([
     getRelatedEvents(event, 6),
     getEventProvenance(event.id),
+    getEventReview(event.id),
   ]);
   const meta = getCategoryMeta(event.category);
 
@@ -220,6 +222,66 @@ export default async function EventPage({ params }: Props) {
           </section>
         )}
 
+        {/* AI verification (automated cross-check — not human-verified) */}
+        {review && (
+          <section className="mt-8 rounded-lg border border-border bg-surface p-6">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-text-dim">
+                AI verification
+              </h2>
+              {review.aiGrade && (
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold tracking-wide"
+                  style={{
+                    background: aiGradeMeta(review.aiGrade).bg,
+                    borderColor: aiGradeMeta(review.aiGrade).color + "40",
+                    color: aiGradeMeta(review.aiGrade).color,
+                  }}
+                >
+                  <span
+                    className="h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{ background: aiGradeMeta(review.aiGrade).color }}
+                  />
+                  AI grade: {aiGradeMeta(review.aiGrade).label}
+                </span>
+              )}
+            </div>
+
+            {/* Cross-check chips */}
+            <div className="mt-4 flex flex-wrap gap-2">
+              {review.consistency && (
+                <ReviewChip label="Consistency" value={review.consistency} />
+              )}
+              {review.tollAgreement && (
+                <ReviewChip label="Toll" value={review.tollAgreement} />
+              )}
+              {review.geoConfidence && (
+                <ReviewChip label="Geo confidence" value={review.geoConfidence} />
+              )}
+            </div>
+
+            {/* Summary */}
+            {review.summary && (
+              <p className="mt-4 text-sm leading-relaxed text-text-primary">
+                {review.summary}
+              </p>
+            )}
+
+            {/* Disclaimer */}
+            <div className="mt-4 border-t border-border pt-3 text-[11px] text-text-dim">
+              <span className="font-semibold text-text-dim">
+                AI-reviewed · not human-verified.
+              </span>{" "}
+              Automated cross-check of the corroborating sources
+              {review.model ? ` by ${review.model}` : ""}
+              {review.reviewedAt
+                ? ` on ${formatDate(review.reviewedAt.slice(0, 10))}`
+                : ""}
+              . A human console confirms forensic grade separately.
+            </div>
+          </section>
+        )}
+
         {/* Map */}
         {event.latitude != null && event.longitude != null && (
           <section className="mt-8">
@@ -348,6 +410,33 @@ export default async function EventPage({ params }: Props) {
       </main>
       <Footer />
     </>
+  );
+}
+
+/** Color/label for an AI-proposed reliability grade (on-brand dark tokens). */
+function aiGradeMeta(grade: string): { label: string; color: string; bg: string } {
+  switch (grade.toLowerCase()) {
+    case "verified":
+      return { label: "Verified", color: "#34d399", bg: "rgba(52,211,153,0.12)" };
+    case "corroborated":
+      return { label: "Corroborated", color: "#38bdf8", bg: "rgba(56,189,248,0.12)" };
+    case "reported":
+      return { label: "Reported", color: "#94a3b8", bg: "rgba(148,163,184,0.12)" };
+    case "machine-coded":
+      return { label: "Machine-coded", color: "#fbbf24", bg: "rgba(251,191,36,0.12)" };
+    default:
+      return { label: "Unclear", color: "#f87171", bg: "rgba(248,113,113,0.12)" };
+  }
+}
+
+function ReviewChip({ label, value }: { label: string; value: string }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 text-[11px]">
+      <span className="font-semibold uppercase tracking-widest text-text-dim">
+        {label}
+      </span>
+      <span className="font-mono text-text-primary">{value}</span>
+    </span>
   );
 }
 

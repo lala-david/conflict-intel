@@ -124,7 +124,7 @@ def main():
         print(f"  SKIP stats/crypto replace — local DB incomplete ({n_events} < {MIN_EVENTS})")
     else:
         for t in ("global_stats", "country_stats", "org_stats", "category_stats", "daily_stats",
-                  "crypto_addresses", "crypto_stats"):
+                  "crypto_addresses", "crypto_stats", "event_reviews"):
             try:
                 c = _push(conn, t, "INSERT OR REPLACE", replace=True)
                 print(f"  replaced {t}: {c}")
