@@ -91,6 +91,27 @@ export default async function OrgPage({ params }: Props) {
   const firstYear = parseInt(org.first_seen?.slice(0, 4) ?? "") || null;
   const lastYear = parseInt(org.last_seen?.slice(0, 4) ?? "") || null;
 
+  // Direct co-actors: a GENUINE relationship, not same-country co-occurrence.
+  // These are the groups recorded as the SECOND actor (actor2) in this org's own
+  // events — the parties it is actually pitted against / operating alongside on
+  // the ground. Derived from `points` (already fetched, up to 500 events), so no
+  // extra query. actor2 in the feeds is often a target noun ("Civilians",
+  // "Market", "Checkpoint"), so we keep only actor2 values that are themselves a
+  // tracked organization (present in the top-orgs list) — that filter is what
+  // makes this a group-to-group link rather than target noise.
+  const orgNameSet = new Set(orgs.map((o) => o.name));
+  const coActorCounts = new Map<string, number>();
+  for (const p of points) {
+    const a2 = p.actor2?.trim();
+    if (!a2 || a2 === org.name || a2 === "Civilians") continue;
+    if (!orgNameSet.has(a2)) continue;
+    coActorCounts.set(a2, (coActorCounts.get(a2) ?? 0) + 1);
+  }
+  const coActors = [...coActorCounts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 8);
+
   // Deterministic prose summary (SEO long-tail + human orientation).
   const summary = orgSummary({
     name: org.name,
@@ -217,14 +238,44 @@ export default async function OrgPage({ params }: Props) {
           </section>
         )}
 
+        {/* Direct co-actors — genuine actor1↔actor2 links from this org's events */}
+        {coActors.length > 0 && (
+          <section className="mb-12">
+            <h2 className="mb-4 font-display text-2xl font-bold">
+              Direct co-actors
+            </h2>
+            <p className="mb-4 text-xs text-text-dim">
+              Groups recorded as the opposing or second party in {org.name}&apos;s own
+              events — a direct operational relationship, not just shared geography
+            </p>
+            <div className="grid gap-3 md:grid-cols-2">
+              {coActors.map((r) => (
+                <Link
+                  key={r.name}
+                  href={`/organizations/${slugify(r.name)}`}
+                  className="group rounded-lg border border-border bg-surface p-4 transition hover:bg-surface-2"
+                >
+                  <div className="font-medium text-text-primary group-hover:text-accent">
+                    {r.name}
+                  </div>
+                  <div className="mt-1 font-mono text-xs text-text-dim">
+                    {formatNumber(r.count)} shared events
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Related Organizations */}
         {relatedOrgs.length > 0 && (
           <section className="mb-12">
             <h2 className="mb-4 font-display text-2xl font-bold">
-              Related Organizations
+              Also active nearby
             </h2>
             <p className="mb-4 text-xs text-text-dim">
               Groups active in the same countries within the same time periods
+              (regional overlap, not a confirmed direct link)
             </p>
             <div className="grid gap-3 md:grid-cols-2">
               {relatedOrgs.map((r) => (

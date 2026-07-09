@@ -84,7 +84,7 @@ export default async function WalletsPage() {
                 "radial-gradient(70% 100% at 80% 20%, rgba(239,68,68,0.16), transparent 55%)",
             }}
           />
-          <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-6 py-14 lg:grid-cols-[1fr_0.9fr]">
+          <div className="relative mx-auto max-w-6xl px-6 py-14">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
                 <Radar className="h-3.5 w-3.5" />
@@ -113,9 +113,6 @@ export default async function WalletsPage() {
                   </div>
                 ))}
               </dl>
-            </div>
-            <div className="relative flex justify-center">
-              <ThreatGlobe className="drop-shadow-[0_0_60px_rgba(239,68,68,0.25)]" />
             </div>
           </div>
         </section>

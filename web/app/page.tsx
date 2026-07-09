@@ -1,12 +1,13 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { HeroStats } from "@/components/home/HeroStats";
+import { TheWire } from "@/components/home/TheWire";
 import { LiveStatusBar } from "@/components/home/LiveStatusBar";
 import { HotRegionsList } from "@/components/home/HotRegions";
 import { EventFeed } from "@/components/home/EventFeed";
 import { WorldMapSection } from "@/components/map/WorldMapSection";
 import { HistoryRidgeline } from "@/components/charts/HistoryRidgeline";
 import { getHomeData } from "@/lib/queries";
+import { getWireData } from "@/lib/queries-wire";
 import { getYearlyHistory } from "@/lib/queries-history";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -26,7 +27,11 @@ export const dynamic = "force-dynamic";
 
 
 export default async function HomePage() {
-  const [data, history] = await Promise.all([getHomeData(), getYearlyHistory()]);
+  const [data, wire, history] = await Promise.all([
+    getHomeData(),
+    getWireData(),
+    getYearlyHistory(),
+  ]);
 
   const historySpan = history.length ? history[history.length - 1].year - history[0].year : 0;
   const historyTotal = history.reduce((a, y) => a + y.fatalities, 0);
@@ -35,8 +40,12 @@ export default async function HomePage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <HeroStats totals={data.totals} />
+        {/* Hero — THE WIRE: globe + live death counter + streaming incident ticker */}
+        <TheWire
+          events={wire.events}
+          fatalities90d={wire.fatalities90d}
+          totals={data.totals}
+        />
 
         {/* Live status — threat index, weekly trend, data freshness */}
         <LiveStatusBar threat={data.threatIndex} updatedAt={data.updatedAt} />
