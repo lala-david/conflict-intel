@@ -3,6 +3,7 @@ Pre-computed stats — 매일 CI에서 pipeline/run.py (report_builder.py 제공
 420K rows 실시간 scan 대신 집계 테이블 1-row lookup으로 대시보드 100x 빠르게.
 """
 import sys
+import math
 from pathlib import Path
 from datetime import datetime
 
@@ -13,6 +14,43 @@ if hasattr(sys.stdout, "reconfigure"):
 
 from database import get_conn
 from logger import log
+
+
+def _country_threat_score(f7, f30, f90, ev30, ev90):
+    """
+    Country threat score, 0-100 integer.
+
+    Replaces the old `MIN(100, 90d_fatalities * 0.1)`, which saturated: any country
+    with >= 1000 deaths in 90 days pegged at 100, so a full-scale war and a mid-size
+    insurgency collapsed to the same number — with no baseline and no legend.
+
+    This version discriminates across the high end by combining three signals and
+    compressing the fatality term logarithmically (deaths have diminishing marginal
+    impact, which is closer to how perceived severity actually scales):
+
+      * Fatality load — recency-weighted deaths. The last 7 days count ~3x, the rest
+        of the month ~1x, and the 8-90 day tail ~0.35x, so a fresh spike outranks the
+        same body-count spread thinly over a quarter.
+      * Tempo — event frequency (last 30d, with the 30-90d tail at 0.4x), so sustained
+        low-lethality violence still registers even when casualty data is sparse/lagged.
+      * Acceleration — the share of the quarter's deaths that landed in the last 30d;
+        rewards conflicts that are escalating rather than winding down.
+
+    Scale bands: 0-33 low · 34-66 elevated · 67-100 severe. Tuned so typical active
+    conflicts spread across ~40-95 instead of all pegging 100; 100 is reserved for
+    catastrophic, escalating mass-casualty situations.
+
+    CAVEAT: this is fatality-VOLUME and tempo driven, NOT per-capita (there is no
+    population data), so large active-war countries outscore small countries with
+    intense but localized violence. It is a triage signal, not a normalized risk rate.
+    """
+    # recency-weighted death load (buckets are non-overlapping, all >= 0)
+    load = f7 * 3.0 + (f30 - f7) * 1.0 + (f90 - f30) * 0.35
+    tempo = ev30 * 1.0 + (ev90 - ev30) * 0.4
+    raw = math.log1p(max(0.0, load)) * 10.0 + math.log1p(max(0.0, tempo)) * 3.5
+    if f90 > 0:
+        raw += (f30 / f90) * 7.0  # acceleration: recent share of the quarter's toll
+    return max(0, min(100, int(round(raw))))
 
 
 def compute():
@@ -74,11 +112,14 @@ def compute():
         FROM events WHERE is_aggregate = 0 AND dup_of IS NULL AND date >= date('now', '-90 days')
     """).fetchone()
 
-    # Threat index: weighted score from 7d, 30d, 90d fatalities (sigmoid-like)
-    # 7d has highest weight (recent), 90d anchors baseline
-    import math
-    raw = (w7[1] * 0.5 + w30[1] * 0.1 + w90[1] * 0.02) if w7[1] else 0
-    threat_idx = min(100, max(0, int(100 * (1 - math.exp(-raw / 500)))))
+    # Global threat index (0-100): recency-weighted, log-compressed worldwide death
+    # load. Same recency buckets as the per-country score (last 7d ~3x, rest of the
+    # month ~1x, 8-90d tail ~0.35x), passed through 1 - e^(-load/2500) so a busy
+    # quarter doesn't instantly peg 100 and the top of the scale stays discriminating.
+    # (The old form gated the whole score on 7d fatalities being > 0, which zeroed
+    #  the index during quiet weeks even when the month was violent — fixed here.)
+    load = w7[1] * 3.0 + (w30[1] - w7[1]) * 1.0 + (w90[1] - w30[1]) * 0.35
+    threat_idx = min(100, max(0, int(round(100 * (1 - math.exp(-load / 2500.0))))))
 
     conn.execute("DELETE FROM global_stats")
     conn.execute("""
@@ -91,16 +132,17 @@ def compute():
     log.info(f"  global: {g[0]:,} events, threat={threat_idx}")
 
     # ─── Country stats ───
+    # threat_score is computed in Python (see _country_threat_score) rather than in
+    # SQL: the log/sigmoid compression isn't portable across SQLite builds. We pull
+    # the raw window aggregates (incl. 7d, used only for scoring) and fold them in.
     log.info("Computing country stats...")
     conn.execute("DELETE FROM country_stats")
-    conn.execute("""
-        INSERT INTO country_stats (country, total_events, total_fatalities,
-            events_30d, fatalities_30d, events_90d, fatalities_90d,
-            top_category, threat_score, last_event_date, updated_at)
+    agg = conn.execute("""
         SELECT
             e.country,
             COUNT(*),
             COALESCE(SUM(e.fatalities), 0),
+            COALESCE(SUM(CASE WHEN e.date >= date('now', '-7 days')  THEN e.fatalities ELSE 0 END), 0),
             COALESCE(SUM(CASE WHEN e.date >= date('now', '-30 days') THEN 1 ELSE 0 END), 0),
             COALESCE(SUM(CASE WHEN e.date >= date('now', '-30 days') THEN e.fatalities ELSE 0 END), 0),
             COALESCE(SUM(CASE WHEN e.date >= date('now', '-90 days') THEN 1 ELSE 0 END), 0),
@@ -110,13 +152,26 @@ def compute():
                 WHERE e2.country = e.country AND e2.is_aggregate = 0 AND e2.dup_of IS NULL AND e2.category IS NOT NULL
                 GROUP BY category ORDER BY COUNT(*) DESC LIMIT 1
             ), ''),
-            MIN(100, COALESCE(SUM(CASE WHEN e.date >= date('now', '-90 days') THEN e.fatalities ELSE 0 END), 0) * 0.1),
-            MAX(e.date),
-            ?
+            MAX(e.date)
         FROM events e
         WHERE e.is_aggregate = 0 AND e.dup_of IS NULL AND e.country != ''
         GROUP BY e.country
-    """, (now,))
+    """).fetchall()
+
+    country_rows = []
+    for (country, total_events, total_fatalities, f7, ev30, f30,
+         ev90, f90, top_category, last_event_date) in agg:
+        score = _country_threat_score(f7, f30, f90, ev30, ev90)
+        country_rows.append((country, total_events, total_fatalities,
+                             ev30, f30, ev90, f90, top_category, score,
+                             last_event_date, now))
+
+    conn.executemany("""
+        INSERT INTO country_stats (country, total_events, total_fatalities,
+            events_30d, fatalities_30d, events_90d, fatalities_90d,
+            top_category, threat_score, last_event_date, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, country_rows)
 
     c_count = conn.execute("SELECT COUNT(*) FROM country_stats").fetchone()[0]
     log.info(f"  countries: {c_count}")

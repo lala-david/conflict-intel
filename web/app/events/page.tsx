@@ -1,13 +1,20 @@
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { queryAll, queryOne } from "@/lib/db";
 import { formatNumber, formatDate, getCategoryMeta, cleanNote } from "@/lib/utils";
-import type { Event, Category } from "@/lib/types";
+import {
+  EVENT_CATEGORIES,
+  EVENT_CONFIDENCES,
+  buildEventWhere,
+  countEvents,
+  fetchEvents,
+  getEventCountries,
+  getEventSources,
+} from "@/lib/queries-events";
 import { Search } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Flag } from "@/components/ui/Flag";
-import { SourceBadge } from "@/components/ui/SourceBadge";
+import { SourceBadge, getSourceMeta } from "@/components/ui/SourceBadge";
 import { isoFor } from "@/lib/country-iso";
 
 export const dynamic = "force-dynamic";
@@ -24,87 +31,77 @@ interface Props {
     country?: string;
     from?: string;
     to?: string;
+    min_fatalities?: string;
+    source?: string;
+    confidence?: string;
     page?: string;
   };
 }
 
 const PER_PAGE = 30;
 
-const ALL_CATEGORIES: Category[] = [
-  "war", "civil_war", "terrorism", "mass_atrocity", "state_violence",
-  "cartel_violence", "communal_violence", "insurgency", "counterterrorism", "armed_violence",
-];
-
 export default async function EventsPage({ searchParams }: Props) {
-  const page = Math.max(1, parseInt(searchParams.page ?? "1"));
-  const offset = (page - 1) * PER_PAGE;
+  const page = Math.max(1, parseInt(searchParams.page ?? "1") || 1);
 
-  // Build dynamic WHERE clause
-  const conditions: string[] = ["is_aggregate = 0", "dup_of IS NULL"];
-  const params: any[] = [];
+  // Full country + source lists for the filter dropdowns (all, not top-N).
+  const [countries, sources] = await Promise.all([
+    getEventCountries(),
+    getEventSources(),
+  ]);
+  const sourceSet = new Set(sources);
 
-  if (searchParams.q && searchParams.q.length >= 2) {
-    const like = `%${searchParams.q}%`;
-    conditions.push("(actor1 LIKE ? OR actor2 LIKE ? OR country LIKE ? OR notes LIKE ?)");
-    params.push(like, like, like, like);
-  }
+  const filters = {
+    q: searchParams.q,
+    category: searchParams.category,
+    country: searchParams.country,
+    from: searchParams.from,
+    to: searchParams.to,
+    minFatalities: searchParams.min_fatalities,
+    source: searchParams.source,
+    confidence: searchParams.confidence,
+  };
 
-  if (searchParams.category && ALL_CATEGORIES.includes(searchParams.category as Category)) {
-    conditions.push("category = ?");
-    params.push(searchParams.category);
-  }
+  const { where, params } = buildEventWhere(filters, sourceSet);
 
-  if (searchParams.country) {
-    conditions.push("country = ?");
-    params.push(searchParams.country);
-  }
+  const total = await countEvents(where, params);
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
+  const currentPage = Math.min(page, totalPages);
+  const offset = (currentPage - 1) * PER_PAGE;
 
-  if (searchParams.from) {
-    conditions.push("date >= ?");
-    params.push(searchParams.from);
-  }
+  const events = await fetchEvents(where, params, PER_PAGE, offset);
 
-  if (searchParams.to) {
-    conditions.push("date <= ?");
-    params.push(searchParams.to);
-  }
-
-  const where = conditions.join(" AND ");
-
-  // Count total results
-  const countRow = (await queryOne<{ total: number }>(
-    `SELECT COUNT(*) as total FROM events WHERE ${where}`,
-    [...params]
-  )) as { total: number };
-  const total = countRow.total;
-  const totalPages = Math.ceil(total / PER_PAGE);
-
-  // Fetch events
-  const events = await queryAll<Event>(
-    `SELECT id, source, date, event_type, actor1, actor2, country, country_code,
-              admin1, location, latitude, longitude, fatalities,
-              deaths_civilians, fatalities_low, fatalities_high,
-              category, category_confidence, is_aggregate, notes, source_url
-         FROM events
-        WHERE ${where}
-        ORDER BY date DESC, fatalities DESC
-        LIMIT ? OFFSET ?`,
-    [...params, PER_PAGE, offset]
+  const hasFilters = !!(
+    searchParams.q ||
+    searchParams.category ||
+    searchParams.country ||
+    searchParams.from ||
+    searchParams.to ||
+    searchParams.min_fatalities ||
+    searchParams.source ||
+    searchParams.confidence
   );
 
-  // Distinct countries for filter dropdown
-  const countries = await queryAll<{ country: string }>(
-    `SELECT DISTINCT country FROM country_stats ORDER BY total_fatalities DESC LIMIT 50`
-  );
-
-  // Build URL helper
+  // Build URL helper — merges current params with overrides, drops empties.
   function buildUrl(overrides: Record<string, string | undefined>) {
     const p = new URLSearchParams();
     const merged = { ...searchParams, ...overrides };
     for (const [k, v] of Object.entries(merged)) {
       if (v && v !== "") p.set(k, v);
     }
-    return `/events?${p.toString()}`;
+    const qs = p.toString();
+    return qs ? `/events?${qs}` : "/events";
+  }
+
+  // Compact page-number window around the current page.
+  const pageWindow: number[] = [];
+  {
+    const span = 2;
+    let start = Math.max(1, currentPage - span);
+    let end = Math.min(totalPages, currentPage + span);
+    // keep a stable width of up to 5 numbers when near the edges
+    if (currentPage <= span) end = Math.min(totalPages, 1 + span * 2);
+    if (currentPage > totalPages - span) start = Math.max(1, totalPages - span * 2);
+    for (let i = start; i <= end; i++) pageWindow.push(i);
   }
 
   return (
@@ -112,9 +109,9 @@ export default async function EventsPage({ searchParams }: Props) {
       <Header />
       <main className="mx-auto max-w-7xl px-6 py-12">
         <PageHeader
-          kicker="1989 — today"
+          kicker="1970 — today"
           title="Every event, searchable"
-          standfirst="More than 570,000 individual records of organized violence, categorized by academic standard. Filter by actor, country, category or date."
+          standfirst="More than 570,000 individual records of organized violence, categorized by academic standard. Filter by actor, country, category, date, severity, source or confidence."
           aside={
             <div className="text-right">
               <div className="font-display text-4xl font-semibold tabular-nums text-text-primary">
@@ -127,10 +124,10 @@ export default async function EventsPage({ searchParams }: Props) {
           }
         />
 
-        {/* Filters */}
-        <form className="mt-8 grid gap-4 rounded-lg border border-border bg-surface p-5 md:grid-cols-5">
+        {/* Filters — GET form so every filter lands in the (shareable) URL */}
+        <form className="mt-8 grid gap-4 rounded-lg border border-border bg-surface p-5 md:grid-cols-6">
           {/* Search */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-3">
             <label className="mb-1 block text-[10px] font-semibold uppercase tracking-widest text-text-dim">
               Search
             </label>
@@ -147,7 +144,7 @@ export default async function EventsPage({ searchParams }: Props) {
           </div>
 
           {/* Category */}
-          <div>
+          <div className="md:col-span-2">
             <label className="mb-1 block text-[10px] font-semibold uppercase tracking-widest text-text-dim">
               Category
             </label>
@@ -157,7 +154,7 @@ export default async function EventsPage({ searchParams }: Props) {
               className="w-full rounded-md border border-border bg-background py-2 px-3 text-sm text-text-primary focus:border-accent focus:outline-none"
             >
               <option value="">All categories</option>
-              {ALL_CATEGORIES.map((c) => (
+              {EVENT_CATEGORIES.map((c) => (
                 <option key={c} value={c}>
                   {getCategoryMeta(c).label}
                 </option>
@@ -165,7 +162,7 @@ export default async function EventsPage({ searchParams }: Props) {
             </select>
           </div>
 
-          {/* Country */}
+          {/* Country — full list */}
           <div>
             <label className="mb-1 block text-[10px] font-semibold uppercase tracking-widest text-text-dim">
               Country
@@ -184,17 +181,60 @@ export default async function EventsPage({ searchParams }: Props) {
             </select>
           </div>
 
-          {/* Submit */}
-          <div className="flex items-end">
-            <button
-              type="submit"
-              className="w-full rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent/90"
+          {/* Source */}
+          <div className="md:col-span-2">
+            <label className="mb-1 block text-[10px] font-semibold uppercase tracking-widest text-text-dim">
+              Source
+            </label>
+            <select
+              name="source"
+              defaultValue={searchParams.source ?? ""}
+              className="w-full rounded-md border border-border bg-background py-2 px-3 text-sm text-text-primary focus:border-accent focus:outline-none"
             >
-              Filter
-            </button>
+              <option value="">All sources</option>
+              {sources.map((s) => (
+                <option key={s} value={s}>
+                  {getSourceMeta(s).provider} ({s})
+                </option>
+              ))}
+            </select>
           </div>
 
-          {/* Date range row */}
+          {/* Confidence */}
+          <div>
+            <label className="mb-1 block text-[10px] font-semibold uppercase tracking-widest text-text-dim">
+              Confidence
+            </label>
+            <select
+              name="confidence"
+              defaultValue={searchParams.confidence ?? ""}
+              className="w-full rounded-md border border-border bg-background py-2 px-3 text-sm text-text-primary focus:border-accent focus:outline-none"
+            >
+              <option value="">Any confidence</option>
+              {EVENT_CONFIDENCES.map((c) => (
+                <option key={c} value={c}>
+                  {c[0].toUpperCase() + c.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Min fatalities */}
+          <div>
+            <label className="mb-1 block text-[10px] font-semibold uppercase tracking-widest text-text-dim">
+              Min. fatalities
+            </label>
+            <input
+              type="number"
+              min={0}
+              name="min_fatalities"
+              defaultValue={searchParams.min_fatalities ?? ""}
+              placeholder="0"
+              className="w-full rounded-md border border-border bg-background py-2 px-3 text-sm text-text-primary placeholder-text-dim focus:border-accent focus:outline-none"
+            />
+          </div>
+
+          {/* From */}
           <div>
             <label className="mb-1 block text-[10px] font-semibold uppercase tracking-widest text-text-dim">
               From
@@ -206,6 +246,8 @@ export default async function EventsPage({ searchParams }: Props) {
               className="w-full rounded-md border border-border bg-background py-2 px-3 text-sm text-text-primary focus:border-accent focus:outline-none"
             />
           </div>
+
+          {/* To */}
           <div>
             <label className="mb-1 block text-[10px] font-semibold uppercase tracking-widest text-text-dim">
               To
@@ -218,17 +260,27 @@ export default async function EventsPage({ searchParams }: Props) {
             />
           </div>
 
+          {/* Submit */}
+          <div className="flex items-end">
+            <button
+              type="submit"
+              className="w-full rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent/90"
+            >
+              Filter
+            </button>
+          </div>
+
           {/* Clear */}
-          <div className="flex items-end md:col-span-3">
-            {(searchParams.q || searchParams.category || searchParams.country || searchParams.from || searchParams.to) && (
+          {hasFilters && (
+            <div className="flex items-end">
               <Link
                 href="/events"
                 className="text-sm text-text-dim hover:text-accent"
               >
                 Clear all filters
               </Link>
-            )}
-          </div>
+            </div>
+          )}
         </form>
 
         {/* Results */}
@@ -299,32 +351,115 @@ export default async function EventsPage({ searchParams }: Props) {
           )}
         </div>
 
-        {/* Pagination */}
+        {/* Pagination — first / prev / numbered window / next / last + jump */}
         {totalPages > 1 && (
-          <div className="mt-6 flex items-center justify-center gap-2">
-            {page > 1 && (
-              <Link
-                href={buildUrl({ page: String(page - 1) })}
-                className="rounded-md border border-border px-4 py-2 text-sm text-text-dim hover:bg-surface-2"
+          <nav
+            aria-label="Pagination"
+            className="mt-6 flex flex-col items-center gap-3"
+          >
+            <div className="flex flex-wrap items-center justify-center gap-1.5">
+              <PageLink
+                href={buildUrl({ page: "1" })}
+                disabled={currentPage <= 1}
+                label="« First"
+              />
+              <PageLink
+                href={buildUrl({ page: String(currentPage - 1) })}
+                disabled={currentPage <= 1}
+                label="‹ Prev"
+              />
+
+              {pageWindow[0] > 1 && (
+                <span className="px-2 text-sm text-text-dim">…</span>
+              )}
+              {pageWindow.map((n) => (
+                <Link
+                  key={n}
+                  href={buildUrl({ page: String(n) })}
+                  aria-current={n === currentPage ? "page" : undefined}
+                  className={
+                    n === currentPage
+                      ? "rounded-md border border-accent bg-accent px-3.5 py-2 text-sm font-medium text-white"
+                      : "rounded-md border border-border px-3.5 py-2 text-sm text-text-dim hover:bg-surface-2"
+                  }
+                >
+                  {formatNumber(n)}
+                </Link>
+              ))}
+              {pageWindow[pageWindow.length - 1] < totalPages && (
+                <span className="px-2 text-sm text-text-dim">…</span>
+              )}
+
+              <PageLink
+                href={buildUrl({ page: String(currentPage + 1) })}
+                disabled={currentPage >= totalPages}
+                label="Next ›"
+              />
+              <PageLink
+                href={buildUrl({ page: String(totalPages) })}
+                disabled={currentPage >= totalPages}
+                label="Last »"
+              />
+            </div>
+
+            {/* Jump-to-page — GET form preserving every active filter */}
+            <form action="/events" className="flex items-center gap-2 text-sm text-text-dim">
+              {Object.entries(searchParams).map(([k, v]) =>
+                k === "page" || !v ? null : (
+                  <input key={k} type="hidden" name={k} value={v} />
+                ),
+              )}
+              <span>
+                Page{" "}
+                <span className="tabular-nums text-text-primary">{formatNumber(currentPage)}</span>{" "}
+                of {formatNumber(totalPages)} · jump to
+              </span>
+              <input
+                type="number"
+                name="page"
+                min={1}
+                max={totalPages}
+                defaultValue={currentPage}
+                className="w-20 rounded-md border border-border bg-background px-2 py-1.5 text-sm text-text-primary focus:border-accent focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="rounded-md border border-border px-3 py-1.5 text-sm text-text-primary hover:bg-surface-2"
               >
-                Previous
-              </Link>
-            )}
-            <span className="px-4 py-2 text-sm text-text-dim">
-              Page {page} of {formatNumber(totalPages)}
-            </span>
-            {page < totalPages && (
-              <Link
-                href={buildUrl({ page: String(page + 1) })}
-                className="rounded-md border border-border px-4 py-2 text-sm text-text-dim hover:bg-surface-2"
-              >
-                Next
-              </Link>
-            )}
-          </div>
+                Go
+              </button>
+            </form>
+          </nav>
         )}
       </main>
       <Footer />
     </>
+  );
+}
+
+/** A pagination control that renders as a link, or a dimmed span when disabled. */
+function PageLink({
+  href,
+  label,
+  disabled,
+}: {
+  href: string;
+  label: string;
+  disabled: boolean;
+}) {
+  if (disabled) {
+    return (
+      <span className="cursor-default rounded-md border border-border px-3.5 py-2 text-sm text-text-dim/40">
+        {label}
+      </span>
+    );
+  }
+  return (
+    <Link
+      href={href}
+      className="rounded-md border border-border px-3.5 py-2 text-sm text-text-dim hover:bg-surface-2"
+    >
+      {label}
+    </Link>
   );
 }

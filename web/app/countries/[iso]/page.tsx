@@ -13,6 +13,7 @@ import {
   getCountryTopActors,
 } from "@/lib/queries";
 import { formatNumber, formatDate, getCategoryMeta, slugify, SITE_URL } from "@/lib/utils";
+import { countrySummary } from "@/lib/summary";
 import { Flag } from "@/components/ui/Flag";
 import { isoFor } from "@/lib/country-iso";
 import { ArrowLeft, Download } from "lucide-react";
@@ -67,6 +68,33 @@ export default async function CountryPage({ params }: Props) {
   const topCats = Array.from(catBreakdown.entries())
     .map(([cat, v]) => ({ cat, ...v }))
     .sort((a, b) => b.count - a.count);
+
+  // Peak year: the year with the most recorded events (across all categories).
+  const yearTotals = new Map<number, number>();
+  for (const row of timeline) {
+    yearTotals.set(row.year, (yearTotals.get(row.year) ?? 0) + row.count);
+  }
+  let peakYear: number | null = null;
+  let peakCount = -1;
+  for (const [year, count] of yearTotals) {
+    if (count > peakCount) {
+      peakCount = count;
+      peakYear = year;
+    }
+  }
+
+  // Deterministic prose summary (SEO long-tail + human orientation).
+  const summary = countrySummary({
+    name: country.country,
+    eventCount: country.event_count,
+    totalFatalities: country.total_fatalities,
+    topCategory: topCats[0]?.cat ?? null,
+    peakYear,
+    topActor: topActors[0]?.name ?? null,
+    recentDays: 30,
+    recentEvents: country.recent_30d_events,
+    recentFatalities: country.recent_30d_fatalities,
+  });
 
   const currentYear = new Date().getFullYear();
   const countryUrl = `${SITE_URL}/countries/${encodeURIComponent(name)}`;
@@ -165,6 +193,13 @@ export default async function CountryPage({ params }: Props) {
             />
           </div>
         </div>
+
+        {/* Auto-generated prose summary */}
+        {summary && (
+          <p className="mb-12 max-w-3xl text-base leading-relaxed text-text-dim">
+            {summary}
+          </p>
+        )}
 
         {/* Timeline */}
         <section className="mb-12">

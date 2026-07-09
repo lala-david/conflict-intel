@@ -5,7 +5,9 @@ import { LiveStatusBar } from "@/components/home/LiveStatusBar";
 import { HotRegionsList } from "@/components/home/HotRegions";
 import { EventFeed } from "@/components/home/EventFeed";
 import { WorldMapSection } from "@/components/map/WorldMapSection";
+import { HistoryRidgeline } from "@/components/charts/HistoryRidgeline";
 import { getHomeData } from "@/lib/queries";
+import { getYearlyHistory } from "@/lib/queries-history";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -24,7 +26,10 @@ export const dynamic = "force-dynamic";
 
 
 export default async function HomePage() {
-  const data = await getHomeData();
+  const [data, history] = await Promise.all([getHomeData(), getYearlyHistory()]);
+
+  const historySpan = history.length ? history[history.length - 1].year - history[0].year : 0;
+  const historyTotal = history.reduce((a, y) => a + y.fatalities, 0);
 
   return (
     <>
@@ -48,6 +53,37 @@ export default async function HomePage() {
             <HotRegionsList regions={data.hotRegions.slice(0, 8)} />
           </div>
         </section>
+
+        {/* History — the full since-1970 shape of organized violence */}
+        {history.length > 0 && (
+          <section className="mx-auto max-w-7xl px-6 py-12">
+            <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
+                  The long view
+                </div>
+                <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight md:text-4xl">
+                  {historySpan} years of organized violence
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm text-text-dim">
+                  Every recorded event since 1970, by year. The peaks are the
+                  century&apos;s deadliest chapters — Cold War proxy wars, Rwanda
+                  &apos;94, the Iraq–Syria collapse of 2014–17, Ukraine and Gaza
+                  today.
+                </p>
+              </div>
+              <div className="text-right">
+                <div className="font-display text-2xl font-bold tabular-nums text-text-primary">
+                  {historyTotal.toLocaleString("en-US")}
+                </div>
+                <div className="text-[11px] uppercase tracking-widest text-text-dim">
+                  killed since {history[0].year}
+                </div>
+              </div>
+            </div>
+            <HistoryRidgeline data={history} />
+          </section>
+        )}
 
         {/* Subscribe CTA */}
         <section className="mx-auto max-w-7xl px-6 py-16">

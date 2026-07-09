@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getCountryList, getTopOrganizations } from "@/lib/queries";
+import { getSitemapEventIds } from "@/lib/queries-sitemap";
 import { slugify, SITE_URL } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -59,5 +60,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...categoryPages, ...countryPages, ...orgPages];
+  // Top server-rendered event pages (breaking-news long-tail). Bounded + cached
+  // by the query so this stays fast and can't blow the sitemap size budget.
+  const events = await getSitemapEventIds();
+  const eventPages: MetadataRoute.Sitemap = events.map((e) => {
+    const d = e.date ? new Date(e.date) : now;
+    return {
+      url: `${BASE}/events/${encodeURIComponent(e.id)}`,
+      lastModified: isNaN(d.getTime()) ? now : d,
+      priority: 0.5,
+    };
+  });
+
+  return [
+    ...staticPages,
+    ...categoryPages,
+    ...countryPages,
+    ...orgPages,
+    ...eventPages,
+  ];
 }

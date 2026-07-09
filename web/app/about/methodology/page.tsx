@@ -58,6 +58,43 @@ export default function MethodologyPage() {
           </li>
         </ul>
 
+        <h2 className="mt-12 mb-3 font-display text-xl font-bold">How the threat index works</h2>
+        <p className="text-sm leading-relaxed text-text-dim">
+          The <span className="text-text-primary">threat index</span> — one global 0-100
+          number, plus a per-country score — is a fast triage signal, not a forecast. It is
+          built only from events already in this database, blending three inputs:
+        </p>
+        <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-text-dim">
+          <li>
+            <span className="text-text-primary">Fatality load</span> — recent deaths weighted
+            by recency (the last 7 days count most, then the rest of the month, then the
+            8-90 day tail), then log-compressed so casualties have diminishing marginal impact.
+          </li>
+          <li>
+            <span className="text-text-primary">Tempo</span> — how frequently events are
+            occurring, so sustained low-lethality violence still registers.
+          </li>
+          <li>
+            <span className="text-text-primary">Acceleration</span> — the share of the
+            quarter&apos;s deaths that fell in the last 30 days, which rewards conflicts that are
+            escalating rather than winding down.
+          </li>
+        </ul>
+        <div className="mt-4 flex flex-col gap-2 rounded-lg border border-border bg-surface px-5 py-4 text-sm sm:flex-row sm:gap-6">
+          <div><span className="font-semibold text-text-primary">0-33</span> <span className="text-text-dim">Low</span></div>
+          <div><span className="font-semibold text-text-primary">34-66</span> <span className="text-text-dim">Elevated</span></div>
+          <div><span className="font-semibold text-text-primary">67-100</span> <span className="text-text-dim">Severe</span></div>
+        </div>
+        <p className="mt-4 text-sm leading-relaxed text-text-dim">
+          <span className="text-text-primary">Honest caveat</span> — the score is driven by
+          fatality <em>volume</em> and event tempo, <span className="text-text-primary">not</span>{" "}
+          per-capita rates (there is no population data behind it). So a large active-war
+          country will outscore a small country with intense but localized violence. Read it
+          as &quot;how much organized violence is happening here right now,&quot; not as a
+          normalized per-person risk. Values are tuned so typical active conflicts spread
+          across roughly 40-95; 100 is reserved for catastrophic, escalating situations.
+        </p>
+
         <p className="mt-12 text-xs leading-relaxed text-text-dim">
           Open source and open data —{" "}
           <a href="/data" className="text-accent hover:underline">download the full database</a>{" "}

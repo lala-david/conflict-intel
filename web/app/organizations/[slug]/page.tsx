@@ -40,6 +40,7 @@ import {
 } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 import { OrgTimelineChart } from "@/components/charts/OrgTimelineChart";
+import { orgSummary } from "@/lib/summary";
 
 export const revalidate = 3600;
 
@@ -77,6 +78,31 @@ export default async function OrgPage({ params }: Props) {
     parseInt(org.first_seen?.slice(0, 4) ?? "0") +
     1;
 
+  // Peak year: the year with the most recorded events.
+  let peakYear: number | null = null;
+  let peakCount = -1;
+  for (const row of timeline) {
+    if (row.count > peakCount) {
+      peakCount = row.count;
+      peakYear = row.year;
+    }
+  }
+
+  const firstYear = parseInt(org.first_seen?.slice(0, 4) ?? "") || null;
+  const lastYear = parseInt(org.last_seen?.slice(0, 4) ?? "") || null;
+
+  // Deterministic prose summary (SEO long-tail + human orientation).
+  const summary = orgSummary({
+    name: org.name,
+    events: org.events,
+    fatalities: org.fatalities,
+    countries: org.countries,
+    firstYear,
+    lastYear,
+    peakYear,
+    topCountry: countries[0]?.country ?? null,
+  });
+
   return (
     <>
       <Header />
@@ -107,6 +133,13 @@ export default async function OrgPage({ params }: Props) {
             />
           </div>
         </div>
+
+        {/* Auto-generated prose summary */}
+        {summary && (
+          <p className="mb-12 max-w-3xl text-base leading-relaxed text-text-dim">
+            {summary}
+          </p>
+        )}
 
         {/* Timeline */}
         <section className="mb-12">
