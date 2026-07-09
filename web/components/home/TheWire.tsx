@@ -9,7 +9,7 @@ import {
   type Variants,
 } from "framer-motion";
 import { ShaderBackdrop } from "@/components/ui/ShaderBackdrop";
-import WireGlobe from "@/components/ui/wireframe-dotted-globe";
+import WireGlobe from "@/components/ui/WireGlobe";
 import { HeroFigures } from "@/components/home/HeroStats";
 import { CountUp } from "@/components/home/CountUp";
 import { getCategoryMeta, formatDateShort, formatNumber } from "@/lib/utils";

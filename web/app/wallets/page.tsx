@@ -1,7 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WalletTable } from "@/components/wallets/WalletTable";
-import { ThreatGlobe } from "@/components/ui/ThreatGlobe";
 import { getCryptoStats, getCryptoWallets } from "@/lib/queries";
 import { ShieldAlert, Radar, Boxes, Link2 } from "lucide-react";
 
