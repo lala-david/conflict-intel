@@ -26,11 +26,23 @@ export interface WireEvent {
   actor1: string | null;
 }
 
+/** A geolocated event plotted on the globe. */
+export interface WireHotspot {
+  lat: number;
+  lng: number;
+  fatalities: number;
+  category: Category | null;
+}
+
 export interface WireData {
   /** Latest events, newest first — replayed as a streaming ticker. */
   events: WireEvent[];
-  /** Total fatalities over the recent window (denominator = WIRE_WINDOW_SECONDS). */
-  fatalities90d: number;
+  /** Real event coordinates to plot on the globe (recent, weighted by toll). */
+  hotspots: WireHotspot[];
+  /** Documented fatalities so far this calendar year — the live counter's value. */
+  yearFatalities: number;
+  /** The calendar year the counter reflects. */
+  year: number;
 }
 
 function daysAgo(days: number): string {
@@ -40,9 +52,10 @@ function daysAgo(days: number): string {
 }
 
 export async function getWireData(): Promise<WireData> {
-  const since = daysAgo(WIRE_WINDOW_DAYS);
+  const year = new Date().getFullYear();
+  const yearStart = `${year}-01-01`;
 
-  const [events, agg] = await Promise.all([
+  const [events, hotspots, yearAgg] = await Promise.all([
     queryAll<WireEvent>(
       `SELECT id, date, country, fatalities, category, actor1
          FROM events
@@ -50,15 +63,28 @@ export async function getWireData(): Promise<WireData> {
           AND (fatalities > 0 OR category = 'terrorism')
         ORDER BY date DESC, fatalities DESC
         LIMIT 40`,
-      [since]
+      [daysAgo(WIRE_WINDOW_DAYS)]
+    ),
+    // Real event coordinates for the globe — recent + deadliest, last ~2 years so
+    // the globe is always populated even while the current year is still sparse.
+    queryAll<WireHotspot>(
+      `SELECT latitude AS lat, longitude AS lng, fatalities, category
+         FROM events
+        WHERE is_aggregate = 0 AND dup_of IS NULL
+          AND latitude IS NOT NULL AND latitude != 0
+          AND longitude IS NOT NULL AND longitude != 0
+          AND date >= ?
+        ORDER BY fatalities DESC, date DESC
+        LIMIT 500`,
+      [daysAgo(730)]
     ),
     queryOne<{ total: number }>(
       `SELECT COALESCE(SUM(fatalities), 0) as total
          FROM events
         WHERE is_aggregate = 0 AND date >= ?`,
-      [since]
+      [yearStart]
     ),
   ]);
 
-  return { events, fatalities90d: agg?.total ?? 0 };
+  return { events, hotspots, yearFatalities: yearAgg?.total ?? 0, year };
 }

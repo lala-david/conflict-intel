@@ -1,232 +1,186 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import * as d3 from "d3";
+import { useEffect, useRef } from "react";
+import { geoOrthographic, geoPath, geoGraticule, geoDistance, timer } from "d3";
 
-interface RotatingEarthProps {
-  width?: number;
-  height?: number;
-  className?: string;
-  /** Halftone land dot spacing — larger = fewer dots (lighter render). Default 16. */
-  dotSpacing?: number;
-  /** Land dot + wireframe color. Defaults to a light neutral. */
-  landColor?: string;
-  dotColor?: string;
+export interface GlobePoint {
+  lat: number;
+  lng: number;
+  /** Relative weight (e.g. fatalities) — drives the dot size. */
+  weight?: number;
 }
 
-export default function RotatingEarth({
-  width = 800,
-  height = 600,
-  className = "",
-  dotSpacing = 16,
-  landColor = "#ECEEF1",
-  dotColor = "#8892a0",
-}: RotatingEarthProps) {
+interface Props {
+  /** Real coordinates to plot as glowing red markers. */
+  points?: GlobePoint[];
+  className?: string;
+  /** Rotation speed in degrees/frame. */
+  speed?: number;
+}
+
+let _landCache: any = null;
+
+/**
+ * Data-driven wireframe globe — a d3 geoOrthographic canvas that renders a faint
+ * land outline + graticule and plots real event coordinates as red markers sized
+ * by toll. Sizes to its container (not the window), auto-rotates, drag + zoom.
+ */
+export default function WireGlobe({ points = [], className = "", speed = 0.22 }: Props) {
+  const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [error, setError] = useState<string | null>(null);
+  const pointsRef = useRef(points);
+  pointsRef.current = points;
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    const wrap = wrapRef.current;
     const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    if (!context) return;
+    if (!wrap || !canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    const containerWidth = Math.min(width, window.innerWidth - 40);
-    const containerHeight = Math.min(height, window.innerHeight - 100);
-    const radius = Math.min(containerWidth, containerHeight) / 2.2;
+    let size = 0;
+    let radius = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const projection = geoOrthographic().clipAngle(90);
+    const path = geoPath(projection, ctx);
+    const graticule = geoGraticule()();
+    const rotation: [number, number] = [-20, -12];
+    let land: any = _landCache;
 
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = containerWidth * dpr;
-    canvas.height = containerHeight * dpr;
-    canvas.style.width = `${containerWidth}px`;
-    canvas.style.height = `${containerHeight}px`;
-    context.scale(dpr, dpr);
-
-    const projection = d3
-      .geoOrthographic()
-      .scale(radius)
-      .translate([containerWidth / 2, containerHeight / 2])
-      .clipAngle(90);
-
-    const path = d3.geoPath().projection(projection).context(context);
-
-    const pointInPolygon = (point: [number, number], polygon: number[][]): boolean => {
-      const [x, y] = point;
-      let inside = false;
-      for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-        const [xi, yi] = polygon[i];
-        const [xj, yj] = polygon[j];
-        if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
-      }
-      return inside;
+    const resize = () => {
+      size = Math.max(120, wrap.clientWidth);
+      radius = size / 2.15;
+      canvas.width = size * dpr;
+      canvas.height = size * dpr;
+      canvas.style.width = `${size}px`;
+      canvas.style.height = `${size}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      projection.scale(radius).translate([size / 2, size / 2]);
     };
-
-    const pointInFeature = (point: [number, number], feature: any): boolean => {
-      const g = feature.geometry;
-      if (g.type === "Polygon") {
-        if (!pointInPolygon(point, g.coordinates[0])) return false;
-        for (let i = 1; i < g.coordinates.length; i++) {
-          if (pointInPolygon(point, g.coordinates[i])) return false;
-        }
-        return true;
-      }
-      if (g.type === "MultiPolygon") {
-        for (const polygon of g.coordinates) {
-          if (pointInPolygon(point, polygon[0])) {
-            let inHole = false;
-            for (let i = 1; i < polygon.length; i++) {
-              if (pointInPolygon(point, polygon[i])) { inHole = true; break; }
-            }
-            if (!inHole) return true;
-          }
-        }
-      }
-      return false;
-    };
-
-    const generateDotsInPolygon = (feature: any, spacing: number) => {
-      const dots: [number, number][] = [];
-      const [[minLng, minLat], [maxLng, maxLat]] = d3.geoBounds(feature);
-      const step = spacing * 0.08;
-      for (let lng = minLng; lng <= maxLng; lng += step) {
-        for (let lat = minLat; lat <= maxLat; lat += step) {
-          const p: [number, number] = [lng, lat];
-          if (pointInFeature(p, feature)) dots.push(p);
-        }
-      }
-      return dots;
-    };
-
-    const allDots: { lng: number; lat: number }[] = [];
-    let landFeatures: any;
 
     const render = () => {
-      context.clearRect(0, 0, containerWidth, containerHeight);
-      const currentScale = projection.scale();
-      const scaleFactor = currentScale / radius;
+      if (!size) return;
+      const sf = projection.scale() / radius;
+      ctx.clearRect(0, 0, size, size);
 
-      // Globe sphere
-      context.beginPath();
-      context.arc(containerWidth / 2, containerHeight / 2, currentScale, 0, 2 * Math.PI);
-      context.fillStyle = "#0C0D0F";
-      context.fill();
-      context.strokeStyle = landColor;
-      context.lineWidth = 1.5 * scaleFactor;
-      context.globalAlpha = 0.5;
-      context.stroke();
-      context.globalAlpha = 1;
+      // Sphere
+      ctx.beginPath();
+      ctx.arc(size / 2, size / 2, projection.scale(), 0, 2 * Math.PI);
+      ctx.fillStyle = "#0b0c0e";
+      ctx.fill();
+      ctx.strokeStyle = "#2A2E36";
+      ctx.lineWidth = 1;
+      ctx.stroke();
 
-      if (landFeatures) {
-        // Graticule
-        const graticule = d3.geoGraticule();
-        context.beginPath();
-        path(graticule());
-        context.strokeStyle = landColor;
-        context.lineWidth = 1 * scaleFactor;
-        context.globalAlpha = 0.12;
-        context.stroke();
-        context.globalAlpha = 1;
+      // Graticule
+      ctx.beginPath();
+      path(graticule);
+      ctx.strokeStyle = "rgba(152,160,172,0.10)";
+      ctx.lineWidth = 0.6;
+      ctx.stroke();
 
-        // Land outlines
-        context.beginPath();
-        landFeatures.features.forEach((f: any) => path(f));
-        context.strokeStyle = landColor;
-        context.lineWidth = 1 * scaleFactor;
-        context.globalAlpha = 0.55;
-        context.stroke();
-        context.globalAlpha = 1;
+      // Land outline
+      if (land) {
+        ctx.beginPath();
+        path(land);
+        ctx.strokeStyle = "rgba(200,206,214,0.34)";
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+      }
 
-        // Halftone dots
-        allDots.forEach((dot) => {
-          const pj = projection([dot.lng, dot.lat]);
-          if (pj && pj[0] >= 0 && pj[0] <= containerWidth && pj[1] >= 0 && pj[1] <= containerHeight) {
-            context.beginPath();
-            context.arc(pj[0], pj[1], 1.1 * scaleFactor, 0, 2 * Math.PI);
-            context.fillStyle = dotColor;
-            context.fill();
-          }
-        });
+      // Event markers (front hemisphere only), glow + core
+      const center: [number, number] = [-rotation[0], -rotation[1]];
+      for (const p of pointsRef.current) {
+        if (geoDistance(center, [p.lng, p.lat]) > Math.PI / 2) continue;
+        const xy = projection([p.lng, p.lat]);
+        if (!xy) continue;
+        const r = (1.1 + Math.min(4.2, Math.sqrt(p.weight ?? 1) / 3)) * sf;
+        ctx.beginPath();
+        ctx.arc(xy[0], xy[1], r * 3, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(239,68,68,0.10)";
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(xy[0], xy[1], r, 0, 2 * Math.PI);
+        ctx.fillStyle = "#f04747";
+        ctx.fill();
       }
     };
 
-    const loadWorldData = async () => {
-      try {
-        const res = await fetch("/ne_110m_land.json");
-        if (!res.ok) throw new Error("Failed to load land data");
-        landFeatures = await res.json();
-        landFeatures.features.forEach((f: any) => {
-          generateDotsInPolygon(f, dotSpacing).forEach(([lng, lat]) => allDots.push({ lng, lat }));
-        });
-        render();
-      } catch {
-        setError("Failed to load globe");
-      }
-    };
+    resize();
+    projection.rotate(rotation);
+    render();
 
-    const rotation: [number, number] = [0, -12];
-    let autoRotate = true;
-    const rotate = () => {
-      if (autoRotate) {
-        rotation[0] += 0.32;
-        projection.rotate(rotation);
-        render();
-      }
-    };
-    const rotationTimer = d3.timer(rotate);
-
-    const handleMouseDown = (event: MouseEvent) => {
-      autoRotate = false;
-      const startX = event.clientX;
-      const startY = event.clientY;
-      const start: [number, number] = [rotation[0], rotation[1]];
-      const onMove = (m: MouseEvent) => {
-        rotation[0] = start[0] + (m.clientX - startX) * 0.5;
-        rotation[1] = Math.max(-90, Math.min(90, start[1] - (m.clientY - startY) * 0.5));
-        projection.rotate(rotation);
-        render();
-      };
-      const onUp = () => {
-        document.removeEventListener("mousemove", onMove);
-        document.removeEventListener("mouseup", onUp);
-        setTimeout(() => { autoRotate = true; }, 10);
-      };
-      document.addEventListener("mousemove", onMove);
-      document.addEventListener("mouseup", onUp);
-    };
-
-    const handleWheel = (event: WheelEvent) => {
-      event.preventDefault();
-      const f = event.deltaY > 0 ? 0.9 : 1.1;
-      projection.scale(Math.max(radius * 0.5, Math.min(radius * 3, projection.scale() * f)));
+    const ro = new ResizeObserver(() => {
+      resize();
       render();
-    };
+    });
+    ro.observe(wrap);
 
-    canvas.addEventListener("mousedown", handleMouseDown);
-    canvas.addEventListener("wheel", handleWheel, { passive: false });
-    loadWorldData();
+    // Load land once (cached across mounts), then keep rendering.
+    if (!land) {
+      fetch("/ne_110m_land.json")
+        .then((r) => r.json())
+        .then((json) => {
+          _landCache = json;
+          land = json;
+        })
+        .catch(() => {});
+    }
+
+    let dragging = false;
+    let auto = true;
+    const spin = timer(() => {
+      if (auto && !dragging) {
+        rotation[0] += speed;
+        projection.rotate(rotation);
+      }
+      render();
+    });
+
+    let startX = 0;
+    let startY = 0;
+    let startRot: [number, number] = [0, 0];
+    const onDown = (e: PointerEvent) => {
+      dragging = true;
+      auto = false;
+      startX = e.clientX;
+      startY = e.clientY;
+      startRot = [rotation[0], rotation[1]];
+      canvas.setPointerCapture(e.pointerId);
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!dragging) return;
+      rotation[0] = startRot[0] + (e.clientX - startX) * 0.4;
+      rotation[1] = Math.max(-90, Math.min(90, startRot[1] - (e.clientY - startY) * 0.4));
+      projection.rotate(rotation);
+    };
+    const onUp = () => {
+      dragging = false;
+      setTimeout(() => { auto = true; }, 1200);
+    };
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const f = e.deltaY > 0 ? 0.92 : 1.08;
+      projection.scale(Math.max(radius * 0.7, Math.min(radius * 2.4, projection.scale() * f)));
+    };
+    canvas.addEventListener("pointerdown", onDown);
+    canvas.addEventListener("pointermove", onMove);
+    canvas.addEventListener("pointerup", onUp);
+    canvas.addEventListener("wheel", onWheel, { passive: false });
 
     return () => {
-      rotationTimer.stop();
-      canvas.removeEventListener("mousedown", handleMouseDown);
-      canvas.removeEventListener("wheel", handleWheel);
+      spin.stop();
+      ro.disconnect();
+      canvas.removeEventListener("pointerdown", onDown);
+      canvas.removeEventListener("pointermove", onMove);
+      canvas.removeEventListener("pointerup", onUp);
+      canvas.removeEventListener("wheel", onWheel);
     };
-  }, [width, height, dotSpacing, landColor, dotColor]);
-
-  if (error) {
-    return (
-      <div className={`flex items-center justify-center rounded-2xl bg-surface p-8 ${className}`}>
-        <p className="text-sm text-text-dim">{error}</p>
-      </div>
-    );
-  }
+  }, [speed]);
 
   return (
-    <div className={`relative ${className}`}>
-      <canvas
-        ref={canvasRef}
-        className="h-auto w-full cursor-grab active:cursor-grabbing"
-        style={{ maxWidth: "100%", height: "auto" }}
-      />
+    <div ref={wrapRef} className={`relative aspect-square w-full ${className}`}>
+      <canvas ref={canvasRef} className="h-full w-full cursor-grab touch-none active:cursor-grabbing" />
     </div>
   );
 }

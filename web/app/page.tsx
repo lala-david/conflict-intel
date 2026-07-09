@@ -43,7 +43,9 @@ export default async function HomePage() {
         {/* Hero — THE WIRE: globe + live death counter + streaming incident ticker */}
         <TheWire
           events={wire.events}
-          fatalities90d={wire.fatalities90d}
+          hotspots={wire.hotspots}
+          yearFatalities={wire.yearFatalities}
+          year={wire.year}
           totals={data.totals}
         />
 

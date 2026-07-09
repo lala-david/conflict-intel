@@ -9,20 +9,19 @@ import {
   type Variants,
 } from "framer-motion";
 import { ShaderBackdrop } from "@/components/ui/ShaderBackdrop";
-import RotatingEarth from "@/components/ui/wireframe-dotted-globe";
+import WireGlobe from "@/components/ui/wireframe-dotted-globe";
 import { HeroFigures } from "@/components/home/HeroStats";
+import { CountUp } from "@/components/home/CountUp";
 import { getCategoryMeta, formatDateShort, formatNumber } from "@/lib/utils";
-import type { WireEvent } from "@/lib/queries-wire";
-
-// Client-side mirror of WIRE_WINDOW_SECONDS. Imported constants would pull the
-// server-only db module into the client bundle, so we recompute it locally.
-const WINDOW_SECONDS = 90 * 24 * 60 * 60;
+import type { WireEvent, WireHotspot } from "@/lib/queries-wire";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 interface Props {
   events: WireEvent[];
-  fatalities90d: number;
+  hotspots: WireHotspot[];
+  yearFatalities: number;
+  year: number;
   totals: { events: number; fatalities: number; countries: number };
 }
 
@@ -35,9 +34,9 @@ const item: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
 };
 
-export function TheWire({ events, fatalities90d, totals }: Props) {
+export function TheWire({ events, hotspots, yearFatalities, year, totals }: Props) {
   const reduced = useReducedMotion() ?? false;
-  const ratePerSecond = fatalities90d > 0 ? fatalities90d / WINDOW_SECONDS : 0;
+  const points = hotspots.map((h) => ({ lat: h.lat, lng: h.lng, weight: h.fatalities }));
 
   return (
     <header className="relative isolate overflow-hidden border-b border-border">
@@ -99,29 +98,28 @@ export function TheWire({ events, fatalities90d, totals }: Props) {
           variants={item}
           className="mt-10 grid items-center gap-8 md:mt-14 lg:grid-cols-[1fr_0.82fr] lg:gap-12"
         >
-          {/* Signature focal visual */}
+          {/* Signature focal visual — real conflict coordinates on a live globe */}
           <div className="relative flex justify-center">
             <div
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(58% 58% at 50% 46%, rgba(239,68,68,0.20), transparent 62%)",
+                  "radial-gradient(58% 58% at 50% 46%, rgba(239,68,68,0.18), transparent 62%)",
               }}
               aria-hidden
             />
-            <RotatingEarth
-              width={480}
-              height={480}
-              className="w-full max-w-[440px] drop-shadow-[0_0_60px_rgba(239,68,68,0.16)]"
+            <WireGlobe
+              points={points}
+              className="w-full max-w-[440px] drop-shadow-[0_0_60px_rgba(239,68,68,0.14)]"
             />
           </div>
 
           <WireTicker events={events} reduced={reduced} />
         </motion.div>
 
-        {/* The emotional core — the live rising death counter */}
+        {/* The emotional core — this year's documented toll */}
         <motion.div variants={item}>
-          <DeathCounter ratePerSecond={ratePerSecond} reduced={reduced} />
+          <DeathCounter total={yearFatalities} year={year} reduced={reduced} />
         </motion.div>
 
         {/* Folded monument + supporting figures (from the former HeroStats) */}
@@ -143,39 +141,16 @@ function LiveDot({ reduced }: { reduced: boolean }) {
   );
 }
 
-/* ── Live death counter — the memorial's beating heart ───────────────────── */
+/* ── This year's documented toll — the memorial figure ───────────────────── */
 function DeathCounter({
-  ratePerSecond,
+  total,
+  year,
   reduced,
 }: {
-  ratePerSecond: number;
+  total: number;
+  year: number;
   reduced: boolean;
 }) {
-  const [count, setCount] = useState(0);
-  const barRef = useRef<HTMLSpanElement>(null);
-
-  const perHour = Math.round(ratePerSecond * 3600);
-  const perDay = Math.round(ratePerSecond * 86400);
-
-  useEffect(() => {
-    if (reduced || ratePerSecond <= 0) return;
-    const start = performance.now();
-    let raf = 0;
-    const tick = (now: number) => {
-      const exact = ((now - start) / 1000) * ratePerSecond;
-      const whole = Math.floor(exact);
-      // setState bails out (no re-render) while the integer is unchanged.
-      setCount((c) => (c === whole ? c : whole));
-      // Progress toward the next life lost — updated per-frame without re-render.
-      if (barRef.current) {
-        barRef.current.style.transform = `scaleX(${exact - whole})`;
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [ratePerSecond, reduced]);
-
   return (
     <section className="mt-12 border-t border-border pt-9 md:mt-16 md:pt-10">
       {/* One grave line, in Fraunces */}
@@ -183,51 +158,16 @@ function DeathCounter({
         The killing does not pause while you read this.
       </p>
 
-      {reduced ? (
-        <>
-          <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-accent sm:text-[11px]">
-            In an average hour of organized violence
-          </div>
-          <div className="mt-3 font-display text-6xl font-semibold leading-[0.95] tracking-tight text-text-primary tabular-nums sm:text-7xl md:text-8xl">
-            {perHour.toLocaleString("en-US")}
-          </div>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-text-dim">
-            people are killed, on average — roughly{" "}
-            <span className="font-mono text-text-primary">
-              {perDay.toLocaleString("en-US")}
-            </span>{" "}
-            every day, derived from the last 90 days of recorded fatalities.
-          </p>
-        </>
-      ) : (
-        <>
-          <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-accent sm:text-[11px]">
-            Since you opened this page
-          </div>
-          <div className="mt-3 flex items-baseline gap-3">
-            <span className="font-display text-6xl font-semibold leading-[0.95] tracking-tight text-text-primary tabular-nums sm:text-7xl md:text-8xl">
-              ~{count.toLocaleString("en-US")}
-            </span>
-          </div>
-          {/* Hairline: progress toward the next life lost */}
-          <div className="mt-4 h-px w-full max-w-md overflow-hidden bg-border">
-            <span
-              ref={barRef}
-              className="block h-full w-full origin-left bg-accent"
-              style={{ transform: "scaleX(0)" }}
-              aria-hidden
-            />
-          </div>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-text-dim">
-            people have been killed in organized violence — at the current global
-            rate of{" "}
-            <span className="font-mono text-text-primary">
-              {perDay.toLocaleString("en-US")}
-            </span>{" "}
-            a day. Each number was a life.
-          </p>
-        </>
-      )}
+      <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-accent sm:text-[11px]">
+        Documented in {year}
+      </div>
+      <div className="mt-3 font-display text-6xl font-semibold leading-[0.95] tracking-tight text-accent tabular-nums sm:text-7xl md:text-8xl">
+        {reduced ? total.toLocaleString("en-US") : <CountUp value={total} />}
+      </div>
+      <p className="mt-4 max-w-xl text-sm leading-relaxed text-text-dim">
+        people killed in organized violence, recorded so far this year — each
+        number a life. The dataset&rsquo;s full toll since 1970 is far larger.
+      </p>
     </section>
   );
 }
