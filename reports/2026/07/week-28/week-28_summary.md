@@ -16,9 +16,9 @@
 | 순위 | 국가 | 이벤트 수 |
 |------|------|-----------|
 | 1 | United States of America | 840 |
-| 2 | Iran | 424 |
-| 3 | Ukraine | 289 |
-| 4 | Israel | 154 |
+| 2 | Iran | 429 |
+| 3 | Ukraine | 293 |
+| 4 | Israel | 155 |
 | 5 | United Kingdom | 132 |
 | 6 | Pakistan | 99 |
 | 7 | India | 93 |
@@ -28,9 +28,9 @@
 
 ## 소스별 분포
 
-- expert_rss: 500건
+- expert_rss: 511건
 - gdelt: 2881건
-- google_news: 76건
+- google_news: 77건
 - nctc: 2건
 - ofac: 9건
 - telegram: 8건
@@ -39,8 +39,8 @@
 
 | 카테고리 | 이벤트 | 사망자 |
 |----------|--------|--------|
-| unclassified | 3406 | 0 |
-| terrorism | 56 | 2243 |
+| unclassified | 3417 | 0 |
+| terrorism | 57 | 2244 |
 | counterterrorism | 9 | 0 |
 | war | 3 | 0 |
 | state_violence | 1 | 1 |
