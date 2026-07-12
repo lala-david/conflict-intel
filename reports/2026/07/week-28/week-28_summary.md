@@ -8,28 +8,28 @@
 | 2026-07-09 | 803 | 500 | 30 | 3480 | 0 |
 | 2026-07-10 | 804 | 500 | 28 | 3480 | 0 |
 | 2026-07-11 | 791 | 500 | 30 | 3480 | 0 |
-| 2026-07-12 | 791 | 500 | 30 | 3480 | 0 |
-| **합계** | **3239** | **2500** | **145** | **17400** | **0** |
+| 2026-07-12 | 786 | 500 | 28 | 3480 | 0 |
+| **합계** | **3234** | **2500** | **143** | **17400** | **0** |
 
 ## 국가별 활동 순위
 
 | 순위 | 국가 | 이벤트 수 |
 |------|------|-----------|
-| 1 | United States of America | 690 |
-| 2 | Iran | 367 |
-| 3 | Ukraine | 240 |
-| 4 | Israel | 116 |
-| 5 | United Kingdom | 101 |
-| 6 | Pakistan | 85 |
-| 7 | India | 68 |
-| 8 | Canada | 65 |
-| 9 | Russia (Soviet Union) | 59 |
-| 10 | Nigeria | 50 |
+| 1 | United States of America | 840 |
+| 2 | Iran | 423 |
+| 3 | Ukraine | 281 |
+| 4 | Israel | 153 |
+| 5 | United Kingdom | 132 |
+| 6 | Pakistan | 97 |
+| 7 | India | 93 |
+| 8 | Russia (Soviet Union) | 80 |
+| 9 | Nigeria | 80 |
+| 10 | Canada | 75 |
 
 ## 소스별 분포
 
-- expert_rss: 455건
-- gdelt: 2325건
+- expert_rss: 482건
+- gdelt: 2881건
 - google_news: 75건
 - nctc: 2건
 - ofac: 9건
@@ -39,8 +39,8 @@
 
 | 카테고리 | 이벤트 | 사망자 |
 |----------|--------|--------|
-| unclassified | 2810 | 0 |
-| terrorism | 50 | 1910 |
+| unclassified | 3389 | 0 |
+| terrorism | 54 | 2236 |
 | counterterrorism | 9 | 0 |
 | war | 3 | 0 |
 | state_violence | 1 | 1 |
