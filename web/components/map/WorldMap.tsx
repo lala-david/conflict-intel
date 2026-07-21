@@ -44,6 +44,37 @@ const TOPO_NAME_ALIAS: Record<string, string> = {
   "Ivory Coast": "Côte d'Ivoire",
 };
 
+// maplibre smears any polygon ring whose vertices straddle the ±180° meridian —
+// e.g. Russia's mainland runs east past 180° into Chukotka, so once it's colored
+// the fill bleeds all the way across the map. For each crossing ring, lift its
+// western-hemisphere vertices by +360° so the ring stays continuous on the east
+// side and fills in place. (Antarctica genuinely spans the full range and is left
+// as-is; it has no threat data.)
+function unwrapAntimeridian(geojson: any) {
+  const fixRing = (ring: number[][]): number[][] => {
+    let min = Infinity;
+    let max = -Infinity;
+    for (const [lon] of ring) {
+      if (lon < min) min = lon;
+      if (lon > max) max = lon;
+    }
+    if (max - min <= 180) return ring;
+    return ring.map(([lon, lat]) => [lon < 0 ? lon + 360 : lon, lat]);
+  };
+  for (const f of geojson.features ?? []) {
+    const g = f.geometry;
+    if (!g) continue;
+    if (g.type === "Polygon") {
+      g.coordinates = g.coordinates.map(fixRing);
+    } else if (g.type === "MultiPolygon") {
+      g.coordinates = g.coordinates.map((poly: number[][][]) =>
+        poly.map(fixRing)
+      );
+    }
+  }
+  return geojson;
+}
+
 // Threat color scale: green → yellow → orange → red
 function threatColor(score: number): string {
   if (score >= 8) return "rgba(220, 38, 38, 0.6)";
@@ -89,10 +120,9 @@ export function WorldMap({ countryScores }: Props) {
     fetch("/geo/countries-110m.json")
       .then((r) => r.json())
       .then((topo: Topology) => {
-        const geo = topojson.feature(
-          topo,
-          topo.objects.countries as any
-        ) as any;
+        const geo = unwrapAntimeridian(
+          topojson.feature(topo, topo.objects.countries as any) as any
+        );
 
         // Build lookup by ISO numeric code
         const scoreByCode: Record<string, CountryScore> = {};
