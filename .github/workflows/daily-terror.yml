@@ -17,6 +17,11 @@ on:
     # NCTC 전용 하루 1회 — 08:00 UTC = 17:00 KST (이 실행에서만 NCTC 수집)
     - cron: "0 8 * * *"
   workflow_dispatch:
+    inputs:
+      backfill_date:
+        description: "Backfill one past date (YYYY-MM-DD). Empty = normal today run."
+        required: false
+        default: ""
 
 concurrency:
   group: daily-terror
@@ -101,7 +106,9 @@ jobs:
           # NCTC only on the 17:00 KST (08:00 UTC) run; skipped on the 09/14/19 cycles.
           RUN_NCTC: ${{ github.event.schedule == '0 0,5,10 * * *' && 'skip' || '' }}
         timeout-minutes: 22
-        run: python -u scripts/pipeline/run.py
+        # backfill_date (workflow_dispatch) collects a past day via GDELT/UCDP
+        # archives; empty on schedule → run.py defaults to today.
+        run: python -u scripts/pipeline/run.py ${{ github.event.inputs.backfill_date }}
 
       # ─── 국가명 정규화: 역사적/변형 명칭("Russia (Soviet Union)" 등)을 모던명에 접어
       #     통계 이중집계·지도 미표시 방지 (idempotent). compute_stats 전에 실행. ───
