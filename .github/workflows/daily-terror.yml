@@ -41,13 +41,13 @@ jobs:
       - run: pip install -r requirements.txt
 
       # ─── DB 영속화: 이전 conflict.db 를 Actions 캐시(비공개)에서 복원 (없으면 새로 시작) ───
-      #     conflict-db-* 우선, 없으면 legacy terror-db-* 도 복원 (이름 변경 마이그레이션).
+      #     path must match the Save step exactly — actions/cache folds the path
+      #     list into the cache version hash, so an extra entry here (e.g. the old
+      #     data/terror.db) makes every restore-key miss even on a matching prefix.
       - name: Restore DB (private cache)
         uses: actions/cache/restore@v4
         with:
-          path: |
-            data/conflict.db
-            data/terror.db
+          path: data/conflict.db
           # v2: bumped 2026-07 to force a reseed from the refreshed db-latest
           # (590K w/ GTD backfill) — old caches held a stale pre-GTD ~420K DB
           # that kept resetting global_stats. Old prefixes intentionally dropped.
@@ -69,9 +69,23 @@ jobs:
         run: |
           if [ ! -f data/conflict.db ]; then
             echo "cache miss — seeding full DB from db-latest release"
-            gh release download db-latest --pattern conflict.db --dir data --clobber || echo "no db-latest asset"
+            # Prefer the canonical conflict.db asset; fall back to the legacy
+            # terror.db asset name and rename it (kept for older snapshots).
+            gh release download db-latest --pattern conflict.db --dir data --clobber \
+              || gh release download db-latest --pattern terror.db --dir data --clobber \
+              || echo "no db-latest asset"
+            if [ ! -f data/conflict.db ] && [ -f data/terror.db ]; then
+              mv data/terror.db data/conflict.db
+              echo "seeded from legacy terror.db asset → conflict.db"
+            fi
           fi
-          [ -f data/conflict.db ] && echo "DB ready: $(du -h data/conflict.db | cut -f1)"
+          # NB: keep this as an if/else — a bare `[ -f … ] && …` is the last
+          # command under `bash -e`, so a missing file would exit the step 1.
+          if [ -f data/conflict.db ]; then
+            echo "DB ready: $(du -h data/conflict.db | cut -f1)"
+          else
+            echo "WARNING: no DB seed available — pipeline starts from an empty DB"
+          fi
 
       - name: Run medallion pipeline (bronze → silver → gold)
         env:
