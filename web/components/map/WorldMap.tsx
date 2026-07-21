@@ -31,6 +31,19 @@ const CATEGORIES: Category[] = [
   "armed_violence",
 ];
 
+// Our modern country names → Natural Earth (topojson) feature names, for the
+// handful where the two differ. Without this the choropleth can't color them
+// (it matches on the feature name), so e.g. DR Congo — often the highest-threat
+// country — would render uncolored.
+const TOPO_NAME_ALIAS: Record<string, string> = {
+  "DR Congo": "Dem. Rep. Congo",
+  "South Sudan": "S. Sudan",
+  "Palestinian Territories": "Palestine",
+  "Central African Republic": "Central African Rep.",
+  "Bosnia-Herzegovina": "Bosnia and Herz.",
+  "Ivory Coast": "Côte d'Ivoire",
+};
+
 // Threat color scale: green → yellow → orange → red
 function threatColor(score: number): string {
   if (score >= 8) return "rgba(220, 38, 38, 0.6)";
@@ -93,7 +106,8 @@ export function WorldMap({ countryScores }: Props) {
           const match = countryScores.find(
             (s) =>
               s.country_code === isoNum ||
-              s.country === f.properties?.name
+              s.country === f.properties?.name ||
+              TOPO_NAME_ALIAS[s.country] === f.properties?.name
           );
           if (match) {
             f.properties = {

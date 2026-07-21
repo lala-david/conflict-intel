@@ -28,6 +28,8 @@ from datetime import datetime
 
 import requests
 
+from country_canonical import CANONICAL_COUNTRY
+
 try:
     from dotenv import load_dotenv
     load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
@@ -107,12 +109,28 @@ def _push(conn, table, verb="INSERT OR IGNORE", where="", replace=False):
     return n
 
 
+def _normalize_d1_countries():
+    """Fold historical/variant country names on the D1 side (events append is
+    INSERT-OR-IGNORE, so already-synced rows keep their old name until renamed
+    here). Idempotent — mirrors scripts/normalize_countries.py for local. Cheap:
+    one batch of ~20 indexed UPDATEs."""
+    stmts = [
+        f"UPDATE events SET country = {_lit(canon)} WHERE country = {_lit(alias)};"
+        for alias, canon in CANONICAL_COUNTRY.items()
+        if alias != canon
+    ]
+    _post("\n".join(stmts))
+    print(f"  normalized country names on D1 ({len(stmts)} aliases)")
+
+
 def main():
     full = "--full" in sys.argv
     conn = sqlite3.connect(DB)
     today = datetime.now().strftime("%Y-%m-%d")
     n_events = conn.execute("SELECT COUNT(*) FROM events").fetchone()[0]
     print(f"local DB: {n_events:,} events{' (FULL load)' if full else ''}")
+
+    _normalize_d1_countries()
 
     ev_where = "" if full else f"WHERE collected_at LIKE '{today}%'"
     sa_where = "" if full else f"WHERE collected_date LIKE '{today}%'"

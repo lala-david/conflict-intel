@@ -103,6 +103,11 @@ jobs:
         timeout-minutes: 22
         run: python -u scripts/pipeline/run.py
 
+      # ─── 국가명 정규화: 역사적/변형 명칭("Russia (Soviet Union)" 등)을 모던명에 접어
+      #     통계 이중집계·지도 미표시 방지 (idempotent). compute_stats 전에 실행. ───
+      - name: Normalize country names
+        run: python scripts/normalize_countries.py
+
       - name: Weekly summary (Sundays only)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

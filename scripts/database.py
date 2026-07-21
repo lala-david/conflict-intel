@@ -10,6 +10,8 @@ import re
 from datetime import datetime
 from pathlib import Path
 
+from country_canonical import canonical_country
+
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "data" / "conflict.db"
 
@@ -29,11 +31,11 @@ def _load_iso2name() -> dict:
                     m[iso] = name
     except Exception:
         pass
-    # 누락 보강 + DB 내 지배적 명칭으로 통일 (신규 분리 방지)
+    # 누락 보강 + 모던 정식명으로 통일 (Natural Earth 지도 라벨과 일치시켜 분리·미표시 방지)
     m.update({
         "CN": "China", "JP": "Japan", "MH": "Marshall Islands", "VA": "Vatican",
-        "RU": "Russia (Soviet Union)", "US": "United States of America",
-        "MM": "Myanmar (Burma)", "EE": "Estonia", "LV": "Latvia",
+        "RU": "Russia", "US": "United States of America",
+        "MM": "Myanmar", "EE": "Estonia", "LV": "Latvia",
         "IT": "Italy", "NZ": "New Zealand", "OM": "Oman",
     })
     return m
@@ -43,11 +45,16 @@ _ISO2NAME = _load_iso2name()
 
 
 def _canon_country(val: str) -> str:
-    """country 값이 2글자 ISO 코드면 정식명으로 변환, 아니면 그대로."""
+    """country 값을 모던 정식명으로 정규화.
+
+    2글자 ISO 코드는 정식명으로 펼치고, 역사적/변형 국가명("Russia (Soviet Union)"
+    등)은 canonical_country로 모던명에 접는다. 지도(topojson)·통계·라우팅이 같은
+    이름을 쓰도록 하는 단일 진입점.
+    """
     v = (val or "").strip()
     if len(v) == 2 and v.isupper() and v.isalpha():
-        return _ISO2NAME.get(v, v)
-    return v
+        v = _ISO2NAME.get(v, v)
+    return canonical_country(v) or ""
 
 
 def _normalize_date(raw: str) -> str:
@@ -248,7 +255,7 @@ def save_events(data: dict, date_str: str):
                     "INSERT OR IGNORE INTO events (id, source, date, event_type, sub_event_type, actor1, actor2, country, location, latitude, longitude, fatalities, notes, enrichment, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     (event_id, "ucdp", e.get("date", ""), e.get("event_type", ""),
                      e.get("sub_event_type", ""), e.get("actor1", ""), e.get("actor2", ""),
-                     e.get("country", ""), e.get("location", ""),
+                     _canon_country(e.get("country", "")), e.get("location", ""),
                      float(e["latitude"]) if e.get("latitude") else None,
                      float(e["longitude"]) if e.get("longitude") else None,
                      e.get("fatalities", 0), e.get("notes", ""), enrichment, now),
@@ -264,7 +271,7 @@ def save_events(data: dict, date_str: str):
             try:
                 conn.execute(
                     "INSERT OR IGNORE INTO events (id, source, date, country, country_code, actor1, fatalities, notes, category, category_confidence, is_aggregate, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
-                    (nctc_id, "nctc", e.get("date", ""), e.get("country", ""),
+                    (nctc_id, "nctc", e.get("date", ""), _canon_country(e.get("country", "")),
                      e.get("country_code", ""),
                      desc[:80],
                      int(e.get("fatalities", 0) or 0),
@@ -283,7 +290,7 @@ def save_events(data: dict, date_str: str):
                 conn.execute(
                     "INSERT OR IGNORE INTO events (id, source, date, event_type, actor1, country, country_code, location, fatalities, notes, source_url, enrichment, category, category_confidence, is_aggregate, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     (wiki_id, "wikipedia", e.get("date", ""), e.get("event_type", ""),
-                     e.get("actor1", ""), e.get("country", ""), e.get("country_code", ""),
+                     e.get("actor1", ""), _canon_country(e.get("country", "")), e.get("country_code", ""),
                      (e.get("location", "") or "")[:100],
                      int(e.get("fatalities", 0) or 0),
                      (e.get("notes", "") or "")[:500],

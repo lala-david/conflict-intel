@@ -212,7 +212,13 @@ export const COUNTRY_ISO: Record<string, string> = {
   "South Vietnam": "vn",
   "North Yemen": "ye",
   "South Yemen": "ye",
-  "New Hebrides": "vu"
+  "New Hebrides": "vu",
+  // Modern canonical names (data is normalized to these — see scripts/country_canonical.py)
+  "DR Congo": "cd",
+  "Myanmar": "mm",
+  "Cambodia": "kh",
+  "eSwatini": "sz",
+  "Madagascar": "mg"
 };
 
 export function isoFor(country?: string | null): string | undefined {
