@@ -19,7 +19,11 @@ on:
   workflow_dispatch:
     inputs:
       backfill_date:
-        description: "Backfill one past date (YYYY-MM-DD). Empty = normal today run."
+        description: "Backfill start date (YYYY-MM-DD). Empty = normal today run."
+        required: false
+        default: ""
+      backfill_to:
+        description: "Backfill end date, inclusive (YYYY-MM-DD). Empty = just the start date."
         required: false
         default: ""
 
@@ -34,7 +38,8 @@ permissions:
 jobs:
   research:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # 평소 런은 ~10분; backfill 범위 루프(여러 날 재수집)를 위해 상향 (정상 런엔 영향 없음, 상한일 뿐).
+    timeout-minutes: 60
 
     steps:
       - uses: actions/checkout@v4
@@ -105,10 +110,25 @@ jobs:
           TELEGRAM_ALERT_CHAT: ${{ secrets.TELEGRAM_ALERT_CHAT }}
           # NCTC only on the 17:00 KST (08:00 UTC) run; skipped on the 09/14/19 cycles.
           RUN_NCTC: ${{ github.event.schedule == '0 0,5,10 * * *' && 'skip' || '' }}
-        timeout-minutes: 22
-        # backfill_date (workflow_dispatch) collects a past day via GDELT/UCDP
-        # archives; empty on schedule → run.py defaults to today.
-        run: python -u scripts/pipeline/run.py ${{ github.event.inputs.backfill_date }}
+        timeout-minutes: 50
+        # Normal run → today. backfill_date [.. backfill_to] (workflow_dispatch)
+        # re-collects a past day/range via GDELT/UCDP archives to fill an outage
+        # gap; downstream normalize/compute_stats/sync then run once over the lot.
+        run: |
+          from="${{ github.event.inputs.backfill_date }}"
+          to="${{ github.event.inputs.backfill_to }}"
+          if [ -z "$from" ]; then
+            python -u scripts/pipeline/run.py
+          else
+            [ -z "$to" ] && to="$from"
+            d="$from"
+            while :; do
+              echo "===== backfill $d ====="
+              python -u scripts/pipeline/run.py "$d" || echo "day $d failed — continuing"
+              [ "$d" = "$to" ] && break
+              d="$(date -I -d "$d + 1 day")"
+            done
+          fi
 
       # ─── 국가명 정규화: 역사적/변형 명칭("Russia (Soviet Union)" 등)을 모던명에 접어
       #     통계 이중집계·지도 미표시 방지 (idempotent). compute_stats 전에 실행. ───
