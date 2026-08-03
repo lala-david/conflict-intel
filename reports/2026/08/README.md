@@ -3,3 +3,4 @@
 | Week | Reports |
 |------|---------|
 | [week-31](week-31/README.md) | 3 |
+| [week-32](week-32/README.md) | 1 |
