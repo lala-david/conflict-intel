@@ -73,7 +73,10 @@ function hashKey(s: string): string {
   return h.toString(36) + s.length.toString(36);
 }
 
-const CACHE_TTL = 600; // seconds — data refreshes ~daily, so 10 min is safe
+// seconds. Data changes only when the pipeline syncs (at most 4x a day), so an
+// hour is still fresh. At 10 min the homepage re-ran its queries ~300x a day per
+// colo, which is what pushed D1 past its 5M-rows/day free tier.
+const CACHE_TTL = 3600;
 
 /**
  * Run a query, caching the result at the Cloudflare edge (caches.default) keyed

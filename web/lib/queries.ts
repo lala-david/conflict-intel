@@ -565,12 +565,9 @@ export async function getCountryThreatScores(): Promise<{
               cs.fatalities_90d,
               cs.events_90d
          FROM country_stats cs
-         LEFT JOIN (
-           SELECT country, country_code
-           FROM events
-           WHERE country_code IS NOT NULL AND country_code != ''
-           GROUP BY country
-         ) e ON e.country = cs.country
+         -- country_codes is precomputed by scripts/compute_stats.py; grouping the
+         -- events table here read ~75K rows per render.
+         LEFT JOIN country_codes e ON e.country = cs.country
         WHERE cs.fatalities_90d > 0
         ORDER BY cs.threat_score DESC`
   );

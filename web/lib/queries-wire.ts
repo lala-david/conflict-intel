@@ -54,7 +54,6 @@ function daysAgo(days: number): string {
 
 export async function getWireData(): Promise<WireData> {
   const year = new Date().getFullYear();
-  const yearStart = `${year}-01-01`;
 
   const [events, hotspots, yearAgg] = await Promise.all([
     queryAll<WireEvent>(
@@ -68,22 +67,16 @@ export async function getWireData(): Promise<WireData> {
     ),
     // Real event coordinates for the globe — recent + deadliest, last ~2 years so
     // the globe is always populated even while the current year is still sparse.
+    // Precomputed by scripts/compute_stats.py (was ~58K rows read per render).
     queryAll<WireHotspot>(
-      `SELECT latitude AS lat, longitude AS lng, fatalities, category, country
-         FROM events
-        WHERE is_aggregate = 0 AND dup_of IS NULL
-          AND latitude IS NOT NULL AND latitude != 0
-          AND longitude IS NOT NULL AND longitude != 0
-          AND date >= ?
-        ORDER BY fatalities DESC, date DESC
-        LIMIT 500`,
-      [daysAgo(730)]
+      `SELECT lat, lng, fatalities, category, country
+         FROM wire_hotspots
+        ORDER BY rank`
     ),
+    // Year-to-date toll, from the same rollup (was a ~12K-row SUM per render).
     queryOne<{ total: number }>(
-      `SELECT COALESCE(SUM(fatalities), 0) as total
-         FROM events
-        WHERE is_aggregate = 0 AND date >= ?`,
-      [yearStart]
+      `SELECT fatalities_all as total FROM yearly_stats WHERE year = ?`,
+      [year]
     ),
   ]);
 
