@@ -424,6 +424,9 @@ def main():
             for t in TABLES:
                 if w.exhausted:
                     break
+                if not conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (t,)).fetchone():
+                    print(f"  {t:17} not in the local DB yet — run compute_stats.py first; skipped")
+                    continue
                 result, n = mirror_table(conn, w, t)
                 print(f"  {t:17} {n:6,} rows | {result}")
 
