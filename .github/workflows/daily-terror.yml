@@ -182,15 +182,42 @@ jobs:
           git add reports/ data/classifications.json data/conflict_zones.json data/countries.json data/organizations.json data/.sanctions_cache.json data/known_ucdp_ids.json
           git diff --staged --quiet || (git commit -m "intel: $(date +%Y-%m-%d) daily brief" && git push)
 
-      - name: Alert on failure
+      # ─── 실패 알림: 추적 이슈 1건만 유지 ───
+      #  하루 4런이 같은 원인으로 실패하면 이슈가 매번 새로 생겨 메일 폭탄이 된다
+      #  (2026-08~09: 215건 누적). 열린 automated 이슈가 있으면 새로 만들지 않고
+      #  본문만 갱신한다 — 이슈 본문 수정은 알림 메일을 발생시키지 않는다.
+      #  NB: GitHub 자체의 "scheduled workflow 실패" 메일은 계정 알림 설정
+      #      (github.com/settings/notifications → Actions)에서 따로 끈다.
+      - name: Alert on failure (single tracking issue)
         if: failure()
         uses: actions/github-script@v7
         with:
           script: |
+            const today = new Date().toISOString().split('T')[0];
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const { data: found } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'automated',
+              per_page: 100,
+            });
+            // listForRepo also returns PRs — keep real issues only.
+            const tracking = found.filter((i) => !i.pull_request)[0];
+            if (tracking) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: tracking.number,
+                body: `Daily pipeline is still failing.\n\nLast checked: ${today}\nLatest failed run: ${runUrl}\n\n(이 이슈는 실패할 때마다 본문만 갱신됩니다 — 중복 이슈/메일 방지용 추적 이슈입니다.)`,
+              });
+              core.info(`tracking issue #${tracking.number} updated — no new issue, no mail`);
+              return;
+            }
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `Daily conflict brief failed — ${new Date().toISOString().split('T')[0]}`,
-              body: `Workflow run failed: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
-              labels: ['bug', 'automated']
-            })
+              title: `Daily conflict brief failing — since ${today}`,
+              body: `Daily pipeline failed.\n\nFirst seen: ${today}\nLatest failed run: ${runUrl}\n\n(이 이슈는 실패할 때마다 본문만 갱신됩니다 — 중복 이슈/메일 방지용 추적 이슈입니다.)`,
+              labels: ['bug', 'automated'],
+            });
