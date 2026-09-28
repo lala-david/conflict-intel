@@ -163,10 +163,7 @@ def init_db():
                 created_at TEXT DEFAULT (datetime('now'))
             );
 
-            CREATE INDEX IF NOT EXISTS idx_events_date ON events(date);
-            CREATE INDEX IF NOT EXISTS idx_events_country ON events(country);
             CREATE INDEX IF NOT EXISTS idx_events_source ON events(source);
-            CREATE INDEX IF NOT EXISTS idx_events_actor1 ON events(actor1);
             CREATE INDEX IF NOT EXISTS idx_events_source_url ON events(source_url);
             -- composite indexes: speed up per-country / per-actor GROUP BY aggregations
             CREATE INDEX IF NOT EXISTS idx_ev_country_date ON events(country, date);
@@ -196,11 +193,24 @@ def init_db():
             ("dup_of", "TEXT"),
         ])
 
-        # is_aggregate 컬럼이 보장된 뒤에 인덱스 생성 (fresh DB에서 컬럼보다
+        # is_aggregate / category 컬럼이 보장된 뒤에 인덱스 생성 (fresh DB에서 컬럼보다
         # 먼저 만들면 'no such column: is_aggregate'로 init이 깨짐).
-        conn.execute("CREATE INDEX IF NOT EXISTS idx_events_aggregate ON events(is_aggregate)")
-        # category is also added via _ensure_columns, so its index must come after too.
-        conn.execute("CREATE INDEX IF NOT EXISTS idx_events_category ON events(category)")
+        # These composites also serve lookups on their leading column. Until now
+        # they existed only as hand-made indexes carried forward inside the DB
+        # file (no code created them), so a fresh DB would have lacked them.
+        conn.executescript("""
+            CREATE INDEX IF NOT EXISTS idx_events_date_fatal ON events(date, fatalities);
+            CREATE INDEX IF NOT EXISTS idx_events_cat_agg ON events(category, is_aggregate);
+            CREATE INDEX IF NOT EXISTS idx_events_agg_date_fat ON events(is_aggregate, date, fatalities);
+        """)
+        # Single-column indexes that are an exact prefix of a composite above or
+        # of idx_ev_country_* / idx_ev_actor_date. SQLite answers prefix lookups
+        # from the longer index, so these only duplicated data — 68MB of it, which
+        # is what pushed D1 past its 500MB free tier in 2026-08. Checked against
+        # the web's event queries: no new full-table scans after dropping them.
+        for name in ("idx_events_date", "idx_events_country", "idx_events_actor1",
+                     "idx_events_category", "idx_events_aggregate", "idx_events_agg_date"):
+            conn.execute(f"DROP INDEX IF EXISTS {name}")
 
         conn.commit()
     finally:
