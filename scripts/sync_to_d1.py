@@ -89,6 +89,16 @@ def _cols(conn, table):
     return [r[1] for r in conn.execute(f"PRAGMA table_info({table})")]
 
 
+def _ensure_table(conn, table):
+    """Create `table` on D1 from the local schema if it isn't there yet, so a new
+    gold table ships with the next sync instead of failing as 'no such table'."""
+    sql = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type='table' AND name=?", (table,)
+    ).fetchone()
+    if sql and sql[0]:
+        _post(sql[0].replace("CREATE TABLE ", "CREATE TABLE IF NOT EXISTS ", 1) + ";")
+
+
 def _push(conn, table, verb="INSERT OR IGNORE", where="", replace=False):
     cols = _cols(conn, table)
     collist = ", ".join(cols)
@@ -142,8 +152,10 @@ def main():
         print(f"  SKIP stats/crypto replace — local DB incomplete ({n_events} < {MIN_EVENTS})")
     else:
         for t in ("global_stats", "country_stats", "org_stats", "category_stats", "daily_stats",
-                  "crypto_addresses", "crypto_stats", "event_reviews"):
+                  "crypto_addresses", "crypto_stats", "event_reviews",
+                  "yearly_stats", "wire_hotspots", "country_codes"):
             try:
+                _ensure_table(conn, t)
                 c = _push(conn, t, "INSERT OR REPLACE", replace=True)
                 print(f"  replaced {t}: {c}")
             except Exception as ex:  # noqa: BLE001
