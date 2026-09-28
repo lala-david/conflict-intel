@@ -93,32 +93,47 @@ def run(target_date: datetime | None = None) -> None:
     save_daily_stats(date_str, data, stats)
     save_known_ucdp_ids([e.get("event_id") for e in data.get("ucdp", []) if e.get("event_id")])
 
-    # fill actors from headlines (local LLM), then drop contentless empty shells
-    try:
-        from fill_actors import drop_empty_shells, drop_junk_events, agentic_enrich
-        from database import get_conn
-        _c = get_conn()
-        _sh = drop_empty_shells(_c)
-        _kj = drop_junk_events(_c)                 # cheap keyword pre-filter
-        _drop, _enr = agentic_enrich(_c)           # LLM agent: understand → fill + drop
-        _c.close()
-        print(f"  cleanup: shells {_sh}, keyword-junk {_kj}, "
-              f"agent-dropped {_drop}, agent-enriched {_enr}")
-    except Exception as e:  # noqa: BLE001
-        print(f"  cleanup skipped: {e}")
+    # fill actors from headlines (local LLM), then drop contentless empty shells.
+    # SKIP_LLM=1 leaves both LLM refinement stages out: on a long backfill the
+    # LAN gemma calls dominate the wall clock (~12 min/day vs ~40s for the raw
+    # gdelt+ucdp landing), and they are refinements over rows that are already
+    # saved — so a fast raw backfill followed by one bulk LLM pass
+    # (scripts/full_dedup_chunked.py) gets the same end state far sooner.
+    if os.environ.get("SKIP_LLM"):
+        print("  cleanup/dedup skipped (SKIP_LLM — run the bulk LLM pass after the range)")
+    else:
+        try:
+            from fill_actors import drop_empty_shells, drop_junk_events, agentic_enrich
+            from database import get_conn
+            _c = get_conn()
+            _sh = drop_empty_shells(_c)
+            _kj = drop_junk_events(_c)                 # cheap keyword pre-filter
+            _drop, _enr = agentic_enrich(_c)           # LLM agent: understand → fill + drop
+            _c.close()
+            print(f"  cleanup: shells {_sh}, keyword-junk {_kj}, "
+                  f"agent-dropped {_drop}, agent-enriched {_enr}")
+        except Exception as e:  # noqa: BLE001
+            print(f"  cleanup skipped: {e}")
 
-    # cross-source dedup via local LLM (free/private); heuristic fallback if unreachable
-    try:
-        deduplicate(days=7)
-    except Exception as e:  # noqa: BLE001
-        print(f"  dedup skipped: {e}")
+        # cross-source dedup via local LLM (free/private); heuristic fallback if unreachable
+        try:
+            deduplicate(days=7)
+        except Exception as e:  # noqa: BLE001
+            print(f"  dedup skipped: {e}")
 
-    # crypto threat-finance — its own bronze → silver → gold medallion
-    try:
-        from pipeline import crypto as crypto_pipeline
-        crypto_pipeline.run(run_id)
-    except Exception as e:  # noqa: BLE001
-        print(f"  crypto skipped: {e}")
+    # crypto threat-finance — its own bronze → silver → gold medallion.
+    # Every crypto source is a live feed (no target_date), and graphsense alone
+    # walks a few hundred tagpack .yaml files one request at a time (~13 min), so
+    # on a backfill day it would re-fetch today's identical data for nothing.
+    # BACKFILL_ONLY skips it; run it once at the end of the range instead.
+    if os.environ.get("BACKFILL_ONLY"):
+        print("\n[crypto] skipped (BACKFILL_ONLY — live-feed sources, run once after the range)")
+    else:
+        try:
+            from pipeline import crypto as crypto_pipeline
+            crypto_pipeline.run(run_id)
+        except Exception as e:  # noqa: BLE001
+            print(f"  crypto skipped: {e}")
 
     # Telegram alerts — broadcast the run's new notable events (no-op without secrets)
     try:
@@ -138,10 +153,16 @@ def run(target_date: datetime | None = None) -> None:
     (report_dir / f"{date_str}.md").write_text(build_report(data, target_date, mapper), encoding="utf-8")
     update_week_readme(report_dir, target_date)
     update_month_readme(report_dir, target_date)
-    try:
-        compute_stats()
-    except Exception as e:  # noqa: BLE001
-        print(f"  gold aggregate failed: {e}")
+    # Recomputing the serving aggregates scans the whole events table, so a
+    # multi-day backfill would redo it once per day for nothing — the backfill
+    # runner calls compute_stats once after the range instead.
+    if os.environ.get("BACKFILL_ONLY"):
+        print("  aggregate skipped (BACKFILL_ONLY — compute_stats runs once after the range)")
+    else:
+        try:
+            compute_stats()
+        except Exception as e:  # noqa: BLE001
+            print(f"  gold aggregate failed: {e}")
 
     raw_out = {k: v for k, v in data.items() if not k.startswith("_")}
     (report_dir / f"{date_str}_raw.json").write_text(

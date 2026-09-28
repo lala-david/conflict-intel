@@ -7,11 +7,16 @@ The `key` matches the dict key that the Silver transform expects.
 
 NCTC runs once a day (17:00 KST) — the daily workflow sets RUN_NCTC=skip on the
 other cycles so it's excluded there. Unset (local/manual runs) includes it.
+
+BACKFILL_ONLY=1 narrows the registry to DATE_AWARE sources — see below.
 """
 import os
 from datetime import datetime
 
 from pipeline.base import Connector, FnConnector
+
+# Sources that accept a target_date and can serve a past day from an archive.
+DATE_AWARE = ("gdelt", "ucdp")
 
 
 def build_registry(target_date: datetime) -> list[Connector]:
@@ -42,4 +47,11 @@ def build_registry(target_date: datetime) -> list[Connector]:
     # NCTC only on its once-a-day (17:00 KST) run; skipped on the other cycles.
     if os.environ.get("RUN_NCTC") == "skip":
         connectors = [c for c in connectors if c.name != "nctc"]
+    # Backfilling a past day only makes sense for the date-aware sources: gdelt
+    # and ucdp take target_date and serve archives, while the rest are live
+    # feeds that would re-scrape *today* once per backfilled day (wasted calls,
+    # and today's items landing under an old run). BACKFILL_ONLY=1 keeps just
+    # the two that honour the date.
+    if os.environ.get("BACKFILL_ONLY"):
+        connectors = [c for c in connectors if c.name in DATE_AWARE]
     return connectors
