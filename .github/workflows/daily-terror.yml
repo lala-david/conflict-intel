@@ -10,6 +10,12 @@ name: Daily Conflict Intelligence
 #   OPENAI_API_KEY, UCDP_TOKEN            — 수집/BLUF
 #   CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN, D1_DATABASE_ID  — 사이트 D1 동기화 (REST, CLI 불필요)
 # 풀 DB는 db-latest 릴리스에 보관 → 캐시 미스 시 시드 (통계 정확성 보장).
+# ⚠️ DISABLED 2026-09-28 (`gh workflow disable`). Every run since 2026-08-03 failed at
+#    "Sync to D1" with code 7500 "Exceeded maximum DB size", and because that step sits
+#    BEFORE the cache-save / db-latest / commit-reports steps, each run discarded all of
+#    its work — while GitHub mailed the owner a failure notice 4x a day. Collection moved
+#    to the laptop meanwhile (scripts/run_backfill_local.ps1).
+#    Re-enable once D1 is back under its size limit:  gh workflow enable "Daily Conflict Intelligence"
 on:
   schedule:
     # 아침·점심·저녁 KST — 00:00/05:00/10:00 UTC = 09:00/14:00/19:00 KST (NCTC 제외)
