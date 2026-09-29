@@ -244,6 +244,10 @@ def compute():
             country TEXT PRIMARY KEY,
             country_code TEXT
         );
+        CREATE TABLE IF NOT EXISTS event_sources (
+            source TEXT PRIMARY KEY,
+            events INTEGER
+        );
     """)
 
     # History ridgeline (lib/queries-history.ts): events/fatalities exclude
@@ -287,9 +291,18 @@ def compute():
          WHERE country_code IS NOT NULL AND country_code != ''
          GROUP BY country
     """)
-    y, w, cc = (conn.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0]
-                for t in ("yearly_stats", "wire_hotspots", "country_codes"))
-    log.info(f"  yearly_stats: {y}, wire_hotspots: {w}, country_codes: {cc}")
+    # Source names for the /events filter (lib/queries-events.ts). SELECT DISTINCT
+    # over events read all ~600K rows per render for a list of about a dozen.
+    conn.execute("DELETE FROM event_sources")
+    conn.execute("""
+        INSERT INTO event_sources (source, events)
+        SELECT source, COUNT(*) FROM events
+         WHERE source IS NOT NULL AND source != ''
+         GROUP BY source
+    """)
+    y, w, cc, es = (conn.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0]
+                    for t in ("yearly_stats", "wire_hotspots", "country_codes", "event_sources"))
+    log.info(f"  yearly_stats: {y}, wire_hotspots: {w}, country_codes: {cc}, event_sources: {es}")
 
     conn.commit()
     conn.close()

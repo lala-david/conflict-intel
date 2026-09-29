@@ -48,14 +48,19 @@ export function getEventCountries(): Promise<{ country: string }[]> {
   );
 }
 
-/** Distinct source strings present in the events table, for the source filter. */
+/**
+ * Source strings present in the events table, for the source filter. Read from
+ * `event_sources`, which scripts/compute_stats.py materializes — SELECT DISTINCT
+ * over events read all ~600K rows per render for about a dozen names.
+ */
 export function getEventSources(): Promise<string[]> {
   return queryAll<{ source: string }>(
-    `SELECT DISTINCT source FROM events
-      WHERE source IS NOT NULL AND source != ''
-      ORDER BY source ASC`
+    `SELECT source FROM event_sources ORDER BY source ASC`
   ).then((rows) => rows.map((r) => r.source));
 }
+
+/** The unfiltered /events condition — discrete, de-duplicated events. */
+const BASE_WHERE = "is_aggregate = 0 AND dup_of IS NULL";
 
 /**
  * Translate URL filters into a parameterised WHERE clause. All values are bound
@@ -66,7 +71,7 @@ export function buildEventWhere(
   f: EventFilters,
   validSources: Set<string>
 ): { where: string; params: (string | number)[] } {
-  const conditions: string[] = ["is_aggregate = 0", "dup_of IS NULL"];
+  const conditions: string[] = [BASE_WHERE];
   const params: (string | number)[] = [];
 
   if (f.q && f.q.length >= 2) {
@@ -119,6 +124,14 @@ export async function countEvents(
   where: string,
   params: (string | number)[]
 ): Promise<number> {
+  // With no filter this is exactly global_stats.total_events (compute_stats uses
+  // the same WHERE), and counting it live read ~300K rows on every cache miss.
+  if (where === BASE_WHERE && params.length === 0) {
+    const g = await queryOne<{ total: number }>(
+      `SELECT total_events as total FROM global_stats WHERE id = 1`
+    );
+    if (g) return g.total;
+  }
   const row = await queryOne<{ total: number }>(
     `SELECT COUNT(*) as total FROM events WHERE ${where}`,
     params

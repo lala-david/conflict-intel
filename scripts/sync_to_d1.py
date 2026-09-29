@@ -64,7 +64,7 @@ PROBE = 25             # first batch of a costed run: measures the real per-row 
 
 # Mirrored by primary-key diff, homepage tables first so a tight budget still
 # leaves the front page consistent.
-TABLES = ("global_stats", "yearly_stats", "wire_hotspots", "country_codes",
+TABLES = ("global_stats", "yearly_stats", "wire_hotspots", "country_codes", "event_sources",
           "country_stats", "category_stats", "daily_stats", "org_stats",
           "crypto_stats", "event_reviews", "crypto_addresses")
 VOLATILE = {"updated_at", "collected_date"}   # change every run, mean nothing new
