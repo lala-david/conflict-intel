@@ -134,6 +134,12 @@ class D1:
 
     def _call(self, sql):
         r = requests.post(self.url, headers=self.hdr, json={"sql": sql}, timeout=180)
+        # The account's daily quota is shared with the site and with other runs, so
+        # hitting it is expected, not a failure: stop cleanly and resume tomorrow.
+        # A rejected batch never moved the cursor, so nothing is skipped.
+        if "exceeded D1's free tier daily row" in r.text:
+            print("  D1 daily quota reached — stopping; the next run resumes from the cursor")
+            raise OutOfBudget
         if r.status_code >= 400:
             raise RuntimeError(f"D1 HTTP {r.status_code}: {r.text[:500]}")
         body = r.json()

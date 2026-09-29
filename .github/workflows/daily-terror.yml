@@ -2,7 +2,9 @@ name: Daily Conflict Intelligence
 
 # 무료 클라우드 자동화 (일일 분쟁·안보 인텔 수집).
 #   - 매일 09:00 KST(00:00 UTC) 자동 수집
-#   - DB(276MB, gitignore)는 GitHub Actions 캐시로 영속화(레포 비공개, 공개 다운로드 불가): 복원 → 저장
+#   - DB(~510MB, gitignore)는 GitHub Actions 캐시로 영속화: 복원 → 저장
+#     (NB: 레포가 PUBLIC 이라 db-latest 릴리스의 DB 는 누구나 받을 수 있다 — 공개 출처 데이터뿐,
+#      개인정보(waitlist 이메일)는 D1 에만 있고 이 DB 에는 없음)
 #   - 수집/통계 후 변경분을 Cloudflare D1(SQLite)에 동기화 → Cloudflare Worker 사이트가 읽음
 #   - 리포트(.md)는 평소처럼 repo 에 커밋
 #
@@ -10,12 +12,12 @@ name: Daily Conflict Intelligence
 #   OPENAI_API_KEY, UCDP_TOKEN            — 수집/BLUF
 #   CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN, D1_DATABASE_ID  — 사이트 D1 동기화 (REST, CLI 불필요)
 # 풀 DB는 db-latest 릴리스에 보관 → 캐시 미스 시 시드 (통계 정확성 보장).
-# ⚠️ DISABLED 2026-09-28 (`gh workflow disable`). Every run since 2026-08-03 failed at
-#    "Sync to D1" with code 7500 "Exceeded maximum DB size", and because that step sits
-#    BEFORE the cache-save / db-latest / commit-reports steps, each run discarded all of
-#    its work — while GitHub mailed the owner a failure notice 4x a day. Collection moved
-#    to the laptop meanwhile (scripts/run_backfill_local.ps1).
-#    Re-enable once D1 is back under its size limit:  gh workflow enable "Daily Conflict Intelligence"
+# History: disabled 2026-09-28 → re-enabled 2026-09-29. Every run from 2026-08-03 failed at
+#   "Sync to D1" (D1 over its 500MB free tier), and since that step then sat BEFORE the
+#   cache-save / db-latest / commit-reports steps, each run discarded all its work for 8
+#   weeks. Fixed: redundant indexes dropped (501→393MB), sync moved last, sync made
+#   diff-based and write-budgeted, and the gap backfilled on the laptop and handed back
+#   via db-latest (cache key v3).
 on:
   schedule:
     # 아침·점심·저녁 KST — 00:00/05:00/10:00 UTC = 09:00/14:00/19:00 KST (NCTC 제외)
@@ -64,12 +66,13 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: data/conflict.db
-          # v2: bumped 2026-07 to force a reseed from the refreshed db-latest
-          # (590K w/ GTD backfill) — old caches held a stale pre-GTD ~420K DB
-          # that kept resetting global_stats. Old prefixes intentionally dropped.
-          key: conflict-db-v2-${{ github.run_id }}
+          # v3: bumped 2026-09 to reseed from db-latest, which now holds the
+          # laptop DB (8-9월 backfill + LLM dedup). The newest v2 cache is the
+          # 2026-08-03 DB — the last run that got as far as saving — and syncing
+          # from it would roll D1's stats back to August. (v2: 2026-07 GTD reseed.)
+          key: conflict-db-v3-${{ github.run_id }}
           restore-keys: |
-            conflict-db-v2-
+            conflict-db-v3-
 
       - name: Migrate legacy DB filename (terror.db → conflict.db)
         run: |
@@ -165,7 +168,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: data/conflict.db
-          key: conflict-db-v2-${{ github.run_id }}
+          key: conflict-db-v3-${{ github.run_id }}
 
       - name: Refresh db-latest release
         if: ${{ hashFiles('data/conflict.db') != '' }}
