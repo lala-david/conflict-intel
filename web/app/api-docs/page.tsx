@@ -27,7 +27,7 @@ const ENDPOINTS: Endpoint[] = [
     method: "GET",
     path: "/api/status",
     description:
-      "Source health check — per-source freshness (OK/DEGRADED/DOWN), last collected timestamp, total events.",
+      "Source health check — per-source freshness (OK/DEGRADED/DOWN, or ARCHIVE for one-off historical datasets, which don't count toward overall_status), last collected timestamp, total events.",
     example: `curl http://localhost:3000/api/status`,
   },
   // Threats (countries with threat scoring)

@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
 
-from database import get_conn
+from database import get_conn, _ensure_columns
 from logger import log
 
 
@@ -291,12 +291,25 @@ def compute():
          WHERE country_code IS NOT NULL AND country_code != ''
          GROUP BY country
     """)
-    # Source names for the /events filter (lib/queries-events.ts). SELECT DISTINCT
-    # over events read all ~600K rows per render for a list of about a dozen.
+    # Per-source rollup for the /events source filter (lib/queries-events.ts) and
+    # /api/status freshness (app/api/status/route.ts). Both used to aggregate the
+    # events table live: SELECT DISTINCT read ~600K rows per render, and the
+    # status GROUP BY ~1.2M rows per call — a public endpoint where a few calls a
+    # day would spend D1's whole read quota. The status columns mirror its old
+    # query (discrete rows only, is_aggregate = 0).
+    _ensure_columns(conn, "event_sources", [
+        ("total_events", "INTEGER"),
+        ("latest_event", "TEXT"),
+        ("last_collected", "TEXT"),
+    ])
     conn.execute("DELETE FROM event_sources")
     conn.execute("""
-        INSERT INTO event_sources (source, events)
-        SELECT source, COUNT(*) FROM events
+        INSERT INTO event_sources (source, events, total_events, latest_event, last_collected)
+        SELECT source, COUNT(*),
+               SUM(CASE WHEN is_aggregate = 0 THEN 1 ELSE 0 END),
+               MAX(CASE WHEN is_aggregate = 0 THEN date END),
+               MAX(CASE WHEN is_aggregate = 0 THEN collected_at END)
+          FROM events
          WHERE source IS NOT NULL AND source != ''
          GROUP BY source
     """)

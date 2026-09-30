@@ -297,6 +297,13 @@ def ensure_table(conn, w, table):
     sql = conn.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name=?", (table,)).fetchone()
     if sql and sql[0]:
         w.send([sql[0].replace("CREATE TABLE ", "CREATE TABLE IF NOT EXISTS ", 1) + ";"])
+    # ...and columns added locally since (compute_stats grows gold tables with
+    # _ensure_columns), which CREATE IF NOT EXISTS won't touch. Without this the
+    # diff SELECT fails with "no such column" and the whole table stops syncing.
+    remote = {r["name"] for r in w.query(f"PRAGMA table_info({table})")}
+    for _, name, ctype, *_ in conn.execute(f"PRAGMA table_info({table})"):
+        if remote and name not in remote:
+            w.send([f"ALTER TABLE {table} ADD COLUMN {name} {ctype};"])
 
 
 def mirror_table(conn, w, table):
