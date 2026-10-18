@@ -18,11 +18,11 @@
 | 순위 | 국가 | 이벤트 수 |
 |------|------|-----------|
 | 1 | United States of America | 1043 |
-| 2 | Ukraine | 572 |
-| 3 | Israel | 261 |
+| 2 | Ukraine | 583 |
+| 3 | Israel | 262 |
 | 4 | Russia | 245 |
 | 5 | Saudi Arabia | 223 |
-| 6 | Pakistan | 133 |
+| 6 | Pakistan | 135 |
 | 7 | Iran | 126 |
 | 8 | India | 121 |
 | 9 | Yemen | 108 |
@@ -30,9 +30,9 @@
 
 ## 소스별 분포
 
-- expert_rss: 998건
+- expert_rss: 1014건
 - gdelt: 3412건
-- google_news: 96건
+- google_news: 97건
 - nctc: 4건
 - ofac: 5건
 - telegram: 16건
@@ -41,8 +41,8 @@
 
 | 카테고리 | 이벤트 | 사망자 |
 |----------|--------|--------|
-| unclassified | 4448 | 0 |
-| terrorism | 78 | 2534 |
+| unclassified | 4463 | 0 |
+| terrorism | 80 | 2550 |
 | counterterrorism | 5 | 0 |
 
 ## 신규 제재 엔티티
