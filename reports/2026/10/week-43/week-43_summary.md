@@ -18,8 +18,8 @@
 | 순위 | 국가 | 이벤트 수 |
 |------|------|-----------|
 | 1 | United States of America | 1004 |
-| 2 | Ukraine | 513 |
-| 3 | Israel | 328 |
+| 2 | Ukraine | 517 |
+| 3 | Israel | 330 |
 | 4 | Russia | 228 |
 | 5 | France | 131 |
 | 6 | Saudi Arabia | 126 |
@@ -30,9 +30,9 @@
 
 ## 소스별 분포
 
-- expert_rss: 976건
+- expert_rss: 983건
 - gdelt: 3403건
-- google_news: 97건
+- google_news: 98건
 - nctc: 1건
 - ofac: 2건
 - telegram: 32건
@@ -42,8 +42,8 @@
 
 | 카테고리 | 이벤트 | 사망자 |
 |----------|--------|--------|
-| unclassified | 4387 | 0 |
-| terrorism | 124 | 2404 |
+| unclassified | 4394 | 0 |
+| terrorism | 125 | 2406 |
 | counterterrorism | 2 | 0 |
 
 ---
