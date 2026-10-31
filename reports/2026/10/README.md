@@ -6,4 +6,4 @@
 | [week-41](week-41/README.md) | 8 |
 | [week-42](week-42/README.md) | 8 |
 | [week-43](week-43/README.md) | 8 |
-| [week-44](week-44/README.md) | 5 |
+| [week-44](week-44/README.md) | 6 |
