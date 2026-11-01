@@ -10,29 +10,29 @@
 | 2026-10-29 | 779 | 500 | 35 | 3660 | 0 |
 | 2026-10-30 | 783 | 500 | 29 | 3660 | 0 |
 | 2026-10-31 | 783 | 500 | 27 | 3660 | 0 |
-| 2026-11-01 | 783 | 500 | 28 | 3660 | 0 |
-| **합계** | **5448** | **3500** | **216** | **25620** | **0** |
+| 2026-11-01 | 754 | 500 | 25 | 3660 | 0 |
+| **합계** | **5419** | **3500** | **213** | **25620** | **0** |
 
 ## 국가별 활동 순위
 
 | 순위 | 국가 | 이벤트 수 |
 |------|------|-----------|
-| 1 | United States of America | 927 |
-| 2 | Ukraine | 420 |
-| 3 | Israel | 272 |
-| 4 | Russia | 155 |
-| 5 | Iran | 105 |
-| 6 | United Kingdom | 100 |
-| 7 | Pakistan | 88 |
-| 8 | Saudi Arabia | 81 |
-| 9 | Australia | 81 |
-| 10 | Nigeria | 70 |
+| 1 | United States of America | 1112 |
+| 2 | Ukraine | 448 |
+| 3 | Israel | 298 |
+| 4 | Russia | 176 |
+| 5 | Iran | 123 |
+| 6 | United Kingdom | 114 |
+| 7 | Pakistan | 103 |
+| 8 | Saudi Arabia | 95 |
+| 9 | India | 95 |
+| 10 | Nigeria | 89 |
 
 ## 소스별 분포
 
-- expert_rss: 812건
-- gdelt: 2885건
-- google_news: 96건
+- expert_rss: 835건
+- gdelt: 3448건
+- google_news: 101건
 - ofac: 4건
 - telegram: 26건
 
@@ -40,7 +40,7 @@
 
 | 카테고리 | 이벤트 | 사망자 |
 |----------|--------|--------|
-| unclassified | 3742 | 0 |
+| unclassified | 4333 | 0 |
 | terrorism | 77 | 3999 |
 | counterterrorism | 4 | 0 |
 
