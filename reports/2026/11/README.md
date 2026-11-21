@@ -5,4 +5,4 @@
 | [week-44](week-44/README.md) | 2 |
 | [week-45](week-45/README.md) | 8 |
 | [week-46](week-46/README.md) | 8 |
-| [week-47](week-47/README.md) | 5 |
+| [week-47](week-47/README.md) | 6 |
