@@ -81117,6 +81117,25 @@
     },
     {
       "source": "rss/Pentagon",
+      "title": "Hegseth Extends Thanksgiving Greetings to Troops Deployed at Home, Abroad",
+      "url": "https://www.war.gov/News/News-Stories/Article/Article/4659678/hegseth-extends-thanksgiving-greetings-to-troops-deployed-at-home-abroad/",
+      "summary": "Secretary of War Pete Hegseth made a series of video morale calls from the Pentagon to service members, thanking the troops for their service and wishing them a happy Thanksgiving.",
+      "date": "Thu, 26 Nov 2026 17:04:00 GMT",
+      "feed_name": "Pentagon",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "_enrichment": {
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      }
+    },
+    {
+      "source": "rss/Pentagon",
       "title": "U.S., Mexican Army Leaders Strengthen Bilateral Partnership",
       "url": "https://www.war.gov/News/News-Stories/Article/Article/4660227/us-mexican-army-leaders-strengthen-bilateral-partnership/",
       "summary": "U.S. and Mexican army leaders met in Mexico City and finalized a plan to expand joint training, improve information sharing and strengthen border security cooperation through fiscal year 2027.",
@@ -81218,38 +81237,6 @@
           "original_type": ""
         }
       }
-    },
-    {
-      "source": "rss/Pentagon",
-      "title": "Corps of Engineers Navigates Historic Archaeological Discoveries in Hungary",
-      "url": "https://www.war.gov/News/News-Stories/Article/Article/4659247/corps-of-engineers-navigates-historic-archaeological-discoveries-in-hungary/",
-      "summary": "The U.S. Army Corps of Engineers, Europe District, began construction to increase the capacity of Kecskemét Air Base in Hungary, only to stumble upon archaeological sites across the footprint of the planned construction project.",
-      "date": "Tue, 24 Nov 2026 18:18:42 GMT",
-      "feed_name": "Pentagon",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Hungary",
-      "country_code": "HU",
-      "_enrichment": {
-        "country": {
-          "name": "Hungary",
-          "iso": "HU",
-          "region": "Europe",
-          "sub_region": "Eastern Europe",
-          "threat_level": "Low",
-          "active_groups": [],
-          "conflict_zones": []
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 47.18176,
-      "longitude": 19.50609
     },
     {
       "source": "rss/The War Zone",
@@ -81842,25 +81829,6 @@
       }
     },
     {
-      "source": "rss/War on the Rocks",
-      "title": "Winners and Losers from the Shenzhen Summit",
-      "url": "https://warontherocks.com/winners-and-losers-from-the-shenzhen-summit/",
-      "summary": "On Nov. 19, while attending the Asia-Pacific Economic Cooperation meeting, U.S. President Donald Trump, Chinese General Secretary Xi Jinping, and Russian President Vladimir Putin gathered in Shenzhen for a historic summit. The final statement from the three leaders included four points: reforming the United Nations, increasing &#8220;the production and supply of refined petroleum products,&#8221; ",
-      "date": "Tue, 24 Nov 2026 18:30:04 +0000",
-      "feed_name": "War on the Rocks",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "_enrichment": {
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      }
-    },
-    {
       "source": "rss/Dawn Pakistan",
       "title": "Achakzai's proposal of national govt only solution to political, constitutional crisis: TTAP",
       "url": "https://www.dawn.com/news/2047240/achakzais-proposal-of-national-govt-only-solution-to-political-constitutional-crisis-ttap",
@@ -81928,10 +81896,70 @@
       "longitude": 71.2475
     },
     {
+      "source": "rss/Premium Times NG",
+      "title": "Shehu Sani challenges Adeleke to resolve Osun local government crisis",
+      "url": "https://www.premiumtimesng.com/news/top-news/928223-shehu-sani-challenges-adeleke-to-resolve-osun-local-government-crisis.html",
+      "summary": "Former Kaduna Central senator Shehu Sani has urged Governor Ademola Adeleke to devote his second term to strengthening public institutions, resolving the local government dispute, improving public services and creating more productive jobs\nThe post Shehu Sani challenges Adeleke to resolve Osun local government crisis appeared first on Premium Times Nigeria.",
+      "date": "Thu, 26 Nov 2026 18:42:47 +0000",
+      "feed_name": "Premium Times NG",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Nigeria",
+      "country_code": "NG",
+      "_enrichment": {
+        "country": {
+          "name": "Nigeria",
+          "iso": "NG",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "West Africa",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Boko Haram (Jama'atu Ahlis Sunna Lidda'awati wal-Jihad - JAS)",
+            "Islamic State West Africa Province (ISWAP)",
+            "Ansaru",
+            "Indigenous People of Biafra (IPOB)/Eastern Security Network",
+            "Bandit groups (Northwest)"
+          ],
+          "conflict_zones": [
+            "Northeast (Borno, Yobe, Adamawa)",
+            "Northwest (Zamfara, Katsina, Kaduna)",
+            "North Central/Middle Belt",
+            "Niger Delta",
+            "Southeast (Biafra tensions)"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "NGA-NORTHEAST",
+          "zone_name": "Nigeria - Northeast (Borno/Yobe/Adamawa)",
+          "country": "Nigeria",
+          "region": "Sub-Saharan Africa",
+          "intensity": "High",
+          "trend": "Stable",
+          "active_groups": [
+            "Islamic State West Africa Province (ISWAP)",
+            "Boko Haram (Jama'atu Ahlis Sunna Lidda'awati wal-Jihad - JAS)",
+            "Ansaru"
+          ],
+          "conflict_type": "Insurgency",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 9.60004,
+      "longitude": 7.99997
+    },
+    {
       "source": "rss/Al-Monitor",
       "title": "Settlers smash foundations of Palestinian family's homes in West Bank",
       "url": "https://www.al-monitor.com/originals/2026/11/settlers-smash-foundations-palestinian-familys-homes-west-bank",
-      "summary": "By Pesha MagidJALOUD, West Bank, Nov 26 (Reuters) - Militant Israeli settlers smashed the foundations of two homes belonging to a Palestinian family in the West Bank on Thursday, after settler attacks prevented them from returning to them in defiance of an Israeli court order. Security cameras showed the settlers brought a bulldozer to the hilltop two-storey houses on either side of a road in the ",
+      "summary": "By Pesha MagidJALOUD, West Bank, Nov 26 (Reuters) - Militant Israeli settlers smashed the foundations of two homes belonging to a Palestinian family in the West Bank on Thursday, after settler attacks prevented the family from returning to them in defiance of an Israeli court order.Security cameras showed the settlers bringing a bulldozer to the hilltop two-storey houses on either side of a road i",
       "date": "2026-11-26T11:46:30-0500",
       "feed_name": "Al-Monitor",
       "fatalities_estimated": 0,
@@ -82175,10 +82203,10 @@
     },
     {
       "source": "rss/Al Jazeera",
-      "title": "Why is France roiling?",
-      "url": "https://www.aljazeera.com/video/newsfeed/2026/11/26/why-is-france-roiling?traffic_source=rss",
-      "summary": "Al Jazeera’s Ramy Allahoum looks at how France&#039;s financial crisis is shaping next year’s vote.",
-      "date": "Thu, 26 Nov 2026 15:57:49 +0000",
+      "title": "Judge strikes down Trump’s latest restrictions on US birthright citizenship",
+      "url": "https://www.aljazeera.com/news/2026/11/26/judge-strikes-down-trumps-latest-restrictions-on-us-birthright-citizenship?traffic_source=rss",
+      "summary": "After a Supreme Court ruling against it, the Trump administration had tried a narrower set of restrictions.",
+      "date": "Thu, 26 Nov 2026 19:09:39 +0000",
       "feed_name": "Al Jazeera",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
@@ -82928,6 +82956,68 @@
     },
     {
       "source": "rss/ReliefWeb",
+      "title": "Libya Launches National Integrated Project to Reduce Violence Against Children",
+      "url": "https://reliefweb.int/report/libya/libya-launches-national-integrated-project-reduce-violence-against-children",
+      "summary": "Country: Libya\n                                      Source: UN Children's Fund\n                                          \n                        Please refer to the attached file.\n                        Libya Launches National Integrated Project to Reduce Violence Against Children.\nGovernment-led project brings together families, schools, services and communities around a shared national approa",
+      "date": "Thu, 26 Nov 2026 19:01:37 +0000",
+      "feed_name": "ReliefWeb",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Libya",
+      "country_code": "LY",
+      "_enrichment": {
+        "country": {
+          "name": "Libya",
+          "iso": "LY",
+          "region": "Middle East / North Africa",
+          "sub_region": "North Africa",
+          "threat_level": "High",
+          "active_groups": [
+            "Islamic State - Libya Province",
+            "Various armed militias (Misrata, Zintan, etc.)",
+            "Libyan National Army (LNA) factions",
+            "Al-Qaeda in the Islamic Maghreb (AQIM) elements"
+          ],
+          "conflict_zones": [
+            "Tripoli",
+            "Sirte",
+            "Fezzan/Southern Libya",
+            "Benghazi outskirts",
+            "Derna"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "LBY-MULTIPLE",
+          "zone_name": "Libya - Multiple zones",
+          "country": "Libya",
+          "region": "MENA",
+          "intensity": "Low",
+          "trend": "Stable",
+          "active_groups": [
+            "ISIS-Libya (remnants in south)",
+            "Various militias aligned to GNU (Tripoli) or LNA (Benghazi)",
+            "Libyan National Army (Haftar's forces)",
+            "Turkish-backed forces",
+            "Wagner/Africa Corps mercenaries (south)",
+            "Al-Qaeda-linked elements (southwest)"
+          ],
+          "conflict_type": "Civil War / Fragmented",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 26.82345,
+      "longitude": 18.12367
+    },
+    {
+      "source": "rss/ReliefWeb",
       "title": "WFP Ghana Country Brief, October 2026",
       "url": "https://reliefweb.int/report/ghana/wfp-ghana-country-brief-october-2026",
       "summary": "Country: Ghana\n                                      Source: World Food Programme\n                                          \n                        Please refer to the attached file.",
@@ -83377,25 +83467,6 @@
       },
       "latitude": 33.76801,
       "longitude": 66.23851
-    },
-    {
-      "source": "rss/ReliefWeb",
-      "title": "The Persecution Continues: Minority Communities Under Sustained Attack in Bangladesh (January - October 2026)",
-      "url": "https://reliefweb.int/report/bangladesh/persecution-continues-minority-communities-under-sustained-attack-bangladesh-january-october-2026",
-      "summary": "Country: Bangladesh\n                                      Source: Human Rights Congress for Bangladesh Minorities\n                                                                              \n                        Please refer to the attached file.\n                        Between 1 January and 31 October 2026, the Human Rights Congress for Bangladesh Minorities (HRCBM) documented 1,445 incident",
-      "date": "Thu, 26 Nov 2026 13:33:19 +0000",
-      "feed_name": "ReliefWeb",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "_enrichment": {
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      }
     },
     {
       "source": "rss/Atlantic Council",
@@ -83911,11 +83982,47 @@
       "longitude": 54.56435
     },
     {
+      "source": "rss/CBS News",
+      "title": "Germany arrests 2 Iraqis allegedly tied to Iran-linked terror group",
+      "url": "https://www.cbsnews.com/news/germany-arrests-iraqi-iran-linked-terror-suspects/",
+      "summary": "German police arrested two Iraqi men alleged to be members of an Iran-linked terrorist organization​ that is said to have targeted U.S., Israeli and Jewish institutions in Europe.",
+      "date": "Thu, 26 Nov 2026 13:58:15 -0500",
+      "feed_name": "CBS News",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Germany",
+      "country_code": "DE",
+      "_enrichment": {
+        "country": {
+          "name": "Germany",
+          "iso": "DE",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired cells",
+            "Far-right extremists (Reichsbürger, etc.)",
+            "Far-left extremist networks"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 51.16382,
+      "longitude": 10.44783
+    },
+    {
       "source": "rss/NYT World",
       "title": "After Cyberattacks and Bomb Threats Hit Europe, Survivalism Goes Mainstream",
       "url": "https://www.nytimes.com/2026/11/26/world/europe/europe-preppers-survivalists-cyberattacks-threats.html",
       "summary": "More governments in Europe are telling citizens to prepare for emergencies. After unexpected disruptions, many are listening.",
-      "date": "Thu, 26 Nov 2026 10:02:54 +0000",
+      "date": "Thu, 26 Nov 2026 18:23:08 +0000",
       "feed_name": "NYT World",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
@@ -83970,7 +84077,7 @@
       "title": "The Unbearable Heat of Delhi’s Summer Nights",
       "url": "https://www.nytimes.com/2026/11/26/world/asia/delhi-heat-summer-nights.html",
       "summary": "Residents of India’s dense capital tried switching off fridges and leaving doors open all night to cope with rising temperatures, which affect their sleep, health and ability to work.",
-      "date": "Thu, 26 Nov 2026 08:47:33 +0000",
+      "date": "Thu, 26 Nov 2026 18:16:29 +0000",
       "feed_name": "NYT World",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
@@ -84092,53 +84199,29 @@
     },
     {
       "source": "rss/ABC News International",
-      "title": "Amnesty calls for independent war crimes probe into Ethiopian shelling in Tigray",
-      "url": "https://abcnews.com/International/wireStory/amnesty-calls-independent-war-crimes-probe-ethiopian-shelling-138434543",
-      "summary": "Amnesty International called for a war crimes investigation into shelling by Ethiopian troops and an allied militia in Tigray, saying it verified 14 civilian deaths in four attacks",
-      "date": "Wed, 25 Nov 2026 06:38:26 -0500",
+      "title": "Spain’s far right hasn’t governed since Franco. Immigration fears could change that",
+      "url": "https://abcnews.com/International/wireStory/spains-hasnt-governed-franco-immigration-fears-change-138466653",
+      "summary": "Spain's far-right Vox party has pledged to crack down on immigration if it earns enough votes in Sunday's national election to enter into government",
+      "date": "Thu, 26 Nov 2026 09:34:30 -0500",
       "feed_name": "ABC News International",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": [],
-      "country": "Ethiopia",
-      "country_code": "ET",
+      "country": "Spain",
+      "country_code": "ES",
       "_enrichment": {
         "country": {
-          "name": "Ethiopia",
-          "iso": "ET",
-          "region": "Sub-Saharan Africa",
-          "sub_region": "East Africa",
-          "threat_level": "High",
+          "name": "Spain",
+          "iso": "ES",
+          "region": "Europe",
+          "sub_region": "Southern Europe",
+          "threat_level": "Moderate",
           "active_groups": [
-            "Oromo Liberation Army (OLA/OLF-Shane)",
-            "Al-Shabaab (cross-border)",
-            "Fano militia (Amhara)",
-            "Tigray People's Liberation Front (TPLF) remnants"
+            "ISIS-linked cells",
+            "Basque separatist legacy (ETA dissolved 2018)"
           ],
-          "conflict_zones": [
-            "Amhara Region",
-            "Oromia Region",
-            "Somali Region border",
-            "Tigray (post-conflict)",
-            "Benishangul-Gumuz"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "ETH-AMHARA",
-          "zone_name": "Ethiopia - Amhara Region",
-          "country": "Ethiopia",
-          "region": "Sub-Saharan Africa",
-          "intensity": "High",
-          "trend": "Escalating",
-          "active_groups": [
-            "Fano militia (Amhara nationalist)",
-            "Ethiopian National Defense Force (ENDF)",
-            "Amhara regional forces (integrated/dissolved)"
-          ],
-          "conflict_type": "Insurgency",
-          "match_type": "text",
-          "match_score": 1
+          "conflict_zones": []
         },
         "attack_classification": {
           "category": "unknown",
@@ -84146,8 +84229,8 @@
           "original_type": ""
         }
       },
-      "latitude": 10.21167,
-      "longitude": 38.65212
+      "latitude": 39.32607,
+      "longitude": -4.83798
     },
     {
       "source": "rss/UN Peace and Security",
@@ -84541,10 +84624,10 @@
     },
     {
       "source": "rss/Kyiv Independent",
-      "title": "Ukrainian NGOs urge EU to demand stronger reforms as Brussels reportedly accepts backsliding on rule of law",
-      "url": "https://kyivindependent.com/ukrainian-ngos-urge-eu-to-demand-stronger-reforms-as-brussels-reportedly-accepts-backsliding-on-rule-of-law/",
-      "summary": "A Ukrainian civil society source familiar with the negotiations told the Kyiv Independent that representatives of the European Commission have succumbed to the Ukrainian authorities' pressure and agreed that \"it was inappropriate to give international experts the decisive vote in the selection of Supreme Court judges.\"",
-      "date": "Thu, 26 Nov 2026 17:54:42 GMT",
+      "title": "Threatened by Wagner, this Nigerian journalist uncovered Russia’s war machine in Africa",
+      "url": "https://kyivindependent.com/threatened-by-wagner-this-nigerian-journalist-uncovered-russias-war-machine-in-africa/",
+      "summary": "When Yevgeny Prigozhin called Nigerian investigative journalist Philip Obaji Jr. a &quot;cockroach&quot; in 2022, the Wagner Group chief threatened to make him pay for his reporting.A year later, Obaji found himself locked inside a shipping container full of the insects, as well as rats, in the Central",
+      "date": "Thu, 26 Nov 2026 19:03:11 GMT",
       "feed_name": "Kyiv Independent",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
@@ -84603,10 +84686,10 @@
     },
     {
       "source": "rss/Kyiv Independent",
-      "title": "Italy, Germany caution against geographical expansion of Russia's war against Ukraine",
-      "url": "https://kyivindependent.com/italy-and-germany-caution-against-geographical-expansion-of-russias-war-against-ukraine/",
-      "summary": "Both Meloni and Wadephul reaffirmed their commitment to continue supporting Ukraine.",
-      "date": "Thu, 26 Nov 2026 16:25:46 GMT",
+      "title": "Ukraine war latest: North Korea halts military aid to Russia, Ukrainian intelligence says",
+      "url": "https://kyivindependent.com/ukraine-war-latest-north-korea-halts-military-aid-to-russia-ukrainian-intelligence-says/",
+      "summary": "Key developments on Nov. 26:North Korea pauses military aid to Russia, Ukrainian intelligence saysUkraine strikes 2 Russian oil facilities, air field in Volgograd Oblast, General Staff confirmsRussia prepares new mass attack on Ukraine&apos;s energy infrastructure, Zelensky saysZelensky appoints new commander of Ukraine&apos;s",
+      "date": "Thu, 26 Nov 2026 19:02:25 GMT",
       "feed_name": "Kyiv Independent",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
@@ -84669,6 +84752,192 @@
       "url": "https://kyivindependent.com/2-russian-oil-facilities-reportedly-on-fire-in-bashkortostan-and-samara-oblast/",
       "summary": "Photos and videos circulated by Ukrainian monitoring channels purportedly show large plumes of smoke rising near the Transneft industrial facilities in Bashkortostan.",
       "date": "Thu, 26 Nov 2026 09:25:41 GMT",
+      "feed_name": "Kyiv Independent",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Ukraine",
+      "country_code": "UA",
+      "_enrichment": {
+        "country": {
+          "name": "Ukraine",
+          "iso": "UA",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Russian-backed separatist forces",
+            "Russian military and proxy forces",
+            "Far-right militias (various)",
+            "Wagner Group/Africa Corps remnants"
+          ],
+          "conflict_zones": [
+            "Donetsk Oblast",
+            "Luhansk Oblast",
+            "Zaporizhzhia Oblast",
+            "Kherson Oblast",
+            "Crimea",
+            "Kharkiv Oblast border"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "UKR-FRONT",
+          "zone_name": "Ukraine - Eastern/Southern frontlines",
+          "country": "Ukraine",
+          "region": "Europe",
+          "intensity": "High",
+          "trend": "Stable",
+          "active_groups": [
+            "Russian Armed Forces",
+            "Ukrainian Armed Forces",
+            "Wagner Group remnants / Russian volunteer battalions",
+            "Chechen Kadyrovtsy units",
+            "International volunteers (both sides)"
+          ],
+          "conflict_type": "Interstate War",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 49.4872,
+      "longitude": 31.27183
+    },
+    {
+      "source": "rss/Kyiv Independent",
+      "title": "Ukrainian NGOs urge EU to demand stronger reforms as Brussels reportedly accepts backsliding on rule of law",
+      "url": "https://kyivindependent.com/ukrainian-ngos-urge-eu-to-demand-stronger-reforms-as-brussels-reportedly-accepts-backsliding-on-rule-of-law/",
+      "summary": "A Ukrainian civil society source familiar with the negotiations told the Kyiv Independent that representatives of the European Commission have succumbed to the Ukrainian authorities' pressure and agreed that \"it was inappropriate to give international experts a decisive role in the selection of Supreme Court judges.\"",
+      "date": "Thu, 26 Nov 2026 17:54:42 GMT",
+      "feed_name": "Kyiv Independent",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Ukraine",
+      "country_code": "UA",
+      "_enrichment": {
+        "country": {
+          "name": "Ukraine",
+          "iso": "UA",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Russian-backed separatist forces",
+            "Russian military and proxy forces",
+            "Far-right militias (various)",
+            "Wagner Group/Africa Corps remnants"
+          ],
+          "conflict_zones": [
+            "Donetsk Oblast",
+            "Luhansk Oblast",
+            "Zaporizhzhia Oblast",
+            "Kherson Oblast",
+            "Crimea",
+            "Kharkiv Oblast border"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "UKR-FRONT",
+          "zone_name": "Ukraine - Eastern/Southern frontlines",
+          "country": "Ukraine",
+          "region": "Europe",
+          "intensity": "High",
+          "trend": "Stable",
+          "active_groups": [
+            "Russian Armed Forces",
+            "Ukrainian Armed Forces",
+            "Wagner Group remnants / Russian volunteer battalions",
+            "Chechen Kadyrovtsy units",
+            "International volunteers (both sides)"
+          ],
+          "conflict_type": "Interstate War",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 49.4872,
+      "longitude": 31.27183
+    },
+    {
+      "source": "rss/Kyiv Independent",
+      "title": "Zelensky appoints new commander of Ukraine's Support Forces",
+      "url": "https://kyivindependent.com/zelensky-appoints-new-commander-of-ukraines-support-forces/",
+      "summary": "The post was previously held by Major General Dmytro Hereha, who served for nearly five years.",
+      "date": "Thu, 26 Nov 2026 18:16:58 GMT",
+      "feed_name": "Kyiv Independent",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Ukraine",
+      "country_code": "UA",
+      "_enrichment": {
+        "country": {
+          "name": "Ukraine",
+          "iso": "UA",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Russian-backed separatist forces",
+            "Russian military and proxy forces",
+            "Far-right militias (various)",
+            "Wagner Group/Africa Corps remnants"
+          ],
+          "conflict_zones": [
+            "Donetsk Oblast",
+            "Luhansk Oblast",
+            "Zaporizhzhia Oblast",
+            "Kherson Oblast",
+            "Crimea",
+            "Kharkiv Oblast border"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "UKR-FRONT",
+          "zone_name": "Ukraine - Eastern/Southern frontlines",
+          "country": "Ukraine",
+          "region": "Europe",
+          "intensity": "High",
+          "trend": "Stable",
+          "active_groups": [
+            "Russian Armed Forces",
+            "Ukrainian Armed Forces",
+            "Wagner Group remnants / Russian volunteer battalions",
+            "Chechen Kadyrovtsy units",
+            "International volunteers (both sides)"
+          ],
+          "conflict_type": "Interstate War",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 49.4872,
+      "longitude": 31.27183
+    },
+    {
+      "source": "rss/Kyiv Independent",
+      "title": "Italy, Germany caution against geographical expansion of Russia's war against Ukraine",
+      "url": "https://kyivindependent.com/italy-and-germany-caution-against-geographical-expansion-of-russias-war-against-ukraine/",
+      "summary": "Both Meloni and Wadephul reaffirmed their commitment to continue supporting Ukraine.",
+      "date": "Thu, 26 Nov 2026 16:25:46 GMT",
       "feed_name": "Kyiv Independent",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
@@ -84974,136 +85243,12 @@
       "longitude": 31.27183
     },
     {
-      "source": "rss/Kyiv Independent",
-      "title": "Ukraine repatriates 250 bodies Russia claims belong to Ukrainian soldiers",
-      "url": "https://kyivindependent.com/ukraine-receives-remains-of-250-people-returns-22-russian-soldiers-remains-in-repatriation-2/",
-      "summary": "The recovery and return of fallen soldiers' corpses remains a major challenge.",
-      "date": "Thu, 26 Nov 2026 13:50:28 GMT",
-      "feed_name": "Kyiv Independent",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Ukraine",
-      "country_code": "UA",
-      "_enrichment": {
-        "country": {
-          "name": "Ukraine",
-          "iso": "UA",
-          "region": "Europe",
-          "sub_region": "Eastern Europe",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Russian-backed separatist forces",
-            "Russian military and proxy forces",
-            "Far-right militias (various)",
-            "Wagner Group/Africa Corps remnants"
-          ],
-          "conflict_zones": [
-            "Donetsk Oblast",
-            "Luhansk Oblast",
-            "Zaporizhzhia Oblast",
-            "Kherson Oblast",
-            "Crimea",
-            "Kharkiv Oblast border"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "UKR-FRONT",
-          "zone_name": "Ukraine - Eastern/Southern frontlines",
-          "country": "Ukraine",
-          "region": "Europe",
-          "intensity": "High",
-          "trend": "Stable",
-          "active_groups": [
-            "Russian Armed Forces",
-            "Ukrainian Armed Forces",
-            "Wagner Group remnants / Russian volunteer battalions",
-            "Chechen Kadyrovtsy units",
-            "International volunteers (both sides)"
-          ],
-          "conflict_type": "Interstate War",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 49.4872,
-      "longitude": 31.27183
-    },
-    {
-      "source": "rss/Kyiv Independent",
-      "title": "Russia prepares new mass attack on Ukraine's energy infrastructure, Zelensky says",
-      "url": "https://kyivindependent.com/russia-prepares-new-mass-attack-on-ukraines-energy-infrastructure-zelensky-says/",
-      "summary": "While Russia’s attacks on Ukraine’s energy system have been ongoing throughout the year at a low level, Moscow has ramped up mass attacks to wipe out power plants, substations, and gas infrastructure for its fifth winter offensive during the full-scale invasion, cutting off power to households across the country.",
-      "date": "Thu, 26 Nov 2026 11:49:24 GMT",
-      "feed_name": "Kyiv Independent",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Ukraine",
-      "country_code": "UA",
-      "_enrichment": {
-        "country": {
-          "name": "Ukraine",
-          "iso": "UA",
-          "region": "Europe",
-          "sub_region": "Eastern Europe",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Russian-backed separatist forces",
-            "Russian military and proxy forces",
-            "Far-right militias (various)",
-            "Wagner Group/Africa Corps remnants"
-          ],
-          "conflict_zones": [
-            "Donetsk Oblast",
-            "Luhansk Oblast",
-            "Zaporizhzhia Oblast",
-            "Kherson Oblast",
-            "Crimea",
-            "Kharkiv Oblast border"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "UKR-FRONT",
-          "zone_name": "Ukraine - Eastern/Southern frontlines",
-          "country": "Ukraine",
-          "region": "Europe",
-          "intensity": "High",
-          "trend": "Stable",
-          "active_groups": [
-            "Russian Armed Forces",
-            "Ukrainian Armed Forces",
-            "Wagner Group remnants / Russian volunteer battalions",
-            "Chechen Kadyrovtsy units",
-            "International volunteers (both sides)"
-          ],
-          "conflict_type": "Interstate War",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 49.4872,
-      "longitude": 31.27183
-    },
-    {
-      "source": "rss/Kyiv Independent",
-      "title": "'Solidarity' and winter top EU agenda as leaders discuss new support for Ukraine",
-      "url": "https://kyivindependent.com/solidarity-and-winter-top-eu-agenda-as-leaders-discuss-new-support-for-ukraine/",
-      "summary": "\"Ukraine probably will face a winter which is like hell... they must know that Europe has their back money-wise, with everything we have,\" Estonian Prime Minister Kristen Michal said.",
-      "date": "Thu, 26 Nov 2026 11:16:51 GMT",
-      "feed_name": "Kyiv Independent",
+      "source": "rss/Ukrainska Pravda",
+      "title": "EU summit: decision on Ukraine postponed until December, €45bn loan and new mechanism discussed",
+      "url": "https://www.pravda.com.ua/eng/news/2026/11/26/8064867/",
+      "summary": "EU leaders will delay a decision on a €45 billion loan for Ukraine until December while discussing a new mechanism for the 2028–2034 budget, sources say.",
+      "date": "Thu, 26 Nov 2026 20:44:00 +0200",
+      "feed_name": "Ukrainska Pravda",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -85161,7 +85306,133 @@
     },
     {
       "source": "rss/Ukrainska Pravda",
-      "title": "Russia loses nearly US$190 billion in war against Ukraine – Russian media report",
+      "title": "Russian strike on Komyshuvakha: Slidstvo.Info uncovers details about perpetrators",
+      "url": "https://www.pravda.com.ua/eng/news/2026/11/26/8064862/",
+      "summary": "Slidstvo.Info uncovered details about Russian officers and pilots behind the 2 November airstrike on a school in Komyshuvakha that killed 72 people.",
+      "date": "Thu, 26 Nov 2026 20:09:00 +0200",
+      "feed_name": "Ukrainska Pravda",
+      "fatalities_estimated": 72,
+      "wounded_estimated": 0,
+      "casualty_confidence": "MEDIUM",
+      "casualty_matches": [
+        "akha that killed 72 people."
+      ],
+      "country": "Ukraine",
+      "country_code": "UA",
+      "_enrichment": {
+        "country": {
+          "name": "Ukraine",
+          "iso": "UA",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Russian-backed separatist forces",
+            "Russian military and proxy forces",
+            "Far-right militias (various)",
+            "Wagner Group/Africa Corps remnants"
+          ],
+          "conflict_zones": [
+            "Donetsk Oblast",
+            "Luhansk Oblast",
+            "Zaporizhzhia Oblast",
+            "Kherson Oblast",
+            "Crimea",
+            "Kharkiv Oblast border"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "UKR-FRONT",
+          "zone_name": "Ukraine - Eastern/Southern frontlines",
+          "country": "Ukraine",
+          "region": "Europe",
+          "intensity": "High",
+          "trend": "Stable",
+          "active_groups": [
+            "Russian Armed Forces",
+            "Ukrainian Armed Forces",
+            "Wagner Group remnants / Russian volunteer battalions",
+            "Chechen Kadyrovtsy units",
+            "International volunteers (both sides)"
+          ],
+          "conflict_type": "Interstate War",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 49.4872,
+      "longitude": 31.27183
+    },
+    {
+      "source": "rss/Ukrainska Pravda",
+      "title": "Ukrainian who set himself on fire in Warsaw is in intensive care in critical condition",
+      "url": "https://www.pravda.com.ua/eng/news/2026/11/26/8064859/",
+      "summary": "Polish police confirmed the man who set himself on fire in Warsaw on 25 November is a Ukrainian citizen. He is in intensive care in critical condition.",
+      "date": "Thu, 26 Nov 2026 19:57:00 +0200",
+      "feed_name": "Ukrainska Pravda",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Ukraine",
+      "country_code": "UA",
+      "_enrichment": {
+        "country": {
+          "name": "Ukraine",
+          "iso": "UA",
+          "region": "Europe",
+          "sub_region": "Eastern Europe",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Russian-backed separatist forces",
+            "Russian military and proxy forces",
+            "Far-right militias (various)",
+            "Wagner Group/Africa Corps remnants"
+          ],
+          "conflict_zones": [
+            "Donetsk Oblast",
+            "Luhansk Oblast",
+            "Zaporizhzhia Oblast",
+            "Kherson Oblast",
+            "Crimea",
+            "Kharkiv Oblast border"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "UKR-FRONT",
+          "zone_name": "Ukraine - Eastern/Southern frontlines",
+          "country": "Ukraine",
+          "region": "Europe",
+          "intensity": "High",
+          "trend": "Stable",
+          "active_groups": [
+            "Russian Armed Forces",
+            "Ukrainian Armed Forces",
+            "Wagner Group remnants / Russian volunteer battalions",
+            "Chechen Kadyrovtsy units",
+            "International volunteers (both sides)"
+          ],
+          "conflict_type": "Interstate War",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 49.4872,
+      "longitude": 31.27183
+    },
+    {
+      "source": "rss/Ukrainska Pravda",
+      "title": "Russia has lost nearly US$190bn in war against Ukraine – Russian media report",
       "url": "https://www.pravda.com.ua/eng/news/2026/11/26/8064857/",
       "summary": "Russia spent RUB 43.6 trillion more on military needs over five years of war, losing RUB 18.6 trillion in unproductive spending, Novaya Gazeta Europe found.",
       "date": "Thu, 26 Nov 2026 19:33:00 +0200",
@@ -85285,9 +85556,9 @@
     },
     {
       "source": "rss/Ukrainska Pravda",
-      "title": "Trump's version of joint statement with Rutte also calls on Ukraine to avoid actions that could expand war",
+      "title": "Trump's version of joint statement with Rutte urges both Ukraine and Russia to avoid actions that could expand war",
       "url": "https://www.pravda.com.ua/eng/news/2026/11/26/8064852/",
-      "summary": "Donald Trump's version of a joint statement with NATO chief Mark Rutte urged both Russia and Ukraine to avoid actions that could expand the war.",
+      "summary": "Donald Trump's version of a joint statement with NATO chief Mark Rutte urges both Russia and Ukraine to avoid actions that could expand the war.",
       "date": "Thu, 26 Nov 2026 18:39:00 +0200",
       "feed_name": "Ukrainska Pravda",
       "fatalities_estimated": 0,
@@ -85540,192 +85811,6 @@
       "url": "https://www.pravda.com.ua/eng/news/2026/11/26/8064834/",
       "summary": "White Angels police evacuated a 39-year-old father and his three children from frontline Nikopol after dark, marking the family's third evacuation attempt.",
       "date": "Thu, 26 Nov 2026 17:28:00 +0200",
-      "feed_name": "Ukrainska Pravda",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Ukraine",
-      "country_code": "UA",
-      "_enrichment": {
-        "country": {
-          "name": "Ukraine",
-          "iso": "UA",
-          "region": "Europe",
-          "sub_region": "Eastern Europe",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Russian-backed separatist forces",
-            "Russian military and proxy forces",
-            "Far-right militias (various)",
-            "Wagner Group/Africa Corps remnants"
-          ],
-          "conflict_zones": [
-            "Donetsk Oblast",
-            "Luhansk Oblast",
-            "Zaporizhzhia Oblast",
-            "Kherson Oblast",
-            "Crimea",
-            "Kharkiv Oblast border"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "UKR-FRONT",
-          "zone_name": "Ukraine - Eastern/Southern frontlines",
-          "country": "Ukraine",
-          "region": "Europe",
-          "intensity": "High",
-          "trend": "Stable",
-          "active_groups": [
-            "Russian Armed Forces",
-            "Ukrainian Armed Forces",
-            "Wagner Group remnants / Russian volunteer battalions",
-            "Chechen Kadyrovtsy units",
-            "International volunteers (both sides)"
-          ],
-          "conflict_type": "Interstate War",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 49.4872,
-      "longitude": 31.27183
-    },
-    {
-      "source": "rss/Ukrainska Pravda",
-      "title": "Germany follows Italy in warning Ukraine against \"geographical\" expansion of war",
-      "url": "https://www.pravda.com.ua/eng/news/2026/11/26/8064832/",
-      "summary": "German Foreign Minister Johann Wadephul backs Ukraine's right to self-defence but warns against the conflict spreading geographically, citing risks to Baltic Sea shipping and the environment.",
-      "date": "Thu, 26 Nov 2026 17:22:00 +0200",
-      "feed_name": "Ukrainska Pravda",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Ukraine",
-      "country_code": "UA",
-      "_enrichment": {
-        "country": {
-          "name": "Ukraine",
-          "iso": "UA",
-          "region": "Europe",
-          "sub_region": "Eastern Europe",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Russian-backed separatist forces",
-            "Russian military and proxy forces",
-            "Far-right militias (various)",
-            "Wagner Group/Africa Corps remnants"
-          ],
-          "conflict_zones": [
-            "Donetsk Oblast",
-            "Luhansk Oblast",
-            "Zaporizhzhia Oblast",
-            "Kherson Oblast",
-            "Crimea",
-            "Kharkiv Oblast border"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "UKR-FRONT",
-          "zone_name": "Ukraine - Eastern/Southern frontlines",
-          "country": "Ukraine",
-          "region": "Europe",
-          "intensity": "High",
-          "trend": "Stable",
-          "active_groups": [
-            "Russian Armed Forces",
-            "Ukrainian Armed Forces",
-            "Wagner Group remnants / Russian volunteer battalions",
-            "Chechen Kadyrovtsy units",
-            "International volunteers (both sides)"
-          ],
-          "conflict_type": "Interstate War",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 49.4872,
-      "longitude": 31.27183
-    },
-    {
-      "source": "rss/Ukrainska Pravda",
-      "title": "Ukrainian aircraft destroy Russian staging point in centre of Huliaipole – video",
-      "url": "https://www.pravda.com.ua/eng/news/2026/11/26/8064829/",
-      "summary": "Ukrainian aircraft struck a Russian staging point in central Huliaipole, killing up to 20 soldiers and destroying ammunition, antennas and ground drones.",
-      "date": "Thu, 26 Nov 2026 17:00:00 +0200",
-      "feed_name": "Ukrainska Pravda",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Ukraine",
-      "country_code": "UA",
-      "_enrichment": {
-        "country": {
-          "name": "Ukraine",
-          "iso": "UA",
-          "region": "Europe",
-          "sub_region": "Eastern Europe",
-          "threat_level": "Critical",
-          "active_groups": [
-            "Russian-backed separatist forces",
-            "Russian military and proxy forces",
-            "Far-right militias (various)",
-            "Wagner Group/Africa Corps remnants"
-          ],
-          "conflict_zones": [
-            "Donetsk Oblast",
-            "Luhansk Oblast",
-            "Zaporizhzhia Oblast",
-            "Kherson Oblast",
-            "Crimea",
-            "Kharkiv Oblast border"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "UKR-FRONT",
-          "zone_name": "Ukraine - Eastern/Southern frontlines",
-          "country": "Ukraine",
-          "region": "Europe",
-          "intensity": "High",
-          "trend": "Stable",
-          "active_groups": [
-            "Russian Armed Forces",
-            "Ukrainian Armed Forces",
-            "Wagner Group remnants / Russian volunteer battalions",
-            "Chechen Kadyrovtsy units",
-            "International volunteers (both sides)"
-          ],
-          "conflict_type": "Interstate War",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 49.4872,
-      "longitude": 31.27183
-    },
-    {
-      "source": "rss/Ukrainska Pravda",
-      "title": "French presidential candidate: \"The war in Ukraine is our war because we are targets of Putin\"",
-      "url": "https://www.pravda.com.ua/eng/news/2026/11/26/8064825/",
-      "summary": "French presidential candidate Raphaël Glucksmann says the war in Ukraine is also France's war, arguing that stopping aid to Kyiv would undermine the country's vital interests.",
-      "date": "Thu, 26 Nov 2026 16:43:00 +0200",
       "feed_name": "Ukrainska Pravda",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
@@ -86366,66 +86451,6 @@
       },
       "latitude": 64.68631,
       "longitude": 97.74531
-    },
-    {
-      "source": "rss/Haaretz",
-      "title": "Bennett confirms talks with Netanyahu, says it was 'with Eisenkot's full knowledge'",
-      "url": "https://www.haaretz.com/israel-news/israel-politics/2026-11-26/ty-article/.premium/bennett-confirms-talks-with-netanyahu-says-eisenkot-was-aware/000001a2-180f-decf-abea-fa3f443f0000",
-      "summary": "Responding to Haaretz, Bennett denied he had talked with Netanyahu behind his allies' backs. He endorsed a national unity government with Eisenkot as prime minister first, but did not rule out a government with Arab or ultra-Orthodox parties",
-      "date": "Thu, 26 Nov 2026 17:00:49 +0200",
-      "feed_name": "Haaretz",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Israel",
-      "country_code": "IL",
-      "_enrichment": {
-        "country": {
-          "name": "Israel",
-          "iso": "IL",
-          "region": "Middle East / North Africa",
-          "sub_region": "Levant",
-          "threat_level": "High",
-          "active_groups": [
-            "Hamas",
-            "Palestinian Islamic Jihad (PIJ)",
-            "Hezbollah (cross-border)",
-            "Lone-wolf attackers"
-          ],
-          "conflict_zones": [
-            "Gaza Strip border",
-            "West Bank/Judea and Samaria",
-            "Northern border (Lebanon)",
-            "Jerusalem"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "ISR-PAL-GAZA",
-          "zone_name": "Israel/Palestine - Gaza Strip",
-          "country": "Israel / Palestine",
-          "region": "MENA",
-          "intensity": "High",
-          "trend": "Escalating",
-          "active_groups": [
-            "Hamas (Izz ad-Din al-Qassam Brigades)",
-            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
-            "Popular Front for the Liberation of Palestine (PFLP)",
-            "Various smaller Palestinian factions",
-            "Israel Defense Forces (IDF)"
-          ],
-          "conflict_type": "War / Insurgency",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 30.81242,
-      "longitude": 34.85948
     }
   ],
   "google_news": [
@@ -86447,6 +86472,42 @@
           "original_type": ""
         }
       }
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "2 Iraqis arrested in Germany over alleged synagogue terror attack plots - The Times of Israel",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQdGk4R19sMGJsRWlLOWRQNzRJRjB0RS1LTXd1MVhrRTNiSEJzaW9FU1hoVWd3dlZCazd1ZVRVUm90QU5uTUVGb2lNaWRLZS1EdjVWN1Axc0duRWhESmpXQzFOOHVFX2NJWFl0Rl9ZSUo0cnRSZU15ejlmc0lDODlJWk9NM3Y1UHFrTnlELTZjbmUyaVdCWElHNkNRd2IwaWg5VmtHZ9IBqgFBVV95cUxNSzZoeHk5UE1nNEFIN3RSZEI2NEtDQ1doeURSU2ZGRXV5OUFDN3YxV2RmRE5iUzhDVjh2c3dMXzhzcG5qRE9pQ29yLW9ScGk1TUw0Z2pwb3lSVllOdHFwS05SdU5QNk43OXkyclBYUlUybjBvYUlOMDBLbENFXzJnZGJmX1p2X09LcVlMaXlwSzN1S2pJOGhVbF9wRU9pUlVuZlZYR3U4UG9qZw?oc=5",
+      "summary": "2 Iraqis arrested in Germany over alleged synagogue terror attack plots&nbsp;&nbsp;The Times of Israel",
+      "date": "Thu, 26 Nov 2026 18:11:24 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Germany",
+      "country_code": "DE",
+      "_enrichment": {
+        "country": {
+          "name": "Germany",
+          "iso": "DE",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired cells",
+            "Far-right extremists (Reichsbürger, etc.)",
+            "Far-left extremist networks"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 51.16382,
+      "longitude": 10.44783
     },
     {
       "source": "google_news",
@@ -86571,64 +86632,11 @@
     },
     {
       "source": "google_news",
-      "query": "terrorism attack",
-      "title": "Saudi Arabia Condemns Terrorist Attack on Syrian Security Forces Site in Al-Hasakah - ASHARQ AL-AWSAT English",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNamd6SmZuVGdONFRyX1hSdkd2MVBVWHdBU0E5bUxBTGFFWnV6R2xzWC1ZS0h4VkFGNDhHbXIyejVaajBrUGZ0eUVVTk9VbGR6UDJhdXRuNk9ZbkNkUUJjd283TGtPVjdlRlZhcTJoM1NtakNmaUg4R1RlaGNHQ0pxUWM1OWtyRWF0czNBMWFwM1Z6WWh2VmsyOXV2Z00yUWFnRDhXZm9EbHYxNTFtaHUxSjV1cjlpeGxH?oc=5",
-      "summary": "Saudi Arabia Condemns Terrorist Attack on Syrian Security Forces Site in Al-Hasakah&nbsp;&nbsp;ASHARQ AL-AWSAT English",
-      "date": "Thu, 26 Nov 2026 13:09:29 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Saudi Arabia",
-      "country_code": "SA",
-      "_enrichment": {
-        "country": {
-          "name": "Saudi Arabia",
-          "iso": "SA",
-          "region": "Middle East / North Africa",
-          "sub_region": "Arabian Peninsula",
-          "threat_level": "Moderate",
-          "active_groups": [
-            "AQAP cells",
-            "ISIS-inspired lone actors",
-            "Houthi cross-border attacks (missile/drone)"
-          ],
-          "conflict_zones": [
-            "Southern border with Yemen (Jizan, Najran)"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "SAU-BORDER-SOUTH",
-          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
-          "country": "Saudi Arabia",
-          "region": "MENA",
-          "intensity": "Low",
-          "trend": "De-escalating",
-          "active_groups": [
-            "Ansar Allah (Houthis) - drone/missile attacks",
-            "AQAP (limited capability in border area)"
-          ],
-          "conflict_type": "Border Conflict / Terrorism-only",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 25.62426,
-      "longitude": 42.35283
-    },
-    {
-      "source": "google_news",
       "query": "terrorist plot foiled",
-      "title": "Russia foiled terrorist plot targeting Jewish worshippers, FSB says - JNS",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQZnY4OGRUWktFYjFONnRPR2lldGVGWklGYzZNSVQwQlBWVnR0YkEtVnlwbmdPUHFYRDJfbTgyVExRcml3YjdMeTg1c1FhTFJBYjc0NVE1TmdESFZQbGxMOUVlZ1A2LUdiaUxZRHZnV2tkWGRPeXdYendEMW9KcXVQRVU3Q21JZzM2aW5qc3lONTZPM0NveHBCOUt5eHpkZw?oc=5",
-      "summary": "Russia foiled terrorist plot targeting Jewish worshippers, FSB says&nbsp;&nbsp;JNS",
-      "date": "Tue, 24 Nov 2026 13:06:02 GMT",
+      "title": "Russia Foiled Terrorist Plot Targeting Jewish Worshippers, FSB Says - The Jewish Link",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOcWlneWFZSG5acUhZNnQ4UnpuSVI4WGhYUmpaeGhIRjVwamlpdWVjd1pGTXRmdl9jM0xXOEVnNERzMlFsN1JobjBwQnpUN0hKOVRGWER1RWlDWENBX1BldGV0cXZiOWduU3VLTE81LVlwdVM4cjBDNUtEUVBzbk9wU0g4c2NmczhxWENrZWpqcm51RWlIVnc?oc=5",
+      "summary": "Russia Foiled Terrorist Plot Targeting Jewish Worshippers, FSB Says&nbsp;&nbsp;The Jewish Link",
+      "date": "Thu, 26 Nov 2026 18:54:40 GMT",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -86983,21 +86991,179 @@
     {
       "source": "google_news",
       "query": "al-Qaeda",
-      "title": "New Terrorism Threats Add to US Air Travel Concerns This Holiday Season - Newsweek",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWUlUT3NvLVRFbk1XREVSSjhwMVBNWmlWU0wzQ21fYUljTml0MGhZQkNYVGF6dkhxc2hSVnNlMUFTR2JBQ0NHWF9PN3hSVGhCSVNGV0pib1pPVUFkSVllY2cwN3hQM2tIVHlXRHM4SUZvYzVBSkdUSU1WWklaSnN0ZTJPWDRrX3FtMUlXeDk1U2gxX1AxU3hDVDYybmVUYkt0QV9zb21FTVE?oc=5",
-      "summary": "New Terrorism Threats Add to US Air Travel Concerns This Holiday Season&nbsp;&nbsp;Newsweek",
-      "date": "Tue, 24 Nov 2026 17:15:00 GMT",
+      "title": "Rep.-elect Adam Hamawy worked at al Qaeda front group — now he’s speaking at alleged Hamas-tied confab - New York Post",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOZWZIX3ZWdUF4SFhWTnA0SWlYMEMtZk01SmtacURmR01HdnkwN3FKcnlESTlJYUVPSlRrUGxwclpJOXBKZFdyaVR2OUpfMUFOekJLdDZleWZDRjI2OGRhZ3RPRU5rN3VENXBqQjk0WVhKN2Nfb0lHVWlJYnduRXQxd25uVGZSVFdIY1dSeHNXZGo3c1RMUFFBanlJeWhJOFhLbjVIaW9HMDlzQjNWUnNQV2xXeV9Zdm9neG1IbDdPVlJPbWNWSXFYekFwMFYwb1dRUmJn?oc=5",
+      "summary": "Rep.-elect Adam Hamawy worked at al Qaeda front group — now he’s speaking at alleged Hamas-tied confab&nbsp;&nbsp;New York Post",
+      "date": "Thu, 26 Nov 2026 18:42:00 GMT",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": [],
+      "country": "United States",
+      "country_code": "US",
       "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
         "attack_classification": {
           "category": "unknown",
           "category_name": "Unclassified",
           "original_type": ""
         }
-      }
+      },
+      "latitude": 39.78373,
+      "longitude": -100.44588
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "24 Terrorists Killed, Three Injured in Balochistan Operations Under Radd-ul-Fitna-III - Balochistan Pulse",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQQVAyY1d1X004YmMtUnduVlZydUQ2dVZpQWNhSU5wTThrSTVXMVdBRVZqaGtOelZkX0VaR05ubHJNcFdZR0pxZnVONjQteWxRWnZocjJaY0g1MDQxMk1KMnk1SEJId0VsNlkwbUJ2OC1YNWFQUm1ELWVLdnhfajVkeFl0OW1haGJxWTkyQkswMUMtM2V1N3ZZVGVJVjdIdzZhVVVaNFFNSmZKM2ItdFQ1cFF4R1HSAbQBQVVfeXFMUEFQMmNXdV9NOGJjLVJ3blZWcnVENnVWaUFjYUlOcE04a0k1VzFXQUVWamhrTnpWZF9FWkdObmxyTXBXWUdKcWZ1TjY0LXlsUVp2aHIyWmNINTA0MTJNSjJ5NUhCSHdFbDZZMG1CdjgtWDVhUFJtRC1lS3Z4X2o1ZHhZdDltYWhicVk5MkJLMDFDLTNldTd2WVRlSVY3SHc2YVVVWjRRTUpmSjNiLXRUNXBReEdR?oc=5",
+      "summary": "24 Terrorists Killed, Three Injured in Balochistan Operations Under Radd-ul-Fitna-III&nbsp;&nbsp;Balochistan Pulse",
+      "date": "Tue, 24 Nov 2026 08:42:19 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 3,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Pakistan",
+      "country_code": "PK",
+      "_enrichment": {
+        "country": {
+          "name": "Pakistan",
+          "iso": "PK",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "Islamic State Khorasan Province (ISKP)",
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Lashkar-e-Jhangvi (LeJ)",
+            "Jaish-e-Mohammed (JeM)",
+            "Lashkar-e-Taiba (LeT)",
+            "Sindhudesh Revolutionary Army (SRA)",
+            "Al-Qaeda in the Indian Subcontinent (AQIS)"
+          ],
+          "conflict_zones": [
+            "Khyber Pakhtunkhwa (ex-FATA)",
+            "Balochistan",
+            "Karachi",
+            "South Punjab",
+            "Sindh"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "PAK-BALOCHISTAN",
+          "zone_name": "Pakistan - Balochistan",
+          "country": "Pakistan",
+          "region": "South / Southeast Asia",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "ISIS-Khorasan Province (ISKP)",
+            "Lashkar-e-Jhangvi (sectarian)",
+            "Sindhudesh Revolutionary Army (occasionally)"
+          ],
+          "conflict_type": "Insurgency / Separatist",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 30.33084,
+      "longitude": 71.2475
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "Security Forces killed Four Terrorists In Security Operation in Naushki, Balochistan - Balochistan Pulse",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPc3VnRnZBRUswLTU5ZXRsM1hTWF9XX19TU01GUkFmaHhoNFZoa3FLS2xYYlJZS21ObW40NEJkdlVHZGFodG5qMWI0Vm9wTWZRUFpwOEJ2ZTZOdU9HWjNRVUdQX3E2YWlwNGtFWm1BVXo5aWduZ1hhMU1VYjBOTndhSS1QTmd2UHo0ZF9PUmYxWEZvOWg5QVRLbzU4c1MtTVFKVzRzODgya2VXb1FuWURnRmY2c9IBswFBVV95cUxPc3VnRnZBRUswLTU5ZXRsM1hTWF9XX19TU01GUkFmaHhoNFZoa3FLS2xYYlJZS21ObW40NEJkdlVHZGFodG5qMWI0Vm9wTWZRUFpwOEJ2ZTZOdU9HWjNRVUdQX3E2YWlwNGtFWm1BVXo5aWduZ1hhMU1VYjBOTndhSS1QTmd2UHo0ZF9PUmYxWEZvOWg5QVRLbzU4c1MtTVFKVzRzODgya2VXb1FuWURnRmY2cw?oc=5",
+      "summary": "Security Forces killed Four Terrorists In Security Operation in Naushki, Balochistan&nbsp;&nbsp;Balochistan Pulse",
+      "date": "Tue, 24 Nov 2026 06:49:09 GMT",
+      "fatalities_estimated": 4,
+      "wounded_estimated": 0,
+      "casualty_confidence": "HIGH",
+      "casualty_matches": [
+        "ty Forces killed Four Terrorist",
+        "ty Forces killed Four Terrorist"
+      ],
+      "country": "Pakistan",
+      "country_code": "PK",
+      "_enrichment": {
+        "country": {
+          "name": "Pakistan",
+          "iso": "PK",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "Islamic State Khorasan Province (ISKP)",
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Lashkar-e-Jhangvi (LeJ)",
+            "Jaish-e-Mohammed (JeM)",
+            "Lashkar-e-Taiba (LeT)",
+            "Sindhudesh Revolutionary Army (SRA)",
+            "Al-Qaeda in the Indian Subcontinent (AQIS)"
+          ],
+          "conflict_zones": [
+            "Khyber Pakhtunkhwa (ex-FATA)",
+            "Balochistan",
+            "Karachi",
+            "South Punjab",
+            "Sindh"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "PAK-BALOCHISTAN",
+          "zone_name": "Pakistan - Balochistan",
+          "country": "Pakistan",
+          "region": "South / Southeast Asia",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "ISIS-Khorasan Province (ISKP)",
+            "Lashkar-e-Jhangvi (sectarian)",
+            "Sindhudesh Revolutionary Army (occasionally)"
+          ],
+          "conflict_type": "Insurgency / Separatist",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 30.33084,
+      "longitude": 71.2475
     },
     {
       "source": "google_news",
@@ -87079,66 +87245,6 @@
       },
       "latitude": 34.64019,
       "longitude": 39.04941
-    },
-    {
-      "source": "google_news",
-      "query": "suicide bombing",
-      "title": "Jerusalem pharmacy student indicted over alleged Temple Mount suicide attack plot - The Jerusalem Post",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFAwTlM2bk1VZkxHRGFkVHc0R1R0ZHpLRDdJTldJZFpTbGhKbWhPTjZpTFVJdUpkNFdLTEVlcHZqbFAxa09zWHEtbG1FdmthWjlKZERvTGp5R19zbEtEM2w2MUVKN2tjTXk4RzNyMlFxYWUyZw?oc=5",
-      "summary": "Jerusalem pharmacy student indicted over alleged Temple Mount suicide attack plot&nbsp;&nbsp;The Jerusalem Post",
-      "date": "Mon, 23 Nov 2026 19:06:03 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Israel",
-      "country_code": "IL",
-      "_enrichment": {
-        "country": {
-          "name": "Israel",
-          "iso": "IL",
-          "region": "Middle East / North Africa",
-          "sub_region": "Levant",
-          "threat_level": "High",
-          "active_groups": [
-            "Hamas",
-            "Palestinian Islamic Jihad (PIJ)",
-            "Hezbollah (cross-border)",
-            "Lone-wolf attackers"
-          ],
-          "conflict_zones": [
-            "Gaza Strip border",
-            "West Bank/Judea and Samaria",
-            "Northern border (Lebanon)",
-            "Jerusalem"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "ISR-PAL-GAZA",
-          "zone_name": "Israel/Palestine - Gaza Strip",
-          "country": "Israel / Palestine",
-          "region": "MENA",
-          "intensity": "High",
-          "trend": "Escalating",
-          "active_groups": [
-            "Hamas (Izz ad-Din al-Qassam Brigades)",
-            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
-            "Popular Front for the Liberation of Palestine (PFLP)",
-            "Various smaller Palestinian factions",
-            "Israel Defense Forces (IDF)"
-          ],
-          "conflict_type": "War / Insurgency",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 30.81242,
-      "longitude": 34.85948
     },
     {
       "source": "google_news",
@@ -87312,6 +87418,70 @@
     },
     {
       "source": "google_news",
+      "query": "al-Shabaab attack",
+      "title": "Eight soldiers killed in al-Shabaab attack in Somalia - Yeni Safak English",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPaGJXV3NMTXFod0lZRzhheDVFUGJwbzlNcksxWndKWEVubWgwcy00NVFPUXoydDJDRkNnNGdHRWxzTW5MZ21jeGFqMmgzVy1NaFNTbkxFMEVZQWY1Tml3dkMyczZrMm9WQmpHS1lFZ01PM01sT29jelpHOWlmT18yMmt5bXBUeUk4ZXFJOEQ1ZFYxVjkyX3Aw?oc=5",
+      "summary": "Eight soldiers killed in al-Shabaab attack in Somalia&nbsp;&nbsp;Yeni Safak English",
+      "date": "Wed, 25 Nov 2026 19:44:49 GMT",
+      "fatalities_estimated": 8,
+      "wounded_estimated": 0,
+      "casualty_confidence": "HIGH",
+      "casualty_matches": [
+        "Eight soldiers killed in al-Sha",
+        "k English Eight soldiers killed in al-Sha"
+      ],
+      "country": "Somalia",
+      "country_code": "SO",
+      "_enrichment": {
+        "country": {
+          "name": "Somalia",
+          "iso": "SO",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Al-Shabaab",
+            "Islamic State - Somalia Province (ISS)",
+            "Ahlu Sunna Wal Jama'a (ASWJ)"
+          ],
+          "conflict_zones": [
+            "South-Central Somalia",
+            "Lower Shabelle",
+            "Middle Shabelle",
+            "Bay and Bakool",
+            "Mudug",
+            "Puntland"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "SOM-SOUTH-CENTRAL",
+          "zone_name": "Somalia - South-Central",
+          "country": "Somalia",
+          "region": "Sub-Saharan Africa",
+          "intensity": "High",
+          "trend": "Stable",
+          "active_groups": [
+            "Al-Shabaab",
+            "ISIS-Somalia (small faction)",
+            "Somali National Army (SNA)",
+            "ATMIS (African Transition Mission in Somalia)",
+            "Clan militias"
+          ],
+          "conflict_type": "Insurgency",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 8.36768,
+      "longitude": 49.08342
+    },
+    {
+      "source": "google_news",
       "query": "Taliban militants",
       "title": "Why Pakistan Can’t Compel Afghanistan to Stop the Pakistani Taliban - The National Interest",
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxObGp1UUpaQ1gxODh3R3NNUDNQbGxoVUxXU19wSXg0cUZZaE1FNkVtQldUUVZsemhDOVo1UjJMOHVrNGZ0YmV6M0R0V0lVR3lrNmNUVEdtUFpBTlRUMDdzN1BkTm45aXR4b2JxT2hpWkprWm8tTlB4SzFnbFJXNTVwVHUxcFJ6X0cxcWpFajBPWFpiUjVhN2FabGtBXy1pZ3c?oc=5",
@@ -87383,7 +87553,7 @@
       "title": "IDF, Shin Bet reveal Hamas use of hospital for torture, interrogations - The Jerusalem Post",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1tWXNTbkMzcEtlZGtlWUU3ZU1CQ2ZOYnZCYlVCeW5JNWFTNUowOVoyZEwycmVzeU1ZRWhJWTJSZHpwUmVGdmFDOWhRblBod3hJaHFqVEZKUjF5THk1Zk8yZnI4MGRxakstVHB6V0d3?oc=5",
       "summary": "IDF, Shin Bet reveal Hamas use of hospital for torture, interrogations&nbsp;&nbsp;The Jerusalem Post",
-      "date": "Thu, 26 Nov 2026 17:03:45 GMT",
+      "date": "Thu, 26 Nov 2026 17:04:24 GMT",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -87503,54 +87673,42 @@
     },
     {
       "source": "google_news",
-      "query": "Palestinian Islamic Jihad",
-      "title": "Europe Takes Aim at the Financial Lifelines of Terrorism - Jerusalem Center for Security and Foreign Affairs",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBGeGcwYkdWakxZQVRhUWs2TUFMSXJISS0wZ3NfRHhUc1pDZHVmWU00UDZBLW9nODBIRXlfdXptUXYyYzZwWGVLLWNBQmxLSTR2VDFYNEFCZ05WdkFmX0ZORURpTUM3ZE5Da1JHTnJSTlNSdkxneGNKZXRxRm9oX2c?oc=5",
-      "summary": "Europe Takes Aim at the Financial Lifelines of Terrorism&nbsp;&nbsp;Jerusalem Center for Security and Foreign Affairs",
-      "date": "Wed, 25 Nov 2026 11:58:09 GMT",
-      "fatalities_estimated": 0,
+      "query": "airstrike killed civilians",
+      "title": "Hamas weighs response after Israel kills 10 people in Gaza - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNNzFiM29KUVhvZHZUYTV1SWtlLXNYbXg3ZzRodFVmanZkNzJsczZ4UldfRkNkSW1fVDhMaTFYOW9ETUxXaXFKcktCTThoYnBYS21mVjQxYkNWM19MR1h0WHNSdjlGenRTNkExU2RKU0ZKNUhCRWR0OVU2VmFqTUJHeE5QMVNybDE4Qk1WTmp5VGgyWDV0NjhaM3h4Ulp1bWZDUThnSlI0TFMwMnQzNk5KQnZXVTRCUUxvc2FLbmlDYVREeHpwOUpV?oc=5",
+      "summary": "Hamas weighs response after Israel kills 10 people in Gaza&nbsp;&nbsp;Reuters",
+      "date": "Thu, 26 Nov 2026 15:40:25 GMT",
+      "fatalities_estimated": 10,
       "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Israel",
-      "country_code": "IL",
+      "casualty_confidence": "HIGH",
+      "casualty_matches": [
+        "er Israel kills 10 people in",
+        "er Israel kills 10 people in"
+      ],
+      "country": "Palestinian Territories",
+      "country_code": "PS",
       "_enrichment": {
         "country": {
-          "name": "Israel",
-          "iso": "IL",
+          "name": "Palestinian Territories",
+          "iso": "PS",
           "region": "Middle East / North Africa",
           "sub_region": "Levant",
-          "threat_level": "High",
+          "threat_level": "Critical",
           "active_groups": [
-            "Hamas",
+            "Hamas (governing Gaza)",
             "Palestinian Islamic Jihad (PIJ)",
-            "Hezbollah (cross-border)",
-            "Lone-wolf attackers"
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Al-Aqsa Martyrs' Brigades",
+            "Lion's Den (Areen al-Usood)",
+            "Jenin Brigades"
           ],
           "conflict_zones": [
-            "Gaza Strip border",
-            "West Bank/Judea and Samaria",
-            "Northern border (Lebanon)",
-            "Jerusalem"
+            "Gaza Strip",
+            "Jenin",
+            "Nablus",
+            "Tulkarm",
+            "Hebron"
           ]
-        },
-        "conflict_zone": {
-          "zone_id": "ISR-PAL-GAZA",
-          "zone_name": "Israel/Palestine - Gaza Strip",
-          "country": "Israel / Palestine",
-          "region": "MENA",
-          "intensity": "High",
-          "trend": "Escalating",
-          "active_groups": [
-            "Hamas (Izz ad-Din al-Qassam Brigades)",
-            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
-            "Popular Front for the Liberation of Palestine (PFLP)",
-            "Various smaller Palestinian factions",
-            "Israel Defense Forces (IDF)"
-          ],
-          "conflict_type": "War / Insurgency",
-          "match_type": "text",
-          "match_score": 1
         },
         "attack_classification": {
           "category": "unknown",
@@ -87558,8 +87716,8 @@
           "original_type": ""
         }
       },
-      "latitude": 30.81242,
-      "longitude": 34.85948
+      "latitude": 31.46242,
+      "longitude": 34.26272
     },
     {
       "source": "google_news",
@@ -88424,17 +88582,6 @@
       "is_new": false
     },
     {
-      "source": "opensanctions/us_ofac_sdn",
-      "entity_id": "NK-24UMVkuxF3svsAtg55i3Zi",
-      "name": "ALBAHR ALAAHMAR ENERGY FZE",
-      "schema": "Organization",
-      "datasets": "us_ofac_sdn",
-      "topics": [
-        "sanction"
-      ],
-      "is_new": false
-    },
-    {
       "source": "opensanctions/un_sc_sanctions",
       "entity_id": "NK-9rbvRsjDY4WANyXSjXR37X",
       "name": "ALFA COMPANY LIMITED FOR INTERNATIONAL TRADING AND MARKETING",
@@ -88546,8 +88693,8 @@
     },
     {
       "source": "opensanctions/eu_sanctions",
-      "entity_id": "NK-23p2d4vMT5sJtQ845GyzJt",
-      "name": "Aktsionernoe obschestvo Nauchno-proizvodstvennoe obedinenie izmeritelnoj tehniki",
+      "entity_id": "NK-2Wk3m8uPSgQWz687e8S2MV",
+      "name": "Aktsionernoe obschestvo Osoboe konstruktorskoe bjuro Oktava",
       "schema": "Organization",
       "datasets": "eu_sanctions",
       "topics": [
@@ -88557,8 +88704,8 @@
     },
     {
       "source": "opensanctions/eu_sanctions",
-      "entity_id": "NK-2Wk3m8uPSgQWz687e8S2MV",
-      "name": "Aktsionernoe obschestvo Osoboe konstruktorskoe bjuro Oktava",
+      "entity_id": "NK-2TVNSeGQTNtoei9862a2sP",
+      "name": "Aktsionernoe obschestvo Tambovskij zavod Oktjabr",
       "schema": "Organization",
       "datasets": "eu_sanctions",
       "topics": [
@@ -88580,7 +88727,7 @@
     {
       "source": "opensanctions/eu_sanctions",
       "entity_id": "NK-2c4wZWM8NvGdwZXqoZuXYV",
-      "name": "Al-Quds-prikaatit",
+      "name": "Al-Qudsi brigaadid",
       "schema": "Organization",
       "datasets": "eu_sanctions",
       "topics": [
@@ -88624,7 +88771,7 @@
     {
       "source": "opensanctions/eu_sanctions",
       "entity_id": "NK-2X8CK6KZKhQb5M3yhWQSRE",
-      "name": "Alexander Matveevich MARKMAN",
+      "name": "Alexandr Markman",
       "schema": "Person",
       "datasets": "eu_sanctions",
       "topics": [
@@ -88721,11 +88868,11 @@
       "is_new": false
     },
     {
-      "source": "opensanctions/eu_sanctions",
-      "entity_id": "NK-26AoxGCbHCgUqfhejBQepF",
-      "name": "Centro de Detenção do MSS do distrito de Onsong",
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-29V6pA7jCaxw5r5jMNHvYR",
+      "name": "Cloud Nine No. 4 Leasing Company Limited",
       "schema": "Organization",
-      "datasets": "eu_sanctions",
+      "datasets": "us_ofac_sdn",
       "topics": [
         "sanction"
       ],
@@ -88746,6 +88893,17 @@
       "source": "opensanctions/us_ofac_sdn",
       "entity_id": "NK-22T6dTsc6umYgEA33vME3t",
       "name": "Digital Marketing Awards FZ LLC",
+      "schema": "Organization",
+      "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-2CD2oSMdYpeA2x6FEV4ZXb",
+      "name": "Dingtai Industrial Technology Co Limited",
       "schema": "Organization",
       "datasets": "us_ofac_sdn",
       "topics": [
@@ -88787,22 +88945,22 @@
       "is_new": false
     },
     {
-      "source": "opensanctions/us_ofac_sdn",
-      "entity_id": "NK-28DYyZtuHyHDr3Gk7spEQM",
-      "name": "Fars News Agency",
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-235hApQ4jp8oMsJmToKGdJ",
+      "name": "Federalnoe kazennoe predprijatie Natsionalnoe ispytatelnoe obedinenie gosudarstvennye boepripasnye ispytatelnye poligony rossii",
       "schema": "Organization",
-      "datasets": "us_ofac_sdn",
+      "datasets": "eu_sanctions",
       "topics": [
         "sanction"
       ],
       "is_new": false
     },
     {
-      "source": "opensanctions/eu_sanctions",
-      "entity_id": "NK-235hApQ4jp8oMsJmToKGdJ",
-      "name": "Federalnoe kazennoe predprijatie Natsionalnoe ispytatelnoe obedinenie gosudarstvennye boepripasnye ispytatelnye poligony rossii",
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-23wEenKCkJ2dbXMy4qdiE7",
+      "name": "GOLDEN LUXURY JEWELLERY TRADING L.L.C",
       "schema": "Organization",
-      "datasets": "eu_sanctions",
+      "datasets": "us_ofac_sdn",
       "topics": [
         "sanction"
       ],
@@ -88865,6 +89023,17 @@
     },
     {
       "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2bein3otDRhfe87u3ZsGxz",
+      "name": "Ibrahim KURD",
+      "schema": "Person",
+      "datasets": "eu_sanctions",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
       "entity_id": "NK-25Q3emZEFjNu8VLmAekbih",
       "name": "Igor Aleksandrovich KUZNETSOV",
       "schema": "Person",
@@ -88890,17 +89059,6 @@
       "entity_id": "NK-2NzLD8GDaoLP8QDGbsfrVv",
       "name": "Incomp Limited",
       "schema": "LegalEntity",
-      "datasets": "eu_sanctions",
-      "topics": [
-        "sanction"
-      ],
-      "is_new": false
-    },
-    {
-      "source": "opensanctions/eu_sanctions",
-      "entity_id": "NK-23dinXRmxTu4sehASYNAGE",
-      "name": "Irina Anatolievna KOSTENKO",
-      "schema": "Person",
       "datasets": "eu_sanctions",
       "topics": [
         "sanction"
@@ -88957,6 +89115,17 @@
       "name": "Jahangir Yevgenyevich ALIYEV",
       "schema": "Person",
       "datasets": "us_ofac_sdn",
+      "topics": [
+        "sanction"
+      ],
+      "is_new": false
+    },
+    {
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-23p2d4vMT5sJtQ845GyzJt",
+      "name": "Joint Stock Company Research and Production Association of Measuring Equipment",
+      "schema": "Organization",
+      "datasets": "eu_sanctions",
       "topics": [
         "sanction"
       ],
@@ -89095,22 +89264,22 @@
       "is_new": false
     },
     {
-      "source": "opensanctions/eu_sanctions",
-      "entity_id": "NK-2EwBQAzM9Akx3YxZDCYBKM",
-      "name": "Korkein vaalineuvosto",
+      "source": "opensanctions/us_ofac_sdn",
+      "entity_id": "NK-2C37uVKvW4YDH8EoSMAh5a",
+      "name": "Kumgang Bank",
       "schema": "Organization",
-      "datasets": "eu_sanctions",
+      "datasets": "us_ofac_sdn",
       "topics": [
         "sanction"
       ],
       "is_new": false
     },
     {
-      "source": "opensanctions/us_ofac_sdn",
-      "entity_id": "NK-2C37uVKvW4YDH8EoSMAh5a",
-      "name": "Kumgang Bank",
+      "source": "opensanctions/eu_sanctions",
+      "entity_id": "NK-2EwBQAzM9Akx3YxZDCYBKM",
+      "name": "Kunsill Elettorali Suprem",
       "schema": "Organization",
-      "datasets": "us_ofac_sdn",
+      "datasets": "eu_sanctions",
       "topics": [
         "sanction"
       ],
@@ -89203,111 +89372,9 @@
         "sanction"
       ],
       "is_new": false
-    },
-    {
-      "source": "opensanctions/un_sc_sanctions",
-      "entity_id": "NK-7MfEmPb2M8AzwGigQsp5Ra",
-      "name": "MAGHOMED MAGHOMEDZAKIROVICH ABDURAKHMANOV",
-      "schema": "Person",
-      "datasets": "un_sc_sanctions",
-      "topics": [
-        "sanction"
-      ],
-      "is_new": false
     }
   ],
   "telegram": [
-    {
-      "source": "telegram/intelslava",
-      "title": "🇷🇺🇺🇸⚡️ — Putin agreed not to use nuclear weapons and assured the United States of the absence of such intentions, according to Trump's son-i",
-      "summary": "🇷🇺🇺🇸⚡️ — Putin agreed not to use nuclear weapons and assured the United States of the absence of such intentions, according to Trump's son-in-law, Kushner. He also stated, as a member of the negotiating group, that negotiations regarding territories had reached a deadlock. @Intelslava",
-      "url": "https://t.me/intelslava/98626",
-      "date": "2026-11-26",
-      "feed_name": "TG:intelslava",
-      "channel": "intelslava",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/intelslava",
-      "title": "🇾🇪🇸🇦⚡️ In response to the Saudi Arabian Air Force attacks, the Houthis launched a strike on the oil refinery in Ras Tanura. @Intelslava",
-      "summary": "🇾🇪🇸🇦⚡️ In response to the Saudi Arabian Air Force attacks, the Houthis launched a strike on the oil refinery in Ras Tanura. @Intelslava",
-      "url": "https://t.me/intelslava/98627",
-      "date": "2026-11-26",
-      "feed_name": "TG:intelslava",
-      "channel": "intelslava",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/intelslava",
-      "title": "🇺🇦🇵🇱⚡️ — A video has emerged showing a Ukrainian man setting himself on fire in front of the presidential palace in Warsaw. Media reports in",
-      "summary": "🇺🇦🇵🇱⚡️ — A video has emerged showing a Ukrainian man setting himself on fire in front of the presidential palace in Warsaw. Media reports indicate that the man took this action to protest the treatment of Ukrainians in Poland. @Intelslava",
-      "url": "https://t.me/intelslava/98628",
-      "date": "2026-11-26",
-      "feed_name": "TG:intelslava",
-      "channel": "intelslava",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/intelslava",
-      "title": "🇷🇺🇺🇦⚡️ — Russian Aerospace Forces (VKS) struck the following targets: • The deployment point of a unit of the 475th Separate Assault Regimen",
-      "summary": "🇷🇺🇺🇦⚡️ — Russian Aerospace Forces (VKS) struck the following targets: • The deployment point of a unit of the 475th Separate Assault Regiment (475 OShP) in the settlement of Velykyi Burluk was struck with four FAB-250 guided aerial bombs equipped with UMPK kits. • A road tunnel near the settlement of Odarivka was struck with four FAB-500 guided aerial bombs equipped with UMPK kits. @IntelSlava",
-      "url": "https://t.me/intelslava/98629",
-      "date": "2026-11-26",
-      "feed_name": "TG:intelslava",
-      "channel": "intelslava",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/intelslava",
-      "title": "🇷🇺🇺🇦⚡️ — Another exchange of the bodies of deceased servicemen has taken place. The remains of 22 Russian servicemen were returned to Russia",
-      "summary": "🇷🇺🇺🇦⚡️ — Another exchange of the bodies of deceased servicemen has taken place. The remains of 22 Russian servicemen were returned to Russia, while the remains of 250 Ukrainian servicemen were handed over to Ukraine. @IntelSlava",
-      "url": "https://t.me/intelslava/98630",
-      "date": "2026-11-26",
-      "feed_name": "TG:intelslava",
-      "channel": "intelslava",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/intelslava",
-      "title": "🇷🇺⚡️ — Colonel General Yury Grekhov, Deputy Commander-in-Chief of the Russian Aerospace Forces (VKS) for Armaments, has been arrested for ac",
-      "summary": "🇷🇺⚡️ — Colonel General Yury Grekhov, Deputy Commander-in-Chief of the Russian Aerospace Forces (VKS) for Armaments, has been arrested for accepting a bribe on an especially large scale. @IntelSlava",
-      "url": "https://t.me/intelslava/98631",
-      "date": "2026-11-26",
-      "feed_name": "TG:intelslava",
-      "channel": "intelslava",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/intelslava",
-      "title": "🇷🇺🇺🇦⚡️ — The aftermath of a missile strike on the LLC \"Kyivkhimvolokno\" plant in Kiev. @Intelslava",
-      "summary": "🇷🇺🇺🇦⚡️ — The aftermath of a missile strike on the LLC \"Kyivkhimvolokno\" plant in Kiev. @Intelslava",
-      "url": "https://t.me/intelslava/98632",
-      "date": "2026-11-26",
-      "feed_name": "TG:intelslava",
-      "channel": "intelslava",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
     {
       "source": "telegram/intelslava",
       "title": "🇮🇷⚡️ — The IRGC Navy released footage of vessels burning off the coast of Oman after attempting to navigate an unauthorized route through th",
@@ -89374,28 +89441,93 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/insiderpaper",
-      "title": "NEW: Japan says new US tariffs ‘regrettable’ ‎ ‎Read: https://insiderpaper.com/japan-says-new-us-tariffs-regrettable/",
-      "summary": "NEW: Japan says new US tariffs ‘regrettable’ ‎ ‎Read: https://insiderpaper.com/japan-says-new-us-tariffs-regrettable/",
-      "url": "https://t.me/insiderpaper/46171",
+      "source": "telegram/intelslava",
+      "title": "🇺🇸⚡️ — President Trump via Truth Social: “It was just revealed that the REAL Numbers on the Economy, published before the Election, were FAK",
+      "summary": "🇺🇸⚡️ — President Trump via Truth Social: “It was just revealed that the REAL Numbers on the Economy, published before the Election, were FAKE, and a correction was issued yesterday by the people in the Government Agency that does these numbers. The American Economy under The Trump Administration is doing FAR BETTER than the good numbers already released. Third Quarter GDP Growth has now been corrected to be 4.3%, instead of 3.4%, a major difference! Why wasn’t the correct number issued before th",
+      "url": "https://t.me/intelslava/98641",
       "date": "2026-11-26",
-      "feed_name": "TG:insiderpaper",
-      "channel": "insiderpaper",
+      "feed_name": "TG:intelslava",
+      "channel": "intelslava",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": []
     },
     {
-      "source": "telegram/insiderpaper",
-      "title": "BREAKING - Kuwait says four injured after Iranian drones intercepted - AFP Follow @insiderpaper",
-      "summary": "BREAKING - Kuwait says four injured after Iranian drones intercepted - AFP Follow @insiderpaper",
-      "url": "https://t.me/insiderpaper/46172",
+      "source": "telegram/intelslava",
+      "title": "🇺🇸🇨🇳🇷🇺⚡️ — President Trump via Truth Social: “During my conversations in China with President Vladimir Putin, of Russia, I spent a lot of ti",
+      "summary": "🇺🇸🇨🇳🇷🇺⚡️ — President Trump via Truth Social: “During my conversations in China with President Vladimir Putin, of Russia, I spent a lot of time talking about the fact that I would like to see President Putin pull back all Military aggression against territories throughout Europe, in the hopes that a Deal can be made between Russia and Ukraine, and made quickly. I really believe this is a strong possibility — Thousands of people are being killed each and every month, A COMPLETE BLOODBATH — and wil",
+      "url": "https://t.me/intelslava/98642",
       "date": "2026-11-26",
-      "feed_name": "TG:insiderpaper",
-      "channel": "insiderpaper",
+      "feed_name": "TG:intelslava",
+      "channel": "intelslava",
       "fatalities_estimated": 0,
-      "wounded_estimated": 4,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/intelslava",
+      "title": "🇮🇱⚡️ — BIG: Cyberattack. https://t.me/MaxOsintIntel/27024",
+      "summary": "🇮🇱⚡️ — BIG: Cyberattack. https://t.me/MaxOsintIntel/27024",
+      "url": "https://t.me/intelslava/98643",
+      "date": "2026-11-26",
+      "feed_name": "TG:intelslava",
+      "channel": "intelslava",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/intelslava",
+      "title": "🇷🇺🇪🇺⚡️ — Foreign Minister Lavrov: “Clearly, the West is not going anywhere. Neither the United States, nor Europe, nor the West's allies in ",
+      "summary": "🇷🇺🇪🇺⚡️ — Foreign Minister Lavrov: “Clearly, the West is not going anywhere. Neither the United States, nor Europe, nor the West's allies in other regions of the world. But they will no longer be able to dictate to everyone else how to live, whom to be friends with and whom to impose sanctions against. They will have to negotiate.” @IntelSlava",
+      "url": "https://t.me/intelslava/98644",
+      "date": "2026-11-26",
+      "feed_name": "TG:intelslava",
+      "channel": "intelslava",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/intelslava",
+      "title": "🇷🇺🇪🇺⚡️ — Foreign Minister Lavrov: “Clearly, the West is not going anywhere. Neither the United States, nor Europe, nor the West's allies in ",
+      "summary": "🇷🇺🇪🇺⚡️ — Foreign Minister Lavrov: “Clearly, the West is not going anywhere. Neither the United States, nor Europe, nor the West's allies in other regions of the world. But they will no longer be able to dictate to everyone else how to live, whom to be friends…",
+      "url": "https://t.me/intelslava/98645",
+      "date": "2026-11-26",
+      "feed_name": "TG:intelslava",
+      "channel": "intelslava",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/intelslava",
+      "title": "🇷🇺🇪🇺⚡️ — Foreign Minister Lavrov: “We sympathize with Europeans who have found themselves under the rule of utterly selfish and unrealistic ",
+      "summary": "🇷🇺🇪🇺⚡️ — Foreign Minister Lavrov: “We sympathize with Europeans who have found themselves under the rule of utterly selfish and unrealistic elites.” @IntelSlava",
+      "url": "https://t.me/intelslava/98646",
+      "date": "2026-11-26",
+      "feed_name": "TG:intelslava",
+      "channel": "intelslava",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/intelslava",
+      "title": "🇷🇺🇮🇳⚡️ — Foreign Minister Lavrov: “We have relations with India that are officially called a special and privileged strategic partnership. W",
+      "summary": "🇷🇺🇮🇳⚡️ — Foreign Minister Lavrov: “We have relations with India that are officially called a special and privileged strategic partnership. We have a strategic partnership, a particularly advanced strategic partnership, with the Islamic Republic of Iran,…",
+      "url": "https://t.me/intelslava/98648",
+      "date": "2026-11-26",
+      "feed_name": "TG:intelslava",
+      "channel": "intelslava",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": []
     },
@@ -89533,65 +89665,26 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/clashreport",
-      "title": "Polish Foreign Minister Sikorski: Russia is not winning on the battlefield. There was supposed to be a major offensive this year, and it did",
-      "summary": "Polish Foreign Minister Sikorski: Russia is not winning on the battlefield. There was supposed to be a major offensive this year, and it did indeed take place. But Russia has not gained significant amounts of territory. In fact, Ukraine has recaptured some areas, while Russia has suffered losses of between 30,000 and 50,000 soldiers per month. I would not call that a Russian victory.",
-      "url": "https://t.me/ClashReport/107657",
+      "source": "telegram/insiderpaper",
+      "title": "NEW: US Lawmakers Strike Deal on Chinese Vehicle Ban Bill ‎ ‎Read: https://insiderpaper.com/us-lawmakers-strike-deal-on-chinese-vehicle-ban-",
+      "summary": "NEW: US Lawmakers Strike Deal on Chinese Vehicle Ban Bill ‎ ‎Read: https://insiderpaper.com/us-lawmakers-strike-deal-on-chinese-vehicle-ban-bill/",
+      "url": "https://t.me/insiderpaper/46184",
       "date": "2026-11-26",
-      "feed_name": "TG:clashreport",
-      "channel": "clashreport",
+      "feed_name": "TG:insiderpaper",
+      "channel": "insiderpaper",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": []
     },
     {
-      "source": "telegram/clashreport",
-      "title": "Polish Foreign Minister Sikorski: Ukraine is striking bases, airbases, refineries and the Kerch Bridge. Russia, on the other hand, is indeed",
-      "summary": "Polish Foreign Minister Sikorski: Ukraine is striking bases, airbases, refineries and the Kerch Bridge. Russia, on the other hand, is indeed criminally striking civilian targets.",
-      "url": "https://t.me/ClashReport/107658",
+      "source": "telegram/insiderpaper",
+      "title": "NEW: A serial egg thrower is targeting Waymo’s self-driving cars in Denver, using traffic cones to trap the vehicles and then throwing eggs ",
+      "summary": "NEW: A serial egg thrower is targeting Waymo’s self-driving cars in Denver, using traffic cones to trap the vehicles and then throwing eggs at them, police say Follow @insiderpaper",
+      "url": "https://t.me/insiderpaper/46185",
       "date": "2026-11-26",
-      "feed_name": "TG:clashreport",
-      "channel": "clashreport",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/clashreport",
-      "title": "Putin on AI: Almost ten years ago, I said that if any country achieved leadership in the development of artificial intelligence, that countr",
-      "summary": "Putin on AI: Almost ten years ago, I said that if any country achieved leadership in the development of artificial intelligence, that country would become the ruler of the world. The situation has changed dramatically since then. Simply possessing even the latest generation of artificial intelligence no longer guarantees technological superiority or sustainable long-term development.",
-      "url": "https://t.me/ClashReport/107659",
-      "date": "2026-11-26",
-      "feed_name": "TG:clashreport",
-      "channel": "clashreport",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/clashreport",
-      "title": "Putin on AI: In Russia, we are betting on sovereign foundation models. We must not find ourselves in a situation we have already experienced",
-      "summary": "Putin on AI: In Russia, we are betting on sovereign foundation models. We must not find ourselves in a situation we have already experienced, when someone presses a button and everything simply stops working. We must never allow anyone, including ourselves, to let these new technologies be used by anyone, at any time, against the interests of our country.",
-      "url": "https://t.me/ClashReport/107660",
-      "date": "2026-11-26",
-      "feed_name": "TG:clashreport",
-      "channel": "clashreport",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/clashreport",
-      "title": "Trump: I want to thank the 2% of our Somalian population that have a job, and are actually willing to work, without receiving Government Ass",
-      "summary": "Trump: I want to thank the 2% of our Somalian population that have a job, and are actually willing to work, without receiving Government Assistance. These are wonderful American “citizens,” and should be allowed to stay in our Country, and celebrate Thanksgiving with us.",
-      "url": "https://t.me/ClashReport/107661",
-      "date": "2026-11-26",
-      "feed_name": "TG:clashreport",
-      "channel": "clashreport",
+      "feed_name": "TG:insiderpaper",
+      "channel": "insiderpaper",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -89680,6 +89773,71 @@
       "title": "French President Macron called Brazilian meat “doped” and welcomed the EU’s suspension of Brazilian animal product imports. “The doped meat,",
       "summary": "French President Macron called Brazilian meat “doped” and welcomed the EU’s suspension of Brazilian animal product imports. “The doped meat, so to speak, particularly Brazilian meat, which reached our ports and markets and did not comply with our rules, ended up being banned,” Macron said.",
       "url": "https://t.me/ClashReport/107668",
+      "date": "2026-11-26",
+      "feed_name": "TG:clashreport",
+      "channel": "clashreport",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/clashreport",
+      "title": "Georgian police attacked Beşiktaş fans waving Palestinian flags during tonight’s UEFA Europa League match against Israel’s Hapoel Beer Sheva",
+      "summary": "Georgian police attacked Beşiktaş fans waving Palestinian flags during tonight’s UEFA Europa League match against Israel’s Hapoel Beer Sheva in Batumi, attempting to prevent the flags from being displayed.",
+      "url": "https://t.me/ClashReport/107669",
+      "date": "2026-11-26",
+      "feed_name": "TG:clashreport",
+      "channel": "clashreport",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/clashreport",
+      "title": "Georgian police attacked Beşiktaş fans waving Palestinian flags during tonight’s UEFA Europa League match against Israel’s Hapoel Beer Sheva",
+      "summary": "Georgian police attacked Beşiktaş fans waving Palestinian flags during tonight’s UEFA Europa League match against Israel’s Hapoel Beer Sheva in Batumi, attempting to prevent the flags from being displayed.",
+      "url": "https://t.me/ClashReport/107670",
+      "date": "2026-11-26",
+      "feed_name": "TG:clashreport",
+      "channel": "clashreport",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/clashreport",
+      "title": "Turkish football clubs, including Galatasaray, Fenerbahce and Trabzonspor, condemned Georgian police for using excessive force against Besik",
+      "summary": "Turkish football clubs, including Galatasaray, Fenerbahce and Trabzonspor, condemned Georgian police for using excessive force against Besiktas fans who displayed a Palestinian flag during a Europa League match against Israel’s Hapoel Beer-Sheva.",
+      "url": "https://t.me/ClashReport/107671",
+      "date": "2026-11-26",
+      "feed_name": "TG:clashreport",
+      "channel": "clashreport",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/clashreport",
+      "title": "Iran’s Foreign Minister Abbas Araghchi: We will secure essential goods through various means and frustrate our enemies’ attempts to blockade",
+      "summary": "Iran’s Foreign Minister Abbas Araghchi: We will secure essential goods through various means and frustrate our enemies’ attempts to blockade the country.",
+      "url": "https://t.me/ClashReport/107672",
+      "date": "2026-11-26",
+      "feed_name": "TG:clashreport",
+      "channel": "clashreport",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/clashreport",
+      "title": "Georgia Senator Jon Ossoff has visited South Carolina, the first state on the Democrats’ 2028 presidential primary calendar, amid speculatio",
+      "summary": "Georgia Senator Jon Ossoff has visited South Carolina, the first state on the Democrats’ 2028 presidential primary calendar, amid speculation about a potential White House bid. Source: MS NOW",
+      "url": "https://t.me/ClashReport/107673",
       "date": "2026-11-26",
       "feed_name": "TG:clashreport",
       "channel": "clashreport",
@@ -89846,58 +90004,6 @@
     },
     {
       "source": "telegram/Osint613",
-      "title": "\"The war must not spread to the Mediterranean Sea, it cannot spread there. We must be very clear about this to our Ukrainian friends.\" Itali",
-      "summary": "\"The war must not spread to the Mediterranean Sea, it cannot spread there. We must be very clear about this to our Ukrainian friends.\" Italian Prime Minister Giorgia Meloni, reacting to Ukrainian attacks on Russian vessels in Libya.",
-      "url": "https://t.me/osint613/17764",
-      "date": "2026-11-26",
-      "feed_name": "TG:Osint613",
-      "channel": "Osint613",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/Osint613",
-      "title": "Flydubai is scheduled to resume flights between Dubai and Tel Aviv on Thursday, December 3, 2026, and has reopened ticket sales for the rout",
-      "summary": "Flydubai is scheduled to resume flights between Dubai and Tel Aviv on Thursday, December 3, 2026, and has reopened ticket sales for the route. Times of Israel.",
-      "url": "https://t.me/osint613/17765",
-      "date": "2026-11-26",
-      "feed_name": "TG:Osint613",
-      "channel": "Osint613",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/Osint613",
-      "title": "Hamas is in talks with other Palestinian factions on how to respond to continued Israeli strikes and the siege of Gaza. Hamas leader Khalil ",
-      "summary": "Hamas is in talks with other Palestinian factions on how to respond to continued Israeli strikes and the siege of Gaza. Hamas leader Khalil al-Hayya called both unacceptable given the ceasefire agreement, and criticized the Board of Peace and mediators for what he described as a \"policy of silence.\"",
-      "url": "https://t.me/osint613/17766",
-      "date": "2026-11-26",
-      "feed_name": "TG:Osint613",
-      "channel": "Osint613",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/Osint613",
-      "title": "Ma'amadani Hospital in the northern Gaza Strip is being used by Hamas for interrogations and torture, the IDF and the General Security Servi",
-      "summary": "Ma'amadani Hospital in the northern Gaza Strip is being used by Hamas for interrogations and torture, the IDF and the General Security Service (Shin Bet) revealed today. On the hospital's role: \"It constitutes a significant center of gravity in the governance of Hamas in the area of the city of Zeytun\"",
-      "url": "https://t.me/osint613/17767",
-      "date": "2026-11-26",
-      "feed_name": "TG:Osint613",
-      "channel": "Osint613",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/Osint613",
       "title": "Trump: There's a strong chance Russia pulls back military aggression",
       "summary": "Trump: There's a strong chance Russia pulls back military aggression",
       "url": "https://t.me/osint613/17768",
@@ -89999,6 +90105,61 @@
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
       "casualty_matches": []
+    },
+    {
+      "source": "telegram/Osint613",
+      "title": "A match was suspended after Georgian security forces clashed with traveling Turkish Beşiktaş supporters in the stands. Security moved in to ",
+      "summary": "A match was suspended after Georgian security forces clashed with traveling Turkish Beşiktaş supporters in the stands. Security moved in to seize Palestinian flags and a large white banner displayed by the fan group çArşı Bingöl, which read \"Rebellion Against Occupation, Freedom for Palestine.\"",
+      "url": "https://t.me/osint613/17776",
+      "date": "2026-11-26",
+      "feed_name": "TG:Osint613",
+      "channel": "Osint613",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/Osint613",
+      "title": "The Europa League match between Israel's Hapoel Be'er Sheva and Türkiye's Beşiktaş in Batumi, Georgia, has resumed after UEFA suspended it o",
+      "summary": "The Europa League match between Israel's Hapoel Be'er Sheva and Türkiye's Beşiktaş in Batumi, Georgia, has resumed after UEFA suspended it over severe crowd unrest. Play stopped when a scuffle between players triggered anti-Israel chants in the stands, and both teams walked off. Georgian police fired tear gas at some Beşiktaş fans. Fans were carried out on stretchers, and a supporter reportedly fell from the stands. Outside the stadium, police moved in over banned Palestinian flags and made doze",
+      "url": "https://t.me/osint613/17777",
+      "date": "2026-11-26",
+      "feed_name": "TG:Osint613",
+      "channel": "Osint613",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/Osint613",
+      "title": "Iranian FM Abbas Araghchi denies Tehran was behind the drone attack on a Kuwaiti air defense site. Two Italian technicians from Rheinmetall ",
+      "summary": "Iranian FM Abbas Araghchi denies Tehran was behind the drone attack on a Kuwaiti air defense site. Two Italian technicians from Rheinmetall were killed. A Kuwaiti and a Pakistani national were injured. Kuwait's Defence Ministry and Italy's Foreign Minister both pin the strike on Iranian-origin drones. Iran's armed forces spokesperson called it a potential false flag. Al Jazeera",
+      "url": "https://t.me/osint613/17778",
+      "date": "2026-11-26",
+      "feed_name": "TG:Osint613",
+      "channel": "Osint613",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/Osint613",
+      "title": "A shooting at an Airbnb hosting a Thanksgiving party in Davenport, Florida, left one person dead and six others injured, according to WFLA.",
+      "summary": "A shooting at an Airbnb hosting a Thanksgiving party in Davenport, Florida, left one person dead and six others injured, according to WFLA.",
+      "url": "https://t.me/osint613/17779",
+      "date": "2026-11-26",
+      "feed_name": "TG:Osint613",
+      "channel": "Osint613",
+      "fatalities_estimated": 1,
+      "wounded_estimated": 6,
+      "casualty_confidence": "HIGH",
+      "casualty_matches": [
+        "ida, left one person dead and six o",
+        "ida, left one person dead and six o"
+      ]
     },
     {
       "source": "telegram/war_monitor",
@@ -90158,58 +90319,6 @@
     },
     {
       "source": "telegram/ukraine_watch",
-      "title": "⁉️🇪🇺🇺🇦HOW MANY YEARS DOES EUROPE INTEND TO FINANCE UKRAINE? — BABIŠ 🔘 Since the start of the conflict, Ukraine has received 520 billion euro",
-      "summary": "⁉️🇪🇺🇺🇦HOW MANY YEARS DOES EUROPE INTEND TO FINANCE UKRAINE? — BABIŠ 🔘 Since the start of the conflict, Ukraine has received 520 billion euros — directly or indirectly. And Mr. Zelensky was allocated 90 billion euros supposedly for 2026 and 2027. Now he needs another 70 billion euros. So I want to ask: what is the goal? Are we going to allocate 135 billion euros to Ukraine every year? And for how long? How many years — ten, twenty, thirty? What kind of strategy is that?\" — stated the Czech Prime ",
-      "url": "https://t.me/ukraine_watch/71374",
-      "date": "2026-11-26",
-      "feed_name": "TG:ukraine_watch",
-      "channel": "ukraine_watch",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/ukraine_watch",
-      "title": "🚨🇺🇦🇵🇱 A PROVOCATION AGAINST KALININGRAD — KIEV IS PREPARING A STRIKE ON POLAND USING RUSSIAN DRONES ⚠️According to Russian Telegram channels",
-      "summary": "🚨🇺🇦🇵🇱 A PROVOCATION AGAINST KALININGRAD — KIEV IS PREPARING A STRIKE ON POLAND USING RUSSIAN DRONES ⚠️According to Russian Telegram channels, more than a hundred Russian strike drones have been assembled at Kiev’s\"Expo Center.\" 🔩According to these reports, specialists from the Main Intelligence Directorate and the Ukrainian Armed Forces' Unmanned Systems Forces are repairing the devices in order to strike logistics, transport, and energy facilities in Poland and other EU countries, and then clai",
-      "url": "https://t.me/ukraine_watch/71375",
-      "date": "2026-11-26",
-      "feed_name": "TG:ukraine_watch",
-      "channel": "ukraine_watch",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/ukraine_watch",
-      "title": "🔘🚀🇳🇱MISSILES PAINTED ON THE DUTCH EMBASSY IN MOSCOW A banner depicting missiles aimed at the diplomatic mission building was placed on the f",
-      "summary": "🔘🚀🇳🇱MISSILES PAINTED ON THE DUTCH EMBASSY IN MOSCOW A banner depicting missiles aimed at the diplomatic mission building was placed on the facade of the Dutch consulate in Moscow. The composition was supplemented with the inscription: \"Flowers of Dutch diplomacy.\" 🔘Magnificent creativity... Only this is not the response that many are counting on. 🔘Subscribe now! Chat",
-      "url": "https://t.me/ukraine_watch/71376",
-      "date": "2026-11-26",
-      "feed_name": "TG:ukraine_watch",
-      "channel": "ukraine_watch",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/ukraine_watch",
-      "title": "🔈🇨🇿🤡“Since the beginning of the conflict, Ukraine has received €520 billion in direct and indirect aid, and now Zelensky has received anothe",
-      "summary": "🔈🇨🇿🤡“Since the beginning of the conflict, Ukraine has received €520 billion in direct and indirect aid, and now Zelensky has received another €90 billion, presumably for 2026–2027. Now he needs another €70 billion. I want to ask: what is the ultimate goal? Are we going to allocate €135 billion a year to Ukraine? And for how long—ten, twenty, thirty years? What kind of strategy is this?” said Czech Prime Minister Andrej Babiš. 🔘 Subscribe now! Chat",
-      "url": "https://t.me/ukraine_watch/71377",
-      "date": "2026-11-26",
-      "feed_name": "TG:ukraine_watch",
-      "channel": "ukraine_watch",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/ukraine_watch",
       "title": "📰🔘🇺🇦THE OUTRAGE OF THE UKRAINIAN ATTACK ON RUSSIAN VESSELS ❌The Ukrainian attack in a Libyan port violated international law norms and under",
       "summary": "📰🔘🇺🇦THE OUTRAGE OF THE UKRAINIAN ATTACK ON RUSSIAN VESSELS ❌The Ukrainian attack in a Libyan port violated international law norms and undermined the rules designed to prevent the spread of armed conflicts, Politico writes, citing lawyers. ❤️‍🔥According…",
       "url": "https://t.me/ukraine_watch/71378",
@@ -90316,13 +90425,52 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/RVvoenkor",
-      "title": "‼️🇬🇷🇪🇺 «Нельзя говорить о сильной Европе со слабым бюджетом»: Греция выступила против сокращения финансирования ЕС ▪️ Премьер-министр Греции",
-      "summary": "‼️🇬🇷🇪🇺 «Нельзя говорить о сильной Европе со слабым бюджетом»: Греция выступила против сокращения финансирования ЕС ▪️ Премьер-министр Греции Кириакос Мицотакис перед заседанием Евросовета в Брюсселе заявил о недопустимости дальнейшего урезания расходов на ключевые программы Евросоюза. ▪️ По его словам, без достаточного финансирования ЕС не сможет повысить экономическую конкурентоспособность, развивать энергетический рынок и обеспечивать охрану внешних границ. ▪️ Афины категорически выступают про",
-      "url": "https://t.me/RVvoenkor/128042",
+      "source": "telegram/ukraine_watch",
+      "title": "🇺🇦🤡Ukraine’s Cabinet is preparing to crank up the meat grinder again All men between the ages of 17 and 60 will be cross-checked against gov",
+      "summary": "🇺🇦🤡Ukraine’s Cabinet is preparing to crank up the meat grinder again All men between the ages of 17 and 60 will be cross-checked against government registries. The Cabinet has ordered the verification and updating of data in the Unified State Register of Conscripts, Military Personnel, and Reservists. Among other things, Ukraine’s Ministry of Defense will receive the following information from other registries: 🟥Taxpayer identification numbers; 🟥Ukrainian passport details; 🟥Unique record numbers",
+      "url": "https://t.me/ukraine_watch/71387",
       "date": "2026-11-26",
-      "feed_name": "TG:RVvoenkor",
-      "channel": "RVvoenkor",
+      "feed_name": "TG:ukraine_watch",
+      "channel": "ukraine_watch",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/ukraine_watch",
+      "title": "🇷🇺🏹Reconnaissance personnel from the Guards Order of the Republic’s Separate Special-Purpose Battalion “Hunter” disrupted the enemy’s frontl",
+      "summary": "🇷🇺🏹Reconnaissance personnel from the Guards Order of the Republic’s Separate Special-Purpose Battalion “Hunter” disrupted the enemy’s frontline supply on the Aleksandro-Kalinovsky tactical axis A Ukrainian R-18 UAV was detected and destroyed southwest of Kramatorsk by a PVKh-1 FPV drone equipped with a high-explosive warhead. 🔘 Subscribe now! Chat",
+      "url": "https://t.me/ukraine_watch/71388",
+      "date": "2026-11-26",
+      "feed_name": "TG:ukraine_watch",
+      "channel": "ukraine_watch",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/ukraine_watch",
+      "title": "🇺🇸🥶NATO VIEWS THE ARCTIC AS A POTENTIAL THEATER OF WAR The alliance is practicing the use of weapons, including nuclear weapons, in northern",
+      "summary": "🇺🇸🥶NATO VIEWS THE ARCTIC AS A POTENTIAL THEATER OF WAR The alliance is practicing the use of weapons, including nuclear weapons, in northern conditions. This is noted in the Arctic Development Strategy approved by Putin. Russia is building up its forces in the Arctic to ensure national security. The strategy calls for preventing armed conflicts from breaking out along Russia’s borders. 🔘 Subscribe now! Chat",
+      "url": "https://t.me/ukraine_watch/71389",
+      "date": "2026-11-26",
+      "feed_name": "TG:ukraine_watch",
+      "channel": "ukraine_watch",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/ukraine_watch",
+      "title": "🔘Another target has been hit by the Russian Armed Forces in the Kramatorsk direction The enemy was transporting personnel and materiel in an",
+      "summary": "🔘Another target has been hit by the Russian Armed Forces in the Kramatorsk direction The enemy was transporting personnel and materiel in an SUV to support its units, but was destroyed by an FPV drone of the Russian Armed Forces in the southwestern part of Kramatorsk. 🔘 Subscribe now! Chat",
+      "url": "https://t.me/ukraine_watch/71390",
+      "date": "2026-11-26",
+      "feed_name": "TG:ukraine_watch",
+      "channel": "ukraine_watch",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -90330,34 +90478,8 @@
     },
     {
       "source": "telegram/RVvoenkor",
-      "title": "‼️🇰🇵 КНДР сочтёт попытку оспорить её ядерный статус объявлением войны — Ким Чен Ын ▪️ Лидер Северной Кореи Ким Чен Ын предупредил, что любые",
-      "summary": "‼️🇰🇵 КНДР сочтёт попытку оспорить её ядерный статус объявлением войны — Ким Чен Ын ▪️ Лидер Северной Кореи Ким Чен Ын предупредил, что любые попытки поставить под сомнение ядерный статус страны будут расцениваться Пхеньяном как открытое объявление войны, сообщает ЦТАК. ➖️️️️️️️«Теперь наша ядерная способность является реалией. Отрицание реалии — это только признание своего поражения», — подчеркнул северокорейский лидер. ⚠️Подписаться на RV: MAX | t.me/RVvoenkor",
-      "url": "https://t.me/RVvoenkor/128043",
-      "date": "2026-11-26",
-      "feed_name": "TG:RVvoenkor",
-      "channel": "RVvoenkor",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/RVvoenkor",
-      "title": "‼️🇺🇸🇸🇾 США готовят программу обучения сирийских военных с участием 15 стран — Reuters ▪️ Вашингтон рассматривает возможность запуска междуна",
-      "summary": "‼️🇺🇸🇸🇾 США готовят программу обучения сирийских военных с участием 15 стран — Reuters ▪️ Вашингтон рассматривает возможность запуска международной программы подготовки сирийских военнослужащих по разминированию и обезвреживанию неразорвавшихся боеприпасов. Обучение может начаться в марте 2027 года на территории Сирии и Иордании. ▪️ По данным Reuters, к инициативе могут присоединиться около 15 государств, включая Великобританию, Францию, Германию, Австралию, Саудовскую Аравию и ОАЭ. Участие амери",
-      "url": "https://t.me/RVvoenkor/128045",
-      "date": "2026-11-26",
-      "feed_name": "TG:RVvoenkor",
-      "channel": "RVvoenkor",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/RVvoenkor",
-      "title": "‼️🇷🇺🇺🇦 Армия России нанесла удары по трём электроподстанциям Украины и сухогрузу в Чёрном море ▪️ ВС РФ в течение дневной серии ударов беспи",
-      "summary": "‼️🇷🇺🇺🇦 Армия России нанесла удары по трём электроподстанциям Украины и сухогрузу в Чёрном море ▪️ ВС РФ в течение дневной серии ударов беспилотниками по объектам энергетической инфраструктуры, обеспечивающим работу предприятий украинского военно-промышленного комплекса. ▪️ Поражены электроподстанция 330 кВ в Харькове, подстанция 150 кВ в населённом пункте Зелёный Гай Днепропетровской области и подстанция 110 кВ в Радомышле Житомирской области. ▪️ Кроме того, южнее Одессы в акватории Чёрного моря",
+      "title": "‼️🇷🇺🇺🇦 Армия России нанесла удары по трём электроподстанциям Украины и сухогрузу в Чёрном море ▪️ ВС РФ дневной серией ударов беспилотниками",
+      "summary": "‼️🇷🇺🇺🇦 Армия России нанесла удары по трём электроподстанциям Украины и сухогрузу в Чёрном море ▪️ ВС РФ дневной серией ударов беспилотниками нанесла урон объектам энергетической инфраструктуры, обеспечивающим работу предприятий украинского военно-промышленного комплекса. ▪️ Поражены электроподстанция 330 кВ в Харькове, подстанция 150 кВ в населённом пункте Зелёный Гай Днепропетровской области и подстанция 110 кВ в Радомышле Житомирской области. ▪️ Кроме того, южнее Одессы в акватории Чёрного мор",
       "url": "https://t.me/RVvoenkor/128046",
       "date": "2026-11-26",
       "feed_name": "TG:RVvoenkor",
@@ -90472,13 +90594,39 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/militarysummary",
-      "title": "Approximate flight routes of the missiles used in tonight's attack on Kyiv. The following was launched: ~7 RM-48U modified S-400 ballistic m",
-      "summary": "Approximate flight routes of the missiles used in tonight's attack on Kyiv. The following was launched: ~7 RM-48U modified S-400 ballistic missiles from western Oryol Oblast. ~1 Zircon hypersonic cruise missile from northern Kursk Oblast. There were no interceptions. All missiles impacted their targets. The RM-48U S-400s impacted the industrial zone in eastern Kyiv, whereas the single Zircon struck something in southern Kyiv (not the bridge).",
-      "url": "https://t.me/militarysummary/33234",
+      "source": "telegram/RVvoenkor",
+      "title": "‼️🇷🇺 НАТО рассматривает Арктику как театр военных действий: президент утвердил стратегию развития региона ▪️ В. Путин утвердил стратегию раз",
+      "summary": "‼️🇷🇺 НАТО рассматривает Арктику как театр военных действий: президент утвердил стратегию развития региона ▪️ В. Путин утвердил стратегию развития Арктической зоны, предусматривающую масштабное освоение ресурсов, развитие инфраструктуры и укрепление безопасности северных территорий. ▪️ В документе отмечается, что НАТО рассматривает Арктику как потенциальный театр военных действий, наращивает военное присутствие и отрабатывает применение различных видов вооружений, включая ядерное, в условиях Край",
+      "url": "https://t.me/RVvoenkor/128055",
       "date": "2026-11-26",
-      "feed_name": "TG:militarysummary",
-      "channel": "militarysummary",
+      "feed_name": "TG:RVvoenkor",
+      "channel": "RVvoenkor",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/RVvoenkor",
+      "title": "‼️🇺🇦💦 3 часа с водой, 8 — без: Киеву прогнозируют жёсткие ограничения водоснабжения зимой ▪️ Жителям украинской столицы зимой, возможно, при",
+      "summary": "‼️🇺🇦💦 3 часа с водой, 8 — без: Киеву прогнозируют жёсткие ограничения водоснабжения зимой ▪️ Жителям украинской столицы зимой, возможно, придётся жить по графику подачи воды: три часа с водоснабжением и восемь часов без него. Такой прогноз озвучил глава Деснянской районной администрации Киева Максим Бахматов. ▪️ По его словам, городские власти оказались не готовы к зимнему периоду, что создаёт угрозу серьёзных перебоев в работе коммунальной инфраструктуры. ▪️ Ранее Кабмин Украины обязал админист",
+      "url": "https://t.me/RVvoenkor/128056",
+      "date": "2026-11-26",
+      "feed_name": "TG:RVvoenkor",
+      "channel": "RVvoenkor",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/RVvoenkor",
+      "title": "‼️🇩🇪🇮🇹🇺🇦 Германия и Италия предостерегли Киев от расширения конфликта с Россией на другие регионы ▪️ Глава МИД Германии Йоханн Вадефуль приз",
+      "summary": "‼️🇩🇪🇮🇹🇺🇦 Германия и Италия предостерегли Киев от расширения конфликта с Россией на другие регионы ▪️ Глава МИД Германии Йоханн Вадефуль призвал Украину не допускать географического расширения боевых действий на фоне сообщений об атаках на российские суда в Средиземном и Балтийском морях, передаёт DPA. ➖️️️️️️️ «Я бы настоятельно предостерёг от того, чтобы позволить этому конфликту распространяться географически», — заявил министр, подчеркнув при этом право Украины на самооборону. ▪️ Аналогичное ",
+      "url": "https://t.me/RVvoenkor/128057",
+      "date": "2026-11-26",
+      "feed_name": "TG:RVvoenkor",
+      "channel": "RVvoenkor",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -90628,13 +90776,13 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/new_militarycolumnist",
-      "title": "⚡️Владимир Путин согласился не применять ядерное оружие по Украине, заявил спецпосланник президента США Джаред Кушнер. #Россия #Украина @new",
-      "summary": "⚡️Владимир Путин согласился не применять ядерное оружие по Украине, заявил спецпосланник президента США Джаред Кушнер. #Россия #Украина @new_militarycolumnist",
-      "url": "https://t.me/new_militarycolumnist/182620",
+      "source": "telegram/militarysummary",
+      "title": "#UkraineRussiaWar #MilitarySummary 🌉 Zaporizhzhia has become the epicenter of the war: Russia bombs its Dnipro bridges daily, while satellit",
+      "summary": "#UkraineRussiaWar #MilitarySummary 🌉 Zaporizhzhia has become the epicenter of the war: Russia bombs its Dnipro bridges daily, while satellite images reveal Ukraine secretly building a new pontoon crossing 🛶 to keep the front supplied. Meanwhile, Kyiv's Khimvolokno drone plant lies in ruins after a ballistic strike 🔥 — and a mega-strike may be just hours away. Ukraine answers with counteroffensives ⚔️ across three directions, aiming to derail Russia's entire winter campaign, while 343 drones 🛢 hi",
+      "url": "https://t.me/militarysummary/33248",
       "date": "2026-11-26",
-      "feed_name": "TG:new_militarycolumnist",
-      "channel": "new_militarycolumnist",
+      "feed_name": "TG:militarysummary",
+      "channel": "militarysummary",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -90784,78 +90932,13 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/QudsNen",
-      "title": "The Jewish Network for Palestine (JNP) has filed a formal application to overturn Britain’s designation of Hamas as a banned organisation, a",
-      "summary": "The Jewish Network for Palestine (JNP) has filed a formal application to overturn Britain’s designation of Hamas as a banned organisation, arguing that the ban is being used to suppress pro-Palestinian and anti-Zionist speech. The move follows the arrest of an 80-year-old Jewish-Israeli academic and the prosecution of a 72-year-old Jewish writer, both members of the JNP group. The JNP argues that the ban violates fundamental rights to freedom of thought, expression and assembly, and is being use",
-      "url": "https://t.me/QudsNen/246612",
+      "source": "telegram/new_militarycolumnist",
+      "title": "Начальник учебно тренировочного центра одного из военных вузов Львова застрелен в Харькове. Сообщается, что стрелок получил \"заказ\", изъял и",
+      "summary": "Начальник учебно тренировочного центра одного из военных вузов Львова застрелен в Харькове. Сообщается, что стрелок получил \"заказ\", изъял из схрона пистолет и ликвидировал свою цель. #Украина @new_militarycolumnist",
+      "url": "https://t.me/new_militarycolumnist/182634",
       "date": "2026-11-26",
-      "feed_name": "TG:QudsNen",
-      "channel": "QudsNen",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/QudsNen",
-      "title": "\"Damn Palestine, it is gone,\" Israeli National Security Minister Itamar Ben-Gvir tells Palestinian members during a debate on a bill he cham",
-      "summary": "\"Damn Palestine, it is gone,\" Israeli National Security Minister Itamar Ben-Gvir tells Palestinian members during a debate on a bill he championed to ban the Muslim call to prayer. Ben-Gvir, whose far-right party has long championed the bill, accused the Palestinian lawmakers of prioritizing Palestine over their own children, a Zionist approach that blames Palestinians for the killing of their own children by Israel.",
-      "url": "https://t.me/QudsNen/246613",
-      "date": "2026-11-26",
-      "feed_name": "TG:QudsNen",
-      "channel": "QudsNen",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/QudsNen",
-      "title": "Pro-Palestine activists staged a sit-in at the Scottish Parliament demanding that Spanish firm CAF be dropped from a major ScotRail contract",
-      "summary": "Pro-Palestine activists staged a sit-in at the Scottish Parliament demanding that Spanish firm CAF be dropped from a major ScotRail contract after the company was listed by the UN for helping expand illegal Israeli settlements in the occupied West Bank.",
-      "url": "https://t.me/QudsNen/246614",
-      "date": "2026-11-26",
-      "feed_name": "TG:QudsNen",
-      "channel": "QudsNen",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/QudsNen",
-      "title": "Union Saint-Gilloise supporters waved Palestinian flags during a match in Belgium in a show of solidarity.",
-      "summary": "Union Saint-Gilloise supporters waved Palestinian flags during a match in Belgium in a show of solidarity.",
-      "url": "https://t.me/QudsNen/246615",
-      "date": "2026-11-26",
-      "feed_name": "TG:QudsNen",
-      "channel": "QudsNen",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/QudsNen",
-      "title": "Lily Greenberg Call, the first Jewish political appointee to resign from the Biden administration over US support for Israel’s genocidal war",
-      "summary": "Lily Greenberg Call, the first Jewish political appointee to resign from the Biden administration over US support for Israel’s genocidal war on Gaza, has revealed an initiative seeking to prevent former officials she describes as “architects of American complicity in genocide” from returning to power. Speaking to Al Jazeera, Greenberg Call said a group of 12 former US officials is urging 2028 presidential candidates to pledge not to appoint figures including Antony Blinken, Jake Sullivan and Sam",
-      "url": "https://t.me/QudsNen/246617",
-      "date": "2026-11-26",
-      "feed_name": "TG:QudsNen",
-      "channel": "QudsNen",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": []
-    },
-    {
-      "source": "telegram/QudsNen",
-      "title": "Israeli occupation forces detonate displaced Lebanese homes in the town of Al-Qantra, southern Lebanon.",
-      "summary": "Israeli occupation forces detonate displaced Lebanese homes in the town of Al-Qantra, southern Lebanon.",
-      "url": "https://t.me/QudsNen/246618",
-      "date": "2026-11-26",
-      "feed_name": "TG:QudsNen",
-      "channel": "QudsNen",
+      "feed_name": "TG:new_militarycolumnist",
+      "channel": "new_militarycolumnist",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -90940,13 +91023,78 @@
       "casualty_matches": []
     },
     {
-      "source": "telegram/sotaproject",
-      "title": "В Москве простились с главным редактором журнала «Знамя» Сергеем Чуприниным Сегодня в Москве прошло прощание с литературным критиком и истор",
-      "summary": "В Москве простились с главным редактором журнала «Знамя» Сергеем Чуприниным Сегодня в Москве прошло прощание с литературным критиком и историком литературы Сергеем Ивановичем Чуприниным. Гражданская панихида состоялась в Малом зале ЦДЛ, отпевание — в храме святой мученицы Татианы. Церемонию прощания вела коллега покойного по редакции «Знамени» литературный критик Наталья Иванова. В числе прочих на панихиде выступили Ирина Прохорова, Сергей Шаргунов, Евгений Бунимович, Денис Драгунский, Борис Куп",
-      "url": "https://t.me/sotaproject/121548",
+      "source": "telegram/QudsNen",
+      "title": "Israeli Army Radio reports that Israel has widened its assassinations in Gaza to include civil officials and leaders with no link to Hamas's",
+      "summary": "Israeli Army Radio reports that Israel has widened its assassinations in Gaza to include civil officials and leaders with no link to Hamas's military work, with the direct approval of Netanyahu and Katz. https://qudsnen.com/share/68663?lang=en",
+      "url": "https://t.me/QudsNen/246625",
       "date": "2026-11-26",
-      "feed_name": "TG:sotaproject",
-      "channel": "sotaproject",
+      "feed_name": "TG:QudsNen",
+      "channel": "QudsNen",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/QudsNen",
+      "title": "Breaking | Israeli occupation aircrafts renew bombardment of two residential buildings in Al-Tuffah neighborhood, east of Gaza City.",
+      "summary": "Breaking | Israeli occupation aircrafts renew bombardment of two residential buildings in Al-Tuffah neighborhood, east of Gaza City.",
+      "url": "https://t.me/QudsNen/246626",
+      "date": "2026-11-26",
+      "feed_name": "TG:QudsNen",
+      "channel": "QudsNen",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/QudsNen",
+      "title": "Georgian police seized a Palestinian flag and forcefully removed a Beşiktaş supporter who raised it in the stands ahead of the Europa League",
+      "summary": "Georgian police seized a Palestinian flag and forcefully removed a Beşiktaş supporter who raised it in the stands ahead of the Europa League match against Israeli side Hapoel Be’er Sheva in Batumi.",
+      "url": "https://t.me/QudsNen/246627",
+      "date": "2026-11-26",
+      "feed_name": "TG:QudsNen",
+      "channel": "QudsNen",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/QudsNen",
+      "title": "Watch | Ahead of their UEFA Europa League game against Israeli side Hapoel Beer-Sheva in Batumi, Georgia, Beşiktaş fans chanted for Palestin",
+      "summary": "Watch | Ahead of their UEFA Europa League game against Israeli side Hapoel Beer-Sheva in Batumi, Georgia, Beşiktaş fans chanted for Palestine and denounced war criminal Netanyahu over the ongoing genocide in Gaza.",
+      "url": "https://t.me/QudsNen/246628",
+      "date": "2026-11-26",
+      "feed_name": "TG:QudsNen",
+      "channel": "QudsNen",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/QudsNen",
+      "title": "Breaking | Israeli occupation aircraft bombard the outskirts of Ain el-Tineh in Lebanon’s Western Beqaa.",
+      "summary": "Breaking | Israeli occupation aircraft bombard the outskirts of Ain el-Tineh in Lebanon’s Western Beqaa.",
+      "url": "https://t.me/QudsNen/246629",
+      "date": "2026-11-26",
+      "feed_name": "TG:QudsNen",
+      "channel": "QudsNen",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/QudsNen",
+      "title": "Israeli occupation forces teargas Palestinians during a raid on the reception venue for freed detainee Taha al-Tarda in Taffuh, west of Hebr",
+      "summary": "Israeli occupation forces teargas Palestinians during a raid on the reception venue for freed detainee Taha al-Tarda in Taffuh, west of Hebron, a day after his release following 11 years in Israeli detention.",
+      "url": "https://t.me/QudsNen/246630",
+      "date": "2026-11-26",
+      "feed_name": "TG:QudsNen",
+      "channel": "QudsNen",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -91087,6 +91235,19 @@
       "title": "Финляндия пока не откроет границу с Россией ⠀ Ситуация не позволяет возобновить работу сухопутных погранпереходов, сообщило МВД Финляндии. Г",
       "summary": "Финляндия пока не откроет границу с Россией ⠀ Ситуация не позволяет возобновить работу сухопутных погранпереходов, сообщило МВД Финляндии. Глава ведомства Мари Рантанен заявила о сохраняющейся угрозе несанкционированного въезда со стороны России. ⠀ Власти также продлили до 31 декабря 2028 года действие закона о временных мерах пограничной безопасности. Продление вступит в силу 1 декабря. Дату открытия границы не объявляли. ⠀ Финляндия начала закрывать переходы осенью 2023 года из-за наплыва мигр",
       "url": "https://t.me/sotaproject/121568",
+      "date": "2026-11-26",
+      "feed_name": "TG:sotaproject",
+      "channel": "sotaproject",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": []
+    },
+    {
+      "source": "telegram/sotaproject",
+      "title": "Хакеры взломали ФИФА и получили доступ к внутренним данным ⠀ Международная федерация футбола подтвердила утечку персональной и деловой инфор",
+      "summary": "Хакеры взломали ФИФА и получили доступ к внутренним данным ⠀ Международная федерация футбола подтвердила утечку персональной и деловой информации. Организация сообщила, что сотрудничает с правоохранительными органами, но не уточнила дату атаки и число пострадавших. ⠀ Ответственность взяла на себя группировка Handsome Boy Hacking Club. Она заявила о получении доступа к 12 ГБ данных и опубликовала скриншоты файлов. ⠀ По данным Би-би-си, злоумышленники получили документы, выдавая себя за сотруднико",
+      "url": "https://t.me/sotaproject/121569",
       "date": "2026-11-26",
       "feed_name": "TG:sotaproject",
       "channel": "sotaproject",
@@ -91411,7 +91572,7 @@
       "casualty_matches": []
     }
   ],
-  "collected_at": "2026-11-26T17:59:14.127020",
+  "collected_at": "2026-11-26T19:27:48.210473",
   "event_clusters": [
     {
       "source": "google_news",
@@ -91460,8 +91621,8 @@
       "matched_rss": [],
       "rss_count": 0,
       "countries": [
-        "IL",
-        "US"
+        "US",
+        "IL"
       ],
       "total_sources": 2,
       "linked_gdelt": [
@@ -93295,6 +93456,607 @@
     },
     {
       "source": "google_news",
+      "query": "al-Qaeda",
+      "title": "Rep.-elect Adam Hamawy worked at al Qaeda front group — now he’s speaking at alleged Hamas-tied confab - New York Post",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOZWZIX3ZWdUF4SFhWTnA0SWlYMEMtZk01SmtacURmR01HdnkwN3FKcnlESTlJYUVPSlRrUGxwclpJOXBKZFdyaVR2OUpfMUFOekJLdDZleWZDRjI2OGRhZ3RPRU5rN3VENXBqQjk0WVhKN2Nfb0lHVWlJYnduRXQxd25uVGZSVFdIY1dSeHNXZGo3c1RMUFFBanlJeWhJOFhLbjVIaW9HMDlzQjNWUnNQV2xXeV9Zdm9neG1IbDdPVlJPbWNWSXFYekFwMFYwb1dRUmJn?oc=5",
+      "summary": "Rep.-elect Adam Hamawy worked at al Qaeda front group — now he’s speaking at alleged Hamas-tied confab&nbsp;&nbsp;New York Post",
+      "date": "Thu, 26 Nov 2026 18:42:00 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "United States",
+      "country_code": "US",
+      "_enrichment": {
+        "country": {
+          "name": "United States",
+          "iso": "US",
+          "region": "North America",
+          "sub_region": "Northern America",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired lone actors",
+            "Al-Qaeda inspired individuals",
+            "Domestic Violent Extremists (DVE) - various ideologies",
+            "Racially/Ethnically Motivated Violent Extremists (RMVE)",
+            "Militia Violent Extremists (MVE)",
+            "Anarchist/Anti-government extremists",
+            "Incel-motivated violent extremists"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 39.78373,
+      "longitude": -100.44588,
+      "cluster_size": 1,
+      "articles": [
+        "Rep.-elect Adam Hamawy worked at al Qaeda front group — now he’s speaking at alleged Hamas-tied confab - New York Post"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "US"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [
+        {
+          "event_code": "193",
+          "country": "US",
+          "location": "USTX, US",
+          "coords": [
+            "31.2548",
+            "-97.7091"
+          ],
+          "mentions": 307,
+          "tone": -6.8814211620603,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "180",
+          "country": "US",
+          "location": "USFL, US",
+          "coords": [
+            "27.5009",
+            "-82.2915"
+          ],
+          "mentions": 75,
+          "tone": -14.527027027027,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "192",
+          "country": "US",
+          "location": "USNY, US",
+          "coords": [
+            "42.1497",
+            "-74.9384"
+          ],
+          "mentions": 72,
+          "tone": -0.925655586185717,
+          "tone_label": "중립 (Neutral)"
+        },
+        {
+          "event_code": "192",
+          "country": "US",
+          "location": "USTX, US",
+          "coords": [
+            "31.106",
+            "-97.6475"
+          ],
+          "mentions": 44,
+          "tone": -2.15217723392394,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USPA, US",
+          "coords": [
+            "40.5773",
+            "-77.264"
+          ],
+          "mentions": 30,
+          "tone": -7.07964601769911,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USMO, US",
+          "coords": [
+            "38.4623",
+            "-92.302"
+          ],
+          "mentions": 25,
+          "tone": -7.50401315411899,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "US, US",
+          "coords": [
+            "39.828175",
+            "-98.5795"
+          ],
+          "mentions": 24,
+          "tone": -4.07280972923468,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "US, US",
+          "coords": [
+            "39.828175",
+            "-98.5795"
+          ],
+          "mentions": 24,
+          "tone": 0.304092828226687,
+          "tone_label": "중립 (Neutral)"
+        },
+        {
+          "event_code": "193",
+          "country": "US",
+          "location": "USFL, US",
+          "coords": [
+            "28.0186",
+            "-82.1129"
+          ],
+          "mentions": 23,
+          "tone": -2.78372591006423,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USMS, US",
+          "coords": [
+            "32.7673",
+            "-89.6812"
+          ],
+          "mentions": 20,
+          "tone": 0.5126404494382,
+          "tone_label": "중립 (Neutral)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USWV, US",
+          "coords": [
+            "38.468",
+            "-80.9696"
+          ],
+          "mentions": 18,
+          "tone": 0.159277962460137,
+          "tone_label": "중립 (Neutral)"
+        },
+        {
+          "event_code": "180",
+          "country": "US",
+          "location": "USAL, US",
+          "coords": [
+            "32.799",
+            "-86.8073"
+          ],
+          "mentions": 16,
+          "tone": -11.8226600985222,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USME, US",
+          "coords": [
+            "44.9212",
+            "-69.2617"
+          ],
+          "mentions": 15,
+          "tone": -3.44573545508124,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "193",
+          "country": "US",
+          "location": "USGA, US",
+          "coords": [
+            "33.4501",
+            "-84.1499"
+          ],
+          "mentions": 16,
+          "tone": -3.68271954674221,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USSC, US",
+          "coords": [
+            "34.7037",
+            "-82.9146"
+          ],
+          "mentions": 14,
+          "tone": -10.0684614378669,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "193",
+          "country": "US",
+          "location": "USWY, US",
+          "coords": [
+            "41.35",
+            "-104.667"
+          ],
+          "mentions": 13,
+          "tone": -5.29496389031895,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USDC, US",
+          "coords": [
+            "38.8951",
+            "-77.0364"
+          ],
+          "mentions": 12,
+          "tone": -1.47565495949752,
+          "tone_label": "중립 (Neutral)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USDC, US",
+          "coords": [
+            "38.8951",
+            "-77.0364"
+          ],
+          "mentions": 12,
+          "tone": -1.47565495949752,
+          "tone_label": "중립 (Neutral)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USTX, US",
+          "coords": [
+            "31.2548",
+            "-97.7091"
+          ],
+          "mentions": 11,
+          "tone": -7.29082021330626,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USNY, US",
+          "coords": [
+            "42.1497",
+            "-74.9384"
+          ],
+          "mentions": 12,
+          "tone": -6.37996196322904,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "US",
+          "location": "USTX, US",
+          "coords": [
+            "32.7357",
+            "-97.1081"
+          ],
+          "mentions": 12,
+          "tone": 0.159320256130463,
+          "tone_label": "중립 (Neutral)"
+        }
+      ],
+      "gdelt_count": 21,
+      "avg_media_tone": -4.56,
+      "tone_label": "부정적 (Negative)",
+      "importance_score": 46
+    },
+    {
+      "source": "google_news",
+      "query": "terrorism attack",
+      "title": "2 Iraqis arrested in Germany over alleged synagogue terror attack plots - The Times of Israel",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQdGk4R19sMGJsRWlLOWRQNzRJRjB0RS1LTXd1MVhrRTNiSEJzaW9FU1hoVWd3dlZCazd1ZVRVUm90QU5uTUVGb2lNaWRLZS1EdjVWN1Axc0duRWhESmpXQzFOOHVFX2NJWFl0Rl9ZSUo0cnRSZU15ejlmc0lDODlJWk9NM3Y1UHFrTnlELTZjbmUyaVdCWElHNkNRd2IwaWg5VmtHZ9IBqgFBVV95cUxNSzZoeHk5UE1nNEFIN3RSZEI2NEtDQ1doeURSU2ZGRXV5OUFDN3YxV2RmRE5iUzhDVjh2c3dMXzhzcG5qRE9pQ29yLW9ScGk1TUw0Z2pwb3lSVllOdHFwS05SdU5QNk43OXkyclBYUlUybjBvYUlOMDBLbENFXzJnZGJmX1p2X09LcVlMaXlwSzN1S2pJOGhVbF9wRU9pUlVuZlZYR3U4UG9qZw?oc=5",
+      "summary": "2 Iraqis arrested in Germany over alleged synagogue terror attack plots&nbsp;&nbsp;The Times of Israel",
+      "date": "Thu, 26 Nov 2026 18:11:24 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 0,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Germany",
+      "country_code": "DE",
+      "_enrichment": {
+        "country": {
+          "name": "Germany",
+          "iso": "DE",
+          "region": "Europe",
+          "sub_region": "Western Europe",
+          "threat_level": "Elevated",
+          "active_groups": [
+            "ISIS-inspired cells",
+            "Far-right extremists (Reichsbürger, etc.)",
+            "Far-left extremist networks"
+          ],
+          "conflict_zones": []
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 51.16382,
+      "longitude": 10.44783,
+      "cluster_size": 1,
+      "articles": [
+        "2 Iraqis arrested in Germany over alleged synagogue terror attack plots - The Times of Israel"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "DE",
+        "IL"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 273,
+          "tone": -6.97441679787883,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "1821",
+          "country": "DE",
+          "location": "GM, GM",
+          "coords": [
+            "51.5",
+            "10.5"
+          ],
+          "mentions": 156,
+          "tone": -4.31822998894663,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 186,
+          "tone": -7.36558140398049,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 46,
+          "tone": -8.42145056621737,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 30,
+          "tone": -7.8306209049681,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 30,
+          "tone": -9.60920022371364,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "181",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 25,
+          "tone": -6.45225895478994,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 24,
+          "tone": -6.50951249358695,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "195",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 16,
+          "tone": -8.33408575286852,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 16,
+          "tone": -7.15563506261181,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 20,
+          "tone": -10.1851851851852,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "1822",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 20,
+          "tone": -9.66688438928801,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 18,
+          "tone": -2.45123414935981,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 16,
+          "tone": -7.47883568681064,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 14,
+          "tone": -2.69666539212333,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "195",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 12,
+          "tone": -4.63996457586559,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "180",
+          "country": "DE",
+          "location": "GM04, GM",
+          "coords": [
+            "53.55",
+            "10"
+          ],
+          "mentions": 14,
+          "tone": -15.2610441767068,
+          "tone_label": "알 수 없음"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 12,
+          "tone": -3.7394157024427,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 12,
+          "tone": -6.77298850574713,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "DE",
+          "location": "GM16, GM",
+          "coords": [
+            "52.5167",
+            "13.4"
+          ],
+          "mentions": 12,
+          "tone": -0.41782729805014,
+          "tone_label": "중립 (Neutral)"
+        }
+      ],
+      "gdelt_count": 20,
+      "avg_media_tone": -6.81,
+      "tone_label": "매우 적대적 (Strongly Hostile)",
+      "importance_score": 45
+    },
+    {
+      "source": "google_news",
       "query": "ISIS ISIL Islamic State",
       "title": "Islamic State attack kills two Syrian security personnel in Hasaka, state media says - The Jerusalem Post",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBxWWdaZFY0VWRWRVJNRGNpTjVjSTI1RllYWXlUaEo2VmdaczNKMC1JbVgwQlNnX3ViQ0xEMVE0WHhGa0lUVER6YVJsRlVWTHA5TnpodG8xMTBRcmJ6?oc=5",
@@ -93365,8 +94127,8 @@
       ],
       "rss_count": 1,
       "countries": [
-        "IL",
-        "SY"
+        "SY",
+        "IL"
       ],
       "total_sources": 3,
       "linked_gdelt": [
@@ -93570,11 +94332,316 @@
     },
     {
       "source": "google_news",
+      "query": "airstrike killed civilians",
+      "title": "Hamas weighs response after Israel kills 10 people in Gaza - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNNzFiM29KUVhvZHZUYTV1SWtlLXNYbXg3ZzRodFVmanZkNzJsczZ4UldfRkNkSW1fVDhMaTFYOW9ETUxXaXFKcktCTThoYnBYS21mVjQxYkNWM19MR1h0WHNSdjlGenRTNkExU2RKU0ZKNUhCRWR0OVU2VmFqTUJHeE5QMVNybDE4Qk1WTmp5VGgyWDV0NjhaM3h4Ulp1bWZDUThnSlI0TFMwMnQzNk5KQnZXVTRCUUxvc2FLbmlDYVREeHpwOUpV?oc=5",
+      "summary": "Hamas weighs response after Israel kills 10 people in Gaza&nbsp;&nbsp;Reuters",
+      "date": "Thu, 26 Nov 2026 15:40:25 GMT",
+      "fatalities_estimated": 10,
+      "wounded_estimated": 0,
+      "casualty_confidence": "HIGH",
+      "casualty_matches": [
+        "er Israel kills 10 people in",
+        "er Israel kills 10 people in"
+      ],
+      "country": "Palestinian Territories",
+      "country_code": "PS",
+      "_enrichment": {
+        "country": {
+          "name": "Palestinian Territories",
+          "iso": "PS",
+          "region": "Middle East / North Africa",
+          "sub_region": "Levant",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Hamas (governing Gaza)",
+            "Palestinian Islamic Jihad (PIJ)",
+            "Popular Front for the Liberation of Palestine (PFLP)",
+            "Al-Aqsa Martyrs' Brigades",
+            "Lion's Den (Areen al-Usood)",
+            "Jenin Brigades"
+          ],
+          "conflict_zones": [
+            "Gaza Strip",
+            "Jenin",
+            "Nablus",
+            "Tulkarm",
+            "Hebron"
+          ]
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 31.46242,
+      "longitude": 34.26272,
+      "cluster_size": 1,
+      "articles": [
+        "Hamas weighs response after Israel kills 10 people in Gaza - Reuters"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "PS",
+        "IL"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 181,
+          "tone": -5.68439802943236,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "195",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 58,
+          "tone": -8.19540776351915,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "195",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 58,
+          "tone": -8.3107766947505,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 51,
+          "tone": -8.48285362804957,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 46,
+          "tone": -8.42145056621737,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 40,
+          "tone": -9.3294924134119,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "193",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 29,
+          "tone": -8.64045533912632,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "195",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 16,
+          "tone": -8.33408575286852,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 16,
+          "tone": -7.15563506261181,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "195",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 20,
+          "tone": -4.85863829422111,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "1822",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 20,
+          "tone": -9.66688438928801,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 18,
+          "tone": -2.45123414935981,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 20,
+          "tone": -8.274231678487,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 20,
+          "tone": -8.274231678487,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 14,
+          "tone": -2.69666539212333,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "195",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 12,
+          "tone": -4.63996457586559,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "196",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 14,
+          "tone": -4.49097050799012,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS, IS",
+          "coords": [
+            "31.5",
+            "34.75"
+          ],
+          "mentions": 12,
+          "tone": -3.7394157024427,
+          "tone_label": "부정적 (Negative)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.7667",
+            "35.2333"
+          ],
+          "mentions": 12,
+          "tone": -6.77298850574713,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        },
+        {
+          "event_code": "190",
+          "country": "IL",
+          "location": "IS00, IS",
+          "coords": [
+            "31.4167",
+            "34.3333"
+          ],
+          "mentions": 12,
+          "tone": -4.17755293307574,
+          "tone_label": "부정적 (Negative)"
+        }
+      ],
+      "gdelt_count": 20,
+      "avg_media_tone": -6.63,
+      "tone_label": "매우 적대적 (Strongly Hostile)",
+      "importance_score": 45
+    },
+    {
+      "source": "google_news",
       "query": "terrorist plot foiled",
-      "title": "Russia foiled terrorist plot targeting Jewish worshippers, FSB says - JNS",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQZnY4OGRUWktFYjFONnRPR2lldGVGWklGYzZNSVQwQlBWVnR0YkEtVnlwbmdPUHFYRDJfbTgyVExRcml3YjdMeTg1c1FhTFJBYjc0NVE1TmdESFZQbGxMOUVlZ1A2LUdiaUxZRHZnV2tkWGRPeXdYendEMW9KcXVQRVU3Q21JZzM2aW5qc3lONTZPM0NveHBCOUt5eHpkZw?oc=5",
-      "summary": "Russia foiled terrorist plot targeting Jewish worshippers, FSB says&nbsp;&nbsp;JNS",
-      "date": "Tue, 24 Nov 2026 13:06:02 GMT",
+      "title": "Russia Foiled Terrorist Plot Targeting Jewish Worshippers, FSB Says - The Jewish Link",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOcWlneWFZSG5acUhZNnQ4UnpuSVI4WGhYUmpaeGhIRjVwamlpdWVjd1pGTXRmdl9jM0xXOEVnNERzMlFsN1JobjBwQnpUN0hKOVRGWER1RWlDWENBX1BldGV0cXZiOWduU3VLTE81LVlwdVM4cjBDNUtEUVBzbk9wU0g4c2NmczhxWENrZWpqcm51RWlIVnc?oc=5",
+      "summary": "Russia Foiled Terrorist Plot Targeting Jewish Worshippers, FSB Says&nbsp;&nbsp;The Jewish Link",
+      "date": "Thu, 26 Nov 2026 18:54:40 GMT",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -93626,7 +94693,7 @@
       "longitude": 97.74531,
       "cluster_size": 1,
       "articles": [
-        "Russia foiled terrorist plot targeting Jewish worshippers, FSB says - JNS"
+        "Russia Foiled Terrorist Plot Targeting Jewish Worshippers, FSB Says - The Jewish Link"
       ],
       "matched_rss": [],
       "rss_count": 0,
@@ -93859,274 +94926,6 @@
     },
     {
       "source": "google_news",
-      "query": "Palestinian Islamic Jihad",
-      "title": "Europe Takes Aim at the Financial Lifelines of Terrorism - Jerusalem Center for Security and Foreign Affairs",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBGeGcwYkdWakxZQVRhUWs2TUFMSXJISS0wZ3NfRHhUc1pDZHVmWU00UDZBLW9nODBIRXlfdXptUXYyYzZwWGVLLWNBQmxLSTR2VDFYNEFCZ05WdkFmX0ZORURpTUM3ZE5Da1JHTnJSTlNSdkxneGNKZXRxRm9oX2c?oc=5",
-      "summary": "Europe Takes Aim at the Financial Lifelines of Terrorism&nbsp;&nbsp;Jerusalem Center for Security and Foreign Affairs",
-      "date": "Wed, 25 Nov 2026 11:58:09 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Israel",
-      "country_code": "IL",
-      "_enrichment": {
-        "country": {
-          "name": "Israel",
-          "iso": "IL",
-          "region": "Middle East / North Africa",
-          "sub_region": "Levant",
-          "threat_level": "High",
-          "active_groups": [
-            "Hamas",
-            "Palestinian Islamic Jihad (PIJ)",
-            "Hezbollah (cross-border)",
-            "Lone-wolf attackers"
-          ],
-          "conflict_zones": [
-            "Gaza Strip border",
-            "West Bank/Judea and Samaria",
-            "Northern border (Lebanon)",
-            "Jerusalem"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "ISR-PAL-GAZA",
-          "zone_name": "Israel/Palestine - Gaza Strip",
-          "country": "Israel / Palestine",
-          "region": "MENA",
-          "intensity": "High",
-          "trend": "Escalating",
-          "active_groups": [
-            "Hamas (Izz ad-Din al-Qassam Brigades)",
-            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
-            "Popular Front for the Liberation of Palestine (PFLP)",
-            "Various smaller Palestinian factions",
-            "Israel Defense Forces (IDF)"
-          ],
-          "conflict_type": "War / Insurgency",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 30.81242,
-      "longitude": 34.85948,
-      "cluster_size": 1,
-      "articles": [
-        "Europe Takes Aim at the Financial Lifelines of Terrorism - Jerusalem Center for Security and Foreign Affairs"
-      ],
-      "matched_rss": [],
-      "rss_count": 0,
-      "countries": [
-        "IL"
-      ],
-      "total_sources": 1,
-      "linked_gdelt": [
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 126,
-          "tone": -7.47839878619118,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 42,
-          "tone": -7.47839878619118,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 46,
-          "tone": -8.42145056621737,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 40,
-          "tone": -9.3294924134119,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 30,
-          "tone": -7.8306209049681,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "193",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 29,
-          "tone": -8.64045533912632,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "195",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 16,
-          "tone": -8.33408575286852,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "195",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 20,
-          "tone": -4.85863829422111,
-          "tone_label": "부정적 (Negative)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 20,
-          "tone": -10.1851851851852,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "195",
-          "country": "IL",
-          "location": "IS, IS",
-          "coords": [
-            "31.5",
-            "34.75"
-          ],
-          "mentions": 20,
-          "tone": -6.36942675159236,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "1822",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.7667",
-            "35.2333"
-          ],
-          "mentions": 20,
-          "tone": -9.66688438928801,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 18,
-          "tone": -2.45123414935981,
-          "tone_label": "부정적 (Negative)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS, IS",
-          "coords": [
-            "31.5",
-            "34.75"
-          ],
-          "mentions": 14,
-          "tone": -4.52894341043615,
-          "tone_label": "부정적 (Negative)"
-        },
-        {
-          "event_code": "196",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 14,
-          "tone": -4.49097050799012,
-          "tone_label": "부정적 (Negative)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.7667",
-            "35.2333"
-          ],
-          "mentions": 12,
-          "tone": -6.77298850574713,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 12,
-          "tone": -4.17755293307574,
-          "tone_label": "부정적 (Negative)"
-        }
-      ],
-      "gdelt_count": 16,
-      "avg_media_tone": -6.94,
-      "tone_label": "매우 적대적 (Strongly Hostile)",
-      "importance_score": 36
-    },
-    {
-      "source": "google_news",
       "query": "terrorism attack",
       "title": "Rethinking India’s strategic value to Israel 18 years after Mumbai terror attack - opinion - The Jerusalem Post",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9janlKZURqRWhEdV94bm9pNTdfaW1tOTY4d3lHMjdsMjY5Q1NiQkgwUG1jNU1TX283NjVNLV9LdUR5QUdpLWhpRFY5RF9JNERNU1Y4bDkzZEZtbnpiWmhMQjVlZw?oc=5",
@@ -94191,8 +94990,8 @@
       "matched_rss": [],
       "rss_count": 0,
       "countries": [
-        "IL",
-        "IN"
+        "IN",
+        "IL"
       ],
       "total_sources": 1,
       "linked_gdelt": [
@@ -94388,7 +95187,7 @@
       "title": "IDF, Shin Bet reveal Hamas use of hospital for torture, interrogations - The Jerusalem Post",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1tWXNTbkMzcEtlZGtlWUU3ZU1CQ2ZOYnZCYlVCeW5JNWFTNUowOVoyZEwycmVzeU1ZRWhJWTJSZHpwUmVGdmFDOWhRblBod3hJaHFqVEZKUjF5THk1Zk8yZnI4MGRxakstVHB6V0d3?oc=5",
       "summary": "IDF, Shin Bet reveal Hamas use of hospital for torture, interrogations&nbsp;&nbsp;The Jerusalem Post",
-      "date": "Thu, 26 Nov 2026 17:03:45 GMT",
+      "date": "Thu, 26 Nov 2026 17:04:24 GMT",
       "fatalities_estimated": 0,
       "wounded_estimated": 0,
       "casualty_confidence": "NONE",
@@ -94625,238 +95424,6 @@
       "avg_media_tone": -6.82,
       "tone_label": "매우 적대적 (Strongly Hostile)",
       "importance_score": 32
-    },
-    {
-      "source": "google_news",
-      "query": "suicide bombing",
-      "title": "Jerusalem pharmacy student indicted over alleged Temple Mount suicide attack plot - The Jerusalem Post",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFAwTlM2bk1VZkxHRGFkVHc0R1R0ZHpLRDdJTldJZFpTbGhKbWhPTjZpTFVJdUpkNFdLTEVlcHZqbFAxa09zWHEtbG1FdmthWjlKZERvTGp5R19zbEtEM2w2MUVKN2tjTXk4RzNyMlFxYWUyZw?oc=5",
-      "summary": "Jerusalem pharmacy student indicted over alleged Temple Mount suicide attack plot&nbsp;&nbsp;The Jerusalem Post",
-      "date": "Mon, 23 Nov 2026 19:06:03 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Israel",
-      "country_code": "IL",
-      "_enrichment": {
-        "country": {
-          "name": "Israel",
-          "iso": "IL",
-          "region": "Middle East / North Africa",
-          "sub_region": "Levant",
-          "threat_level": "High",
-          "active_groups": [
-            "Hamas",
-            "Palestinian Islamic Jihad (PIJ)",
-            "Hezbollah (cross-border)",
-            "Lone-wolf attackers"
-          ],
-          "conflict_zones": [
-            "Gaza Strip border",
-            "West Bank/Judea and Samaria",
-            "Northern border (Lebanon)",
-            "Jerusalem"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "ISR-PAL-GAZA",
-          "zone_name": "Israel/Palestine - Gaza Strip",
-          "country": "Israel / Palestine",
-          "region": "MENA",
-          "intensity": "High",
-          "trend": "Escalating",
-          "active_groups": [
-            "Hamas (Izz ad-Din al-Qassam Brigades)",
-            "Palestinian Islamic Jihad (PIJ - Al-Quds Brigades)",
-            "Popular Front for the Liberation of Palestine (PFLP)",
-            "Various smaller Palestinian factions",
-            "Israel Defense Forces (IDF)"
-          ],
-          "conflict_type": "War / Insurgency",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 30.81242,
-      "longitude": 34.85948,
-      "cluster_size": 1,
-      "articles": [
-        "Jerusalem pharmacy student indicted over alleged Temple Mount suicide attack plot - The Jerusalem Post"
-      ],
-      "matched_rss": [],
-      "rss_count": 0,
-      "countries": [
-        "IL"
-      ],
-      "total_sources": 1,
-      "linked_gdelt": [
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 186,
-          "tone": -7.36558140398049,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 181,
-          "tone": -5.68439802943236,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 40,
-          "tone": -9.3294924134119,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 30,
-          "tone": -7.8306209049681,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "193",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 29,
-          "tone": -8.64045533912632,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 30,
-          "tone": -9.60920022371364,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 16,
-          "tone": -7.15563506261181,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 20,
-          "tone": -10.1851851851852,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "1822",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.7667",
-            "35.2333"
-          ],
-          "mentions": 20,
-          "tone": -9.66688438928801,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS, IS",
-          "coords": [
-            "31.5",
-            "34.75"
-          ],
-          "mentions": 14,
-          "tone": -4.52894341043615,
-          "tone_label": "부정적 (Negative)"
-        },
-        {
-          "event_code": "195",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 12,
-          "tone": -4.63996457586559,
-          "tone_label": "부정적 (Negative)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.7667",
-            "35.2333"
-          ],
-          "mentions": 12,
-          "tone": -6.77298850574713,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "IL",
-          "location": "IS00, IS",
-          "coords": [
-            "31.4167",
-            "34.3333"
-          ],
-          "mentions": 12,
-          "tone": -4.17755293307574,
-          "tone_label": "부정적 (Negative)"
-        }
-      ],
-      "gdelt_count": 13,
-      "avg_media_tone": -7.35,
-      "tone_label": "매우 적대적 (Strongly Hostile)",
-      "importance_score": 30
     },
     {
       "source": "google_news",
@@ -95583,124 +96150,6 @@
     },
     {
       "source": "google_news",
-      "query": "terrorism attack",
-      "title": "Saudi Arabia Condemns Terrorist Attack on Syrian Security Forces Site in Al-Hasakah - ASHARQ AL-AWSAT English",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNamd6SmZuVGdONFRyX1hSdkd2MVBVWHdBU0E5bUxBTGFFWnV6R2xzWC1ZS0h4VkFGNDhHbXIyejVaajBrUGZ0eUVVTk9VbGR6UDJhdXRuNk9ZbkNkUUJjd283TGtPVjdlRlZhcTJoM1NtakNmaUg4R1RlaGNHQ0pxUWM1OWtyRWF0czNBMWFwM1Z6WWh2VmsyOXV2Z00yUWFnRDhXZm9EbHYxNTFtaHUxSjV1cjlpeGxH?oc=5",
-      "summary": "Saudi Arabia Condemns Terrorist Attack on Syrian Security Forces Site in Al-Hasakah&nbsp;&nbsp;ASHARQ AL-AWSAT English",
-      "date": "Thu, 26 Nov 2026 13:09:29 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "country": "Saudi Arabia",
-      "country_code": "SA",
-      "_enrichment": {
-        "country": {
-          "name": "Saudi Arabia",
-          "iso": "SA",
-          "region": "Middle East / North Africa",
-          "sub_region": "Arabian Peninsula",
-          "threat_level": "Moderate",
-          "active_groups": [
-            "AQAP cells",
-            "ISIS-inspired lone actors",
-            "Houthi cross-border attacks (missile/drone)"
-          ],
-          "conflict_zones": [
-            "Southern border with Yemen (Jizan, Najran)"
-          ]
-        },
-        "conflict_zone": {
-          "zone_id": "SAU-BORDER-SOUTH",
-          "zone_name": "Saudi Arabia - Southern border (Houthi threat)",
-          "country": "Saudi Arabia",
-          "region": "MENA",
-          "intensity": "Low",
-          "trend": "De-escalating",
-          "active_groups": [
-            "Ansar Allah (Houthis) - drone/missile attacks",
-            "AQAP (limited capability in border area)"
-          ],
-          "conflict_type": "Border Conflict / Terrorism-only",
-          "match_type": "text",
-          "match_score": 1
-        },
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "latitude": 25.62426,
-      "longitude": 42.35283,
-      "cluster_size": 1,
-      "articles": [
-        "Saudi Arabia Condemns Terrorist Attack on Syrian Security Forces Site in Al-Hasakah - ASHARQ AL-AWSAT English"
-      ],
-      "matched_rss": [],
-      "rss_count": 0,
-      "countries": [
-        "SA",
-        "SY"
-      ],
-      "total_sources": 1,
-      "linked_gdelt": [
-        {
-          "event_code": "190",
-          "country": "SA",
-          "location": "SA10, SA",
-          "coords": [
-            "24.6408",
-            "46.7728"
-          ],
-          "mentions": 358,
-          "tone": -5.26839158806601,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "SA",
-          "location": "SA14, SA",
-          "coords": [
-            "21.5169",
-            "39.2192"
-          ],
-          "mentions": 48,
-          "tone": -6.90091446360101,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "SA",
-          "location": "SA14, SA",
-          "coords": [
-            "21.5169",
-            "39.2192"
-          ],
-          "mentions": 22,
-          "tone": -5.23855364946569,
-          "tone_label": "매우 적대적 (Strongly Hostile)"
-        },
-        {
-          "event_code": "190",
-          "country": "SA",
-          "location": "SA10, SA",
-          "coords": [
-            "24.6408",
-            "46.7728"
-          ],
-          "mentions": 14,
-          "tone": -4.05353126405758,
-          "tone_label": "부정적 (Negative)"
-        }
-      ],
-      "gdelt_count": 4,
-      "avg_media_tone": -5.37,
-      "tone_label": "매우 적대적 (Strongly Hostile)",
-      "importance_score": 13
-    },
-    {
-      "source": "google_news",
       "query": "car bomb explosion",
       "title": "23 injured after car bomb explodes outside government offices in Colombia - The Independent",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNRE9vQXB4XzZLMGo0WGxIU1oyeGluY1c5LW8wUl9aUXlGME1sdnBQVlhPOVdYSHhJTXNKTHZRV1dMa0tHeUxjdXU5czRHVXdrbXZGNHpKTC1QR2hEMVJIa01XNlJDZmZ1OFN1bGtmNy16NlFPZWZob2ZmYmk1U1VHaVEwbVJ0STlxWk1hODRzTE5ZeldRNUtoRDhpTTNITDU3d3RYMFNYcXpGR0k?oc=5",
@@ -95889,8 +96338,8 @@
       "matched_rss": [],
       "rss_count": 0,
       "countries": [
-        "FR",
-        "IQ"
+        "IQ",
+        "FR"
       ],
       "total_sources": 1,
       "linked_gdelt": [
@@ -96048,6 +96497,102 @@
       "avg_media_tone": -5.4,
       "tone_label": "매우 적대적 (Strongly Hostile)",
       "importance_score": 10
+    },
+    {
+      "source": "google_news",
+      "query": "counterterrorism operation",
+      "title": "24 Terrorists Killed, Three Injured in Balochistan Operations Under Radd-ul-Fitna-III - Balochistan Pulse",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQQVAyY1d1X004YmMtUnduVlZydUQ2dVZpQWNhSU5wTThrSTVXMVdBRVZqaGtOelZkX0VaR05ubHJNcFdZR0pxZnVONjQteWxRWnZocjJaY0g1MDQxMk1KMnk1SEJId0VsNlkwbUJ2OC1YNWFQUm1ELWVLdnhfajVkeFl0OW1haGJxWTkyQkswMUMtM2V1N3ZZVGVJVjdIdzZhVVVaNFFNSmZKM2ItdFQ1cFF4R1HSAbQBQVVfeXFMUEFQMmNXdV9NOGJjLVJ3blZWcnVENnVWaUFjYUlOcE04a0k1VzFXQUVWamhrTnpWZF9FWkdObmxyTXBXWUdKcWZ1TjY0LXlsUVp2aHIyWmNINTA0MTJNSjJ5NUhCSHdFbDZZMG1CdjgtWDVhUFJtRC1lS3Z4X2o1ZHhZdDltYWhicVk5MkJLMDFDLTNldTd2WVRlSVY3SHc2YVVVWjRRTUpmSjNiLXRUNXBReEdR?oc=5",
+      "summary": "24 Terrorists Killed, Three Injured in Balochistan Operations Under Radd-ul-Fitna-III&nbsp;&nbsp;Balochistan Pulse",
+      "date": "Tue, 24 Nov 2026 08:42:19 GMT",
+      "fatalities_estimated": 0,
+      "wounded_estimated": 3,
+      "casualty_confidence": "NONE",
+      "casualty_matches": [],
+      "country": "Pakistan",
+      "country_code": "PK",
+      "_enrichment": {
+        "country": {
+          "name": "Pakistan",
+          "iso": "PK",
+          "region": "South Asia",
+          "sub_region": "Indian Subcontinent",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "Islamic State Khorasan Province (ISKP)",
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Lashkar-e-Jhangvi (LeJ)",
+            "Jaish-e-Mohammed (JeM)",
+            "Lashkar-e-Taiba (LeT)",
+            "Sindhudesh Revolutionary Army (SRA)",
+            "Al-Qaeda in the Indian Subcontinent (AQIS)"
+          ],
+          "conflict_zones": [
+            "Khyber Pakhtunkhwa (ex-FATA)",
+            "Balochistan",
+            "Karachi",
+            "South Punjab",
+            "Sindh"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "PAK-BALOCHISTAN",
+          "zone_name": "Pakistan - Balochistan",
+          "country": "Pakistan",
+          "region": "South / Southeast Asia",
+          "intensity": "High",
+          "trend": "Escalating",
+          "active_groups": [
+            "Balochistan Liberation Army (BLA)",
+            "Balochistan Liberation Front (BLF)",
+            "Tehrik-i-Taliban Pakistan (TTP)",
+            "ISIS-Khorasan Province (ISKP)",
+            "Lashkar-e-Jhangvi (sectarian)",
+            "Sindhudesh Revolutionary Army (occasionally)"
+          ],
+          "conflict_type": "Insurgency / Separatist",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 30.33084,
+      "longitude": 71.2475,
+      "cluster_size": 2,
+      "articles": [
+        "24 Terrorists Killed, Three Injured in Balochistan Operations Under Radd-ul-Fitna-III - Balochistan Pulse",
+        "Security Forces killed Four Terrorists In Security Operation in Naushki, Balochistan - Balochistan Pulse"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "PK"
+      ],
+      "total_sources": 2,
+      "linked_gdelt": [
+        {
+          "event_code": "190",
+          "country": "PK",
+          "location": "PK04, PK",
+          "coords": [
+            "31.2833",
+            "73.25"
+          ],
+          "mentions": 12,
+          "tone": -6.66666666666666,
+          "tone_label": "매우 적대적 (Strongly Hostile)"
+        }
+      ],
+      "gdelt_count": 1,
+      "avg_media_tone": -6.67,
+      "tone_label": "매우 적대적 (Strongly Hostile)",
+      "importance_score": 9
     },
     {
       "source": "google_news",
@@ -96302,6 +96847,85 @@
     },
     {
       "source": "google_news",
+      "query": "al-Shabaab attack",
+      "title": "Eight soldiers killed in al-Shabaab attack in Somalia - Yeni Safak English",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPaGJXV3NMTXFod0lZRzhheDVFUGJwbzlNcksxWndKWEVubWgwcy00NVFPUXoydDJDRkNnNGdHRWxzTW5MZ21jeGFqMmgzVy1NaFNTbkxFMEVZQWY1Tml3dkMyczZrMm9WQmpHS1lFZ01PM01sT29jelpHOWlmT18yMmt5bXBUeUk4ZXFJOEQ1ZFYxVjkyX3Aw?oc=5",
+      "summary": "Eight soldiers killed in al-Shabaab attack in Somalia&nbsp;&nbsp;Yeni Safak English",
+      "date": "Wed, 25 Nov 2026 19:44:49 GMT",
+      "fatalities_estimated": 8,
+      "wounded_estimated": 0,
+      "casualty_confidence": "HIGH",
+      "casualty_matches": [
+        "Eight soldiers killed in al-Sha",
+        "k English Eight soldiers killed in al-Sha"
+      ],
+      "country": "Somalia",
+      "country_code": "SO",
+      "_enrichment": {
+        "country": {
+          "name": "Somalia",
+          "iso": "SO",
+          "region": "Sub-Saharan Africa",
+          "sub_region": "East Africa",
+          "threat_level": "Critical",
+          "active_groups": [
+            "Al-Shabaab",
+            "Islamic State - Somalia Province (ISS)",
+            "Ahlu Sunna Wal Jama'a (ASWJ)"
+          ],
+          "conflict_zones": [
+            "South-Central Somalia",
+            "Lower Shabelle",
+            "Middle Shabelle",
+            "Bay and Bakool",
+            "Mudug",
+            "Puntland"
+          ]
+        },
+        "conflict_zone": {
+          "zone_id": "SOM-SOUTH-CENTRAL",
+          "zone_name": "Somalia - South-Central",
+          "country": "Somalia",
+          "region": "Sub-Saharan Africa",
+          "intensity": "High",
+          "trend": "Stable",
+          "active_groups": [
+            "Al-Shabaab",
+            "ISIS-Somalia (small faction)",
+            "Somali National Army (SNA)",
+            "ATMIS (African Transition Mission in Somalia)",
+            "Clan militias"
+          ],
+          "conflict_type": "Insurgency",
+          "match_type": "text",
+          "match_score": 1
+        },
+        "attack_classification": {
+          "category": "unknown",
+          "category_name": "Unclassified",
+          "original_type": ""
+        }
+      },
+      "latitude": 8.36768,
+      "longitude": 49.08342,
+      "cluster_size": 1,
+      "articles": [
+        "Eight soldiers killed in al-Shabaab attack in Somalia - Yeni Safak English"
+      ],
+      "matched_rss": [],
+      "rss_count": 0,
+      "countries": [
+        "SO"
+      ],
+      "total_sources": 1,
+      "linked_gdelt": [],
+      "gdelt_count": 0,
+      "avg_media_tone": null,
+      "tone_label": null,
+      "importance_score": 4
+    },
+    {
+      "source": "google_news",
       "query": "Palestinian Islamic Jihad",
       "title": "Analysis: Evidence Suggests Reported Gaza Charity Worker Was Linked to Palestinian Islamic Jihad - Algemeiner.com",
       "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOODNvNnZiQjFFcjBHU3cxTGh1YVNaUnVLLXRhazcxR3hjV3Y2VHV4TXhrQXE0ZjBxaDJQR0k1alBnSXd2WWd3aFZhYzVDVlJjZ2hEWkx1WWY3eGRmS1EzMmFWd3BTSU1GSkR4RGVkVm1pamdpdG16d1M4em9mZkdIdHBZclVkU1pFTUl2SF85c0tYM2VqOUlJQi1mYjN0dmRfME90TnRJOWdBdm1IWGh3aUlPdl9YVzZiRFptN2d0T1dYQ1FGM2c?oc=5",
@@ -96495,38 +97119,6 @@
       "cluster_size": 1,
       "articles": [
         "Has global jihadism failed, or is it simply changing shape? - BBC"
-      ],
-      "matched_rss": [],
-      "rss_count": 0,
-      "countries": [],
-      "total_sources": 1,
-      "linked_gdelt": [],
-      "gdelt_count": 0,
-      "avg_media_tone": null,
-      "tone_label": null,
-      "importance_score": 3
-    },
-    {
-      "source": "google_news",
-      "query": "al-Qaeda",
-      "title": "New Terrorism Threats Add to US Air Travel Concerns This Holiday Season - Newsweek",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWUlUT3NvLVRFbk1XREVSSjhwMVBNWmlWU0wzQ21fYUljTml0MGhZQkNYVGF6dkhxc2hSVnNlMUFTR2JBQ0NHWF9PN3hSVGhCSVNGV0pib1pPVUFkSVllY2cwN3hQM2tIVHlXRHM4SUZvYzVBSkdUSU1WWklaSnN0ZTJPWDRrX3FtMUlXeDk1U2gxX1AxU3hDVDYybmVUYkt0QV9zb21FTVE?oc=5",
-      "summary": "New Terrorism Threats Add to US Air Travel Concerns This Holiday Season&nbsp;&nbsp;Newsweek",
-      "date": "Tue, 24 Nov 2026 17:15:00 GMT",
-      "fatalities_estimated": 0,
-      "wounded_estimated": 0,
-      "casualty_confidence": "NONE",
-      "casualty_matches": [],
-      "_enrichment": {
-        "attack_classification": {
-          "category": "unknown",
-          "category_name": "Unclassified",
-          "original_type": ""
-        }
-      },
-      "cluster_size": 1,
-      "articles": [
-        "New Terrorism Threats Add to US Air Travel Concerns This Holiday Season - Newsweek"
       ],
       "matched_rss": [],
       "rss_count": 0,
